@@ -75,28 +75,42 @@
       var btnText = btn ? btn.textContent : '';
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
-      var payload = { _subject: subj, _template: 'table', _captcha: 'false' };
+      /* form-encoded (URLSearchParams) keeps this a "simple" cross-origin request —
+         no CORS preflight — which is what FormSubmit's AJAX endpoint needs to accept
+         it from a browser. (JSON triggers a preflight that gets blocked.) */
+      var payload = new URLSearchParams();
+      payload.append('_subject', subj);
+      payload.append('_template', 'table');
+      payload.append('_captcha', 'false');
       f.querySelectorAll('input, textarea, select').forEach(function (el) {
         if (el === honey || !el.value) return;
         var lab = el.id ? f.querySelector('label[for="' + el.id + '"]') : null;
         var key = lab ? lab.textContent.replace('*', '').trim() : (el.name || el.id || 'Field');
-        payload[key] = el.value;
+        payload.append(key, el.value);
       });
 
       fetch('https://formsubmit.co/ajax/' + encodeURIComponent(to), {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
+        headers: { 'Accept': 'application/json' },
+        body: payload
       })
       .then(function (r) { return r.json(); })
-      .then(function () {
+      .then(function (res) {
+        if (!res || (res.success !== true && res.success !== 'true')) throw new Error('not ok');
         f.innerHTML = '<h3>Grazie! 🎉</h3>' +
           '<p class="fnote">Thanks for reaching out — your message is on its way and we\'ll be in touch very soon.</p>' +
           '<p class="fnote">Anything urgent? Email <a href="mailto:' + to + '">' + to + '</a>.</p>';
       })
       .catch(function () {
         if (btn) { btn.disabled = false; btn.textContent = btnText; }
-        alert('Sorry — that didn\'t send just now. Please email us directly at ' + to + ' and we\'ll get right back to you.');
+        var err = f.querySelector('.form-error');
+        if (!err) {
+          err = document.createElement('p');
+          err.className = 'fnote form-error';
+          err.style.color = 'var(--red)';
+          f.appendChild(err);
+        }
+        err.innerHTML = 'Sorry — that didn\'t send. Please email us directly at <a href="mailto:' + to + '">' + to + '</a> and we\'ll come straight back to you.';
       });
     });
   });
