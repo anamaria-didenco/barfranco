@@ -55,24 +55,49 @@
     }
   }
 
-  /* ---- form → email (mailto) ---- */
+  /* ---- form → email via FormSubmit (AJAX: delivers to data-email, stays on page) ---- */
   document.querySelectorAll('form[data-email]').forEach(function (f) {
+    /* invisible honeypot field to catch spam bots */
+    var honey = document.createElement('input');
+    honey.type = 'text'; honey.name = '_honey';
+    honey.style.display = 'none'; honey.tabIndex = -1;
+    honey.setAttribute('autocomplete', 'off');
+    honey.setAttribute('aria-hidden', 'true');
+    f.appendChild(honey);
+
     f.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (honey.value) return; /* bot filled the hidden field */
+
       var to = f.getAttribute('data-email');
       var subj = f.getAttribute('data-subject') || 'Enquiry — Bar Franco';
-      var lines = [];
-      f.querySelectorAll('input, textarea, select').forEach(function (el) {
-        if (!el.id || !el.value) return;
-        var lab = f.querySelector('label[for="' + el.id + '"]');
-        var name = lab ? lab.textContent.replace('*', '').trim() : el.id;
-        lines.push(name + ': ' + el.value);
-      });
-      var href = 'mailto:' + to + '?subject=' + encodeURIComponent(subj) +
-                 '&body=' + encodeURIComponent(lines.join('\n'));
-      window.location.href = href;
       var btn = f.querySelector('button[type="submit"], .btn');
-      if (btn) btn.textContent = 'Opening your email…';
+      var btnText = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      var payload = { _subject: subj, _template: 'table', _captcha: 'false' };
+      f.querySelectorAll('input, textarea, select').forEach(function (el) {
+        if (el === honey || !el.value) return;
+        var lab = el.id ? f.querySelector('label[for="' + el.id + '"]') : null;
+        var key = lab ? lab.textContent.replace('*', '').trim() : (el.name || el.id || 'Field');
+        payload[key] = el.value;
+      });
+
+      fetch('https://formsubmit.co/ajax/' + encodeURIComponent(to), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function (r) { return r.json(); })
+      .then(function () {
+        f.innerHTML = '<h3>Grazie! 🎉</h3>' +
+          '<p class="fnote">Thanks for reaching out — your message is on its way and we\'ll be in touch very soon.</p>' +
+          '<p class="fnote">Anything urgent? Email <a href="mailto:' + to + '">' + to + '</a>.</p>';
+      })
+      .catch(function () {
+        if (btn) { btn.disabled = false; btn.textContent = btnText; }
+        alert('Sorry — that didn\'t send just now. Please email us directly at ' + to + ' and we\'ll get right back to you.');
+      });
     });
   });
 
