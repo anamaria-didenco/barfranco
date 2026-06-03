@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "VTC Marsha";
+  src: url("brand/VTCMarsha-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Affairs";
+  src: url("brand/Affairs-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Affairs";
+  src: url("brand/Affairs-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: block;
+}

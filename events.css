@@ -1,0 +1,425 @@
+/* ============================================================
+   BAR FRANCO — Events & Private Hire pack
+   Red #BE1622 · Charcoal #1D1D1B · Paper / Cream
+   VTC Marsha (display) · Affairs (serif body)
+   ============================================================ */
+
+:root {
+  --red: #BE1622;
+  --red-deep: #9b1420;
+  --ink: #1D1D1B;
+  --paper: #FCFBF7;
+  --cream: #F4EEE1;
+  --muted: #6e655c;
+  --line: rgba(29,29,27,.14);
+  --redline: rgba(190,22,34,.28);
+  --maxw: 1140px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Affairs", Georgia, serif;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.disp { font-family: "VTC Marsha", "Times New Roman", serif; font-weight: 700; }
+img, image-slot { display: block; }
+a { color: inherit; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 40px; }
+.eyebrow {
+  font-style: italic; letter-spacing: .34em; text-transform: uppercase;
+  font-size: 12.5px; color: var(--red); margin: 0 0 18px;
+}
+.eyebrow.light { color: rgba(255,255,255,.8); }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(252,251,247,.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 40px;
+  height: 68px; display: flex; align-items: center; gap: 28px;
+}
+.brand {
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
+  font-size: 22px; letter-spacing: .04em; text-decoration: none;
+}
+.nav-links { margin-left: auto; display: flex; align-items: center; gap: 30px; }
+.nav-links a {
+  text-decoration: none; color: var(--ink); font-size: 15px;
+  font-style: italic; letter-spacing: .02em;
+}
+.nav-links a:hover { color: var(--red); }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: "Affairs", serif; font-style: italic; font-size: 15px;
+  text-decoration: none; cursor: pointer; border: none;
+  padding: 11px 22px; border-radius: 2px;
+  background: var(--red); color: #fff; letter-spacing: .02em;
+  transition: background .15s;
+}
+.btn:hover { background: var(--red-deep); }
+.btn.ghost { background: transparent; color: var(--ink); border: 1.4px solid var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+.btn.light { background: #fff; color: var(--red); }
+.btn.light:hover { background: rgba(255,255,255,.86); }
+
+/* ---------- Section frame ---------- */
+section { padding: 96px 0; }
+.sec-cream { background: var(--cream); }
+.sec-ink { background: var(--ink); color: var(--paper); }
+.sec-red { background: var(--red); color: #fff; }
+.sec-label {
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
+  text-transform: uppercase; letter-spacing: .12em; font-size: clamp(26px, 3vw, 36px);
+  margin: 0 0 14px; line-height: 1;
+}
+.sec-ink .sec-label, .sec-red .sec-label { color: #fff; }
+.lede { font-size: 20px; max-width: 640px; color: var(--ink); margin: 0 0 8px; }
+.sec-ink .lede, .sec-red .lede { color: rgba(255,255,255,.92); }
+
+/* ---------- Hero ---------- */
+.hero { padding: 78px 0 0; }
+.hero h1 {
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
+  font-size: clamp(46px, 8vw, 104px); line-height: .92; margin: 0;
+  letter-spacing: .005em; text-wrap: balance;
+}
+.hero-sub {
+  font-size: clamp(19px, 2.1vw, 24px); max-width: 620px; margin: 26px 0 0;
+  line-height: 1.5;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 12px; margin: 32px 0 0; }
+.tag {
+  font-style: italic; font-size: 14.5px; color: var(--ink);
+  border: 1.3px solid var(--redline); border-radius: 100px;
+  padding: 7px 16px; background: rgba(190,22,34,.04);
+}
+.hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 36px 0 0; }
+.hero-media { margin-top: 64px; }
+.hero-media img.photo { width: 100%; height: clamp(320px, 46vw, 560px); }
+
+/* ---------- Event types ---------- */
+.types {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1.5px solid var(--redline);
+  margin-top: 40px;
+}
+.type {
+  border-bottom: 1.5px solid var(--redline);
+  border-right: 1.5px solid var(--redline);
+  padding: 26px 22px; min-height: 116px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.type:nth-child(4n) { border-right: none; }
+.type .num { font-style: italic; color: var(--muted); font-size: 13px; }
+.type .nm {
+  font-family: "VTC Marsha", serif; color: var(--ink); text-transform: uppercase;
+  letter-spacing: .06em; font-size: 19px; line-height: 1.05;
+}
+
+/* ---------- Spaces ---------- */
+.space {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+}
+.space + .space { margin-top: 84px; }
+.space.flip .space-media { order: 2; }
+.space-media img.photo { width: 100%; height: clamp(300px, 38vw, 460px); }
+.space-kicker { font-style: italic; color: var(--red); letter-spacing: .04em; margin: 0 0 10px; }
+.space h3 {
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--ink);
+  text-transform: uppercase; font-size: clamp(28px, 3.4vw, 40px); letter-spacing: .04em;
+  margin: 0 0 16px; line-height: 1;
+}
+.space p { margin: 0 0 24px; color: var(--ink); max-width: 480px; }
+.caps { display: flex; gap: 40px; border-top: 1.5px solid var(--redline); padding-top: 20px; }
+.cap .n { font-family: "VTC Marsha", serif; color: var(--red); font-size: 38px; line-height: 1; }
+.cap .l { font-style: italic; color: var(--muted); font-size: 14px; margin-top: 6px; }
+.cap .note { font-style: italic; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+
+/* ---------- Aperitivo (red band) ---------- */
+.aperitivo .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
+.aperitivo h2 {
+  font-family: "VTC Marsha", serif; font-weight: 700; color: #fff;
+  text-transform: uppercase; font-size: clamp(30px, 4vw, 50px); letter-spacing: .03em;
+  margin: 0 0 18px; line-height: 1;
+}
+.aperitivo p { color: rgba(255,255,255,.92); max-width: 460px; margin: 0; }
+.drink-list { display: flex; flex-direction: column; gap: 0; }
+.drink {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 18px;
+  padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.22);
+}
+.drink:first-child { border-top: 1px solid rgba(255,255,255,.22); }
+.drink .dn { font-size: 19px; color: #fff; }
+.drink .dd { font-style: italic; font-size: 14px; color: rgba(255,255,255,.72); text-align: right; }
+
+/* ---------- Menus ---------- */
+.menu-head { text-align: center; max-width: 620px; margin: 0 auto 56px; }
+.menu-head .lede { margin-left: auto; margin-right: auto; }
+.menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.mcard {
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 38px 38px 34px; display: flex; flex-direction: column;
+}
+.mcard.full { grid-column: 1 / -1; }
+.mcard-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  border-bottom: 1.5px solid var(--redline); padding-bottom: 14px; margin-bottom: 20px;
+}
+.mcard-head h3 {
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
+  text-transform: uppercase; letter-spacing: .1em; font-size: 22px; margin: 0;
+}
+.mcard-head .price { font-style: italic; color: var(--ink); font-size: 16px; white-space: nowrap; }
+.mcard .note { font-style: italic; color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+.dish-list { list-style: none; margin: 0; padding: 0; }
+.dish-list.two { columns: 2; column-gap: 36px; }
+.dish-list li { break-inside: avoid; padding: 7px 0; }
+.dish-list .nm { display: block; font-size: 16.5px; }
+.dish-list .ds { display: block; font-style: italic; color: var(--muted); font-size: 13.5px; margin-top: 1px; }
+
+.set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.set-card {
+  border: 1px solid var(--line); background: var(--paper); padding: 34px 34px 30px;
+}
+.set-card .badge {
+  display: inline-flex; align-items: baseline; gap: 8px; margin-bottom: 18px;
+}
+.set-card .amt { font-family: "VTC Marsha", serif; color: var(--red); font-size: 34px; line-height: 1; }
+.set-card .per { font-style: italic; color: var(--muted); font-size: 14px; }
+.set-card h4 {
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--ink);
+  text-transform: uppercase; letter-spacing: .08em; font-size: 18px; margin: 0 0 12px;
+}
+.set-card p { font-size: 15.5px; color: var(--ink); margin: 0; }
+.set-card .courses { font-style: italic; color: var(--muted); font-size: 14px; margin-top: 14px; }
+
+/* ---------- Seated menu detail ---------- */
+.seated-tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+.tier { border: 1px solid var(--line); background: var(--paper); padding: 26px 30px; display: flex; align-items: center; gap: 22px; }
+.tier .badge { display: inline-flex; align-items: baseline; gap: 8px; flex: 0 0 auto; }
+.tier .amt { font-family: "VTC Marsha", serif; color: var(--red); font-size: 38px; line-height: 1; }
+.tier .per { font-style: italic; color: var(--muted); font-size: 14px; }
+.tier-desc { margin: 0; font-size: 15.5px; color: var(--ink); }
+.set-menu-card .course-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 50px; }
+.course-col { display: flex; flex-direction: column; gap: 26px; }
+.course h5 {
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
+  text-transform: uppercase; letter-spacing: .1em; font-size: 16px; margin: 0 0 12px;
+  display: flex; align-items: baseline; gap: 10px;
+}
+.course h5 .only {
+  font-family: "Affairs", serif; font-style: italic; text-transform: none;
+  letter-spacing: 0; color: var(--muted); font-size: 12px;
+  border: 1px solid var(--redline); border-radius: 100px; padding: 2px 9px;
+}
+.course ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.course li { font-size: 15.5px; color: var(--ink); line-height: 1.4; }
+.course li .ital { font-style: italic; color: var(--muted); }
+
+/* ---------- How it works ---------- */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 44px; }
+.step .s-num {
+  font-family: "VTC Marsha", serif; color: var(--red); font-size: 30px; line-height: 1;
+  border-bottom: 1.5px solid var(--redline); padding-bottom: 14px; margin-bottom: 16px;
+}
+.step h4 {
+  font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .06em; font-size: 17px; margin: 0 0 8px; color: var(--ink);
+}
+.step p { font-size: 15.5px; color: var(--muted); margin: 0; }
+
+/* ---------- Contact (stacked: enquire on top, host beneath) ---------- */
+.contact .wrap { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 40px; }
+.contact-copy { max-width: 600px; }
+.contact h2 {
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
+  text-transform: uppercase; font-size: clamp(34px, 5vw, 60px); letter-spacing: .02em;
+  margin: 0 0 18px; line-height: .98;
+}
+.contact p { color: var(--ink); margin: 0 auto 28px; max-width: 460px; }
+.contact-card {
+  background: var(--red); border: none;
+  padding: 30px 40px; width: 100%; max-width: 760px;
+  display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+  text-align: left;
+}
+.contact-card .host-id { display: flex; flex-direction: column; gap: 4px; }
+.contact-card .who { font-size: 15px; font-style: italic; color: rgba(255,255,255,.8); letter-spacing: .02em; margin: 0; }
+.contact-card .nm { font-family: "VTC Marsha", serif; font-size: 26px; color: #fff; margin: 0; letter-spacing: .03em; }
+.contact-row { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.contact-row a {
+  display: inline-flex; align-items: center; text-decoration: none;
+  color: #fff; font-size: 18px;
+}
+.contact-row a:hover { color: rgba(255,255,255,.78); }
+
+/* ---------- Footer ---------- */
+.foot { background: var(--paper); padding: 60px 0; text-align: center; }
+.foot .mark {
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
+  font-size: clamp(30px, 6vw, 64px); letter-spacing: .42em; padding-left: .42em;
+}
+.foot .fine { font-style: italic; color: var(--muted); font-size: 13.5px; margin-top: 18px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .nav-links a:not(.btn) { display: none; }
+  .types { grid-template-columns: repeat(2, 1fr); }
+  .type:nth-child(4n) { border-right: 1.5px solid var(--redline); }
+  .type:nth-child(2n) { border-right: none; }
+  .space, .aperitivo .wrap, .contact .wrap { grid-template-columns: 1fr; gap: 32px; }
+  .space.flip .space-media { order: 0; }
+  .menu-grid, .set-grid { grid-template-columns: 1fr; }
+  .seated-tiers { grid-template-columns: 1fr; gap: 16px; }
+  .set-menu-card .course-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  section { padding: 68px 0; }
+  .wrap { padding: 0 26px; }
+  .nav-inner { padding: 0 26px; }
+}
+@media (max-width: 540px) {
+  .types { grid-template-columns: 1fr; }
+  .type, .type:nth-child(2n) { border-right: none; }
+  .steps { grid-template-columns: 1fr; }
+  .dish-list.two { columns: 1; }
+}
+
+/* ============================================================
+   INTERACTIVE + MOTION LAYER
+   ============================================================ */
+
+/* logo lockups */
+.brand-logo { height: 30px; width: auto; display: block; }
+.nav .brand { display: flex; align-items: center; }
+.hero-logo { height: clamp(64px, 11vw, 132px); width: auto; margin: 0 0 30px; }
+.foot-logo { height: clamp(56px, 10vw, 96px); width: auto; margin: 0 auto; }
+
+/* scroll reveal */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: .08s; }
+.reveal.d2 { transition-delay: .16s; }
+.reveal.d3 { transition-delay: .24s; }
+.reveal.d4 { transition-delay: .32s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* dachshund scroll-progress walker */
+.walker {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  height: 46px; pointer-events: none;
+}
+.walker-track {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: linear-gradient(to right, var(--red) 0%, var(--red) var(--p,0%), rgba(190,22,34,.16) var(--p,0%), rgba(190,22,34,.16) 100%);
+}
+.walker-dog {
+  position: absolute; bottom: 1px; left: var(--p, 0%);
+  width: 52px; height: auto; transform: translateX(-50%) scaleX(-1);
+  transform-origin: center bottom;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.18));
+}
+.walker-dog.trot { animation: trot .45s ease-in-out infinite; }
+@keyframes trot {
+  0%,100% { transform: translateX(-50%) scaleX(-1) translateY(0) rotate(0deg); }
+  50% { transform: translateX(-50%) scaleX(-1) translateY(-3px) rotate(-1.5deg); }
+}
+@media (prefers-reduced-motion: reduce) { .walker-dog.trot { animation: none; } }
+
+/* event tiles — interactive */
+.type {
+  position: relative; cursor: default; overflow: hidden;
+  transition: background .3s, color .3s;
+}
+.type::after {
+  content: ""; position: absolute; inset: 0; background: var(--red);
+  transform: translateY(101%); transition: transform .35s cubic-bezier(.2,.7,.3,1); z-index: 0;
+}
+.type > * { position: relative; z-index: 1; transition: color .3s; }
+.type:hover::after { transform: translateY(0); }
+.type:hover .nm, .type:hover .num { color: #fff; }
+.type .dog-mark {
+  position: absolute; right: 18px; bottom: 16px; width: 34px; height: auto; z-index: 1;
+  opacity: 0; transform: translateY(6px) scaleX(-1); transition: opacity .3s, transform .3s;
+  filter: brightness(0) invert(1);
+}
+.type:hover .dog-mark { opacity: .9; transform: translateY(0) scaleX(-1); }
+
+/* ---------- Space Finder (interactive) ---------- */
+.finder {
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 40px 44px; margin: 0 0 70px;
+}
+.finder-top { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.finder h3 {
+  font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .06em; font-size: 22px; margin: 0; color: var(--ink);
+}
+.finder .count {
+  font-family: "VTC Marsha", serif; color: var(--red); font-size: 40px; line-height: 1;
+}
+.finder .count small { font-style: italic; font-family: "Affairs", serif; color: var(--muted); font-size: 15px; letter-spacing: 0; margin-left: 8px; }
+.range-wrap { margin: 26px 0 22px; }
+input[type="range"].guests {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 3px;
+  background: var(--redline); border-radius: 3px; outline: none; cursor: pointer;
+}
+input[type="range"].guests::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--red); border: 4px solid var(--paper); box-shadow: 0 1px 5px rgba(0,0,0,.25); cursor: grab;
+}
+input[type="range"].guests::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--red);
+  border: 4px solid var(--paper); box-shadow: 0 1px 5px rgba(0,0,0,.25); cursor: grab;
+}
+.finder-out {
+  display: flex; align-items: center; gap: 16px; border-top: 1.5px solid var(--redline); padding-top: 22px;
+}
+.finder-out .dog { width: 50px; height: auto; transform: scaleX(-1); flex: 0 0 auto; }
+.finder-rec { font-size: 18px; }
+.finder-rec b { font-family: "VTC Marsha", serif; color: var(--red); font-weight: 700; letter-spacing: .03em; }
+.finder-rec .fmt { font-style: italic; color: var(--muted); display: block; font-size: 15px; margin-top: 3px; }
+
+/* space card highlight when matched */
+.space { border-radius: 4px; transition: box-shadow .4s, opacity .4s; padding: 16px; margin: 0 -16px; }
+.space.dim { opacity: .42; }
+.space.match { box-shadow: 0 0 0 2px var(--red); }
+
+/* ---------- Menu tabs ---------- */
+.menu-tabs { display: inline-flex; gap: 4px; padding: 5px; background: var(--cream); border-radius: 100px; margin: 0 auto 44px; }
+.menu-tabs button {
+  font-family: "Affairs", serif; font-style: italic; font-size: 16px; cursor: pointer;
+  border: none; background: transparent; color: var(--ink); padding: 10px 26px; border-radius: 100px;
+  transition: background .25s, color .25s;
+}
+.menu-tabs button.active { background: var(--red); color: #fff; }
+.menu-panel { display: none; }
+.menu-panel.active { display: block; animation: tabIn .42s cubic-bezier(.2,.7,.3,1); }
+@keyframes tabIn { from { transform: translateY(12px); } to { transform: none; } }
+.tabs-center { text-align: center; }
+
+/* count-up stat helper */
+.cap .n[data-count]::after { content: ""; }
+
+/* nav hide-on-scroll-down */
+.nav { transition: transform .35s ease; }
+.nav.hidden { transform: translateY(-100%); }
+
+/* hero subtle dog accent */
+.hero { position: relative; }
+
+
+/* baked-in photos */
+img.photo { object-fit: cover; border-radius: 4px; background: #efe9dc; }

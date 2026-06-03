@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bar Franco — Events & Private Hire</title>
+<link rel="stylesheet" href="fonts.css" />
+<link rel="stylesheet" href="events.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="Bar Franco home">
+      <img class="brand-logo" src="brand/franco-wordmark.png" alt="Bar Franco" />
+    </a>
+    <div class="nav-links">
+      <a href="#spaces">Spaces</a>
+      <a href="#events">Events</a>
+      <a href="#menus">Menus</a>
+      <a href="#aperitivo">Drinks</a>
+      <a class="btn" href="mailto:anamaria@barfranco.nz?subject=Bar%20Franco%20Event%20Enquiry">Enquire</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <img class="hero-logo reveal in" src="brand/franco-wordmark.png" alt="Bar Franco" />
+    <p class="eyebrow reveal in d1">Events &amp; Private Hire — Christchurch</p>
+    <h1 class="reveal in d1">Two levels.<br />One very good night.</h1>
+    <p class="hero-sub reveal in d2">A Negroni bar on Level 1. An open-kitchen restaurant on Level 2. Italian in spirit — without the clichés.</p>
+    <div class="hero-tags reveal in d3">
+      <span class="tag">No venue hire fee</span>
+      <span class="tag">Pricing on application</span>
+      <span class="tag">Up to 240 across both levels</span>
+    </div>
+    <div class="hero-cta reveal in d3">
+      <a class="btn" href="mailto:anamaria@barfranco.nz?subject=Bar%20Franco%20Event%20Enquiry">Enquire now</a>
+      <a class="btn ghost" href="#finder">Find your space</a>
+    </div>
+    <div class="hero-media reveal d4">
+      <img class="photo" src="images/event-long-table.jpg" alt="A long candlelit table set for a private event at Bar Franco" loading="eager">
+    </div>
+  </div>
+</header>
+
+<!-- EVENT TYPES -->
+<section id="events">
+  <div class="wrap">
+    <p class="eyebrow reveal">What we host</p>
+    <h2 class="sec-label reveal">An occasion for every reason</h2>
+    <p class="lede reveal d1">Sit-down or standing, intimate or the whole building — we shape the night around you. <em>Hover to explore.</em></p>
+    <div class="types reveal d1">
+      <div class="type"><span class="num">01</span><span class="nm">Private Dining</span><img class="dog-mark" src="brand/franco-dog.png" alt="" /></div>
+      <div class="type"><span class="num">02</span><span class="nm">Corporate Events</span><img class="dog-mark" src="brand/franco-dog.png" alt="" /></div>
+      <div class="type"><span class="num">03</span><span class="nm">Cocktail Functions</span><img class="dog-mark" src="brand/franco-dog.png" alt="" /></div>
+      <div class="type"><span class="num">04</span><span class="nm">Engagements</span><img class="dog-mark" src="brand/franco-dog.png" alt="" /></div>
+      <div class="type"><span class="num">05</span><span class="nm">End-of-Year</span><img class="dog-mark" src="brand/franco-dog.png" alt="" /></div>
+      <div class="type"><span class="num">06</span><span class="nm">Birthdays &amp; 21sts</span><img class="dog-mark" src="brand/franco-dog.png" alt="" /></div>
+      <div class="type"><span class="num">07</span><span class="nm">Full Venue Hire</span><img class="dog-mark" src="brand/franco-dog.png" alt="" /></div>
+      <div class="type"><span class="num">08</span><span class="nm">Long Table Dinners</span><img class="dog-mark" src="brand/franco-dog.png" alt="" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPACES -->
+<section class="sec-cream" id="spaces">
+  <div class="wrap">
+    <p class="eyebrow reveal">The spaces</p>
+    <h2 class="sec-label reveal">Two levels, hired together or apart</h2>
+    <p class="lede reveal d1" style="margin-bottom:48px;">Take a single floor for a focused gathering, or the whole building for a night that moves.</p>
+
+    <!-- Interactive space finder -->
+    <div class="finder reveal d1" id="finder">
+      <div class="finder-top">
+        <h3>How many guests?</h3>
+        <div class="count"><span id="gcount">80</span><small>guests</small></div>
+      </div>
+      <div class="range-wrap">
+        <input type="range" class="guests" id="guests" min="10" max="240" step="5" value="80" aria-label="Number of guests" />
+      </div>
+      <div class="finder-out">
+        <img class="dog" src="brand/franco-dog.png" alt="" />
+        <div class="finder-rec" id="rec">
+          <b>The Restaurant — Level 2</b>
+          <span class="fmt">Seated dinner for the table</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="space" id="space-l1">
+      <div class="space-media">
+        <img class="photo" src="images/cocktail-tray.jpg" alt="The Negroni Bar at Bar Franco" loading="lazy">
+      </div>
+      <div class="space-copy">
+        <p class="space-kicker">Level 1</p>
+        <h3>The Negroni Bar</h3>
+        <p>A low-lit room built around the bar — Negronis stirred to order, spritzes by the tray, and the easy hum of a good crowd. Made for cocktail functions and arrivals.</p>
+        <div class="caps">
+          <div class="cap"><div class="n" data-count="120">0</div><div class="l">Standing</div></div>
+          <div class="cap"><div class="n" data-count="75">0</div><div class="l">Seated</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space flip" id="space-l2">
+      <div class="space-media">
+        <img class="photo" src="images/dining-room.jpg" alt="The restaurant dining room at Bar Franco" loading="lazy">
+      </div>
+      <div class="space-copy">
+        <p class="space-kicker">Level 2</p>
+        <h3>The Restaurant</h3>
+        <p>An open-kitchen dining room where the pasta is rolled in view and the long table comes into its own. The heart of any seated dinner or celebration.</p>
+        <div class="caps">
+          <div class="cap"><div class="n" data-count="120">0</div><div class="l">Standing</div></div>
+          <div class="cap"><div class="n" data-count="90">0</div><div class="l">Seated</div><div class="note">up to 120 with hired furniture</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APERITIVO -->
+<section class="sec-red aperitivo" id="aperitivo">
+  <div class="wrap">
+    <div class="ap-copy reveal">
+      <p class="eyebrow light">Aperitivo hour</p>
+      <h2>It starts with a Negroni</h2>
+      <p>The Negroni bar is the front door to every Franco night. Stirred classics, spritzes by the tray and a Campari-leaning list to greet your guests as they arrive.</p>
+    </div>
+    <div class="drink-list reveal d1">
+      <div class="drink"><span class="dn">Aperol Spritz</span><span class="dd">Aperol, Prosecco, soda</span></div>
+      <div class="drink"><span class="dn">Classic Negroni</span><span class="dd">Campari, rosso vermouth, gin</span></div>
+      <div class="drink"><span class="dn">Negroni Sbagliato</span><span class="dd">Campari, vermouth, Prosecco</span></div>
+      <div class="drink"><span class="dn">Limoncello Spritz</span><span class="dd">Limoncello, Prosecco, soda</span></div>
+      <div class="drink"><span class="dn">Espresso Martini</span><span class="dd">vodka, Tia Maria, espresso</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENUS -->
+<section id="menus">
+  <div class="wrap">
+    <div class="menu-head">
+      <p class="eyebrow reveal">Food &amp; drink</p>
+      <h2 class="sec-label reveal">Menus to share</h2>
+      <p class="lede reveal d1">Everything is house-made and changes with the season. Choose your style for the night:</p>
+    </div>
+
+    <div class="tabs-center reveal d1">
+      <div class="menu-tabs" role="tablist">
+        <button class="active" data-tab="standing" role="tab">Standing function</button>
+        <button data-tab="seated" role="tab">Seated dinner</button>
+      </div>
+    </div>
+
+    <!-- STANDING -->
+    <div class="menu-panel active" id="panel-standing">
+      <div class="menu-grid">
+        <div class="mcard full">
+          <div class="mcard-head">
+            <h3>Grazing Table</h3>
+            <span class="price">From $40 pp</span>
+          </div>
+          <p style="margin:0;font-size:16.5px;">Cheeses, antipasti, salumi, house-made focaccia and seasonal pieces, arranged to graze.</p>
+        </div>
+
+        <div class="mcard">
+          <div class="mcard-head">
+            <h3>Canapés</h3>
+            <span class="price">$9 each</span>
+          </div>
+          <p class="note">4–6 pieces per person recommended for a standing function.</p>
+          <ul class="dish-list two">
+            <li><span class="nm">Goats cheese croquettes</span><span class="ds">hot honey, almonds</span></li>
+            <li><span class="nm">Caprese skewers</span><span class="ds">bocconcini, tomato, basil</span></li>
+            <li><span class="nm">Seasonal arancini</span><span class="ds">parmesan crema, pickled chilli</span></li>
+            <li><span class="nm">Whipped goat cheese crostini</span><span class="ds">confit tomato, lemon</span></li>
+            <li><span class="nm">Crudo</span><span class="ds">lemon oil, pistachio</span></li>
+            <li><span class="nm">Chicken liver parfait</span><span class="ds">shallot, herbs</span></li>
+            <li><span class="nm">Meatballs</span><span class="ds">pomodoro, Parmigiano</span></li>
+          </ul>
+        </div>
+
+        <div class="mcard">
+          <div class="mcard-head">
+            <h3>Substantial Canapés</h3>
+            <span class="price">$11 each</span>
+          </div>
+          <p class="note">A little more to keep the night going.</p>
+          <ul class="dish-list">
+            <li><span class="nm">Chicken Milanese sliders</span><span class="ds">tomato sugo, basil</span></li>
+            <li><span class="nm">Eggplant sliders</span><span class="ds">pesto, balsamic mozzarella</span></li>
+            <li><span class="nm">Shoestring fries</span><span class="ds">Franco's spice, parsley aioli</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEATED -->
+    <div class="menu-panel" id="panel-seated">
+      <div class="seated-tiers">
+        <div class="tier">
+          <span class="badge"><span class="amt">$80</span><span class="per">per person</span></span>
+          <p class="tier-desc">The shared sample menu, served family-style for the whole table.</p>
+        </div>
+        <div class="tier">
+          <span class="badge"><span class="amt">$110</span><span class="per">per person</span></span>
+          <p class="tier-desc">The full menu, plus a selection of three canapés to begin as guests arrive.</p>
+        </div>
+      </div>
+
+      <div class="mcard full set-menu-card">
+        <div class="mcard-head">
+          <h3>Shared Franco Sample Menu</h3>
+          <span class="price">Sample — changes with the season</span>
+        </div>
+        <div class="course-grid">
+          <div class="course-col">
+            <div class="course">
+              <h5>To Begin <span class="only">$110 menu</span></h5>
+              <ul>
+                <li>A selection of three canapés</li>
+              </ul>
+            </div>
+            <div class="course">
+              <h5>For the Table</h5>
+              <ul>
+                <li>Focaccia, rosemary, extra virgin olive oil</li>
+                <li>Olives, citrus, thyme</li>
+                <li>Whipped goat's cheese, beetroot, citrus, thyme, hazelnut</li>
+                <li>Salumi, daily selection</li>
+                <li>Chicken liver parfait, Chianti, herbs</li>
+              </ul>
+            </div>
+          </div>
+          <div class="course-col">
+            <div class="course">
+              <h5>To Share</h5>
+              <ul>
+                <li>Tagliatelle al ragù Toscano, free farmed pork, Parmigiano, chives</li>
+                <li>Chicken Milanese, tomato sugo, grilled peppers, pecorino</li>
+                <li>Cavolo nero risotto, Parmigiano cream, pickled chilli, grilled kale</li>
+              </ul>
+            </div>
+            <div class="course">
+              <h5>Contorno</h5>
+              <ul>
+                <li>Verdure alla brace, seasonal greens, gremolata, mint, almond</li>
+                <li>Insalata, walnuts, pear, gorgonzola</li>
+                <li>Triple cooked Agria potatoes, Franco's spice, parsley mayonnaise</li>
+              </ul>
+            </div>
+            <div class="course">
+              <h5>Dolci</h5>
+              <ul>
+                <li>Tiramisù, amaretto, coffee, mascarpone <span class="ital">— served individually</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec-cream" id="how">
+  <div class="wrap">
+    <p class="eyebrow reveal">How it works</p>
+    <h2 class="sec-label reveal">From enquiry to evening</h2>
+    <div class="steps">
+      <div class="step reveal d1">
+        <div class="s-num">01</div>
+        <h4>Enquire</h4>
+        <p>Send your date, guest numbers and the kind of night you have in mind.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="s-num">02</div>
+        <h4>Choose your space</h4>
+        <p>A single level or the whole building — we'll match the room to your group.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="s-num">03</div>
+        <h4>Build the menu</h4>
+        <p>Grazing, canapés or a seated shared menu, with drinks to suit.</p>
+      </div>
+      <div class="step reveal d4">
+        <div class="s-num">04</div>
+        <h4>We host</h4>
+        <p>Turn up and enjoy it. We take care of the rest on the night.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec-cream contact" id="contact">
+  <div class="wrap">
+    <div class="contact-copy reveal">
+      <p class="eyebrow">Enquire</p>
+      <h2>Let's plan your night.</h2>
+      <p>Tell us your date and numbers and we'll put together a proposal — no venue hire fee, pricing on application.</p>
+      <a class="btn" href="mailto:anamaria@barfranco.nz?subject=Bar%20Franco%20Event%20Enquiry">Start an enquiry</a>
+    </div>
+    <div class="contact-card reveal d1">
+      <div class="host-id">
+        <p class="who">Your host</p>
+        <p class="nm">Ana-Maria Didenco</p>
+      </div>
+      <div class="contact-row">
+        <a href="mailto:anamaria@barfranco.nz?subject=Bar%20Franco%20Event%20Enquiry">anamaria@barfranco.nz</a>
+        <a href="tel:+642108375416">021 083 75416</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <img class="foot-logo" src="brand/franco-wordmark.png" alt="Bar Franco" />
+    <p class="fine">Events &amp; Private Hire · Christchurch</p>
+  </div>
+</footer>
+
+<!-- Dachshund scroll-progress walker -->
+<div class="walker" aria-hidden="true">
+  <div class="walker-track" id="track"></div>
+  <img class="walker-dog" id="dog" src="brand/franco-dog.png" alt="" />
+</div>
+
+<script src="image-slot.js"></script>
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- scroll reveal ---- */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal:not(.in)').forEach(function (el) { io.observe(el); });
+
+  /* ---- count-up stats ---- */
+  function countUp(el) {
+    var target = +el.getAttribute('data-count'), dur = 1100, t0 = null;
+    if (reduce) { el.textContent = target; return; }
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var co = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { countUp(e.target); co.unobserve(e.target); }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.cap .n[data-count]').forEach(function (el) { co.observe(el); });
+
+  /* ---- dachshund scroll walker ---- */
+  var dog = document.getElementById('dog'), track = document.getElementById('track');
+  var moveT, lastY = window.scrollY;
+  function onScroll() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var p = h > 0 ? Math.min(Math.max(window.scrollY / h, 0), 1) : 0;
+    var pct = (p * 100).toFixed(2) + '%';
+    dog.style.left = pct;
+    track.style.setProperty('--p', pct);
+    // face direction of travel
+    var dir = window.scrollY >= lastY ? -1 : 1; // image faces left; -1 (flipped) faces right
+    dog.style.transform = 'translateX(-50%) scaleX(' + dir + ')';
+    lastY = window.scrollY;
+    if (!reduce) {
+      dog.classList.add('trot');
+      clearTimeout(moveT);
+      moveT = setTimeout(function () { dog.classList.remove('trot'); }, 180);
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---- nav hide on scroll down ---- */
+  var nav = document.getElementById('nav'), navLast = 0;
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY;
+    if (y > navLast && y > 200) nav.classList.add('hidden');
+    else nav.classList.remove('hidden');
+    navLast = y;
+  }, { passive: true });
+
+  /* ---- space finder ---- */
+  var guests = document.getElementById('guests'),
+      gcount = document.getElementById('gcount'),
+      rec = document.getElementById('rec'),
+      l1 = document.getElementById('space-l1'),
+      l2 = document.getElementById('space-l2');
+
+  function recommend(n) {
+    gcount.textContent = n;
+    var pos = (n - guests.min) / (guests.max - guests.min) * 100;
+    guests.style.background = 'linear-gradient(to right, var(--red) ' + pos + '%, rgba(190,22,34,.28) ' + pos + '%)';
+
+    var title, fmt, match;
+    if (n <= 75) {
+      title = 'The Negroni Bar — Level 1';
+      fmt = n <= 60 ? 'Seated dinner or cocktail function' : 'Cocktail function with seating';
+      match = 'l1';
+    } else if (n <= 90) {
+      title = 'The Restaurant — Level 2';
+      fmt = 'Seated dinner for the table';
+      match = 'l2';
+    } else if (n <= 120) {
+      title = 'Either level, standing';
+      fmt = 'Cocktail function — or Level 2 seated to 120 with hired furniture';
+      match = 'both';
+    } else {
+      title = 'Full venue — both levels';
+      fmt = 'Up to 240 across the building';
+      match = 'both';
+    }
+    rec.innerHTML = '<b>' + title + '</b><span class="fmt">' + fmt + '</span>';
+
+    [l1, l2].forEach(function (s) { s.classList.remove('match', 'dim'); });
+    if (match === 'l1') { l1.classList.add('match'); l2.classList.add('dim'); }
+    else if (match === 'l2') { l2.classList.add('match'); l1.classList.add('dim'); }
+    else { l1.classList.add('match'); l2.classList.add('match'); }
+  }
+  guests.addEventListener('input', function () { recommend(+guests.value); });
+  recommend(+guests.value);
+
+  /* ---- menu tabs ---- */
+  document.querySelectorAll('.menu-tabs button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.menu-tabs button').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var t = btn.getAttribute('data-tab');
+      document.querySelectorAll('.menu-panel').forEach(function (p) { p.classList.remove('active'); });
+      document.getElementById('panel-' + t).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
