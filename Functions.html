@@ -105,6 +105,7 @@
       <a href="Menus.html">Menus</a>
       <a href="Vouchers.html">Vouchers</a>
       <a href="Contact.html">Contact</a>
+      <a href="christmas-functions/">Christmas</a>
       <a class="btn" href="Bookings.html">Book now</a>
     </div>
   </div>
@@ -201,19 +202,22 @@
     <p class="eyebrow light reveal in" style="text-align:center;">Enquire</p>
     <h2 class="sec-label reveal in" style="text-align:center;margin-bottom:10px;">Let's plan your event</h2>
     <p class="lede reveal in d1" style="text-align:center;margin:0 auto 30px;color:rgba(255,255,255,.9);">Tell us the date, the headcount and the vibe — our events team will take it from there.</p>
-    <form class="contact-form reveal in d1" data-email="anamaria@barfranco.nz" data-subject="Event enquiry — Bar Franco website" style="background:#fff;">
-      <div class="field-2">
-        <div class="field"><label for="fn-name">Full name *</label><input id="fn-name" type="text" placeholder="Your name" required /></div>
-        <div class="field"><label for="fn-phone">Phone</label><input id="fn-phone" type="tel" placeholder="Optional" /></div>
-      </div>
-      <div class="field-2">
-        <div class="field"><label for="fn-email">Email *</label><input id="fn-email" type="email" placeholder="you@email.com" required /></div>
-        <div class="field"><label for="fn-guests">Approx. guests</label><input id="fn-guests" type="text" placeholder="e.g. 40" /></div>
-      </div>
-      <div class="field"><label for="fn-msg">Tell us about your event *</label><textarea id="fn-msg" placeholder="Date, occasion, seated or stand-up, any must-haves…" required></textarea></div>
-      <button class="btn lg" type="submit">Send enquiry</button>
-      <p style="font-style:italic;color:var(--muted);font-size:14px;margin:16px 0 0;text-align:center;">Or email <a href="mailto:anamaria@barfranco.nz" style="color:var(--red);text-decoration:none;">anamaria@barfranco.nz</a> · <a href="tel:+642108375416" style="color:var(--red);text-decoration:none;">021 083 75416</a></p>
-    </form>
+    <!-- VenueFlow enquiry widget — auto-resizing iframe; enquiries flow into the VenueFlow CRM + notification email -->
+    <iframe id="vf-enquiry"
+      src="https://venueflowhq.com/enquire?embed=1&amp;accent=BE1622"
+      width="100%" height="860" frameborder="0" loading="lazy"
+      style="border:none;display:block;margin:0 auto;max-width:540px;width:100%;background:#fff;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.18);"
+      title="Event enquiry — Bar Franco"></iframe>
+    <script>
+      // Resize the iframe to fit whichever step the widget is showing.
+      window.addEventListener('message', function (e) {
+        if (e.data && e.data.type === 'vf-embed-height' && e.data.height) {
+          var f = document.getElementById('vf-enquiry');
+          if (f) f.style.height = e.data.height + 'px';
+        }
+      });
+    </script>
+    <p style="font-style:italic;color:rgba(255,255,255,.92);font-size:14px;margin:18px 0 0;text-align:center;">Prefer to talk? Come say ciao — <a href="mailto:anamaria@barfranco.nz" style="color:#fff;text-decoration:underline;">anamaria@barfranco.nz</a> · <a href="tel:+642108375416" style="color:#fff;text-decoration:underline;">021 083 75416</a></p>
   </div>
 </section>
 
