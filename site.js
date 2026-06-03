@@ -110,7 +110,8 @@
           err.style.color = 'var(--red)';
           f.appendChild(err);
         }
-        err.innerHTML = 'Sorry — that didn\'t send. Please email us directly at <a href="mailto:' + to + '">' + to + '</a> and we\'ll come straight back to you.';
+        var fallbackEmail = 'anamaria@barfranco.nz'; /* failures route to Ana-Maria's inbox */
+        err.innerHTML = 'Sorry — that didn\'t send. Please email us directly at <a href="mailto:' + fallbackEmail + '">' + fallbackEmail + '</a> and we\'ll come straight back to you.';
       });
     });
   });
