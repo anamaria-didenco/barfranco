@@ -116,6 +116,20 @@
     });
   });
 
+  /* ---- reliable scroll to the #enquire form (fixes the anchor jump landing at top) ---- */
+  function gotoEnquire() {
+    var el = document.getElementById('enquire');
+    if (el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('a[href$="#enquire"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (document.getElementById('enquire')) { e.preventDefault(); gotoEnquire(); history.replaceState(null, '', '#enquire'); }
+    });
+  });
+  if (location.hash === '#enquire') {
+    window.addEventListener('load', function () { setTimeout(gotoEnquire, 500); });
+  }
+
   /* ---- legacy acknowledgement (no email target) ---- */
   document.querySelectorAll('form[data-ack]').forEach(function (f) {
     f.addEventListener('submit', function (e) {
