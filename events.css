@@ -92,7 +92,7 @@ section { padding: 96px 0; }
 .hero h1 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
   font-size: clamp(46px, 8vw, 104px); line-height: .92; margin: 0;
-  letter-spacing: .005em; text-wrap: balance;
+  letter-spacing: .005em; text-wrap: balance; text-transform: uppercase;
 }
 .hero-sub {
   font-size: clamp(19px, 2.1vw, 24px); max-width: 620px; margin: 26px 0 0;
