@@ -1,18 +1,18 @@
 /* ============================================================
    BAR FRANCO — Home
-   Red #AF0F00 · Charcoal #1D1D1B · Paper / Cream
+   Franco Red #E51F1A · Deep #AF0F00 · Oxblood #690500 · Peach / Paper
    VTC Marsha (display) · Affairs (serif body)
    ============================================================ */
 
 :root {
-  --red: #AF0F00;
-  --red-deep: #6C0600;
-  --ink: #1D1D1B;
+  --red: #E51F1A;
+  --red-deep: #AF0F00;
+  --ink: #690500;
   --paper: #FCFBF7;
-  --cream: #F4EEE1;
-  --muted: #6e655c;
-  --line: rgba(29,29,27,.14);
-  --redline: rgba(175,15,0,.28);
+  --cream: #FAD6C2;
+  --muted: rgba(105,5,0,.62);
+  --line: rgba(105,5,0,.16);
+  --redline: rgba(229,31,26,.32);
   --maxw: 1180px;
 }
 
@@ -67,7 +67,7 @@ a { color: inherit; }
   height: 72px; display: flex; align-items: center; gap: 28px;
 }
 .brand { display: flex; align-items: center; text-decoration: none; }
-.brand-logo { height: 30px; width: auto; display: block; }
+.brand-logo { height: 42px; width: auto; display: block; }
 .nav-links { margin-left: auto; display: flex; align-items: center; gap: 30px; }
 .nav-links a {
   text-decoration: none; color: var(--ink); font-size: 15px;
@@ -101,13 +101,13 @@ section { padding: 104px 0; }
 .hero-grid {
   display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center;
 }
-.hero-logo { height: clamp(58px, 9vw, 104px); width: auto; margin: 0 0 34px; }
+.hero-logo { height: clamp(66px, 10vw, 116px); width: auto; margin: 0 0 34px; }
 .hero h1 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
   font-size: clamp(40px, 5.4vw, 76px); line-height: .96; margin: 0;
-  letter-spacing: .005em; text-wrap: balance;
+  letter-spacing: .005em; text-wrap: balance; text-transform: uppercase;
 }
-.h1-geo { color: var(--ink); display: inline-block; }
+.h1-geo { color: var(--ink); display: inline-block; text-transform: uppercase; }
 .hero-sub {
   font-size: clamp(18px, 2vw, 22px); max-width: 520px; margin: 28px 0 0;
   line-height: 1.55; color: var(--ink);
@@ -461,7 +461,7 @@ section { padding: 104px 0; }
 /* ---- Rich site footer ---- */
 .site-foot { background: var(--cream); color: var(--ink); border-top: 1px solid var(--line); }
 .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; padding: 70px 40px 50px; max-width: var(--maxw); margin: 0 auto; }
-.foot-top .foot-logo { height: 46px; width: auto; margin: 0 0 18px; }
+.foot-top .foot-logo { height: 54px; width: auto; margin: 0 0 18px; }
 .foot-brand p { color: var(--muted); font-size: 15px; max-width: 260px; margin: 0 0 18px; }
 .foot-col h4 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--red); margin: 0 0 14px; }
 .foot-col p, .foot-col a { display: block; color: var(--ink); font-size: 15px; text-decoration: none; line-height: 1.55; margin: 0 0 4px; }
