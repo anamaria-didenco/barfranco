@@ -1,18 +1,18 @@
 /* ============================================================
    BAR FRANCO — Events & Private Hire pack
-   Red #BE1622 · Charcoal #1D1D1B · Paper / Cream
+   Red #AF0F00 · Charcoal #1D1D1B · Paper / Cream
    VTC Marsha (display) · Affairs (serif body)
    ============================================================ */
 
 :root {
-  --red: #BE1622;
-  --red-deep: #9b1420;
+  --red: #AF0F00;
+  --red-deep: #6C0600;
   --ink: #1D1D1B;
   --paper: #FCFBF7;
   --cream: #F4EEE1;
   --muted: #6e655c;
   --line: rgba(29,29,27,.14);
-  --redline: rgba(190,22,34,.28);
+  --redline: rgba(175,15,0,.28);
   --maxw: 1140px;
 }
 
@@ -102,7 +102,7 @@ section { padding: 96px 0; }
 .tag {
   font-style: italic; font-size: 14.5px; color: var(--ink);
   border: 1.3px solid var(--redline); border-radius: 100px;
-  padding: 7px 16px; background: rgba(190,22,34,.04);
+  padding: 7px 16px; background: rgba(175,15,0,.04);
 }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 36px 0 0; }
 .hero-media { margin-top: 64px; }
@@ -323,7 +323,7 @@ section { padding: 96px 0; }
 }
 .walker-track {
   position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
-  background: linear-gradient(to right, var(--red) 0%, var(--red) var(--p,0%), rgba(190,22,34,.16) var(--p,0%), rgba(190,22,34,.16) 100%);
+  background: linear-gradient(to right, var(--red) 0%, var(--red) var(--p,0%), rgba(175,15,0,.16) var(--p,0%), rgba(175,15,0,.16) 100%);
 }
 .walker-dog {
   position: absolute; bottom: 1px; left: var(--p, 0%);
