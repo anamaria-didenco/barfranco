@@ -223,20 +223,44 @@
     <p class="eyebrow reveal">See the space</p>
     <h2 class="sec-label reveal">Room to celebrate</h2>
     <p class="lede reveal d1">From cocktail functions around the Level 1 Negroni bar to long-table dinners in the restaurant upstairs — a look around the rooms your night could fill.</p>
+    <div class="gal-filter reveal d1" role="group" aria-label="Filter photos by level">
+      <button type="button" class="active" data-filter="all">Everything</button>
+      <button type="button" data-filter="1">Level 1 · The Bar</button>
+      <button type="button" data-filter="2">Level 2 · The Restaurant</button>
+    </div>
     <div class="gallery reveal d1">
-      <img class="g-tall photo" src="images/open-kitchen.jpg" alt="The open kitchen in the Bar Franco restaurant on Level 2" loading="lazy">
-      <img class="photo" src="images/level1-bar-crowd.jpg" alt="Guests gathered at the Level 1 Negroni Bar during a function at Bar Franco" loading="lazy">
-      <img class="photo" src="images/dining-room.jpg" alt="The Bar Franco restaurant dining room set for a private dinner" loading="lazy">
-      <img class="photo" src="images/level1-aperitivo.jpg" alt="Aperitivo spritzes served tableside at Bar Franco, Christchurch" loading="lazy">
-      <img class="g-wide photo" src="images/level1-bar.jpg" alt="The Level 1 Negroni Bar at Bar Franco — the curved bar, sculptural pendant lights and lounge seating" loading="lazy">
-      <img class="photo" src="images/level1-event-setup.jpg" alt="The Level 1 bar set with high tables and stage lighting for a corporate function" loading="lazy">
-      <img class="photo" src="images/event-room-wide.jpg" alt="A private event filling the candlelit restaurant at Bar Franco, Christchurch" loading="lazy">
-      <img class="photo" src="images/event-table-setting.jpg" alt="A long table set with glassware for a private dinner at Bar Franco" loading="lazy">
-      <img class="photo" src="images/event-guests.jpg" alt="Guests dressed up and celebrating at a Bar Franco function" loading="lazy">
-      <img class="photo" src="images/level-negroni-graded.jpg" alt="The low-lit Negroni Bar on Level 1 at Bar Franco" loading="lazy">
+      <img class="g-tall photo" data-level="2" src="images/open-kitchen.jpg" alt="The open kitchen in the Bar Franco restaurant on Level 2" loading="lazy">
+      <img class="photo" data-level="1" src="images/level1-bar-crowd.jpg" alt="Guests gathered at the Level 1 Negroni Bar during a function at Bar Franco" loading="lazy">
+      <img class="photo" data-level="2" src="images/dining-room.jpg" alt="The Bar Franco restaurant dining room set for a private dinner" loading="lazy">
+      <img class="photo" data-level="1" src="images/level1-aperitivo.jpg" alt="Aperitivo spritzes served tableside at Bar Franco, Christchurch" loading="lazy">
+      <img class="g-wide photo" data-level="1" src="images/level1-bar.jpg" alt="The Level 1 Negroni Bar at Bar Franco — the curved bar, sculptural pendant lights and lounge seating" loading="lazy">
+      <img class="photo" data-level="1" src="images/level1-event-setup.jpg" alt="The Level 1 bar set with high tables and stage lighting for a corporate function" loading="lazy">
+      <img class="photo" data-level="2" src="images/event-room-wide.jpg" alt="A private event filling the candlelit restaurant at Bar Franco, Christchurch" loading="lazy">
+      <img class="photo" data-level="2" src="images/event-table-setting.jpg" alt="A long table set with glassware for a private dinner at Bar Franco" loading="lazy">
+      <img class="photo" data-level="2" src="images/event-guests.jpg" alt="Guests dressed up and celebrating at a Bar Franco function" loading="lazy">
+      <img class="photo" data-level="1" src="images/level-negroni-graded.jpg" alt="The low-lit Negroni Bar on Level 1 at Bar Franco" loading="lazy">
     </div>
   </div>
 </section>
+<script>
+(function () {
+  var wrap = document.getElementById('gallery');
+  if (!wrap) return;
+  var grid = wrap.querySelector('.gallery');
+  var btns = wrap.querySelectorAll('.gal-filter button');
+  var imgs = grid.querySelectorAll('img[data-level]');
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-filter');
+      btns.forEach(function (x) { x.classList.toggle('active', x === b); });
+      grid.classList.toggle('filtered', f !== 'all');
+      imgs.forEach(function (im) {
+        im.style.display = (f === 'all' || im.getAttribute('data-level') === f) ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
 
 <section class="sec-red" id="enquire">
   <div class="wrap" style="max-width:760px;">

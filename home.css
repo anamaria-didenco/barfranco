@@ -215,6 +215,13 @@ section { padding: 104px 0; }
 .gallery .g-wide { grid-column: span 2; }
 .gallery img.g-tall { grid-row: span 2; height: 100%; }
 .moments-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.gal-filter { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 34px 0 0; }
+.gal-filter button { font-family: "Affairs", serif; font-style: italic; font-size: 15px; cursor: pointer; padding: 9px 20px; border-radius: 2px; border: 1.4px solid var(--ink); background: transparent; color: var(--ink); transition: background .15s, color .15s, border-color .15s; }
+.gal-filter button:hover { border-color: var(--red); color: var(--red); }
+.gal-filter button.active { background: var(--red); color: #fff; border-color: var(--red); }
+.gal-filter + .gallery { margin-top: 24px; }
+.gallery.filtered .g-wide { grid-column: auto; }
+.gallery.filtered .g-tall { grid-row: auto; height: clamp(180px, 18vw, 240px); }
 
 /* ---------- Contact ---------- */
 .contact { background: var(--cream); }
