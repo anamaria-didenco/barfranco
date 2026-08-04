@@ -222,6 +222,7 @@ section { padding: 104px 0; }
 .gal-filter + .gallery { margin-top: 24px; }
 .gallery.filtered .g-wide { grid-column: auto; }
 .gallery.filtered .g-tall { grid-row: auto; height: clamp(180px, 18vw, 240px); }
+.gallery.galc { grid-auto-flow: dense; }
 
 /* ---------- Contact ---------- */
 .contact { background: var(--cream); }
