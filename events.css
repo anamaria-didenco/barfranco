@@ -423,3 +423,22 @@ input[type="range"].guests::-moz-range-thumb {
 
 /* baked-in photos */
 img.photo { object-fit: cover; border-radius: 4px; background: #efe9dc; }
+
+/* ---- hero photo collage ---- */
+.hero-media-grid { display: grid; grid-template-columns: 1.75fr 1fr; grid-auto-rows: clamp(150px, 22vw, 272px); gap: 14px; }
+.hero-media-grid img.photo { width: 100%; height: 100%; object-fit: cover; }
+.hero-media-grid .hm-main { grid-row: span 2; }
+@media (max-width: 700px) {
+  .hero-media-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: clamp(120px, 26vw, 200px); }
+  .hero-media-grid .hm-main { grid-column: span 2; }
+}
+
+/* ---- floor plans ---- */
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 46px; }
+.plan-card { margin: 0; border: 1px solid var(--line); background: #fff; border-radius: 4px; overflow: hidden; }
+.plan-card img { width: 100%; display: block; }
+.plan-cap { padding: 20px 24px 22px; border-top: 1.5px solid var(--redline); }
+.plan-cap h3 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; color: var(--red); font-size: 20px; letter-spacing: .06em; margin: 0 0 6px; }
+.plan-cap p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.5; }
+.plans-note { text-align: center; font-style: italic; font-size: 14px; color: var(--muted); margin: 26px 0 0; }
+@media (max-width: 860px) { .plans { grid-template-columns: 1fr; } }
