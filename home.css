@@ -373,6 +373,12 @@ section { padding: 104px 0; }
   letter-spacing: .02em; margin: 6px 0 0; text-wrap: balance;
 }
 .page-hero .lede { margin-top: 22px; max-width: 600px; font-size: 20px; }
+.hero-note {
+  font-family: "Affairs", serif; font-style: italic;
+  font-size: 17px; color: var(--red);
+  margin: 16px 0 0; max-width: 600px;
+}
+.page-hero .hero-note + .lede { margin-top: 14px; }
 .ghost-word {
   position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
   white-space: nowrap; font-family: "VTC Marsha", serif; text-transform: uppercase;
