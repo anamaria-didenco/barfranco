@@ -160,20 +160,29 @@
     <p class="eyebrow light reveal in" style="text-align:center;">Enquire</p>
     <h2 class="sec-label reveal in" style="text-align:center;margin-bottom:10px;">Lock in your Christmas date</h2>
     <p class="lede reveal in d1" style="text-align:center;margin:0 auto 30px;color:rgba(255,255,255,.9);">Tell us your date, headcount and the kind of night you're after — our events team will tailor a festive package and get straight back to you.</p>
-    <form class="contact-form reveal in d1" data-email="anamaria@barfranco.nz" data-subject="Christmas function enquiry — Bar Franco website" style="background:#fff;">
-      <div class="field-2">
-        <div class="field"><label for="xf-name">Full name *</label><input id="xf-name" type="text" placeholder="Your name" required /></div>
-        <div class="field"><label for="xf-phone">Phone</label><input id="xf-phone" type="tel" placeholder="Optional" /></div>
-      </div>
-      <div class="field-2">
-        <div class="field"><label for="xf-email">Email *</label><input id="xf-email" type="email" placeholder="you@email.com" required /></div>
-        <div class="field"><label for="xf-guests">Approx. guests</label><input id="xf-guests" type="text" placeholder="e.g. 40" /></div>
-      </div>
-      <div class="field"><label for="xf-date">Preferred date(s)</label><input id="xf-date" type="text" placeholder="e.g. Friday 12 Dec, or 'a December weeknight'" /></div>
-      <div class="field"><label for="xf-msg">Tell us about your event *</label><textarea id="xf-msg" placeholder="Work party, team dinner, seated or stand-up, any must-haves…" required></textarea></div>
-      <button class="btn lg" type="submit">Send Christmas enquiry</button>
-      <p style="font-style:italic;color:var(--muted);font-size:14px;margin:16px 0 0;text-align:center;">Or email <a href="mailto:anamaria@barfranco.nz" style="color:var(--red);text-decoration:none;">anamaria@barfranco.nz</a> · <a href="tel:+642108375416" style="color:var(--red);text-decoration:none;">021 083 75416</a></p>
-    </form>
+    <!-- VenueFlow enquiry widget — auto-resizing iframe; enquiries flow into
+           the VenueFlow CRM + notification email. Replaces the formsubmit.co
+           form: that free relay is throttled and referer-gated, and its
+           enquiries never reached the CRM — two Christmas clients (57 and 80
+           pax) bounced off it. Same widget as Functions.html. -->
+      <iframe id="vf-enquiry"
+        src="https://venueflowhq.com/enquire?embed=1&amp;accent=E51F1A"
+        width="100%" height="900" frameborder="0" loading="eager"
+        style="border:none;display:block;margin:0 auto;max-width:540px;width:100%;background:#fff;border-radius:4px;"
+        title="Christmas function enquiry — Bar Franco"></iframe>
+      <script>
+        // Resize the iframe to fit whichever step the widget is showing.
+        window.addEventListener('message', function (e) {
+          if (e.data && e.data.type === 'vf-embed-height' && e.data.height) {
+            var f = document.getElementById('vf-enquiry');
+            if (f) f.style.height = e.data.height + 'px';
+          }
+        });
+      </script>
+      <p class="reveal in d1" style="font-style:italic;color:rgba(255,255,255,.85);font-size:14px;margin:16px 0 0;text-align:center;">
+        Or email <a href="mailto:anamaria@barfranco.nz" style="color:#fff;text-decoration:underline;">anamaria@barfranco.nz</a>
+        &middot; <a href="tel:+642108375416" style="color:#fff;text-decoration:underline;">021&nbsp;083&nbsp;75416</a>
+      </p>
   </div>
 </section>
 
