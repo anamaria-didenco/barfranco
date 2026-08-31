@@ -132,10 +132,13 @@
         </div>
         <iframe
           class="bw-frame"
+          data-id="nbi-widget"
           title="Book a table at Bar Franco"
-          src="https://book.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&venueid=12388&theme=light&colors=hex,E51F1A,1D1D1B&font=Lora"
-          loading="lazy"
+          src="https://bookings.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&venueid=12388&theme=light&colors=hex,E51F1A,1D1D1B&font=Lora"
+          loading="eager"
           allow="payment"></iframe>
+        <!-- NowBookIt's official auto-resizer: sizes the iframe to the widget's content -->
+        <script src="https://plugins.nowbookit.com/iframe-resizer-build/bundle.js"></script>
         <p class="bw-fallback">Widget not loading? <a href="https://book.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&venueid=12388&theme=light&colors=hex,E51F1A,1D1D1B&font=Lora" target="_blank" rel="noopener">Open the booking page →</a></p>
       </div>
     </div>
