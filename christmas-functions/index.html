@@ -181,11 +181,33 @@
         style="border:none;display:block;margin:0 auto;max-width:540px;width:100%;background:#fff;border-radius:4px;"
         title="Christmas function enquiry — Bar Franco"></iframe>
       <script>
-        // Resize the iframe to fit whichever step the widget is showing.
+        // Resize the iframe to fit whichever step the widget is showing, and
+        // surface a submitted enquiry to analytics: the widget posts
+        // `vf-enquiry-submitted` (no personal data — event type, guest count,
+        // budget bracket) which becomes a GTM dataLayer event and, when a
+        // Google tag is present, a `generate_lead` event for Ads conversions.
         window.addEventListener('message', function (e) {
-          if (e.data && e.data.type === 'vf-embed-height' && e.data.height) {
+          if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
+          if (e.data.type === 'vf-embed-height' && e.data.height) {
             var f = document.getElementById('vf-enquiry');
             if (f) f.style.height = e.data.height + 'px';
+          }
+          if (e.data.type === 'vf-enquiry-submitted') {
+            try {
+              (window.dataLayer = window.dataLayer || []).push({
+                event: 'vf_enquiry_submitted',
+                event_type: e.data.eventType || undefined,
+                guest_count: e.data.guestCount || undefined,
+                budget_range: e.data.budgetRange || undefined,
+              });
+              if (typeof window.gtag === 'function') {
+                window.gtag('event', 'generate_lead', {
+                  event_category: 'enquiry',
+                  event_label: e.data.eventType || 'enquiry',
+                  value: e.data.guestCount || undefined,
+                });
+              }
+            } catch (err) { /* analytics must never break the page */ }
           }
         });
       </script>
