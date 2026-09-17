@@ -118,12 +118,16 @@
 <style>
   /* Functions-page extras: hero photo strip, occasion-card photos, sticky mobile CTA */
   .fx-note { font-style: italic; color: var(--red); font-weight: 600; margin: 12px 0 0; font-size: 15.5px; }
-  .fx-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: var(--maxw); margin: 0 auto; padding: 36px 40px 0; }
-  .fx-strip img { width: 100%; height: 250px; object-fit: cover; border-radius: 4px; }
+  .fx-strip { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 235px; gap: 14px; max-width: var(--maxw); margin: 0 auto; padding: 36px 40px 0; }
+  .fx-strip img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
+  .fx-strip .fx-big { grid-column: span 2; grid-row: span 2; }
   @media (max-width: 940px) {
-    .fx-strip { grid-template-columns: repeat(2, 1fr); padding: 26px 26px 0; gap: 10px; }
-    .fx-strip img { height: 170px; }
+    .fx-strip { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; padding: 26px 26px 0; gap: 10px; }
+    .fx-strip .fx-big { grid-column: span 2; grid-row: span 2; }
   }
+  .fx-band { margin: 0; }
+  .fx-band img { display: block; width: 100%; height: clamp(300px, 48vw, 480px); object-fit: cover; }
+  .fx-band figcaption { font-style: italic; color: var(--muted); font-size: 14px; text-align: center; padding: 12px 20px 0; }
   .types .tphoto { width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin: 0 0 14px; display: block; }
   .cta-sticky { display: none; }
   @media (max-width: 700px) {
@@ -166,10 +170,11 @@
   </div>
 </header>
 
-<!-- FIRST-GLANCE PHOTO STRIP -->
+<!-- FIRST-GLANCE PHOTO COLLAGE (editorial: one hero shot + four supporting) -->
 <div class="fx-strip reveal in" aria-label="A glimpse of events at Bar Franco">
-  <img class="photo" src="images/level2-long-dinner.jpg" alt="A candlelit long-table private dinner in full swing at Bar Franco" loading="eager">
-  <img class="photo" src="images/level1-bar-crowd.jpg" alt="Guests gathered at the Negroni Bar during a function at Bar Franco" loading="eager">
+  <img class="fx-big photo" src="images/level1-bar-crowd.jpg" alt="A function in full swing under the pendant lights at Bar Franco, Christchurch" loading="eager">
+  <img class="photo" src="images/level1-aperitivo.jpg" alt="Welcome spritzes poured and ready for guests at a Bar Franco event" loading="eager">
+  <img class="photo" src="images/level2-event-table.jpg" alt="A long table dressed with flowers and candles at Bar Franco" loading="eager">
   <img class="photo" src="images/social-aperitivo.jpg" alt="Friends laughing over spritzes and antipasti at a Bar Franco event" loading="eager">
   <img class="photo" src="images/marble-spread.jpg" alt="Burrata, olives and antipasti spread on marble at Bar Franco" loading="eager">
 </div>
@@ -236,6 +241,12 @@
     </div>
   </div>
 </section>
+
+<!-- FULL-BLEED MOMENT -->
+<figure class="fx-band reveal">
+  <img class="photo" src="images/level2-event-wide.jpg" alt="A private function filling the candlelit restaurant at Bar Franco, Christchurch" loading="lazy">
+  <figcaption>The room in full swing — la dolce vita, the Franco way.</figcaption>
+</figure>
 
 <!-- SPACE GALLERY -->
 <section class="moments" id="gallery">
