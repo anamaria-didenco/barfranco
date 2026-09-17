@@ -481,6 +481,16 @@ section { padding: 104px 0; }
 .resv-meta p { margin: 0; font-size: 15.5px; }
 .resv-card .btn { width: 100%; }
 
+/* ---- WhatsApp floating chat button ---- */
+.whatsapp-fab { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 70; display: flex; align-items: center; gap: 10px; background: var(--red); color: #fff; text-decoration: none; border-radius: 999px; padding: 14px; box-shadow: 0 10px 30px rgba(29,29,27,.25); transition: transform .15s ease, box-shadow .15s ease; }
+.whatsapp-fab:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(29,29,27,.32); color: #fff; }
+.whatsapp-fab svg { width: 26px; height: 26px; flex-shrink: 0; display: block; }
+.whatsapp-fab .wa-label { font-family: "Affairs", serif; font-style: italic; font-size: 15px; white-space: nowrap; padding-right: 4px; }
+@media (max-width: 700px) { .whatsapp-fab { right: 16px; } .whatsapp-fab .wa-label { display: none; } }
+/* When a page also has the bottom sticky mobile CTA bar, sit above it instead of overlapping */
+.cta-sticky ~ .whatsapp-fab { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+@media (min-width: 701px) { .cta-sticky ~ .whatsapp-fab { bottom: calc(20px + env(safe-area-inset-bottom, 0px)); } }
+
 /* ---- Map ---- */
 .map-frame { width: 100%; height: clamp(320px, 40vw, 440px); border: 1px solid var(--line); filter: grayscale(.3) contrast(1.02); }
 
