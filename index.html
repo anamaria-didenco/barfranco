@@ -63,8 +63,8 @@
 <meta name="theme-color" content="#E51F1A" />
 
 <!-- ============ PRIMARY SEO ============ -->
-<title>Italian Restaurant Christchurch CBD | Fresh Pasta &amp; Cocktails | Bar Franco</title>
-<meta name="description" content="Bar Franco is a modern Italian restaurant, cocktail bar and function venue in central Christchurch. Handmade pasta, aperitivo and curated Negronis across two levels. Open daily from 4pm — book a table." />
+<title>Bar Franco | Italian Restaurant &amp; Negroni Bar, Christchurch</title>
+<meta name="description" content="Handmade pasta, Negronis stirred to order and two levels at The Crossing. Bar from 4pm, kitchen from 5pm, daily till late. Book a table." />
 <meta name="keywords" content="Italian restaurant Christchurch, best Italian food Christchurch, cocktail bar Christchurch CBD, event venue Christchurch, private function venue, venue hire Christchurch, pasta restaurant, Negroni bar, corporate events Christchurch, party venue, restaurant near me" />
 <link rel="canonical" href="https://www.barfranco.nz/" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -79,8 +79,8 @@
 <!-- ============ OPEN GRAPH ============ -->
 <meta property="og:type" content="restaurant.restaurant" />
 <meta property="og:site_name" content="Bar Franco — Christchurch" />
-<meta property="og:title" content="Italian Restaurant Christchurch CBD | Fresh Pasta &amp; Cocktails | Bar Franco" />
-<meta property="og:description" content="Bar Franco is a modern Italian restaurant, cocktail bar and function venue in central Christchurch. Handmade pasta, aperitivo and curated Negronis across two levels. Open daily from 4pm — book a table." />
+<meta property="og:title" content="Bar Franco | Italian Restaurant &amp; Negroni Bar, Christchurch" />
+<meta property="og:description" content="Handmade pasta, Negronis stirred to order and two levels at The Crossing. Bar from 4pm, kitchen from 5pm, daily till late. Book a table." />
 <meta property="og:url" content="https://www.barfranco.nz/" />
 <meta property="og:locale" content="en_NZ" />
 <!-- Replace with an absolute URL to a real hero photo before going live (1200×630 ideal) -->
@@ -91,8 +91,8 @@
 
 <!-- ============ TWITTER ============ -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Italian Restaurant Christchurch CBD | Fresh Pasta &amp; Cocktails | Bar Franco" />
-<meta name="twitter:description" content="Bar Franco is a modern Italian restaurant, cocktail bar and function venue in central Christchurch. Handmade pasta, aperitivo and curated Negronis across two levels. Open daily from 4pm — book a table." />
+<meta name="twitter:title" content="Bar Franco | Italian Restaurant &amp; Negroni Bar, Christchurch" />
+<meta name="twitter:description" content="Handmade pasta, Negronis stirred to order and two levels at The Crossing. Bar from 4pm, kitchen from 5pm, daily till late. Book a table." />
 <meta name="twitter:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
 
 <!-- ============ STRUCTURED DATA (JSON-LD) ============ -->
@@ -251,11 +251,13 @@
 <body>
 
 <!-- NAV -->
-<nav class="nav" id="nav">
+<nav class="nav nav-home" id="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="Bar Franco home">
-      <img class="brand-logo" src="brand/bf-script-incline-red.svg" alt="Bar Franco" />
+      <img class="brand-logo" src="brand/bf-script-incline-peach.svg" alt="Bar Franco" />
+      <img class="nav-scrolled-mark" src="brand/bf-script-incline-red.svg" alt="Bar Franco" />
     </a>
+    <span class="nav-scrolled-hours">Bar 4pm · kitchen 5pm</span>
     <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     <div class="nav-links">
       <a class="active" href="index.html">Home</a>
@@ -264,34 +266,57 @@
       <a href="Menus.html">Menus</a>
       <a href="Vouchers.html">Vouchers</a>
       <a href="Contact.html">Contact</a>
-      <a href="christmas-functions/">Christmas</a>
-      <a class="btn" href="Bookings.html">Book now</a>
+      <a class="btn" href="Bookings.html">Reserve a table</a>
+    </div>
+    <div class="nav-socials">
+      <a href="https://www.instagram.com/bar__franco/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.facebook.com/barfranco.chch/" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.5 21v-7h2.3l.4-2.8h-2.7V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.2V14H10.4v7h3.1z"/></svg></a>
     </div>
   </div>
+  <div class="nav-row2">
+    <div class="wrap">
+      <span>The Crossing · 166 Cashel Street, Christchurch</span>
+      <span class="nav-row2-hours">Bar from 4pm · Kitchen from 5pm · Daily till late</span>
+      <span>03 925 9208 · @bar__franco</span>
+    </div>
+  </div>
+  <div class="nav-mobile-strip">Bar 4pm · Kitchen 5pm · Till late</div>
 </nav>
+<script>
+(function () {
+  var nav = document.getElementById('nav');
+  if (!nav || !nav.classList.contains('nav-home')) return;
+  var onScroll = function () {
+    nav.classList.toggle('scrolled', window.scrollY > 140);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 
 <!-- HERO -->
 <header class="hero" id="top">
+  <img class="hero-photo" src="images/social-aperitivo.jpg" alt="Aperitivo at Bar Franco, Christchurch — a Negroni, a spritz and antipasti on a marble table" loading="eager">
+  <div class="hero-scrim" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="hero-grid">
+    <div class="hero-inner">
       <div class="hero-copy">
-        <img class="hero-logo reveal in" src="brand/bf-script-incline-red.svg" alt="Bar Franco — Italian restaurant, cocktail bar and event venue in Christchurch" />
-        <p class="eyebrow reveal in d1">Modern Italian · The Crossing, Christchurch</p>
-        <h1 class="reveal in d1">Italian soul,<br />vibrant dining,<br />private events <span class="h1-geo">in Christchurch</span></h1>
-        <p class="hero-sub reveal in d2">Delicious Italian food, curated cocktails and seamless hospitality across two vibrant levels in the heart of the city.</p>
-        <h2 class="hero-sub reveal in d2" style="font-size:inherit;font-weight:inherit;margin-top:14px;">An Italian restaurant, aperitivo bar and function venue in the heart of Christchurch — at The Crossing, a short walk from One NZ Stadium.</h2>
+        <p class="eyebrow hero-eyebrow reveal in d1">Modern Italian · The Crossing, Christchurch</p>
+        <h1 class="reveal in d1">Some places want to be seen.</h1>
+        <p class="hero-second reveal in d1">Bar Franco wants to be felt.</p>
+        <p class="hero-sub reveal in d2">Italian restaurant and Negroni bar at The Crossing, in the middle of Christchurch.</p>
         <div class="hero-cta reveal in d3">
-          <a class="btn lg" href="Bookings.html">Reserve a table</a>
-          <a class="btn ghost lg" href="#levels">Discover the venue</a>
+          <a class="btn light lg" href="Bookings.html">Reserve a table</a>
+          <a class="hero-scroll-link" href="#levels">Have a look around ↓</a>
         </div>
       </div>
-      <div class="hero-media reveal d2">
-        <img class="hero-negroni" src="brand/franco-negroni.png" alt="" />
-        <img class="photo" src="images/social-aperitivo.jpg" alt="Friends laughing over Negronis, spritzes and antipasti at Bar Franco, Christchurch" loading="eager">
+      <div class="hero-side reveal d2">
         <div class="hero-stamp">
           <p class="st-k">Open daily</p>
-          <p class="st-v">Bar 4pm ·<br />kitchen 5pm</p>
+          <p class="st-v">BAR 4PM<br />KITCHEN 5PM</p>
+          <p class="st-note">Both till late</p>
         </div>
+        <img class="hero-negroni" src="brand/franco-negroni.png" alt="" />
       </div>
     </div>
   </div>
@@ -300,8 +325,8 @@
 <!-- MARQUEE STRIP -->
 <div class="strip" aria-hidden="true">
   <div class="strip-track">
-    <span>Fresh Pasta</span><span>Aperitivo</span><span>Negroni Bar</span><span>Private Events</span><span>Cocktails</span><span>Two Levels</span><span>Open Kitchen</span>
-    <span>Fresh Pasta</span><span>Aperitivo</span><span>Negroni Bar</span><span>Private Events</span><span>Cocktails</span><span>Two Levels</span><span>Open Kitchen</span>
+    <span>Pasta fresca</span><span>Aperitivo</span><span>Negroni bar</span><span>Private events</span><span>Cocktails</span><span>Two levels</span><span>Open kitchen</span><span>Till late</span>
+    <span>Pasta fresca</span><span>Aperitivo</span><span>Negroni bar</span><span>Private events</span><span>Cocktails</span><span>Two levels</span><span>Open kitchen</span><span>Till late</span>
   </div>
 </div>
 
@@ -311,17 +336,18 @@
     <div class="about-grid">
       <div class="about-media reveal">
         <div class="cluster">
-          <img class="c-tall photo" src="images/bistro-table.jpg" alt="An intimate marble bistro table set for two at Bar Franco" loading="lazy">
-          <img class="c-sm1 photo" src="images/risotto.jpg" alt="Green risotto with chilli and basil at Bar Franco" loading="lazy">
-          <img class="c-sm2 photo" src="images/spritz-tray.jpg" alt="Aperol spritz and cocktails on a tray at Bar Franco" loading="lazy">
-          <img class="dog-badge" src="brand/franco-dog.png" alt="" />
+          <img class="c-tall photo" src="images/chef-candid-kitchen.jpg" alt="A Bar Franco chef sharing a laugh in the open kitchen" loading="lazy">
+          <img class="c-sm1 photo" src="images/room-bentwood-daylight.jpg" alt="Bentwood chairs and set tables in the Bar Franco dining room" loading="lazy">
+          <img class="c-sm2 photo" src="images/burrata-lunch-overhead.jpg" alt="Burrata and wine from above at Bar Franco" loading="lazy">
         </div>
       </div>
       <div class="about-copy reveal d1">
         <p class="eyebrow">About Bar Franco</p>
-        <h2>Christchurch's spot for Italian food, fresh pasta, aperitivo, cocktails &amp; private events</h2>
-        <p>Bar Franco serves delicious Italian food, curated cocktails and seamless hospitality across two vibrant levels in the heart of Christchurch.</p>
-        <p>Book in for dinner and our <a href="Menus.html">fresh handmade pasta</a>, let us host your <a href="Functions.html">private events and functions in Christchurch</a>, or join us for a drink — it's all here.</p>
+        <h2>We don't perform. We host.</h2>
+        <p class="about-second">Well. Mostly.</p>
+        <h3 class="about-kw">An Italian restaurant and cocktail bar on two levels at The Crossing.</h3>
+        <p>Pasta rolled by hand upstairs. Negronis stirred to order downstairs. Two rooms, one very good night.</p>
+        <p>Come for dinner. Take the long table for a celebration. Or join us for a Negroni. <em>Ti aspettiamo</em> — we're waiting for you.</p>
         <a class="btn" href="Menus.html">View our menu</a>
       </div>
     </div>
@@ -336,7 +362,7 @@
     <p class="lede reveal d1">A Negroni bar downstairs, an open-kitchen restaurant upstairs — Italian in spirit, without the clichés.</p>
     <div class="levels">
       <div class="level reveal d1">
-        <img class="photo" src="images/server-tray.jpg" alt="Cocktail service at the Bar Franco Negroni Bar" loading="lazy">
+        <div class="level-media"><img class="photo" src="images/server-tray.jpg" alt="Cocktail service at the Bar Franco Negroni Bar" loading="lazy"></div>
         <div class="level-body">
           <p class="level-kicker">Level 1</p>
           <h3>The Negroni Bar</h3>
@@ -348,7 +374,7 @@
         </div>
       </div>
       <div class="level reveal d2">
-        <img class="photo" src="images/level-restaurant-graded.jpg" alt="The restaurant dining room at Bar Franco — velvet banquette, bentwood chairs and set tables" loading="lazy">
+        <div class="level-media"><img class="photo" src="images/level-restaurant-graded.jpg" alt="The restaurant dining room at Bar Franco — velvet banquette, bentwood chairs and set tables" loading="lazy"></div>
         <div class="level-body">
           <p class="level-kicker">Level 2</p>
           <h3>The Restaurant</h3>
@@ -368,22 +394,22 @@
   <div class="wrap">
     <div class="eb-copy reveal">
       <p class="eyebrow light">Private events &amp; venue hire</p>
-      <h2>Made for the moments worth gathering for</h2>
-      <p>With spaces for private dining, cocktail functions or full venue hire, Bar Franco brings big flavour and even bigger hospitality to every celebration in central Christchurch.</p>
+      <h2>The long table is yours.</h2>
+      <p>Up to 240 across two levels, no venue hire fee. Tell us the date and we'll tell you what's possible.</p>
       <ul class="eb-list">
         <li>No venue hire fee</li>
         <li>Up to 240 across both levels</li>
-        <li>Pricing on application</li>
       </ul>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
-        <a class="btn light lg" href="Functions.html">Enquire now</a>
-        <a class="btn light lg" href="christmas-functions/" style="background:transparent;color:#fff;border:1.4px solid #fff;">Christmas parties →</a>
+        <a class="btn light lg" href="Functions.html">Plan your event</a>
+        <a class="btn ghost-light lg" href="christmas-functions/">Christmas parties →</a>
       </div>
-      <p style="font-style:italic;font-size:14.5px;margin:14px 0 0;color:rgba(255,255,255,.92);">Booking the work do? December dates go first — <a href="christmas-functions/" style="color:#fff;text-decoration:underline;">lock yours in</a>.</p>
+      <p style="font-style:italic;font-size:14.5px;margin:14px 0 0;color:rgba(250,215,195,.92);">Booking the work do? December dates go first — <a href="christmas-functions/" style="color:var(--cream);text-decoration:underline;">lock yours in</a>.</p>
     </div>
-    <div class="eb-media reveal d1">
-      <img class="photo" src="images/event-long-table.jpg" alt="A long candlelit table set for a private event at Bar Franco" loading="lazy">
-      <img class="dog-badge" src="brand/franco-dog.png" alt="" />
+    <div class="eb-photos reveal d1">
+      <img class="photo eb-p1" src="images/event-long-table.jpg" alt="A long candlelit table set for a private event at Bar Franco" loading="lazy">
+      <img class="photo" src="images/level1-bar.jpg" alt="The Negroni Bar set up for a cocktail function at Bar Franco" loading="lazy">
+      <img class="photo" src="images/event-room-wide.jpg" alt="A private event filling the Bar Franco dining room, Christchurch" loading="lazy">
     </div>
   </div>
 </section>
@@ -392,20 +418,50 @@
 <section class="moments" id="moments">
   <div class="wrap">
     <p class="eyebrow reveal">Moments at Bar Franco</p>
-    <h2 class="sec-label reveal">A taste of the room</h2>
+    <h2 class="sec-label reveal">Any given Tuesday</h2>
     <p class="lede reveal d1">Plates, pours and full tables — a glimpse of an evening at Franco.</p>
-    <div class="gallery reveal d1">
-      <img class="g-tall photo" src="images/open-kitchen.jpg" alt="Chefs at work in the open kitchen of the Bar Franco restaurant" loading="lazy">
-      <img class="photo" src="images/marble-spread.jpg" alt="Burrata, olives and antipasti on a marble table at Bar Franco" loading="lazy">
-      <img class="photo" src="images/parmigiana-flat.jpg" alt="Chicken parmigiana and cacio e pepe at Bar Franco" loading="lazy">
-      <img class="g-wide photo" src="images/event-room-wide.jpg" alt="A candlelit private event filling the dining room at Bar Franco, Christchurch" loading="lazy">
-      <img class="photo" src="images/event-guests.jpg" alt="Guests dressed up and celebrating at a Bar Franco event" loading="lazy">
+    <figure class="filmstrip reveal d1">
+      <div class="filmstrip-frame filmstrip-f1">
+        <img src="images/host-serving-room.jpg" alt="A host carrying carafes through the Bar Franco dining room" loading="lazy">
+        <figcaption>Service, mid-stride</figcaption>
+      </div>
+      <div class="filmstrip-frame filmstrip-f2">
+        <img src="images/table-laughter-candlelight.jpg" alt="Guests laughing over dessert and wine by candlelight at Bar Franco" loading="lazy">
+        <figcaption>A table that ran long</figcaption>
+      </div>
+      <div class="filmstrip-frame filmstrip-f3">
+        <img src="images/open-kitchen.jpg" alt="Chefs at work in the open kitchen of the Bar Franco restaurant" loading="lazy">
+        <figcaption>The open kitchen, mid-service</figcaption>
+      </div>
+      <div class="filmstrip-frame filmstrip-f4">
+        <img src="images/room-golden-longtable.jpg" alt="A candlelit long table filling the Bar Franco dining room" loading="lazy">
+        <figcaption>The room, in full swing</figcaption>
+      </div>
+      <div class="filmstrip-frame filmstrip-f5">
+        <img src="images/bistro-window-table.jpg" alt="A bistro table set by the window at Bar Franco" loading="lazy">
+        <figcaption>A table for two, by the window</figcaption>
+      </div>
+    </figure>
+    <div class="moments-row reveal d2">
+      <img class="photo" src="images/burrata-plating.jpg" alt="Burrata plated close-up at Bar Franco" loading="lazy">
       <img class="photo" src="images/dining-pasta.jpg" alt="A guest enjoying pasta and red wine at Bar Franco" loading="lazy">
-      <img class="photo" src="images/shared-table.jpg" alt="Friends sharing plates over wine at Bar Franco" loading="lazy">
+      <img class="photo" src="images/sommelier-wine-window.jpg" alt="A Bar Franco sommelier inspecting a bottle of wine by the window" loading="lazy">
+      <img class="photo" src="images/marble-spread.jpg" alt="Burrata, olives and antipasti on a marble table at Bar Franco" loading="lazy">
     </div>
     <div class="moments-cta">
       <a class="btn lg" href="Bookings.html">Reserve a table</a>
       <a class="btn ghost lg" href="Functions.html">Event enquiry</a>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSER -->
+<section class="closer">
+  <div class="wrap">
+    <h2 class="reveal">Join us. Come as you are, leave slower than you arrived.</h2>
+    <div class="closer-cta reveal d1">
+      <a class="btn light lg" href="Bookings.html">Reserve a table</a>
+      <a class="btn ghost-light lg" href="Functions.html">Plan an event</a>
     </div>
   </div>
 </section>
@@ -417,7 +473,7 @@
       <div class="contact-intro reveal">
         <p class="eyebrow">Get in touch</p>
         <h2>Come say<br />ciao.</h2>
-        <p>Book a table, plan a function, or just drop in for a Negroni. We're open daily — bar from 4pm, kitchen from 5pm, both till late — in the heart of the city.</p>
+        <p>Join us for dinner, for a function, or just for a Negroni. Ground floor of The Crossing, laneway side — the doors by H&amp;M.</p>
         <div class="info-grid">
           <div class="info-block">
             <h4>Where we are</h4>
@@ -452,8 +508,8 @@
       </div>
 
       <form class="contact-form reveal d1" data-email="ciao@barfranco.nz" data-subject="Enquiry from barfranco.nz">
-        <h3>Send us a message</h3>
-        <p class="fnote">Tell us a little about what you're after and we'll get back to you.</p>
+        <h3>Tell us about it</h3>
+        <p class="fnote">Whatever brings you in, we'd love to hear it.</p>
         <div class="field-2">
           <div class="field">
             <label for="name">Full name *</label>
@@ -470,9 +526,9 @@
         </div>
         <div class="field">
           <label for="msg">Message *</label>
-          <textarea id="msg" placeholder="Date, guest numbers, the kind of night you have in mind…" required></textarea>
+          <textarea id="msg" placeholder="Twelve of us, a Friday in November, somewhere upstairs…" required></textarea>
         </div>
-        <button class="btn lg" type="submit">Submit</button>
+        <button class="btn lg" type="submit">Send</button>
       </form>
     </div>
   </div>
@@ -483,7 +539,7 @@
   <div class="foot-top">
     <div class="foot-brand">
       <img class="foot-logo" src="brand/bf-script-incline-red.svg" alt="Bar Franco" />
-      <p>Modern Italian restaurant, cocktail bar &amp; private event venue in the heart of Christchurch.</p>
+      <p>Modern Italian restaurant, cocktail bar and private event venue at The Crossing, in the heart of Christchurch — fresh pasta, aperitivo and functions for up to 240.</p>
       <div class="foot-socials">
         <a href="https://www.instagram.com/bar__franco/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
         <a href="https://www.facebook.com/barfranco.chch/" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.5 21v-7h2.3l.4-2.8h-2.7V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.2V14H10.4v7h3.1z"/></svg></a>

@@ -97,8 +97,8 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (!res || (res.success !== true && res.success !== 'true')) throw new Error('not ok');
-        f.innerHTML = '<h3>Grazie! 🎉</h3>' +
-          '<p class="fnote">Thanks for reaching out — your message is on its way and we\'ll be in touch very soon.</p>' +
+        f.innerHTML = '<h3>Grazie.</h3>' +
+          '<p class="fnote">We\'ll come straight back to you.</p>' +
           '<p class="fnote">Anything urgent? Email <a href="mailto:' + to + '">' + to + '</a>.</p>';
       })
       .catch(function () {
