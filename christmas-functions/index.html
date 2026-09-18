@@ -88,24 +88,68 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "EventVenue",
-  "name": "Bar Franco — Christmas Functions & Venue Hire",
-  "url": "https://www.barfranco.nz/christmas-functions/",
-  "description": "Work Christmas parties, team dinners and end-of-year celebrations for December 2026 — up to 240 guests across two levels in central Christchurch, with no venue hire fee.",
-  "telephone": "+64-21-221-1307",
-  "email": "anamaria@barfranco.nz",
-  "maximumAttendeeCapacity": 240,
-  "image": "https://www.barfranco.nz/og-image.jpg?v=3",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "The Crossing, 166 Cashel Street",
-    "addressLocality": "Christchurch Central",
-    "addressRegion": "Canterbury",
-    "postalCode": "8011",
-    "addressCountry": "NZ"
-  },
-  "geo": { "@type": "GeoCoordinates", "latitude": -43.53262, "longitude": 172.63620 },
-  "areaServed": "Christchurch"
+  "@graph": [
+    {
+      "@type": "EventVenue",
+      "name": "Bar Franco — Christmas Functions & Venue Hire",
+      "url": "https://www.barfranco.nz/christmas-functions/",
+      "description": "Work Christmas parties, team dinners and end-of-year celebrations for December 2026 — up to 240 guests across two levels in central Christchurch, with no venue hire fee.",
+      "telephone": "+64-21-221-1307",
+      "email": "anamaria@barfranco.nz",
+      "maximumAttendeeCapacity": 240,
+      "image": "https://www.barfranco.nz/og-image.jpg?v=3",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Crossing, 166 Cashel Street",
+        "addressLocality": "Christchurch Central",
+        "addressRegion": "Canterbury",
+        "postalCode": "8011",
+        "addressCountry": "NZ"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": -43.53262, "longitude": 172.63620 },
+      "areaServed": "Christchurch"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How early should we book a work Christmas party in Christchurch?",
+          "acceptedAnswer": { "@type": "Answer", "text": "December dates go first — the good Fridays are usually gone by October, and the fortnight before Christmas fills fastest. Midweek December nights are easier to get and often the better night out. Send us the date you have in mind and we'll tell you honestly whether it's still open." }
+        },
+        {
+          "@type": "Question",
+          "name": "How many guests can you host for a Christmas function?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Up to 240 guests across both levels standing, or 165 seated. The Negroni Bar on Level 1 takes 120 standing or 75 seated; the restaurant on Level 2 takes 120 standing or 90 seated." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a venue hire fee for a Christmas party?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. There is a minimum spend on food and drinks instead, set by the date and the space — so the budget goes into the night rather than the room." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much is a Christmas party per person?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The shared Christmas menu is $80 a head, canapés with the shared menu together are $110 a head, and a standing grazing table is $40 a head. Canapés on their own start at $9 a person, and a drinks package can be added for $45 a head." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we have the venue to ourselves?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Either level can be booked exclusively, or take both levels and both bars for up to 240 guests with the doors closed to everyone else." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you handle dietaries and allergies?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Every menu has a vegetarian and a gluten-free line built in, and vegan, dairy-free and most allergies are handled as part of the planning rather than as an afterthought." }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Bar Franco, and where does everyone park?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We're in The Crossing at 166 Cashel Street, in the middle of the Christchurch CBD next to H&M. The Crossing car park is in the same block and central bus and tram stops are minutes away, so everyone can get there and get home easily." }
+        }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -117,7 +161,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="/index.html" aria-label="Bar Franco home">
-      <img class="brand-logo" src="/brand/bf-script-incline-red.svg" alt="Bar Franco" />
+      <img class="brand-logo" src="/brand/bf-script-flat-brightred.svg" alt="Bar Franco" />
     </a>
     <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     <div class="nav-links">
@@ -132,141 +176,241 @@
   </div>
 </nav>
 
-<header class="page-hero">
-  <div class="ghost-word" aria-hidden="true">Buon Natale · Buon Natale</div>
-  <div class="wrap">
-    <p class="eyebrow reveal in">Christmas at Bar Franco · Christchurch</p>
-    <h1 class="reveal in d1">Your work Christmas party, sorted</h1>
-    <p class="hero-note reveal in d1">December 2026 dates are open · Set menus from $80 per person</p>
-    <p class="lede reveal in d2">End-of-year celebrations, team dinners and client do's in the heart of the city — generous Italian food, free-flowing spritzes and a room that does the work for you. Up to 240 guests across two levels, with <strong>no venue hire fee.</strong></p>
-    <div class="reveal in d3" style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;">
-      <a class="btn lg" href="#enquire">Enquire for December</a>
-      <a class="btn ghost lg" href="/Bar Franco Events Pack.html" target="_blank" rel="noopener">View events pack</a>
+<!-- HERO -->
+<header class="pe-hero xm-hero">
+  <img class="pe-hero-photo" src="/images/event-room-wide.jpg" alt="A candlelit Christmas party dinner at the long table at Bar Franco, Christchurch" loading="eager">
+  <div class="pe-hero-scrim"></div>
+  <div class="pe-hero-grid">
+    <div class="pe-hero-copy">
+      <p class="eyebrow">Christmas parties 2026 · Christchurch central</p>
+      <h1>Your work Christmas party.<br />December books out first.</h1>
+      <p class="pe-hero-second">Ours is the room people don't leave early.</p>
+      <p class="pe-lede">Italian, shared down a long table, on two levels in the middle of town. Ten of you or two hundred and forty. No venue hire fee, and one person looking after you from first email to last guest.</p>
+      <div class="pe-facts">
+        <div class="pe-fact"><div class="n">Up to 240</div><div class="l">standing, across both levels</div></div>
+        <div class="pe-fact"><div class="n">165 seated</div><div class="l">at the long tables</div></div>
+        <div class="pe-fact"><div class="n">No hire fee</div><div class="l">you spend it on the food</div></div>
+        <div class="pe-fact"><div class="n">Same-day</div><div class="l">quote and floor plan</div></div>
+      </div>
+      <div class="xm-hero-note">
+        <strong>A word on timing</strong>
+        <p>December dates go first — the good Fridays are usually gone by October, and the fortnight before Christmas fills fastest. Midweek nights are the best-kept secret in town. Send us your date and we'll tell you straight whether it's still open.</p>
+      </div>
+    </div>
+    <div class="pe-card" id="enquire">
+      <h2>Il Natale condiviso</h2>
+      <p class="pe-card-note">The shared Christmas menu — antipasti, pasta and secondi, down the middle of the table. Minimum ten guests.</p>
+      <p class="xm-card-price">$80<small> a head</small></p>
+      <div class="pe-room-row"><span>Canapés &amp; shared menu</span><span style="white-space:nowrap;">$110 a head</span></div>
+      <div class="pe-room-row"><span>Grazing table, standing</span><span style="white-space:nowrap;">$40 a head</span></div>
+      <h3 class="xm-card-sub">Tell us the date</h3>
+      <p class="pe-card-note">A few fields to start. We'll come back the same day with what's possible and what it costs.</p>
+      <!-- VenueFlow enquiry widget — auto-resizing iframe; enquiries flow into the VenueFlow CRM + notification email -->
+      <iframe id="vf-enquiry"
+        src="https://venueflowhq.com/enquire?embed=1&amp;accent=F00000"
+        width="100%" height="560" frameborder="0" loading="eager"
+        style="border:none;display:block;margin:0 auto;width:100%;min-height:420px;background:var(--cream);border-radius:2px;"
+        title="Christmas function enquiry — Bar Franco"></iframe>
+      <p class="pe-card-foot">Prefer email? <a href="mailto:anamaria@barfranco.nz?subject=Christmas%20function%20enquiry%20%E2%80%94%20Bar%20Franco">anamaria@barfranco.nz</a> · <a href="tel:+64212211307">021 221 1307</a></p>
     </div>
   </div>
 </header>
 
-<section>
-  <div class="wrap">
-    <div class="split">
-      <div class="split-copy reveal">
-        <p class="eyebrow">Why Franco for Christmas</p>
-        <h2>The easiest "yes" on your December list</h2>
-        <p>Booking the work do shouldn't be the hardest part of your year. Take over a level or the whole building, and our team handles the food, the drinks and the flow of the night — you just turn up and enjoy it.</p>
-        <p>Right in the CBD at The Crossing, so everyone can get there, carry on after, and get home easily.</p>
-      </div>
-      <div class="split-media reveal d1">
-        <img class="photo" src="/images/event-long-table.jpg" alt="A long candlelit table set for a Christmas work party at Bar Franco, Christchurch" loading="eager">
-      </div>
-    </div>
-    <div class="stats">
-      <div class="stat reveal"><div class="s-n">240</div><div class="s-l">Guests across both levels</div></div>
-      <div class="stat reveal d1"><div class="s-n">2</div><div class="s-l">Festive levels to hire</div></div>
-      <div class="stat reveal d2"><div class="s-n">$0</div><div class="s-l">Venue hire fee</div></div>
-    </div>
+<!-- STATEMENT BAND -->
+<section class="sec-red">
+  <div class="wrap xm-band">
+    <h2 class="reveal in">Food is love.<br />We're not subtle about it.</h2>
+    <p class="reveal in d1">Which is why the work do here tends to run long, and why people ask for the same date again next year.</p>
   </div>
 </section>
 
+<!-- THREE WAYS TO DO DECEMBER -->
 <section class="sec-cream">
   <div class="wrap">
-    <p class="eyebrow reveal">Made for</p>
-    <h2 class="sec-label reveal">Every kind of end-of-year do</h2>
-    <div class="types">
-      <div class="type reveal"><div class="t-num">01</div><h3>Work Christmas Parties</h3><p>Stand-up cocktail functions or seated long-table dinners — from a tight-knit team to the whole company.</p></div>
-      <div class="type reveal d1"><div class="t-num">02</div><h3>Team &amp; Department Dinners</h3><p>Smaller group bookings with a festive set menu and the good seats by the open kitchen.</p></div>
-      <div class="type reveal d2"><div class="t-num">03</div><h3>Client &amp; Corporate</h3><p>Impress clients with central, polished Italian hospitality and a drinks list led by the Negroni.</p></div>
-      <div class="type reveal d3"><div class="t-num">04</div><h3>Friends &amp; Festive Catch-ups</h3><p>Get the crew together before everyone scatters for the summer — spritzes and shared plates all round.</p></div>
+    <div class="pe-sec-head reveal">
+      <div>
+        <p class="eyebrow">What you can book</p>
+        <h2 style="color:var(--red-deep);">December, three ways</h2>
+      </div>
+      <p class="pe-sec-aside">Ten of you at the long table, or the whole building with the doors shut.</p>
+    </div>
+    <div class="pe-rooms">
+      <div class="pe-room reveal">
+        <img src="/images/event-long-table.jpg" alt="A long candlelit table set for a Christmas dinner on Level 2 at Bar Franco, Christchurch" loading="lazy">
+        <div class="pe-room-body">
+          <p class="pe-room-kicker">Level 2 · Upstairs</p>
+          <h3>The team dinner</h3>
+          <p>Ten to ninety at the long tables, the open kitchen in view, courses shared down the middle. Nobody ordering off a menu.</p>
+          <div class="pe-room-row"><span>Seated</span><span>up to 90</span></div>
+          <div class="pe-room-row"><span>Standing</span><span>up to 120</span></div>
+          <div class="pe-room-row"><span>Best for</span><span>the department do</span></div>
+        </div>
+      </div>
+      <div class="pe-room reveal d1">
+        <img src="/images/level1-bar-crowd.jpg" alt="A standing Christmas function in full swing in the Negroni Bar on Level 1 at Bar Franco, Christchurch" loading="lazy">
+        <div class="pe-room-body">
+          <p class="pe-room-kicker">Both levels · Exclusive</p>
+          <h3>The whole office</h3>
+          <p>Standing, cicchetti circulating, both bars going and the building to yourselves.</p>
+          <div class="pe-room-row"><span>Standing</span><span>up to 240</span></div>
+          <div class="pe-room-row"><span>Seated</span><span>up to 165</span></div>
+          <div class="pe-room-row"><span>Best for</span><span>the whole company</span></div>
+        </div>
+      </div>
+      <div class="pe-room reveal d2">
+        <img src="/images/semifreddo-spritz-candle.jpg" alt="Semifreddo with blood orange and a spritz by candlelight at Bar Franco, Christchurch" loading="lazy">
+        <div class="pe-room-body">
+          <p class="pe-room-kicker">Level 1 · Downstairs</p>
+          <h3>The late one</h3>
+          <p>Dinner upstairs, then downstairs till late — dolci, a last spritz, and no need for a second venue.</p>
+          <div class="pe-room-row"><span>Standing</span><span>up to 120</span></div>
+          <div class="pe-room-row"><span>Seated</span><span>up to 75</span></div>
+          <div class="pe-room-row"><span>Best for</span><span>the night that keeps going</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- WHAT IT COSTS -->
 <section>
   <div class="wrap">
-    <div class="split flip">
-      <div class="split-media reveal">
-        <img class="photo" src="/images/event-guests.jpg" alt="Guests dressed up and celebrating at a Christmas event at Bar Franco, Christchurch" loading="lazy">
+    <div class="pe-split">
+      <div class="reveal">
+        <p class="eyebrow">Food &amp; drinks</p>
+        <h2 style="font-family:'VTC Marsha',Impact,sans-serif;text-transform:uppercase;letter-spacing:.025em;font-size:clamp(30px,4.2vw,48px);line-height:.98;color:var(--red);margin:0;">What Christmas costs</h2>
+        <p style="margin:22px 0 0;max-width:400px;text-wrap:pretty;">Set menus, shared down the table, priced per person. Drinks on consumption, on a bar tab you cap, or as a package — your call.</p>
+        <p style="font-style:italic;font-size:16px;margin:18px 0 0;color:rgba(108,6,0,.7);">Dietaries handled properly, not as an afterthought. Every menu has a vegetarian and a gluten-free line.</p>
+        <img class="photo" src="/images/level2-event-wide.jpg" alt="The restaurant on Level 2 set for a long-table Christmas dinner, spritzes lined up on the pass at Bar Franco" style="width:100%;height:240px;object-fit:cover;border-radius:4px;margin:32px 0 0;" loading="lazy">
       </div>
-      <div class="split-copy reveal d1">
-        <p class="eyebrow">Festive feasting</p>
-        <h2>Italian, with a December twist</h2>
-        <p>Shared antipasti, fresh pasta and generous mains built for a table in full swing — paired with spritzes, Negronis and a tidy wine list. We tailor a festive set menu to your group, dietaries and budget. <strong>Shared set menus from $80 per person</strong>, or canapés from $9 each for a standing function.</p>
-        <a class="btn" href="/Menus.html">See our menus</a>
+      <div class="reveal d1">
+        <div class="pe-prices">
+          <div class="pe-price">
+            <h3>Grazing table</h3>
+            <p class="amt">$40<small> a head</small></p>
+            <p>One long table of cheese, salumi, breads and pickles. Standing, help yourselves.</p>
+          </div>
+          <div class="pe-price">
+            <h3>Shared menu</h3>
+            <p class="amt">$80<small> a head</small></p>
+            <p>Antipasti, pasta and secondi, shared down the middle. Seated, unhurried.</p>
+          </div>
+          <div class="pe-price">
+            <h3>Canapés &amp; shared</h3>
+            <p class="amt">$110<small> a head</small></p>
+            <p>Canapés with the first drink, then the full shared menu at the table. The whole night handled.</p>
+          </div>
+        </div>
+        <p style="font-style:italic;font-size:16.5px;margin:20px 0 0;color:rgba(108,6,0,.75);">Canapés on their own from <strong style="font-style:normal;">$9 a person</strong> — pick as many as the night needs.</p>
+        <div class="pe-drinks">
+          <h3>Drinks, three ways</h3>
+          <div class="pe-drinks-grid">
+            <div><strong>On consumption</strong><span>Open tab, full list, you settle at the end.</span></div>
+            <div><strong>Capped tab</strong><span>Set the number; we tell you when it's close.</span></div>
+            <div><strong>Package</strong><span>$45 a head — aperitivo on arrival, wine and beer through dinner.</span></div>
+          </div>
+        </div>
+        <div class="pe-chips">
+          <span>Screen &amp; sound for speeches</span>
+          <span>Invoiced on 20th terms</span>
+          <span>Step-free access to Level 1</span>
+          <span>Your own playlist, if you insist</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec-cream">
+<!-- HOW IT WORKS -->
+<section class="sec-ink">
   <div class="wrap">
-    <p class="eyebrow reveal" style="text-align:center;">Good to know</p>
-    <h2 class="sec-label reveal" style="text-align:center;">Christmas function FAQs</h2>
-    <div class="faq reveal d1">
-      <details open><summary>How early should we book our work Christmas party?</summary><p class="faq-a">As early as you can — prime December Friday and Saturday dates book out first, often months ahead. Midweek December dates are great value and easier to grab. Enquire now to lock in your preferred date.</p></details>
-      <details><summary>How many people can you host?</summary><p class="faq-a">Up to 240 across both levels — around 165 seated, or the whole venue for a standing cocktail function. Single-level and smaller group bookings are very welcome too.</p></details>
-      <details><summary>Is there a venue hire fee?</summary><p class="faq-a">No venue hire fee. We work to a food and beverage minimum spend instead, tailored to your group, date and space.</p></details>
-      <details><summary>How much is a Christmas party per person?</summary><p class="faq-a">Shared set menus start at $80 per person, with a $110 per person option that adds canapés on arrival. For standing functions, canapés are $9 each (4–6 per person recommended) and grazing tables start at $40 per person. There is no venue hire fee — we work to a food and beverage minimum spend instead.</p></details>
-      <details><summary>Can you cater dietaries?</summary><p class="faq-a">Absolutely — vegetarian, vegan, gluten-free and most allergies are no problem. Just let us know when you confirm numbers.</p></details>
+    <div class="pe-steps">
+      <div class="pe-step reveal">
+        <div class="n">1</div>
+        <h3>Send the date</h3>
+        <p>Your date, headcount and the kind of night. Thirty seconds of typing.</p>
+      </div>
+      <div class="pe-step reveal d1">
+        <div class="n">2</div>
+        <h3>Get a plan back</h3>
+        <p>Same day: which level, which menu, what it comes to. One page, no jargon.</p>
+      </div>
+      <div class="pe-step reveal d2">
+        <div class="n">3</div>
+        <h3>Hand it over</h3>
+        <p>We hold the date, run the night, and you get to be a guest at your own Christmas party.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="sec-red" id="enquire">
-  <div class="wrap" style="max-width:760px;">
-    <p class="eyebrow light reveal in" style="text-align:center;">Enquire</p>
-    <h2 class="sec-label reveal in" style="text-align:center;margin-bottom:10px;">Lock in your Christmas date</h2>
-    <p class="lede reveal in d1" style="text-align:center;margin:0 auto 30px;color:rgba(255,255,255,.9);">Tell us your date, headcount and the kind of night you're after — our events team will tailor a festive package and get straight back to you.</p>
-    <!-- VenueFlow enquiry widget — auto-resizing iframe; enquiries flow into
-           the VenueFlow CRM + notification email. Replaces the formsubmit.co
-           form: that free relay is throttled and referer-gated, and its
-           enquiries never reached the CRM — two Christmas clients (57 and 80
-           pax) bounced off it. Same widget as Functions.html. -->
-      <iframe id="vf-enquiry"
-        src="https://venueflowhq.com/enquire?embed=1&amp;accent=E51F1A"
-        width="100%" height="900" frameborder="0" loading="eager"
-        style="border:none;display:block;margin:0 auto;max-width:540px;width:100%;background:#fff;border-radius:4px;"
-        title="Christmas function enquiry — Bar Franco"></iframe>
-      <script>
-        // Resize the iframe to fit whichever step the widget is showing, and
-        // surface a submitted enquiry to analytics: the widget posts
-        // `vf-enquiry-submitted` (no personal data — event type, guest count,
-        // budget bracket) which becomes a GTM dataLayer event and, when a
-        // Google tag is present, a `generate_lead` event for Ads conversions.
-        window.addEventListener('message', function (e) {
-          if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
-          if (e.data.type === 'vf-embed-height' && e.data.height) {
-            var f = document.getElementById('vf-enquiry');
-            if (f) f.style.height = e.data.height + 'px';
-          }
-          if (e.data.type === 'vf-enquiry-submitted') {
-            try {
-              (window.dataLayer = window.dataLayer || []).push({
-                event: 'vf_enquiry_submitted',
-                event_type: e.data.eventType || undefined,
-                guest_count: e.data.guestCount || undefined,
-                budget_range: e.data.budgetRange || undefined,
-              });
-              if (typeof window.gtag === 'function') {
-                window.gtag('event', 'generate_lead', {
-                  event_category: 'enquiry',
-                  event_label: e.data.eventType || 'enquiry',
-                  value: e.data.guestCount || undefined,
-                });
-              }
-            } catch (err) { /* analytics must never break the page */ }
-          }
-        });
-      </script>
-      <p class="reveal in d1" style="font-style:italic;color:rgba(255,255,255,.85);font-size:14px;margin:16px 0 0;text-align:center;">
-        Or email <a href="mailto:anamaria@barfranco.nz" style="color:#fff;text-decoration:underline;">anamaria@barfranco.nz</a>
-        &middot; <a href="tel:+64212211307" style="color:#fff;text-decoration:underline;">021&nbsp;083&nbsp;75416</a>
-      </p>
+<!-- COME AND LOOK -->
+<section class="sec-cream" style="padding:clamp(56px,7vw,76px) 0;">
+  <div class="wrap">
+    <div class="pe-sec-head reveal" style="margin:0;">
+      <div>
+        <h2 style="color:var(--red-deep);margin:0 0 12px;">Still deciding? Come and look.</h2>
+        <p style="font-size:17.5px;margin:0;max-width:600px;text-wrap:pretty;">Walk through both levels with us, Negroni in hand, and see the rooms before you commit. Fifteen minutes, any afternoon from 4.</p>
+      </div>
+      <div class="xm-cta-actions">
+        <a class="btn lg" href="#enquire">Get a quote</a>
+        <a class="btn ghost lg" href="/Bar Franco Events Pack.html" target="_blank" rel="noopener">View events pack</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ + CONTACT -->
+<section>
+  <div class="wrap">
+    <div class="pe-split">
+      <div class="reveal">
+        <p class="eyebrow">Before you ask</p>
+        <h2 style="font-family:'VTC Marsha',Impact,sans-serif;text-transform:uppercase;letter-spacing:.025em;font-size:clamp(28px,3.8vw,44px);line-height:1;color:var(--red);margin:0 0 26px;">The usual questions</h2>
+        <div class="faq">
+          <details open><summary>How early should we book a work Christmas party?</summary><p class="faq-a">December dates go first — the good Fridays are usually gone by October, and the fortnight before Christmas fills fastest. Midweek December nights are easier to get and often the better night out. Send us the date you have in mind and we'll tell you honestly whether it's still open.</p></details>
+          <details><summary>How many of us can you take?</summary><p class="faq-a">Up to 240 across both levels standing, or 165 seated. Downstairs takes 120 standing or 75 seated; upstairs takes 120 standing or 90 seated.</p></details>
+          <details><summary>Is there a venue hire fee?</summary><p class="faq-a">No. There's a minimum spend on the food and drinks instead, which depends on the date and the space — so your budget goes into the night, not the room.</p></details>
+          <details><summary>How much is a Christmas party per person?</summary><p class="faq-a">The shared Christmas menu is $80 a head, canapés with the shared menu together are $110 a head, and a standing grazing table is $40 a head. Canapés on their own start at $9 a person, and a drinks package can be added for $45 a head.</p></details>
+          <details><summary>Can we have the venue to ourselves?</summary><p class="faq-a">Yes — either level on its own, or both levels and both bars with the doors closed to everyone else.</p></details>
+          <details><summary>Do you handle dietaries and allergies?</summary><p class="faq-a">Every menu has a vegetarian and a gluten-free line built in. Vegan, dairy-free and most allergies are handled in the planning, not on the night. <a href="/Menus.html">See our menus</a>.</p></details>
+          <details><summary>Where are you, and where does everyone park?</summary><p class="faq-a">We're in The Crossing at 166 Cashel Street, in the middle of the CBD next to H&amp;M. The Crossing car park is in the same block and central bus and tram stops are minutes away, so everyone can get there and get home easily.</p></details>
+        </div>
+      </div>
+      <div class="reveal d1" style="background:var(--cream);padding:clamp(28px,4vw,40px);border-radius:4px;">
+        <p class="eyebrow" style="color:var(--red-deep);">Talk to a person</p>
+        <h2 style="font-family:'VTC Marsha',Impact,sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(28px,3.8vw,44px);line-height:.98;color:var(--red-deep);margin:0 0 18px;">Come say ciao.</h2>
+        <p style="margin:0 0 28px;text-wrap:pretty;">Send the date, or call — either way you're talking to the people who'll be there on the night.</p>
+        <div class="info-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 30px;margin:0 0 30px;">
+          <div><h4 style="font-family:'VTC Marsha',Impact,sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--red-deep);margin:0 0 8px;">Events</h4><p style="margin:0;font-size:16px;line-height:1.5;"><a href="mailto:anamaria@barfranco.nz?subject=Christmas%20function%20enquiry%20%E2%80%94%20Bar%20Franco">anamaria@barfranco.nz</a><br /><a href="tel:+64212211307">021 221 1307</a></p></div>
+          <div><h4 style="font-family:'VTC Marsha',Impact,sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--red-deep);margin:0 0 8px;">The venue</h4><p style="margin:0;font-size:16px;line-height:1.5;">The Crossing, 166 Cashel St<br />Christchurch Central</p></div>
+          <div><h4 style="font-family:'VTC Marsha',Impact,sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--red-deep);margin:0 0 8px;">Getting in</h4><p style="margin:0;font-size:16px;line-height:1.5;">Laneway side, the doors by H&amp;M</p></div>
+          <div><h4 style="font-family:'VTC Marsha',Impact,sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--red-deep);margin:0 0 8px;">Open</h4><p style="margin:0;font-size:16px;line-height:1.5;">Daily from 4pm, till late</p></div>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+          <a class="btn lg" href="#enquire">Get a quote</a>
+          <a class="btn ghost lg" href="/corporate-events/">Corporate events</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSER -->
+<section class="pe-closer">
+  <img src="/images/level2-long-dinner.jpg" alt="A full long table of guests mid-dinner by candlelight on Level 2 at Bar Franco, Christchurch" loading="lazy">
+  <div class="pe-closer-scrim"></div>
+  <div class="pe-closer-inner">
+    <h2>Come for the work do.<br />Stay because nobody wants to leave.</h2>
+    <p><em>Buon Natale</em> — we'll keep a table warm.</p>
+    <a class="btn light lg" href="#enquire">Get a quote</a>
   </div>
 </section>
 
 <footer class="site-foot">
   <div class="foot-top">
     <div class="foot-brand">
-      <img class="foot-logo" src="/brand/bf-script-incline-red.svg" alt="Bar Franco" />
+      <img class="foot-logo" src="/brand/bf-script-flat-brightred.svg" alt="Bar Franco" />
       <p>Modern Italian restaurant, cocktail bar &amp; private event venue in the heart of Christchurch.</p>
       <div class="foot-socials">
         <a href="https://www.instagram.com/bar__franco/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
@@ -284,8 +428,9 @@
       <a href="/index.html">Home</a>
       <a href="/Bookings.html">Bookings</a>
       <a href="/Functions.html">Functions</a>
+      <a href="/corporate-events/">Corporate Events</a>
+      <a href="/weddings/">Weddings</a>
       <a href="/Menus.html">Menus</a>
-      <a href="/Vouchers.html">Vouchers</a>
       <a href="/Contact.html">Contact</a>
     </div>
     <div class="foot-col">
@@ -308,11 +453,41 @@
 
 <div class="walker" aria-hidden="true">
   <div class="walker-track" id="track"></div>
-  <img class="walker-dog" id="dog" src="/brand/franco-dog.png" alt="" />
+  <img class="walker-dog" id="dog" src="/brand/franco-dog-peach.png" alt="" />
 </div>
 
+<script>
+  // Resize the VenueFlow iframe to fit whichever step the widget is showing, and
+  // surface a submitted enquiry to GTM/GA4 as well. (The Google Ads conversion
+  // itself is fired by the BF-ADS-CONVERSIONS block in the head — don't remove
+  // either listener.)
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
+    if (e.data.type === 'vf-embed-height' && e.data.height) {
+      var f = document.getElementById('vf-enquiry');
+      if (f) f.style.height = e.data.height + 'px';
+    }
+    if (e.data.type === 'vf-enquiry-submitted') {
+      try {
+        (window.dataLayer = window.dataLayer || []).push({
+          event: 'vf_enquiry_submitted',
+          event_type: e.data.eventType || undefined,
+          guest_count: e.data.guestCount || undefined,
+          budget_range: e.data.budgetRange || undefined,
+        });
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'generate_lead', {
+            event_category: 'enquiry',
+            event_label: e.data.eventType || 'enquiry',
+            value: e.data.guestCount || undefined,
+          });
+        }
+      } catch (err) { /* analytics must never break the page */ }
+    }
+  });
+</script>
 <script src="/site.js"></script>
-<a class="whatsapp-fab" href="https://wa.me/64212211307?text=Ciao%20Bar%20Franco%21%20I%27d%20like%20to%20enquire%20about%20a%20private%20event%20%E2%80%94" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+<a class="whatsapp-fab" href="https://wa.me/64212211307?text=Ciao%20Bar%20Franco%21%20I%27d%20like%20to%20enquire%20about%20a%20Christmas%20function%20%E2%80%94" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.3 5.2 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.3C8.4 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.6 14.9 3.1 13.5 3.1 12 3.1 6.9 7.1 3 12 3s8.9 4 8.9 9-4 8.2-8.9 8.2z"/></svg>
   <span class="wa-label">Chat on WhatsApp</span>
 </a>
