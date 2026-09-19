@@ -172,13 +172,27 @@ section { padding: 104px 0; }
 }
 .hero-scrim {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(180deg,
-    rgba(108,6,0,.42) 0%, rgba(108,6,0,.06) 30%,
-    rgba(108,6,0,.3) 62%, rgba(108,6,0,.9) 100%);
+  /* Two layers: a horizontal wash that sits under the bottom-left copy, and a
+     lighter vertical one for the nav and the base. Keeps the headline above 4.5:1
+     while letting the right of the frame — the drinks, the menu card — stay bright. */
+  background:
+    linear-gradient(100deg, rgba(108,6,0,.82) 0%, rgba(108,6,0,.55) 34%, rgba(108,6,0,.08) 66%, rgba(108,6,0,0) 100%),
+    linear-gradient(180deg, rgba(108,6,0,.44) 0%, rgba(108,6,0,.05) 32%,
+      rgba(108,6,0,.10) 62%, rgba(108,6,0,.84) 100%);
+}
+/* Stacked mobile hero: the copy runs the full width, so the horizontal wash can't
+   do the work. Even, slightly heavier vertical scrim instead — the eyebrow sits
+   high in the frame and is small text needing 4.5:1. */
+@media (max-width: 760px) {
+  .hero-scrim {
+    background: linear-gradient(180deg, rgba(108,6,0,.62) 0%, rgba(108,6,0,.52) 34%,
+      rgba(108,6,0,.46) 62%, rgba(108,6,0,.86) 100%);
+  }
 }
 .hero .wrap { position: relative; z-index: 2; width: 100%; }
 .hero-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
-.hero-eyebrow { color: rgba(250,215,195,.85); margin: 0 0 16px; }
+/* full-strength peach, not .85 — at 12.5px this is small text and needs 4.5:1 */
+.hero-eyebrow { color: var(--cream); margin: 0 0 16px; }
 .hero h1 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--cream);
   font-size: clamp(31px, 5.2vw, 54px); line-height: 1.04; margin: 0;
