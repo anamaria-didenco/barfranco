@@ -142,14 +142,15 @@
 <link rel="stylesheet" href="/home.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="/index.html" aria-label="Bar Franco home">
       <img class="brand-logo" src="/brand/bf-script-incline-red.svg" alt="Bar Franco" />
     </a>
-    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
-    <div class="nav-links">
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
       <a href="/index.html">Home</a>
       <a href="/Bookings.html">Bookings</a>
       <a href="/Functions.html">Functions</a>
@@ -160,6 +161,7 @@
     </div>
   </div>
 </nav>
+<main id="main">
 
 <header class="page-hero">
   <div class="ghost-word" aria-hidden="true">Amore · Amore · Amore</div>
@@ -264,6 +266,7 @@
   </div>
 </section>
 
+</main>
 <footer class="site-foot">
   <div class="foot-top">
     <div class="foot-brand">

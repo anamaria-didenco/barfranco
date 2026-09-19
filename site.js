@@ -46,11 +46,21 @@
 
     var burger = nav.querySelector('.nav-burger');
     if (burger) {
+      var syncExpanded = function () {
+        burger.setAttribute('aria-expanded', String(nav.classList.contains('open')));
+      };
       burger.addEventListener('click', function () {
         nav.classList.toggle('open');
+        syncExpanded();
       });
       nav.querySelectorAll('.nav-links a').forEach(function (a) {
-        a.addEventListener('click', function () { nav.classList.remove('open'); });
+        a.addEventListener('click', function () { nav.classList.remove('open'); syncExpanded(); });
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape' || !nav.classList.contains('open')) return;
+        nav.classList.remove('open');
+        syncExpanded();
+        burger.focus();
       });
     }
   }

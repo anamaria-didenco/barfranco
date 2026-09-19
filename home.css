@@ -873,3 +873,16 @@ img.photo { object-fit: cover; background: var(--cream); }
   body { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
 }
 .foot-note { font-style: italic; color: var(--muted); margin: 6px 0 0; }
+
+/* DF-8: keyboard and screen-reader basics */
+.skip-link { position: absolute; left: 12px; top: -80px; z-index: 200; background: var(--cream); color: var(--red-deep); padding: 10px 16px; font-style: italic; text-decoration: none; }
+.skip-link:focus { top: 12px; }
+a:focus-visible, button:focus-visible, summary:focus-visible,
+input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+@media (max-width: 700px) {
+  .info-block a, .foot-col a { display: flex; align-items: center; min-height: 44px; margin: 0; }
+  .foot-bottom a { display: inline-flex; align-items: center; min-height: 44px; }
+  .im-card-contact a { display: inline-flex; align-items: center; min-height: 44px; }
+  .foot-socials a, .socials a { width: 44px; height: 44px; }
+}
