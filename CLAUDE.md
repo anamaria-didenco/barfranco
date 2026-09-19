@@ -69,7 +69,7 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
 - Hours (visible copy): bar from 4pm, kitchen from 5pm, daily, till late
 - Hours (SEO schema in index/Bookings/Contact): opens 16:00, closes 22:00 — a safe default since
   real closing varies. Update the `openingHoursSpecification` blocks if this changes.
-- Reservations email: ciao@barfranco.nz · phone 03 925 9208
+- Reservations email: ciao@barfranco.nz · phone 021 221 1307
 - Events email: anamaria@barfranco.nz · phone 021 221 1307 (the contact form also goes here)
 - Instagram: @bar__franco · Facebook: barfranco.chch
 
