@@ -872,3 +872,4 @@ img.photo { object-fit: cover; background: var(--cream); }
   .cta-sticky ~ .whatsapp-fab { display: none; }
   body { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
 }
+.foot-note { font-style: italic; color: var(--muted); margin: 6px 0 0; }
