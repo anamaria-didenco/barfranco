@@ -531,6 +531,33 @@ section { padding: 104px 0; }
   .eb-photos .eb-p1 { grid-row: auto; }
 }
 
+/* ---------- DF-9: phone homepage — one message, fewer things ---------- */
+/* burger lines must show over the dark hero (non-text contrast, WCAG 1.4.11) */
+.nav-home:not(.scrolled) .nav-burger span { background: var(--cream); }
+
+@media (max-width: 700px) {
+  /* hero: one message, one button. Hours live in the strip under the nav */
+  .hero { min-height: 700px; align-items: flex-end; padding: 0 0 40px; }
+  .hero-scrim { background: linear-gradient(180deg, rgba(108,6,0,.40) 0%, rgba(108,6,0,.10) 26%, rgba(108,6,0,.30) 46%, rgba(108,6,0,.80) 66%, rgba(108,6,0,.92) 100%); }
+  .hero-eyebrow, .hero-sub, .hero-scroll-link, .hero-side { display: none; }
+  .hero-cta { margin-top: 26px; }
+  .walker { display: none; }
+
+  /* about: one photo, no ghost word */
+  .about-ghost { display: none; }
+  .cluster { display: block; }
+  .cluster img.c-sm1, .cluster img.c-sm2 { display: none; }  /* img. needed to beat .cluster img.photo */
+  .cluster .c-tall { width: 100%; height: 400px; }
+
+  /* moments: one swipeable row instead of nine stacked photos */
+  .moments-head { padding: 0 26px; }
+  .moments-aside { display: none; }
+  .filmstrip { flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; margin-top: 28px; padding: 0 26px; scrollbar-width: none; }
+  .filmstrip::-webkit-scrollbar { display: none; }
+  .filmstrip-frame { flex: 0 0 80% !important; height: 400px; scroll-snap-align: center; } /* !important: the 940px block sets flex: none !important */
+  .moments-row { display: none; }
+}
+
 /* ============================================================
    SHARED INNER-PAGE COMPONENTS
    ============================================================ */
