@@ -234,8 +234,8 @@ section { padding: 104px 0; }
 .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
 .about h2 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
-  text-transform: uppercase; font-size: clamp(28px, 3.6vw, 44px); letter-spacing: .03em;
-  margin: 14px 0 24px; line-height: 1.02;
+  text-transform: uppercase; font-size: clamp(30px, 4.3vw, 60px); letter-spacing: .03em;
+  margin: 18px 0 24px; line-height: .96;
 }
 .about-second { font-family: "Affairs", serif; font-style: italic; font-size: 28px; color: var(--ink); margin: -8px 0 20px; }
 .about-kw {
@@ -317,8 +317,12 @@ section { padding: 104px 0; }
 /* Red Deep per the spec, not the brighter --red: this is the homepage's one red
    band and peach labels need to clear 4.5:1 on it. Scoped to .events-band so the
    eleven other pages sharing .sec-red keep their existing colour. */
-.events-band.sec-red { background: var(--red-deep); }
-.events-band .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+.events-band { background: var(--ink); color: var(--cream); }
+.events-band .wrap { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: 56px; align-items: center; }
+.eb-lede { font-style: italic; }
+.eb-actions { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+.eb-link { font-style: italic; font-size: 15.5px; color: rgba(250,215,195,.92); text-decoration: none; border-bottom: 1px solid rgba(250,215,195,.45); padding-bottom: 2px; }
+.eb-link:hover { color: var(--cream); border-bottom-color: var(--cream); }
 .events-band h2 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--cream);
   text-transform: uppercase; font-size: clamp(30px, 4.2vw, 56px); letter-spacing: .025em;
@@ -330,14 +334,17 @@ section { padding: 104px 0; }
   font-style: italic; font-size: 14.5px; color: var(--cream);
   border: 1.3px solid rgba(250,215,195,.4); border-radius: 100px; padding: 7px 16px;
 }
-.eb-photos { display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr 1fr; gap: 18px; height: clamp(360px, 42vw, 480px); }
-.eb-photos img.photo { width: 100%; height: 100%; }
-.eb-photos .eb-p1 { grid-row: 1 / 3; }
+.eb-photos { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+.eb-photos img.photo { border-radius: 4px; }
+.eb-photos img.photo { width: 100%; height: clamp(150px, 13vw, 190px); }
+.eb-photos .eb-p1 { grid-column: span 2; height: clamp(220px, 21vw, 300px); }
 
 /* ---------- Moments gallery ---------- */
-.moments { text-align: center; }
-.moments .sec-label, .moments .lede { margin-left: auto; margin-right: auto; }
-.moments .lede { text-align: center; }
+.moments { background: var(--cream); padding: 96px 0 88px; }
+.moments-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; padding: 0 40px; max-width: none; }
+.moments-head .eyebrow, .moments-head .sec-label { color: var(--red-deep); margin-bottom: 0; }
+.moments-head .sec-label { font-size: clamp(28px, 3.4vw, 44px); letter-spacing: .03em; margin-top: 14px; }
+.moments-aside { font-style: italic; font-size: 17px; color: rgba(108,6,0,.75); margin: 0; }
 .gallery {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 50px 0 44px;
 }
@@ -348,22 +355,19 @@ section { padding: 104px 0; }
 
 /* Homepage-only film strip — new classnames, no reuse of .gallery so Functions.html's
    filterable #gallery grid is entirely unaffected. */
-.filmstrip { display: flex; gap: 6px; height: 430px; margin: 50px 0 0; text-align: left; }
+.filmstrip { display: flex; gap: 6px; margin: 56px 0 0; text-align: left; }
+.filmstrip-frame { display: flex; flex-direction: column; }
+.filmstrip-frame > img { height: 430px; }
 .filmstrip-frame { position: relative; overflow: hidden; }
 .filmstrip-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .filmstrip-frame figcaption {
-  position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 2;
-  font-style: italic; font-size: 14px; color: var(--cream);
-  text-shadow: 0 2px 8px rgba(0,0,0,.5);
-}
-.filmstrip-frame::after {
-  content: ""; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, rgba(108,6,0,0) 55%, rgba(108,6,0,.72) 100%);
+  font-style: italic; font-size: 13.5px; color: var(--red-deep);
+  padding: 10px 0 0;
 }
 .filmstrip-f1 { flex: 1.1; } .filmstrip-f2 { flex: .85; } .filmstrip-f3 { flex: 1.6; }
 .filmstrip-f4 { flex: .85; } .filmstrip-f5 { flex: 1; }
-.moments-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 16px 0 44px; }
-.moments-row img.photo { width: 100%; height: 230px; }
+.moments-row { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 6px; margin: 6px 0 0; }
+.moments-row img.photo { width: 100%; height: 230px; border-radius: 0; }
 .gal-filter { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 34px 0 0; }
 .gal-filter button { font-family: "Affairs", serif; font-style: italic; font-size: 15px; cursor: pointer; padding: 9px 20px; border-radius: 2px; border: 1.4px solid var(--ink); background: transparent; color: var(--ink); transition: background .15s, color .15s, border-color .15s; }
 .gal-filter button:hover { border-color: var(--red); color: var(--red); }
@@ -405,7 +409,7 @@ section { padding: 104px 0; }
 .closer-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
 /* ---------- Contact ---------- */
-.contact { background: var(--cream); }
+.contact { background: var(--paper); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
 .contact h2 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
@@ -430,7 +434,7 @@ section { padding: 104px 0; }
 
 /* form */
 .contact-form {
-  background: var(--paper); border: 1px solid var(--line); padding: 40px 40px 38px;
+  background: var(--cream); border: none; border-radius: 4px; padding: 40px 40px 38px;
 }
 .contact-form h3 {
   font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase;
