@@ -10,7 +10,7 @@
   --ink: #6C0600;
   --paper: #FCFBF7;
   --cream: #FAD7C3;
-  --muted: rgba(108,6,0,.62);
+  --muted: rgba(108,6,0,.72);
   --line: rgba(108,6,0,.16);
   --redline: rgba(240,0,0,.32);
   --maxw: 1180px;
@@ -33,7 +33,7 @@ a { color: inherit; }
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 40px; }
 .eyebrow {
   font-style: italic; letter-spacing: .34em; text-transform: uppercase;
-  font-size: 12.5px; color: var(--red); margin: 0 0 18px;
+  font-size: 12.5px; color: var(--red-deep); margin: 0 0 18px;
 }
 .eyebrow.light { color: rgba(255,255,255,.82); }
 
@@ -76,7 +76,16 @@ a { color: inherit; }
   font-style: italic; letter-spacing: .02em;
 }
 .nav-links a:not(.btn):hover { color: var(--red); }
-.nav-links a.active { color: var(--red); }
+.nav-links a.active { color: var(--red-deep); border-bottom-color: var(--red-deep); }
+/* the nav button keeps its own colours and padding.
+   .nav-home.scrolled .nav-links a is the same specificity and sits later in the
+   file, so the scrolled homepage state needs naming here too or it wins. */
+.nav .nav-links a.btn,
+.nav .nav-links a.btn:hover,
+.nav-home.scrolled .nav-links a.btn,
+.nav-home.scrolled .nav-links a.btn:hover { color: var(--cream); border-bottom: 0; }
+.nav .nav-links a.btn,
+.nav-home.scrolled .nav-links a.btn { padding: 12px 24px; }
 .nav-burger {
   display: none; margin-left: auto; width: 40px; height: 40px; border: none;
   background: none; cursor: pointer; flex-direction: column; gap: 5px;
@@ -114,7 +123,7 @@ a { color: inherit; }
 .nav-home.scrolled .nav-inner { height: 72px; }
 .nav-home.scrolled .nav-links a { color: var(--ink); }
 .nav-home.scrolled .nav-links a:not(.btn):hover { color: var(--red); }
-.nav-home.scrolled .nav-links a.active { color: var(--red); border-bottom-color: var(--red); }
+.nav-home.scrolled .nav-links a.active { color: var(--red-deep); border-bottom-color: var(--red-deep); }
 .nav-home.scrolled .nav-links .btn { display: inline-flex; }
 .nav-home.scrolled .nav-socials a { color: var(--ink); border-color: var(--line); }
 .nav-home.scrolled .nav-socials a:hover { background: var(--red); border-color: var(--red); color: var(--cream); }
@@ -133,7 +142,7 @@ a { color: inherit; }
   .nav-home .nav-links { background: var(--paper); }
   .nav-home .nav-links a { color: var(--ink); }
   .nav-home .nav-links a:not(.btn):hover { color: var(--red); }
-  .nav-home .nav-links a.active { color: var(--red); border-bottom-color: var(--red); }
+  .nav-home .nav-links a.active { color: var(--red-deep); border-bottom-color: var(--red-deep); }
   .nav-home .nav-links .btn { display: inline-flex; }
 }
 
@@ -141,7 +150,7 @@ a { color: inherit; }
 section { padding: 104px 0; }
 .sec-cream { background: var(--cream); }
 .sec-ink { background: var(--ink); color: var(--paper); }
-.sec-red { background: var(--red); color: var(--cream); }
+.sec-red { background: var(--red-deep); color: var(--cream); }
 .sec-label {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
   text-transform: uppercase; letter-spacing: .12em; font-size: clamp(26px, 3vw, 36px);
@@ -149,7 +158,7 @@ section { padding: 104px 0; }
 }
 .sec-ink .sec-label, .sec-red .sec-label { color: var(--cream); }
 .lede { font-size: 20px; max-width: 640px; color: var(--ink); margin: 0 0 8px; }
-.sec-ink .lede, .sec-red .lede { color: rgba(255,255,255,.92); }
+.sec-ink .lede, .sec-red .lede { color: var(--cream); }
 
 /* ---------- Hero — full-bleed photograph ---------- */
 .hero {
@@ -162,11 +171,12 @@ section { padding: 104px 0; }
 }
 .hero-scrim {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(180deg,
-    rgba(108,6,0,.30) 0%,
-    rgba(108,6,0,.04) 34%,
-    rgba(108,6,0,.28) 66%,
-    rgba(108,6,0,.78) 100%);
+  background:
+    radial-gradient(ellipse 64% 76% at 20% 72%, rgba(108,6,0,.84) 0%, rgba(108,6,0,.74) 55%, rgba(108,6,0,0) 100%),
+    linear-gradient(180deg, rgba(108,6,0,.30) 0%, rgba(108,6,0,.04) 34%, rgba(108,6,0,.28) 66%, rgba(108,6,0,.78) 100%);
+}
+@media (min-width: 701px) and (max-width: 940px) {
+  .hero-scrim { background: linear-gradient(180deg, rgba(108,6,0,.70) 0%, rgba(108,6,0,.68) 70%, rgba(108,6,0,.45) 84%, rgba(108,6,0,.82) 100%); }
 }
 .hero .wrap { position: relative; z-index: 2; width: 100%; }
 .hero-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
@@ -195,9 +205,9 @@ section { padding: 104px 0; }
   background: var(--cream); color: var(--red-deep); padding: 16px 20px; max-width: 190px;
   box-shadow: 0 12px 34px rgba(0,0,0,.28);
 }
-.hero-stamp .st-k { font-style: italic; font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; color: rgba(175,15,0,.72); margin: 0 0 6px; }
+.hero-stamp .st-k { font-style: italic; font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--red-deep); margin: 0 0 6px; }
 .hero-stamp .st-v { font-family: "VTC Marsha", serif; font-size: 20px; letter-spacing: .03em; line-height: 1.15; margin: 0; }
-.hero-stamp .st-note { font-style: italic; font-size: 13px; color: rgba(175,15,0,.72); margin: 6px 0 0; }
+.hero-stamp .st-note { font-style: italic; font-size: 13px; color: var(--red-deep); margin: 6px 0 0; }
 
 /* ---------- Marquee strip ---------- */
 .strip { background: var(--cream); color: var(--red); overflow: hidden; padding: 15px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -375,7 +385,7 @@ section { padding: 104px 0; }
 .menu-trust h3 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; color: var(--red); font-size: 21px; letter-spacing: .09em; margin: 0 0 8px; }
 .menu-trust p { font-family: "Affairs", serif; color: var(--ink); margin: 0; line-height: 1.55; font-size: 16px; }
 .menu-download { text-align: center; font-family: "Affairs", serif; font-style: italic; color: var(--muted); font-size: 15px; margin: 40px 0 0; }
-.menu-download a { color: var(--red); }
+.menu-download a { color: var(--red-deep); }
 .menu-foot-note { text-align: center; font-family: "Affairs", serif; font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 
 /* ---------- Closer ---------- */
@@ -400,7 +410,7 @@ section { padding: 104px 0; }
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 30px; }
 .info-block h4 {
   font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .08em; font-size: 14px; color: var(--red); margin: 0 0 10px;
+  letter-spacing: .08em; font-size: 14px; color: var(--red-deep); margin: 0 0 10px;
 }
 .info-block p, .info-block a { margin: 0 0 4px; font-size: 16px; color: var(--ink); text-decoration: none; display: block; line-height: 1.5; }
 .info-block a:hover { color: var(--red); }
@@ -521,6 +531,33 @@ section { padding: 104px 0; }
   .eb-photos .eb-p1 { grid-row: auto; }
 }
 
+/* ---------- DF-9: phone homepage — one message, fewer things ---------- */
+/* burger lines must show over the dark hero (non-text contrast, WCAG 1.4.11) */
+.nav-home:not(.scrolled) .nav-burger span { background: var(--cream); }
+
+@media (max-width: 700px) {
+  /* hero: one message, one button. Hours live in the strip under the nav */
+  .hero { min-height: 700px; align-items: flex-end; padding: 0 0 40px; }
+  .hero-scrim { background: linear-gradient(180deg, rgba(108,6,0,.40) 0%, rgba(108,6,0,.10) 26%, rgba(108,6,0,.30) 46%, rgba(108,6,0,.80) 66%, rgba(108,6,0,.92) 100%); }
+  .hero-eyebrow, .hero-sub, .hero-scroll-link, .hero-side { display: none; }
+  .hero-cta { margin-top: 26px; }
+  .walker { display: none; }
+
+  /* about: one photo, no ghost word */
+  .about-ghost { display: none; }
+  .cluster { display: block; }
+  .cluster img.c-sm1, .cluster img.c-sm2 { display: none; }  /* img. needed to beat .cluster img.photo */
+  .cluster .c-tall { width: 100%; height: 400px; }
+
+  /* moments: one swipeable row instead of nine stacked photos */
+  .moments-head { padding: 0 26px; }
+  .moments-aside { display: none; }
+  .filmstrip { flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; margin-top: 28px; padding: 0 26px; scrollbar-width: none; }
+  .filmstrip::-webkit-scrollbar { display: none; }
+  .filmstrip-frame { flex: 0 0 80% !important; height: 400px; scroll-snap-align: center; } /* !important: the 940px block sets flex: none !important */
+  .moments-row { display: none; }
+}
+
 /* ============================================================
    SHARED INNER-PAGE COMPONENTS
    ============================================================ */
@@ -639,13 +676,13 @@ section { padding: 104px 0; }
 .resv-card h2 { font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red); text-transform: uppercase; font-size: clamp(26px, 3.4vw, 40px); letter-spacing: .03em; margin: 0 0 16px; line-height: 1; }
 .resv-card p { margin: 0 0 24px; max-width: 420px; }
 .resv-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 26px 0 30px; }
-.resv-meta h4 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; font-size: 13px; color: var(--red); margin: 0 0 6px; }
+.resv-meta h4 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; font-size: 13px; color: var(--red-deep); margin: 0 0 6px; }
 .resv-meta p { margin: 0; font-size: 15.5px; }
 .resv-card .btn { width: 100%; }
 
 /* ---- WhatsApp floating chat button ---- */
-.whatsapp-fab { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 70; display: flex; align-items: center; gap: 10px; background: var(--red); color: #fff; text-decoration: none; border-radius: 999px; padding: 14px; box-shadow: 0 10px 30px rgba(29,29,27,.25); transition: transform .15s ease, box-shadow .15s ease; }
-.whatsapp-fab:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(29,29,27,.32); color: #fff; }
+.whatsapp-fab { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 70; display: flex; align-items: center; gap: 10px; background: var(--red-deep); color: var(--cream); text-decoration: none; border-radius: 999px; padding: 14px; box-shadow: 0 10px 30px rgba(29,29,27,.25); transition: transform .15s ease, box-shadow .15s ease; }
+.whatsapp-fab:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(29,29,27,.32); background: var(--red-deep); color: var(--cream); }
 .whatsapp-fab svg { width: 26px; height: 26px; flex-shrink: 0; display: block; }
 .whatsapp-fab .wa-label { font-family: "Affairs", serif; font-style: italic; font-size: 15px; white-space: nowrap; padding-right: 4px; }
 @media (max-width: 700px) { .whatsapp-fab { right: 16px; } .whatsapp-fab .wa-label { display: none; } }
@@ -671,7 +708,7 @@ section { padding: 104px 0; }
 .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; padding: 70px 40px 50px; max-width: var(--maxw); margin: 0 auto; }
 .foot-top .foot-logo { height: 54px; width: auto; margin: 0 0 18px; }
 .foot-brand p { color: var(--muted); font-size: 15px; max-width: 260px; margin: 0 0 18px; }
-.foot-col h4 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--red); margin: 0 0 14px; }
+.foot-col h4 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--red-deep); margin: 0 0 14px; }
 .foot-col p, .foot-col a { display: block; color: var(--ink); font-size: 15px; text-decoration: none; line-height: 1.55; margin: 0 0 4px; }
 .foot-col a:hover { color: var(--red); }
 .foot-col h4 + h4 { margin-top: 22px; }
@@ -813,4 +850,39 @@ img.photo { object-fit: cover; background: var(--cream); }
 .xm-hero .pe-hero-scrim { background: linear-gradient(180deg, rgba(108,6,0,.82) 0%, rgba(108,6,0,.5) 46%, rgba(108,6,0,.86) 100%); }
 @media (min-width: 981px) {
   .xm-hero .pe-hero-scrim { background: linear-gradient(90deg, rgba(108,6,0,.9) 0%, rgba(108,6,0,.58) 48%, rgba(108,6,0,.22) 100%); }
+}
+
+/* sticky quick-actions bar, phones only */
+.cta-sticky { display: none; }
+@media (max-width: 700px) {
+  .cta-sticky {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    background: var(--red-deep); border-top: 1px solid rgba(250,215,195,.25);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -8px 24px rgba(108,6,0,.18);
+  }
+  .cta-sticky a {
+    display: flex; align-items: center; justify-content: center; min-height: 56px;
+    font-family: "Affairs", serif; font-style: italic; font-size: 16px; letter-spacing: .02em;
+    color: var(--cream); text-decoration: none;
+  }
+  .cta-sticky a + a { border-left: 1px solid rgba(250,215,195,.25); }
+  .cta-sticky .cta-main { background: var(--cream); color: var(--red-deep); }
+  .cta-sticky ~ .whatsapp-fab { display: none; }
+  body { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
+}
+.foot-note { font-style: italic; color: var(--muted); margin: 6px 0 0; }
+
+/* DF-8: keyboard and screen-reader basics */
+.skip-link { position: absolute; left: 12px; top: -80px; z-index: 200; background: var(--cream); color: var(--red-deep); padding: 10px 16px; font-style: italic; text-decoration: none; }
+.skip-link:focus { top: 12px; }
+a:focus-visible, button:focus-visible, summary:focus-visible,
+input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+@media (max-width: 700px) {
+  .info-block a, .foot-col a { display: flex; align-items: center; min-height: 44px; margin: 0; }
+  .foot-bottom a { display: inline-flex; align-items: center; min-height: 44px; }
+  .im-card-contact a { display: inline-flex; align-items: center; min-height: 44px; }
+  .foot-socials a, .socials a { width: 44px; height: 44px; }
 }

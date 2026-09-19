@@ -116,7 +116,7 @@
         "Sunday"
       ],
       "opens": "16:00",
-      "closes": "22:00"
+      "closes": "23:59"
     }
   ]
 }
@@ -138,13 +138,14 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="Bar Franco home">
       <img class="brand-logo" src="brand/bf-script-incline-red.svg" alt="Bar Franco" />
     </a>
-    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
-    <div class="nav-links">
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
       <a href="index.html">Home</a>
       <a class="active" href="Bookings.html">Bookings</a>
       <a href="Functions.html">Functions</a>
@@ -156,6 +157,7 @@
     </div>
   </div>
 </nav>
+<main id="main">
 <header class="page-hero on-cream">
   <div class="ghost-word" aria-hidden="true">Prenota · Prenota · Prenota</div>
   <div class="wrap">
@@ -222,6 +224,7 @@
   </div>
 </section>
 
+</main>
 <footer class="site-foot">
   <div class="foot-top">
     <div class="foot-brand">
@@ -236,7 +239,9 @@
       <h4>Opening hours</h4>
       <p>Bar from 4pm · kitchen from 5pm<br />Daily, till late</p>
       <h4>Find us</h4>
-      <p>The Crossing<br />166 Cashel Street<br />Christchurch Central 8011</p>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Franco%2C+166+Cashel+Street%2C+Christchurch" target="_blank" rel="noopener">The Crossing<br />166 Cashel Street<br />Christchurch Central 8011</a></p>
+      <p class="foot-note">Laneway side — the doors by H&amp;M.</p>
+      <p><a class="foot-directions" href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Franco%2C+166+Cashel+Street%2C+Christchurch" target="_blank" rel="noopener">Get directions &rarr;</a></p>
     </div>
     <div class="foot-col">
       <h4>Explore</h4>
