@@ -107,6 +107,16 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (!res || (res.success !== true && res.success !== 'true')) throw new Error('not ok');
+        /* These forms deliver by email only — they never touch VenueFlow, so without
+           this an ad click that converts here is counted as a failure. Reuses the
+           email-enquiry label already defined in BF-ADS-CONVERSIONS. */
+        try {
+          gtag('event', 'conversion', {
+            send_to: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',
+            value: 1.0,
+            currency: 'NZD'
+          });
+        } catch (e) {}
         f.innerHTML = '<h3>Grazie.</h3>' +
           '<p class="fnote">We\'ll come straight back to you.</p>' +
           '<p class="fnote">Anything urgent? Email <a href="mailto:' + to + '">' + to + '</a>.</p>';

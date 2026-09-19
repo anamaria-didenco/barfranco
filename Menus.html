@@ -19,7 +19,11 @@
   var LABELS = {
     phone: 'AW-18456342571/lqN6CITV1_ocEKvg1eBE',   // Phone click
     email: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',   // Email click - events enquiry
-    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE'    // Enquiry submitted (VenueFlow)
+    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE',   // Enquiry submitted (VenueFlow)
+    // Secondary action for a step-1 capture that never finishes. Create the
+    // conversion action in Google Ads, paste its label here, and this starts
+    // firing. Left null so it can never be counted against the form label.
+    partial: null                                   // Partial enquiry (VenueFlow)
   };
 
   function fire(label, value) {
@@ -54,6 +58,9 @@
     if (d && d.type === 'vf-enquiry-submitted') {
       fire(LABELS.form, budgetToValue(d.budgetRange || d.budget_range || d.budget));
     }
+    if (d && d.type === 'vf-partial-captured' && LABELS.partial) {
+      fire(LABELS.partial, budgetToValue(d.budgetRange || d.budget_range || d.budget));
+    }
   });
 })();
 </script>
@@ -63,7 +70,7 @@
 <meta name="theme-color" content="#F00000" />
 
 <title>Menus | Bar Franco Modern Italian Restaurant Christchurch</title>
-<meta name="description" content="View Bar Franco's menus: fresh pasta, antipasti, seasonal Italian dishes, plus curated cocktails, Negronis, wine and aperitivo. Modern Italian dining in central Christchurch." />
+<meta name="description" content="Handmade pasta, antipasti and a drinks list led by the Negroni. See the food and cocktail menus for Bar Franco, The Crossing, Christchurch." />
 <meta name="keywords" content="Bar Franco menu, Italian menu Christchurch, pasta menu, cocktail menu Christchurch, drinks menu, Negroni, aperitivo, wine list Christchurch" />
 <link rel="canonical" href="https://www.barfranco.nz/Menus.html" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -71,7 +78,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Bar Franco — Christchurch" />
 <meta property="og:title" content="Menus | Bar Franco Modern Italian Restaurant Christchurch" />
-<meta property="og:description" content="View Bar Franco's menus: fresh pasta, antipasti, seasonal Italian dishes, plus curated cocktails, Negronis, wine and aperitivo. Modern Italian dining in central Christchurch." />
+<meta property="og:description" content="Handmade pasta, antipasti and a drinks list led by the Negroni. See the food and cocktail menus for Bar Franco, The Crossing, Christchurch." />
 <meta property="og:url" content="https://www.barfranco.nz/Menus.html" />
 <meta property="og:locale" content="en_NZ" />
 <meta property="og:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
