@@ -110,7 +110,7 @@
           err.style.color = 'var(--red)';
           f.appendChild(err);
         }
-        var fallbackEmail = 'anamaria@barfranco.nz'; /* failures route to Ana-Maria's inbox */
+        var fallbackEmail = 'events@barfranco.nz'; /* the shared inbox, so a failed send survives one person being away */
         err.innerHTML = 'Sorry — that didn\'t send. Please email us directly at <a href="mailto:' + fallbackEmail + '">' + fallbackEmail + '</a> and we\'ll come straight back to you.';
       });
     });
