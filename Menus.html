@@ -19,7 +19,11 @@
   var LABELS = {
     phone: 'AW-18456342571/lqN6CITV1_ocEKvg1eBE',   // Phone click
     email: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',   // Email click - events enquiry
-    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE'    // Enquiry submitted (VenueFlow)
+    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE',   // Enquiry submitted (VenueFlow)
+    // Secondary action for a step-1 capture that never finishes. Create the
+    // conversion action in Google Ads, paste its label here, and this starts
+    // firing. Left null so it can never be counted against the form label.
+    partial: null                                   // Partial enquiry (VenueFlow)
   };
 
   function fire(label, value) {
@@ -53,6 +57,9 @@
     if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
     if (d && d.type === 'vf-enquiry-submitted') {
       fire(LABELS.form, budgetToValue(d.budgetRange || d.budget_range || d.budget));
+    }
+    if (d && d.type === 'vf-partial-captured' && LABELS.partial) {
+      fire(LABELS.partial, budgetToValue(d.budgetRange || d.budget_range || d.budget));
     }
   });
 })();
