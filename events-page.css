@@ -347,3 +347,9 @@
   .im-marquee-track { animation: none !important; }
   .im-room, .im-tier { transition: none !important; }
 }
+
+/* carried across from the old Functions page — concrete, and it earns its place */
+.im-hero-now {
+  font-style: italic; font-size: clamp(14px, 1.5vw, 16.5px); letter-spacing: .01em;
+  color: rgba(250,215,195,.92); margin: 10px 0 0;
+}
