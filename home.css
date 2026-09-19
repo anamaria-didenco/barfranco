@@ -263,26 +263,47 @@ section { padding: 104px 0; }
 .lv-meta .m .n { font-family: "VTC Marsha", serif; color: var(--red); font-size: 26px; line-height: 1; }
 .lv-meta .m .l { font-style: italic; color: var(--muted); font-size: 13px; margin-top: 4px; }
 
-/* Homepage-only Two Levels treatment — scoped to #levels so Functions.html's
-   identical .level/.level-body markup keeps its existing look untouched. */
-#levels.sec-cream { background: var(--ink); color: var(--cream); }
-#levels .eyebrow, #levels .sec-label { color: var(--cream); }
-#levels .lede { color: rgba(250,215,195,.85); }
-#levels .level { border: none; background: transparent; }
-#levels .level-media { position: relative; }
-#levels .level img.photo { height: clamp(320px, 34vw, 440px); }
-#levels .level-media::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(108,6,0,0) 0%, rgba(108,6,0,.86) 100%);
+/* Homepage Two Levels — two full-bleed panels, copy set over a bottom gradient
+   (design 7a). New .lv-panel classes rather than the shared .level markup, so
+   Functions.html's .level cards are untouched. */
+.lv-band { padding: 0; background: var(--ink); }
+.lv-panels { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px; }
+.lv-panel { position: relative; overflow: hidden; background: var(--ink); min-height: clamp(380px, 47vw, 680px); }
+.lv-panel > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lv-panel:first-child > img { object-position: 50% 45%; }
+.lv-panel:last-child > img { object-position: 50% 60%; }
+.lv-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(108,6,0,0) 45%, rgba(108,6,0,.86) 100%); }
+.lv-copy { position: absolute; left: clamp(20px, 3.2vw, 44px); right: clamp(20px, 3.2vw, 44px); bottom: clamp(24px, 2.8vw, 40px); color: var(--cream); }
+.lv-kick { font-style: italic; font-size: 15px; letter-spacing: .04em; margin: 0; color: rgba(250,215,195,.8); }
+.lv-copy h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: clamp(26px, 3.4vw, 40px); line-height: 1; margin: 8px 0 12px; }
+.lv-copy p { font-style: italic; font-size: clamp(15.5px, 1.5vw, 17px); margin: 0; max-width: 480px; color: rgba(250,215,195,.9); text-wrap: pretty; }
+@media (max-width: 760px) {
+  .lv-panels { grid-template-columns: minmax(0,1fr); }
+  .lv-panel { min-height: 420px; }
 }
-#levels .level-body { padding: 26px 6px 0; }
-#levels .level-kicker { color: var(--red); }
-#levels .level h3 { color: var(--cream); font-size: clamp(28px, 3.4vw, 40px); }
-#levels .level p { color: rgba(250,215,195,.88); }
-#levels .lv-meta { border-top-color: rgba(250,215,195,.3); }
-#levels .lv-meta .m .l { color: rgba(250,215,195,.7); }
+
+/* screen-reader-only heading: the panels carry the meaning visually, but the
+   section still needs a heading in the outline for assistive tech and search */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ghost wordmark behind About (design 7a) */
+.about { position: relative; overflow: hidden; }
+.about-ghost {
+  position: absolute; right: -40px; top: 40px; z-index: 0;
+  font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase;
+  font-size: clamp(120px, 21vw, 300px); line-height: .8; color: rgba(240,0,0,.05);
+  pointer-events: none; user-select: none;
+}
+.about .wrap { position: relative; z-index: 1; }
 
 /* ---------- Events band (red) ---------- */
+/* Red Deep per the spec, not the brighter --red: this is the homepage's one red
+   band and peach labels need to clear 4.5:1 on it. Scoped to .events-band so the
+   eleven other pages sharing .sec-red keep their existing colour. */
+.events-band.sec-red { background: var(--red-deep); }
 .events-band .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
 .events-band h2 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--cream);
