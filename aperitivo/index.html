@@ -19,7 +19,11 @@
   var LABELS = {
     phone: 'AW-18456342571/lqN6CITV1_ocEKvg1eBE',   // Phone click
     email: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',   // Email click - events enquiry
-    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE'    // Enquiry submitted (VenueFlow)
+    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE',   // Enquiry submitted (VenueFlow)
+    // Secondary action for a step-1 capture that never finishes. Create the
+    // conversion action in Google Ads, paste its label here, and this starts
+    // firing. Left null so it can never be counted against the form label.
+    partial: null                                   // Partial enquiry (VenueFlow)
   };
 
   function fire(label, value) {
@@ -54,6 +58,9 @@
     if (d && d.type === 'vf-enquiry-submitted') {
       fire(LABELS.form, budgetToValue(d.budgetRange || d.budget_range || d.budget));
     }
+    if (d && d.type === 'vf-partial-captured' && LABELS.partial) {
+      fire(LABELS.partial, budgetToValue(d.budgetRange || d.budget_range || d.budget));
+    }
   });
 })();
 </script>
@@ -62,8 +69,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
 <meta name="theme-color" content="#F00000" />
 
-<title>Aperitivo Christchurch | Spritz &amp; Negroni Bar | Bar Franco</title>
-<meta name="description" content="Christchurch's home of aperitivo. Spritzes, Negronis and cicchetti daily from 5pm at Bar Franco's Negroni Bar, in the heart of the city. Cinque a Sette, 5–7 nightly." />
+<title>Aperitivo Hour Christchurch | Bar Franco</title>
+<meta name="description" content="Spritzes, Negronis and cicchetti from 4pm daily at The Crossing. The Italian hour before dinner, in the middle of Christchurch." />
 <meta name="keywords" content="aperitivo Christchurch, spritz Christchurch, Negroni Christchurch, happy hour Christchurch CBD, cicchetti Christchurch, Aperol spritz Christchurch, Italian aperitivo, aperitivo hour Christchurch, where to drink Christchurch" />
 <link rel="canonical" href="https://www.barfranco.nz/aperitivo/" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -76,7 +83,7 @@
 <meta property="og:type" content="restaurant.bar" />
 <meta property="og:site_name" content="Bar Franco — Christchurch" />
 <meta property="og:title" content="Aperitivo Christchurch | Spritz &amp; Negroni Bar | Bar Franco" />
-<meta property="og:description" content="Christchurch's home of aperitivo — spritzes, Negronis and cicchetti daily. Cinque a Sette, 5–7 nightly at Bar Franco in The Crossing." />
+<meta property="og:description" content="Spritzes, Negronis and cicchetti from 4pm daily at The Crossing. The Italian hour before dinner, in the middle of Christchurch." />
 <meta property="og:url" content="https://www.barfranco.nz/aperitivo/" />
 <meta property="og:locale" content="en_NZ" />
 <meta property="og:image" content="https://www.barfranco.nz/images/spritz-tray.jpg" />

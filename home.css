@@ -886,3 +886,25 @@ input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px
   .im-card-contact a { display: inline-flex; align-items: center; min-height: 44px; }
   .foot-socials a, .socials a { width: 44px; height: 44px; }
 }
+
+/* The sticky quick-actions bar is fixed, 57px tall, z-index 60. Without this the
+   VenueFlow NEXT button — which sits at the foot of the iframe — lands underneath
+   it, worst of all with the keyboard open and the viewport shortened. */
+.enquire-embed {
+  padding-bottom: 72px;          /* 57px bar + 15px breathing room */
+  scroll-margin-bottom: 72px;
+}
+@media (min-width: 701px) {
+  /* no sticky bar above 700px, so no clearance needed */
+  .enquire-embed { padding-bottom: 0; scroll-margin-bottom: 0; }
+}
+
+/* Clearance on the iframe itself, so pages that must not have their layout touched
+   get it without a wrapper div. !important because the widget carries an inline
+   margin:0 auto, which a stylesheet rule cannot otherwise beat. */
+@media (max-width: 700px) {
+  iframe[src*="venueflowhq.com"] {
+    margin-bottom: 72px !important;   /* 57px sticky bar + 15px */
+    scroll-margin-bottom: 72px;
+  }
+}

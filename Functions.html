@@ -19,7 +19,11 @@
   var LABELS = {
     phone: 'AW-18456342571/lqN6CITV1_ocEKvg1eBE',   // Phone click
     email: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',   // Email click - events enquiry
-    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE'    // Enquiry submitted (VenueFlow)
+    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE',   // Enquiry submitted (VenueFlow)
+    // Secondary action for a step-1 capture that never finishes. Create the
+    // conversion action in Google Ads, paste its label here, and this starts
+    // firing. Left null so it can never be counted against the form label.
+    partial: null                                   // Partial enquiry (VenueFlow)
   };
 
   function fire(label, value) {
@@ -54,6 +58,9 @@
     if (d && d.type === 'vf-enquiry-submitted') {
       fire(LABELS.form, budgetToValue(d.budgetRange || d.budget_range || d.budget));
     }
+    if (d && d.type === 'vf-partial-captured' && LABELS.partial) {
+      fire(LABELS.partial, budgetToValue(d.budgetRange || d.budget_range || d.budget));
+    }
   });
 })();
 </script>
@@ -61,8 +68,8 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" />
 <meta name="theme-color" content="#F00000" />
-<title>Function Venue & Private Dining Christchurch | No Hire Fee | Bar Franco</title>
-<meta name="description" content="Private dining, corporate events, birthdays, weddings and full venue hire in central Christchurch. Two levels, up to 240 guests, no venue hire fee. Enquire today." />
+<title>Function Venue &amp; Private Dining Christchurch | Bar Franco</title>
+<meta name="description" content="Private dining, cocktail functions and full venue hire for up to 240 in central Christchurch. No venue hire fee. Tell us the date and we'll quote." />
 <meta name="keywords" content="private dining Christchurch, group dining Christchurch, function venue Christchurch, venue hire Christchurch, private events Christchurch, birthday dinner Christchurch, large group restaurant Christchurch, private dining room Christchurch, engagement venue Christchurch, corporate events Christchurch, cocktail function Christchurch, Christmas party venue" />
 <link rel="canonical" href="https://www.barfranco.nz/Functions.html" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -74,7 +81,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Bar Franco — Christchurch" />
 <meta property="og:title" content="Function Venue & Private Dining Christchurch | No Hire Fee | Bar Franco" />
-<meta property="og:description" content="Private dining, corporate events, birthdays, weddings and full venue hire in central Christchurch. Two levels, up to 240 guests, no venue hire fee. Enquire today." />
+<meta property="og:description" content="Private dining, cocktail functions and full venue hire for up to 240 in central Christchurch. No venue hire fee. Tell us the date and we'll quote." />
 <meta property="og:url" content="https://www.barfranco.nz/Functions.html" />
 <meta property="og:locale" content="en_NZ" />
 <meta property="og:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
@@ -225,7 +232,7 @@
       <div class="im-wrap">
         <p class="im-eyebrow">Ten of you, or two hundred and forty</p>
         <p class="im-hero-now">Now booking spring &amp; December 2026 · Seated menus from $80 pp · No venue hire fee</p>
-        <h1>The long<br class="im-br-mob" /> table<br />is yours.</h1>
+        <h1>The long table is yours.<br class="im-br-mob" /> Function venue,<br />Christchurch.</h1>
         <div class="im-hero-foot">
           <p class="im-hero-lede">Book a room in Christchurch, or book a night people are still talking about in March. <span class="im-roman">Ti aspettiamo.</span></p>
           <div class="im-hero-ctas">
@@ -249,6 +256,38 @@
   </header>
 
   <!-- THE NUMBERS -->
+  <!-- ENQUIRY — kept within the first screen and a half; the ad traffic lands here -->
+  <section class="im-enquire-top">
+    <div class="im-wrap">
+      <div class="im-card reveal d1" id="enquire">
+          <h2>Tell us the date</h2>
+          <p class="im-card-note">A few fields to start. We'll come back the same day with what's possible and what it costs.</p>
+          <!-- VenueFlow enquiry widget — auto-resizing iframe; enquiries flow into the VenueFlow CRM + notification email -->
+          <div class="enquire-embed">
+            <iframe id="vf-enquiry" class="im-frame"
+            src="https://venueflowhq.com/enquire?embed=1&amp;accent=F00000"
+            width="100%" height="560" frameborder="0" loading="eager"
+            title="Private event enquiry — Bar Franco"></iframe>
+          </div>
+          <p class="im-card-foot">Prefer email? <a href="mailto:events@barfranco.nz?subject=Private%20event%20enquiry%20%E2%80%94%20Bar%20Franco">events@barfranco.nz</a></p>
+          <dl class="im-card-contact">
+            <div>
+              <dt>Call</dt>
+              <dd><a href="tel:+64212211307">021 221 1307</a></dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <dd><a href="mailto:events@barfranco.nz?subject=Private%20event%20enquiry%20%E2%80%94%20Bar%20Franco">events@barfranco.nz</a></dd>
+            </div>
+            <div>
+              <dt>Find us</dt>
+              <dd>166 Cashel St</dd>
+            </div>
+          </dl>
+        </div>
+    </div>
+  </section>
+
   <section class="im-numbers">
     <div class="im-wrap">
       <div class="im-numbers-grid">
@@ -479,29 +518,11 @@
           </div>
         </div>
 
-        <div class="im-card reveal d1" id="enquire">
-          <h2>Tell us the date</h2>
-          <p class="im-card-note">A few fields to start. We'll come back the same day with what's possible and what it costs.</p>
-          <!-- VenueFlow enquiry widget — auto-resizing iframe; enquiries flow into the VenueFlow CRM + notification email -->
-          <iframe id="vf-enquiry" class="im-frame"
-            src="https://venueflowhq.com/enquire?embed=1&amp;accent=F00000"
-            width="100%" height="560" frameborder="0" loading="eager"
-            title="Private event enquiry — Bar Franco"></iframe>
-          <p class="im-card-foot">Prefer email? <a href="mailto:events@barfranco.nz?subject=Private%20event%20enquiry%20%E2%80%94%20Bar%20Franco">events@barfranco.nz</a></p>
-          <dl class="im-card-contact">
-            <div>
-              <dt>Call</dt>
-              <dd><a href="tel:+64212211307">021 221 1307</a></dd>
-            </div>
-            <div>
-              <dt>Email</dt>
-              <dd><a href="mailto:events@barfranco.nz?subject=Private%20event%20enquiry%20%E2%80%94%20Bar%20Franco">events@barfranco.nz</a></dd>
-            </div>
-            <div>
-              <dt>Find us</dt>
-              <dd>166 Cashel St</dd>
-            </div>
-          </dl>
+        <div class="im-ask-cta reveal d1">
+          <h3>Still deciding?</h3>
+          <p>Send the date and the headcount and we'll come back the same day with what's possible and what it costs.</p>
+          <a class="btn light lg" href="#enquire">Get a quote</a>
+          <p class="im-ask-cta-alt">Or call <a href="tel:+64212211307">021 221 1307</a> · <a href="mailto:events@barfranco.nz?subject=Private%20event%20enquiry%20%E2%80%94%20Bar%20Franco">events@barfranco.nz</a></p>
         </div>
       </div>
     </div>
