@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18456342571"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18456342571');
+</script>
+<!-- BF-ADS-CONVERSIONS start — Google Ads conversions: phone, email, VenueFlow form. Keep directly below the Google tag. -->
+<script>
+(function () {
+  var LABELS = {
+    phone: 'AW-18456342571/lqN6CITV1_ocEKvg1eBE',   // Phone click
+    email: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',   // Email click - events enquiry
+    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE'    // Enquiry submitted (VenueFlow)
+  };
+
+  function fire(label, value) {
+    try {
+      gtag('event', 'conversion', { 'send_to': label, 'value': value || 1.0, 'currency': 'NZD' });
+    } catch (e) {}
+  }
+
+  // 1. Phone and email links anywhere on the page
+  document.addEventListener('click', function (ev) {
+    var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = (a.getAttribute('href') || '').toLowerCase();
+    if (href.indexOf('tel:') === 0)    fire(LABELS.phone);
+    if (href.indexOf('mailto:') === 0) fire(LABELS.email);
+  }, true);
+
+  // 2. VenueFlow enquiry form — the widget posts `vf-enquiry-submitted` on a successful submit.
+  //    Budget bracket becomes the conversion value, so a $10k enquiry is worth more than a $2k one.
+  function budgetToValue(b) {
+    if (!b) return 1;
+    var nums = String(b).replace(/,/g, '').match(/\d+/g);
+    if (!nums) return 1;
+    var n = parseInt(nums[0], 10);
+    if (/k/i.test(String(b)) && n < 1000) n = n * 1000;
+    return n > 0 ? n : 1;
+  }
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
+    var d = e.data;
+    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
+    if (d && d.type === 'vf-enquiry-submitted') {
+      fire(LABELS.form, budgetToValue(d.budgetRange || d.budget_range || d.budget));
+    }
+  });
+})();
+</script>
+<!-- BF-ADS-CONVERSIONS end -->
+<link rel="icon" type="image/png" href="/favicon.png?v=2" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+<meta name="theme-color" content="#F00000" />
+
+<title>Private Events &amp; Venue Hire Christchurch | Bar Franco</title>
+<meta name="description" content="Two levels, up to 240 guests, no venue hire fee. See the room before you enquire — hour by hour, level by level — and get an indicative price in ten seconds. The Crossing, Christchurch." />
+<meta name="keywords" content="private events Christchurch, venue hire Christchurch, private dining Christchurch, exclusive venue hire Christchurch CBD, party venue Christchurch, function venue Christchurch, private room hire Christchurch" />
+<link rel="canonical" href="https://www.barfranco.nz/private-events-immersive/" />
+<!-- noindex: this is a closing/remarketing asset, not a search landing page. Keeping it out
+     of the index stops it competing with /corporate-events/ and /Functions.html for the same
+     terms. "follow" so it still passes link equity back to them. -->
+<meta name="robots" content="noindex, follow, max-image-preview:large" />
+
+<meta name="geo.region" content="NZ-CAN" />
+<meta name="geo.placename" content="Christchurch Central" />
+<meta name="geo.position" content="-43.53262;172.63620" />
+<meta name="ICBM" content="-43.53262, 172.63620" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Bar Franco — Christchurch" />
+<meta property="og:title" content="Private Events &amp; Venue Hire Christchurch | Bar Franco" />
+<meta property="og:description" content="The long table is yours. Two levels, up to 240 guests, no venue hire fee — in the middle of Christchurch." />
+<meta property="og:url" content="https://www.barfranco.nz/private-events-immersive/" />
+<meta property="og:locale" content="en_NZ" />
+<meta property="og:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Private Events &amp; Venue Hire Christchurch | Bar Franco" />
+<meta name="twitter:description" content="Two levels, up to 240 guests, no venue hire fee. See the room before you enquire." />
+<meta name="twitter:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EventVenue",
+      "name": "Bar Franco — Private Events & Venue Hire",
+      "url": "https://www.barfranco.nz/private-events-immersive/",
+      "description": "Private event venue in central Christchurch across two levels — a cocktail bar downstairs, a restaurant with an open kitchen upstairs, and exclusive hire of the whole building for up to 240 guests standing or 165 seated, with no venue hire fee.",
+      "telephone": "+64-21-221-1307",
+      "email": "anamaria@barfranco.nz",
+      "maximumAttendeeCapacity": 240,
+      "image": "https://www.barfranco.nz/og-image.jpg?v=3",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Crossing, 166 Cashel Street",
+        "addressLocality": "Christchurch Central",
+        "addressRegion": "Canterbury",
+        "postalCode": "8011",
+        "addressCountry": "NZ"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": -43.53262, "longitude": 172.63620 },
+      "areaServed": "Christchurch",
+      "containsPlace": [
+        {
+          "@type": "EventVenue",
+          "name": "The Negroni Bar — Level 1",
+          "description": "The downstairs cocktail bar: 120 guests standing or 75 seated.",
+          "maximumAttendeeCapacity": 120
+        },
+        {
+          "@type": "EventVenue",
+          "name": "The Restaurant — Level 2",
+          "description": "The upstairs restaurant and long table, open kitchen in view: 120 guests standing or 90 seated.",
+          "maximumAttendeeCapacity": 120
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is there a venue hire fee?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. There is a minimum spend on food and drinks instead, set by the date and the space — so the budget goes into the night, not the room." }
+        },
+        {
+          "@type": "Question",
+          "name": "How many of us fit on each level?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The Negroni Bar on Level 1 takes 120 guests standing or 75 seated. The restaurant on Level 2 takes 120 standing or 90 seated. Take both levels and it is up to 240 standing or 165 seated." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we have the building to ourselves?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Either level can be booked exclusively on its own, or take both levels and both bars with the doors closed to everyone else." }
+        },
+        {
+          "@type": "Question",
+          "name": "What do the menus cost?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A standing grazing table is $40 a head. The shared seated menu is $80 a head. Canapés with the shared menu together are $110 a head. Canapés on their own start at $9 a person, and a drinks package can be added at $45 a head." }
+        },
+        {
+          "@type": "Question",
+          "name": "Dietaries, allergies, the fussy one?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Every menu has a vegetarian and a gluten-free line built in. Vegan, dairy-free and most allergies are handled in the planning rather than on the night — tell us when you book and it is simply taken care of." }
+        },
+        {
+          "@type": "Question",
+          "name": "Screens, microphones, a playlist?",
+          "acceptedAnswer": { "@type": "Answer", "text": "There is a screen and sound for speeches and slides, and you are welcome to bring your own playlist. Tell us when the speeches are and the room gets quiet at the right moment." }
+        },
+        {
+          "@type": "Question",
+          "name": "Deposit, invoicing and cancellation?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We will hold a date while you check with everyone. A deposit confirms it, and the balance is invoiced after the night — 20th-of-the-month terms if that suits your finance team better. Plans change, so talk to us early and we will work it out." }
+        },
+        {
+          "@type": "Question",
+          "name": "Parking, and how close is the stadium?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We are in The Crossing at 166 Cashel Street, in the middle of the Christchurch CBD next to H&M. The Crossing car park is in the same block, central bus and tram stops are minutes away, and One NZ Stadium is about five minutes on foot." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/fonts.css" />
+<link rel="stylesheet" href="/home.css" />
+<link rel="stylesheet" href="page.css" />
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/index.html" aria-label="Bar Franco home">
+      <img class="brand-logo" src="/brand/bf-script-flat-brightred.svg" alt="Bar Franco" />
+    </a>
+    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/Bookings.html">Bookings</a>
+      <a href="/Functions.html">Functions</a>
+      <a href="/Menus.html">Menus</a>
+      <a href="/Vouchers.html">Vouchers</a>
+      <a href="/Contact.html">Contact</a>
+      <a class="btn" href="#enquire">Enquire</a>
+    </div>
+  </div>
+</nav>
+
+<main class="im-main">
+
+  <!-- HERO — the poster -->
+  <header class="im-hero">
+    <img class="im-hero-photo" src="/images/event-room-wide.jpg" alt="A private dinner by candlelight down the long table at Bar Franco, Christchurch" loading="eager" />
+    <div class="im-hero-scrim"></div>
+    <div class="im-hero-inner">
+      <div class="im-wrap">
+        <p class="im-eyebrow">Ten of you, or two hundred and forty</p>
+        <h1>The long<br class="im-br-mob" /> table<br />is yours.</h1>
+        <div class="im-hero-foot">
+          <p class="im-hero-lede">Book a room in Christchurch, or book a night people are still talking about in March. <span class="im-roman">Ti aspettiamo.</span></p>
+          <div class="im-hero-ctas">
+            <a class="btn light lg" href="#enquire">Get a quote</a>
+            <a class="btn ghost-light lg" href="#enquire">Book a walk-through</a>
+          </div>
+        </div>
+        <p class="im-hero-short">Just need a quote? <a href="/corporate-events/">The short version</a> — or call <a href="tel:+64212211307">021 221 1307</a>.</p>
+      </div>
+    </div>
+    <div class="im-marquee" aria-hidden="true">
+      <div class="im-marquee-track">
+        <div class="im-marquee-set">
+          <span>Up to 240</span><i>•</i><span>No venue hire fee</span><i>•</i><span>Two levels</span><i>•</i><span>Same-day quote</span><i>•</i><span>Fresh pasta</span><i>•</i><span>Exclusive hire</span><i>•</i><span>Till late</span><i>•</i>
+        </div>
+        <div class="im-marquee-set">
+          <span>Up to 240</span><i>•</i><span>No venue hire fee</span><i>•</i><span>Two levels</span><i>•</i><span>Same-day quote</span><i>•</i><span>Fresh pasta</span><i>•</i><span>Exclusive hire</span><i>•</i><span>Till late</span><i>•</i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- THE NUMBERS -->
+  <section class="im-numbers">
+    <div class="im-wrap">
+      <div class="im-numbers-grid">
+        <div class="reveal">
+          <div class="im-num">240</div>
+          <p>Guests across both levels, doors closed to everyone else. 165 of you seated.</p>
+        </div>
+        <div class="reveal d1">
+          <div class="im-num">$0</div>
+          <p>Venue hire fee. A minimum spend on food and drinks instead.</p>
+        </div>
+        <div class="reveal d2">
+          <div class="im-num">2</div>
+          <p>Levels — a bar below, an open kitchen above, one staircase between.</p>
+        </div>
+        <div class="reveal d3">
+          <div class="im-num">5<small>min</small></div>
+          <p>Walk from One NZ Stadium, in the middle of the city.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOUR BY HOUR -->
+  <section class="im-hours">
+    <div class="im-wrap">
+      <div class="im-hours-head reveal">
+        <p class="im-eyebrow">What it feels like</p>
+        <h2 class="im-h2">Your night,<br />hour by hour.</h2>
+      </div>
+    </div>
+    <div class="im-hours-grid">
+      <article class="im-hour reveal">
+        <img src="/images/aperitivo-table-cheers.jpg" alt="Guests raising a Negroni, a spritz and a glass of red over olives and focaccia at Bar Franco" loading="lazy" />
+        <div class="im-hour-scrim"></div>
+        <div class="im-hour-body">
+          <div class="im-hour-time">6pm</div>
+          <h3>Arrivo</h3>
+          <p>A Negroni or a spritz pressed into every hand inside two minutes. Nobody queues at a bar.</p>
+        </div>
+      </article>
+      <article class="im-hour reveal d1">
+        <img src="/images/burrata-tomato-top.jpg" alt="Burrata with roasted tomato, basil and olive oil, shared at the table at Bar Franco" loading="lazy" />
+        <div class="im-hour-scrim"></div>
+        <div class="im-hour-body">
+          <div class="im-hour-time">7pm</div>
+          <h3>Antipasti</h3>
+          <p>Burrata, salumi, olives, focaccia — landing down the middle of the table, not in front of you.</p>
+        </div>
+      </article>
+      <article class="im-hour reveal d2">
+        <img src="/images/open-kitchen.jpg" alt="Chefs working the pass in the open kitchen on Level 2 at Bar Franco" loading="lazy" />
+        <div class="im-hour-scrim"></div>
+        <div class="im-hour-body">
+          <div class="im-hour-time">8pm</div>
+          <h3>Pasta</h3>
+          <p>Rolled this morning, cooked in full view of the room. Two shapes, both going round twice.</p>
+        </div>
+      </article>
+      <article class="im-hour reveal d3">
+        <img src="/images/level-negroni-graded.jpg" alt="A tray of Negronis, wine and a spritz carried through the low light downstairs at Bar Franco" loading="lazy" />
+        <div class="im-hour-scrim"></div>
+        <div class="im-hour-body">
+          <div class="im-hour-time">Late</div>
+          <h3>Giù</h3>
+          <p>Downstairs, low light, one more. The party that doesn't need a second venue.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- THE ROOMS -->
+  <section class="im-rooms-head">
+    <div class="im-wrap">
+      <div class="reveal">
+        <p class="im-eyebrow">Choose your room</p>
+        <h2 class="im-h2">Two levels,<br />three ways.</h2>
+      </div>
+    </div>
+  </section>
+  <div class="im-rooms">
+    <article class="im-room reveal">
+      <img src="/images/level1-bar-crowd.jpg" alt="A standing crowd with drinks under the pendant lights in the Negroni Bar on Level 1 at Bar Franco" loading="lazy" />
+      <div class="im-room-scrim"></div>
+      <div class="im-room-body">
+        <p class="im-room-kicker">Level 1 · Downstairs</p>
+        <h3>The Negroni Bar</h3>
+        <p class="im-room-stats"><span>Standing 120</span><span>Seated 75</span><span>After-work drinks</span></p>
+      </div>
+    </article>
+    <article class="im-room reveal d1">
+      <img src="/images/level2-event-wide.jpg" alt="Long tables set for a private dinner on Level 2 at Bar Franco, spritzes lined up and the open kitchen behind" loading="lazy" />
+      <div class="im-room-scrim"></div>
+      <div class="im-room-body">
+        <p class="im-room-kicker">Level 2 · Upstairs</p>
+        <h3>The Restaurant</h3>
+        <p class="im-room-stats"><span>Standing 120</span><span>Seated 90</span><span>The annual dinner</span></p>
+      </div>
+    </article>
+    <article class="im-room reveal d2">
+      <img src="/images/event-long-table.jpg" alt="Candles, grissini and plated courses down a long table set for exclusive hire at Bar Franco" loading="lazy" />
+      <div class="im-room-scrim"></div>
+      <div class="im-room-body">
+        <p class="im-room-kicker">Exclusive hire</p>
+        <h3>The Whole World</h3>
+        <p class="im-room-stats"><span>Standing 240</span><span>Seated 165</span><span>The whole company</span></p>
+      </div>
+    </article>
+  </div>
+
+  <!-- THE PLANNER -->
+  <section class="im-plan">
+    <div class="im-wrap">
+      <div class="im-plan-head reveal">
+        <div>
+          <p class="im-eyebrow">Plan it here, in ten seconds</p>
+          <h2 class="im-h2 sm">What's it going<br />to cost?</h2>
+        </div>
+        <p class="im-plan-aside">Drag the number of guests, pick a menu. It's a guide, not a quote — but the real one we send back the same day looks exactly like this.</p>
+      </div>
+
+      <div class="im-plan-grid">
+        <div class="reveal">
+          <div class="im-guests-row">
+            <span class="im-guests-label">How many of you?</span>
+            <span class="im-guests-out" id="im-guests-out">40 guests</span>
+          </div>
+          <input class="im-range" type="range" id="im-guests" name="im-guests"
+                 min="10" max="240" step="2" value="40"
+                 aria-label="Number of guests, between 10 and 240" />
+          <div class="im-range-ticks" aria-hidden="true"><span>10</span><span>75</span><span>140</span><span>240</span></div>
+
+          <div class="im-space" aria-live="polite">
+            <p class="im-space-kicker">We'd put you in</p>
+            <p class="im-space-name" id="im-space">Level 2 — the long table</p>
+            <p class="im-space-note" id="im-note">One table, courses down the middle, nobody ordering off a menu.</p>
+          </div>
+
+          <div class="im-tiers" role="group" aria-label="Choose a menu">
+            <button class="im-tier" type="button" data-pick="0" aria-pressed="false">
+              <span class="im-tier-name">Grazing table</span>
+              <span class="im-tier-sub">$40 a head · standing</span>
+            </button>
+            <button class="im-tier" type="button" data-pick="1" aria-pressed="true">
+              <span class="im-tier-name">Shared menu</span>
+              <span class="im-tier-sub">$80 a head · seated</span>
+            </button>
+            <button class="im-tier" type="button" data-pick="2" aria-pressed="false">
+              <span class="im-tier-name">Canapés &amp; shared</span>
+              <span class="im-tier-sub">$110 a head · the lot</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="im-quote reveal d1" aria-live="polite">
+          <p class="im-quote-eyebrow">Your night, roughly</p>
+          <p class="im-quote-name" id="im-tier-name">Shared menu</p>
+          <p class="im-quote-desc" id="im-tier-desc">Antipasti, pasta and secondi, shared down the middle. Seated, unhurried.</p>
+          <div class="im-quote-row"><span>Guests</span><span id="im-guests-label">40 guests</span></div>
+          <div class="im-quote-row"><span>Menu</span><span id="im-tier-price">$80 a head</span></div>
+          <div class="im-quote-row last"><span>Venue hire</span><span>$0</span></div>
+          <div class="im-quote-total">
+            <span class="im-quote-total-l">Food, total</span>
+            <span class="im-quote-total-n" id="im-estimate">$3,200</span>
+          </div>
+          <p class="im-quote-fine" id="im-addon">Add three canapés with the first drink and it's about $4,280. Drinks on consumption, on a tab you cap, or a package at $45 a head — your call.</p>
+          <p class="im-quote-caveat"><strong style="font-style:normal;">Indicative only.</strong> This is a guide to help you budget, not a quote and not a booking. Final pricing depends on the date, the space and what you actually choose.</p>
+          <a class="btn lg im-btn-full" href="#enquire">Send this through</a>
+          <p class="im-quote-after">Same-day reply with the real numbers and a floor plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WE HOST -->
+  <section class="im-host">
+    <img src="/images/host-wine.jpg" alt="A member of the Bar Franco team opening a bottle of wine beside an ice bucket in the warm light of the dining room" loading="lazy" />
+    <div class="im-host-scrim"></div>
+    <div class="im-host-inner">
+      <div class="im-wrap">
+        <p class="im-eyebrow">Why people rebook</p>
+        <h2 class="im-h2 sm">We don't perform.<br />We host.</h2>
+        <p class="im-host-line">One person from the first email to the last guest — the same one who'll put a Negroni in your hand on the night.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTIONS + ENQUIRY -->
+  <section class="im-ask">
+    <div class="im-wrap">
+      <div class="im-ask-grid">
+        <div class="reveal">
+          <p class="im-eyebrow">Before you ask</p>
+          <h2 class="im-h2 sm">The usual questions</h2>
+          <div class="faq">
+            <details open>
+              <summary>Is there a venue hire fee?</summary>
+              <p class="faq-a">No. There's a minimum spend on food and drinks instead, set by the date and the space — so the budget goes into the night, not the room.</p>
+            </details>
+            <details>
+              <summary>How many of us fit on each level?</summary>
+              <p class="faq-a">The Negroni Bar on Level 1 takes 120 standing or 75 seated. The restaurant on Level 2 takes 120 standing or 90 seated. Take both and it's up to 240 standing, or 165 seated.</p>
+            </details>
+            <details>
+              <summary>Can we have the building to ourselves?</summary>
+              <p class="faq-a">Yes — either level exclusively on its own, or both levels and both bars with the doors closed to everyone else.</p>
+            </details>
+            <details>
+              <summary>What do the menus cost?</summary>
+              <p class="faq-a">A standing grazing table is $40 a head; the shared seated menu is $80; canapés with the shared menu together are $110. Canapés on their own start at $9 a person, and a drinks package can be added at $45 a head. <a href="/Menus.html">See our menus</a>.</p>
+            </details>
+            <details>
+              <summary>Dietaries, allergies, the fussy one?</summary>
+              <p class="faq-a">Every menu has a vegetarian and a gluten-free line built in. Vegan, dairy-free and most allergies are handled in the planning rather than on the night — tell us when you book and it's simply taken care of.</p>
+            </details>
+            <details>
+              <summary>Screens, microphones, a playlist?</summary>
+              <p class="faq-a">There's a screen and sound for speeches and slides, and you're welcome to bring your own playlist. Tell us when the speeches are and the room gets quiet at the right moment.</p>
+            </details>
+            <details>
+              <summary>Deposit, invoicing and cancellation?</summary>
+              <p class="faq-a">We'll hold a date while you check with everyone. A deposit confirms it, and the balance is invoiced after the night — 20th-of-the-month terms if that suits your finance team better. Plans change, so talk to us early and we'll work it out.</p>
+            </details>
+            <details>
+              <summary>Parking, and how close is the stadium?</summary>
+              <p class="faq-a">We're in The Crossing at 166 Cashel Street, next to H&amp;M. The Crossing car park is in the same block, central bus and tram stops are minutes away, and One NZ Stadium is about five minutes on foot.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="im-card reveal d1" id="enquire">
+          <h2>Tell us the date</h2>
+          <p class="im-card-note">A few fields to start. We'll come back the same day with what's possible and what it costs.</p>
+          <!-- VenueFlow enquiry widget — auto-resizing iframe; enquiries flow into the VenueFlow CRM + notification email -->
+          <iframe id="vf-enquiry" class="im-frame"
+            src="https://venueflowhq.com/enquire?embed=1&amp;accent=F00000"
+            width="100%" height="560" frameborder="0" loading="eager"
+            title="Private event enquiry — Bar Franco"></iframe>
+          <p class="im-card-foot">Prefer email? <a href="mailto:anamaria@barfranco.nz?subject=Private%20event%20enquiry%20%E2%80%94%20Bar%20Franco">anamaria@barfranco.nz</a></p>
+          <dl class="im-card-contact">
+            <div>
+              <dt>Call</dt>
+              <dd><a href="tel:+64212211307">021 221 1307</a></dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <dd><a href="mailto:anamaria@barfranco.nz?subject=Private%20event%20enquiry%20%E2%80%94%20Bar%20Franco">anamaria@barfranco.nz</a></dd>
+            </div>
+            <div>
+              <dt>Find us</dt>
+              <dd>166 Cashel St</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSER -->
+  <section class="im-closer">
+    <img src="/images/semifreddo-spritz-candle.jpg" alt="Semifreddo with blood orange beside a spritz and a candle on a marble table at Bar Franco" loading="lazy" />
+    <div class="im-closer-scrim"></div>
+    <div class="im-closer-inner">
+      <div class="im-wrap">
+        <h2 class="im-h2 sm">Come as you are,<br />leave slower than you arrived.</h2>
+        <p class="im-closer-line"><em>Ti aspettiamo</em> — we're waiting for you. Send us the date and we'll do the rest.</p>
+        <div class="im-closer-ctas">
+          <a class="btn light lg" href="#enquire">Get a quote</a>
+          <a class="btn ghost-light lg" href="/Bar Franco Events Pack.html" target="_blank" rel="noopener">View events pack</a>
+        </div>
+        <p class="im-closer-short">Just need a quote? <a href="/corporate-events/">The short version</a> &rarr;</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="foot-top">
+    <div class="foot-brand">
+      <img class="foot-logo" src="/brand/bf-script-flat-brightred.svg" alt="Bar Franco" />
+      <p>Modern Italian restaurant, cocktail bar &amp; private event venue in the heart of Christchurch.</p>
+      <div class="foot-socials">
+        <a href="https://www.instagram.com/bar__franco/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/barfranco.chch/" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M13.5 21v-7h2.3l.4-2.8h-2.7V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8.2V14H10.4v7h3.1z"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Opening hours</h4>
+      <p>Bar from 4pm · kitchen from 5pm<br />Daily, till late</p>
+      <h4>Find us</h4>
+      <p>The Crossing<br />166 Cashel Street<br />Christchurch Central 8011</p>
+    </div>
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <a href="/index.html">Home</a>
+      <a href="/Bookings.html">Bookings</a>
+      <a href="/Functions.html">Functions</a>
+      <a href="/corporate-events/">Corporate Events</a>
+      <a href="/christmas-functions/">Christmas Functions</a>
+      <a href="/weddings/">Weddings</a>
+      <a href="/Menus.html">Menus</a>
+      <a href="/Contact.html">Contact</a>
+    </div>
+    <div class="foot-col">
+      <h4>Events &amp; venue hire</h4>
+      <a href="mailto:anamaria@barfranco.nz">anamaria@barfranco.nz</a>
+      <a href="tel:+64212211307">021 221 1307</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-nav">
+      <a href="/index.html">Home</a>
+      <a href="/Bookings.html">Bookings</a>
+      <a href="/Functions.html">Functions</a>
+      <a href="/Menus.html">Menus</a>
+      <a href="/Contact.html">Contact</a>
+    </div>
+    <p class="copy">© 2026 Bar Franco · The Crossing, Christchurch</p>
+  </div>
+</footer>
+
+<div class="walker" aria-hidden="true">
+  <div class="walker-track" id="track"></div>
+  <img class="walker-dog" id="dog" src="/brand/franco-dog-peach.png" alt="" />
+</div>
+
+<script>
+  // Resize the VenueFlow iframe to fit whichever step the widget is showing.
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
+    if (e.data.type === 'vf-embed-height' && e.data.height) {
+      var f = document.getElementById('vf-enquiry');
+      if (f) f.style.height = e.data.height + 'px';
+    }
+  });
+</script>
+<script src="/site.js"></script>
+<script src="page.js"></script>
+<a class="whatsapp-fab" href="https://wa.me/64212211307?text=Ciao%20Bar%20Franco%21%20I%27d%20like%20to%20enquire%20about%20a%20private%20event%20%E2%80%94" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.3 5.2 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.3C8.4 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.6 14.9 3.1 13.5 3.1 12 3.1 6.9 7.1 3 12 3s8.9 4 8.9 9-4 8.2-8.9 8.2z"/></svg>
+  <span class="wa-label">Chat on WhatsApp</span>
+</a>
+</body>
+</html>

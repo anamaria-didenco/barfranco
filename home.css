@@ -172,13 +172,27 @@ section { padding: 104px 0; }
 }
 .hero-scrim {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(180deg,
-    rgba(108,6,0,.42) 0%, rgba(108,6,0,.06) 30%,
-    rgba(108,6,0,.3) 62%, rgba(108,6,0,.9) 100%);
+  /* Two layers: a horizontal wash that sits under the bottom-left copy, and a
+     lighter vertical one for the nav and the base. Keeps the headline above 4.5:1
+     while letting the right of the frame — the drinks, the menu card — stay bright. */
+  background:
+    linear-gradient(100deg, rgba(108,6,0,.82) 0%, rgba(108,6,0,.55) 34%, rgba(108,6,0,.08) 66%, rgba(108,6,0,0) 100%),
+    linear-gradient(180deg, rgba(108,6,0,.44) 0%, rgba(108,6,0,.05) 32%,
+      rgba(108,6,0,.10) 62%, rgba(108,6,0,.84) 100%);
+}
+/* Stacked mobile hero: the copy runs the full width, so the horizontal wash can't
+   do the work. Even, slightly heavier vertical scrim instead — the eyebrow sits
+   high in the frame and is small text needing 4.5:1. */
+@media (max-width: 760px) {
+  .hero-scrim {
+    background: linear-gradient(180deg, rgba(108,6,0,.62) 0%, rgba(108,6,0,.52) 34%,
+      rgba(108,6,0,.46) 62%, rgba(108,6,0,.86) 100%);
+  }
 }
 .hero .wrap { position: relative; z-index: 2; width: 100%; }
 .hero-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
-.hero-eyebrow { color: rgba(250,215,195,.85); margin: 0 0 16px; }
+/* full-strength peach, not .85 — at 12.5px this is small text and needs 4.5:1 */
+.hero-eyebrow { color: var(--cream); margin: 0 0 16px; }
 .hero h1 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--cream);
   font-size: clamp(31px, 5.2vw, 54px); line-height: 1.04; margin: 0;
@@ -263,26 +277,47 @@ section { padding: 104px 0; }
 .lv-meta .m .n { font-family: "VTC Marsha", serif; color: var(--red); font-size: 26px; line-height: 1; }
 .lv-meta .m .l { font-style: italic; color: var(--muted); font-size: 13px; margin-top: 4px; }
 
-/* Homepage-only Two Levels treatment — scoped to #levels so Functions.html's
-   identical .level/.level-body markup keeps its existing look untouched. */
-#levels.sec-cream { background: var(--ink); color: var(--cream); }
-#levels .eyebrow, #levels .sec-label { color: var(--cream); }
-#levels .lede { color: rgba(250,215,195,.85); }
-#levels .level { border: none; background: transparent; }
-#levels .level-media { position: relative; }
-#levels .level img.photo { height: clamp(320px, 34vw, 440px); }
-#levels .level-media::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(108,6,0,0) 0%, rgba(108,6,0,.86) 100%);
+/* Homepage Two Levels — two full-bleed panels, copy set over a bottom gradient
+   (design 7a). New .lv-panel classes rather than the shared .level markup, so
+   Functions.html's .level cards are untouched. */
+.lv-band { padding: 0; background: var(--ink); }
+.lv-panels { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px; }
+.lv-panel { position: relative; overflow: hidden; background: var(--ink); min-height: clamp(380px, 47vw, 680px); }
+.lv-panel > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lv-panel:first-child > img { object-position: 50% 45%; }
+.lv-panel:last-child > img { object-position: 50% 60%; }
+.lv-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(108,6,0,0) 45%, rgba(108,6,0,.86) 100%); }
+.lv-copy { position: absolute; left: clamp(20px, 3.2vw, 44px); right: clamp(20px, 3.2vw, 44px); bottom: clamp(24px, 2.8vw, 40px); color: var(--cream); }
+.lv-kick { font-style: italic; font-size: 15px; letter-spacing: .04em; margin: 0; color: rgba(250,215,195,.8); }
+.lv-copy h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: clamp(26px, 3.4vw, 40px); line-height: 1; margin: 8px 0 12px; }
+.lv-copy p { font-style: italic; font-size: clamp(15.5px, 1.5vw, 17px); margin: 0; max-width: 480px; color: rgba(250,215,195,.9); text-wrap: pretty; }
+@media (max-width: 760px) {
+  .lv-panels { grid-template-columns: minmax(0,1fr); }
+  .lv-panel { min-height: 420px; }
 }
-#levels .level-body { padding: 26px 6px 0; }
-#levels .level-kicker { color: var(--red); }
-#levels .level h3 { color: var(--cream); font-size: clamp(28px, 3.4vw, 40px); }
-#levels .level p { color: rgba(250,215,195,.88); }
-#levels .lv-meta { border-top-color: rgba(250,215,195,.3); }
-#levels .lv-meta .m .l { color: rgba(250,215,195,.7); }
+
+/* screen-reader-only heading: the panels carry the meaning visually, but the
+   section still needs a heading in the outline for assistive tech and search */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ghost wordmark behind About (design 7a) */
+.about { position: relative; overflow: hidden; }
+.about-ghost {
+  position: absolute; right: -40px; top: 40px; z-index: 0;
+  font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase;
+  font-size: clamp(120px, 21vw, 300px); line-height: .8; color: rgba(240,0,0,.05);
+  pointer-events: none; user-select: none;
+}
+.about .wrap { position: relative; z-index: 1; }
 
 /* ---------- Events band (red) ---------- */
+/* Red Deep per the spec, not the brighter --red: this is the homepage's one red
+   band and peach labels need to clear 4.5:1 on it. Scoped to .events-band so the
+   eleven other pages sharing .sec-red keep their existing colour. */
+.events-band.sec-red { background: var(--red-deep); }
 .events-band .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
 .events-band h2 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--cream);
@@ -681,3 +716,112 @@ section { padding: 104px 0; }
 /* baked-in photos */
 img.photo { object-fit: cover; background: var(--cream); }
 .hero-media img.photo, .cluster img.photo, .gallery img.photo, .eb-media img.photo, .split-media img.photo, .voucher-art img.photo, .resv-media img.photo { border-radius: 4px; }
+
+/* ============================================================
+   EVENTS LANDING PAGES (.pe-*) — corporate-events/, christmas-functions/
+   Fluid build of the approved 1440px composition. Scoped so the
+   shared components on other pages are untouched.
+   ============================================================ */
+.pe-hero { position: relative; overflow: hidden; background: var(--ink); }
+.pe-hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.pe-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(108,6,0,.9) 0%, rgba(108,6,0,.74) 46%, rgba(108,6,0,.9) 100%); }
+@media (min-width: 981px) {
+  .pe-hero-scrim { background: linear-gradient(90deg, rgba(108,6,0,.94) 0%, rgba(108,6,0,.76) 46%, rgba(108,6,0,.4) 100%); }
+}
+.pe-hero-grid {
+  position: relative; display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr);
+  gap: clamp(32px, 4vw, 56px); align-items: start;
+  max-width: var(--maxw); margin: 0 auto; padding: clamp(48px, 6vw, 68px) 40px clamp(52px, 6vw, 64px);
+}
+.pe-hero-copy { color: var(--cream); }
+.pe-hero-copy .eyebrow { color: rgba(250,215,195,.85); }
+.pe-hero-copy h1 {
+  font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase;
+  font-size: clamp(36px, 5.2vw, 58px); line-height: .96; letter-spacing: .025em;
+  margin: 0; text-wrap: balance;
+}
+.pe-hero-second { font-style: italic; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.3; margin: 18px 0 0; }
+.pe-hero-copy p.pe-lede { font-size: 17.5px; margin: 22px 0 0; max-width: 520px; color: rgba(250,215,195,.92); text-wrap: pretty; }
+.pe-facts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px 20px; margin: 32px 0 0; max-width: 520px; }
+.pe-fact { border-top: 1.5px solid rgba(250,215,195,.4); padding: 12px 0 0; }
+.pe-fact .n { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; font-size: clamp(20px, 2.4vw, 26px); letter-spacing: .02em; line-height: 1; }
+.pe-fact .l { font-style: italic; font-size: 14.5px; color: rgba(250,215,195,.8); }
+
+.pe-card { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: clamp(24px, 3vw, 32px); box-shadow: 0 18px 44px rgba(108,6,0,.22); }
+.pe-card h2 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .05em; font-size: clamp(20px, 2.3vw, 24px); color: var(--red-deep); margin: 0 0 6px; }
+.pe-card .pe-card-note { font-style: italic; font-size: 15px; color: var(--muted); margin: 0 0 22px; }
+.pe-card-foot { font-style: italic; font-size: 14px; color: var(--muted); margin: 14px 0 0; text-align: center; }
+
+.pe-sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; margin: 0 0 36px; }
+.pe-sec-head h2 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .025em; font-size: clamp(30px, 4.2vw, 48px); line-height: 1; margin: 0; }
+.pe-sec-head .pe-sec-aside { font-style: italic; font-size: 17px; margin: 0; color: rgba(108,6,0,.75); max-width: 380px; text-wrap: pretty; }
+
+.pe-rooms { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+.pe-room { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
+.pe-room img { width: 100%; height: clamp(190px, 20vw, 240px); object-fit: cover; }
+.pe-room-body { padding: 26px 28px 30px; }
+.pe-room-kicker { font-style: italic; font-size: 14.5px; color: var(--muted); margin: 0; }
+.pe-room h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: clamp(22px, 2.4vw, 26px); line-height: 1; margin: 8px 0 12px; color: var(--ink); }
+.pe-room p { font-size: 16.5px; margin: 0 0 18px; text-wrap: pretty; }
+.pe-room-row { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 16px; }
+.pe-room-row span:first-child { color: var(--muted); }
+
+.pe-split { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: clamp(40px, 5vw, 72px); align-items: start; }
+.pe-prices { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+.pe-price { border-top: 2px solid var(--red); padding: 18px 0 0; }
+/* min-height keeps the three prices on one baseline when a title wraps to two lines */
+.pe-price h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .05em; font-size: 20px; color: var(--ink); margin: 0 0 4px; min-height: 2.2em; }
+.pe-price .amt { font-family: "VTC Marsha", Impact, sans-serif; font-size: clamp(28px, 3vw, 34px); line-height: 1; color: var(--red); margin: 8px 0 12px; }
+.pe-price .amt small { font-family: "Affairs", Georgia, serif; font-style: italic; font-size: 15px; color: rgba(108,6,0,.7); }
+.pe-price p { font-size: 15.5px; margin: 0; text-wrap: pretty; }
+.pe-drinks { border: 1px solid var(--line); border-radius: 4px; padding: 26px 28px; margin: 28px 0 0; }
+.pe-drinks h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .06em; font-size: 16px; color: var(--red-deep); margin: 0 0 16px; }
+.pe-drinks-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; font-size: 16px; }
+.pe-drinks-grid strong { display: block; margin: 0 0 4px; }
+.pe-drinks-grid span { color: rgba(108,6,0,.75); }
+.pe-chips { display: flex; gap: 14px; flex-wrap: wrap; margin: 26px 0 0; }
+.pe-chips span { border: 1px solid rgba(108,6,0,.28); border-radius: 100px; padding: 8px 16px; font-style: italic; font-size: 14.5px; }
+
+.pe-steps { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(28px, 4vw, 48px); }
+.pe-step .n { font-family: "VTC Marsha", Impact, sans-serif; font-size: clamp(46px, 5vw, 64px); line-height: .85; color: rgba(250,215,195,.5); }
+.pe-step h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: clamp(20px, 2.2vw, 24px); margin: 14px 0 10px; }
+.pe-step p { font-size: 16.5px; margin: 0; color: rgba(250,215,195,.92); text-wrap: pretty; }
+
+.pe-closer { position: relative; overflow: hidden; background: var(--ink); }
+.pe-closer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pe-closer .pe-closer-scrim { position: absolute; inset: 0; background: rgba(108,6,0,.76); }
+.pe-closer-inner { position: relative; text-align: center; color: var(--cream); padding: clamp(64px, 9vw, 108px) 40px; max-width: 960px; margin: 0 auto; }
+.pe-closer-inner h2 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .025em; font-size: clamp(30px, 4.6vw, 52px); line-height: .98; margin: 0; text-wrap: balance; }
+.pe-closer-inner p { font-style: italic; font-size: clamp(17px, 2vw, 20px); margin: 20px 0 28px; }
+
+@media (max-width: 980px) {
+  .pe-hero-grid { grid-template-columns: minmax(0,1fr); padding-top: clamp(40px, 8vw, 56px); }
+  .pe-split { grid-template-columns: minmax(0,1fr); }
+  .pe-rooms { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .pe-prices { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+  .pe-drinks-grid { grid-template-columns: minmax(0,1fr); gap: 16px; }
+}
+@media (max-width: 680px) {
+  .pe-hero-grid, .pe-closer-inner { padding-left: 24px; padding-right: 24px; }
+  .pe-rooms, .pe-prices, .pe-steps { grid-template-columns: minmax(0,1fr); }
+  .pe-facts { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px 16px; }
+  .pe-sec-head { gap: 18px; }
+}
+
+/* ---- Christmas landing extras (.xm-*) — christmas-functions/ only ---- */
+.xm-hero-note { border: 1.4px solid rgba(250,215,195,.45); border-radius: 4px; padding: 18px 22px; margin: 30px 0 0; max-width: 520px; }
+.xm-hero-note strong { display: block; font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; margin: 0 0 8px; color: rgba(250,215,195,.85); }
+.xm-hero-note p { font-style: italic; font-size: 15.5px; line-height: 1.5; margin: 0; color: rgba(250,215,195,.92); text-wrap: pretty; }
+.xm-card-price { font-family: "VTC Marsha", Impact, sans-serif; font-size: clamp(36px, 4.6vw, 48px); line-height: 1; color: var(--red); margin: 10px 0 10px; }
+.xm-card-price small { font-family: "Affairs", Georgia, serif; font-style: italic; font-size: 17px; color: rgba(108,6,0,.7); }
+.xm-card-sub { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .05em; font-size: clamp(19px, 2.2vw, 22px); color: var(--red-deep); margin: 30px 0 6px; }
+.xm-band { text-align: center; }
+.xm-band h2 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .025em; font-size: clamp(30px, 4.6vw, 54px); line-height: .98; margin: 0 auto; max-width: 900px; color: var(--cream); text-wrap: balance; }
+.xm-band p { font-style: italic; font-size: clamp(16px, 1.9vw, 19px); margin: 20px auto 0; max-width: 640px; color: rgba(250,215,195,.92); text-wrap: pretty; }
+.xm-cta-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+/* the Christmas hero photo is candlelit and very low-key — it needs a lighter scrim than
+   the shared one or the room disappears behind it entirely */
+.xm-hero .pe-hero-scrim { background: linear-gradient(180deg, rgba(108,6,0,.82) 0%, rgba(108,6,0,.5) 46%, rgba(108,6,0,.86) 100%); }
+@media (min-width: 981px) {
+  .xm-hero .pe-hero-scrim { background: linear-gradient(90deg, rgba(108,6,0,.9) 0%, rgba(108,6,0,.58) 48%, rgba(108,6,0,.22) 100%); }
+}

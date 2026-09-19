@@ -1,0 +1,349 @@
+/* ============================================================
+   BAR FRANCO — Private events, immersive (page-scoped)
+   Loads AFTER /home.css. Every selector is prefixed .im-
+   so nothing here can collide with the shared stylesheet.
+   Tokens come from home.css :root — never retype the hex.
+   ============================================================ */
+
+.im-main { background: var(--ink); color: var(--cream); }
+
+/* A wider gutter than .wrap — this page is a poster, it wants the edges. */
+.im-wrap { max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 56px); }
+
+/* VTC Marsha is caps-only: every display class forces uppercase. */
+.im-eyebrow {
+  font-style: italic; text-transform: uppercase; letter-spacing: .34em;
+  font-size: clamp(11px, 1.05vw, 13px); line-height: 1.5; margin: 0;
+  color: rgba(250,215,195,.85);
+}
+.im-h2 {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .02em; line-height: .94;
+  font-size: clamp(32px, 6vw, 88px); color: var(--cream);
+  margin: clamp(12px, 1.6vw, 20px) 0 0;
+}
+.im-h2.sm { font-size: clamp(26px, 4.4vw, 72px); }
+.im-roman { font-style: normal; }
+
+/* ---------- Hero poster ---------- */
+.im-hero {
+  position: relative; overflow: hidden; background: var(--ink);
+  min-height: clamp(560px, 86vh, 940px);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0;
+}
+.im-hero-photo {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%;
+}
+.im-hero-scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(108,6,0,.80) 0%, rgba(108,6,0,.24) 36%,
+    rgba(108,6,0,.70) 70%, rgba(108,6,0,.97) 100%);
+}
+.im-hero-inner {
+  position: relative; z-index: 2; width: 100%;
+  padding-top: clamp(90px, 15vw, 190px);
+  padding-bottom: clamp(26px, 3.6vw, 56px);
+}
+/* Poster headline. Sized so "THE LONG TABLE" always holds one line —
+   VTC Marsha measures ~9.17x the font-size for that string, and the
+   .im-wrap content box is ~0.92 of the viewport (capped at 1208px). */
+.im-hero h1 {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .01em; line-height: .86;
+  font-size: clamp(30px, 9.6vw, 128px);
+  color: var(--cream); margin: clamp(14px, 2vw, 26px) 0 0;
+}
+/* Below 560px the headline breaks after "long" instead, which buys a
+   much bigger poster size on a phone. The <br> is markup, toggled here. */
+.im-br-mob { display: none; }
+@media (max-width: 560px) {
+  .im-br-mob { display: inline; }
+  .im-hero h1 { font-size: clamp(30px, 15vw, 88px); }
+}
+.im-hero-foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between;
+  align-items: flex-end; gap: clamp(20px, 3vw, 56px);
+  margin: clamp(22px, 3.2vw, 40px) 0 0;
+}
+.im-hero-lede {
+  font-style: italic; font-size: clamp(17px, 2vw, 30px); line-height: 1.3;
+  margin: 0; max-width: 680px; color: var(--cream); text-wrap: pretty;
+}
+.im-hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.im-hero-short {
+  position: relative; z-index: 2;
+  margin: clamp(16px, 2vw, 24px) 0 0; font-style: italic;
+  font-size: clamp(14px, 1.15vw, 16px); color: rgba(250,215,195,.82);
+}
+.im-hero-short a { color: var(--cream); text-decoration: none; border-bottom: 1px solid rgba(250,215,195,.45); }
+.im-hero-short a:hover { border-bottom-color: var(--cream); }
+
+/* ---------- Marquee ---------- */
+.im-marquee {
+  position: relative; z-index: 3; overflow: hidden;
+  background: var(--cream); color: var(--red-deep);
+  padding: clamp(11px, 1.2vw, 16px) 0;
+}
+.im-marquee-track { display: flex; width: max-content; animation: imMarquee 36s linear infinite; }
+.im-marquee-set { display: flex; align-items: center; flex: none; }
+.im-marquee-set span {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .16em; line-height: 1;
+  font-size: clamp(11px, 1.25vw, 18px);
+  padding: 0 clamp(12px, 1.9vw, 28px); white-space: nowrap;
+}
+.im-marquee-set i { color: rgba(108,6,0,.42); font-style: normal; }
+@keyframes imMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ---------- Numbers ---------- */
+.im-numbers {
+  background: var(--ink);
+  padding: clamp(52px, 7.5vw, 96px) 0 clamp(48px, 7vw, 88px);
+  border-bottom: 1px solid rgba(250,215,195,.18);
+}
+.im-numbers-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: clamp(22px, 3vw, 40px); }
+.im-num {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .01em; line-height: .82;
+  font-size: clamp(50px, 7vw, 104px); color: var(--cream);
+}
+.im-num small { font-size: .42em; }
+.im-numbers p {
+  font-style: italic; font-size: clamp(14.5px, 1.25vw, 17px);
+  margin: 14px 0 0; color: rgba(250,215,195,.82); text-wrap: pretty;
+}
+@media (max-width: 860px) { .im-numbers-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+/* ---------- Hour by hour ---------- */
+.im-hours { background: var(--ink); padding: clamp(56px, 8vw, 96px) 0 0; }
+.im-hours-head { max-width: 900px; }
+.im-hours-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 6px;
+  margin: clamp(30px, 4vw, 56px) 0 0;
+}
+.im-hour { position: relative; overflow: hidden; display: flex; align-items: flex-end; min-height: clamp(360px, 43vw, 620px); }
+.im-hour img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
+.im-hour-scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(108,6,0,.16) 0%, rgba(108,6,0,.93) 100%);
+}
+.im-hour-body { position: relative; z-index: 2; width: 100%; padding: clamp(20px,2.4vw,34px) clamp(18px,2.2vw,32px); }
+.im-hour-time {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em; line-height: 1;
+  font-size: clamp(28px, 3.3vw, 44px); color: var(--cream);
+}
+.im-hour h3 {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em; line-height: 1.2;
+  font-size: clamp(14px, 1.35vw, 18px); margin: 10px 0 8px;
+  color: rgba(250,215,195,.92);
+}
+.im-hour p { font-style: italic; font-size: clamp(14.5px, 1.2vw, 16.5px); margin: 0; color: rgba(250,215,195,.9); text-wrap: pretty; }
+@media (max-width: 980px) { .im-hours-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 560px) { .im-hours-grid { grid-template-columns: minmax(0,1fr); } .im-hour { min-height: 330px; } }
+
+/* ---------- Rooms ---------- */
+.im-rooms-head { background: var(--ink); padding: clamp(56px, 8vw, 96px) 0 0; }
+.im-rooms { display: flex; gap: 6px; background: var(--ink); padding: clamp(30px,4vw,56px) 6px 0; }
+.im-room {
+  position: relative; flex: 1 1 0; min-width: 0; overflow: hidden;
+  display: flex; align-items: flex-end; min-height: clamp(400px, 46vw, 660px);
+  transition: flex-grow .5s cubic-bezier(.2,.7,.3,1);
+}
+.im-room img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
+.im-room-scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(108,6,0,.22) 0%, rgba(108,6,0,.93) 100%);
+}
+.im-room-body { position: relative; z-index: 2; width: 100%; padding: clamp(22px,2.6vw,38px) clamp(20px,2.4vw,36px); }
+.im-room-kicker { font-style: italic; font-size: clamp(13.5px, 1.1vw, 15px); margin: 0; color: rgba(250,215,195,.82); }
+.im-room h3 {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .02em; line-height: .98;
+  font-size: clamp(24px, 2.4vw, 36px); color: var(--cream); margin: 8px 0 14px;
+}
+.im-room-stats { display: flex; flex-wrap: wrap; gap: 6px clamp(16px, 2vw, 28px); font-style: italic; font-size: clamp(14.5px,1.2vw,16.5px); color: rgba(250,215,195,.92); margin: 0; }
+.im-room-stats span { white-space: nowrap; }
+@media (hover: hover) and (min-width: 981px) {
+  .im-rooms:hover .im-room { flex-grow: .85; }
+  .im-rooms .im-room:hover, .im-rooms .im-room:focus-within { flex-grow: 1.55; }
+}
+@media (max-width: 980px) { .im-rooms { flex-direction: column; padding-left: 0; padding-right: 0; } .im-room { min-height: 380px; } }
+
+/* ---------- Cost planner ---------- */
+.im-plan { background: var(--red-deep); color: var(--cream); padding: clamp(58px, 8.5vw, 104px) 0; }
+.im-plan-head {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,420px);
+  gap: clamp(20px,3vw,60px); align-items: end; margin: 0 0 clamp(26px,3.6vw,44px);
+}
+.im-plan-head p.im-plan-aside { font-style: italic; font-size: clamp(16px,1.5vw,19px); margin: 0; color: rgba(250,215,195,.9); text-wrap: pretty; }
+@media (max-width: 860px) { .im-plan-head { grid-template-columns: minmax(0,1fr); align-items: start; } }
+
+.im-plan-grid { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); gap: clamp(28px,4vw,56px); align-items: start; }
+@media (max-width: 980px) { .im-plan-grid { grid-template-columns: minmax(0,1fr); } }
+
+.im-guests-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 14px; }
+.im-guests-label {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em; font-size: clamp(12px,1.1vw,14px);
+  color: rgba(250,215,195,.85);
+}
+.im-guests-out {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .02em; line-height: 1;
+  font-size: clamp(26px, 3.2vw, 40px); color: var(--cream);
+}
+.im-range {
+  -webkit-appearance: none; appearance: none; display: block;
+  width: 100%; height: 4px; border-radius: 2px; margin: 0; padding: 0;
+  background: rgba(250,215,195,.3); outline: none; cursor: pointer;
+}
+.im-range::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--cream); border: 3px solid var(--red-deep);
+  box-shadow: 0 0 0 1.5px rgba(250,215,195,.6); cursor: pointer;
+}
+.im-range::-moz-range-thumb {
+  width: 26px; height: 26px; border-radius: 50%; border: 3px solid var(--red-deep);
+  background: var(--cream); box-shadow: 0 0 0 1.5px rgba(250,215,195,.6); cursor: pointer;
+}
+.im-range:focus-visible { outline: 2px solid var(--cream); outline-offset: 8px; }
+.im-range-ticks { display: flex; justify-content: space-between; font-style: italic; font-size: 14px; color: rgba(250,215,195,.7); margin: 10px 0 0; }
+
+.im-space {
+  border: 1.4px solid rgba(250,215,195,.4); padding: clamp(20px,2.2vw,28px);
+  margin: clamp(26px,3vw,34px) 0 0;
+}
+.im-space-kicker {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em; font-size: 13px;
+  margin: 0 0 10px; color: rgba(250,215,195,.8);
+}
+.im-space-name {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .02em; line-height: 1.02;
+  font-size: clamp(22px, 2.9vw, 38px); margin: 0; color: var(--cream);
+}
+.im-space-note { font-style: italic; font-size: clamp(15px,1.3vw,17px); margin: 12px 0 0; color: rgba(250,215,195,.9); text-wrap: pretty; }
+
+.im-tiers { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin: clamp(20px,2.4vw,26px) 0 0; }
+@media (max-width: 560px) { .im-tiers { grid-template-columns: minmax(0,1fr); } }
+.im-tier {
+  border: 1px solid rgba(250,215,195,.38); background: transparent; color: var(--cream);
+  border-radius: 2px; padding: 14px 18px; cursor: pointer; text-align: left;
+  font-family: "Affairs", Georgia, serif;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.im-tier:hover { border-color: var(--cream); }
+.im-tier:focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; }
+.im-tier[aria-pressed="true"] { background: var(--cream); color: var(--red-deep); border-color: var(--cream); }
+.im-tier-name {
+  display: block;
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em; line-height: 1.15;
+  font-size: clamp(14.5px,1.3vw,17px);
+}
+.im-tier-sub { display: block; font-style: italic; font-size: 15px; margin: 6px 0 0; }
+
+.im-quote {
+  background: var(--paper); color: var(--ink); border-radius: 4px;
+  padding: clamp(24px,3vw,36px); box-shadow: 0 18px 44px rgba(108,6,0,.28);
+}
+.im-quote-eyebrow {
+  font-style: italic; text-transform: uppercase; letter-spacing: .3em;
+  font-size: 12px; color: var(--red-deep); margin: 0;
+}
+.im-quote-name {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em; line-height: 1.05;
+  font-size: clamp(20px,2.2vw,26px); color: var(--ink); margin: 14px 0 6px;
+}
+.im-quote-desc { font-style: italic; font-size: clamp(15px,1.3vw,16px); margin: 0 0 20px; color: rgba(108,6,0,.75); text-wrap: pretty; }
+.im-quote-row {
+  display: flex; justify-content: space-between; gap: 16px; padding: 12px 0;
+  border-top: 1px solid var(--line); font-size: clamp(15px,1.3vw,17px);
+}
+.im-quote-row span:first-child { color: var(--muted); }
+.im-quote-row.last { border-bottom: 1px solid var(--line); }
+.im-quote-total { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin: 20px 0 0; }
+.im-quote-total-l {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em; font-size: 14px; color: rgba(108,6,0,.7);
+}
+.im-quote-total-n {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; line-height: 1;
+  font-size: clamp(32px, 3.9vw, 48px); color: var(--red);
+}
+.im-quote-fine { font-style: italic; font-size: 15px; margin: 10px 0 0; color: rgba(108,6,0,.72); text-wrap: pretty; }
+.im-quote-caveat {
+  font-style: italic; font-size: 14px; margin: 14px 0 22px;
+  padding: 12px 14px; border-left: 2px solid var(--red);
+  background: rgba(240,0,0,.05); color: rgba(108,6,0,.82); text-wrap: pretty;
+}
+.im-btn-full { width: 100%; }
+.im-quote-after { font-style: italic; font-size: 14px; margin: 12px 0 0; text-align: center; color: rgba(108,6,0,.7); }
+
+/* ---------- Host band ---------- */
+.im-host { position: relative; overflow: hidden; background: var(--ink); display: flex; align-items: center; min-height: clamp(400px, 48vw, 560px); }
+.im-host img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; }
+.im-host-scrim { position: absolute; inset: 0; z-index: 1; background: rgba(108,6,0,.78); }
+.im-host-inner { position: relative; z-index: 2; width: 100%; text-align: center; padding: clamp(48px,7vw,80px) 0; }
+.im-host-inner .im-h2 { margin-left: auto; margin-right: auto; max-width: 16ch; }
+.im-host-line { font-style: italic; font-size: clamp(17px, 2vw, 26px); margin: 18px auto 0; max-width: 40ch; color: rgba(250,215,195,.92); text-wrap: pretty; }
+
+/* ---------- FAQ + enquiry ---------- */
+.im-ask { background: var(--cream); color: var(--ink); padding: clamp(58px, 8vw, 96px) 0; }
+.im-ask-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(30px,5vw,72px); align-items: start; }
+@media (max-width: 980px) { .im-ask-grid { grid-template-columns: minmax(0,1fr); } }
+.im-ask .im-eyebrow { color: var(--red-deep); }
+.im-ask .im-h2 { color: var(--red-deep); }
+.im-ask .faq { max-width: none; margin: clamp(20px,2.4vw,28px) 0 0; }
+
+.im-card { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: clamp(22px,3vw,40px); }
+.im-card h2 {
+  font-family: "VTC Marsha", Impact, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em; line-height: 1;
+  font-size: clamp(24px, 3vw, 34px); color: var(--red-deep); margin: 0 0 8px;
+}
+.im-card-note { font-style: italic; font-size: clamp(14.5px,1.3vw,15.5px); color: rgba(108,6,0,.72); margin: 0 0 22px; }
+.im-frame { border: none; display: block; width: 100%; min-height: 420px; background: var(--cream); border-radius: 2px; }
+.im-card-foot { font-style: italic; font-size: 15px; margin: 18px 0 0; color: rgba(108,6,0,.75); }
+.im-card-foot a { color: var(--red-deep); }
+.im-card-contact {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 18px;
+  margin: 22px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line); font-size: 15.5px;
+}
+.im-card-contact > div { min-width: 0; }
+.im-card-contact dt {
+  font-style: italic; font-size: 12.5px; color: rgba(108,6,0,.62);
+  text-transform: uppercase; letter-spacing: .14em;
+}
+.im-card-contact dd { margin: 5px 0 0; overflow-wrap: anywhere; }
+.im-card-contact a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+.im-card-contact a:hover { color: var(--red); }
+
+/* ---------- Closer ---------- */
+.im-closer { position: relative; overflow: hidden; background: var(--ink); display: flex; align-items: center; min-height: clamp(380px, 46vw, 540px); }
+.im-closer img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.im-closer-scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(108,6,0,.78) 0%, rgba(108,6,0,.60) 45%, rgba(108,6,0,.90) 100%);
+}
+.im-closer-inner { position: relative; z-index: 2; width: 100%; text-align: center; padding: clamp(52px,7vw,84px) 0; }
+.im-closer-inner .im-h2 { margin: 0 auto; max-width: 18ch; }
+.im-closer-line { font-style: italic; font-size: clamp(16px,1.7vw,22px); margin: 18px auto 26px; max-width: 46ch; color: rgba(250,215,195,.92); }
+.im-closer-ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.im-closer-short { font-style: italic; font-size: 15px; margin: 22px 0 0; color: rgba(250,215,195,.82); }
+.im-closer-short a { color: var(--cream); text-decoration: none; border-bottom: 1px solid rgba(250,215,195,.45); }
+.im-closer-short a:hover { border-bottom-color: var(--cream); }
+
+/* ---------- Motion off ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .im-marquee-track { animation: none !important; }
+  .im-room, .im-tier { transition: none !important; }
+}
