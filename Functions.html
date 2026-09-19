@@ -192,12 +192,6 @@
   .fx-band img { display: block; width: 100%; height: clamp(300px, 48vw, 480px); object-fit: cover; }
   .fx-band figcaption { font-style: italic; color: var(--muted); font-size: 14px; text-align: center; padding: 12px 20px 0; }
   .types .tphoto { width: 100%; height: 150px; object-fit: cover; border-radius: 4px; margin: 0 0 14px; display: block; }
-  .cta-sticky { display: none; }
-  @media (max-width: 700px) {
-    .cta-sticky { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--red); padding: 13px 16px calc(13px + env(safe-area-inset-bottom, 0px)); justify-content: center; box-shadow: 0 -8px 24px rgba(29,29,27,.18); }
-    .cta-sticky a { color: #fff; font-weight: 600; text-decoration: none; font-size: 16px; letter-spacing: .01em; }
-    body { padding-bottom: 56px; }
-  }
 </style>
 </head>
 <body>
@@ -598,6 +592,11 @@
 </script>
 <script src="/site.js"></script>
 <script src="events-page.js"></script>
+<nav class="cta-sticky" aria-label="Quick actions">
+  <a class="cta-main" href="#enquire">Get a quote</a>
+  <a href="tel:+64212211307">Call</a>
+  <a href="https://wa.me/64212211307?text=Ciao%20Bar%20Franco%21%20I%27d%20like%20to%20enquire%20about%20a%20private%20event%20%E2%80%94" target="_blank" rel="noopener">WhatsApp</a>
+</nav>
 <a class="whatsapp-fab" href="https://wa.me/64212211307?text=Ciao%20Bar%20Franco%21%20I%27d%20like%20to%20enquire%20about%20a%20private%20event%20%E2%80%94" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.3 5.2 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.3C8.4 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.6 14.9 3.1 13.5 3.1 12 3.1 6.9 7.1 3 12 3s8.9 4 8.9 9-4 8.2-8.9 8.2z"/></svg>
   <span class="wa-label">Chat on WhatsApp</span>

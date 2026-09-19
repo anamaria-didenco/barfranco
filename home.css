@@ -851,3 +851,24 @@ img.photo { object-fit: cover; background: var(--cream); }
 @media (min-width: 981px) {
   .xm-hero .pe-hero-scrim { background: linear-gradient(90deg, rgba(108,6,0,.9) 0%, rgba(108,6,0,.58) 48%, rgba(108,6,0,.22) 100%); }
 }
+
+/* sticky quick-actions bar, phones only */
+.cta-sticky { display: none; }
+@media (max-width: 700px) {
+  .cta-sticky {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    background: var(--red-deep); border-top: 1px solid rgba(250,215,195,.25);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -8px 24px rgba(108,6,0,.18);
+  }
+  .cta-sticky a {
+    display: flex; align-items: center; justify-content: center; min-height: 56px;
+    font-family: "Affairs", serif; font-style: italic; font-size: 16px; letter-spacing: .02em;
+    color: var(--cream); text-decoration: none;
+  }
+  .cta-sticky a + a { border-left: 1px solid rgba(250,215,195,.25); }
+  .cta-sticky .cta-main { background: var(--cream); color: var(--red-deep); }
+  .cta-sticky ~ .whatsapp-fab { display: none; }
+  body { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
+}
