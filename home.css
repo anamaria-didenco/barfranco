@@ -898,3 +898,13 @@ input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px
   /* no sticky bar above 700px, so no clearance needed */
   .enquire-embed { padding-bottom: 0; scroll-margin-bottom: 0; }
 }
+
+/* Clearance on the iframe itself, so pages that must not have their layout touched
+   get it without a wrapper div. !important because the widget carries an inline
+   margin:0 auto, which a stylesheet rule cannot otherwise beat. */
+@media (max-width: 700px) {
+  iframe[src*="venueflowhq.com"] {
+    margin-bottom: 72px !important;   /* 57px sticky bar + 15px */
+    scroll-margin-bottom: 72px;
+  }
+}
