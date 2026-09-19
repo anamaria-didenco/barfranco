@@ -77,6 +77,15 @@ a { color: inherit; }
 }
 .nav-links a:not(.btn):hover { color: var(--red); }
 .nav-links a.active { color: var(--red); }
+/* the nav button keeps its own colours and padding.
+   .nav-home.scrolled .nav-links a is the same specificity and sits later in the
+   file, so the scrolled homepage state needs naming here too or it wins. */
+.nav .nav-links a.btn,
+.nav .nav-links a.btn:hover,
+.nav-home.scrolled .nav-links a.btn,
+.nav-home.scrolled .nav-links a.btn:hover { color: var(--cream); border-bottom: 0; }
+.nav .nav-links a.btn,
+.nav-home.scrolled .nav-links a.btn { padding: 12px 24px; }
 .nav-burger {
   display: none; margin-left: auto; width: 40px; height: 40px; border: none;
   background: none; cursor: pointer; flex-direction: column; gap: 5px;
