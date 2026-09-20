@@ -1,0 +1,691 @@
+/* ============================================================
+   BAR FRANCO — CINEMA FRANCO
+   The design system. One stylesheet, one world.
+
+   Franco Red #F00000 · Spritz #AF0F00 · Oxblood #6C0600
+   Peach #FAD7C3 · Paper #FCFBF7 · Night #1A0603
+
+   VTC Marsha (display, CAPS ONLY) · Affairs (serif body)
+
+   Two temperatures run through everything:
+     .t-day    Level 2, the restaurant — paper and candlelight
+     .t-night  Level 1, the bar — oxblood and after dark
+   Franco Red is the constant across both. That is the one world.
+   ============================================================ */
+
+/* ---------- 1. TOKENS ---------- */
+:root {
+  --red: #F00000;
+  --red-deep: #AF0F00;
+  --ink: #6C0600;
+  --cream: #FAD7C3;
+  --paper: #FCFBF7;
+  --night: #1A0603;
+  --night-2: #2B0A05;
+
+  --display: "VTC Marsha", "Arial Black", Impact, sans-serif;
+  --body: "Affairs", Georgia, "Times New Roman", serif;
+
+  /* Cinematic scale — large intervals, editorial confidence.
+     Upper clamps are deliberately restrained: display type this size is
+     set in a column, not across the full viewport, and an unbounded vw
+     value overruns its column long before it overruns the screen. */
+  --t-title: clamp(46px, 7.6vw, 122px);
+  --t-scene: clamp(32px, 4.5vw, 68px);
+  --t-h3: clamp(24px, 2.6vw, 38px);
+  --t-lede: clamp(19px, 1.9vw, 26px);
+  --t-body: 18px;
+  --t-kicker: 12.5px;
+
+  /* Motion. A cut is decisive. A dissolve takes its time. */
+  --cut: 260ms cubic-bezier(.2, .7, .3, 1);
+  --dissolve: 1100ms cubic-bezier(.22, .61, .36, 1);
+  --pan: 900ms cubic-bezier(.33, 1, .68, 1);
+
+  --maxw: 1240px;
+  --gutter: clamp(20px, 4vw, 64px);
+
+  /* Set per temperature — every component reads these, never raw colours */
+  --fg: var(--ink);
+  --fg-muted: rgba(108, 6, 0, .72);
+  --bg: var(--paper);
+  --rule: rgba(108, 6, 0, .18);
+  --accent: var(--red);
+}
+
+.t-day {
+  --fg: var(--ink);
+  --fg-muted: rgba(108, 6, 0, .72);
+  --bg: var(--paper);
+  --rule: rgba(108, 6, 0, .18);
+  --accent: var(--red);
+  color: var(--fg);
+  background: var(--bg);
+}
+
+.t-night {
+  --fg: var(--cream);
+  --fg-muted: rgba(250, 215, 195, .74);
+  --bg: var(--night);
+  --rule: rgba(250, 215, 195, .22);
+  --accent: var(--red);
+  color: var(--fg);
+  background: var(--bg);
+}
+
+.t-blood {
+  --fg: var(--cream);
+  --fg-muted: rgba(250, 215, 195, .78);
+  --bg: var(--red-deep);
+  --rule: rgba(250, 215, 195, .3);
+  --accent: var(--cream);
+  color: var(--fg);
+  background: var(--bg);
+}
+
+/* ---------- 2. BASE ---------- */
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-size: var(--t-body);
+  line-height: 1.62;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+a { color: inherit; }
+
+/* Browsers default <figure> to `margin: 1em 40px`. Every photo in this
+   design lives in a figure, so left unreset it silently eats 80px of
+   width off each one. */
+figure { margin: 0; }
+
+::selection { background: var(--red); color: var(--paper); }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 999;
+  background: var(--red); color: var(--paper);
+  padding: 12px 20px; font-style: italic; text-decoration: none;
+}
+.skip-link:focus { left: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+.wrap-wide { max-width: 1600px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
+  white-space: nowrap; border: 0;
+}
+
+/* ---------- 3. FILM GRAIN ----------
+   Static, not animated. Animated grain repaints the whole viewport every
+   frame and is the single most expensive "free" effect there is. */
+.grain {
+  position: fixed; inset: 0; z-index: 400;
+  pointer-events: none;
+  opacity: .042;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- 4. LETTERBOX ----------
+   2.39:1 is the anamorphic widescreen ratio. It reads as "film" instantly
+   and it is a genuinely useful art-direction crop. */
+.lb { position: relative; overflow: hidden; background: var(--night); }
+.lb > img, .lb > video { width: 100%; height: 100%; object-fit: cover; }
+.lb-239 { aspect-ratio: 2.39 / 1; }
+.lb-185 { aspect-ratio: 1.85 / 1; }
+.lb-43  { aspect-ratio: 4 / 3; }
+.lb-full { aspect-ratio: 3 / 4; }
+.lb-sq  { aspect-ratio: 1 / 1; }
+
+@media (max-width: 720px) {
+  /* A 2.39:1 crop on a phone is a letterbox slot 60px tall. Give mobile
+     its own ratio rather than shrinking the desktop one. */
+  .lb-239 { aspect-ratio: 16 / 10; }
+  .lb-185 { aspect-ratio: 5 / 4; }
+}
+
+/* ---------- 5. TYPOGRAPHY ---------- */
+.title-card {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: var(--t-title);
+  line-height: .82;
+  letter-spacing: -.012em;
+  margin: 0;
+  color: var(--fg);
+}
+
+.scene-h {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: var(--t-scene);
+  line-height: .86;
+  letter-spacing: -.008em;
+  margin: 0 0 .32em;
+  color: var(--fg);
+}
+
+.h3 {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: var(--t-h3);
+  line-height: .94;
+  margin: 0 0 .4em;
+  color: var(--fg);
+}
+
+.lede {
+  font-size: var(--t-lede);
+  line-height: 1.46;
+  font-style: italic;
+  color: var(--fg);
+  margin: 0 0 1.1em;
+  max-width: 34ch;
+}
+
+.body-copy { color: var(--fg-muted); margin: 0 0 1.1em; max-width: 58ch; }
+.body-copy:last-child { margin-bottom: 0; }
+
+.kicker {
+  font-style: italic;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  font-size: var(--t-kicker);
+  color: var(--accent);
+  margin: 0 0 18px;
+  display: block;
+}
+
+/* The slate — a film scene marker. Roman numeral, then the scene name. */
+.slate {
+  display: flex; align-items: baseline; gap: 14px;
+  margin: 0 0 clamp(26px, 4vw, 54px);
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
+}
+.slate-n {
+  font-family: var(--display);
+  font-size: 15px; letter-spacing: .06em;
+  color: var(--accent);
+  line-height: 1;
+}
+.slate-label {
+  font-style: italic; letter-spacing: .3em; text-transform: uppercase;
+  font-size: 11.5px; color: var(--fg-muted);
+}
+.slate-rule { flex: 1; height: 1px; background: var(--rule); }
+
+/* An oversized red word used as a graphic element, not as a heading. */
+.mono-word {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: clamp(90px, 22vw, 340px);
+  line-height: .74;
+  color: var(--red);
+  margin: 0;
+  letter-spacing: -.02em;
+  pointer-events: none;
+}
+
+/* ---------- 6. MOTION ----------
+   Progressive enhancement: everything is visible by default. Only when JS
+   confirms it is running (html.js-motion) do reveals start hidden. If the
+   script fails, the page is simply a static page — never a blank one. */
+.js-motion .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity var(--dissolve), transform var(--dissolve);
+  will-change: opacity, transform;
+}
+.js-motion .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Word-level rise, for headings the splitter has processed. */
+.word { display: inline-block; overflow: hidden; vertical-align: top; }
+.word > i {
+  display: inline-block;
+  font-style: inherit;
+  transform: translateY(105%);
+  transition: transform 880ms cubic-bezier(.22, .61, .36, 1);
+}
+.is-in .word > i { transform: none; }
+
+.d1 { transition-delay: 90ms; }
+.d2 { transition-delay: 190ms; }
+.d3 { transition-delay: 300ms; }
+.d4 { transition-delay: 420ms; }
+
+/* Slow image dissolve — the photograph resolves rather than appears. */
+.js-motion .dissolve img {
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1400ms ease, transform 1800ms cubic-bezier(.22, .61, .36, 1);
+}
+.js-motion .dissolve.is-in img { opacity: 1; transform: none; }
+
+/* The opening fade-in. Deliberately load-only: a fade-OUT on every link
+   click would tax every navigation on the site to buy one effect. */
+.reel-in {
+  position: fixed; inset: 0; z-index: 500;
+  background: var(--night);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 760ms ease 120ms;
+}
+.reel-in.is-done { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js-motion .reveal,
+  .js-motion .reveal.is-in { opacity: 1; transform: none; transition: none; }
+  .js-motion .dissolve img { opacity: 1; transform: none; transition: none; }
+  .word > i { transform: none !important; transition: none !important; }
+  .reel-in { display: none; }
+  .strip-track { animation: none !important; }
+  * { scroll-behavior: auto !important; }
+}
+
+/* ---------- 7. BUTTONS ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--body); font-style: italic;
+  font-size: 15.5px; letter-spacing: .02em;
+  text-decoration: none; cursor: pointer;
+  border: none; border-radius: 1px;
+  padding: 14px 28px;
+  background: var(--red); color: var(--paper);
+  transition: background var(--cut), color var(--cut), transform var(--cut);
+}
+.btn:hover { background: var(--ink); transform: translateY(-1px); }
+.btn.lg { padding: 17px 36px; font-size: 17px; }
+
+.btn.ghost {
+  background: transparent; color: var(--fg);
+  box-shadow: inset 0 0 0 1.4px currentColor;
+}
+.btn.ghost:hover { background: var(--fg); color: var(--bg); }
+
+.btn.light { background: var(--cream); color: var(--red-deep); }
+.btn.light:hover { background: var(--paper); color: var(--red-deep); }
+
+/* A text link that behaves like a caption under a film still. */
+.link-u {
+  text-decoration: none;
+  font-style: italic;
+  color: var(--fg);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: color var(--cut), border-color var(--cut);
+}
+.link-u:hover { color: var(--accent); }
+
+/* ---------- 8. NAV ----------
+   Transparent over the opening frame, then it cuts to a solid black bar —
+   which doubles as the top letterbox edge. */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  transition: background var(--cut), border-color var(--cut), padding var(--cut);
+  border-bottom: 1px solid transparent;
+  padding: 18px 0;
+}
+.nav-inner {
+  max-width: 1600px; margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex; align-items: center; gap: 26px;
+}
+.nav-logo { width: clamp(88px, 9vw, 124px); height: auto; }
+.nav-logo img { width: 100%; height: auto; }
+
+.nav-links {
+  margin-left: auto;
+  display: flex; align-items: center; gap: clamp(16px, 2vw, 30px);
+}
+.nav-links a {
+  text-decoration: none;
+  font-style: italic;
+  font-size: 14.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--cream);
+  position: relative;
+  padding: 4px 0;
+  transition: color var(--cut);
+}
+.nav-links a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1px; background: currentColor;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--cut);
+}
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after { transform: scaleX(1); }
+.nav-links a.btn { color: var(--paper); }
+.nav-links a.btn::after { display: none; }
+
+.nav.is-cut {
+  background: var(--night);
+  border-bottom-color: rgba(250, 215, 195, .16);
+  padding: 11px 0;
+}
+
+/* Pages that open on a light ground need dark nav text before the cut. */
+.nav.on-light .nav-links a { color: var(--ink); }
+.nav.on-light .nav-links a.btn { color: var(--paper); }
+.nav.on-light.is-cut .nav-links a { color: var(--cream); }
+.nav.on-light.is-cut .nav-links a.btn { color: var(--paper); }
+
+.nav-burger {
+  display: none;
+  margin-left: auto;
+  background: none; border: 0; cursor: pointer;
+  width: 42px; height: 34px; padding: 6px;
+}
+.nav-burger span {
+  display: block; height: 1.6px; background: var(--cream);
+  margin: 6px 0; transition: transform var(--cut), opacity var(--cut);
+}
+.nav.on-light .nav-burger span { background: var(--ink); }
+.nav.on-light.is-cut .nav-burger span,
+.nav.is-cut .nav-burger span { background: var(--cream); }
+.nav.is-open .nav-burger span:nth-child(1) { transform: translateY(7.6px) rotate(45deg); }
+.nav.is-open .nav-burger span:nth-child(2) { opacity: 0; }
+.nav.is-open .nav-burger span:nth-child(3) { transform: translateY(-7.6px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .nav-burger { display: block; }
+  .nav-links {
+    position: fixed; inset: 0 0 0 auto;
+    width: min(84vw, 380px);
+    background: var(--night);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 22px;
+    padding: 0 34px;
+    transform: translateX(100%);
+    transition: transform 420ms cubic-bezier(.22, .61, .36, 1);
+    margin-left: 0;
+  }
+  .nav.is-open .nav-links { transform: none; }
+  .nav-links a { font-size: 20px; color: var(--cream); letter-spacing: .1em; }
+  .nav.on-light .nav-links a { color: var(--cream); }
+  .nav-links a.btn { margin-top: 10px; }
+}
+
+/* ---------- 9. SCENES ---------- */
+.scene {
+  position: relative;
+  padding: clamp(72px, 11vw, 170px) 0;
+}
+.scene-tight { padding: clamp(48px, 7vw, 96px) 0; }
+.scene-flush { padding: 0; }
+
+/* Asymmetric editorial grids. Deliberately uneven — never a card row. */
+.grid-7-5, .grid-5-7, .grid-6-6, .grid-8-4 {
+  display: grid;
+  gap: clamp(28px, 5vw, 84px);
+  align-items: center;
+}
+.grid-7-5 { grid-template-columns: 7fr 5fr; }
+.grid-5-7 { grid-template-columns: 5fr 7fr; }
+.grid-6-6 { grid-template-columns: 1fr 1fr; }
+.grid-8-4 { grid-template-columns: 8fr 4fr; }
+.grid-top { align-items: start; }
+
+@media (max-width: 900px) {
+  .grid-7-5, .grid-5-7, .grid-6-6, .grid-8-4 { grid-template-columns: 1fr; }
+  .m-first { order: -1; }
+}
+
+/* Offset a column vertically — the trick that stops a two-up reading as a card row. */
+.offset-down { transform: translateY(clamp(20px, 5vw, 76px)); }
+.offset-up { transform: translateY(clamp(-76px, -5vw, -20px)); }
+@media (max-width: 900px) {
+  .offset-down, .offset-up { transform: none; }
+}
+
+/* A full-bleed frame that breaks the container. */
+.bleed {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ---------- 10. THE STAIRCASE ----------
+   Two levels, one world. A tracking shot descending from the restaurant
+   into the bar. The scroll drives a seam; the two worlds counter-move. */
+.stair { position: relative; }
+.stair-rail { height: 300vh; }
+.stair-stage {
+  position: sticky; top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--night);
+}
+.stair-layer { position: absolute; inset: 0; }
+.stair-layer img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.stair-layer .stair-veil {
+  position: absolute; inset: 0;
+  /* Weighted to the bottom, where the level copy sits. */
+  background: linear-gradient(180deg,
+    rgba(26, 6, 3, .28) 0%,
+    rgba(26, 6, 3, .40) 42%,
+    rgba(26, 6, 3, .90) 100%);
+}
+/* Night rises from the bottom as you descend. */
+.stair-night { clip-path: inset(100% 0 0 0); }
+.stair-day img, .stair-night img { transform: scale(1.06); }
+
+/* Reduced motion, or no JS: the set piece becomes two plain stacked
+   panels. Both levels stay fully readable — nothing stays clipped away. */
+.stair-static .stair-rail,
+html:not(.js-motion) .stair-rail { height: auto; }
+.stair-static .stair-stage,
+html:not(.js-motion) .stair-stage { position: static; height: auto; overflow: visible; }
+.stair-static .stair-layer,
+html:not(.js-motion) .stair-layer {
+  position: relative; inset: auto;
+  height: 68vh; min-height: 400px;
+  clip-path: none !important;
+}
+.stair-static .stair-layer img,
+html:not(.js-motion) .stair-layer img {
+  position: absolute; inset: 0; transform: none !important;
+}
+.stair-static .stair-copy,
+html:not(.js-motion) .stair-copy { opacity: 1 !important; }
+.stair-static .stair-seam, .stair-static .stair-floor,
+html:not(.js-motion) .stair-seam, html:not(.js-motion) .stair-floor { display: none; }
+
+.stair-copy {
+  position: absolute; left: 0; right: 0; bottom: clamp(60px, 12vh, 140px);
+  padding: 0 var(--gutter);
+  max-width: 1600px; margin: 0 auto;
+}
+.stair-copy .kicker { color: var(--cream); }
+.stair-copy h2 {
+  font-family: var(--display); text-transform: uppercase;
+  font-size: clamp(40px, 8.5vw, 130px); line-height: .84;
+  margin: 0 0 .2em; color: var(--cream);
+}
+.stair-copy p {
+  font-style: italic; color: rgba(250, 215, 195, .84);
+  max-width: 40ch; font-size: clamp(16px, 1.7vw, 22px); margin: 0 0 22px;
+}
+
+/* The seam itself — the edge of the staircase. */
+.stair-seam {
+  position: absolute; left: 0; right: 0;
+  height: 1px; background: var(--red);
+  box-shadow: 0 0 22px 3px rgba(240, 0, 0, .55);
+  z-index: 5;
+}
+.stair-floor {
+  position: absolute; z-index: 6;
+  right: var(--gutter);
+  transition: opacity 320ms ease;
+  font-family: var(--display); text-transform: uppercase;
+  font-size: 12px; letter-spacing: .24em; color: var(--cream);
+  transform: translateY(-22px);
+}
+
+@media (max-width: 720px) {
+  .stair-rail { height: 240vh; }
+}
+
+/* ---------- 11. MARQUEE ---------- */
+.strip {
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 15px 0;
+  background: var(--bg);
+}
+.strip-track {
+  display: flex; gap: 46px; width: max-content;
+  animation: strip 42s linear infinite;
+}
+.strip-track span {
+  font-family: var(--display); text-transform: uppercase;
+  font-size: 14px; letter-spacing: .2em; color: var(--accent);
+  white-space: nowrap;
+}
+.strip-track span::after { content: " ·"; opacity: .4; margin-left: 46px; }
+@keyframes strip { to { transform: translateX(-50%); } }
+
+/* ---------- 12. FOOTER ---------- */
+.site-foot {
+  background: var(--night); color: var(--cream);
+  padding: clamp(60px, 8vw, 110px) 0 34px;
+}
+.foot-top {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter);
+  display: grid; grid-template-columns: 2fr 1.2fr 1fr 1.2fr;
+  gap: clamp(28px, 4vw, 56px);
+}
+.foot-brand .foot-logo { width: 150px; margin-bottom: 20px; }
+.foot-brand p { color: rgba(250, 215, 195, .7); max-width: 40ch; font-size: 16px; }
+.foot-col h4 {
+  font-family: var(--display); text-transform: uppercase;
+  font-size: 12.5px; letter-spacing: .2em; color: var(--red);
+  margin: 0 0 12px;
+}
+.foot-col h4 + h4 { margin-top: 26px; }
+.foot-col p, .foot-col a {
+  display: block; color: rgba(250, 215, 195, .78);
+  text-decoration: none; font-size: 15.5px; margin: 0 0 7px;
+  transition: color var(--cut);
+}
+.foot-col a:hover { color: var(--cream); }
+.foot-note { font-style: italic; opacity: .64; font-size: 14px !important; }
+
+.foot-socials { display: flex; gap: 12px; margin-top: 18px; }
+.foot-socials a, .nav-socials a {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  border: 1px solid rgba(250, 215, 195, .3); border-radius: 50%;
+  color: var(--cream); transition: background var(--cut), color var(--cut);
+}
+.foot-socials a:hover { background: var(--cream); color: var(--night); }
+.foot-socials svg, .nav-socials svg { width: 17px; height: 17px; }
+
+.foot-bottom {
+  max-width: var(--maxw); margin: clamp(40px, 5vw, 72px) auto 0;
+  padding: 22px var(--gutter) 0;
+  border-top: 1px solid rgba(250, 215, 195, .16);
+  display: flex; flex-wrap: wrap; gap: 16px 28px;
+  align-items: center; justify-content: space-between;
+}
+.foot-nav { display: flex; flex-wrap: wrap; gap: 20px; }
+.foot-nav a {
+  text-decoration: none; font-style: italic; font-size: 14px;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(250, 215, 195, .72);
+}
+.foot-nav a:hover { color: var(--cream); }
+.foot-bottom .copy { margin: 0; font-size: 13.5px; color: rgba(250, 215, 195, .5); }
+
+@media (max-width: 900px) {
+  .foot-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .foot-top { grid-template-columns: 1fr; }
+}
+
+/* ---------- 13. STICKY QUICK ACTIONS (phone) ----------
+   Kept from the live site: it converts. 57px tall, and every embedded
+   booking/enquiry iframe must clear it — see .embed-clear below. */
+.cta-sticky { display: none; }
+@media (max-width: 760px) {
+  .cta-sticky {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 320;
+    background: var(--night); border-top: 1px solid rgba(250, 215, 195, .2);
+    height: 57px;
+  }
+  .cta-sticky a {
+    flex: 1; display: grid; place-items: center;
+    text-decoration: none; color: var(--cream);
+    font-style: italic; font-size: 14.5px; letter-spacing: .04em;
+    border-left: 1px solid rgba(250, 215, 195, .16);
+  }
+  .cta-sticky a:first-child { border-left: 0; }
+  .cta-sticky .cta-main { flex: 1.5; background: var(--red); color: var(--paper); }
+  .embed-clear { padding-bottom: 72px; scroll-margin-bottom: 72px; }
+  iframe[src*="venueflowhq.com"] { margin-bottom: 72px !important; }
+}
+
+.whatsapp-fab {
+  position: fixed; right: 20px; bottom: 20px; z-index: 310;
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--red); color: var(--paper);
+  padding: 12px 18px; border-radius: 40px; text-decoration: none;
+  font-style: italic; font-size: 15px;
+  box-shadow: 0 6px 24px rgba(108, 6, 0, .3);
+  transition: background var(--cut), transform var(--cut);
+}
+.whatsapp-fab:hover { background: var(--ink); transform: translateY(-2px); }
+.whatsapp-fab svg { width: 21px; height: 21px; }
+@media (max-width: 760px) {
+  .whatsapp-fab { bottom: 69px; right: 14px; padding: 11px; }
+  .whatsapp-fab .wa-label { display: none; }
+}
+
+/* ---------- 14. EMBEDS ---------- */
+.embed-frame {
+  width: 100%; border: 0; display: block;
+  background: var(--paper);
+  min-height: 760px;
+}
+
+/* ---------- 15. PRINT ---------- */
+@media print {
+  .nav, .cta-sticky, .whatsapp-fab, .grain, .reel-in, .strip { display: none !important; }
+  body { color: #000; background: #fff; }
+}
