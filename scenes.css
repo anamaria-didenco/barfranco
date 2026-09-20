@@ -1,301 +1,221 @@
 /* ============================================================
    BAR FRANCO — CINEMA FRANCO
-   Scene compositions. cinema.css is the system; this is the
-   art direction. Every scene gets its own composition —
-   nothing here is a reusable card row, on purpose.
+   Scene compositions.
+
+   cinema.css is the system. This is the art direction: what each
+   scene does that no other scene does. Nothing in here is a card
+   row, and no photograph sits behind type as wallpaper.
    ============================================================ */
 
-/* ---------- FRAME ONE — the title card ---------- */
-.frame-one {
-  position: relative;
+/* ---------- THE OVERTURE ----------
+   The opening frame. Peach ground, a running head, the statement set
+   in Affairs italic, and one photograph framed beside it. Deliberately
+   NOT a full-bleed photo with a scrim — that pattern is the single most
+   generic thing on the restaurant web, and it wastes the one colour no
+   competitor in this city owns. */
+.overture {
   min-height: 100svh;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
+  display: flex; flex-direction: column;
+  padding-top: clamp(92px, 12vh, 140px);
+  padding-bottom: clamp(26px, 4vh, 48px);
 }
-.frame-one-photo {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center 42%;
+.overture-in {
+  max-width: var(--maxw); margin: 0 auto; width: 100%;
+  padding: 0 var(--gutter);
+  display: flex; flex-direction: column; flex: 1;
 }
-.frame-one-veil {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(180deg, rgba(26, 6, 3, .66) 0%, rgba(26, 6, 3, .18) 36%, rgba(26, 6, 3, .55) 72%, rgba(26, 6, 3, .92) 100%),
-    linear-gradient(90deg, rgba(26, 6, 3, .58) 0%, rgba(26, 6, 3, 0) 58%);
-}
-.frame-one-inner {
-  position: relative; z-index: 2;
-  width: 100%; max-width: 1600px; margin: 0 auto;
-  /* Top padding clears the fixed nav — without it a tall title card
-     starts underneath the logo. */
-  padding: clamp(96px, 14vh, 150px) var(--gutter) clamp(64px, 10vh, 120px);
-}
-.frame-one-copy { max-width: 960px; }
-.frame-one-copy .kicker { color: var(--cream); opacity: .88; }
-.frame-one-second {
-  font-family: var(--body); font-style: italic;
-  font-size: clamp(22px, 3.4vw, 50px);
-  line-height: 1.1; color: var(--cream);
-  margin: .34em 0 0;
-}
-.frame-one-sub {
-  color: rgba(250, 215, 195, .78);
-  max-width: 44ch; margin: 1.3em 0 0;
-  font-size: clamp(16px, 1.5vw, 19px);
-}
-.frame-one-cta {
-  display: flex; flex-wrap: wrap; align-items: center;
-  gap: 18px 28px; margin-top: clamp(26px, 3.4vw, 42px);
-}
-.frame-one-cta .link-u { color: var(--cream); }
 
-/* The hours stamp, set like a credit block in the corner. */
-.frame-one-stamp {
-  position: absolute; z-index: 2;
-  right: var(--gutter); top: 50%;
-  transform: translateY(-50%);
-  text-align: right;
-  display: grid; gap: 2px;
-  padding-right: 18px;
-  border-right: 1px solid rgba(250, 215, 195, .34);
+.overture-body {
+  flex: 1;
+  display: grid; grid-template-columns: 7fr 5fr;
+  gap: clamp(30px, 5vw, 90px);
+  align-items: center;
+  padding: clamp(34px, 6vh, 80px) 0;
 }
-.frame-one-stamp span {
-  font-style: italic; font-size: 11.5px;
-  letter-spacing: .26em; text-transform: uppercase;
-  color: rgba(250, 215, 195, .7);
+
+.overture-statement {
+  font-size: clamp(30px, 4.9vw, 78px);
+  line-height: 1.04;
+  max-width: 15ch;
 }
-.frame-one-stamp strong {
-  font-family: var(--display); text-transform: uppercase;
-  font-size: 15px; letter-spacing: .1em; color: var(--cream);
-  font-weight: 400; line-height: 1.5;
+.overture-statement .q2 {
+  display: block;
+  color: var(--red);
+}
+.overture-sub {
+  margin: clamp(26px, 3.4vw, 42px) 0 0;
+  max-width: 32ch;
+  color: var(--fg-muted);
+  font-size: var(--t-lede);
+}
+.overture-acts { margin-top: clamp(28px, 3.6vw, 46px); }
+
+.overture-plate { position: relative; }
+/* Capped against the viewport so the caption and the hours line below it
+   always stay on screen — an opening frame that scrolls is not an
+   opening frame. */
+.overture-plate .plate {
+  aspect-ratio: 3 / 4.2;
+  max-height: min(58svh, 580px);
+}
+.overture-plate figcaption {
+  display: flex; justify-content: space-between; gap: 16px;
+}
+
+.overture-foot {
+  display: flex; flex-wrap: wrap; gap: 10px 36px;
+  justify-content: space-between; align-items: baseline;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
 }
 
 @media (max-width: 900px) {
-  .frame-one-stamp { display: none; }
-}
-@media (max-width: 720px) {
-  /* Mobile gets its own frame: the copy sits lower and tighter, and the
-     title drops a step so it never runs to four cramped lines. */
-  .frame-one { min-height: 92svh; }
-  .frame-one-photo { object-position: center 38%; }
-  .frame-one-copy { max-width: none; }
-  .frame-one-cta .btn { width: 100%; }
+  .overture { min-height: 0; padding-top: clamp(86px, 13vh, 120px); }
+  .overture-body { grid-template-columns: 1fr; gap: 34px; padding: 30px 0 40px; }
+  .overture-statement { max-width: none; }
+  .overture-plate .plate { aspect-ratio: 4 / 3; }
+  .overture-foot { display: none; }
 }
 
-/* ---------- I. ATMOSFERA — the offset cluster ---------- */
-.atmos-copy { padding-top: clamp(0px, 2vw, 30px); }
-.atmos-media {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(12px, 1.6vw, 22px);
+/* ---------- ATMOSFERA ----------
+   Type-led and mostly empty. One photograph, bleeding off the right
+   edge only — a single-edge bleed reads as a decision, a full bleed
+   reads as a default. */
+/* Top-aligned, not centred: centring a short copy column against a tall
+   stack of plates opens a dead void above the heading. */
+.atmos-grid { grid-template-columns: 6fr 6fr; align-items: start; }
+.atmos-copy .voice { max-width: 13ch; margin-bottom: clamp(26px, 3vw, 40px); }
+.atmos-stack {
+  display: grid; gap: clamp(14px, 1.6vw, 22px);
+  margin-top: clamp(0px, 2.5vw, 48px);
 }
-.atmos-media figure { margin: 0; overflow: hidden; }
-.atmos-media img { width: 100%; height: 100%; object-fit: cover; }
-.atmos-a {
-  grid-column: 1 / 2; grid-row: 1 / 3;
-  aspect-ratio: 3 / 4.4;
+.atmos-stack .plate:nth-child(2) {
+  width: 62%; margin-left: auto;
 }
-.atmos-b {
-  grid-column: 2 / 3; grid-row: 1 / 2;
-  aspect-ratio: 4 / 3;
-  transform: translateY(clamp(22px, 4vw, 58px));
-}
-.atmos-c {
-  grid-column: 2 / 3; grid-row: 2 / 3;
-  aspect-ratio: 4 / 3;
-  transform: translateY(clamp(22px, 4vw, 58px));
-}
-
 @media (max-width: 900px) {
-  .atmos-media { margin-top: 40px; }
-  .atmos-b, .atmos-c { transform: none; }
-  .atmos-a { aspect-ratio: 3 / 4; }
+  .atmos-grid { grid-template-columns: 1fr; }
+  .atmos-stack .plate:nth-child(2) { width: 100%; }
 }
 
-/* ---------- II. THE STAIRCASE — the title that holds still ----------
-   The set piece: the type stays fixed dead centre while the two levels
-   slide past behind it. One world; the view changes. */
+/* ---------- THE STAIRCASE — the held title ----------
+   The type stays dead centre while the two levels slide past behind it,
+   then dissolves so each level can speak for itself. */
 .stair-title {
   position: absolute; z-index: 4;
   left: 50%; top: 50%;
   transform: translate(-50%, -50%);
-  margin: 0;
-  width: max-content; max-width: 90vw;
+  margin: 0; width: max-content; max-width: 88vw;
   text-align: center;
   font-family: var(--display); text-transform: uppercase;
-  font-size: clamp(38px, 8vw, 116px);
-  line-height: .88;
+  font-size: clamp(34px, 6.4vw, 92px);
+  line-height: .9;
+  letter-spacing: var(--tr-display);
   color: var(--cream);
-  text-shadow: 0 6px 40px rgba(26, 6, 3, .6);
   pointer-events: none;
 }
 .stair-title em {
   font-family: var(--body); font-style: italic;
-  text-transform: none;
-  font-size: .82em;
-  color: var(--red);
-  text-shadow: 0 6px 40px rgba(26, 6, 3, .8);
+  text-transform: none; font-size: .8em;
+  color: rgba(250, 215, 195, .82);
+  letter-spacing: 0;
+}
+.stair-static .stair-title, html:not(.js-motion) .stair-title { display: none; }
+
+/* ---------- IL RISTORANTE ---------- */
+.rist-pan { margin-bottom: clamp(40px, 6vw, 90px); }
+.rist-grid { grid-template-columns: 5fr 6fr; gap: clamp(30px, 6vw, 120px); }
+.rist-note {
+  border-left: 1px solid var(--rule);
+  padding-left: clamp(18px, 2.4vw, 34px);
 }
 
-.stair-copy .btn { margin-top: 6px; }
+/* ---------- IL BAR ----------
+   The only scene that goes dark on the way down. Photographs sit in
+   frames here too — the darkness comes from the ground, not a scrim. */
+.bar-grid { grid-template-columns: 5fr 7fr; gap: clamp(30px, 5vw, 96px); align-items: center; }
+.bar-plates { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(14px, 1.6vw, 22px); align-items: start; }
+.bar-plates .plate { background: rgba(250, 215, 195, .08); }
+.bar-plates > :nth-child(2) { margin-top: clamp(36px, 6vw, 96px); }
+@media (max-width: 900px) {
+  .bar-grid { grid-template-columns: 1fr; }
+  .bar-plates > :nth-child(2) { margin-top: 0; }
+}
+
+/* ---------- LA TAVOLA ----------
+   Four plates, captioned, with real air between them. */
+.tavola-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; margin-bottom: clamp(44px, 6vw, 84px); }
+.tavola-head .voice { max-width: 12ch; }
+.tavola-head p { max-width: 30ch; margin: 0; color: var(--fg-muted); }
+
+.tavola-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px, 2vw, 32px);
+}
+.tavola-row > figure:nth-child(2) { margin-top: clamp(28px, 4vw, 66px); }
+.tavola-row > figure:nth-child(4) { margin-top: clamp(28px, 4vw, 66px); }
+.tavola-foot { margin-top: clamp(50px, 7vw, 104px); }
 
 @media (max-width: 900px) {
-  .stair-copy h2 { font-size: clamp(34px, 11vw, 60px); }
-  .stair-copy p { font-size: 16px; max-width: 32ch; }
-  .stair-title { font-size: clamp(30px, 11vw, 60px); }
-}
-
-/* In the static fallback the held title would collide with the panels. */
-.stair-static .stair-title,
-html:not(.js-motion) .stair-title { display: none; }
-
-/* ---------- III. IL RISTORANTE ---------- */
-.rist-still { margin: clamp(10px, 2vw, 26px) 0 clamp(40px, 6vw, 84px); }
-.rist-grid { align-items: start; }
-.rist-alt { margin-left: 22px; }
-
-@media (max-width: 720px) {
-  .rist-alt { display: inline-block; margin: 18px 0 0; }
-}
-
-/* ---------- IV. IL BAR ---------- */
-.bar-scene { overflow: hidden; }
-.bar-copy { padding-right: clamp(0px, 3vw, 50px); }
-.bar-media {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(12px, 1.6vw, 22px);
-  align-items: start;
-}
-.bar-p1 { grid-column: 1 / 3; }
-.bar-p2 {
-  grid-column: 2 / 3;
-  transform: translateY(clamp(-40px, -3vw, -14px));
-}
-@media (max-width: 900px) {
-  .bar-media { margin-top: 38px; }
-  .bar-p2 { transform: none; }
-}
-
-/* ---------- V. LA TAVOLA — the filmstrip ---------- */
-.tavola-h { max-width: 16ch; margin-bottom: clamp(34px, 5vw, 62px); }
-
-.tavola-reel {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(12px, 1.6vw, 24px);
-  padding: 0 var(--gutter);
-  max-width: 1600px; margin: 0 auto;
-}
-.tavola-reel figure { margin: 0; }
-.tavola-reel img {
-  width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
-}
-.tavola-reel figure:nth-child(even) { transform: translateY(clamp(18px, 3vw, 46px)); }
-.tavola-reel figcaption {
-  font-style: italic; letter-spacing: .24em; text-transform: uppercase;
-  font-size: 11.5px; color: var(--fg-muted);
-  margin-top: 12px;
-}
-.tavola-foot {
-  margin-top: clamp(54px, 7vw, 100px);
-  display: flex; flex-wrap: wrap; align-items: center;
-  gap: 20px 40px;
-}
-.tavola-foot .body-copy { margin: 0; max-width: 46ch; }
-
-@media (max-width: 900px) {
-  /* A real filmstrip on phones — swipe through the frames. */
-  .tavola-reel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 12px;
-    padding-bottom: 8px;
+  .tavola-head { flex-direction: column; align-items: flex-start; gap: 22px; }
+  .tavola-row {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    gap: 14px; scrollbar-width: none; padding-bottom: 6px;
   }
-  .tavola-reel::-webkit-scrollbar { display: none; }
-  .tavola-reel { scrollbar-width: none; }
-  .tavola-reel figure {
-    flex: 0 0 68vw; scroll-snap-align: center;
-    transform: none !important;
-  }
+  .tavola-row::-webkit-scrollbar { display: none; }
+  .tavola-row > figure { flex: 0 0 66vw; scroll-snap-align: center; margin-top: 0 !important; }
 }
 
-/* ---------- VI. LA TAVOLA LUNGA — events ---------- */
-.events-scene { position: relative; overflow: hidden; }
-.events-grid { align-items: center; }
-.events-actions {
-  display: flex; flex-wrap: wrap; gap: 14px 18px;
-  margin-top: clamp(24px, 3vw, 36px);
+/* ---------- LA TAVOLA LUNGA — events ---------- */
+.events-grid { grid-template-columns: 6fr 6fr; align-items: center; }
+.events-figures { display: grid; gap: clamp(14px, 1.6vw, 22px); }
+.events-figures .plate:nth-child(2) { width: 68%; }
+.events-facts {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  margin: clamp(30px, 4vw, 48px) 0;
+  padding: clamp(24px, 3vw, 34px) 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
-.events-note { margin: 22px 0 0; }
-.events-note .link-u { color: var(--cream); }
-
-.events-media {
-  display: grid;
-  grid-template-columns: 1.12fr .88fr;
-  gap: clamp(12px, 1.6vw, 22px);
-  align-items: start;
+.events-facts dt {
+  font-size: var(--t-micro); letter-spacing: var(--tr-micro);
+  text-transform: uppercase; color: var(--fg-muted); margin-bottom: 8px;
 }
-.ev-p1 { grid-column: 1 / 2; grid-row: 1 / 2; }
-.ev-p2 {
-  grid-column: 2 / 3; grid-row: 1 / 2;
-  transform: translateY(clamp(44px, 7vw, 104px));
+.events-facts dd {
+  margin: 0; font-style: italic; font-size: clamp(18px, 1.8vw, 25px); line-height: 1.2;
 }
 @media (max-width: 900px) {
-  .events-media { margin-top: 40px; }
-  .ev-p2 { transform: translateY(26px); }
+  .events-grid { grid-template-columns: 1fr; }
+  .events-figures .plate:nth-child(2) { width: 100%; }
+}
+@media (max-width: 560px) {
+  .events-facts { grid-template-columns: 1fr; gap: 20px; }
 }
 
-/* ---------- VII. THE CLOSER ---------- */
-.closer {
-  position: relative;
-  padding: clamp(80px, 12vw, 170px) 0 clamp(70px, 10vw, 140px);
-  overflow: hidden;
+/* ---------- THE CLOSER ----------
+   Quiet. Peach ground, one statement, the practical facts set small.
+   No photograph — after seven scenes of them, the absence lands. */
+.closer-statement {
+  max-width: 17ch;
+  margin-bottom: clamp(34px, 4.5vw, 60px);
 }
-.closer-photo {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%; object-fit: cover;
-}
-.closer-veil {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(26, 6, 3, .9), rgba(26, 6, 3, .76));
-}
-.closer-inner { position: relative; z-index: 2; }
-.closer-inner .slate { border-color: rgba(250, 215, 195, .26); }
-.closer-inner .slate-label { color: rgba(250, 215, 195, .7); }
-.closer-inner .slate-rule { background: rgba(250, 215, 195, .26); }
-
-.closer-h {
-  font-family: var(--display); text-transform: uppercase;
-  font-size: clamp(34px, 6.4vw, 92px);
-  line-height: .9; color: var(--cream);
-  margin: 0 0 clamp(28px, 4vw, 44px);
-  max-width: 18ch;
-}
-.closer-cta { display: flex; flex-wrap: wrap; gap: 14px 18px; }
-
 .closer-facts {
-  margin-top: clamp(50px, 7vw, 90px);
-  padding-top: clamp(28px, 4vw, 44px);
-  border-top: 1px solid rgba(250, 215, 195, .2);
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: clamp(24px, 3vw, 48px);
+  margin-top: clamp(54px, 8vw, 110px);
+  padding-top: clamp(26px, 3vw, 40px);
+  border-top: 1px solid var(--rule);
 }
 .closer-facts h3 {
-  font-family: var(--display); text-transform: uppercase;
-  font-size: 12px; letter-spacing: .2em; color: var(--red);
-  margin: 0 0 10px;
+  font-size: var(--t-micro); letter-spacing: var(--tr-micro);
+  text-transform: uppercase; color: var(--fg-muted);
+  margin: 0 0 12px; font-weight: 400;
 }
-.closer-facts p { margin: 0 0 6px; color: rgba(250, 215, 195, .82); font-size: 16px; }
-.closer-facts a { text-decoration: none; }
-.closer-facts a:hover { color: var(--cream); text-decoration: underline; }
-.closer-note { font-style: italic; opacity: .66; font-size: 14.5px !important; }
+.closer-facts p { margin: 0 0 4px; font-size: 16px; }
+.closer-facts a { text-decoration: none; border-bottom: 1px solid var(--rule); }
+.closer-facts a:hover { border-color: var(--fg); }
+.closer-note { font-style: italic; color: var(--fg-muted); font-size: 15px !important; }
 
 @media (max-width: 760px) {
   .closer-facts { grid-template-columns: 1fr; }
-  .closer-cta .btn { width: 100%; }
 }

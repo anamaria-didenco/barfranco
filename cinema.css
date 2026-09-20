@@ -1,16 +1,22 @@
 /* ============================================================
    BAR FRANCO — CINEMA FRANCO
-   The design system. One stylesheet, one world.
+   The design system.
 
    Franco Red #F00000 · Spritz #AF0F00 · Oxblood #6C0600
    Peach #FAD7C3 · Paper #FCFBF7 · Night #1A0603
 
-   VTC Marsha (display, CAPS ONLY) · Affairs (serif body)
+   VTC Marsha (display, CAPS ONLY) · Affairs (serif, the voice)
 
-   Two temperatures run through everything:
-     .t-day    Level 2, the restaurant — paper and candlelight
-     .t-night  Level 1, the bar — oxblood and after dark
-   Franco Red is the constant across both. That is the one world.
+   Three principles this system holds to:
+
+   1. PEACH IS THE GROUND, NOT THE ACCENT. No competitor in
+      Christchurch owns this colour. Used as a full ground it does
+      more for the brand than any amount of photography.
+   2. AFFAIRS ITALIC IS THE VOICE. The statements are set in the
+      serif italic, large. VTC Marsha is rare and enormous, or tiny
+      and widely tracked — never in the mushy middle.
+   3. RED IS PUNCTUATION. One red moment per screen, at most. Paint
+      it everywhere and it stops meaning anything.
    ============================================================ */
 
 /* ---------- 1. TOKENS ---------- */
@@ -21,83 +27,69 @@
   --cream: #FAD7C3;
   --paper: #FCFBF7;
   --night: #1A0603;
-  --night-2: #2B0A05;
 
   --display: "VTC Marsha", "Arial Black", Impact, sans-serif;
   --body: "Affairs", Georgia, "Times New Roman", serif;
 
-  /* Cinematic scale — large intervals, editorial confidence.
-     Upper clamps are deliberately restrained: display type this size is
-     set in a column, not across the full viewport, and an unbounded vw
-     value overruns its column long before it overruns the screen. */
-  --t-title: clamp(46px, 7.6vw, 122px);
-  --t-scene: clamp(32px, 4.5vw, 68px);
-  --t-h3: clamp(24px, 2.6vw, 38px);
-  --t-lede: clamp(19px, 1.9vw, 26px);
-  --t-body: 18px;
-  --t-kicker: 12.5px;
+  /* Type. Deliberate gaps between steps — nothing lands in the middle. */
+  --t-display: clamp(42px, 5.8vw, 94px);   /* VTC Marsha, rare */
+  --t-voice:   clamp(27px, 4.3vw, 70px);   /* Affairs italic — the statements */
+  --t-h:       clamp(21px, 2.2vw, 31px);
+  --t-lede:    clamp(17px, 1.4vw, 21px);
+  --t-body:    17px;
+  --t-micro:   11px;                        /* caps, widely tracked */
 
-  /* Motion. A cut is decisive. A dissolve takes its time. */
-  --cut: 260ms cubic-bezier(.2, .7, .3, 1);
+  /* Tracking. Tight on display, generous on the small stuff. */
+  --tr-display: -.022em;
+  --tr-micro: .28em;
+
+  --cut: 240ms cubic-bezier(.2, .7, .3, 1);
   --dissolve: 1100ms cubic-bezier(.22, .61, .36, 1);
-  --pan: 900ms cubic-bezier(.33, 1, .68, 1);
 
-  --maxw: 1240px;
-  --gutter: clamp(20px, 4vw, 64px);
+  /* Space. A book's margins, not a landing page's. */
+  --gutter: clamp(22px, 6.4vw, 132px);
+  --maxw: 1460px;
+  --measure: 58ch;
 
-  /* Set per temperature — every component reads these, never raw colours */
   --fg: var(--ink);
-  --fg-muted: rgba(108, 6, 0, .72);
-  --bg: var(--paper);
-  --rule: rgba(108, 6, 0, .18);
-  --accent: var(--red);
+  --fg-muted: rgba(108, 6, 0, .68);
+  --bg: var(--cream);
+  --rule: rgba(108, 6, 0, .22);
 }
 
-.t-day {
-  --fg: var(--ink);
-  --fg-muted: rgba(108, 6, 0, .72);
-  --bg: var(--paper);
-  --rule: rgba(108, 6, 0, .18);
-  --accent: var(--red);
-  color: var(--fg);
-  background: var(--bg);
+/* Temperatures. Each sets a ground; components only read the variables. */
+.t-peach {
+  --fg: var(--ink); --fg-muted: rgba(108, 6, 0, .68);
+  --bg: var(--cream); --rule: rgba(108, 6, 0, .22);
+  color: var(--fg); background: var(--bg);
 }
-
+.t-paper {
+  --fg: var(--ink); --fg-muted: rgba(108, 6, 0, .66);
+  --bg: var(--paper); --rule: rgba(108, 6, 0, .18);
+  color: var(--fg); background: var(--bg);
+}
 .t-night {
-  --fg: var(--cream);
-  --fg-muted: rgba(250, 215, 195, .74);
-  --bg: var(--night);
-  --rule: rgba(250, 215, 195, .22);
-  --accent: var(--red);
-  color: var(--fg);
-  background: var(--bg);
+  --fg: var(--cream); --fg-muted: rgba(250, 215, 195, .66);
+  --bg: var(--night); --rule: rgba(250, 215, 195, .2);
+  color: var(--fg); background: var(--bg);
 }
-
-.t-blood {
-  --fg: var(--cream);
-  --fg-muted: rgba(250, 215, 195, .78);
-  --bg: var(--red-deep);
-  --rule: rgba(250, 215, 195, .3);
-  --accent: var(--cream);
-  color: var(--fg);
-  background: var(--bg);
+.t-ink {
+  --fg: var(--cream); --fg-muted: rgba(250, 215, 195, .7);
+  --bg: var(--ink); --rule: rgba(250, 215, 195, .26);
+  color: var(--fg); background: var(--bg);
 }
 
 /* ---------- 2. BASE ---------- */
 * { box-sizing: border-box; }
-
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
   font-family: var(--body);
   font-size: var(--t-body);
-  line-height: 1.62;
+  line-height: 1.66;
   color: var(--ink);
-  background: var(--paper);
+  background: var(--cream);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -106,32 +98,23 @@ body {
 img, svg, video { display: block; max-width: 100%; }
 a { color: inherit; }
 
-/* Browsers default <figure> to `margin: 1em 40px`. Every photo in this
-   design lives in a figure, so left unreset it silently eats 80px of
-   width off each one. */
+/* Browsers default <figure> to `margin: 1em 40px`. Every photograph in
+   this design lives in a figure, so unreset it silently eats 80px off
+   each one. */
 figure { margin: 0; }
 
-::selection { background: var(--red); color: var(--paper); }
+::selection { background: var(--ink); color: var(--cream); }
 
 .skip-link {
   position: absolute; left: -9999px; top: 0; z-index: 999;
-  background: var(--red); color: var(--paper);
-  padding: 12px 20px; font-style: italic; text-decoration: none;
+  background: var(--ink); color: var(--cream);
+  padding: 14px 22px; text-decoration: none;
+  font-size: var(--t-micro); letter-spacing: var(--tr-micro); text-transform: uppercase;
 }
 .skip-link:focus { left: 0; }
+:focus-visible { outline: 1.5px solid var(--red); outline-offset: 4px; }
 
-:focus-visible {
-  outline: 2px solid var(--red);
-  outline-offset: 3px;
-}
-
-.wrap {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-}
-.wrap-wide { max-width: 1600px; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
@@ -139,243 +122,239 @@ figure { margin: 0; }
   white-space: nowrap; border: 0;
 }
 
-/* ---------- 3. FILM GRAIN ----------
-   Static, not animated. Animated grain repaints the whole viewport every
-   frame and is the single most expensive "free" effect there is. */
-.grain {
-  position: fixed; inset: 0; z-index: 400;
-  pointer-events: none;
-  opacity: .042;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+/* ---------- 3. TYPOGRAPHY ---------- */
 
-/* ---------- 4. LETTERBOX ----------
-   2.39:1 is the anamorphic widescreen ratio. It reads as "film" instantly
-   and it is a genuinely useful art-direction crop. */
-.lb { position: relative; overflow: hidden; background: var(--night); }
-.lb > img, .lb > video { width: 100%; height: 100%; object-fit: cover; }
-.lb-239 { aspect-ratio: 2.39 / 1; }
-.lb-185 { aspect-ratio: 1.85 / 1; }
-.lb-43  { aspect-ratio: 4 / 3; }
-.lb-full { aspect-ratio: 3 / 4; }
-.lb-sq  { aspect-ratio: 1 / 1; }
-
-@media (max-width: 720px) {
-  /* A 2.39:1 crop on a phone is a letterbox slot 60px tall. Give mobile
-     its own ratio rather than shrinking the desktop one. */
-  .lb-239 { aspect-ratio: 16 / 10; }
-  .lb-185 { aspect-ratio: 5 / 4; }
-}
-
-/* ---------- 5. TYPOGRAPHY ---------- */
-.title-card {
+/* VTC Marsha. Rare, and when it appears it commits. */
+.display {
   font-family: var(--display);
   text-transform: uppercase;
-  font-size: var(--t-title);
-  line-height: .82;
-  letter-spacing: -.012em;
+  font-size: var(--t-display);
+  line-height: .86;
+  letter-spacing: var(--tr-display);
   margin: 0;
   color: var(--fg);
 }
 
-.scene-h {
-  font-family: var(--display);
-  text-transform: uppercase;
-  font-size: var(--t-scene);
-  line-height: .86;
+/* Affairs italic. This is what Bar Franco sounds like. */
+.voice {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: var(--t-voice);
+  line-height: 1.08;
   letter-spacing: -.008em;
-  margin: 0 0 .32em;
+  margin: 0 0 clamp(22px, 2.6vw, 36px);
   color: var(--fg);
 }
+/* The opening statement sets its own rhythm against the sub-line. */
+.overture-statement { margin-bottom: 0; }
 
-.h3 {
-  font-family: var(--display);
-  text-transform: uppercase;
-  font-size: var(--t-h3);
-  line-height: .94;
-  margin: 0 0 .4em;
-  color: var(--fg);
+.h {
+  font-family: var(--body); font-style: italic;
+  font-size: var(--t-h); line-height: 1.2;
+  margin: 0 0 .5em; color: var(--fg);
 }
 
 .lede {
-  font-size: var(--t-lede);
-  line-height: 1.46;
-  font-style: italic;
-  color: var(--fg);
-  margin: 0 0 1.1em;
-  max-width: 34ch;
+  font-size: var(--t-lede); line-height: 1.5;
+  color: var(--fg); margin: 0 0 1.2em;
+  max-width: 30ch;
 }
 
-.body-copy { color: var(--fg-muted); margin: 0 0 1.1em; max-width: 58ch; }
+.body-copy {
+  color: var(--fg-muted); margin: 0 0 1.15em;
+  max-width: var(--measure);
+}
 .body-copy:last-child { margin-bottom: 0; }
 
-.kicker {
-  font-style: italic;
-  letter-spacing: .34em;
+/* The small stuff: uppercase, widely tracked, quiet. */
+.micro {
+  font-family: var(--body);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tr-micro);
   text-transform: uppercase;
-  font-size: var(--t-kicker);
-  color: var(--accent);
-  margin: 0 0 18px;
-  display: block;
-}
-
-/* The slate — a film scene marker. Roman numeral, then the scene name. */
-.slate {
-  display: flex; align-items: baseline; gap: 14px;
-  margin: 0 0 clamp(26px, 4vw, 54px);
-  border-top: 1px solid var(--rule);
-  padding-top: 14px;
-}
-.slate-n {
-  font-family: var(--display);
-  font-size: 15px; letter-spacing: .06em;
-  color: var(--accent);
-  line-height: 1;
-}
-.slate-label {
-  font-style: italic; letter-spacing: .3em; text-transform: uppercase;
-  font-size: 11.5px; color: var(--fg-muted);
-}
-.slate-rule { flex: 1; height: 1px; background: var(--rule); }
-
-/* An oversized red word used as a graphic element, not as a heading. */
-.mono-word {
-  font-family: var(--display);
-  text-transform: uppercase;
-  font-size: clamp(90px, 22vw, 340px);
-  line-height: .74;
-  color: var(--red);
+  color: var(--fg-muted);
   margin: 0;
-  letter-spacing: -.02em;
-  pointer-events: none;
+}
+.micro-rule {
+  display: flex; align-items: center; gap: 18px;
+  margin: 0 0 clamp(30px, 4vw, 56px);
+}
+.micro-rule::after {
+  content: ""; flex: 1; height: 1px; background: var(--rule);
 }
 
-/* ---------- 6. MOTION ----------
-   Progressive enhancement: everything is visible by default. Only when JS
-   confirms it is running (html.js-motion) do reveals start hidden. If the
-   script fails, the page is simply a static page — never a blank one. */
+/* A running head: the fine print of a well-set book. */
+.runner {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tr-micro);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.runner span { white-space: nowrap; }
+@media (max-width: 640px) {
+  .runner .runner-mid { display: none; }
+}
+
+/* ---------- 4. MOTION ----------
+   Visible by default; only hides once JS confirms it is running. */
 .js-motion .reveal {
-  opacity: 0;
-  transform: translateY(26px);
+  opacity: 0; transform: translateY(20px);
   transition: opacity var(--dissolve), transform var(--dissolve);
-  will-change: opacity, transform;
 }
-.js-motion .reveal.is-in {
-  opacity: 1;
-  transform: none;
-}
+.js-motion .reveal.is-in { opacity: 1; transform: none; }
 
-/* Word-level rise, for headings the splitter has processed. */
 .word { display: inline-block; overflow: hidden; vertical-align: top; }
 .word > i {
-  display: inline-block;
-  font-style: inherit;
-  transform: translateY(105%);
-  transition: transform 880ms cubic-bezier(.22, .61, .36, 1);
+  display: inline-block; font-style: inherit;
+  transform: translateY(104%);
+  transition: transform 900ms cubic-bezier(.22, .61, .36, 1);
 }
 .is-in .word > i { transform: none; }
 
-.d1 { transition-delay: 90ms; }
-.d2 { transition-delay: 190ms; }
-.d3 { transition-delay: 300ms; }
-.d4 { transition-delay: 420ms; }
+.d1 { transition-delay: 100ms; }
+.d2 { transition-delay: 210ms; }
+.d3 { transition-delay: 330ms; }
+.d4 { transition-delay: 460ms; }
 
-/* Slow image dissolve — the photograph resolves rather than appears. */
-.js-motion .dissolve img {
-  opacity: 0;
-  transform: scale(1.06);
-  transition: opacity 1400ms ease, transform 1800ms cubic-bezier(.22, .61, .36, 1);
-}
-.js-motion .dissolve.is-in img { opacity: 1; transform: none; }
+/* A photograph resolves rather than appears. */
+.js-motion .dissolve img { opacity: 0; transition: opacity 1300ms ease; }
+.js-motion .dissolve.is-in img { opacity: 1; }
 
-/* The opening fade-in. Deliberately load-only: a fade-OUT on every link
-   click would tax every navigation on the site to buy one effect. */
 .reel-in {
   position: fixed; inset: 0; z-index: 500;
-  background: var(--night);
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 760ms ease 120ms;
+  background: var(--cream);
+  pointer-events: none; opacity: 1;
+  transition: opacity 700ms ease 100ms;
 }
 .reel-in.is-done { opacity: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js-motion .reveal,
-  .js-motion .reveal.is-in { opacity: 1; transform: none; transition: none; }
-  .js-motion .dissolve img { opacity: 1; transform: none; transition: none; }
+  .js-motion .reveal, .js-motion .reveal.is-in { opacity: 1; transform: none; transition: none; }
+  .js-motion .dissolve img { opacity: 1; transition: none; }
   .word > i { transform: none !important; transition: none !important; }
   .reel-in { display: none; }
-  .strip-track { animation: none !important; }
   * { scroll-behavior: auto !important; }
 }
 
-/* ---------- 7. BUTTONS ---------- */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  font-family: var(--body); font-style: italic;
-  font-size: 15.5px; letter-spacing: .02em;
-  text-decoration: none; cursor: pointer;
-  border: none; border-radius: 1px;
-  padding: 14px 28px;
-  background: var(--red); color: var(--paper);
-  transition: background var(--cut), color var(--cut), transform var(--cut);
-}
-.btn:hover { background: var(--ink); transform: translateY(-1px); }
-.btn.lg { padding: 17px 36px; font-size: 17px; }
-
-.btn.ghost {
-  background: transparent; color: var(--fg);
-  box-shadow: inset 0 0 0 1.4px currentColor;
-}
-.btn.ghost:hover { background: var(--fg); color: var(--bg); }
-
-.btn.light { background: var(--cream); color: var(--red-deep); }
-.btn.light:hover { background: var(--paper); color: var(--red-deep); }
-
-/* A text link that behaves like a caption under a film still. */
-.link-u {
+/* ---------- 5. ACTIONS ----------
+   Mostly hairline and quiet. Exactly one filled red action per screen. */
+.act {
+  display: inline-flex; align-items: center; gap: 12px;
   text-decoration: none;
-  font-style: italic;
+  font-size: var(--t-micro);
+  letter-spacing: var(--tr-micro);
+  text-transform: uppercase;
   color: var(--fg);
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 2px;
+  padding: 17px 30px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  transition: background var(--cut), color var(--cut), border-color var(--cut);
+}
+.act:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+.act-fill {
+  background: var(--red); color: var(--paper); border-color: var(--red);
+}
+.act-fill:hover { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+
+/* A word with a rule under it. Often better than a button. */
+.act-text {
+  display: inline-block; text-decoration: none;
+  font-size: var(--t-micro); letter-spacing: var(--tr-micro);
+  text-transform: uppercase; color: var(--fg);
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--fg);
   transition: color var(--cut), border-color var(--cut);
 }
-.link-u:hover { color: var(--accent); }
+.act-text:hover { color: var(--red); border-color: var(--red); }
+
+.acts { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; }
+
+/* ---------- 6. PHOTOGRAPHY ----------
+   Framed like plates in a book. Never wallpaper behind text. */
+.plate { position: relative; overflow: hidden; background: rgba(108, 6, 0, .06); }
+.plate > img { width: 100%; height: 100%; object-fit: cover; }
+
+/* A caption belongs to the figure, not inside the frame. */
+.plate figcaption,
+.plate-wrap > figcaption,
+.overture-plate > figcaption {
+  margin-top: 14px;
+  font-size: var(--t-micro); letter-spacing: var(--tr-micro);
+  text-transform: uppercase; color: var(--fg-muted);
+}
+.r-portrait { aspect-ratio: 4 / 5; }
+.r-tall     { aspect-ratio: 3 / 4.3; }
+.r-land     { aspect-ratio: 5 / 4; }
+.r-wide     { aspect-ratio: 16 / 10; }
+.r-pan      { aspect-ratio: 2.4 / 1; }
+.r-sq       { aspect-ratio: 1 / 1; }
+
+@media (max-width: 720px) {
+  .r-pan { aspect-ratio: 16 / 10; }
+  .r-tall { aspect-ratio: 4 / 5; }
+}
+
+/* A single-edge bleed reads as intent. A full bleed reads as default. */
+.bleed-r { margin-right: calc(var(--gutter) * -1); }
+.bleed-l { margin-left: calc(var(--gutter) * -1); }
+@media (max-width: 860px) {
+  .bleed-r, .bleed-l { margin-right: 0; margin-left: 0; }
+}
+
+/* ---------- 7. SECTIONS ---------- */
+.scene { padding: clamp(84px, 13vw, 210px) 0; position: relative; }
+.scene-tight { padding: clamp(54px, 7vw, 110px) 0; }
+
+/* Real asymmetry — not 6/6 with a different name. */
+.g-9-3, .g-3-9, .g-7-5, .g-5-7, .g-half {
+  display: grid; gap: clamp(30px, 5vw, 96px); align-items: start;
+}
+.g-9-3 { grid-template-columns: 9fr 3fr; }
+.g-3-9 { grid-template-columns: 3fr 9fr; }
+.g-7-5 { grid-template-columns: 7fr 5fr; }
+.g-5-7 { grid-template-columns: 5fr 7fr; }
+.g-half { grid-template-columns: 1fr 1fr; }
+.g-mid { align-items: center; }
+
+@media (max-width: 900px) {
+  .g-9-3, .g-3-9, .g-7-5, .g-5-7, .g-half { grid-template-columns: 1fr; }
+  .m-first { order: -1; }
+}
+
+.drop-1 { margin-top: clamp(30px, 6vw, 110px); }
+.drop-2 { margin-top: clamp(50px, 11vw, 210px); }
+@media (max-width: 900px) { .drop-1, .drop-2 { margin-top: 0; } }
 
 /* ---------- 8. NAV ----------
-   Transparent over the opening frame, then it cuts to a solid black bar —
-   which doubles as the top letterbox edge. */
+   Hairline and quiet. No pill, no solid bar until it needs one. */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-  transition: background var(--cut), border-color var(--cut), padding var(--cut);
+  padding: 22px 0;
+  transition: background var(--cut), padding var(--cut), border-color var(--cut);
   border-bottom: 1px solid transparent;
-  padding: 18px 0;
 }
 .nav-inner {
-  max-width: 1600px; margin: 0 auto;
-  padding: 0 var(--gutter);
-  display: flex; align-items: center; gap: 26px;
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter);
+  display: flex; align-items: center; gap: 30px;
 }
-.nav-logo { width: clamp(88px, 9vw, 124px); height: auto; }
+.nav-logo { width: clamp(76px, 7vw, 104px); }
 .nav-logo img { width: 100%; height: auto; }
 
-.nav-links {
-  margin-left: auto;
-  display: flex; align-items: center; gap: clamp(16px, 2vw, 30px);
-}
+.nav-links { margin-left: auto; display: flex; align-items: center; gap: clamp(14px, 1.9vw, 30px); }
 .nav-links a {
   text-decoration: none;
-  font-style: italic;
-  font-size: 14.5px;
-  letter-spacing: .13em;
+  font-size: var(--t-micro);
+  letter-spacing: var(--tr-micro);
   text-transform: uppercase;
-  color: var(--cream);
-  position: relative;
-  padding: 4px 0;
-  transition: color var(--cut);
+  color: var(--nav-fg, var(--ink));
+  padding: 4px 0; position: relative;
+  transition: opacity var(--cut);
 }
 .nav-links a::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0;
@@ -383,309 +362,210 @@ figure { margin: 0; }
   transform: scaleX(0); transform-origin: left;
   transition: transform var(--cut);
 }
-.nav-links a:hover::after,
-.nav-links a[aria-current="page"]::after { transform: scaleX(1); }
-.nav-links a.btn { color: var(--paper); }
-.nav-links a.btn::after { display: none; }
+.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { transform: scaleX(1); }
+
+.nav-res {
+  border: 1px solid currentColor; padding: 11px 20px;
+}
+.nav-res::after { display: none !important; }
+.nav-res:hover { background: var(--nav-fg, var(--ink)); color: var(--nav-bg, var(--cream)); }
+
+/* Over a dark opening frame. */
+.nav.on-dark { --nav-fg: var(--cream); --nav-bg: var(--night); }
 
 .nav.is-cut {
-  background: var(--night);
-  border-bottom-color: rgba(250, 215, 195, .16);
-  padding: 11px 0;
+  background: var(--cream);
+  border-bottom-color: rgba(108, 6, 0, .16);
+  padding: 13px 0;
+  --nav-fg: var(--ink); --nav-bg: var(--cream);
 }
-
-/* Pages that open on a light ground need dark nav text before the cut. */
-.nav.on-light .nav-links a { color: var(--ink); }
-.nav.on-light .nav-links a.btn { color: var(--paper); }
-.nav.on-light.is-cut .nav-links a { color: var(--cream); }
-.nav.on-light.is-cut .nav-links a.btn { color: var(--paper); }
 
 .nav-burger {
-  display: none;
-  margin-left: auto;
+  display: none; margin-left: auto;
   background: none; border: 0; cursor: pointer;
-  width: 42px; height: 34px; padding: 6px;
+  width: 40px; height: 32px; padding: 5px;
 }
 .nav-burger span {
-  display: block; height: 1.6px; background: var(--cream);
+  display: block; height: 1.3px; background: var(--nav-fg, var(--ink));
   margin: 6px 0; transition: transform var(--cut), opacity var(--cut);
 }
-.nav.on-light .nav-burger span { background: var(--ink); }
-.nav.on-light.is-cut .nav-burger span,
-.nav.is-cut .nav-burger span { background: var(--cream); }
-.nav.is-open .nav-burger span:nth-child(1) { transform: translateY(7.6px) rotate(45deg); }
+.nav.is-open .nav-burger span:nth-child(1) { transform: translateY(7.3px) rotate(45deg); }
 .nav.is-open .nav-burger span:nth-child(2) { opacity: 0; }
-.nav.is-open .nav-burger span:nth-child(3) { transform: translateY(-7.6px) rotate(-45deg); }
+.nav.is-open .nav-burger span:nth-child(3) { transform: translateY(-7.3px) rotate(-45deg); }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .nav-burger { display: block; }
+  .nav.is-open .nav-burger span { background: var(--ink); }
   .nav-links {
     position: fixed; inset: 0 0 0 auto;
-    width: min(84vw, 380px);
-    background: var(--night);
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 22px;
-    padding: 0 34px;
+    width: min(86vw, 400px);
+    background: var(--cream);
+    flex-direction: column; align-items: flex-start; justify-content: center;
+    gap: 26px; padding: 0 clamp(26px, 8vw, 54px);
     transform: translateX(100%);
-    transition: transform 420ms cubic-bezier(.22, .61, .36, 1);
+    transition: transform 460ms cubic-bezier(.22, .61, .36, 1);
     margin-left: 0;
   }
   .nav.is-open .nav-links { transform: none; }
-  .nav-links a { font-size: 20px; color: var(--cream); letter-spacing: .1em; }
-  .nav.on-light .nav-links a { color: var(--cream); }
-  .nav-links a.btn { margin-top: 10px; }
+  .nav-links a { color: var(--ink); font-size: 13px; }
+  .nav-res { margin-top: 12px; }
 }
 
-/* ---------- 9. SCENES ---------- */
-.scene {
-  position: relative;
-  padding: clamp(72px, 11vw, 170px) 0;
-}
-.scene-tight { padding: clamp(48px, 7vw, 96px) 0; }
-.scene-flush { padding: 0; }
-
-/* Asymmetric editorial grids. Deliberately uneven — never a card row. */
-.grid-7-5, .grid-5-7, .grid-6-6, .grid-8-4 {
-  display: grid;
-  gap: clamp(28px, 5vw, 84px);
-  align-items: center;
-}
-.grid-7-5 { grid-template-columns: 7fr 5fr; }
-.grid-5-7 { grid-template-columns: 5fr 7fr; }
-.grid-6-6 { grid-template-columns: 1fr 1fr; }
-.grid-8-4 { grid-template-columns: 8fr 4fr; }
-.grid-top { align-items: start; }
-
-@media (max-width: 900px) {
-  .grid-7-5, .grid-5-7, .grid-6-6, .grid-8-4 { grid-template-columns: 1fr; }
-  .m-first { order: -1; }
-}
-
-/* Offset a column vertically — the trick that stops a two-up reading as a card row. */
-.offset-down { transform: translateY(clamp(20px, 5vw, 76px)); }
-.offset-up { transform: translateY(clamp(-76px, -5vw, -20px)); }
-@media (max-width: 900px) {
-  .offset-down, .offset-up { transform: none; }
-}
-
-/* A full-bleed frame that breaks the container. */
-.bleed {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
-/* ---------- 10. THE STAIRCASE ----------
-   Two levels, one world. A tracking shot descending from the restaurant
-   into the bar. The scroll drives a seam; the two worlds counter-move. */
+/* ---------- 9. THE STAIRCASE ---------- */
 .stair { position: relative; }
 .stair-rail { height: 300vh; }
-.stair-stage {
-  position: sticky; top: 0;
-  height: 100vh;
-  overflow: hidden;
-  background: var(--night);
-}
+.stair-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; background: var(--night); }
 .stair-layer { position: absolute; inset: 0; }
-.stair-layer img {
-  width: 100%; height: 100%; object-fit: cover;
-}
-.stair-layer .stair-veil {
+.stair-layer img { width: 100%; height: 100%; object-fit: cover; }
+.stair-veil {
   position: absolute; inset: 0;
-  /* Weighted to the bottom, where the level copy sits. */
   background: linear-gradient(180deg,
-    rgba(26, 6, 3, .28) 0%,
-    rgba(26, 6, 3, .40) 42%,
-    rgba(26, 6, 3, .90) 100%);
+    rgba(26, 6, 3, .26) 0%, rgba(26, 6, 3, .36) 44%, rgba(26, 6, 3, .88) 100%);
 }
-/* Night rises from the bottom as you descend. */
 .stair-night { clip-path: inset(100% 0 0 0); }
-.stair-day img, .stair-night img { transform: scale(1.06); }
+.stair-day img, .stair-night img { transform: scale(1.05); }
 
-/* Reduced motion, or no JS: the set piece becomes two plain stacked
-   panels. Both levels stay fully readable — nothing stays clipped away. */
-.stair-static .stair-rail,
-html:not(.js-motion) .stair-rail { height: auto; }
-.stair-static .stair-stage,
-html:not(.js-motion) .stair-stage { position: static; height: auto; overflow: visible; }
-.stair-static .stair-layer,
-html:not(.js-motion) .stair-layer {
-  position: relative; inset: auto;
-  height: 68vh; min-height: 400px;
+.stair-copy {
+  position: absolute; left: 0; right: 0; bottom: clamp(56px, 11vh, 132px);
+  padding: 0 var(--gutter);
+  max-width: var(--maxw); margin: 0 auto;
+}
+.stair-copy .micro { color: rgba(250, 215, 195, .66); margin-bottom: 18px; }
+.stair-copy h2 {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(30px, 4.6vw, 66px); line-height: 1.04;
+  margin: 0 0 .35em; color: var(--cream);
+}
+.stair-copy p {
+  color: rgba(250, 215, 195, .72); max-width: 34ch;
+  font-size: var(--t-lede); margin: 0 0 26px;
+}
+.stair-copy .act { color: var(--cream); border-color: rgba(250, 215, 195, .4); }
+.stair-copy .act:hover { background: var(--cream); color: var(--ink); border-color: var(--cream); }
+
+.stair-seam {
+  position: absolute; left: 0; right: 0; height: 1px;
+  background: rgba(250, 215, 195, .8);
+  z-index: 5; transition: opacity 300ms ease;
+}
+.stair-floor {
+  position: absolute; z-index: 6; right: var(--gutter);
+  font-size: var(--t-micro); letter-spacing: var(--tr-micro);
+  text-transform: uppercase; color: rgba(250, 215, 195, .8);
+  transform: translateY(-20px);
+  transition: opacity 320ms ease;
+}
+
+@media (max-width: 720px) { .stair-rail { height: 240vh; } }
+
+/* Reduced motion, or no JS: two plain stacked panels, both readable. */
+.stair-static .stair-rail, html:not(.js-motion) .stair-rail { height: auto; }
+.stair-static .stair-stage, html:not(.js-motion) .stair-stage {
+  position: static; height: auto; overflow: visible;
+}
+.stair-static .stair-layer, html:not(.js-motion) .stair-layer {
+  position: relative; inset: auto; height: 70vh; min-height: 420px;
   clip-path: none !important;
 }
-.stair-static .stair-layer img,
-html:not(.js-motion) .stair-layer img {
+.stair-static .stair-layer img, html:not(.js-motion) .stair-layer img {
   position: absolute; inset: 0; transform: none !important;
 }
-.stair-static .stair-copy,
-html:not(.js-motion) .stair-copy { opacity: 1 !important; }
+.stair-static .stair-copy, html:not(.js-motion) .stair-copy { opacity: 1 !important; }
 .stair-static .stair-seam, .stair-static .stair-floor,
 html:not(.js-motion) .stair-seam, html:not(.js-motion) .stair-floor { display: none; }
 
-.stair-copy {
-  position: absolute; left: 0; right: 0; bottom: clamp(60px, 12vh, 140px);
-  padding: 0 var(--gutter);
-  max-width: 1600px; margin: 0 auto;
-}
-.stair-copy .kicker { color: var(--cream); }
-.stair-copy h2 {
-  font-family: var(--display); text-transform: uppercase;
-  font-size: clamp(40px, 8.5vw, 130px); line-height: .84;
-  margin: 0 0 .2em; color: var(--cream);
-}
-.stair-copy p {
-  font-style: italic; color: rgba(250, 215, 195, .84);
-  max-width: 40ch; font-size: clamp(16px, 1.7vw, 22px); margin: 0 0 22px;
-}
-
-/* The seam itself — the edge of the staircase. */
-.stair-seam {
-  position: absolute; left: 0; right: 0;
-  height: 1px; background: var(--red);
-  box-shadow: 0 0 22px 3px rgba(240, 0, 0, .55);
-  z-index: 5;
-}
-.stair-floor {
-  position: absolute; z-index: 6;
-  right: var(--gutter);
-  transition: opacity 320ms ease;
-  font-family: var(--display); text-transform: uppercase;
-  font-size: 12px; letter-spacing: .24em; color: var(--cream);
-  transform: translateY(-22px);
-}
-
-@media (max-width: 720px) {
-  .stair-rail { height: 240vh; }
-}
-
-/* ---------- 11. MARQUEE ---------- */
-.strip {
-  overflow: hidden;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: 15px 0;
-  background: var(--bg);
-}
-.strip-track {
-  display: flex; gap: 46px; width: max-content;
-  animation: strip 42s linear infinite;
-}
-.strip-track span {
-  font-family: var(--display); text-transform: uppercase;
-  font-size: 14px; letter-spacing: .2em; color: var(--accent);
-  white-space: nowrap;
-}
-.strip-track span::after { content: " ·"; opacity: .4; margin-left: 46px; }
-@keyframes strip { to { transform: translateX(-50%); } }
-
-/* ---------- 12. FOOTER ---------- */
+/* ---------- 10. FOOTER ---------- */
 .site-foot {
-  background: var(--night); color: var(--cream);
-  padding: clamp(60px, 8vw, 110px) 0 34px;
+  background: var(--ink); color: var(--cream);
+  padding: clamp(68px, 9vw, 130px) 0 36px;
+  --fg-muted: rgba(250, 215, 195, .66);
 }
 .foot-top {
   max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter);
-  display: grid; grid-template-columns: 2fr 1.2fr 1fr 1.2fr;
-  gap: clamp(28px, 4vw, 56px);
+  display: grid; grid-template-columns: 2.4fr 1fr 1fr 1.2fr;
+  gap: clamp(30px, 4vw, 64px);
 }
-.foot-brand .foot-logo { width: 150px; margin-bottom: 20px; }
-.foot-brand p { color: rgba(250, 215, 195, .7); max-width: 40ch; font-size: 16px; }
+.foot-brand .foot-logo { width: 128px; margin-bottom: 24px; }
+.foot-brand p {
+  color: rgba(250, 215, 195, .66); max-width: 34ch; font-size: 16px; margin: 0;
+}
 .foot-col h4 {
-  font-family: var(--display); text-transform: uppercase;
-  font-size: 12.5px; letter-spacing: .2em; color: var(--red);
-  margin: 0 0 12px;
+  font-size: var(--t-micro); letter-spacing: var(--tr-micro);
+  text-transform: uppercase; color: var(--cream);
+  margin: 0 0 16px; font-weight: 400;
 }
-.foot-col h4 + h4 { margin-top: 26px; }
+.foot-col h4 + h4 { margin-top: 30px; }
 .foot-col p, .foot-col a {
-  display: block; color: rgba(250, 215, 195, .78);
-  text-decoration: none; font-size: 15.5px; margin: 0 0 7px;
+  display: block; color: rgba(250, 215, 195, .66);
+  text-decoration: none; font-size: 15.5px; margin: 0 0 8px;
   transition: color var(--cut);
 }
 .foot-col a:hover { color: var(--cream); }
-.foot-note { font-style: italic; opacity: .64; font-size: 14px !important; }
+.foot-note { font-style: italic; opacity: .6; font-size: 14.5px !important; }
 
-.foot-socials { display: flex; gap: 12px; margin-top: 18px; }
-.foot-socials a, .nav-socials a {
-  width: 36px; height: 36px; display: grid; place-items: center;
-  border: 1px solid rgba(250, 215, 195, .3); border-radius: 50%;
-  color: var(--cream); transition: background var(--cut), color var(--cut);
+.foot-socials { display: flex; gap: 20px; margin-top: 24px; }
+.foot-socials a {
+  color: rgba(250, 215, 195, .7); transition: color var(--cut);
 }
-.foot-socials a:hover { background: var(--cream); color: var(--night); }
-.foot-socials svg, .nav-socials svg { width: 17px; height: 17px; }
+.foot-socials a:hover { color: var(--cream); }
+.foot-socials svg { width: 18px; height: 18px; }
 
 .foot-bottom {
-  max-width: var(--maxw); margin: clamp(40px, 5vw, 72px) auto 0;
+  max-width: var(--maxw); margin: clamp(48px, 6vw, 88px) auto 0;
   padding: 22px var(--gutter) 0;
-  border-top: 1px solid rgba(250, 215, 195, .16);
-  display: flex; flex-wrap: wrap; gap: 16px 28px;
+  border-top: 1px solid rgba(250, 215, 195, .18);
+  display: flex; flex-wrap: wrap; gap: 14px 30px;
   align-items: center; justify-content: space-between;
+  font-size: var(--t-micro); letter-spacing: var(--tr-micro);
+  text-transform: uppercase; color: rgba(250, 215, 195, .5);
 }
-.foot-nav { display: flex; flex-wrap: wrap; gap: 20px; }
-.foot-nav a {
-  text-decoration: none; font-style: italic; font-size: 14px;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: rgba(250, 215, 195, .72);
-}
+.foot-nav { display: flex; flex-wrap: wrap; gap: 24px; }
+.foot-nav a { text-decoration: none; }
 .foot-nav a:hover { color: var(--cream); }
-.foot-bottom .copy { margin: 0; font-size: 13.5px; color: rgba(250, 215, 195, .5); }
+.foot-bottom .copy { margin: 0; }
 
-@media (max-width: 900px) {
-  .foot-top { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 560px) {
-  .foot-top { grid-template-columns: 1fr; }
-}
+@media (max-width: 900px) { .foot-top { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .foot-top { grid-template-columns: 1fr; } }
 
-/* ---------- 13. STICKY QUICK ACTIONS (phone) ----------
-   Kept from the live site: it converts. 57px tall, and every embedded
-   booking/enquiry iframe must clear it — see .embed-clear below. */
+/* ---------- 11. STICKY QUICK ACTIONS (phone) ---------- */
 .cta-sticky { display: none; }
 @media (max-width: 760px) {
   .cta-sticky {
     display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 320;
-    background: var(--night); border-top: 1px solid rgba(250, 215, 195, .2);
-    height: 57px;
+    background: var(--ink); height: 56px;
   }
   .cta-sticky a {
-    flex: 1; display: grid; place-items: center;
-    text-decoration: none; color: var(--cream);
-    font-style: italic; font-size: 14.5px; letter-spacing: .04em;
-    border-left: 1px solid rgba(250, 215, 195, .16);
+    flex: 1; display: grid; place-items: center; text-decoration: none;
+    color: var(--cream); font-size: var(--t-micro);
+    letter-spacing: var(--tr-micro); text-transform: uppercase;
+    border-left: 1px solid rgba(250, 215, 195, .18);
   }
   .cta-sticky a:first-child { border-left: 0; }
-  .cta-sticky .cta-main { flex: 1.5; background: var(--red); color: var(--paper); }
+  .cta-sticky .cta-main { flex: 1.6; background: var(--red); color: var(--paper); }
   .embed-clear { padding-bottom: 72px; scroll-margin-bottom: 72px; }
   iframe[src*="venueflowhq.com"] { margin-bottom: 72px !important; }
 }
 
 .whatsapp-fab {
-  position: fixed; right: 20px; bottom: 20px; z-index: 310;
-  display: inline-flex; align-items: center; gap: 9px;
-  background: var(--red); color: var(--paper);
-  padding: 12px 18px; border-radius: 40px; text-decoration: none;
-  font-style: italic; font-size: 15px;
-  box-shadow: 0 6px 24px rgba(108, 6, 0, .3);
-  transition: background var(--cut), transform var(--cut);
+  position: fixed; right: 24px; bottom: 24px; z-index: 310;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--ink); color: var(--cream);
+  padding: 13px 20px; text-decoration: none;
+  font-size: var(--t-micro); letter-spacing: var(--tr-micro); text-transform: uppercase;
+  transition: background var(--cut);
 }
-.whatsapp-fab:hover { background: var(--ink); transform: translateY(-2px); }
-.whatsapp-fab svg { width: 21px; height: 21px; }
+.whatsapp-fab:hover { background: var(--red); color: var(--paper); }
+.whatsapp-fab svg { width: 18px; height: 18px; }
 @media (max-width: 760px) {
-  .whatsapp-fab { bottom: 69px; right: 14px; padding: 11px; }
+  .whatsapp-fab { bottom: 68px; right: 14px; padding: 12px; }
   .whatsapp-fab .wa-label { display: none; }
 }
 
-/* ---------- 14. EMBEDS ---------- */
-.embed-frame {
-  width: 100%; border: 0; display: block;
-  background: var(--paper);
-  min-height: 760px;
-}
+/* ---------- 12. EMBEDS ---------- */
+.embed-frame { width: 100%; border: 0; display: block; background: var(--paper); min-height: 760px; }
 
-/* ---------- 15. PRINT ---------- */
+/* ---------- 13. PRINT ---------- */
 @media print {
-  .nav, .cta-sticky, .whatsapp-fab, .grain, .reel-in, .strip { display: none !important; }
+  .nav, .cta-sticky, .whatsapp-fab, .reel-in { display: none !important; }
   body { color: #000; background: #fff; }
 }
