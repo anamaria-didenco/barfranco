@@ -97,6 +97,16 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (!res || (res.success !== true && res.success !== 'true')) throw new Error('not ok');
+        // Report to Google Ads. Without this an ad click that converts through
+        // this form is recorded as a failure, so the campaign optimises away
+        // from whatever produced it.
+        try {
+          gtag('event', 'conversion', {
+            send_to: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',
+            value: 1.0,
+            currency: 'NZD'
+          });
+        } catch (e) {}
         f.innerHTML = '<h3>Grazie! 🎉</h3>' +
           '<p class="fnote">Thanks for reaching out — your message is on its way and we\'ll be in touch very soon.</p>' +
           '<p class="fnote">Anything urgent? Email <a href="mailto:' + to + '">' + to + '</a>.</p>';

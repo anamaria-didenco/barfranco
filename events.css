@@ -13,7 +13,7 @@
   --muted: rgba(105,5,0,.62);
   --line: rgba(105,5,0,.16);
   --redline: rgba(229,31,26,.32);
-  --maxw: 1140px;
+  --maxw: 1180px;
 }
 
 * { box-sizing: border-box; }
