@@ -138,7 +138,9 @@ section { padding: 104px 0; }
   box-shadow: 0 12px 34px rgba(175,15,0,.28);
 }
 .hero-stamp .st-k { font-style: italic; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.78); margin: 0 0 6px; }
-.hero-stamp .st-v { font-family: "VTC Marsha", serif; font-size: 19px; letter-spacing: .04em; line-height: 1.1; margin: 0; }
+/* VTC Marsha is only ever set in capitals — this stamp was the one place on
+   the site it rendered lowercase. */
+.hero-stamp .st-v { font-family: "VTC Marsha", serif; text-transform: uppercase; font-size: 18px; letter-spacing: .05em; line-height: 1.15; margin: 0; }
 .hero-negroni {
   position: absolute; top: -42px; right: -30px; z-index: 3;
   width: clamp(96px, 13vw, 150px); height: auto;
@@ -669,7 +671,13 @@ img.photo { object-fit: cover; background: var(--cream); }
    A full-width alternating block, used to give the Restaurant and the
    Negroni Bar their own distinct personality instead of two identical
    cards. .on-deep flips it to the evening temperature.              */
-.feature { padding: 0; }
+.feature {
+  /* NOT padding:0. A class beats the `section { padding: 104px 0 }` element rule,
+     so zeroing it stripped the vertical rhythm from the two largest sections on
+     the homepage — worst on the deep-red band, whose ground ran flush to the
+     photo edges, and on mobile where the columns stack. */
+  padding: clamp(72px, 8vw, 104px) 0;
+}
 .feature .wrap {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(40px, 5vw, 76px); align-items: center;
@@ -748,7 +756,10 @@ img.photo { object-fit: cover; background: var(--cream); }
   .mobile-cta .m-events { background: transparent; color: var(--ink); border: 1.4px solid var(--ink); }
   /* lift the floating furniture clear of the bar */
   .whatsapp-fab { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
-  .walker { bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+  /* The dachshund scroll-walker is a desktop delight. Once the sticky action
+     bar exists there are three floating things stacked in the same corner, so
+     the purely decorative one stands down on phones. */
+  .walker { display: none; }
   body { padding-bottom: 72px; }
 }
 
@@ -864,4 +875,25 @@ img.photo { object-fit: cover; background: var(--cream); }
 @media (prefers-reduced-motion: reduce) {
   .feature-media img.photo, .space-card img.photo { transition: none !important; }
   html { scroll-behavior: auto; }
+}
+
+/* ---- About heading, two voices -------------------------------
+   Mirrors the hero: the brand line declares in Marsha caps, a plain
+   descriptive line answers in Affairs italic. The second line is the
+   page's one honest keyword heading — moving the terms off the h1
+   left the page with no descriptive heading at all, which is an
+   over-correction in the other direction. */
+.about-h2 { margin: 14px 0 24px; font-weight: 400; }
+.about-h2 .ah-1 {
+  display: block;
+  font-family: "VTC Marsha", serif; font-weight: 700;
+  text-transform: uppercase; color: var(--red);
+  font-size: clamp(28px, 3.6vw, 44px); line-height: 1.02; letter-spacing: .03em;
+}
+.about-h2 .ah-2 {
+  display: block;
+  font-family: "Affairs", Georgia, serif; font-style: italic;
+  text-transform: none; color: var(--ink);
+  font-size: clamp(17px, 1.7vw, 21px); line-height: 1.35;
+  margin-top: .5em; max-width: 30ch;
 }
