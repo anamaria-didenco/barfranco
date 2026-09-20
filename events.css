@@ -1,18 +1,20 @@
 /* ============================================================
    BAR FRANCO — Events & Private Hire pack
-   Red #E51F1A · Charcoal #690500 · Paper / Cream
-   VTC Marsha (display) · Affairs (serif body)
+   Palette is the Semibold Visual Identity, p12 — matches home.css:
+     Bright Red #AF0F00 · Deep Red #6C0600 · Almond #FAD7C3 · Spritz #F00000
+   VTC Marsha (display, ALWAYS caps) · Affairs (serif body)
    ============================================================ */
 
 :root {
-  --red: #E51F1A;
-  --red-deep: #AF0F00;
-  --ink: #690500;
+  --red: #AF0F00;
+  --red-deep: #6C0600;
+  --cream: #FAD7C3;
+  --spritz: #F00000;
+  --ink: #6C0600;
   --paper: #FCFBF7;
-  --cream: #FAD6C2;
-  --muted: rgba(105,5,0,.62);
-  --line: rgba(105,5,0,.16);
-  --redline: rgba(229,31,26,.32);
+  --muted: rgba(108,6,0,.70);
+  --line: rgba(108,6,0,.16);
+  --redline: rgba(175,15,0,.32);
   --maxw: 1140px;
 }
 
@@ -102,7 +104,7 @@ section { padding: 96px 0; }
 .tag {
   font-style: italic; font-size: 14.5px; color: var(--ink);
   border: 1.3px solid var(--redline); border-radius: 100px;
-  padding: 7px 16px; background: rgba(229,31,26,.04);
+  padding: 7px 16px; background: rgba(175,15,0,.04);
 }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 36px 0 0; }
 .hero-media { margin-top: 64px; }
@@ -323,7 +325,7 @@ section { padding: 96px 0; }
 }
 .walker-track {
   position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
-  background: linear-gradient(to right, var(--red) 0%, var(--red) var(--p,0%), rgba(229,31,26,.16) var(--p,0%), rgba(229,31,26,.16) 100%);
+  background: linear-gradient(to right, var(--red) 0%, var(--red) var(--p,0%), rgba(175,15,0,.16) var(--p,0%), rgba(175,15,0,.16) 100%);
 }
 .walker-dog {
   position: absolute; bottom: 1px; left: var(--p, 0%);

@@ -82,6 +82,14 @@
       payload.append('_subject', subj);
       payload.append('_template', 'table');
       payload.append('_captcha', 'false');
+
+      /* Safety net: data-cc sends a copy to a second address. The events form
+         posts to events@barfranco.nz, which is new — until that mailbox is
+         confirmed live, a copy also reaches anamaria@ so no enquiry can be
+         lost in the changeover. Delete the data-cc attribute once verified. */
+      var cc = f.getAttribute('data-cc');
+      if (cc) payload.append('_cc', cc);
+
       f.querySelectorAll('input, textarea, select').forEach(function (el) {
         if (el === honey || !el.value) return;
         var lab = el.id ? f.querySelector('label[for="' + el.id + '"]') : null;
@@ -97,9 +105,27 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (!res || (res.success !== true && res.success !== 'true')) throw new Error('not ok');
-        f.innerHTML = '<h3>Grazie! 🎉</h3>' +
-          '<p class="fnote">Thanks for reaching out — your message is on its way and we\'ll be in touch very soon.</p>' +
-          '<p class="fnote">Anything urgent? Email <a href="mailto:' + to + '">' + to + '</a>.</p>';
+
+        /* Google Ads conversion. The tag block in each page's <head> used to
+           learn about a submitted enquiry from the VenueFlow iframe's
+           postMessage. That iframe is gone, so the native form announces it
+           instead and the same conversion label keeps firing. Budget bracket
+           rides along as the conversion value. */
+        var budgetEl = f.querySelector('#budget');
+        try {
+          document.dispatchEvent(new CustomEvent('bf-enquiry-submitted', {
+            detail: { budgetRange: budgetEl ? budgetEl.value : '' }
+          }));
+        } catch (e) {}
+
+        var name = (f.querySelector('#name') || {}).value || '';
+        f.className += ' form-done';
+        f.innerHTML =
+          '<img class="fd-mark" src="brand/bf-emblem.svg" alt="" aria-hidden="true">' +
+          '<h3>Grazie' + (name ? ', ' + name.split(' ')[0].replace(/[<>&]/g, '') : '') + '.</h3>' +
+          '<p>That\'s with us. We read every enquiry ourselves and come back on all of them — usually within one business day.</p>' +
+          '<p class="fnote">Something urgent in the meantime? Email <a href="mailto:' + to + '">' + to + '</a> or call <a href="tel:+64212211307">021 221 1307</a>.</p>';
+        f.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
       })
       .catch(function () {
         if (btn) { btn.disabled = false; btn.textContent = btnText; }
