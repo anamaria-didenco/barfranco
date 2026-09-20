@@ -148,6 +148,9 @@
 
 /* ---------- Rooms ---------- */
 .im-rooms-head { background: var(--paper); color: var(--ink); padding: clamp(56px, 8vw, 96px) 0 clamp(30px, 4vw, 48px); }
+/* .im-h2 / .im-eyebrow hardcode cream for the dark sections they were designed for;
+   this section sits on paper and needs its own colour or the heading is 1.30:1. */
+.im-rooms-head .im-h2, .im-rooms-head .im-eyebrow { color: var(--red-deep); }
 .im-rooms { display: flex; gap: 6px; background: var(--paper); padding: 0 6px clamp(30px,4vw,56px); }
 .im-room {
   position: relative; flex: 1 1 0; min-width: 0; overflow: hidden;
@@ -289,7 +292,11 @@
 .im-quote-after { font-style: italic; font-size: 14px; margin: 12px 0 0; text-align: center; color: rgba(108,6,0,.7); }
 
 /* ---------- Host band ---------- */
-.im-host { position: relative; overflow: hidden; background: var(--ink); display: flex; align-items: center; min-height: clamp(400px, 48vw, 560px); }
+/* im-plan (red-deep) and im-host (oxblood photo) are both dark and sat flush —
+   a thin peach seam, matching the gap:6px treatment used between photos elsewhere
+   on this page (im-hours-grid, im-rooms), reads as the light break the rest of the
+   page alternates on. */
+.im-host { position: relative; overflow: hidden; background: var(--ink); display: flex; align-items: center; min-height: clamp(400px, 48vw, 560px); border-top: 6px solid var(--cream); }
 .im-host img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; }
 .im-host-scrim { position: absolute; inset: 0; z-index: 1; background: rgba(108,6,0,.62); }
 .im-host-inner { position: relative; z-index: 2; width: 100%; text-align: center; padding: clamp(48px,7vw,80px) 0; }
@@ -299,7 +306,10 @@
 /* ---------- FAQ + enquiry ---------- */
 .im-ask { background: var(--cream); color: var(--ink); padding: clamp(58px, 8vw, 96px) 0; }
 .im-ask-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(30px,5vw,72px); align-items: start; }
-@media (max-width: 980px) { .im-ask-grid { grid-template-columns: minmax(0,1fr); } }
+@media (max-width: 980px) {
+  .im-ask-grid { grid-template-columns: minmax(0,1fr); }
+  .im-ask-cta { position: static; }   /* stacked layout — sticky has nothing to track */
+}
 .im-ask .im-eyebrow { color: var(--red-deep); }
 .im-ask .im-h2 { color: var(--red-deep); }
 .im-ask .faq { max-width: none; margin: clamp(20px,2.4vw,28px) 0 0; }
@@ -368,7 +378,7 @@
 .im-enquire-top .im-card { max-width: 720px; margin: 0 auto; }
 
 
-.im-ask-cta { background: var(--ink); color: var(--cream); border-radius: 4px; padding: clamp(24px, 3.5vw, 36px); align-self: start; }
+.im-ask-cta { background: var(--ink); color: var(--cream); border-radius: 4px; padding: clamp(24px, 3.5vw, 36px); align-self: start; position: sticky; top: 96px; }
 .im-ask-cta h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: clamp(20px, 2.4vw, 26px); line-height: 1; margin: 0 0 12px; }
 .im-ask-cta p { font-size: 16.5px; margin: 0 0 20px; color: rgba(250,215,195,.92); text-wrap: pretty; }
 .im-ask-cta-alt { font-style: italic; font-size: 15px; margin: 16px 0 0 !important; }
@@ -388,7 +398,7 @@
 /* The card alone in a full-width band read as an orphaned form. Two columns on
    desktop — context beside it, the way corporate-events does it. The card comes
    first on phones, where getting to the form fast is the whole point. */
-.im-enquire-grid { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+.im-enquire-grid { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
 .im-enquire-copy { color: var(--ink); }
 .im-enquire-copy .im-eyebrow { color: var(--red-deep); }
 .im-enquire-copy .im-h2 { color: var(--red-deep); margin: 12px 0 16px; }
