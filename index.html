@@ -248,7 +248,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="Bar Franco home">
-      <img class="brand-logo" src="brand/bf-script-incline-red.svg" alt="Bar Franco" />
+      <img class="brand-logo" src="brand/bf-script-flat-brightred.svg" alt="Bar Franco" />
     </a>
     <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     <div class="nav-links">
@@ -264,41 +264,36 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero" id="top">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <!-- The oversized script wordmark that used to sit here has gone. The nav
-             already carries it, and at 116px it pushed the headline — and with it
-             every call to action — off the first screen. The statement leads now. -->
-        <p class="eyebrow reveal in">(Upstairs) Down the laneway · 4pm till late</p>
-        <h1 class="hero-statement reveal in d1">
-          <span class="hs-1">Some places want to be seen.</span>
-          <span class="hs-2">Bar Franco wants to be felt.</span>
-        </h1>
-        <p class="hero-sub reveal in d2">An Italian restaurant and Negroni bar on two levels at The Crossing. Pasta rolled by hand upstairs, aperitivo stirred to order below.</p>
-        <p class="hero-context reveal in d2">Dinner, drinks and private events in central Christchurch.</p>
-        <div class="hero-cta reveal in d3">
-          <a class="btn lg" href="Bookings.html">Book a table</a>
-          <a class="btn ghost lg" href="Functions.html">Private events</a>
-        </div>
-        <div class="trust-row reveal in d3">
-          <span>Two levels, up to 240 guests</span>
-          <span>No venue hire fee</span>
-          <span>In the CBD at The Crossing</span>
-        </div>
-      </div>
-      <div class="hero-media reveal d2">
-        <img class="hero-negroni" src="brand/franco-negroni.png" alt="" />
-        <img class="photo" src="images/aperitivo-table-cheers.jpg" width="934" height="1400" alt="Friends sharing Negronis, spritzes and antipasti across a marble table at Bar Franco, Christchurch" loading="eager">
-        <div class="hero-stamp">
-          <p class="st-k">Open daily</p>
-          <p class="st-v">Bar 4pm ·<br />kitchen 5pm</p>
-        </div>
-      </div>
+<!-- HERO — Direction B "The Plate" -->
+<header class="hero-b" id="top">
+  <div class="hb-media">
+    <div class="hb-frame">
+    <img class="hb-photo" src="images/aperitivo-table-cheers.jpg" width="934" height="1400"
+         alt="Friends touching glasses over Negronis, a spritz and antipasti on a marble table at Bar Franco, Christchurch"
+         loading="eager" fetchpriority="high">
+    </div>
+    <div class="hb-stamp"><i>Open daily</i><b>Bar 4pm<br />Kitchen 5pm</b></div>
+    <p class="hb-caption">Aperitivo, Level One — any given Tuesday.</p>
+  </div>
+
+  <div class="hb-copy">
+    <p class="hb-eyebrow">(Upstairs) down the laneway · 4pm till late</p>
+    <h1 class="hb-h1">
+      <span class="hb-1">Some places want to be seen.</span>
+      <span class="hb-2">Bar Franco wants to be felt.</span>
+    </h1>
+    <p class="hb-lede">An Italian restaurant and Negroni bar on two levels at The Crossing. Pasta rolled by hand upstairs, aperitivo stirred to order below.</p>
+    <div class="hb-acts">
+      <a class="hb-act" href="Bookings.html"><span>Book a table</span></a>
+      <a class="hb-act" href="Functions.html"><span>Private events</span></a>
+    </div>
+    <div class="hb-rule">
+      <img class="hb-dog" src="brand/franco-dog.png" alt="" aria-hidden="true" width="330" height="160">
+      <p class="hb-note">Two levels. One world.</p>
     </div>
   </div>
+
+  <a class="hb-cue" href="#about">Have a look around</a>
 </header>
 
 <!-- MARQUEE STRIP -->
@@ -411,12 +406,12 @@
       <p class="eyebrow light">Private events &amp; venue hire</p>
       <h2>Events with flavour.<br />Nights with feeling.</h2>
       <p>Birthdays, work dos, engagements, wedding receptions, or a long table on a Thursday because you felt like it. Take one level or the whole building — we'll cook, pour and run the night around you.</p>
-      <p style="font-family:'Affairs',serif;font-style:italic;font-size:clamp(20px,2.4vw,28px);color:#fff;margin:0 0 30px;">We host. You stay.</p>
+      <p style="font-family:'Affairs',serif;font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--cream);margin:0 0 30px;">We host. You stay.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
         <a class="btn light lg" href="Functions.html">Plan your event</a>
-        <a class="btn light lg" href="christmas-functions/" style="background:transparent;color:#fff;border:1.4px solid #fff;">Christmas parties</a>
+        <a class="btn light lg" href="christmas-functions/" style="background:transparent;color:var(--cream);border:1.4px solid rgba(250,215,195,.6);">Christmas parties</a>
       </div>
-      <p style="font-style:italic;font-size:14.5px;margin:16px 0 0;color:rgba(255,255,255,.92);">Booking the work do? December dates go first — <a href="christmas-functions/" style="color:#fff;text-decoration:underline;">lock yours in</a>.</p>
+      <p style="font-style:italic;font-size:14.5px;margin:16px 0 0;color:rgba(250,215,195,.94);">Booking the work do? December dates go first — <a href="christmas-functions/" style="color:var(--cream);text-decoration:underline;">lock yours in</a>.</p>
     </div>
     <div class="eb-media reveal d1">
       <img class="photo" src="images/event-long-table.jpg" width="933" height="1400" alt="A long candlelit table set for a private event at Bar Franco" loading="lazy">
@@ -510,7 +505,7 @@
 <footer class="site-foot">
   <div class="foot-top">
     <div class="foot-brand">
-      <img class="foot-logo" src="brand/bf-script-incline-red.svg" alt="Bar Franco" />
+      <img class="foot-logo" src="brand/bf-script-flat-brightred.svg" alt="Bar Franco" />
       <p>Modern Italian restaurant, cocktail bar &amp; private event venue in the heart of Christchurch.</p>
       <div class="foot-socials">
         <a href="https://www.instagram.com/bar__franco/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>

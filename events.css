@@ -1,13 +1,17 @@
 /* ============================================================
    BAR FRANCO — Events & Private Hire pack
-   Palette is the Semibold Visual Identity, p12 — matches home.css:
-     Bright Red #AF0F00 · Deep Red #6C0600 · Almond #FAD7C3 · Spritz #F00000
+   Roles match home.css exactly:
+     Franco Red #F00000 — display type and marks only (4.31:1 on paper,
+                          so never under ~24px)
+     Red Deep   #AF0F00 — large fills, buttons, small red text, hovers
+     Oxblood    #6C0600 — body text and the dark "night" grounds
+     Peach      #FAD7C3 — warm ground; reversed type knocks out to this
    VTC Marsha (display, ALWAYS caps) · Affairs (serif body)
    ============================================================ */
 
 :root {
-  --red: #AF0F00;
-  --red-deep: #6C0600;
+  --red: #F00000;
+  --red-deep: #AF0F00;
   --cream: #FAD7C3;
   --spritz: #F00000;
   --ink: #6C0600;
@@ -29,16 +33,17 @@ body {
   font-size: 18px;
   line-height: 1.6;
 }
-.disp { font-family: "VTC Marsha", "Times New Roman", serif; font-weight: 700; }
+.disp { font-family: "VTC Marsha", "Times New Roman", serif; font-weight: 700; text-transform: uppercase;
+}
 img, image-slot { display: block; }
 a { color: inherit; }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 40px; }
 .eyebrow {
   font-style: italic; letter-spacing: .34em; text-transform: uppercase;
-  font-size: 12.5px; color: var(--red); margin: 0 0 18px;
+  font-size: 12.5px; color: var(--red-deep); margin: 0 0 18px;
 }
-.eyebrow.light { color: rgba(255,255,255,.8); }
+.eyebrow.light { color: rgba(250,215,195,.8); }
 
 /* ---------- Nav ---------- */
 .nav {
@@ -52,42 +57,45 @@ a { color: inherit; }
   height: 68px; display: flex; align-items: center; gap: 28px;
 }
 .brand {
-  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
-  font-size: 22px; letter-spacing: .04em; text-decoration: none;
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red-deep);
+  font-size: 22px; letter-spacing: .04em; text-decoration: none; text-transform: uppercase;
 }
 .nav-links { margin-left: auto; display: flex; align-items: center; gap: 30px; }
 .nav-links a {
   text-decoration: none; color: var(--ink); font-size: 15px;
   font-style: italic; letter-spacing: .02em;
 }
-.nav-links a:hover { color: var(--red); }
+.nav-links a:hover { color: var(--red-deep); }
+/* .nav-links a (0,1,1) outranks .btn (0,1,0), so without this the filled nav
+   button renders oxblood text on a red ground — 1.74:1. */
+.nav-links a.btn { color: var(--cream); }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   font-family: "Affairs", serif; font-style: italic; font-size: 15px;
   text-decoration: none; cursor: pointer; border: none;
   padding: 11px 22px; border-radius: 2px;
-  background: var(--red); color: #fff; letter-spacing: .02em;
+  background: var(--red-deep); color: var(--cream); letter-spacing: .02em;
   transition: background .15s;
 }
-.btn:hover { background: var(--red-deep); }
+.btn:hover { background: var(--ink); }
 .btn.ghost { background: transparent; color: var(--ink); border: 1.4px solid var(--ink); }
 .btn.ghost:hover { background: var(--ink); color: var(--paper); }
-.btn.light { background: #fff; color: var(--red); }
-.btn.light:hover { background: rgba(255,255,255,.86); }
+.btn.light { background: var(--cream); color: var(--red-deep); }
+.btn.light:hover { background: rgba(250,215,195,.86); }
 
 /* ---------- Section frame ---------- */
 section { padding: 96px 0; }
 .sec-cream { background: var(--cream); }
-.sec-ink { background: var(--ink); color: var(--paper); }
-.sec-red { background: var(--red); color: #fff; }
+.sec-ink { background: var(--ink); color: var(--cream); }
+.sec-red { background: var(--red-deep); color: var(--cream); }
 .sec-label {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
   text-transform: uppercase; letter-spacing: .12em; font-size: clamp(26px, 3vw, 36px);
   margin: 0 0 14px; line-height: 1;
 }
-.sec-ink .sec-label, .sec-red .sec-label { color: #fff; }
+.sec-ink .sec-label, .sec-red .sec-label { color: var(--cream); }
 .lede { font-size: 20px; max-width: 640px; color: var(--ink); margin: 0 0 8px; }
-.sec-ink .lede, .sec-red .lede { color: rgba(255,255,255,.92); }
+.sec-ink .lede, .sec-red .lede { color: rgba(250,215,195,.92); }
 
 /* ---------- Hero ---------- */
 .hero { padding: 78px 0 0; }
@@ -136,7 +144,7 @@ section { padding: 96px 0; }
 .space + .space { margin-top: 84px; }
 .space.flip .space-media { order: 2; }
 .space-media img.photo { width: 100%; height: clamp(300px, 38vw, 460px); }
-.space-kicker { font-style: italic; color: var(--red); letter-spacing: .04em; margin: 0 0 10px; }
+.space-kicker { font-style: italic; color: var(--red-deep); letter-spacing: .04em; margin: 0 0 10px; }
 .space h3 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--ink);
   text-transform: uppercase; font-size: clamp(28px, 3.4vw, 40px); letter-spacing: .04em;
@@ -144,26 +152,27 @@ section { padding: 96px 0; }
 }
 .space p { margin: 0 0 24px; color: var(--ink); max-width: 480px; }
 .caps { display: flex; gap: 40px; border-top: 1.5px solid var(--redline); padding-top: 20px; }
-.cap .n { font-family: "VTC Marsha", serif; color: var(--red); font-size: 38px; line-height: 1; }
+.cap .n { font-family: "VTC Marsha", serif; color: var(--red); font-size: 38px; line-height: 1; text-transform: uppercase;
+}
 .cap .l { font-style: italic; color: var(--muted); font-size: 14px; margin-top: 6px; }
 .cap .note { font-style: italic; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
 
 /* ---------- Aperitivo (red band) ---------- */
 .aperitivo .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
 .aperitivo h2 {
-  font-family: "VTC Marsha", serif; font-weight: 700; color: #fff;
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--cream);
   text-transform: uppercase; font-size: clamp(30px, 4vw, 50px); letter-spacing: .03em;
   margin: 0 0 18px; line-height: 1;
 }
-.aperitivo p { color: rgba(255,255,255,.92); max-width: 460px; margin: 0; }
+.aperitivo p { color: rgba(250,215,195,.92); max-width: 460px; margin: 0; }
 .drink-list { display: flex; flex-direction: column; gap: 0; }
 .drink {
   display: flex; align-items: baseline; justify-content: space-between; gap: 18px;
-  padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.22);
+  padding: 15px 0; border-bottom: 1px solid rgba(250,215,195,.22);
 }
-.drink:first-child { border-top: 1px solid rgba(255,255,255,.22); }
-.drink .dn { font-size: 19px; color: #fff; }
-.drink .dd { font-style: italic; font-size: 14px; color: rgba(255,255,255,.72); text-align: right; }
+.drink:first-child { border-top: 1px solid rgba(250,215,195,.22); }
+.drink .dn { font-size: 19px; color: var(--cream); }
+.drink .dd { font-style: italic; font-size: 14px; color: rgba(250,215,195,.72); text-align: right; }
 
 /* ---------- Menus ---------- */
 .menu-head { text-align: center; max-width: 620px; margin: 0 auto 56px; }
@@ -179,7 +188,7 @@ section { padding: 96px 0; }
   border-bottom: 1.5px solid var(--redline); padding-bottom: 14px; margin-bottom: 20px;
 }
 .mcard-head h3 {
-  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red-deep);
   text-transform: uppercase; letter-spacing: .1em; font-size: 22px; margin: 0;
 }
 .mcard-head .price { font-style: italic; color: var(--ink); font-size: 16px; white-space: nowrap; }
@@ -197,7 +206,8 @@ section { padding: 96px 0; }
 .set-card .badge {
   display: inline-flex; align-items: baseline; gap: 8px; margin-bottom: 18px;
 }
-.set-card .amt { font-family: "VTC Marsha", serif; color: var(--red); font-size: 34px; line-height: 1; }
+.set-card .amt { font-family: "VTC Marsha", serif; color: var(--red); font-size: 34px; line-height: 1; text-transform: uppercase;
+}
 .set-card .per { font-style: italic; color: var(--muted); font-size: 14px; }
 .set-card h4 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--ink);
@@ -210,13 +220,14 @@ section { padding: 96px 0; }
 .seated-tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
 .tier { border: 1px solid var(--line); background: var(--paper); padding: 26px 30px; display: flex; align-items: center; gap: 22px; }
 .tier .badge { display: inline-flex; align-items: baseline; gap: 8px; flex: 0 0 auto; }
-.tier .amt { font-family: "VTC Marsha", serif; color: var(--red); font-size: 38px; line-height: 1; }
+.tier .amt { font-family: "VTC Marsha", serif; color: var(--red); font-size: 38px; line-height: 1; text-transform: uppercase;
+}
 .tier .per { font-style: italic; color: var(--muted); font-size: 14px; }
 .tier-desc { margin: 0; font-size: 15.5px; color: var(--ink); }
 .set-menu-card .course-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 50px; }
 .course-col { display: flex; flex-direction: column; gap: 26px; }
 .course h5 {
-  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red-deep);
   text-transform: uppercase; letter-spacing: .1em; font-size: 16px; margin: 0 0 12px;
   display: flex; align-items: baseline; gap: 10px;
 }
@@ -233,7 +244,7 @@ section { padding: 96px 0; }
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 44px; }
 .step .s-num {
   font-family: "VTC Marsha", serif; color: var(--red); font-size: 30px; line-height: 1;
-  border-bottom: 1.5px solid var(--redline); padding-bottom: 14px; margin-bottom: 16px;
+  border-bottom: 1.5px solid var(--redline); padding-bottom: 14px; margin-bottom: 16px; text-transform: uppercase;
 }
 .step h4 {
   font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase;
@@ -251,26 +262,26 @@ section { padding: 96px 0; }
 }
 .contact p { color: var(--ink); margin: 0 auto 28px; max-width: 460px; }
 .contact-card {
-  background: var(--red); border: none;
+  background: var(--red-deep); border: none;
   padding: 30px 40px; width: 100%; max-width: 760px;
   display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
   text-align: left;
 }
 .contact-card .host-id { display: flex; flex-direction: column; gap: 4px; }
-.contact-card .who { font-size: 15px; font-style: italic; color: rgba(255,255,255,.8); letter-spacing: .02em; margin: 0; }
-.contact-card .nm { font-family: "VTC Marsha", serif; font-size: 26px; color: #fff; margin: 0; letter-spacing: .03em; }
+.contact-card .who { font-size: 15px; font-style: italic; color: rgba(250,215,195,.92); letter-spacing: .02em; margin: 0; }
+.contact-card .nm { font-family: "VTC Marsha", serif; text-transform: uppercase; font-size: 26px; color: var(--cream); margin: 0; letter-spacing: .03em; }
 .contact-row { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
 .contact-row a {
   display: inline-flex; align-items: center; text-decoration: none;
-  color: #fff; font-size: 18px;
+  color: var(--cream); font-size: 18px;
 }
-.contact-row a:hover { color: rgba(255,255,255,.78); }
+.contact-row a:hover { color: rgba(250,215,195,.78); }
 
 /* ---------- Footer ---------- */
 .foot { background: var(--paper); padding: 60px 0; text-align: center; }
 .foot .mark {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
-  font-size: clamp(30px, 6vw, 64px); letter-spacing: .42em; padding-left: .42em;
+  font-size: clamp(30px, 6vw, 64px); letter-spacing: .42em; padding-left: .42em; text-transform: uppercase;
 }
 .foot .fine { font-style: italic; color: var(--muted); font-size: 13.5px; margin-top: 18px; }
 
@@ -351,7 +362,7 @@ section { padding: 96px 0; }
 }
 .type > * { position: relative; z-index: 1; transition: color .3s; }
 .type:hover::after { transform: translateY(0); }
-.type:hover .nm, .type:hover .num { color: #fff; }
+.type:hover .nm, .type:hover .num { color: var(--cream); }
 .type .dog-mark {
   position: absolute; right: 18px; bottom: 16px; width: 34px; height: auto; z-index: 1;
   opacity: 0; transform: translateY(6px) scaleX(-1); transition: opacity .3s, transform .3s;
@@ -370,7 +381,7 @@ section { padding: 96px 0; }
   letter-spacing: .06em; font-size: 22px; margin: 0; color: var(--ink);
 }
 .finder .count {
-  font-family: "VTC Marsha", serif; color: var(--red); font-size: 40px; line-height: 1;
+  font-family: "VTC Marsha", serif; color: var(--red); font-size: 40px; line-height: 1; text-transform: uppercase;
 }
 .finder .count small { font-style: italic; font-family: "Affairs", serif; color: var(--muted); font-size: 15px; letter-spacing: 0; margin-left: 8px; }
 .range-wrap { margin: 26px 0 22px; }
@@ -391,7 +402,8 @@ input[type="range"].guests::-moz-range-thumb {
 }
 .finder-out .dog { width: 50px; height: auto; transform: scaleX(-1); flex: 0 0 auto; }
 .finder-rec { font-size: 18px; }
-.finder-rec b { font-family: "VTC Marsha", serif; color: var(--red); font-weight: 700; letter-spacing: .03em; }
+.finder-rec b { font-family: "VTC Marsha", serif; color: var(--red-deep); font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
+}
 .finder-rec .fmt { font-style: italic; color: var(--muted); display: block; font-size: 15px; margin-top: 3px; }
 
 /* space card highlight when matched */
@@ -406,7 +418,7 @@ input[type="range"].guests::-moz-range-thumb {
   border: none; background: transparent; color: var(--ink); padding: 10px 26px; border-radius: 100px;
   transition: background .25s, color .25s;
 }
-.menu-tabs button.active { background: var(--red); color: #fff; }
+.menu-tabs button.active { background: var(--red-deep); color: var(--cream); }
 .menu-panel { display: none; }
 .menu-panel.active { display: block; animation: tabIn .42s cubic-bezier(.2,.7,.3,1); }
 @keyframes tabIn { from { transform: translateY(12px); } to { transform: none; } }
@@ -437,10 +449,10 @@ img.photo { object-fit: cover; border-radius: 4px; background: #efe9dc; }
 
 /* ---- floor plans ---- */
 .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 46px; }
-.plan-card { margin: 0; border: 1px solid var(--line); background: #fff; border-radius: 4px; overflow: hidden; }
+.plan-card { margin: 0; border: 1px solid var(--line); background: var(--cream); border-radius: 4px; overflow: hidden; }
 .plan-card img { width: 100%; display: block; }
 .plan-cap { padding: 20px 24px 22px; border-top: 1.5px solid var(--redline); }
-.plan-cap h3 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; color: var(--red); font-size: 20px; letter-spacing: .06em; margin: 0 0 6px; }
+.plan-cap h3 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; color: var(--red-deep); font-size: 20px; letter-spacing: .06em; margin: 0 0 6px; }
 .plan-cap p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.5; }
 .plans-note { text-align: center; font-style: italic; font-size: 14px; color: var(--muted); margin: 26px 0 0; }
 @media (max-width: 860px) { .plans { grid-template-columns: 1fr; } }
