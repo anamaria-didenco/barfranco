@@ -373,7 +373,7 @@ section { padding: 104px 0; }
 .page-hero .wrap { position: relative; z-index: 2; }
 .page-hero h1 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
-  text-transform: uppercase; font-size: clamp(40px, 6.4vw, 88px); line-height: .94;
+  text-transform: uppercase; font-size: clamp(36px, 6.4vw, 88px); line-height: .94;
   letter-spacing: .02em; margin: 6px 0 0; text-wrap: balance;
 }
 .page-hero .lede { margin-top: 22px; max-width: 600px; font-size: 20px; }
