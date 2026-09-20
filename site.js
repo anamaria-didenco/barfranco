@@ -46,21 +46,11 @@
 
     var burger = nav.querySelector('.nav-burger');
     if (burger) {
-      var syncExpanded = function () {
-        burger.setAttribute('aria-expanded', String(nav.classList.contains('open')));
-      };
       burger.addEventListener('click', function () {
         nav.classList.toggle('open');
-        syncExpanded();
       });
       nav.querySelectorAll('.nav-links a').forEach(function (a) {
-        a.addEventListener('click', function () { nav.classList.remove('open'); syncExpanded(); });
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key !== 'Escape' || !nav.classList.contains('open')) return;
-        nav.classList.remove('open');
-        syncExpanded();
-        burger.focus();
+        a.addEventListener('click', function () { nav.classList.remove('open'); });
       });
     }
   }
@@ -107,18 +97,8 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (!res || (res.success !== true && res.success !== 'true')) throw new Error('not ok');
-        /* These forms deliver by email only — they never touch VenueFlow, so without
-           this an ad click that converts here is counted as a failure. Reuses the
-           email-enquiry label already defined in BF-ADS-CONVERSIONS. */
-        try {
-          gtag('event', 'conversion', {
-            send_to: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',
-            value: 1.0,
-            currency: 'NZD'
-          });
-        } catch (e) {}
-        f.innerHTML = '<h3>Grazie.</h3>' +
-          '<p class="fnote">We\'ll come straight back to you.</p>' +
+        f.innerHTML = '<h3>Grazie! 🎉</h3>' +
+          '<p class="fnote">Thanks for reaching out — your message is on its way and we\'ll be in touch very soon.</p>' +
           '<p class="fnote">Anything urgent? Email <a href="mailto:' + to + '">' + to + '</a>.</p>';
       })
       .catch(function () {
@@ -130,7 +110,7 @@
           err.style.color = 'var(--red)';
           f.appendChild(err);
         }
-        var fallbackEmail = 'events@barfranco.nz'; /* the shared inbox, so a failed send survives one person being away */
+        var fallbackEmail = 'anamaria@barfranco.nz'; /* failures route to Ana-Maria's inbox */
         err.innerHTML = 'Sorry — that didn\'t send. Please email us directly at <a href="mailto:' + fallbackEmail + '">' + fallbackEmail + '</a> and we\'ll come straight back to you.';
       });
     });
