@@ -205,9 +205,17 @@
     <h2 class="sec-label reveal in" style="text-align:center;margin-bottom:10px;">Let's plan your event</h2>
     <p class="lede reveal in d1" style="text-align:center;margin:0 auto 30px;color:rgba(255,255,255,.9);">Tell us the date, the headcount and the vibe — our events team will take it from there.</p>
     <!-- VenueFlow enquiry widget — auto-resizing iframe; enquiries flow into the VenueFlow CRM + notification email -->
+    <!-- The widget's own <main> is min-height:100vh and it reports scrollHeight,
+     so the frame can only ever GROW from its starting height — it measures
+     itself as at least as tall as the box it sits in. 900 left ~450px of
+     blank card under step 1. Start at the form's own height; the resize
+     listener below grows it for step 2. Do not "fix" this back to 900, and
+     do not swap to venueflowhq.com/embed.js unless a slug has been set for
+     Bar Franco in VenueFlow first: its slug is currently empty and embed.js
+     refuses to mount without one. -->
     <iframe id="vf-enquiry"
       src="https://venueflowhq.com/enquire?embed=1&amp;accent=E51F1A"
-      width="100%" height="900" frameborder="0" loading="eager"
+      width="100%" height="460" frameborder="0" loading="eager"
       style="border:none;display:block;margin:0 auto;max-width:540px;width:100%;background:#fff;border-radius:4px;"
       title="Event enquiry — Bar Franco"></iframe>
     <script>
