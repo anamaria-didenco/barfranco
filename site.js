@@ -105,18 +105,31 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (!res || (res.success !== true && res.success !== 'true')) throw new Error('not ok');
+        /* Google Ads conversion for a native form submit.
+           main's fix was right that an unreported submit makes the campaign
+           optimise away from whatever produced it — but it fired the EMAIL
+           label for a form, and with a flat value of 1.
 
-        /* Google Ads conversion. The tag block in each page's <head> used to
-           learn about a submitted enquiry from the VenueFlow iframe's
-           postMessage. That iframe is gone, so the native form announces it
-           instead and the same conversion label keeps firing. Budget bracket
-           rides along as the conversion value. */
+           So: dispatch a cancelable event first. Pages whose <head> carries the
+           BF-ADS-CONVERSIONS block listen for it, fire the FORM label with the
+           budget bracket as the value, and call preventDefault() to say
+           "handled". If nothing handled it, fall back to firing here, so pages
+           without that block still report. Either way it fires exactly once. */
         var budgetEl = f.querySelector('#budget');
+        var budget = budgetEl ? budgetEl.value : '';
+        var handled = false;
         try {
-          document.dispatchEvent(new CustomEvent('bf-enquiry-submitted', {
-            detail: { budgetRange: budgetEl ? budgetEl.value : '' }
-          }));
+          var ev = new CustomEvent('bf-enquiry-submitted', { detail: { budgetRange: budget }, cancelable: true });
+          handled = !document.dispatchEvent(ev);
         } catch (e) {}
+        if (!handled) {
+          try {
+            gtag('event', 'conversion', {
+              send_to: 'AW-18456342571/yIDxCPHLqfocEKvg1eBE',
+              value: 1.0, currency: 'NZD'
+            });
+          } catch (e) {}
+        }
 
         var name = (f.querySelector('#name') || {}).value || '';
         f.className += ' form-done';

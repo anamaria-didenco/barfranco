@@ -4,6 +4,69 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18456342571"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18456342571');
+</script>
+<!-- BF-ADS-CONVERSIONS start — Google Ads conversions: phone, email, VenueFlow form. Keep directly below the Google tag. -->
+<script>
+(function () {
+  var LABELS = {
+    phone: 'AW-18456342571/lqN6CITV1_ocEKvg1eBE',   // Phone click
+    email: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',   // Email click - events enquiry
+    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE',   // Enquiry submitted (VenueFlow)
+    // Secondary action for a step-1 capture that never finishes. Create the
+    // conversion action in Google Ads, paste its label here, and this starts
+    // firing. Left null so it can never be counted against the form label.
+    partial: null                                   // Partial enquiry (VenueFlow)
+  };
+
+  function fire(label, value) {
+    try {
+      gtag('event', 'conversion', { 'send_to': label, 'value': value || 1.0, 'currency': 'NZD' });
+    } catch (e) {}
+  }
+
+  // 1. Phone and email links anywhere on the page
+  document.addEventListener('click', function (ev) {
+    var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = (a.getAttribute('href') || '').toLowerCase();
+    if (href.indexOf('tel:') === 0)    fire(LABELS.phone);
+    if (href.indexOf('mailto:') === 0) fire(LABELS.email);
+  }, true);
+
+  // 2. VenueFlow enquiry form — the widget posts `vf-enquiry-submitted` on a successful submit.
+  //    Budget bracket becomes the conversion value, so a $10k enquiry is worth more than a $2k one.
+  function budgetToValue(b) {
+    if (!b) return 1;
+    var nums = String(b).replace(/,/g, '').match(/\d+/g);
+    if (!nums) return 1;
+    var n = parseInt(nums[0], 10);
+    if (/k/i.test(String(b)) && n < 1000) n = n * 1000;
+    return n > 0 ? n : 1;
+  }
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
+    var d = e.data;
+    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
+    if (d && d.type === 'vf-enquiry-submitted') {
+      fire(LABELS.form, budgetToValue(d.budgetRange || d.budget_range || d.budget));
+    }
+    if (d && d.type === 'vf-partial-captured' && LABELS.partial) {
+      fire(LABELS.partial, budgetToValue(d.budgetRange || d.budget_range || d.budget));
+    }
+  });
+})();
+</script>
+<!-- BF-ADS-CONVERSIONS end -->
+<title>Bar Franco — Events & Private Hire</title>
+<meta name="description" content="Bar Franco events pack — private dining, cocktail functions and full venue hire for up to 240 across two levels in central Christchurch. No venue hire fee." />
 <!-- This page holds the only published function pricing on the site — grazing,
      canapé and seated per-head rates. It previously had no meta description, no
      canonical, lang="en" and no place in sitemap.xml, so the most commercially
@@ -66,7 +129,7 @@
       <a href="#events">Events</a>
       <a href="#menus">Menus</a>
       <a href="#aperitivo">Drinks</a>
-      <a class="btn" href="https://venueflowhq.com/enquire/" target="_blank" rel="noopener">Enquire</a>
+      <a class="btn" href="#contact">Enquire</a>
     </div>
   </div>
 </nav>
@@ -84,7 +147,7 @@
       <span class="tag">Up to 240 across both levels</span>
     </div>
     <div class="hero-cta reveal in d3">
-      <a class="btn" href="https://venueflowhq.com/enquire/" target="_blank" rel="noopener">Enquire now</a>
+      <a class="btn" href="#contact">Enquire now</a>
       <a class="btn ghost" href="#finder">Find your space</a>
     </div>
     <div class="hero-media hero-media-grid reveal d4">
@@ -404,7 +467,23 @@
       <p class="eyebrow">Enquire</p>
       <h2>Let's plan your night.</h2>
       <p>Tell us your date and numbers and we'll put together a proposal — no venue hire fee, pricing on application.</p>
-      <a class="btn" href="https://venueflowhq.com/enquire/" target="_blank" rel="noopener">Start an enquiry</a>
+      <!-- VenueFlow enquiry widget — embedded rather than linked. A link to the
+           bare venueflowhq.com/enquire/ form sends the prospect off barfranco.nz
+           onto a VenueFlow-branded page and fires no conversion at all. -->
+      <iframe id="vf-enquiry"
+        src="https://venueflowhq.com/enquire?embed=1&amp;accent=AF0F00"
+        width="100%" height="900" frameborder="0" loading="lazy"
+        style="border:none;display:block;margin:0;max-width:540px;width:100%;background:#fff;border-radius:4px;"
+        title="Event enquiry — Bar Franco"></iframe>
+      <script>
+        // Resize the iframe to fit whichever step the widget is showing.
+        window.addEventListener('message', function (e) {
+          if (e.data && e.data.type === 'vf-embed-height' && e.data.height) {
+            var f = document.getElementById('vf-enquiry');
+            if (f) f.style.height = e.data.height + 'px';
+          }
+        });
+      </script>
     </div>
     <div class="contact-card reveal d1">
       <div class="host-id">

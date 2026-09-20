@@ -57,6 +57,8 @@
   document.addEventListener('bf-enquiry-submitted', function (e) {
     var d = (e && e.detail) || {};
     fire(LABELS.form, budgetToValue(d.budgetRange));
+    // tell site.js this was handled, so it does not fire a second time
+    if (e.cancelable) e.preventDefault();
   });
 
   window.addEventListener('message', function (e) {
@@ -217,6 +219,94 @@
     </div>
   </div>
 </header>
+<!-- ENQUIRY -->
+<section class="sec-cream" id="enquire">
+  <div class="wrap" style="max-width:720px;">
+    <p class="eyebrow reveal in" style="text-align:center;">Enquire</p>
+    <h2 class="sec-label reveal in" style="text-align:center;margin-bottom:10px;">Tell us about your night</h2>
+    <p class="lede reveal in d1" style="text-align:center;margin:0 auto 34px;">The more you tell us, the more useful our first reply can be. We come back on every enquiry — usually within one business day.</p>
+
+    <!-- Native enquiry form. Replaces the third-party venueflowhq.com iframe that
+         used to sit here: enquiries now land directly in a Bar Franco inbox with
+         no dependency on an external service staying configured. The Google Ads
+         "Enquiry submitted" conversion still fires — site.js dispatches
+         bf-enquiry-submitted on success and the tag block in <head> listens. -->
+    <form class="enquiry-form reveal in d1"
+          data-email="events@barfranco.nz"
+          data-cc="anamaria@barfranco.nz"
+          data-subject="Event enquiry from barfranco.nz">
+      <div class="form-grid">
+        <div class="field">
+          <label for="name">Your name *</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="Who are we talking to?" required />
+        </div>
+        <div class="field">
+          <label for="phone">Phone *</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="021…" required />
+        </div>
+        <div class="field full">
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required />
+        </div>
+        <div class="field">
+          <label for="eventtype">Type of event *</label>
+          <select id="eventtype" name="eventtype" required>
+            <option value="" disabled selected>Choose one…</option>
+            <option>Private dining</option>
+            <option>Birthday or celebration</option>
+            <option>Corporate event</option>
+            <option>Wedding reception</option>
+            <option>Cocktail function</option>
+            <option>Christmas party</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Preferred date</label>
+          <input id="date" name="date" type="date" />
+        </div>
+        <div class="field">
+          <label for="guests">Roughly how many guests? *</label>
+          <input id="guests" name="guests" type="number" min="1" max="240" inputmode="numeric" placeholder="e.g. 40" required />
+        </div>
+        <div class="field">
+          <label for="space">Preferred space</label>
+          <select id="space" name="space">
+            <option value="" disabled selected>Not sure yet — help us choose</option>
+            <option>Level 1 · Spritz &amp; Negroni Bar</option>
+            <option>Level 2 · The Restaurant</option>
+            <option>Exclusive whole venue</option>
+            <option>Not sure yet — help us choose</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="budget">Approximate budget (optional)</label>
+          <select id="budget" name="budget">
+            <option value="" disabled selected>Rather not say yet</option>
+            <option>Under $2,000</option>
+            <option>$2,000 – $5,000</option>
+            <option>$5,000 – $10,000</option>
+            <option>$10,000 – $20,000</option>
+            <option>$20,000+</option>
+            <option>Rather not say yet</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="msg">Anything else we should know?</label>
+          <textarea id="msg" name="msg" placeholder="Twelve of us, a Friday in November, somewhere upstairs…"></textarea>
+        </div>
+      </div>
+      <button class="btn lg" type="submit">Send enquiry</button>
+      <p class="form-privacy">We'll only use this to answer your enquiry. No lists, no newsletters.</p>
+    </form>
+
+    <p style="font-style:italic;color:var(--muted);font-size:15px;margin:24px 0 0;text-align:center;">
+      Prefer to talk it through? Come say ciao —
+      <a href="mailto:events@barfranco.nz" style="color:var(--red-deep);">events@barfranco.nz</a> ·
+      <a href="tel:+64212211307" style="color:var(--red-deep);">021 221 1307</a>
+    </p>
+  </div>
+</section>
 
 <!-- NOT A FUNCTION ROOM -->
 <section>
@@ -501,95 +591,6 @@
       <details><summary>Do you offer set menus for groups?</summary><p class="faq-a">We do — shared Italian set menus built around your group, budget and dietaries, from antipasti to dolci. <a href="Menus.html">See our menus</a>.</p></details>
       <details><summary>Can you host a private dinner for a birthday or occasion?</summary><p class="faq-a">Absolutely — private dining for birthdays, engagements, anniversaries and milestones is one of our favourite things. Tell us the occasion and we'll make it special.</p></details>
     </div>
-  </div>
-</section>
-
-<!-- ENQUIRY -->
-<section class="sec-cream" id="enquire">
-  <div class="wrap" style="max-width:720px;">
-    <p class="eyebrow reveal in" style="text-align:center;">Enquire</p>
-    <h2 class="sec-label reveal in" style="text-align:center;margin-bottom:10px;">Tell us about your night</h2>
-    <p class="lede reveal in d1" style="text-align:center;margin:0 auto 34px;">The more you tell us, the more useful our first reply can be. We come back on every enquiry — usually within one business day.</p>
-
-    <!-- Native enquiry form. Replaces the third-party venueflowhq.com iframe that
-         used to sit here: enquiries now land directly in a Bar Franco inbox with
-         no dependency on an external service staying configured. The Google Ads
-         "Enquiry submitted" conversion still fires — site.js dispatches
-         bf-enquiry-submitted on success and the tag block in <head> listens. -->
-    <form class="enquiry-form reveal in d1"
-          data-email="events@barfranco.nz"
-          data-cc="anamaria@barfranco.nz"
-          data-subject="Event enquiry from barfranco.nz">
-      <div class="form-grid">
-        <div class="field">
-          <label for="name">Your name *</label>
-          <input id="name" name="name" type="text" autocomplete="name" placeholder="Who are we talking to?" required />
-        </div>
-        <div class="field">
-          <label for="phone">Phone *</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="021…" required />
-        </div>
-        <div class="field full">
-          <label for="email">Email *</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required />
-        </div>
-        <div class="field">
-          <label for="eventtype">Type of event *</label>
-          <select id="eventtype" name="eventtype" required>
-            <option value="" disabled selected>Choose one…</option>
-            <option>Private dining</option>
-            <option>Birthday or celebration</option>
-            <option>Corporate event</option>
-            <option>Wedding reception</option>
-            <option>Cocktail function</option>
-            <option>Christmas party</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="date">Preferred date</label>
-          <input id="date" name="date" type="date" />
-        </div>
-        <div class="field">
-          <label for="guests">Roughly how many guests? *</label>
-          <input id="guests" name="guests" type="number" min="1" max="240" inputmode="numeric" placeholder="e.g. 40" required />
-        </div>
-        <div class="field">
-          <label for="space">Preferred space</label>
-          <select id="space" name="space">
-            <option value="" disabled selected>Not sure yet — help us choose</option>
-            <option>Level 1 · Spritz &amp; Negroni Bar</option>
-            <option>Level 2 · The Restaurant</option>
-            <option>Exclusive whole venue</option>
-            <option>Not sure yet — help us choose</option>
-          </select>
-        </div>
-        <div class="field full">
-          <label for="budget">Approximate budget (optional)</label>
-          <select id="budget" name="budget">
-            <option value="" disabled selected>Rather not say yet</option>
-            <option>Under $2,000</option>
-            <option>$2,000 – $5,000</option>
-            <option>$5,000 – $10,000</option>
-            <option>$10,000 – $20,000</option>
-            <option>$20,000+</option>
-            <option>Rather not say yet</option>
-          </select>
-        </div>
-        <div class="field full">
-          <label for="msg">Anything else we should know?</label>
-          <textarea id="msg" name="msg" placeholder="Twelve of us, a Friday in November, somewhere upstairs…"></textarea>
-        </div>
-      </div>
-      <button class="btn lg" type="submit">Send enquiry</button>
-      <p class="form-privacy">We'll only use this to answer your enquiry. No lists, no newsletters.</p>
-    </form>
-
-    <p style="font-style:italic;color:var(--muted);font-size:15px;margin:24px 0 0;text-align:center;">
-      Prefer to talk it through? Come say ciao —
-      <a href="mailto:events@barfranco.nz" style="color:var(--red-deep);">events@barfranco.nz</a> ·
-      <a href="tel:+64212211307" style="color:var(--red-deep);">021 221 1307</a>
-    </p>
   </div>
 </section>
 

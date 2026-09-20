@@ -57,6 +57,8 @@
   document.addEventListener('bf-enquiry-submitted', function (e) {
     var d = (e && e.detail) || {};
     fire(LABELS.form, budgetToValue(d.budgetRange));
+    // tell site.js this was handled, so it does not fire a second time
+    if (e.cancelable) e.preventDefault();
   });
 
   window.addEventListener('message', function (e) {
