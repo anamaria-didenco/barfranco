@@ -1,18 +1,18 @@
 /* ============================================================
    BAR FRANCO — Home
-   Franco Red #F00000 · Red Deep / Spritz #AF0F00 · Oxblood #6C0600 · Peach / Paper
-   VTC Marsha (display, caps only) · Affairs (serif body)
+   Franco Red #E51F1A · Deep #AF0F00 · Oxblood #690500 · Peach / Paper
+   VTC Marsha (display) · Affairs (serif body)
    ============================================================ */
 
 :root {
-  --red: #F00000;
+  --red: #E51F1A;
   --red-deep: #AF0F00;
-  --ink: #6C0600;
+  --ink: #690500;
   --paper: #FCFBF7;
-  --cream: #FAD7C3;
-  --muted: rgba(108,6,0,.72);
-  --line: rgba(108,6,0,.16);
-  --redline: rgba(240,0,0,.32);
+  --cream: #FAD6C2;
+  --muted: rgba(105,5,0,.62);
+  --line: rgba(105,5,0,.16);
+  --redline: rgba(229,31,26,.32);
   --maxw: 1180px;
 }
 
@@ -33,7 +33,7 @@ a { color: inherit; }
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 40px; }
 .eyebrow {
   font-style: italic; letter-spacing: .34em; text-transform: uppercase;
-  font-size: 12.5px; color: var(--red-deep); margin: 0 0 18px;
+  font-size: 12.5px; color: var(--red); margin: 0 0 18px;
 }
 .eyebrow.light { color: rgba(255,255,255,.82); }
 
@@ -43,16 +43,14 @@ a { color: inherit; }
   font-family: "Affairs", serif; font-style: italic; font-size: 15px;
   text-decoration: none; cursor: pointer; border: none;
   padding: 12px 24px; border-radius: 2px;
-  background: var(--red-deep); color: var(--cream); letter-spacing: .02em;
+  background: var(--red); color: #fff; letter-spacing: .02em;
   transition: background .15s, transform .15s;
 }
-.btn:hover { background: var(--ink); }
+.btn:hover { background: var(--red-deep); }
 .btn.ghost { background: transparent; color: var(--ink); border: 1.4px solid var(--ink); }
-.btn.ghost:hover { background: var(--ink); color: var(--cream); }
-.btn.light { background: var(--cream); color: var(--red-deep); }
-.btn.light:hover { background: rgba(250,215,195,.86); }
-.btn.ghost-light { background: transparent; color: var(--cream); border: 1.4px solid rgba(250,215,195,.6); }
-.btn.ghost-light:hover { background: var(--cream); color: var(--red-deep); border-color: var(--cream); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+.btn.light { background: #fff; color: var(--red); }
+.btn.light:hover { background: rgba(255,255,255,.86); }
 .btn.lg { padding: 15px 30px; font-size: 16.5px; }
 
 /* ---------- Nav ---------- */
@@ -76,16 +74,7 @@ a { color: inherit; }
   font-style: italic; letter-spacing: .02em;
 }
 .nav-links a:not(.btn):hover { color: var(--red); }
-.nav-links a.active { color: var(--red-deep); border-bottom-color: var(--red-deep); }
-/* the nav button keeps its own colours and padding.
-   .nav-home.scrolled .nav-links a is the same specificity and sits later in the
-   file, so the scrolled homepage state needs naming here too or it wins. */
-.nav .nav-links a.btn,
-.nav .nav-links a.btn:hover,
-.nav-home.scrolled .nav-links a.btn,
-.nav-home.scrolled .nav-links a.btn:hover { color: var(--cream); border-bottom: 0; }
-.nav .nav-links a.btn,
-.nav-home.scrolled .nav-links a.btn { padding: 12px 24px; }
+.nav-links a.active { color: var(--red); }
 .nav-burger {
   display: none; margin-left: auto; width: 40px; height: 40px; border: none;
   background: none; cursor: pointer; flex-direction: column; gap: 5px;
@@ -93,121 +82,61 @@ a { color: inherit; }
 }
 .nav-burger span { width: 22px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
 
-/* ---------- Nav — homepage two-row / scrolled variant ---------- */
-/* Scoped entirely to .nav-home (only present on index.html's <nav>); base .nav rules
-   above are untouched so every other page keeps its existing sticky single-row nav. */
-.nav-home {
-  position: fixed; top: 0; left: 0; right: 0; background: transparent;
-  backdrop-filter: none; border-bottom: none; transition: background .3s ease, transform .35s ease;
-}
-.nav-home .nav-inner { height: 84px; }
-.nav-home .brand-logo { height: 40px; }
-.nav-home .nav-links a { color: var(--cream); }
-.nav-home .nav-links a:not(.btn) { border-bottom: 1.5px solid transparent; padding-bottom: 2px; }
-.nav-home .nav-links a:not(.btn):hover { color: rgba(250,215,195,.5); }
-.nav-home .nav-links a.active { color: var(--cream); border-bottom-color: var(--cream); }
-.nav-home .nav-links .btn { display: none; } /* no booking button over the hero — the hero's own CTA covers it */
-.nav-home .nav-socials { display: flex; gap: 10px; margin-left: 8px; }
-.nav-home .nav-socials a {
-  width: 36px; height: 36px; border-radius: 50%; border: 1.2px solid rgba(250,215,195,.7);
-  color: var(--cream); display: inline-flex; align-items: center; justify-content: center;
-  transition: background .15s, color .15s, border-color .15s;
-}
-.nav-home .nav-socials a:hover { background: var(--red); border-color: var(--red); color: var(--cream); }
-.nav-home .nav-socials svg { width: 15px; height: 15px; }
-.nav-scrolled-mark { display: none; height: 30px; width: auto; }
-.nav-scrolled-hours { display: none; font-style: italic; font-size: 13px; color: var(--ink); margin-left: 14px; padding-left: 14px; border-left: 1px solid var(--line); }
-.nav-home.scrolled {
-  background: rgba(250,215,195,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
-}
-.nav-home.scrolled .nav-inner { height: 72px; }
-.nav-home.scrolled .nav-links a { color: var(--ink); }
-.nav-home.scrolled .nav-links a:not(.btn):hover { color: var(--red); }
-.nav-home.scrolled .nav-links a.active { color: var(--red-deep); border-bottom-color: var(--red-deep); }
-.nav-home.scrolled .nav-links .btn { display: inline-flex; }
-.nav-home.scrolled .nav-socials a { color: var(--ink); border-color: var(--line); }
-.nav-home.scrolled .nav-socials a:hover { background: var(--red); border-color: var(--red); color: var(--cream); }
-.nav-home.scrolled .brand-logo { display: none; }
-.nav-home.scrolled .nav-scrolled-mark { display: block; }
-.nav-home.scrolled .nav-scrolled-hours { display: inline; }
-.nav-mobile-strip { display: none; }
-@media (max-width: 940px) {
-  .nav-home .nav-inner { height: 60px; }
-    .nav-mobile-strip {
-    display: flex; align-items: center; justify-content: center; height: 30px;
-    background: rgba(108,6,0,.45); font-family: "VTC Marsha", serif; text-transform: uppercase;
-    letter-spacing: .1em; font-size: 11px; color: var(--cream);
-  }
-  .nav-home.scrolled .nav-mobile-strip { display: none; }
-  .nav-home .nav-links { background: var(--paper); }
-  .nav-home .nav-links a { color: var(--ink); }
-  .nav-home .nav-links a:not(.btn):hover { color: var(--red); }
-  .nav-home .nav-links a.active { color: var(--red-deep); border-bottom-color: var(--red-deep); }
-  .nav-home .nav-links .btn { display: inline-flex; }
-}
-
 /* ---------- Section frame ---------- */
 section { padding: 104px 0; }
 .sec-cream { background: var(--cream); }
 .sec-ink { background: var(--ink); color: var(--paper); }
-.sec-red { background: var(--red-deep); color: var(--cream); }
+.sec-red { background: var(--red); color: #fff; }
 .sec-label {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
   text-transform: uppercase; letter-spacing: .12em; font-size: clamp(26px, 3vw, 36px);
   margin: 0 0 14px; line-height: 1;
 }
-.sec-ink .sec-label, .sec-red .sec-label { color: var(--cream); }
+.sec-ink .sec-label, .sec-red .sec-label { color: #fff; }
 .lede { font-size: 20px; max-width: 640px; color: var(--ink); margin: 0 0 8px; }
-.sec-ink .lede, .sec-red .lede { color: var(--cream); }
+.sec-ink .lede, .sec-red .lede { color: rgba(255,255,255,.92); }
 
-/* ---------- Hero — full-bleed photograph ---------- */
-.hero {
-  position: relative; height: 880px; min-height: 560px;
-  display: flex; align-items: flex-end; overflow: hidden; padding: 0 0 68px;
+/* ---------- Hero ---------- */
+/* overflow-x clips the Negroni glass, which is positioned at right:-30px and
+   on a narrow phone hangs past the viewport and scrolls the whole page
+   sideways. The nav is a sibling, not a descendant, so its sticky
+   positioning is unaffected. */
+.hero { padding: 86px 0 96px; position: relative; overflow-x: hidden; }
+.hero-grid {
+  display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center;
 }
-.hero-photo {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: 50% 46%; z-index: 0;
-}
-.hero-scrim {
-  position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background:
-    radial-gradient(ellipse 64% 76% at 20% 72%, rgba(108,6,0,.84) 0%, rgba(108,6,0,.74) 55%, rgba(108,6,0,0) 100%),
-    linear-gradient(180deg, rgba(108,6,0,.30) 0%, rgba(108,6,0,.04) 34%, rgba(108,6,0,.28) 66%, rgba(108,6,0,.78) 100%);
-}
-@media (min-width: 701px) and (max-width: 940px) {
-  .hero-scrim { background: linear-gradient(180deg, rgba(108,6,0,.70) 0%, rgba(108,6,0,.68) 70%, rgba(108,6,0,.45) 84%, rgba(108,6,0,.82) 100%); }
-}
-.hero .wrap { position: relative; z-index: 2; width: 100%; }
-.hero-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
-/* full-strength peach, not .85 — at 12.5px this is small text and needs 4.5:1 */
-.hero-eyebrow { color: var(--cream); margin: 0 0 16px; text-shadow: 0 2px 14px rgba(108,6,0,.55); }
-/* contrast comes from a local shadow, not a heavier overlay — the photograph has to read */
-.hero-inner h1, .hero-second { text-shadow: 0 2px 18px rgba(108,6,0,.5); }
+.hero-logo { height: clamp(66px, 10vw, 116px); width: auto; margin: 0 0 34px; }
 .hero h1 {
-  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--cream);
-  font-size: clamp(31px, 5.2vw, 54px); line-height: 1.04; margin: 0;
-  letter-spacing: .005em; text-wrap: balance; text-transform: uppercase; max-width: 720px;
+  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
+  font-size: clamp(40px, 5.4vw, 76px); line-height: .96; margin: 0;
+  letter-spacing: .005em; text-wrap: balance; text-transform: uppercase;
 }
-.hero-second {
-  font-family: "Affairs", serif; font-style: italic; color: var(--cream);
-  font-size: clamp(22px, 3.2vw, 42px); margin: 10px 0 0; line-height: 1.1;
-}
+.h1-geo { color: var(--ink); display: inline-block; text-transform: uppercase; }
 .hero-sub {
-  font-size: 18px; max-width: 460px; margin: 22px 0 0;
-  line-height: 1.55; color: rgba(250,215,195,.94);
+  font-size: clamp(18px, 2vw, 22px); max-width: 520px; margin: 28px 0 0;
+  line-height: 1.55; color: var(--ink);
 }
-.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin: 32px 0 0; }
-.hero-scroll-link { font-style: italic; font-size: 15px; color: var(--cream); text-decoration: none; border-bottom: 1px solid rgba(250,215,195,.5); padding-bottom: 2px; }
-.hero-scroll-link:hover { color: rgba(250,215,195,.75); }
-.hero-side { position: relative; flex: 0 0 auto; display: flex; align-items: flex-end; gap: 18px; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 38px 0 0; }
+.hero-media { position: relative; }
+.hero-media img.photo { width: 100%; height: clamp(420px, 52vw, 600px); }
 .hero-stamp {
-  background: var(--cream); color: var(--red-deep); padding: 16px 20px; max-width: 190px;
-  box-shadow: 0 12px 34px rgba(0,0,0,.28);
+  position: absolute; left: -26px; bottom: -26px; z-index: 2;
+  background: var(--red); color: #fff; padding: 18px 22px; max-width: 220px;
+  box-shadow: 0 12px 34px rgba(175,15,0,.28);
 }
-.hero-stamp .st-k { font-style: italic; font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--red-deep); margin: 0 0 6px; }
-.hero-stamp .st-v { font-family: "VTC Marsha", serif; font-size: 20px; letter-spacing: .03em; line-height: 1.15; margin: 0; }
-.hero-stamp .st-note { font-style: italic; font-size: 13px; color: var(--red-deep); margin: 6px 0 0; }
+.hero-stamp .st-k { font-style: italic; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.78); margin: 0 0 6px; }
+.hero-stamp .st-v { font-family: "VTC Marsha", serif; font-size: 19px; letter-spacing: .04em; line-height: 1.1; margin: 0; }
+.hero-negroni {
+  position: absolute; top: -42px; right: -30px; z-index: 3;
+  width: clamp(96px, 13vw, 150px); height: auto;
+  filter: drop-shadow(0 10px 20px rgba(175,15,0,.22));
+  animation: bob 5.5s ease-in-out infinite;
+}
+@keyframes bob {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+@media (prefers-reduced-motion: reduce) { .hero-negroni { animation: none; } }
 
 /* ---------- Marquee strip ---------- */
 .strip { background: var(--cream); color: var(--red); overflow: hidden; padding: 15px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -224,13 +153,8 @@ section { padding: 104px 0; }
 .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
 .about h2 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
-  text-transform: uppercase; font-size: clamp(30px, 4.3vw, 60px); letter-spacing: .03em;
-  margin: 18px 0 24px; line-height: .96;
-}
-.about-second { font-family: "Affairs", serif; font-style: italic; font-size: 28px; color: var(--ink); margin: -8px 0 20px; }
-.about-kw {
-  font-family: "Affairs", serif; font-style: italic; font-weight: 400; font-size: 18px;
-  color: var(--muted); margin: 0 0 18px; max-width: 460px; line-height: 1.5;
+  text-transform: uppercase; font-size: clamp(28px, 3.6vw, 44px); letter-spacing: .03em;
+  margin: 14px 0 24px; line-height: 1.02;
 }
 .about p { max-width: 460px; margin: 0 0 18px; }
 .about .btn { margin-top: 16px; }
@@ -267,74 +191,27 @@ section { padding: 104px 0; }
 .lv-meta .m .n { font-family: "VTC Marsha", serif; color: var(--red); font-size: 26px; line-height: 1; }
 .lv-meta .m .l { font-style: italic; color: var(--muted); font-size: 13px; margin-top: 4px; }
 
-/* Homepage Two Levels — two full-bleed panels, copy set over a bottom gradient
-   (design 7a). New .lv-panel classes rather than the shared .level markup, so
-   Functions.html's .level cards are untouched. */
-.lv-band { padding: 0; background: var(--ink); }
-.lv-panels { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px; }
-.lv-panel { position: relative; overflow: hidden; background: var(--ink); min-height: clamp(380px, 47vw, 680px); }
-.lv-panel > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.lv-panel:first-child > img { object-position: 50% 45%; }
-.lv-panel:last-child > img { object-position: 50% 60%; }
-.lv-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(108,6,0,0) 45%, rgba(108,6,0,.86) 100%); }
-.lv-copy { position: absolute; left: clamp(20px, 3.2vw, 44px); right: clamp(20px, 3.2vw, 44px); bottom: clamp(24px, 2.8vw, 40px); color: var(--cream); }
-.lv-kick { font-style: italic; font-size: 15px; letter-spacing: .04em; margin: 0; color: rgba(250,215,195,.8); }
-.lv-copy h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: clamp(26px, 3.4vw, 40px); line-height: 1; margin: 8px 0 12px; }
-.lv-copy p { font-style: italic; font-size: clamp(15.5px, 1.5vw, 17px); margin: 0; max-width: 480px; color: rgba(250,215,195,.9); text-wrap: pretty; }
-@media (max-width: 760px) {
-  .lv-panels { grid-template-columns: minmax(0,1fr); }
-  .lv-panel { min-height: 420px; }
-}
-
-/* screen-reader-only heading: the panels carry the meaning visually, but the
-   section still needs a heading in the outline for assistive tech and search */
-.visually-hidden {
-  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
-  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
-}
-
-/* ghost wordmark behind About (design 7a) */
-.about { position: relative; overflow: hidden; }
-.about-ghost {
-  position: absolute; right: -40px; top: 40px; z-index: 0;
-  font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase;
-  font-size: clamp(120px, 21vw, 300px); line-height: .8; color: rgba(240,0,0,.05);
-  pointer-events: none; user-select: none;
-}
-.about .wrap { position: relative; z-index: 1; }
-
 /* ---------- Events band (red) ---------- */
-/* Red Deep per the spec, not the brighter --red: this is the homepage's one red
-   band and peach labels need to clear 4.5:1 on it. Scoped to .events-band so the
-   eleven other pages sharing .sec-red keep their existing colour. */
-.events-band { background: var(--ink); color: var(--cream); border-top: 3px solid var(--red-deep); }
-.events-band .wrap { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: 56px; align-items: center; }
-.eb-lede { font-style: italic; }
-.eb-actions { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
-.eb-link { font-style: italic; font-size: 15.5px; color: rgba(250,215,195,.92); text-decoration: none; border-bottom: 1px solid rgba(250,215,195,.45); padding-bottom: 2px; }
-.eb-link:hover { color: var(--cream); border-bottom-color: var(--cream); }
+.events-band .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
 .events-band h2 {
-  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--cream);
+  font-family: "VTC Marsha", serif; font-weight: 700; color: #fff;
   text-transform: uppercase; font-size: clamp(30px, 4.2vw, 56px); letter-spacing: .025em;
   margin: 0 0 22px; line-height: 1;
 }
-.events-band p { color: rgba(250,215,195,.92); max-width: 520px; margin: 0 0 30px; }
+.events-band p { color: rgba(255,255,255,.92); max-width: 520px; margin: 0 0 30px; }
 .eb-list { list-style: none; margin: 0 0 32px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .eb-list li {
-  font-style: italic; font-size: 14.5px; color: var(--cream);
-  border: 1.3px solid rgba(250,215,195,.4); border-radius: 100px; padding: 7px 16px;
+  font-style: italic; font-size: 14.5px; color: #fff;
+  border: 1.3px solid rgba(255,255,255,.4); border-radius: 100px; padding: 7px 16px;
 }
-.eb-photos { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
-.eb-photos img.photo { border-radius: 4px; }
-.eb-photos img.photo { width: 100%; height: clamp(150px, 13vw, 190px); }
-.eb-photos .eb-p1 { grid-column: span 2; height: clamp(220px, 21vw, 300px); }
+.events-band .eb-media img.photo { width: 100%; height: clamp(340px, 40vw, 460px); }
+.eb-media { position: relative; }
+.eb-media .dog-badge { position: absolute; left: -18px; bottom: -18px; width: 84px; transform: scaleX(-1); filter: brightness(0) invert(1) drop-shadow(0 4px 8px rgba(0,0,0,.3)); }
 
 /* ---------- Moments gallery ---------- */
-.moments { background: var(--cream); padding: 96px 0 88px; }
-.moments-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; padding: 0 40px; max-width: none; }
-.moments-head .eyebrow, .moments-head .sec-label { color: var(--red-deep); margin-bottom: 0; }
-.moments-head .sec-label { font-size: clamp(28px, 3.4vw, 44px); letter-spacing: .03em; margin-top: 14px; }
-.moments-aside { font-style: italic; font-size: 17px; color: rgba(108,6,0,.75); margin: 0; }
+.moments { text-align: center; }
+.moments .sec-label, .moments .lede { margin-left: auto; margin-right: auto; }
+.moments .lede { text-align: center; }
 .gallery {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 50px 0 44px;
 }
@@ -342,26 +219,10 @@ section { padding: 104px 0; }
 .gallery .g-wide { grid-column: span 2; }
 .gallery img.g-tall { grid-row: span 2; height: 100%; }
 .moments-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-
-/* Homepage-only film strip — new classnames, no reuse of .gallery so Functions.html's
-   filterable #gallery grid is entirely unaffected. */
-.filmstrip { display: flex; gap: 6px; margin: 56px 0 0; text-align: left; }
-.filmstrip-frame { display: flex; flex-direction: column; }
-.filmstrip-frame > img { height: 430px; }
-.filmstrip-frame { position: relative; overflow: hidden; }
-.filmstrip-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.filmstrip-frame figcaption {
-  font-style: italic; font-size: 13.5px; color: var(--red-deep);
-  padding: 10px 0 0;
-}
-.filmstrip-f1 { flex: 1.1; } .filmstrip-f2 { flex: .85; } .filmstrip-f3 { flex: 1.6; }
-.filmstrip-f4 { flex: .85; } .filmstrip-f5 { flex: 1; }
-.moments-row { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 6px; margin: 6px 0 0; }
-.moments-row img.photo { width: 100%; height: 230px; border-radius: 0; }
 .gal-filter { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 34px 0 0; }
 .gal-filter button { font-family: "Affairs", serif; font-style: italic; font-size: 15px; cursor: pointer; padding: 9px 20px; border-radius: 2px; border: 1.4px solid var(--ink); background: transparent; color: var(--ink); transition: background .15s, color .15s, border-color .15s; }
 .gal-filter button:hover { border-color: var(--red); color: var(--red); }
-.gal-filter button.active { background: var(--red); color: var(--cream); border-color: var(--red); }
+.gal-filter button.active { background: var(--red); color: #fff; border-color: var(--red); }
 .gal-filter + .gallery { margin-top: 24px; }
 .gallery.filtered .g-wide { grid-column: auto; }
 .gallery.filtered .g-tall { grid-row: auto; height: clamp(180px, 18vw, 240px); }
@@ -385,21 +246,11 @@ section { padding: 104px 0; }
 .menu-trust h3 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; color: var(--red); font-size: 21px; letter-spacing: .09em; margin: 0 0 8px; }
 .menu-trust p { font-family: "Affairs", serif; color: var(--ink); margin: 0; line-height: 1.55; font-size: 16px; }
 .menu-download { text-align: center; font-family: "Affairs", serif; font-style: italic; color: var(--muted); font-size: 15px; margin: 40px 0 0; }
-.menu-download a { color: var(--red-deep); }
+.menu-download a { color: var(--red); }
 .menu-foot-note { text-align: center; font-family: "Affairs", serif; font-size: 13px; color: var(--muted); margin: 12px 0 0; }
 
-/* ---------- Closer ---------- */
-.closer { background: var(--ink); color: var(--cream); text-align: center; }
-.closer .wrap { max-width: 760px; }
-.closer h2 {
-  font-family: "VTC Marsha", serif; font-weight: 700; color: var(--cream);
-  text-transform: uppercase; font-size: clamp(28px, 3.6vw, 46px); letter-spacing: .02em;
-  line-height: 1.1; margin: 0 0 34px;
-}
-.closer-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
 /* ---------- Contact ---------- */
-.contact { background: var(--paper); }
+.contact { background: var(--cream); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
 .contact h2 {
   font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red);
@@ -410,7 +261,7 @@ section { padding: 104px 0; }
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 30px; }
 .info-block h4 {
   font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .08em; font-size: 14px; color: var(--red-deep); margin: 0 0 10px;
+  letter-spacing: .08em; font-size: 14px; color: var(--red); margin: 0 0 10px;
 }
 .info-block p, .info-block a { margin: 0 0 4px; font-size: 16px; color: var(--ink); text-decoration: none; display: block; line-height: 1.5; }
 .info-block a:hover { color: var(--red); }
@@ -419,12 +270,12 @@ section { padding: 104px 0; }
   width: 38px; height: 38px; border: 1.3px solid var(--ink); border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center; transition: background .15s, color .15s, border-color .15s;
 }
-.socials a:hover { background: var(--red); border-color: var(--red); color: var(--cream); }
+.socials a:hover { background: var(--red); border-color: var(--red); color: #fff; }
 .socials svg { width: 17px; height: 17px; }
 
 /* form */
 .contact-form {
-  background: var(--cream); border: none; border-radius: 4px; padding: 40px 40px 38px;
+  background: var(--paper); border: 1px solid var(--line); padding: 40px 40px 38px;
 }
 .contact-form h3 {
   font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase;
@@ -495,7 +346,8 @@ section { padding: 104px 0; }
   .nav.open .nav-links { transform: none; opacity: 1; pointer-events: auto; }
   .nav-links a { padding: 8px 0; font-size: 17px; }
   .nav-links a.btn { margin-top: 8px; }
-  .about-grid, .events-band .wrap, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-grid, .about-grid, .events-band .wrap, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-media { order: -1; }
   .levels { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .gallery .g-wide { grid-column: span 2; }
@@ -503,59 +355,12 @@ section { padding: 104px 0; }
   section { padding: 74px 0; }
   .wrap { padding: 0 26px; }
   .nav-inner { padding: 0 26px; }
-  /* Hero: message-first, photo full-bleed behind it — never reorder the photo above the copy.
-     Top-anchored + min-height (not a fixed height) so the nav's ~90px clearance never forces
-     content taller than the box to overflow upward off-screen. */
-  .hero { height: auto; min-height: 720px; align-items: flex-start; padding: 108px 0 44px; }
-  .hero-inner { flex-direction: column; align-items: flex-start; gap: 26px; }
-  .hero-side { align-self: stretch; justify-content: space-between; }
-    .eb-photos { grid-template-columns: 1fr 1fr; height: 320px; }
-  .filmstrip {
-    flex-direction: row; height: auto; overflow-x: auto; scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; padding: 0 24px 6px; margin-right: 0;
-    scrollbar-width: none;
-  }
-  .filmstrip::-webkit-scrollbar { display: none; }
-  .filmstrip-frame { flex: 0 0 74vw !important; scroll-snap-align: start; }
-  .filmstrip-frame > img { height: 300px; }
-  .moments-row { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
 @media (max-width: 560px) {
   .info-grid, .field-2 { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: 1fr; }
   .gallery .g-wide { grid-column: auto; }
-  .hero-side { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .moments-row { grid-template-columns: 1fr; }
-  .eb-photos { grid-template-columns: 1fr; grid-template-rows: none; height: auto; }
-  .eb-photos img.photo { height: 220px; }
-  .eb-photos .eb-p1 { grid-row: auto; }
-}
-
-/* ---------- DF-9: phone homepage — one message, fewer things ---------- */
-/* burger lines must show over the dark hero (non-text contrast, WCAG 1.4.11) */
-.nav-home:not(.scrolled) .nav-burger span { background: var(--cream); }
-
-@media (max-width: 700px) {
-  /* hero: one message, one button. Hours live in the strip under the nav */
-  .hero { min-height: 700px; align-items: flex-end; padding: 0 0 40px; }
-  .hero-scrim { background: linear-gradient(180deg, rgba(108,6,0,.40) 0%, rgba(108,6,0,.10) 26%, rgba(108,6,0,.30) 46%, rgba(108,6,0,.80) 66%, rgba(108,6,0,.92) 100%); }
-  .hero-eyebrow, .hero-sub, .hero-scroll-link, .hero-side { display: none; }
-  .hero-cta { margin-top: 26px; }
-  .walker { display: none; }
-
-  /* about: one photo, no ghost word */
-  .about-ghost { display: none; }
-  .cluster { display: block; }
-  .cluster img.c-sm1, .cluster img.c-sm2 { display: none; }  /* img. needed to beat .cluster img.photo */
-  .cluster .c-tall { width: 100%; height: 400px; }
-
-  /* moments: one swipeable row instead of nine stacked photos */
-  .moments-head { padding: 0 26px; }
-  .moments-aside { display: none; }
-  .filmstrip { flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; margin-top: 28px; padding: 0 26px; scrollbar-width: none; }
-  .filmstrip::-webkit-scrollbar { display: none; }
-  .filmstrip-frame { flex: 0 0 80% !important; height: 400px; scroll-snap-align: center; } /* !important: the 940px block sets flex: none !important */
-  .moments-row { display: none; }
+  .hero-stamp { left: 0; }
 }
 
 /* ============================================================
@@ -636,7 +441,7 @@ section { padding: 104px 0; }
 .tcard { background: var(--paper); border: 1px solid var(--line); padding: 30px 28px 28px; display: flex; flex-direction: column; gap: 16px; }
 .sec-ink .tcard, .sec-red .tcard { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.2); }
 .tcard .quote-mark { font-family: "VTC Marsha", serif; color: var(--red); font-size: 44px; line-height: .6; height: 24px; }
-.sec-ink .tcard .quote-mark, .sec-red .tcard .quote-mark { color: var(--cream); }
+.sec-ink .tcard .quote-mark, .sec-red .tcard .quote-mark { color: #fff; }
 .tcard p { margin: 0; font-size: 17px; line-height: 1.5; }
 .tcard .t-by { font-style: italic; color: var(--muted); font-size: 14.5px; margin-top: auto; }
 .sec-ink .tcard .t-by, .sec-red .tcard .t-by { color: rgba(255,255,255,.7); }
@@ -676,19 +481,9 @@ section { padding: 104px 0; }
 .resv-card h2 { font-family: "VTC Marsha", serif; font-weight: 700; color: var(--red); text-transform: uppercase; font-size: clamp(26px, 3.4vw, 40px); letter-spacing: .03em; margin: 0 0 16px; line-height: 1; }
 .resv-card p { margin: 0 0 24px; max-width: 420px; }
 .resv-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 26px 0 30px; }
-.resv-meta h4 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; font-size: 13px; color: var(--red-deep); margin: 0 0 6px; }
+.resv-meta h4 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; font-size: 13px; color: var(--red); margin: 0 0 6px; }
 .resv-meta p { margin: 0; font-size: 15.5px; }
 .resv-card .btn { width: 100%; }
-
-/* ---- WhatsApp floating chat button ---- */
-.whatsapp-fab { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 70; display: flex; align-items: center; gap: 10px; background: var(--red-deep); color: var(--cream); text-decoration: none; border-radius: 999px; padding: 14px; box-shadow: 0 10px 30px rgba(29,29,27,.25); transition: transform .15s ease, box-shadow .15s ease; }
-.whatsapp-fab:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(29,29,27,.32); background: var(--red-deep); color: var(--cream); }
-.whatsapp-fab svg { width: 26px; height: 26px; flex-shrink: 0; display: block; }
-.whatsapp-fab .wa-label { font-family: "Affairs", serif; font-style: italic; font-size: 15px; white-space: nowrap; padding-right: 4px; }
-@media (max-width: 700px) { .whatsapp-fab { right: 16px; } .whatsapp-fab .wa-label { display: none; } }
-/* When a page also has the bottom sticky mobile CTA bar, sit above it instead of overlapping */
-.cta-sticky ~ .whatsapp-fab { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
-@media (min-width: 701px) { .cta-sticky ~ .whatsapp-fab { bottom: calc(20px + env(safe-area-inset-bottom, 0px)); } }
 
 /* ---- Map ---- */
 .map-frame { width: 100%; height: clamp(320px, 40vw, 440px); border: 1px solid var(--line); filter: grayscale(.3) contrast(1.02); }
@@ -708,13 +503,13 @@ section { padding: 104px 0; }
 .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; padding: 70px 40px 50px; max-width: var(--maxw); margin: 0 auto; }
 .foot-top .foot-logo { height: 54px; width: auto; margin: 0 0 18px; }
 .foot-brand p { color: var(--muted); font-size: 15px; max-width: 260px; margin: 0 0 18px; }
-.foot-col h4 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--red-deep); margin: 0 0 14px; }
+.foot-col h4 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--red); margin: 0 0 14px; }
 .foot-col p, .foot-col a { display: block; color: var(--ink); font-size: 15px; text-decoration: none; line-height: 1.55; margin: 0 0 4px; }
 .foot-col a:hover { color: var(--red); }
 .foot-col h4 + h4 { margin-top: 22px; }
 .foot-socials { display: flex; gap: 12px; margin-top: 6px; }
 .foot-socials a { width: 36px; height: 36px; color: var(--ink); border: 1.2px solid var(--ink); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: background .15s, border-color .15s, color .15s; }
-.foot-socials a:hover { background: var(--red); border-color: var(--red); color: var(--cream); }
+.foot-socials a:hover { background: var(--red); border-color: var(--red); color: #fff; }
 .foot-socials svg { width: 16px; height: 16px; }
 .foot-bottom { border-top: 1px solid var(--line); padding: 22px 40px; max-width: var(--maxw); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .foot-bottom .foot-nav { display: flex; gap: 22px; flex-wrap: wrap; }
@@ -743,168 +538,30 @@ section { padding: 104px 0; }
 img.photo { object-fit: cover; background: var(--cream); }
 .hero-media img.photo, .cluster img.photo, .gallery img.photo, .eb-media img.photo, .split-media img.photo, .voucher-art img.photo, .resv-media img.photo { border-radius: 4px; }
 
-/* ============================================================
-   EVENTS LANDING PAGES (.pe-*) — corporate-events/, christmas-functions/
-   Fluid build of the approved 1440px composition. Scoped so the
-   shared components on other pages are untouched.
-   ============================================================ */
-.pe-hero { position: relative; overflow: hidden; background: var(--ink); }
-.pe-hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-.pe-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(108,6,0,.9) 0%, rgba(108,6,0,.74) 46%, rgba(108,6,0,.9) 100%); }
-@media (min-width: 981px) {
-  .pe-hero-scrim { background: linear-gradient(90deg, rgba(108,6,0,.94) 0%, rgba(108,6,0,.76) 46%, rgba(108,6,0,.4) 100%); }
+/* ---------- WhatsApp click-to-chat ----------
+   Floating action button, site-wide. Uses the mobile number
+   (021 221 1307) — the landline is retired. */
+.whatsapp-fab {
+  position: fixed; right: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 70; display: flex; align-items: center; gap: 10px;
+  background: var(--red-deep); color: var(--cream);
+  text-decoration: none; border-radius: 999px; padding: 14px;
+  box-shadow: 0 10px 30px rgba(29,29,27,.25);
+  transition: transform .15s ease, box-shadow .15s ease;
 }
-.pe-hero-grid {
-  position: relative; display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr);
-  gap: clamp(32px, 4vw, 56px); align-items: start;
-  max-width: var(--maxw); margin: 0 auto; padding: clamp(48px, 6vw, 68px) 40px clamp(52px, 6vw, 64px);
+.whatsapp-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(29,29,27,.32);
+  background: var(--red-deep); color: var(--cream);
 }
-.pe-hero-copy { color: var(--cream); }
-.pe-hero-copy .eyebrow { color: rgba(250,215,195,.85); }
-.pe-hero-copy h1 {
-  font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase;
-  font-size: clamp(36px, 5.2vw, 58px); line-height: .96; letter-spacing: .025em;
-  margin: 0; text-wrap: balance;
+.whatsapp-fab svg { width: 26px; height: 26px; flex-shrink: 0; display: block; }
+.whatsapp-fab .wa-label {
+  font-family: "Affairs", serif; font-style: italic;
+  font-size: 15px; white-space: nowrap; padding-right: 4px;
 }
-.pe-hero-second { font-style: italic; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.3; margin: 18px 0 0; }
-.pe-hero-copy p.pe-lede { font-size: 17.5px; margin: 22px 0 0; max-width: 520px; color: rgba(250,215,195,.92); text-wrap: pretty; }
-.pe-facts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px 20px; margin: 32px 0 0; max-width: 520px; }
-.pe-fact { border-top: 1.5px solid rgba(250,215,195,.4); padding: 12px 0 0; }
-.pe-fact .n { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; font-size: clamp(20px, 2.4vw, 26px); letter-spacing: .02em; line-height: 1; }
-.pe-fact .l { font-style: italic; font-size: 14.5px; color: rgba(250,215,195,.8); }
-
-.pe-card { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: clamp(24px, 3vw, 32px); box-shadow: 0 18px 44px rgba(108,6,0,.22); }
-.pe-card h2 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .05em; font-size: clamp(20px, 2.3vw, 24px); color: var(--red-deep); margin: 0 0 6px; }
-.pe-card .pe-card-note { font-style: italic; font-size: 15px; color: var(--muted); margin: 0 0 22px; }
-.pe-card-foot { font-style: italic; font-size: 14px; color: var(--muted); margin: 14px 0 0; text-align: center; }
-
-.pe-sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; margin: 0 0 36px; }
-.pe-sec-head h2 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .025em; font-size: clamp(30px, 4.2vw, 48px); line-height: 1; margin: 0; }
-.pe-sec-head .pe-sec-aside { font-style: italic; font-size: 17px; margin: 0; color: rgba(108,6,0,.75); max-width: 380px; text-wrap: pretty; }
-
-.pe-rooms { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
-.pe-room { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
-.pe-room img { width: 100%; height: clamp(190px, 20vw, 240px); object-fit: cover; }
-.pe-room-body { padding: 26px 28px 30px; }
-.pe-room-kicker { font-style: italic; font-size: 14.5px; color: var(--muted); margin: 0; }
-.pe-room h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: clamp(22px, 2.4vw, 26px); line-height: 1; margin: 8px 0 12px; color: var(--ink); }
-.pe-room p { font-size: 16.5px; margin: 0 0 18px; text-wrap: pretty; }
-.pe-room-row { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 16px; }
-.pe-room-row span:first-child { color: var(--muted); }
-
-.pe-split { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: clamp(40px, 5vw, 72px); align-items: start; }
-.pe-prices { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
-.pe-price { border-top: 2px solid var(--red); padding: 18px 0 0; }
-/* min-height keeps the three prices on one baseline when a title wraps to two lines */
-.pe-price h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .05em; font-size: 20px; color: var(--ink); margin: 0 0 4px; min-height: 2.2em; }
-.pe-price .amt { font-family: "VTC Marsha", Impact, sans-serif; font-size: clamp(28px, 3vw, 34px); line-height: 1; color: var(--red); margin: 8px 0 12px; }
-.pe-price .amt small { font-family: "Affairs", Georgia, serif; font-style: italic; font-size: 15px; color: rgba(108,6,0,.7); }
-.pe-price p { font-size: 15.5px; margin: 0; text-wrap: pretty; }
-.pe-drinks { border: 1px solid var(--line); border-radius: 4px; padding: 26px 28px; margin: 28px 0 0; }
-.pe-drinks h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .06em; font-size: 16px; color: var(--red-deep); margin: 0 0 16px; }
-.pe-drinks-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; font-size: 16px; }
-.pe-drinks-grid strong { display: block; margin: 0 0 4px; }
-.pe-drinks-grid span { color: rgba(108,6,0,.75); }
-.pe-chips { display: flex; gap: 14px; flex-wrap: wrap; margin: 26px 0 0; }
-.pe-chips span { border: 1px solid rgba(108,6,0,.28); border-radius: 100px; padding: 8px 16px; font-style: italic; font-size: 14.5px; }
-
-.pe-steps { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(28px, 4vw, 48px); }
-.pe-step .n { font-family: "VTC Marsha", Impact, sans-serif; font-size: clamp(46px, 5vw, 64px); line-height: .85; color: rgba(250,215,195,.5); }
-.pe-step h3 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .04em; font-size: clamp(20px, 2.2vw, 24px); margin: 14px 0 10px; }
-.pe-step p { font-size: 16.5px; margin: 0; color: rgba(250,215,195,.92); text-wrap: pretty; }
-
-.pe-closer { position: relative; overflow: hidden; background: var(--ink); }
-.pe-closer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.pe-closer .pe-closer-scrim { position: absolute; inset: 0; background: rgba(108,6,0,.76); }
-.pe-closer-inner { position: relative; text-align: center; color: var(--cream); padding: clamp(64px, 9vw, 108px) 40px; max-width: 960px; margin: 0 auto; }
-.pe-closer-inner h2 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .025em; font-size: clamp(30px, 4.6vw, 52px); line-height: .98; margin: 0; text-wrap: balance; }
-.pe-closer-inner p { font-style: italic; font-size: clamp(17px, 2vw, 20px); margin: 20px 0 28px; }
-
-@media (max-width: 980px) {
-  .pe-hero-grid { grid-template-columns: minmax(0,1fr); padding-top: clamp(40px, 8vw, 56px); }
-  .pe-split { grid-template-columns: minmax(0,1fr); }
-  .pe-rooms { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .pe-prices { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
-  .pe-drinks-grid { grid-template-columns: minmax(0,1fr); gap: 16px; }
-}
-@media (max-width: 680px) {
-  .pe-hero-grid, .pe-closer-inner { padding-left: 24px; padding-right: 24px; }
-  .pe-rooms, .pe-prices, .pe-steps { grid-template-columns: minmax(0,1fr); }
-  .pe-facts { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px 16px; }
-  .pe-sec-head { gap: 18px; }
-}
-
-/* ---- Christmas landing extras (.xm-*) — christmas-functions/ only ---- */
-.xm-hero-note { border: 1.4px solid rgba(250,215,195,.45); border-radius: 4px; padding: 18px 22px; margin: 30px 0 0; max-width: 520px; }
-.xm-hero-note strong { display: block; font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; margin: 0 0 8px; color: rgba(250,215,195,.85); }
-.xm-hero-note p { font-style: italic; font-size: 15.5px; line-height: 1.5; margin: 0; color: rgba(250,215,195,.92); text-wrap: pretty; }
-.xm-card-price { font-family: "VTC Marsha", Impact, sans-serif; font-size: clamp(36px, 4.6vw, 48px); line-height: 1; color: var(--red); margin: 10px 0 10px; }
-.xm-card-price small { font-family: "Affairs", Georgia, serif; font-style: italic; font-size: 17px; color: rgba(108,6,0,.7); }
-.xm-card-sub { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .05em; font-size: clamp(19px, 2.2vw, 22px); color: var(--red-deep); margin: 30px 0 6px; }
-.xm-band { text-align: center; }
-.xm-band h2 { font-family: "VTC Marsha", Impact, sans-serif; text-transform: uppercase; letter-spacing: .025em; font-size: clamp(30px, 4.6vw, 54px); line-height: .98; margin: 0 auto; max-width: 900px; color: var(--cream); text-wrap: balance; }
-.xm-band p { font-style: italic; font-size: clamp(16px, 1.9vw, 19px); margin: 20px auto 0; max-width: 640px; color: rgba(250,215,195,.92); text-wrap: pretty; }
-.xm-cta-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-/* the Christmas hero photo is candlelit and very low-key — it needs a lighter scrim than
-   the shared one or the room disappears behind it entirely */
-.xm-hero .pe-hero-scrim { background: linear-gradient(180deg, rgba(108,6,0,.82) 0%, rgba(108,6,0,.5) 46%, rgba(108,6,0,.86) 100%); }
-@media (min-width: 981px) {
-  .xm-hero .pe-hero-scrim { background: linear-gradient(90deg, rgba(108,6,0,.9) 0%, rgba(108,6,0,.58) 48%, rgba(108,6,0,.22) 100%); }
-}
-
-/* sticky quick-actions bar, phones only */
-.cta-sticky { display: none; }
 @media (max-width: 700px) {
-  .cta-sticky {
-    display: grid; grid-template-columns: 1.5fr 1fr 1fr;
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-    background: var(--red-deep); border-top: 1px solid rgba(250,215,195,.25);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-    box-shadow: 0 -8px 24px rgba(108,6,0,.18);
-  }
-  .cta-sticky a {
-    display: flex; align-items: center; justify-content: center; min-height: 56px;
-    font-family: "Affairs", serif; font-style: italic; font-size: 16px; letter-spacing: .02em;
-    color: var(--cream); text-decoration: none;
-  }
-  .cta-sticky a + a { border-left: 1px solid rgba(250,215,195,.25); }
-  .cta-sticky .cta-main { background: var(--cream); color: var(--red-deep); }
-  .cta-sticky ~ .whatsapp-fab { display: none; }
-  body { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
+  .whatsapp-fab { right: 16px; }
+  .whatsapp-fab .wa-label { display: none; }
 }
-.foot-note { font-style: italic; color: var(--muted); margin: 6px 0 0; }
-
-/* DF-8: keyboard and screen-reader basics */
-.skip-link { position: absolute; left: 12px; top: -80px; z-index: 200; background: var(--cream); color: var(--red-deep); padding: 10px 16px; font-style: italic; text-decoration: none; }
-.skip-link:focus { top: 12px; }
-a:focus-visible, button:focus-visible, summary:focus-visible,
-input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-
-@media (max-width: 700px) {
-  .info-block a, .foot-col a { display: flex; align-items: center; min-height: 44px; margin: 0; }
-  .foot-bottom a { display: inline-flex; align-items: center; min-height: 44px; }
-  .im-card-contact a { display: inline-flex; align-items: center; min-height: 44px; }
-  .foot-socials a, .socials a { width: 44px; height: 44px; }
-}
-
-/* The sticky quick-actions bar is fixed, 57px tall, z-index 60. Without this the
-   VenueFlow NEXT button — which sits at the foot of the iframe — lands underneath
-   it, worst of all with the keyboard open and the viewport shortened. */
-.enquire-embed {
-  padding-bottom: 72px;          /* 57px bar + 15px breathing room */
-  scroll-margin-bottom: 72px;
-}
-@media (min-width: 701px) {
-  /* no sticky bar above 700px, so no clearance needed */
-  .enquire-embed { padding-bottom: 0; scroll-margin-bottom: 0; }
-}
-
-/* Clearance on the iframe itself, so pages that must not have their layout touched
-   get it without a wrapper div. !important because the widget carries an inline
-   margin:0 auto, which a stylesheet rule cannot otherwise beat. */
-@media (max-width: 700px) {
-  iframe[src*="venueflowhq.com"] {
-    margin-bottom: 72px !important;   /* 57px sticky bar + 15px */
-    scroll-margin-bottom: 72px;
-  }
-}
+@media print { .whatsapp-fab { display: none !important; } }

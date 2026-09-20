@@ -442,10 +442,3 @@ img.photo { object-fit: cover; border-radius: 4px; background: #efe9dc; }
 .plan-cap p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.5; }
 .plans-note { text-align: center; font-style: italic; font-size: 14px; color: var(--muted); margin: 26px 0 0; }
 @media (max-width: 860px) { .plans { grid-template-columns: 1fr; } }
-
-/* ---- WhatsApp floating chat button ---- */
-.whatsapp-fab { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 70; display: flex; align-items: center; gap: 10px; background: var(--red); color: #fff; text-decoration: none; border-radius: 999px; padding: 14px; box-shadow: 0 10px 30px rgba(29,29,27,.25); transition: transform .15s ease, box-shadow .15s ease; }
-.whatsapp-fab:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(29,29,27,.32); color: #fff; }
-.whatsapp-fab svg { width: 26px; height: 26px; flex-shrink: 0; display: block; }
-.whatsapp-fab .wa-label { font-family: "Affairs", serif; font-style: italic; font-size: 15px; white-space: nowrap; padding-right: 4px; }
-@media (max-width: 700px) { .whatsapp-fab { right: 16px; } .whatsapp-fab .wa-label { display: none; } }
