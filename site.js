@@ -82,6 +82,14 @@
       payload.append('_subject', subj);
       payload.append('_template', 'table');
       payload.append('_captcha', 'false');
+
+      /* Safety net: data-cc sends a copy to a second address. The events form
+         posts to events@barfranco.nz, which is new — until that mailbox is
+         confirmed live, a copy also reaches anamaria@ so no enquiry can be
+         lost in the changeover. Delete the data-cc attribute once verified. */
+      var cc = f.getAttribute('data-cc');
+      if (cc) payload.append('_cc', cc);
+
       f.querySelectorAll('input, textarea, select').forEach(function (el) {
         if (el === honey || !el.value) return;
         var lab = el.id ? f.querySelector('label[for="' + el.id + '"]') : null;
@@ -97,19 +105,40 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (!res || (res.success !== true && res.success !== 'true')) throw new Error('not ok');
-        // Report to Google Ads. Without this an ad click that converts through
-        // this form is recorded as a failure, so the campaign optimises away
-        // from whatever produced it.
+        /* Google Ads conversion for a native form submit.
+           main's fix was right that an unreported submit makes the campaign
+           optimise away from whatever produced it — but it fired the EMAIL
+           label for a form, and with a flat value of 1.
+
+           So: dispatch a cancelable event first. Pages whose <head> carries the
+           BF-ADS-CONVERSIONS block listen for it, fire the FORM label with the
+           budget bracket as the value, and call preventDefault() to say
+           "handled". If nothing handled it, fall back to firing here, so pages
+           without that block still report. Either way it fires exactly once. */
+        var budgetEl = f.querySelector('#budget');
+        var budget = budgetEl ? budgetEl.value : '';
+        var handled = false;
         try {
-          gtag('event', 'conversion', {
-            send_to: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',
-            value: 1.0,
-            currency: 'NZD'
-          });
+          var ev = new CustomEvent('bf-enquiry-submitted', { detail: { budgetRange: budget }, cancelable: true });
+          handled = !document.dispatchEvent(ev);
         } catch (e) {}
-        f.innerHTML = '<h3>Grazie! 🎉</h3>' +
-          '<p class="fnote">Thanks for reaching out — your message is on its way and we\'ll be in touch very soon.</p>' +
-          '<p class="fnote">Anything urgent? Email <a href="mailto:' + to + '">' + to + '</a>.</p>';
+        if (!handled) {
+          try {
+            gtag('event', 'conversion', {
+              send_to: 'AW-18456342571/yIDxCPHLqfocEKvg1eBE',
+              value: 1.0, currency: 'NZD'
+            });
+          } catch (e) {}
+        }
+
+        var name = (f.querySelector('#name') || {}).value || '';
+        f.className += ' form-done';
+        f.innerHTML =
+          '<img class="fd-mark" src="brand/bf-emblem.svg" alt="" aria-hidden="true">' +
+          '<h3>Grazie' + (name ? ', ' + name.split(' ')[0].replace(/[<>&]/g, '') : '') + '.</h3>' +
+          '<p>That\'s with us. We read every enquiry ourselves and come back on all of them — usually within one business day.</p>' +
+          '<p class="fnote">Something urgent in the meantime? Email <a href="mailto:' + to + '">' + to + '</a> or call <a href="tel:+64212211307">021 221 1307</a>.</p>';
+        f.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
       })
       .catch(function () {
         if (btn) { btn.disabled = false; btn.textContent = btnText; }

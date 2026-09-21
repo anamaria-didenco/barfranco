@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,10 +65,54 @@
 })();
 </script>
 <!-- BF-ADS-CONVERSIONS end -->
-<title>Bar Franco — Events & Private Hire</title>
-<meta name="description" content="Bar Franco events pack — private dining, cocktail functions and full venue hire for up to 240 across two levels in central Christchurch. No venue hire fee." />
+<!-- This page holds the only published function pricing on the site — grazing,
+     canapé and seated per-head rates. It previously had no meta description, no
+     canonical, lang="en" and no place in sitemap.xml, so the most commercially
+     useful page on the domain was effectively invisible to search. Fixed. -->
+<title>Function Menus &amp; Pricing, Christchurch | Bar Franco Events Pack</title>
+<meta name="description" content="Bar Franco's events pack: grazing tables from $40pp, canapés from $9, seated shared menus from $80pp. Two levels, up to 240 guests, no venue hire fee in central Christchurch." />
+<link rel="canonical" href="https://www.barfranco.nz/Bar%20Franco%20Events%20Pack.html" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#AF0F00" />
+<link rel="icon" type="image/png" href="favicon.png?v=2" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Bar Franco — Christchurch" />
+<meta property="og:title" content="Function Menus &amp; Pricing, Christchurch | Bar Franco Events Pack" />
+<meta property="og:description" content="Grazing tables from $40pp, canapés from $9, seated shared menus from $80pp. Two levels, up to 240 guests, no venue hire fee." />
+<meta property="og:url" content="https://www.barfranco.nz/Bar%20Franco%20Events%20Pack.html" />
+<meta property="og:locale" content="en_NZ" />
+<meta property="og:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EventVenue",
+  "name": "Bar Franco — Events & Private Hire",
+  "url": "https://www.barfranco.nz/Bar%20Franco%20Events%20Pack.html",
+  "description": "Function menus and pricing for private events at Bar Franco, Christchurch — grazing tables, canapés and seated shared menus across two levels for up to 240 guests.",
+  "telephone": "+64-21-221-1307",
+  "email": "events@barfranco.nz",
+  "maximumAttendeeCapacity": 240,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "The Crossing, 166 Cashel Street",
+    "addressLocality": "Christchurch Central",
+    "addressRegion": "Canterbury",
+    "postalCode": "8011",
+    "addressCountry": "NZ"
+  },
+  "isAccessibleForFree": false,
+  "priceRange": "$$"
+}
+</script>
+
+<link rel="preload" href="brand/VTCMarsha-Bold.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="brand/Affairs-Regular.otf" as="font" type="font/otf" crossorigin>
 <link rel="stylesheet" href="fonts.css" />
 <link rel="stylesheet" href="events.css" />
+<script>document.documentElement.className += ' js';</script>
 </head>
 <body>
 
@@ -76,7 +120,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="#top" aria-label="Bar Franco home">
-      <img class="brand-logo" src="brand/bf-script-incline-red.svg" alt="Bar Franco" />
+      <img class="brand-logo" src="brand/bf-script-flat-brightred.svg" alt="Bar Franco" />
     </a>
     <div class="nav-links">
       <a href="#spaces">Spaces</a>
@@ -91,7 +135,7 @@
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="wrap">
-    <img class="hero-logo reveal in" src="brand/bf-script-incline-red.svg" alt="Bar Franco" />
+    <img class="hero-logo reveal in" src="brand/bf-script-flat-brightred.svg" alt="Bar Franco" />
     <p class="eyebrow reveal in d1">Events &amp; Private Hire — Christchurch</p>
     <h1 class="reveal in d1">Two levels.<br />One very good night.</h1>
     <p class="hero-sub reveal in d2">A Negroni bar on Level 1. An open-kitchen restaurant on Level 2. Italian in spirit — without the clichés.</p>
@@ -266,7 +310,7 @@
       <h2 class="sec-label reveal">Menus to share</h2>
       <p class="lede reveal d1">Everything is house-made and changes with the season. Choose your style for the night:</p>
       <p class="note reveal d1" style="margin-top:10px;font-style:italic;"><strong>Please note —</strong> the menus below are a sample. Dishes rotate with the season, and prices are indicative and subject to change. All prices GST exclusive.</p>
-      <p class="reveal d1" style="margin-top:14px;"><a href="menus/BarFranco-Drinks-Menu.pdf" target="_blank" rel="noopener" style="color:var(--red);font-weight:600;text-decoration:none;border-bottom:2px solid rgba(175,15,0,.45);padding-bottom:3px;">See the full drinks menu →</a></p>
+      <p class="reveal d1" style="margin-top:14px;"><a href="menus/BarFranco-Drinks-Menu.pdf" target="_blank" rel="noopener" style="color:var(--red-deep);font-weight:600;text-decoration:none;border-bottom:2px solid rgba(175,15,0,.45);padding-bottom:3px;">See the full drinks menu →</a></p>
     </div>
 
     <div class="tabs-center reveal d1">
@@ -425,15 +469,15 @@
            bare venueflowhq.com/enquire/ form sends the prospect off barfranco.nz
            onto a VenueFlow-branded page and fires no conversion at all. -->
       <!-- The widget's own <main> is min-height:100vh and it reports scrollHeight,
-     so the frame can only ever GROW from its starting height — it measures
-     itself as at least as tall as the box it sits in. 900 left ~450px of
-     blank card under step 1. Start at the form's own height; the resize
-     listener below grows it for step 2. Do not "fix" this back to 900, and
-     do not swap to venueflowhq.com/embed.js unless a slug has been set for
-     Bar Franco in VenueFlow first: its slug is currently empty and embed.js
-     refuses to mount without one. -->
-    <iframe id="vf-enquiry"
-        src="https://venueflowhq.com/enquire?embed=1&amp;accent=E51F1A"
+           so the frame can only ever GROW from its starting height — it measures
+           itself as at least as tall as the box it sits in. 900 left ~450px of
+           blank card under step 1. Start at the form's own height; the resize
+           listener below grows it for step 2. Do not "fix" this back to 900, and
+           do not swap to venueflowhq.com/embed.js unless a slug has been set for
+           Bar Franco in VenueFlow first: its slug is currently empty and embed.js
+           refuses to mount without one. -->
+      <iframe id="vf-enquiry"
+        src="https://venueflowhq.com/enquire?embed=1&amp;accent=AF0F00"
         width="100%" height="460" frameborder="0" loading="lazy"
         style="border:none;display:block;margin:0;max-width:540px;width:100%;background:#fff;border-radius:4px;"
         title="Event enquiry — Bar Franco"></iframe>
@@ -463,7 +507,7 @@
 <!-- FOOTER -->
 <footer class="foot">
   <div class="wrap">
-    <img class="foot-logo" src="brand/bf-script-incline-red.svg" alt="Bar Franco" />
+    <img class="foot-logo" src="brand/bf-script-flat-brightred.svg" alt="Bar Franco" />
     <p class="fine">Events &amp; Private Hire · Christchurch</p>
   </div>
 </footer>
