@@ -32,12 +32,15 @@
     } catch (e) {}
   }
 
-  // 1. Phone and email links anywhere on the page
+  // 1. Phone, WhatsApp and email links anywhere on the page.
+  //    WhatsApp counts as a phone conversion — same enquiry, same person,
+  //    and it is the CTA most paid mobile traffic actually taps.
   document.addEventListener('click', function (ev) {
     var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
     if (!a) return;
     var href = (a.getAttribute('href') || '').toLowerCase();
     if (href.indexOf('tel:') === 0)    fire(LABELS.phone);
+    if (href.indexOf('wa.me') > -1)    fire(LABELS.phone);
     if (href.indexOf('mailto:') === 0) fire(LABELS.email);
   }, true);
 
@@ -69,7 +72,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" />
 <meta name="theme-color" content="#E51F1A" />
 <title>Function Venue Christchurch | No Hire Fee | Bar Franco</title>
-<meta name="description" content="Private dining, corporate events, birthdays and full venue hire in central Christchurch. Two levels, up to 240 guests, no venue hire fee." />
+<meta name="description" content="Private dining, corporate events, birthdays and full venue hire in central Christchurch. No venue hire fee, up to 240 guests, set menus from $80pp. Enquire and hear back within one working day." />
 <meta name="keywords" content="private dining Christchurch, group dining Christchurch, function venue Christchurch, venue hire Christchurch, private events Christchurch, birthday dinner Christchurch, large group restaurant Christchurch, private dining room Christchurch, engagement venue Christchurch, corporate events Christchurch, cocktail function Christchurch, Christmas party venue" />
 <link rel="canonical" href="https://www.barfranco.nz/Functions.html" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -81,13 +84,13 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Bar Franco — Christchurch" />
 <meta property="og:title" content="Function Venue Christchurch | No Hire Fee | Bar Franco" />
-<meta property="og:description" content="Private dining, corporate events, birthdays and full venue hire in central Christchurch. Two levels, up to 240 guests, no venue hire fee." />
+<meta property="og:description" content="Private dining, corporate events, birthdays and full venue hire in central Christchurch. No venue hire fee, up to 240 guests, set menus from $80pp. Enquire and hear back within one working day." />
 <meta property="og:url" content="https://www.barfranco.nz/Functions.html" />
 <meta property="og:locale" content="en_NZ" />
 <meta property="og:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Function Venue Christchurch | No Hire Fee | Bar Franco" />
-<meta name="twitter:description" content="Private dining, corporate events, birthdays and full venue hire in central Christchurch. Two levels, up to 240 guests, no venue hire fee." />
+<meta name="twitter:description" content="Private dining, corporate events, birthdays and full venue hire in central Christchurch. No venue hire fee, up to 240 guests, set menus from $80pp. Enquire and hear back within one working day." />
 <meta name="twitter:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
 <script type="application/ld+json">
 {
@@ -101,6 +104,9 @@
       "telephone": "+64-21-221-1307",
       "email": "anamaria@barfranco.nz",
       "maximumAttendeeCapacity": 240,
+      "priceRange": "$$",
+      "geo": { "@type": "GeoCoordinates", "latitude": -43.53262, "longitude": 172.63620 },
+      "areaServed": "Christchurch",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "The Crossing, 166 Cashel Street",
@@ -127,6 +133,22 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "No. Bar Franco has no venue hire fee — we work to a food and beverage minimum spend instead, tailored to your event."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a function at Bar Franco cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "There is no venue hire fee. Grazing tables start at $40 per person, canapés are $9 each ($11 for substantial canapés), and seated shared set menus are $80 or $110 per person. Drinks are additional and the food and beverage minimum spend depends on the date and space."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly will I hear back about a function enquiry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Within one working day. Send your date and rough guest numbers and our events team will come back with the right space and a menu to suit, with no obligation."
           }
         },
         {
@@ -168,7 +190,7 @@
 <link rel="stylesheet" href="fonts.css" />
 <link rel="stylesheet" href="home.css" />
 </head>
-<body>
+<body class="has-sticky-cta">
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="Bar Franco home">
@@ -192,18 +214,26 @@
   <div class="wrap">
     <p class="eyebrow reveal in">Private events &amp; venue hire</p>
     <h1 class="reveal in d1">No hire fee. A function venue in Christchurch</h1>
-    <p class="lede reveal in d2">With spaces for private dining, cocktail functions or full venue hire, Bar Franco brings big flavour and even bigger hospitality to every celebration in central Christchurch.</p>
+    <p class="lede reveal in d2">Private dining, cocktail functions and full venue hire for 10 to 240 guests, right in the middle of town. Tell us the date and we'll come back to you within one working day.</p>
+    <ul class="trust-row reveal in d2">
+      <li>No venue hire fee</li>
+      <li>Up to 240 guests</li>
+      <li>Two private levels</li>
+      <li>The Crossing, 166 Cashel St</li>
+      <li>Set menus from $80pp</li>
+    </ul>
     <div class="reveal in d3" style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;">
-      <a class="btn lg" href="#enquire">Enquire now</a>
-      <a class="btn ghost lg" href="Bar Franco Events Pack.html" target="_blank" rel="noopener">View events pack</a>
+      <a class="btn lg" href="#enquire">Check your date</a>
+      <a class="btn ghost lg" href="tel:+64212211307">Call 021 221 1307</a>
     </div>
+    <p class="reveal in d3" style="margin:16px 0 0;font-style:italic;font-size:15px;color:var(--muted);">Want the detail first? <a href="Bar Franco Events Pack.html" target="_blank" rel="noopener" style="color:var(--red);">Read the events pack</a> — spaces, menus and prices.</p>
   </div>
 </header>
 <section class="sec-red" id="enquire">
   <div class="wrap" style="max-width:760px;">
     <p class="eyebrow light reveal in" style="text-align:center;">Enquire</p>
     <h2 class="sec-label reveal in" style="text-align:center;margin-bottom:10px;">Let's plan your event</h2>
-    <p class="lede reveal in d1" style="text-align:center;margin:0 auto 30px;color:rgba(255,255,255,.9);">Tell us the date, the headcount and the vibe — our events team will take it from there.</p>
+    <p class="lede reveal in d1" style="text-align:center;margin:0 auto 30px;color:rgba(255,255,255,.9);">Tell us the date, the headcount and the vibe — our events team will take it from there. Takes about a minute, and there's no obligation.</p>
     <!-- VenueFlow enquiry widget — auto-resizing iframe; enquiries flow into the VenueFlow CRM + notification email -->
     <!-- The widget's own <main> is min-height:100vh and it reports scrollHeight,
      so the frame can only ever GROW from its starting height — it measures
@@ -227,7 +257,12 @@
         }
       });
     </script>
-    <p style="font-style:italic;color:rgba(255,255,255,.92);font-size:14px;margin:18px 0 0;text-align:center;">Prefer to talk? Come say ciao — <a href="mailto:anamaria@barfranco.nz" style="color:#fff;text-decoration:underline;">anamaria@barfranco.nz</a> · <a href="tel:+64212211307" style="color:#fff;text-decoration:underline;">021 221 1307</a></p>
+    <p style="font-style:italic;color:rgba(255,255,255,.92);font-size:14px;margin:18px 0 0;text-align:center;">Prefer to talk? Come say ciao — <a href="mailto:anamaria@barfranco.nz" style="color:#fff;text-decoration:underline;">anamaria@barfranco.nz</a> · <a href="tel:+64212211307" style="color:#fff;text-decoration:underline;">021 221 1307</a> · <a href="https://wa.me/64212211307?text=Ciao%20Bar%20Franco%21%20I%27d%20like%20to%20enquire%20about%20a%20function%20%E2%80%94" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">WhatsApp</a></p>
+    <ul class="next-steps reveal in d2">
+      <li><span class="ns-n">01</span>You send the date and rough numbers — that's all we need to start.</li>
+      <li><span class="ns-n">02</span>We reply within one working day with the right space and a menu to suit.</li>
+      <li><span class="ns-n">03</span>Happy with it? We hold the date. Nothing is locked in until you say so.</li>
+    </ul>
   </div>
 </section>
 
@@ -295,6 +330,49 @@
   </div>
 </section>
 
+<!-- PRICING — surfaced from the Events Pack so it's visible (and indexable) here. -->
+<section class="sec-cream" id="pricing">
+  <div class="wrap">
+    <p class="eyebrow reveal" style="text-align:center;">What it costs</p>
+    <h2 class="sec-label reveal" style="text-align:center;">No hire fee. Just food and drinks.</h2>
+    <p class="lede reveal d1" style="text-align:center;margin:0 auto;">We don't charge to use the room. You pick how your guests eat, and we work to a food and beverage minimum spend that suits the date and the space.</p>
+    <div class="price-grid">
+      <div class="price-card reveal d1">
+        <p class="pc-kicker">Standing function</p>
+        <h3>Grazing Table</h3>
+        <p class="pc-amt">$40<small>per person, from</small></p>
+        <p>Cheeses, antipasti, salumi, house-made focaccia and seasonal pieces, arranged to graze.</p>
+      </div>
+      <div class="price-card reveal d2">
+        <p class="pc-kicker">Standing function</p>
+        <h3>Canapés</h3>
+        <p class="pc-amt">$9<small>each</small></p>
+        <p>Four to six pieces per person does a standing night nicely. Substantial canapés are $11 each.</p>
+      </div>
+      <div class="price-card feature reveal d3">
+        <p class="pc-kicker">Seated · most popular</p>
+        <h3>Shared Set Menu</h3>
+        <p class="pc-amt">$80<small>per person</small></p>
+        <p>Antipasti through to dolci, served family-style down the table. $110 per person adds three canapés on arrival.</p>
+      </div>
+    </div>
+    <p class="price-note reveal d3">Prices are per person, exclude drinks and are subject to seasonal change. Minimum spends vary by date and space — <a href="#enquire">send us your date</a> and we'll quote it properly. Full detail in the <a href="Bar Franco Events Pack.html" target="_blank" rel="noopener">events pack</a>.</p>
+  </div>
+</section>
+
+<!-- MID-PAGE CTA — catches anyone who has read enough and is ready. -->
+<section class="sec-red cta-band">
+  <div class="wrap">
+    <h2 class="sec-label reveal">Is your date free?</h2>
+    <p class="lede reveal d1">December and Friday nights go early. Send us the date and we'll tell you straight away.</p>
+    <div class="cta-row reveal d2">
+      <a class="btn light lg" href="#enquire">Check your date</a>
+      <a class="btn light lg" href="tel:+64212211307">Call 021 221 1307</a>
+    </div>
+    <p class="cta-fine reveal d2">Or email <a href="mailto:anamaria@barfranco.nz">anamaria@barfranco.nz</a> — we reply within one working day.</p>
+  </div>
+</section>
+
 <section class="sec-cream">
   <div class="wrap">
     <p class="eyebrow reveal" style="text-align:center;">Good to know</p>
@@ -302,6 +380,8 @@
     <div class="faq reveal d1">
       <details open><summary>How many guests can you hold?</summary><p class="faq-a">Up to 240 across both levels — around 165 seated, or the whole venue for a standing cocktail function. Single-level hire is also available.</p></details>
       <details><summary>Is there a venue hire fee?</summary><p class="faq-a">No venue hire fee. We work to a food and beverage minimum spend instead, tailored to your event, date and space.</p></details>
+      <details><summary>How much does a function cost?</summary><p class="faq-a">Grazing tables start at $40 per person, canapés are $9 each ($11 for the substantial ones), and seated shared menus are $80 or $110 per person. Drinks are on top, and the minimum spend depends on the date and how much of the venue you take. <a href="#pricing">See the full pricing</a>.</p></details>
+      <details><summary>How quickly will I hear back?</summary><p class="faq-a">Within one working day. Send the date and rough guest numbers and our events team will come back with the right space and a menu to suit — no obligation until you're happy.</p></details>
       <details><summary>Can you cater dietaries?</summary><p class="faq-a">Absolutely. Our kitchen handles vegetarian, vegan, gluten-free and most allergies — just let us know when you confirm.</p></details>
       <details><summary>How far ahead should I book?</summary><p class="faq-a">For peak dates (Friday/Saturday nights and December) we recommend enquiring as early as possible. Midweek dates are often available at shorter notice.</p></details>
       <details><summary>Can I book a large group without hiring the whole venue?</summary><p class="faq-a">Yes — group bookings and long tables are very welcome. For around 10 or more we'll set you up with our events team and a shared menu, without needing to hire a whole level.</p></details>
@@ -425,6 +505,20 @@
 </div>
 <script src="image-slot.js"></script>
 <script src="site.js"></script>
+<!-- Sticky mobile action bar. On phones this replaces the floating WhatsApp
+     button and the scroll walker (see .has-sticky-cta in home.css) so paid
+     traffic always has the enquiry, phone and WhatsApp paths one tap away. -->
+<nav class="sticky-cta" aria-label="Enquire about a function">
+  <a href="#enquire">Enquire now</a>
+  <a class="alt" href="tel:+64212211307" aria-label="Call Bar Franco on 021 221 1307">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+    Call
+  </a>
+  <a class="alt" href="https://wa.me/64212211307?text=Ciao%20Bar%20Franco%21%20I%27d%20like%20to%20enquire%20about%20a%20function%20%E2%80%94" target="_blank" rel="noopener" aria-label="Enquire on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.3C8.4 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.6 14.9 3.1 13.5 3.1 12 3.1 6.9 7.1 3 12 3s8.9 4 8.9 9-4 8.2-8.9 8.2z"/><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.3 5.2 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+    WhatsApp
+  </a>
+</nav>
 <a class="whatsapp-fab" href="https://wa.me/64212211307?text=Ciao%20Bar%20Franco%21%20I%20have%20a%20question%20about%20visiting%20%E2%80%94" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.3 5.2 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.3C8.4 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.6 14.9 3.1 13.5 3.1 12 3.1 6.9 7.1 3 12 3s8.9 4 8.9 9-4 8.2-8.9 8.2z"/></svg>
   <span class="wa-label">Chat on WhatsApp</span>
