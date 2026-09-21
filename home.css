@@ -565,3 +565,81 @@ img.photo { object-fit: cover; background: var(--cream); }
   .whatsapp-fab .wa-label { display: none; }
 }
 @media print { .whatsapp-fab { display: none !important; } }
+
+/* ============================================================
+   LANDING-PAGE CONVERSION COMPONENTS
+   Built for the paid-traffic pages (Functions and the event
+   landing pages). Everything here is additive — no existing
+   page changes unless it opts in by using these classes.
+   ============================================================ */
+
+/* Anchors sit below the fixed nav when jumped to */
+[id] { scroll-margin-top: 92px; }
+
+/* ---- Hero trust chips ---- */
+.trust-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; }
+.trust-row li {
+  font-family: "Affairs", serif; font-style: italic; font-size: 14.5px; color: var(--ink);
+  border: 1.2px solid var(--redline); border-radius: 999px; padding: 7px 16px;
+  background: rgba(255,255,255,.5); display: inline-flex; align-items: center; gap: 8px;
+}
+.trust-row li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex: none; }
+.sec-red .trust-row li, .sec-ink .trust-row li { color: #fff; border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.08); }
+.sec-red .trust-row li::before, .sec-ink .trust-row li::before { background: #fff; }
+
+/* ---- "What happens next" reassurance strip ---- */
+.next-steps { list-style: none; margin: 28px 0 0; padding: 22px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; border-top: 1px solid rgba(255,255,255,.28); }
+.next-steps li { color: rgba(255,255,255,.92); font-size: 15.5px; line-height: 1.5; }
+.next-steps .ns-n { display: block; font-family: "VTC Marsha", serif; font-size: 13px; letter-spacing: .12em; color: rgba(255,255,255,.7); margin: 0 0 6px; }
+
+/* ---- Pricing cards ---- */
+.price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.price-card {
+  border: 1px solid var(--line); background: var(--paper); padding: 32px 28px 30px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.price-card.feature { border-color: var(--red); border-width: 1.6px; }
+.price-card .pc-kicker { font-style: italic; color: var(--red); font-size: 14.5px; letter-spacing: .03em; margin: 0; }
+.price-card h3 { font-family: "VTC Marsha", serif; font-weight: 700; text-transform: uppercase; color: var(--ink); font-size: 22px; letter-spacing: .03em; margin: 0; line-height: 1.05; }
+.price-card .pc-amt { font-family: "VTC Marsha", serif; color: var(--red); font-size: clamp(34px, 4vw, 44px); line-height: 1; margin: 2px 0 0; }
+.price-card .pc-amt small { font-family: "Affairs", serif; font-style: italic; font-size: 15px; color: var(--muted); letter-spacing: 0; margin-left: 6px; }
+.price-card p { margin: 0; font-size: 15.5px; color: var(--muted); }
+.price-note { font-family: "Affairs", serif; font-style: italic; color: var(--muted); font-size: 15px; text-align: center; margin: 30px auto 0; max-width: 640px; }
+.price-note a { color: var(--red); }
+
+/* ---- Mid-page call-to-action band ---- */
+.cta-band { text-align: center; }
+.cta-band h2 { margin-left: auto; margin-right: auto; }
+.cta-band .lede { margin: 0 auto 30px; text-align: center; }
+.cta-band .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cta-band .cta-fine { font-style: italic; font-size: 14.5px; margin: 20px 0 0; color: rgba(255,255,255,.88); }
+.cta-band .cta-fine a { color: #fff; text-decoration: underline; }
+
+/* ---- Sticky mobile action bar (opt in with <body class="has-sticky-cta">) ---- */
+.sticky-cta { display: none; }
+@media (max-width: 860px) {
+  body.has-sticky-cta .sticky-cta {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 8px;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 75;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: var(--paper); border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 24px rgba(29,29,27,.12);
+  }
+  body.has-sticky-cta .sticky-cta a {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    font-family: "VTC Marsha", serif; text-transform: uppercase; letter-spacing: .06em;
+    font-size: 12.5px; text-decoration: none; padding: 14px 8px; border-radius: 2px;
+    background: var(--red); color: #fff; line-height: 1; white-space: nowrap;
+  }
+  body.has-sticky-cta .sticky-cta a.alt { background: transparent; color: var(--ink); border: 1.3px solid var(--ink); }
+  body.has-sticky-cta .sticky-cta svg { width: 15px; height: 15px; flex: none; }
+  /* The bar replaces the floating button and the scroll walker down here */
+  body.has-sticky-cta .whatsapp-fab, body.has-sticky-cta .walker { display: none; }
+  body.has-sticky-cta { padding-bottom: 70px; }
+}
+@media print { .sticky-cta { display: none !important; } }
+
+@media (max-width: 940px) {
+  .price-grid { grid-template-columns: 1fr; }
+  .next-steps { grid-template-columns: 1fr; gap: 16px; }
+}
