@@ -191,9 +191,17 @@
          VenueFlow CRM + notification email, and fire the Ads conversion. Sits
          directly under the hero: ad traffic arrives here and should not have to
          scroll a whole page to find a form. -->
+    <!-- The widget's own <main> is min-height:100vh and it reports scrollHeight,
+     so the frame can only ever GROW from its starting height — it measures
+     itself as at least as tall as the box it sits in. 900 left ~450px of
+     blank card under step 1. Start at the form's own height; the resize
+     listener below grows it for step 2. Do not "fix" this back to 900, and
+     do not swap to venueflowhq.com/embed.js unless a slug has been set for
+     Bar Franco in VenueFlow first: its slug is currently empty and embed.js
+     refuses to mount without one. -->
     <iframe id="vf-enquiry"
       src="https://venueflowhq.com/enquire?embed=1&amp;accent=AF0F00"
-      width="100%" height="900" frameborder="0" loading="eager"
+      width="100%" height="460" frameborder="0" loading="eager"
       style="border:none;display:block;margin:0 auto;max-width:540px;width:100%;background:#fff;border-radius:4px;"
       title="Corporate event enquiry — Bar Franco"></iframe>
     <script>

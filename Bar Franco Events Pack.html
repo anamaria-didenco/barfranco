@@ -65,8 +65,6 @@
 })();
 </script>
 <!-- BF-ADS-CONVERSIONS end -->
-<title>Bar Franco — Events & Private Hire</title>
-<meta name="description" content="Bar Franco events pack — private dining, cocktail functions and full venue hire for up to 240 across two levels in central Christchurch. No venue hire fee." />
 <!-- This page holds the only published function pricing on the site — grazing,
      canapé and seated per-head rates. It previously had no meta description, no
      canonical, lang="en" and no place in sitemap.xml, so the most commercially
@@ -470,9 +468,17 @@
       <!-- VenueFlow enquiry widget — embedded rather than linked. A link to the
            bare venueflowhq.com/enquire/ form sends the prospect off barfranco.nz
            onto a VenueFlow-branded page and fires no conversion at all. -->
+      <!-- The widget's own <main> is min-height:100vh and it reports scrollHeight,
+           so the frame can only ever GROW from its starting height — it measures
+           itself as at least as tall as the box it sits in. 900 left ~450px of
+           blank card under step 1. Start at the form's own height; the resize
+           listener below grows it for step 2. Do not "fix" this back to 900, and
+           do not swap to venueflowhq.com/embed.js unless a slug has been set for
+           Bar Franco in VenueFlow first: its slug is currently empty and embed.js
+           refuses to mount without one. -->
       <iframe id="vf-enquiry"
         src="https://venueflowhq.com/enquire?embed=1&amp;accent=AF0F00"
-        width="100%" height="900" frameborder="0" loading="lazy"
+        width="100%" height="460" frameborder="0" loading="lazy"
         style="border:none;display:block;margin:0;max-width:540px;width:100%;background:#fff;border-radius:4px;"
         title="Event enquiry — Bar Franco"></iframe>
       <script>
