@@ -36,6 +36,8 @@ nav/footer links point to `index.html`, not `Home.html`.
 - `home.css` — main stylesheet (CSS custom properties at the top define the design tokens)
 - `fonts.css` — `@font-face` declarations
 - `site.js` — shared JS (nav behaviour, scroll reveal, mobile menu, dachshund scroll-walker)
+- `events.css` + `events-pack.js` — used only by `Bar Franco Events Pack.html`, which is already on the
+  new Semibold identity (Deep Red / Almond / Bright Red tokens at the top of `events.css`, no black)
 - `image-slot.js` — legacy drag-drop photo component; **no longer used for live photos** (all photos
   are now baked in as real `<img>` tags). Safe to leave; harmless.
 - `brand/` — fonts (.otf) + brand marks (wordmark, dachshund, Negroni glass)
