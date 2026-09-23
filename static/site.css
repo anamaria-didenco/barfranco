@@ -305,6 +305,4 @@ body.sheeted{--gut:20px;background:var(--bf-almond);padding-top:60px!important;p
 .sheeted .walker{bottom:calc(68px + env(safe-area-inset-bottom))!important;top:auto!important}
 .sheeted .walker img{top:auto!important;bottom:2px;left:clamp(24px,var(--p,0%),calc(100% - 24px))!important;height:20px}
 .dock a{white-space:nowrap;font-size:13px!important;padding:0 10px!important}
-.sheeted .mcard h3{white-space:normal!important}
-.sheeted .line .k{margin-left:.5em}
 }
