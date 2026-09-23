@@ -285,7 +285,6 @@ html,body{overflow-x:clip}
 /* PHONE — Menus page: one menu at a time, full length, no overlap */
 @media (max-width:640px){.mp-stack .mp-sheet{position:static!important;width:100%!important;margin:0!important;transform:none!important}.mp-stack .mp-sheet:not(.front){display:none!important}}
 
-/* ==========================================================================
    PHONE SYSTEM (≤900px) — the same rules as the home page, set last so it wins.
    The screen is the sheet (no frame around the whole page) · one 20px gutter ·
    folios run edge to edge as the only divider · slim 60px header · the dock is
@@ -306,3 +305,31 @@ body.sheeted{--gut:20px;background:var(--bf-almond);padding-top:60px!important;p
 .sheeted .walker img{top:auto!important;bottom:2px;left:clamp(24px,var(--p,0%),calc(100% - 24px))!important;height:20px}
 .dock a{white-space:nowrap;font-size:13px!important;padding:0 10px!important}
 }
+=======
+/* DF-2 — tap targets. tel:/mailto: are primary actions for a venue and were
+   rendering 18–27px tall on a phone, under the ~44px minimum. nowrap keeps a
+   number from splitting one tap target across two lines. */
+a[href^="tel:"],a[href^="mailto:"]{display:inline-block;min-height:44px;padding:10px 2px;line-height:24px;white-space:nowrap}
+/* ...except inside a flowing sentence. A 44px box per link there turns the
+   footer paragraph into a vertical stack, so the link stays inline and gains
+   an invisible 44px hit area instead — same tap target, no layout change. */
+.ciao p a[href^="tel:"],.ciao p a[href^="mailto:"]{display:inline;min-height:0;padding:0;line-height:inherit;position:relative}
+.ciao p a[href^="tel:"]::after,.ciao p a[href^="mailto:"]::after{content:"";position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);height:44px}
+
+/* DF-4 — the address is now a one-tap route to Maps. Kept inline so the
+   footer stays a flowing sentence; the invisible ::after gives it the 44px
+   tap target without a 44px visual box. */
+a.maps{color:inherit;position:relative}
+a.maps::after{content:"";position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);height:44px}
+.maps-cue{white-space:nowrap;font-size:.85em;opacity:.75}
+
+/* DF-5 — Click/Tap swap, moved out of index.html's inline style so every page
+   can use it. Menus.html was telling phone users to "Click". */
+.tap{display:none}
+@media (hover:none){.hov{display:none}.tap{display:inline}}
+
+/* DF-6 — long intro paragraphs out of italic. Scoped to .page-hero .lede to
+   match the specificity of the rule that sets the italic; a bare .lede would
+   lose to it. Eyebrows, folio labels and short italic asides are untouched. */
+.page-hero .lede{font-style:normal}
+/* ===================================================================
