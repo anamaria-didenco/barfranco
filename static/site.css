@@ -311,3 +311,25 @@ a.maps::after{content:"";position:absolute;left:0;right:0;top:50%;transform:tran
    match the specificity of the rule that sets the italic; a bare .lede would
    lose to it. Eyebrows, folio labels and short italic asides are untouched. */
 .page-hero .lede{font-style:normal}
+
+/* ==========================================================================
+   PHONE SYSTEM (≤900px) — the same rules as the home page, set last so it wins.
+   The screen is the sheet (no frame around the whole page) · one 20px gutter ·
+   folios run edge to edge as the only divider · slim 60px header · the dock is
+   the one place to book.
+   ========================================================================== */
+@media (max-width:900px){
+body.sheeted{--gut:20px;background:var(--bf-almond);padding-top:60px!important;padding-bottom:calc(76px + env(safe-area-inset-bottom))!important}
+.sheeted .bar-top{height:60px!important;padding:0 var(--gut)!important}
+.sheeted .bar-top>a img{height:22px}
+.sheeted .bar-top .menu-scallop{width:46px;height:46px}.sheeted .bar-top .menu-scallop span{font-size:10px}
+.sheet-page{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;box-shadow:none!important}
+.sheet-page .sp-rl,.sheet-page .sp-in{border:0!important;padding:0!important}
+.sheeted .folio{margin:0!important;padding:14px var(--gut) 0!important;font-size:13px}
+.sheeted .sec,.sheeted .page-hero,.sheeted .cta-band,.sheeted .enq,.sheeted .xhero,.sheeted .ehero{padding-left:var(--gut)!important;padding-right:var(--gut)!important}
+.sheeted .hero-ph .mk{left:var(--gut)}
+.sheeted .dock{padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom))!important}
+.sheeted .walker{bottom:calc(68px + env(safe-area-inset-bottom))!important;top:auto!important}
+.sheeted .walker img{top:auto!important;bottom:2px;left:clamp(24px,var(--p,0%),calc(100% - 24px))!important;height:20px}
+.dock a{white-space:nowrap;font-size:13px!important;padding:0 10px!important}
+}
