@@ -1,0 +1,30 @@
+/* Bar Franco base — element defaults + a few brand utilities that recreate the designer's recurring motifs */
+html{-webkit-text-size-adjust:100%;font-synthesis:none}
+body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-body);font-size:var(--body-md);line-height:var(--body-leading);font-feature-settings:"kern","liga"}
+::selection{background:var(--selection);color:var(--bf-deep-red)}
+a{color:var(--link);text-decoration:none;transition:color var(--dur) var(--ease),opacity var(--dur) var(--ease)}
+a:hover{color:var(--link-hover);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.14em}
+:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
+h1,h2,h3,h4{margin:0;font-family:var(--font-display);font-weight:700;text-transform:uppercase;line-height:var(--display-leading);letter-spacing:var(--display-tracking);color:var(--text-heading)}
+h1{font-size:var(--display-lg)}h2{font-size:var(--display-md)}h3{font-size:var(--display-sm);letter-spacing:var(--display-tracking-open)}h4{font-size:var(--body-md);letter-spacing:var(--display-tracking-open)}
+p{margin:0}
+em,i{font-style:italic}
+img,svg{display:block;max-width:100%}
+button{font:inherit;cursor:pointer}
+
+/* Utilities */
+.bf-display{font-family:var(--font-display);font-weight:700;text-transform:uppercase;line-height:var(--display-leading);letter-spacing:var(--display-tracking)}
+.bf-body{font-family:var(--font-body);font-weight:400;line-height:var(--body-leading)}
+.bf-italic{font-family:var(--font-body);font-style:italic}
+.bf-eyebrow{font-family:var(--font-body);font-style:italic;text-transform:uppercase;font-size:var(--eyebrow-size);letter-spacing:var(--eyebrow-tracking)}
+.bf-wordmark{font-family:var(--font-display);text-transform:uppercase;letter-spacing:var(--display-tracking-wide);display:flex;justify-content:space-between}
+.bf-frame{border:var(--frame-outer);padding:var(--frame-gap);}
+.bf-frame>.bf-frame-inner{border:var(--frame-inner);padding:var(--content-inset)}
+.bf-leaders{display:flex;align-items:baseline;gap:.4em}
+.bf-leaders>.bf-leader{flex:1;overflow:hidden;white-space:nowrap;letter-spacing:.08em;color:inherit}
+.bf-leaders>.bf-leader::before{content:var(--leader-dot)}
+.bf-on-dark{background:var(--surface-dark);color:var(--text-on-dark)}
+.bf-on-brand{background:var(--surface-brand);color:var(--text-on-brand)}
+.bf-on-accent{background:var(--surface-accent);color:var(--text-on-accent)}
+.bf-on-soft{background:var(--surface-soft);color:var(--text-on-soft)}
+.bf-on-paper{background:var(--surface-page);color:var(--text-body)}

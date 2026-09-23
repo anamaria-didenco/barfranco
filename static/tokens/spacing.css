@@ -1,0 +1,27 @@
+/* Bar Franco spacing — a 4px base, generous at the edges (print margins), tight inside type stacks */
+:root{
+--space-1:4px;
+--space-2:8px;
+--space-3:12px;
+--space-4:16px;
+--space-5:24px;
+--space-6:32px;
+--space-7:48px;
+--space-8:64px;
+--space-9:96px;
+--space-10:128px;
+
+/* Page/frame insets */
+--page-margin:clamp(20px,4vw,64px);
+--frame-inset:10px;      /* distance from paper edge to outer rule on menus (A5: ~3.5mm) */
+--frame-gap:4px;         /* gap between the thick outer rule and thin inner rule */
+--content-inset:20px;    /* inner rule to first line of type */
+
+/* Layout */
+--measure:62ch; /* @kind spacing */
+--content-max:1200px; /* @kind spacing */
+--menu-a5-w:148mm; /* @kind spacing */
+--menu-a5-h:210mm; /* @kind spacing */
+--menu-drinks-w:148mm; /* @kind spacing */
+--menu-drinks-h:285mm; /* @kind spacing */
+}

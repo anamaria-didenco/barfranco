@@ -1,0 +1,34 @@
+/* Bar Franco typography — VTC Marsha (headline) + Affairs Regular/Italic (body). Visual identity p.11 */
+:root{
+--font-display:"VTC Marsha","Arial Black","Helvetica Neue",Impact,sans-serif;
+--font-body:"Affairs",Georgia,"Times New Roman",serif;
+
+/* Display (Marsha) — always uppercase, tight leading, near-zero tracking */
+--display-xl:clamp(64px,9vw,144px); /* @kind font */
+--display-lg:clamp(44px,6vw,96px); /* @kind font */
+--display-md:clamp(32px,4vw,56px); /* @kind font */
+--display-sm:24px;
+--display-leading:0.92; /* @kind font */
+--display-tracking:-0.005em; /* @kind font */
+--display-tracking-open:0.06em; /* @kind font */ /* section heads on menus: APERITIVO, ANTIPASTI */
+--display-tracking-wide:0.55em; /* @kind font */ /* B A R / F R A N C O framed word-marks */
+
+/* Body (Affairs) */
+--body-xl:24px;
+--body-lg:20px;
+--body-md:17px;
+--body-sm:15px;
+--body-xs:13px;
+--body-leading:1.35; /* @kind font */
+--body-leading-tight:1.2; /* @kind font */
+--body-tracking:0; /* @kind font */
+
+/* Eyebrow / label — Affairs italic caps, letter-spaced */
+--eyebrow-size:13px;
+--eyebrow-tracking:0.14em; /* @kind font */
+
+/* Menu (print) — pt values from the A5 interim menu */
+--menu-head-size:10pt;
+--menu-item-size:7.5pt;
+--menu-leading:1.5; /* @kind font */
+}

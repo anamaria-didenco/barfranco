@@ -1,0 +1,25 @@
+/* Bar Franco effects — flat print logic: no shadows, no radii, rules do the work */
+:root{
+--radius-none:0;
+--radius-full:999px;      /* only for circular badges/PFPs and pill scallops */
+
+--rule-thick:2px; /* @kind other */
+--rule-thin:1px; /* @kind other */
+--rule-hair:0.5px; /* @kind other */
+--frame-outer:var(--rule-thick) solid var(--rule); /* @kind other */
+--frame-inner:var(--rule-thin) solid var(--rule); /* @kind other */
+
+--shadow-none:none;
+--shadow-paper:0 1px 0 rgba(0,0,0,.06),0 12px 32px -12px rgba(60,20,10,.35); /* only for mocking printed pieces on a desk */
+
+--leader-dot:"........................................................................................................................"; /* @kind other */
+
+--dur-fast:200ms; /* @kind other */
+--dur:600ms; /* @kind other */
+--dur-slow:1200ms; /* @kind other */
+--ease:cubic-bezier(.2,.7,.2,1); /* @kind other */
+
+--hover-opacity:0.72; /* @kind other */
+--press-opacity:0.6; /* @kind other */
+--disabled-opacity:0.4; /* @kind other */
+}
