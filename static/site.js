@@ -69,3 +69,79 @@ var BF_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
   }
   window.addEventListener('scroll', walk, { passive: true }); walk();
 })();
+
+/* ---- Contact / enquiry forms -> FormSubmit (AJAX) ----------------------
+   Restored: the pages carry <form data-email="…"> with no action/method, but
+   this handler lived only in the old root site.js, which the rebuilt pages no
+   longer load. Without it a submit did nothing at all — no email, no error.
+   Live on Contact.html (ciao@) and weddings/ (anamaria@). */
+(function () {
+  document.querySelectorAll('form[data-email]').forEach(function (f) {
+    /* invisible honeypot field to catch spam bots */
+    var honey = document.createElement('input');
+    honey.type = 'text'; honey.name = '_honey';
+    honey.style.display = 'none'; honey.tabIndex = -1;
+    honey.setAttribute('autocomplete', 'off');
+    honey.setAttribute('aria-hidden', 'true');
+    f.appendChild(honey);
+
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (honey.value) return; /* bot filled the hidden field */
+
+      var to = f.getAttribute('data-email');
+      var subj = f.getAttribute('data-subject') || 'Enquiry — Bar Franco';
+      var btn = f.querySelector('button[type="submit"], .btn');
+      var btnText = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      /* form-encoded (URLSearchParams) keeps this a "simple" cross-origin
+         request — no CORS preflight — which is what FormSubmit's AJAX endpoint
+         needs to accept it from a browser. JSON triggers a preflight that gets
+         blocked. Do not "tidy" this into a JSON body. */
+      var payload = new URLSearchParams();
+      payload.append('_subject', subj);
+      payload.append('_template', 'table');
+      payload.append('_captcha', 'false');
+      f.querySelectorAll('input, textarea, select').forEach(function (el) {
+        if (el === honey || !el.value) return;
+        var lab = el.id ? f.querySelector('label[for="' + el.id + '"]') : null;
+        var key = lab ? lab.textContent.replace('*', '').trim() : (el.name || el.id || 'Field');
+        payload.append(key, el.value);
+      });
+
+      fetch('https://formsubmit.co/ajax/' + encodeURIComponent(to), {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: payload
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (!res || (res.success !== true && res.success !== 'true')) throw new Error('not ok');
+        /* Report to Google Ads. Without this an ad click that converts through
+           this form is recorded as a failure, so the campaign optimises away
+           from whatever produced it. */
+        try {
+          gtag('event', 'conversion', {
+            send_to: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',
+            value: 1.0,
+            currency: 'NZD'
+          });
+        } catch (err) {}
+        f.innerHTML = '<p class="form-done">Grazie. We\'ll come straight back to you.</p>';
+      })
+      .catch(function () {
+        if (btn) { btn.disabled = false; btn.textContent = btnText; }
+        var err = f.querySelector('.form-error');
+        if (!err) {
+          err = document.createElement('p');
+          err.className = 'form-error';
+          f.appendChild(err);
+        }
+        /* failures route to Ana-Maria's inbox */
+        err.innerHTML = 'Sorry — that didn\'t send. Please email us at ' +
+          '<a href="mailto:anamaria@barfranco.nz">anamaria@barfranco.nz</a> and we\'ll come straight back to you.';
+      });
+    });
+  });
+})();

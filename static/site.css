@@ -311,3 +311,7 @@ a.maps::after{content:"";position:absolute;left:0;right:0;top:50%;transform:tran
    match the specificity of the rule that sets the italic; a bare .lede would
    lose to it. Eyebrows, folio labels and short italic asides are untouched. */
 .page-hero .lede{font-style:normal}
+
+/* Form states for the restored FormSubmit handler. */
+.form-done{margin:0;font-style:italic;font-size:19px;line-height:1.4}
+.form-error{margin:12px 0 0;font-style:italic;font-size:15px;color:#AF0F00}
