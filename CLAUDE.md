@@ -11,7 +11,10 @@ no framework, no server). The files here ARE the site — what you edit is what 
 
 ## How to work on it
 - Open any `.html` file and edit the markup directly.
-- Shared styling lives in `home.css` (the main stylesheet for all pages) and `fonts.css`.
+- Shared styling lives in `static/site.css` (one stylesheet for every page: fonts, tokens, header,
+  footer, buttons, folios, the menu stack, page pieces). Shared behaviour is `static/site.js`.
+- Every page shares the same header (sticky, Deep Red, Menu takeover under 1100px), footer and
+  phone dock. If you change one, change it on every page — there is no templating.
 - To preview: just open the file in a browser (e.g. `open index.html` on macOS). No server needed,
   though a simple static server (`python3 -m http.server`) avoids any file:// quirks.
 - Keep the writing voice warm, witty, never corporate (see Brand below).
@@ -25,19 +28,26 @@ no framework, no server). The files here ARE the site — what you edit is what 
 | `Menus.html` | Food & drinks menu overview |
 | `Vouchers.html` | Gift vouchers |
 | `Contact.html` | Location, hours, contact details |
-| `Bar Franco Events Pack.html` | Detailed function/venue-hire pack (opens from Functions) |
+| `christmas-functions/`, `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/` | SEO landing pages, all on one template (hero → heading → split + stats → Deep Red list band → flipped split → optional `#enquire` band → FAQ → Bright Red closing band) |
+| `404.html` | Not-found page (absolute `/` paths) |
+| `Bar Franco Events Pack.html` | Detailed function/venue-hire pack (opens from Functions). Still on the old design: loads `static/legacy.css` + `static/legacy.js` |
 | `Brand Guide.html` | Internal one-page brand guide (not linked in site nav) |
 
 `index.html` is the home page (named `index.html` so hosts serve it automatically). All internal
 nav/footer links point to `index.html`, not `Home.html`.
 
 ## Folder structure
-- `index.html` + other page `.html` files — the site pages (root level)
-- `home.css` — main stylesheet (CSS custom properties at the top define the design tokens)
-- `fonts.css` — `@font-face` declarations
-- `site.js` — shared JS (nav behaviour, scroll reveal, mobile menu, dachshund scroll-walker)
-- `image-slot.js` — legacy drag-drop photo component; **no longer used for live photos** (all photos
-  are now baked in as real `<img>` tags). Safe to leave; harmless.
+- `index.html` + other page `.html` files — the site pages (root level); landing pages in folders
+- `static/site.css` — the stylesheet (tokens at the top: Deep Red `#6C0600`, Almond `#FAD7C3`,
+  Bright Red `#AF0F00`, Paper `#F1EEE6`; gutter/section/band spacing; the two type faces)
+- `static/site.js` — shared JS (Menu takeover, dachshund scroll-walker on the bottom edge, `#enquire`
+  scroll with the 72px header offset, the Menus food/drinks swap, the FormSubmit contact form)
+- `static/fonts/`, `static/logos/`, `static/illustrations/` — the brand kit the pages use
+- `static/legacy.css`, `static/legacy.js`, `static/styles.css`, `static/tokens/` — the previous design,
+  kept only for `Bar Franco Events Pack.html`. Don't load them on the redesigned pages.
+- `menus/` — the printed menus as PDFs (linked from Menus.html)
+- `home.css`, `fonts.css`, `site.js`, `events.css`, `image-slot.js` at the root — older passes, no
+  longer loaded by any page. Safe to leave; harmless.
 - `brand/` — fonts (.otf) + brand marks (wordmark, dachshund, Negroni glass)
 - `brand-assets/` — organized brand kit (marks + fonts + README) for designers/printers
 - `images/` — all website photography, optimized for web (~150–280KB each)
@@ -55,11 +65,13 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
 `dining-room.jpg` are kept in `images/` unmodified.
 
 ## Brand (keep edits on-brand)
-- **Colours** (defined as CSS variables at the top of `home.css`):
-  - Franco Red `#BE1622` (hero — headlines, marks, accents)
-  - Charcoal `#1D1D1B` (body text, footers)
-  - Cream `#F4EEE1` and Paper `#FCFBF7` (backgrounds)
-- **Type:** VTC Marsha Bold (display, UPPERCASE headlines) + Affairs (body serif, often italic).
+- **Colours** (CSS variables at the top of `static/site.css`) — nothing else, no black, no greys:
+  - Deep Red `#6C0600` (body ink, header, dark bands, footer)
+  - Almond `#FAD7C3` (page ground; type on red)
+  - Bright Red `#AF0F00` (menu heads, frame rules, stat numerals, one red band per page)
+  - Paper `#F1EEE6` (menu sheets, the voucher, framed panels)
+- **Type:** VTC Marsha Bold (display, always UPPERCASE) + Affairs Regular/Italic (body; never set in
+  capitals, never fake-bold). Radius 0 everywhere; shadows only on paper objects.
 - **Marks:** wordmark (the name), the dachshund (playful accent), the Negroni glass (the ritual).
 - **Voice:** warm, direct, a little witty. "Come say ciao," not "Contact us."
 - Full detail in `Brand Guide.html`.
