@@ -160,103 +160,39 @@
 }
 </script>
 
-<link rel="stylesheet" href="static/styles.css"><link rel="stylesheet" href="static/site.css">
-<style>.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px;border:2px solid var(--bf-bright-red);padding:4px}.stats div{border:1px solid var(--bf-bright-red);padding:22px 18px;text-align:center;display:grid;gap:6px}.stats .n{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(40px,5vw,72px);line-height:.9;color:var(--bf-bright-red)}.stats .l{font-style:italic;font-size:15px}
-.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;border-top:1px solid var(--bf-deep-red);margin-top:32px}.types div{padding:22px 24px 26px 0;border-bottom:1px solid var(--bf-deep-red);display:grid;gap:8px}.types .num{font-style:italic;font-size:13px;letter-spacing:.14em;color:var(--bf-deep-red)}.types h3{font-size:24px;letter-spacing:-0.005em;color:var(--bf-deep-red)}.types p{font-size:16px;line-height:1.45}
-.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:32px}.gal img{width:100%;height:100%;aspect-ratio:1;object-fit:cover;display:block}.gal .tall{grid-row:span 2;aspect-ratio:auto}.gal .wide{grid-column:span 2;aspect-ratio:auto}
-.enq{background:var(--bf-deep-red);color:var(--bf-almond);padding:clamp(48px,7vw,104px) var(--page-margin);display:grid;gap:28px;justify-items:center}.enq .eyebrow,.enq h2,.enq p,.enq a{color:var(--bf-almond)}.enq h2{font-size:clamp(36px,5.5vw,84px);line-height:.9;text-align:center}.enq .lede{font-style:italic;font-size:clamp(18px,1.6vw,22px);max-width:46ch;text-align:center}.enq .frame{border-color:var(--bf-almond);width:100%;max-width:600px}.enq .frame>div{border-color:var(--bf-almond);background:var(--bf-paper);padding:6px}.enq iframe{display:block;width:100%;height:520px;border:0}
-@media (max-width:900px){.stats{grid-template-columns:1fr}.gal{grid-template-columns:repeat(2,1fr)}}</style>
+<link rel="stylesheet" href="static/site.css">
 </head>
-<body class="sheeted">
-<div class="bar-top sh"><nav class="bar-links" aria-label="Main"><a href="Menus.html">Menus</a><a href="Bookings.html">Bookings</a><a href="Functions.html" aria-current="page">Functions</a><a href="christmas-functions/">Christmas</a><a href="Vouchers.html">Vouchers</a><a href="Contact.html">Contact</a></nav><a href="index.html" aria-label="Bar Franco home"><img src="static/logos/emblem/almond.svg" alt="Bar Franco"></a><div class="r"><button class="menu-scallop" type="button" data-menu aria-label="Open the menu"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><b></b><span>Menu</span></button><a class="btn almond sm" href="Bookings.html">Book a table</a><a class="btn almond sm" href="Functions.html">Plan an event</a></div></div>
-<div class="takeover" aria-label="Site menu"><div class="top"><img src="static/logos/emblem/almond.svg" alt=""><button class="close" type="button">Close ×</button></div><ol><li><span>01</span><a href="index.html">Home</a></li><li><span>02</span><a href="Menus.html">Menus</a></li><li><span>03</span><a href="Bookings.html">Bookings</a></li><li><span>04</span><a href="Functions.html">Functions</a></li><li><span>05</span><a href="christmas-functions/">Christmas</a></li><li><span>06</span><a href="Vouchers.html">Vouchers</a></li><li><span>07</span><a href="Contact.html">Contact</a></li></ol><div class="bottom"><span><em>(upstairs)</em>&nbsp;&nbsp;<a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Franco%2C+166+Cashel+Street%2C+Christchurch+Central%2C+8011" target="_blank" rel="noopener">The Crossing, 166 Cashel St, Ōtautahi <span class="maps-cue">Open in Maps &rarr;</span></a></span><a href="tel:+64212211307">021 221 1307</a><a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a><a href="https://www.instagram.com/bar__franco/">@bar__franco</a></div></div>
-<main class="sheet-page"><div class="sp-rl"><div class="sp-in"><figure class="hero-ph"><img src="images/event-long-table.jpg" alt="A long candlelit table set for a private event" fetchpriority="high"><img class="mk" src="static/logos/franco-script-incline/almond.svg" alt=""><div class="ph-cta"><span class="k">Private events · two levels</span><p class="h">Plan your event at Franco</p><p class="l">Private dining, cocktail functions or the whole venue.</p><a class="btn big" href="#enquire">Enquire now</a><a class="tel" href="tel:+64212211307">or call 021 221 1307</a></div></figure>
+<body>
+<header class="hd"><a class="hd-logo" href="index.html" aria-label="Bar Franco home"><img src="static/logos/emblem/almond.svg" alt="Bar Franco"></a><div class="hd-mid"><nav class="hd-nav" aria-label="Main"><a href="Menus.html">Menus</a><a href="Bookings.html">Bookings</a><a href="Functions.html" aria-current="page">Functions</a><a href="christmas-functions/">Christmas</a><a href="Vouchers.html">Vouchers</a><a href="Contact.html">Contact</a></nav></div><div class="hd-r"><div class="hd-asks"><a class="tb" href="Bookings.html">Book a table<svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><a class="tb" href="Functions.html">Plan an event<svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></div><button class="hd-menu" type="button" aria-label="Open the site menu" aria-haspopup="dialog">Menu</button></div></header>
+<div class="tk" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true"><div class="tk-top"><img src="static/logos/emblem/almond.svg" alt=""><button class="tk-close" type="button">Close ×</button></div><nav class="tk-nav" aria-label="Site"><a href="index.html">Home</a><a href="Menus.html">Menus</a><a href="Bookings.html">Bookings</a><a href="Functions.html">Functions</a><a href="christmas-functions/">Christmas</a><a href="Vouchers.html">Vouchers</a><a href="Contact.html">Contact</a></nav><div class="tk-foot"><a class="lb almond" href="Bookings.html">Book a table<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><a class="lb almond" href="Functions.html">Plan an event<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><p><em>(upstairs)</em> The Crossing, 166 Cashel St, Ōtautahi · 021 221 1307</p></div></div>
+<main>
+<figure class="ph"><img src="images/event-long-table.jpg" alt="A long candlelit table set for a private event" fetchpriority="high" style="--pos:center 45%"><img class="mk" src="static/logos/franco-script-incline/almond.svg" alt=""></figure>
 
-<header class="page-hero almond" data-screen-label="Functions">
-<p class="eyebrow">Private events &amp; venue hire</p>
-<h1>No hire fee. <br>A function venue in Christchurch</h1>
-<p class="lede">With spaces for private dining, cocktail functions or full venue hire, Bar Franco brings big flavour and even bigger hospitality to every celebration in central&nbsp;Christchurch.</p>
-<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:10px"><a class="btn deep lg" href="#enquire">Enquire now</a><a class="txt" href="Bar%20Franco%20Events%20Pack.html" style="color:var(--bf-deep-red);font-size:18px">View the events pack →</a></div>
-</header>
-
-<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>01</b><span>Let's plan your event</span></div>
-<section class="enq" id="enquire">
-<p class="eyebrow">Enquire</p>
-<h2>Let's plan your event</h2>
-<p class="lede">Tell us the date, the headcount and the vibe — our events team will take it from there.</p>
-<div class="frame"><div><iframe id="vf-enquiry" src="https://venueflowhq.com/enquire?embed=1&amp;accent=AF0F00" title="Event enquiry — Bar Franco" loading="lazy"></iframe></div></div>
-<p style="font-style:italic;font-size:15px;text-align:center">Prefer to talk? Come say ciao — <a href="mailto:anamaria@barfranco.nz" style="text-decoration:underline">anamaria@barfranco.nz</a> · <a href="tel:+64212211307" style="text-decoration:underline">021 221 1307</a></p>
+<header class="pg fn"><p class="eyebrow">Private events &amp; venue hire</p><h1>No hire fee.</h1><p class="sub">A function venue in the middle of Christchurch</p><p class="lede">Private dining, cocktail functions or the whole building — up to 240 guests across two levels, and a team that carries the night.</p><div class="asks"><a class="lb deep" href="#enquire">Enquire now<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><a class="lb deep" href="Bar%20Franco%20Events%20Pack.html" target="_blank" rel="noopener">View the events pack<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></div></header>
+<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>01</b><span>Why Franco</span></div>
+<section class="sec"><div class="split"><div class="copy"><h2 class="mw11">Two levels, zero venue hire fee</h2><p>Take a level or the whole building. The team handles the food, the drinks and the flow of the night, so you can stay in the room with your guests.</p><p>From an intimate private dinner to a 240-strong cocktail party — generous Italian hospitality, every time.</p></div><img class="photo" src="images/event-table-setting.jpg" alt="A candlelit private event table setting at Bar Franco"></div>
+<div class="stats"><div><b>240</b><span>guests across both levels</span></div><div><b>2</b><span>levels to hire</span></div><div><b>0</b><span>venue hire fee</span></div></div></section>
+<section class="dark band" aria-label="The spaces">
+<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>02</b><span>The spaces</span></div>
+<h2 class="sec-h pad">Pick a level — or take both</h2>
+<div class="levels"><article class="level"><img class="photo" src="images/cocktail-tray-branded.jpg" alt="Negronis on a tray at the Negroni Bar" loading="lazy"><p class="k">Level 1</p><h3>The Negroni Bar</h3><p>A low-lit room built around the bar — for cocktail functions and stand-up celebrations.</p><div class="cap"><div class="ml"><span>Standing</span><i class="ld" aria-hidden="true"></i><span>120</span></div><div class="ml"><span>Seated</span><i class="ld" aria-hidden="true"></i><span>75</span></div></div></article><article class="level"><img class="photo" src="images/level2-event-table.jpg" alt="A long table dressed for a private dinner upstairs" loading="lazy"><p class="k">Level 2</p><h3>The Restaurant</h3><p>An open-kitchen dining room made for the long table and seated celebrations of any kind.</p><div class="cap"><div class="ml"><span>Standing</span><i class="ld" aria-hidden="true"></i><span>120</span></div><div class="ml"><span>Seated</span><i class="ld" aria-hidden="true"></i><span>90</span></div></div></article></div>
 </section>
-
-<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>02</b><span>Two levels, zero venue hire fee</span></div>
-<section class="sec">
-<div class="split">
-<div class="copy"><p class="eyebrow">Why Franco</p><h2 class="deep">Two levels, zero venue hire fee</h2>
-<p>Take over a level or the whole building. Our team handles the food, the drinks and the flow of the night so you can stay in the room with your&nbsp;guests.</p>
-<p>From intimate private dining to a 240-strong cocktail party, every Franco function is built around big, generous Italian&nbsp;hospitality.</p></div>
-<img src="images/event-table-setting.jpg" alt="A candlelit private event table setting at Bar Franco, Christchurch">
-</div>
-<div class="stats"><div><span class="n">240</span><span class="l">guests across both levels</span></div><div><span class="n">2</span><span class="l">levels to hire</span></div><div><span class="n">0</span><span class="l">venue hire fee</span></div></div>
+<div class="folio gap" aria-hidden="true"><span>Bar Franco</span><b>03</b><span>Occasions</span></div>
+<section class="sec"><h2 class="sec-h mb">Whatever you're celebrating</h2><div class="occ"><div><h3>Private dining</h3><p>Long-table dinners with a shared Italian menu, for the milestones worth marking.</p></div><div><h3>Corporate &amp; team</h3><p>Client dinners, team nights and work Christmas parties with seamless service.</p></div><div><h3>Birthdays</h3><p>21sts, 30ths, 40ths and every milestone — long tables and free-flowing drinks.</p></div><div><h3>Engagements &amp; weddings</h3><p>Intimate dinners and full-venue receptions, with the romance built in.</p></div><div><h3>Cocktail functions</h3><p>Stand-up evenings around the bar — spritzes, Negronis and roving plates.</p></div><div><h3>The whole building</h3><p>Both levels for up to 240 guests — the whole venue, and the whole night.</p></div></div></section>
+<div class="gal"><img class="photo" src="images/level1-bar-crowd.jpg" alt="Guests gathered at the Negroni Bar" loading="lazy"><img class="photo" src="images/host-wine.jpg" alt="Wine poured tableside" loading="lazy"><img class="photo" src="images/chef-wink.jpg" alt="A chef at the pass" loading="lazy"><img class="photo" src="images/level1-bar.jpg" alt="The curved bar downstairs" loading="lazy"><img class="photo" src="images/level2-dining-room.jpg" alt="The restaurant set for dinner" loading="lazy"><img class="photo" src="images/event-guests.jpg" alt="Guests at a private event" loading="lazy"></div>
+<section class="dark band" id="enquire" aria-label="Enquire">
+<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>04</b><span>Enquire</span></div>
+<div class="enq-h"><h2>Let's plan your event</h2><p>Tell us the date, the headcount and the kind of night — the events team takes it from there.</p></div>
+<div class="enq frame deep"><div><div><iframe title="Event enquiry — Bar Franco" loading="lazy" src="https://venueflowhq.com/enquire?embed=1&amp;accent=AF0F00"></iframe></div></div></div>
+<p class="enq-alt">Prefer to talk? <a class="u" href="mailto:anamaria@barfranco.nz">anamaria@barfranco.nz</a> · <a class="u" href="tel:+64212211307">021 221 1307</a></p>
 </section>
-
-<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>03</b><span>Whatever you're celebrating</span></div>
-<section class="sec" style="background:var(--bf-almond);color:var(--bf-deep-red)">
-<p class="eyebrow" style="color:var(--bf-deep-red)">Occasions</p><h2 class="deep" style="margin-top:14px">Whatever you're celebrating</h2>
-<div class="types">
-<div><span class="num">01</span><h3>Private dining</h3><p>Long-table private dinners with a shared Italian menu, for the milestones worth&nbsp;marking.</p></div>
-<div><span class="num">02</span><h3>Corporate &amp; team events</h3><p>Client dinners, team nights and <a href="christmas-functions/">work Christmas parties</a> with seamless&nbsp;service.</p></div>
-<div><span class="num">03</span><h3>Birthdays &amp; celebrations</h3><p>21sts, 30ths, 40ths and every milestone — long tables and free-flowing&nbsp;drinks.</p></div>
-<div><span class="num">04</span><h3>Engagements &amp; weddings</h3><p>Intimate dinners and full-venue receptions with Italian romance built&nbsp;in.</p></div>
-<div><span class="num">05</span><h3>Cocktail functions</h3><p>Stand-up events around the bar — spritzes, Negronis and roving&nbsp;plates.</p></div>
-<div><span class="num">06</span><h3>Full venue hire</h3><p>Take both levels for up to 240 guests — the whole building, and the whole&nbsp;night.</p></div>
-</div>
-</section>
-
-<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>04</b><span>Pick your level — or take both</span></div>
-<section class="sec">
-<p class="eyebrow">The spaces</p><h2 class="deep" style="margin-top:14px">Pick your level — or take both</h2>
-<div class="levels">
-<div class="frame level"><div><img src="images/cocktail-tray-branded.jpg" alt="Branded Negronis on a tray at the Bar Franco Negroni Bar"><div class="body"><p class="eyebrow">Level 1</p><h3>The Negroni Bar</h3><p>A low-lit room built around the bar — ideal for cocktail functions and stand-up&nbsp;celebrations.</p><div class="line"><span>Standing</span><i></i><span>120</span></div><div class="line"><span>Seated</span><i></i><span>75</span></div></div></div></div>
-<div class="frame level"><div><img src="images/event-long-table.jpg" alt="A long table set for a private dinner in the Bar Franco restaurant"><div class="body"><p class="eyebrow">Level 2</p><h3>The Restaurant</h3><p>An open-kitchen dining room made for the long table and seated celebrations of any&nbsp;kind.</p><div class="line"><span>Standing</span><i></i><span>120</span></div><div class="line"><span>Seated</span><i></i><span>90</span></div></div></div></div>
-</div>
-</section>
-
-<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>05</b><span>Room to celebrate</span></div>
-<section class="sec moments">
-<p class="eyebrow">See the space</p><h2 style="margin-top:14px">Room to celebrate</h2>
-<p style="font-style:italic;font-size:18px;margin-top:14px;max-width:54ch">From cocktail functions around the Level 1 Negroni bar to long-table dinners in the restaurant upstairs — a look around the rooms your night could&nbsp;fill.</p>
-<div class="gal"><img class="tall" src="images/level2-event-table.jpg" alt="A long table dressed with flowers and candles for a private event"><img src="images/level1-bar-crowd.jpg" alt="Guests gathered at the Level 1 Negroni Bar"><img src="images/day-spritz-tray-decanter.jpg" alt="Spritzes and a decanter served tableside"><img src="images/chef-wink.jpg" alt="A Bar Franco chef at the pass"><img class="wide" src="images/level1-bar.jpg" alt="The Level 1 Negroni Bar — curved bar and pendant lights"><img src="images/level2-dining-room.jpg" alt="The Level 2 restaurant set for dinner"></div>
-</section>
-
-<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>06</b><span>Function FAQs</span></div>
-<section class="sec">
-<div class="centre-head"><p class="eyebrow">Good to know</p><h2 class="deep">Function FAQs</h2></div>
-<div class="faq">
-<details open><summary>How many guests can you hold?</summary><p class="a">Up to 240 across both levels — around 165 seated, or the whole venue for a standing cocktail function. Single-level hire is also&nbsp;available.</p></details>
-<details><summary>Is there a venue hire fee?</summary><p class="a">No venue hire fee. We work to a food and beverage minimum spend instead, tailored to your event, date and&nbsp;space.</p></details>
-<details><summary>Can you cater dietaries?</summary><p class="a">Absolutely. Our kitchen handles vegetarian, vegan, gluten-free and most allergies — just let us know when you&nbsp;confirm.</p></details>
-<details><summary>How far ahead should I book?</summary><p class="a">For peak dates (Friday/Saturday nights and December) we recommend enquiring as early as possible. Midweek dates are often available at shorter&nbsp;notice.</p></details>
-<details><summary>Can I book a large group without hiring the whole venue?</summary><p class="a">Yes — group bookings and long tables are very welcome. For around 10 or more we'll set you up with our events team and a shared menu, without needing to hire a whole&nbsp;level.</p></details>
-<details><summary>Do you offer set menus for groups?</summary><p class="a">We do — shared Italian set menus built around your group, budget and dietaries, from antipasti to dolci. <a href="Menus.html">See our&nbsp;menus</a>.</p></details>
-<details><summary>Can you host a private dinner for a birthday or occasion?</summary><p class="a">Absolutely — private dining for birthdays, engagements, anniversaries and milestones is one of our favourite things. Tell us the occasion and we'll make it&nbsp;special.</p></details>
-</div>
-</section>
-
-<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>07</b><span>Booking the work do?</span></div>
-<section class="cta-band"><h2>Booking the work do?</h2><p>December dates go first — lock yours in.</p><div class="row"><a class="btn almond lg" href="christmas-functions/">Christmas parties</a><a class="btn almond lg" href="#enquire">Enquire now</a></div></section>
-
-</div></div></main>
-<footer class="foot">
-<div class="contact-line"><span><em>(upstairs)</em>&nbsp;&nbsp;<a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Franco%2C+166+Cashel+Street%2C+Christchurch+Central%2C+8011" target="_blank" rel="noopener">The Crossing, 166 Cashel St, Ōtautahi <span class="maps-cue">Open in Maps &rarr;</span></a></span><a href="tel:+64212211307">021 221 1307</a><a href="mailto:anamaria@barfranco.nz">anamaria@barfranco.nz</a><a href="https://www.instagram.com/bar__franco/">@bar__franco</a></div>
-<p style="font-style:italic;font-size:17px">Bar from 4pm · kitchen from 5pm · daily, till late</p>
-<nav class="links" aria-label="Footer"><a href="index.html">Home</a><a href="Bookings.html">Bookings</a><a href="Functions.html">Functions</a><a href="Menus.html">Menus</a><a href="Vouchers.html">Vouchers</a><a href="Contact.html">Contact</a><a href="christmas-functions/">Christmas</a><a href="aperitivo/">Aperitivo</a><a href="negroni-bar/">Negroni Bar</a><a href="fresh-pasta/">Fresh Pasta</a><a href="corporate-events/">Corporate Events</a><a href="pre-stadium-dining/">Near the Stadium</a><a href="weddings/">Weddings</a><a href="Bar%20Franco%20Events%20Pack.html">Events Pack</a><a href="https://wa.me/64212211307">Chat on WhatsApp</a></nav>
-<div class="mark"><img src="static/logos/tabloid-single-line/almond.svg" alt="Bar Franco"></div>
-<p class="copy">© 2026 Bar Franco · The Crossing, Christchurch</p>
-</footer>
+<div class="folio gap" aria-hidden="true"><span>Bar Franco</span><b>05</b><span>Good to know</span></div>
+<section class="sec tall"><h2 class="faq-h">Function questions</h2><div class="faq"><details><summary>How many guests can you hold?</summary><p class="a">Up to 240 across both levels — around 165 seated, or the whole venue for a standing cocktail function. Single-level hire is available too.</p></details><details><summary>Is there a venue hire fee?</summary><p class="a">No. We work to a food and beverage minimum spend instead, tailored to your event, date and space.</p></details><details><summary>Can you cater dietaries?</summary><p class="a">Vegetarian, vegan, gluten-free and most allergies — just let us know when you confirm.</p></details><details><summary>How far ahead should I book?</summary><p class="a">For Friday and Saturday nights and December, as early as you can. Midweek dates are often free at shorter notice.</p></details><details><summary>Can I book a large group without hiring a level?</summary><p class="a">Yes — for ten or more we'll set you up with the events team and a shared menu, no hire needed.</p></details><details><summary>Do you offer set menus for groups?</summary><p class="a">Shared Italian set menus built around your group, budget and dietaries, from antipasti to dolci.</p></details><details><summary>Can you host a private birthday dinner?</summary><p class="a">One of our favourite things. Tell us the occasion and we'll make it special.</p></details></div></section>
+<section class="closing bright"><h2>Booking the work do?</h2><p>December dates go first — lock yours in.</p><div class="asks"><a class="lb almond" href="christmas-functions/">Christmas parties<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><a class="lb almond" href="#enquire">Enquire now<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></div></section>
+</main>
+<footer class="ft"><div class="ft-contact"><span><em>(upstairs)</em> 166 Cashel St, Ōtautahi</span><a href="tel:+64212211307">021 221 1307</a><a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a><a href="https://www.instagram.com/bar__franco/">@bar__franco</a></div><p class="ft-hours">Bar from 4pm · kitchen from 5pm · daily, till late</p><nav class="ft-links" aria-label="Footer"><a href="index.html">Home</a><a href="Menus.html">Menus</a><a href="Bookings.html">Bookings</a><a href="Functions.html">Functions</a><a href="christmas-functions/">Christmas</a><a href="Vouchers.html">Vouchers</a><a href="Contact.html">Contact</a><a href="aperitivo/">Aperitivo</a><a href="negroni-bar/">Negroni bar</a><a href="fresh-pasta/">Pasta fresca</a><a href="pre-stadium-dining/">Before the stadium</a><a href="corporate-events/">Corporate</a><a href="weddings/">Weddings</a></nav><img class="ft-mark" src="static/logos/tabloid-single-line/almond.svg" alt="Bar Franco"></footer>
+<div class="ft-spacer" aria-hidden="true"></div>
+<nav class="dock" aria-label="Book or plan"><a href="Bookings.html">Book a table</a><a href="Functions.html">Plan an event</a></nav>
 <script src="static/site.js" defer></script>
-<nav class="dock sh" aria-label="Enquire"><a href="#enquire">Enquire now</a><a href="tel:+64212211307">Call us</a></nav>
-<a class="enq-sticky" href="#enquire"><span>Enquire now</span><em>021 221 1307</em></a>
-<script>(function(){var s=document.querySelector('.enq-sticky'),h=document.querySelector('.hero-ph'),e=document.getElementById('enquire');if(!s||!h)return;var past=false,near=false;function set(){s.classList.toggle('on',past&&!near);}
-new IntersectionObserver(function(x){past=!x[0].isIntersecting;set();},{threshold:0}).observe(h);if(e)new IntersectionObserver(function(x){near=x[0].isIntersecting;set();},{threshold:.15}).observe(e);})();</script>
 </body>
 </html>
