@@ -403,3 +403,18 @@ html{scroll-behavior:smooth}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
+
+/* LANDING PAGES — the enquiry follows the hero and starts within 1.5 screens.
+   The photo uses the existing .slim height; the band tightens, and on wider
+   screens the intro sits beside the form instead of above it. */
+.pg.lp+.enq-band{padding-top:clamp(36px,4.5vw,64px)}
+.pg.lp+.enq-band .enq-h{gap:10px;padding-bottom:24px}
+@media (max-width:900px){.pg.lp+.enq-band{padding-top:24px}.pg.lp+.enq-band .enq-h h2{font-size:clamp(34px,10vw,44px)}.pg.lp+.enq-band .enq-h p{font-size:17px}.ph.slim:has(+.pg.lp+.enq-band)>img:first-child{height:30svh}}
+/* phones: the form is directly below and the dock's "Plan an event" goes to it, so the hero's own #enquire link is dropped there */
+@media (max-width:900px){.pg.lp:has(+.enq-band) .asks a[href="#enquire"]{display:none}.pg.lp:has(+.enq-band) .asks:not(:has(a:not([href="#enquire"]))){display:none}}
+@media (min-width:901px){
+.pg.lp+.enq-band{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);column-gap:clamp(32px,5vw,80px);align-items:start;padding-left:max(var(--gutter),calc((100% - var(--max))/2 + var(--gutter)));padding-right:max(var(--gutter),calc((100% - var(--max))/2 + var(--gutter)))}
+.pg.lp+.enq-band .enq-h{grid-column:1;grid-row:1;justify-items:start;text-align:left;padding:0}
+.pg.lp+.enq-band .enq{grid-column:2;grid-row:1/span 2;width:100%;margin:0}
+.pg.lp+.enq-band .enq-alt{grid-column:1;grid-row:2;text-align:left;margin-top:16px}
+}
