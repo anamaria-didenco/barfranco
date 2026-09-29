@@ -1,0 +1,128 @@
+/* Bar Franco — "Ora" pages: reveal motion, masthead, Index takeover, in-page jumps,
+   the homepage running head, the Menus tabs and the Events Pack print button.
+   Plain JS, no dependencies. Everything degrades to a static page without it. */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- reveal: [data-rv] fades/rises in (photos .g-ph reveal by clip-path) ---- */
+  function show(e) {
+    if (document.hidden) { e.style.transition = 'none'; e.setAttribute('data-instant', '1'); }
+    e.setAttribute('data-in', '1');
+  }
+  function thaw() {
+    if (!document.hidden) document.querySelectorAll('[data-instant]').forEach(function (e) { e.style.transition = ''; e.removeAttribute('data-instant'); });
+  }
+  function sweep() {
+    var vh = window.innerHeight || 800;
+    document.querySelectorAll('[data-rv]:not([data-in])').forEach(function (e) {
+      var r = e.getBoundingClientRect();
+      if (r.top < vh * 0.94 && r.bottom > 0) show(e);
+    });
+  }
+  if (reduce) {
+    document.querySelectorAll('[data-rv]').forEach(function (e) { e.setAttribute('data-in', '1'); });
+  } else {
+    var io = null;
+    if ('IntersectionObserver' in window) {
+      io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+      }, { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
+      document.querySelectorAll('[data-rv]').forEach(function (e) { io.observe(e); });
+    }
+    sweep();
+    var rafR = 0;
+    var onScrollR = function () { if (!rafR) rafR = requestAnimationFrame(function () { rafR = 0; sweep(); }); };
+    window.addEventListener('scroll', onScrollR, { passive: true });
+    window.addEventListener('resize', onScrollR);
+    window.addEventListener('load', sweep);
+    document.addEventListener('visibilitychange', function () { thaw(); sweep(); });
+    // hidden documents (background tabs, captures) never scroll: reveal everything so nothing stays blank
+    setTimeout(function () { if (document.hidden) document.querySelectorAll('[data-rv]:not([data-in])').forEach(show); }, 2500);
+  }
+
+  /* ---- masthead: 76px, condensing to 60px once scrolled ---- */
+  var head = document.querySelector('[data-ora-masthead]');
+  if (head) {
+    var rafH = 0;
+    var onScrollH = function () {
+      if (!rafH) rafH = requestAnimationFrame(function () { rafH = 0; head.style.height = (window.scrollY || 0) > 32 ? '60px' : '76px'; });
+    };
+    window.addEventListener('scroll', onScrollH, { passive: true });
+    onScrollH();
+  }
+
+  /* ---- Index takeover (phones and small tablets) ---- */
+  var tk = document.getElementById('ora-index'), lastFocus = null;
+  function openIndex() {
+    if (!tk) return;
+    lastFocus = document.activeElement;
+    tk.hidden = false; document.body.style.overflow = 'hidden';
+    var c = tk.querySelector('[data-ora="menu-close"]'); if (c) c.focus();
+  }
+  function closeIndex() {
+    if (!tk || tk.hidden) return;
+    tk.hidden = true; document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.querySelectorAll('[data-ora="menu-open"]').forEach(function (b) { b.addEventListener('click', openIndex); });
+  document.querySelectorAll('[data-ora="menu-close"]').forEach(function (b) { b.addEventListener('click', closeIndex); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeIndex(); });
+  if (tk) tk.addEventListener('click', function (e) { if (e.target.closest('a[href]')) closeIndex(); });
+
+  /* ---- in-page jumps: land 60px under the masthead ---- */
+  function go(id, smooth) {
+    var el = document.getElementById(id); if (!el) return false;
+    var top = el.getBoundingClientRect().top + window.scrollY - 60;
+    window.scrollTo({ top: top, behavior: reduce || !smooth ? 'auto' : 'smooth' });
+    return true;
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = decodeURIComponent(a.getAttribute('href').slice(1));
+    if (id && go(id, true)) { e.preventDefault(); if (history.replaceState) history.replaceState(null, '', '#' + id); }
+  });
+  if (location.hash.length > 1) {
+    var h = decodeURIComponent(location.hash.slice(1));
+    setTimeout(function () { go(h, true); }, 600);
+  }
+
+  /* ---- print (Events Pack) ---- */
+  document.querySelectorAll('[data-ora="print"]').forEach(function (b) { b.addEventListener('click', function () { window.print(); }); });
+
+  /* ---- homepage running head follows the chapter past the viewport midpoint ---- */
+  var run = document.getElementById('ora-run');
+  if (run) {
+    var heads = { home: 'Bar Franco · (upstairs) · down the laneway · 4pm till late', 'g-food': 'Bar Franco · 03 · The menus', 'g-ev': 'Bar Franco · Host at Franco · private events & venue hire', 'g-lv': 'Bar Franco · The spaces · pick a level, or take both', 'g-close': 'Bar Franco · 04 · Come say ciao' };
+    var rafC = 0;
+    var chapter = function () {
+      rafC = 0;
+      var mid = window.innerHeight * 0.5, c = 'home';
+      ['g-food', 'g-ev', 'g-lv', 'g-close'].forEach(function (id) { var el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= mid) c = id; });
+      if (run.textContent !== heads[c]) run.textContent = heads[c];
+    };
+    window.addEventListener('scroll', function () { if (!rafC) rafC = requestAnimationFrame(chapter); }, { passive: true });
+    chapter();
+  }
+
+  /* ---- Menus: Food / Drinks tabs swap the sheet and the sticky photograph ---- */
+  var tabs = document.querySelectorAll('[data-ora^="tab-"]');
+  if (tabs.length) {
+    var setTab = function (k, scroll) {
+      tabs.forEach(function (t) {
+        var on = t.getAttribute('data-ora') === 'tab-' + k;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.style.color = on ? '#AF0F00' : '#6C0600';
+        t.style.borderColor = on ? '#AF0F00' : 'transparent';
+      });
+      document.querySelectorAll('[data-ora-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-ora-panel') !== k; });
+      var sec = document.getElementById('sheets'); if (sec) sec.setAttribute('data-tab', k);
+      if (scroll && sec) {
+        var top = sec.getBoundingClientRect().top + window.scrollY - 60;
+        if (Math.abs(window.scrollY - top) > 40) window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
+      }
+    };
+    tabs.forEach(function (t) { t.addEventListener('click', function () { setTab(t.getAttribute('data-ora').slice(4), true); }); });
+    document.querySelectorAll('[data-ora-tablink]').forEach(function (t) { t.addEventListener('click', function () { setTab(t.getAttribute('data-ora-tablink'), true); }); });
+  }
+})();
