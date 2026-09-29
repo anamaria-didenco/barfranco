@@ -11,8 +11,15 @@ no framework, no server). The files here ARE the site — what you edit is what 
 
 ## How to work on it
 - Open any `.html` file and edit the markup directly.
-- Shared styling lives in `static/site.css` (one stylesheet for every page: fonts, tokens, header,
-  footer, buttons, folios, the menu stack, page pieces). Shared behaviour is `static/site.js`.
+- **Two systems are live.** The seven "Ora" pages (`index.html`, `Menus.html`, `Bookings.html`,
+  `Functions.html`, `christmas-functions/`, `Vouchers.html`, `Bar Franco Events Pack.html`) are built
+  from the Ora handoff: each page's layout is in its own inline styles plus one `<style>` block in the
+  `<head>` (that is the design spec — edit it there), on top of `static/styles.css` (design-system
+  tokens + fonts), `static/ora.css` (shared masthead, Index takeover, dock, footer) and `static/ora.js`
+  (reveal motion, masthead condense, takeover, in-page jumps, running head, Menus tabs, print).
+  The Ora masthead/footer are repeated inline on each of the seven pages — change them on all seven.
+- Every other page (Contact, the SEO landing pages, 404) still uses `static/site.css` + `static/site.js`.
+  Don't load `site.css` on an Ora page or `ora.css` on the others.
 - Every page shares the same header (sticky, Deep Red, Menu takeover under 1100px), footer and
   phone dock. If you change one, change it on every page — there is no templating.
 - To preview: just open the file in a browser (e.g. `open index.html` on macOS). No server needed,
@@ -30,7 +37,7 @@ no framework, no server). The files here ARE the site — what you edit is what 
 | `Contact.html` | Location, hours, contact details |
 | `christmas-functions/`, `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/` | SEO landing pages, all on one template (hero → heading → split + stats → Deep Red list band → flipped split → optional `#enquire` band → FAQ → Bright Red closing band) |
 | `404.html` | Not-found page (absolute `/` paths) |
-| `Bar Franco Events Pack.html` | Detailed function/venue-hire pack (opens from Functions). Still on the old design: loads `static/legacy.css` + `static/legacy.js` |
+| `Bar Franco Events Pack.html` | Food & drink events pack (opens from Functions) — an Ora page with its own slim masthead and print styles |
 | `Brand Guide.html` | Internal one-page brand guide (not linked in site nav) |
 
 `index.html` is the home page (named `index.html` so hosts serve it automatically). All internal
@@ -43,8 +50,9 @@ nav/footer links point to `index.html`, not `Home.html`.
 - `static/site.js` — shared JS (Menu takeover, dachshund scroll-walker on the bottom edge, `#enquire`
   scroll with the 72px header offset, the Menus food/drinks swap, the FormSubmit contact form)
 - `static/fonts/`, `static/logos/`, `static/illustrations/` — the brand kit the pages use
-- `static/legacy.css`, `static/legacy.js`, `static/styles.css`, `static/tokens/` — the previous design,
-  kept only for `Bar Franco Events Pack.html`. Don't load them on the redesigned pages.
+- `static/styles.css` + `static/tokens/` — the design-system tokens and `@font-face` rules the Ora pages load
+- `static/ora.css`, `static/ora.js` — shared chrome and behaviour for the Ora pages
+- `static/legacy.css`, `static/legacy.js` — the previous Events Pack styling, no longer loaded by any page
 - `menus/` — the printed menus as PDFs (linked from Menus.html)
 - `home.css`, `fonts.css`, `site.js`, `events.css`, `image-slot.js` at the root — older passes, no
   longer loaded by any page. Safe to leave; harmless.
