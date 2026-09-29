@@ -418,3 +418,29 @@ html{scroll-behavior:smooth}
 .pg.lp+.enq-band .enq{grid-column:2;grid-row:1/span 2;width:100%;margin:0}
 .pg.lp+.enq-band .enq-alt{grid-column:1;grid-row:2;text-align:left;margin-top:16px}
 }
+
+/* ==========================================================================
+   COLOUR HIERARCHY — text uses three colours only: #F00000 page titles / hero
+   headlines (h1) · #AF0F00 section headings and sub-heads · #6C0600 body copy,
+   captions, small print. Grounds are paper #FCFBF7 or almond #FAD7C3 only;
+   tints are opacities of these. Set last so it wins over the rules above.
+   ========================================================================== */
+:root{--paper:#FCFBF7;--hair-dark:rgba(108,6,0,.25)}
+::selection{background:var(--almond);color:var(--deep)}
+body{color:var(--deep)}
+h1{color:#F00000}
+h2,h3,h4,h5,h6{color:var(--bright)}
+/* the former dark and bright grounds become paper, set against the almond page */
+.dark,.hd,.tk,.ft,.ft-spacer,.dock,.band.bright,.closing.bright,.vpanel{background-color:var(--paper);color:var(--deep)}
+.hd{border-bottom:1px solid var(--hair)}
+.ft{border-top:1px solid var(--hair)}
+.ph,.hero{background-color:var(--almond)}
+.dock{border-top:1px solid var(--hair)}
+.dock a{border-color:var(--deep);color:var(--deep)}
+.dock a:hover{background:var(--almond);color:var(--bright)}
+.lb.almond{color:var(--deep)}
+.lb.deep:hover,.lb.almond:hover{background:transparent;color:var(--bright)}
+.sb{background:var(--almond);color:var(--deep);border-color:var(--deep)}
+.sb:hover{background:var(--paper);color:var(--bright)}
+/* italic notes, widget labels and form errors are small print, not heads */
+.pg .note,.wbar,.form-error{color:var(--deep)}

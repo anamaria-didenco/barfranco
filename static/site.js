@@ -144,3 +144,31 @@ var BF_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
     });
   });
 })();
+
+/* ---- display headings: no word wider than its column, never one word per line ----
+   Shrinks a heading only as far as needed (never below 60% of its designed size to fit a long
+   word, 70% to pair up words; a stacked heading may first use its column's full width), and re-runs on resize. Leaves every other heading untouched. */
+(function () {
+  var heads = [].slice.call(document.querySelectorAll('h1, h2'));
+  function lines(el) {
+    var r = document.createRange(); r.selectNodeContents(el);
+    var tops = {}; [].forEach.call(r.getClientRects(), function (x) { if (x.width > 1) tops[Math.round(x.top / 4)] = 1; });
+    return Object.keys(tops).length;
+  }
+  function fit() {
+    heads.forEach(function (h) {
+      h.style.fontSize = ''; h.style.maxWidth = ''; h.style.textWrap = '';
+      if (!h.offsetWidth) return;
+      var base = parseFloat(getComputedStyle(h).fontSize), size = base;
+      var words = (h.textContent || '').trim().split(/\s+/).length;
+      var over = function () { return h.scrollWidth > h.clientWidth + 1; };
+      while (over() && size > base * 0.6) { size -= base * 0.04; h.style.fontSize = size + 'px'; }
+      var stacked = function () { var n = lines(h); return words >= 3 && n >= 3 && n >= words * 0.75; };
+      if (stacked()) { h.style.maxWidth = 'none'; h.style.textWrap = 'pretty'; }
+      while (stacked() && size > base * 0.7) { size -= base * 0.04; h.style.fontSize = size + 'px'; }
+    });
+  }
+  var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit); else window.addEventListener('load', fit);
+  fit();
+})();

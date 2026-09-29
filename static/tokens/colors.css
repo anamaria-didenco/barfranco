@@ -8,7 +8,7 @@
 /* White comes from the FFF logo variants. There is no black in this system: Deep Red is the darkest ink and the body-text colour. */
 --bf-white:#FFFFFF;
 /* Supporting neutrals — sampled from printed collateral, not in the official swatch page */
---bf-paper:#F1EEE6;      /* uncoated menu stock */
+--bf-paper:#FCFBF7;      /* uncoated menu stock */
 --bf-paper-cool:#F5F7EC; /* pale ground used behind one-colour illustrations */
 
 /* Semantic — surfaces */
