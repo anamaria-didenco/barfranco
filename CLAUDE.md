@@ -46,7 +46,7 @@ nav/footer links point to `index.html`, not `Home.html`.
 ## Folder structure
 - `index.html` + other page `.html` files — the site pages (root level); landing pages in folders
 - `static/site.css` — the stylesheet (tokens at the top: Deep Red `#6C0600`, Almond `#FAD7C3`,
-  Bright Red `#AF0F00`, Paper `#F1EEE6`; gutter/section/band spacing; the two type faces)
+  Bright Red `#AF0F00`, Paper `#FCFBF7`; gutter/section/band spacing; the two type faces)
 - `static/site.js` — shared JS (Menu takeover, dachshund scroll-walker on the bottom edge, `#enquire`
   scroll with the 72px header offset, the Menus food/drinks swap, the FormSubmit contact form)
 - `static/fonts/`, `static/logos/`, `static/illustrations/` — the brand kit the pages use
@@ -73,11 +73,13 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
 `dining-room.jpg` are kept in `images/` unmodified.
 
 ## Brand (keep edits on-brand)
-- **Colours** (CSS variables at the top of `static/site.css`) — nothing else, no black, no greys:
-  - Deep Red `#6C0600` (body ink, header, dark bands, footer)
-  - Almond `#FAD7C3` (page ground; type on red)
-  - Bright Red `#AF0F00` (menu heads, frame rules, stat numerals, one red band per page)
-  - Paper `#F1EEE6` (menu sheets, the voucher, framed panels)
+- **Colours — text uses three reds only, by rank** (no other text colours, no gradients, no greys;
+  tints are opacity of these):
+  - `#F00000` bright red — page titles / hero headlines (`h1`) only
+  - `#AF0F00` Spritz — section headings and sub-heads (`h2`–`h6`, Marsha display lines)
+  - `#6C0600` deep red — all body copy, captions, small print
+  - Grounds: Paper `#FCFBF7` or Almond `#FAD7C3` only. The colour rules for the site.css pages sit
+    in the "COLOUR HIERARCHY" block at the end of `static/site.css`.
 - **Type:** VTC Marsha Bold (display, always UPPERCASE) + Affairs Regular/Italic (body; never set in
   capitals, never fake-bold). Radius 0 everywhere; shadows only on paper objects.
 - **Marks:** wordmark (the name), the dachshund (playful accent), the Negroni glass (the ritual).
