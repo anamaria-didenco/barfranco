@@ -61,6 +61,8 @@ nav/footer links point to `index.html`, not `Home.html`.
 - `static/ora.css`, `static/ora.js` — shared chrome and behaviour for the Ora pages
 - `static/legacy.css`, `static/legacy.js` — the previous Events Pack styling, no longer loaded by any page
 - `menus/` — the printed menus as PDFs (linked from Menus.html)
+- `downloads/Bar-Franco-Events-Pack-2026.pdf` — the printable events pack ("Download the PDF pack" on Functions,
+  Christmas, Corporate, Weddings and the Events Pack page). To update it, replace the file under the same name.
 - `home.css`, `fonts.css`, `site.js`, `events.css`, `image-slot.js` at the root — older passes, no
   longer loaded by any page. Safe to leave; harmless.
 - `brand/` — fonts (.otf) + brand marks (wordmark, dachshund, Negroni glass)
