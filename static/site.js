@@ -137,9 +137,9 @@ var BF_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
           err.className = 'form-error';
           f.appendChild(err);
         }
-        /* failures route to Ana-Maria's inbox */
+        /* failures point to the inbox the form sends to */
         err.innerHTML = 'Sorry — that didn\'t send. Please email us at ' +
-          '<a href="mailto:anamaria@barfranco.nz">anamaria@barfranco.nz</a> and we\'ll come straight back to you.';
+          '<a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a> and we\'ll come straight back to you.';
       });
     });
   });

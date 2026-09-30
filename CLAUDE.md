@@ -96,7 +96,7 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
 - Hours (SEO schema in index/Bookings/Contact): opens 16:00, closes 22:00 — a safe default since
   real closing varies. Update the `openingHoursSpecification` blocks if this changes.
 - Reservations email: ciao@barfranco.nz · phone 021 221 1307
-- Events email: anamaria@barfranco.nz · phone 021 221 1307 (the contact form also goes here)
+- Events email: events@barfranco.nz · phone 021 221 1307 (the Contact page form goes to ciao@barfranco.nz)
 - Instagram: @bar__franco · Facebook: barfranco.chch
 
 ## SEO — already set up, keep it intact
