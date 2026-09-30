@@ -18,7 +18,10 @@ no framework, no server). The files here ARE the site — what you edit is what 
   tokens + fonts), `static/ora.css` (shared masthead, Index takeover, dock, footer) and `static/ora.js`
   (reveal motion, masthead condense, takeover, in-page jumps, running head, Menus tabs, print).
   The Ora masthead/footer are repeated inline on each of the seven pages — change them on all seven.
-- Every other page (Contact, the SEO landing pages, 404) still uses `static/site.css` + `static/site.js`.
+- Every other page (Contact, the SEO landing pages, 404) still uses `static/site.css` + `static/site.js`,
+  but is drawn in the Ora design by the "ORA SKIN" block at the end of `site.css` (left-aligned,
+  italic "Bar Franco · 01 ·" eyebrows, Spritz Marsha heads, dotted-leader links, almond enquiry and
+  closing bands, hairline FAQ rows). Keep new styling for these pages in that block.
   Don't load `site.css` on an Ora page or `ora.css` on the others.
 - Every page (except the Events Pack, which keeps its own print masthead) shares one masthead and
   footer: `<header class="bf-mast">` and `<footer class="bf-foot">`, styled by `static/chrome.css`,

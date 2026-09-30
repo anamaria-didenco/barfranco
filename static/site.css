@@ -450,3 +450,100 @@ h2,h3,h4,h5,h6{color:var(--bright)}
 .enq iframe{display:block;height:460px;background:var(--paper)}
 .pg.lp+.enq-band .enq{max-width:640px;justify-self:end}
 @media (min-width:901px){.pg.lp+.enq-band{grid-template-rows:auto 1fr}.pg.lp+.enq-band .enq-alt{align-self:start}}
+
+/* ==========================================================================
+   ORA SKIN — Contact, 404 and the six landing pages in the same editorial design as
+   the Ora pages: full-width margins, everything left-aligned, italic "Bar Franco · 01 ·"
+   eyebrows, Marsha heads in Spritz, dotted-leader links instead of framed buttons,
+   almond bands for the enquiry and the closing ask, hairline FAQ rows.
+   Set last so it wins over the rules above.
+   ========================================================================== */
+:root{--gutter:clamp(20px,4vw,64px);--max:100%;--hair2:rgba(108,6,0,.15)}
+main{display:flex;flex-direction:column}
+main>*{flex:none}
+/* opening: words first, then the photograph, as on the Ora pages */
+.pg{order:-2;justify-items:start;text-align:left;gap:16px;padding:clamp(40px,6vw,88px) var(--gutter) clamp(28px,3.5vw,48px)}
+.ph{order:-1;margin:0 0 0 calc(var(--gutter) * 2)}
+.pg h1{font-size:clamp(40px,7vw,96px);line-height:.84;letter-spacing:-.015em;max-width:16ch;text-wrap:balance}
+.pg.fn h1{font-size:clamp(40px,7vw,96px);line-height:.84}
+.eyebrow{font-size:16px}
+.lede{max-width:44ch;font-size:clamp(17px,1.4vw,20px)}
+.pg .sub{font-size:clamp(20px,2vw,28px)}
+/* links: text, a dotted leader, no frame (the Ora "ask") */
+.lb{padding:8px 0;min-height:44px;border:0;font-size:clamp(18px,1.6vw,22px);line-height:1.3;align-items:baseline;justify-content:flex-start;gap:12px;font-style:normal}
+.lb .lead{flex:1 1 0;min-width:1.25em;margin:0;border-bottom:1px dotted currentColor;transform:translateY(-1px)}
+.lb .arr{display:none}
+.lb.deep:hover,.lb.almond:hover{background:transparent;color:var(--bright)}
+.asks{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;width:min(100%,480px)}
+.one{width:min(100%,480px)}
+/* section numbers read as an italic eyebrow: Bar Franco · 01 · Why Franco */
+.folio{display:block;margin:clamp(72px,10vw,160px) var(--gutter) 0;padding:0;border:0;font-size:16px;font-style:italic}
+.folio b{font-family:inherit;font-weight:400;font-size:inherit;letter-spacing:0}
+.folio b::before,.folio span:last-child::before{content:" · "}
+.folio span:last-child{text-align:left}
+.folio.gap{margin-top:clamp(72px,10vw,160px)}
+.folio+.sec,.folio+.band,.band>.folio+*{padding-top:18px}
+.sec{max-width:none;margin:0;padding:clamp(40px,5vw,72px) var(--gutter)}
+.sec.tall{padding-bottom:clamp(40px,5vw,72px)}
+.band{padding:0 0 clamp(40px,5vw,72px)}
+.band>.folio{margin-top:clamp(72px,10vw,160px)}
+.band>.split,.band>.sec-h{padding-left:var(--gutter);padding-right:var(--gutter)}
+.split{align-items:start;gap:clamp(40px,6vw,96px)}
+.copy{justify-items:start;text-align:left;gap:18px}
+.copy h2,.closing h2,.band h2,.sec-h,.band-h h2,.enq-h h2{font-size:clamp(36px,6vw,84px);line-height:.88;letter-spacing:-.005em;max-width:16ch;text-wrap:balance;text-align:left}
+.copy p{font-size:clamp(17px,1.4vw,20px);max-width:40ch}
+.copy .it,.copy .aside{font-size:clamp(17px,1.3vw,19px)}
+.sec-h,.band-h{text-align:left}
+.band-h{padding:0 var(--gutter) clamp(24px,3vw,40px)}
+/* numbers: three across under a hairline, labels in italic */
+.stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px clamp(12px,1.5vw,24px);margin-top:clamp(48px,6vw,88px);padding-top:clamp(24px,3vw,40px);border-top:1px solid var(--hair2);border-bottom:0}
+.stats div{justify-items:start;text-align:left;padding:0;gap:6px}
+.stats b{font-size:clamp(36px,6vw,84px);line-height:.86;letter-spacing:-.015em}
+.stats.w b{font-size:clamp(32px,4.6vw,64px)}
+.items{border-top:0}
+.items div{border-top:1px solid var(--hair2);border-bottom:0;padding:18px 0 20px}
+.items h3{font-size:clamp(18px,1.6vw,22px);color:var(--bright)}
+.items p{font-size:17px}
+/* questions: heading on the left, hairline rows on the right */
+.sec:has(>.faq){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);column-gap:clamp(24px,4vw,64px);align-items:start}
+.faq-h{margin:0;font-size:clamp(32px,4vw,56px);line-height:.9;text-align:left}
+.faq{max-width:none;margin:0;border-top:0}
+.faq details{border-top:1px solid var(--hair2);border-bottom:0}
+.faq details:last-child{border-bottom:1px solid var(--hair2)}
+.faq summary{padding:18px 0;font-size:clamp(17px,1.4vw,20px)}
+.faq summary::after{font-size:20px}
+.faq .a{padding:0 0 20px;font-style:normal}
+/* the enquiry and the closing ask sit on almond bands */
+.enq-band,.band.enq-band{background:var(--almond)}
+.enq-h{justify-items:start;text-align:left;padding-left:var(--gutter);padding-right:var(--gutter)}
+.enq-alt{text-align:left;padding:0 var(--gutter)}
+.closing,.closing.bright{background:var(--almond);color:var(--deep);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);grid-template-areas:"h a" "p a";column-gap:clamp(24px,4vw,64px);row-gap:16px;justify-items:start;align-items:end;text-align:left;margin-top:clamp(72px,10vw,160px);padding:clamp(80px,12vh,160px) var(--gutter)}
+.closing h2{grid-area:h;font-size:clamp(40px,7vw,96px);line-height:.84;letter-spacing:-.015em;color:var(--deep)}
+.closing p{grid-area:p;font-size:clamp(17px,1.4vw,20px)}
+.closing .asks,.closing .one{grid-area:a;margin:0;width:100%;align-self:end}
+.closing>:not(h2):not(p):not(.asks):not(.one){grid-column:1/-1}
+/* phone dock: two dotted-leader links, as on the Ora pages */
+.dock a{border:0;justify-content:flex-start;gap:12px;font-style:normal;font-size:18px;text-align:left;padding:8px 0}
+.dock a::after{content:"";flex:1 1 0;border-bottom:1px dotted currentColor;transform:translateY(-1px)}
+.dock a:hover{background:transparent;color:var(--bright)}
+@media (max-width:899.98px){
+  .ph{margin-left:0}
+  .sec:has(>.faq){grid-template-columns:minmax(0,1fr);row-gap:24px}
+  .closing,.closing.bright{grid-template-columns:minmax(0,1fr);grid-template-areas:"h" "p" "a";align-items:start}
+  .stats{grid-template-columns:minmax(0,1fr);gap:28px}
+  .enq-h,.pg.lp+.enq-band .enq-h{justify-items:start;text-align:left}
+}
+body{background:var(--paper)}
+@media (min-width:901px){.pg.lp+.enq-band .enq-h,.pg.lp+.enq-band .enq-alt{padding-left:0;padding-right:0}}
+@media (max-width:900px){.enq,.pg.lp+.enq-band .enq{width:auto;max-width:none;justify-self:stretch;margin:0 var(--gutter)}}
+/* Contact: the note form and the map sit under one Spritz rule, no double frame or shadow */
+.frame,.frame.deep,.frame.deep.paper{background:none;box-shadow:none;padding:20px 0 0;border-top:2px solid var(--bright)}
+.frame>div,.frame>div>div,.frame.deep>div,.frame.deep>div>div{border:0;padding:0;background:none}
+.form{padding:0}
+.form .k{font-size:clamp(28px,3vw,40px)}
+.map iframe{background:var(--paper)}
+.map-note{text-align:left}
+/* 404: left-aligned like the other openings */
+.nf{place-items:start;text-align:left}
+.nf>div{justify-items:start}
+.nf .asks{width:min(100%,480px)}
