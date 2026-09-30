@@ -444,3 +444,9 @@ h2,h3,h4,h5,h6{color:var(--bright)}
 .sb:hover{background:var(--paper);color:var(--bright)}
 /* italic notes, widget labels and form errors are small print, not heads */
 .pg .note,.wbar,.form-error{color:var(--deep)}
+/* ENQUIRY — the VenueFlow form on one Spritz rule, no double frame; site.js sizes the iframe to the form */
+.enq.frame{background:none;box-shadow:none;padding:20px 0 0;border-top:2px solid var(--bright)}
+.enq.frame>div,.enq.frame>div>div{border:0;padding:0;background:none}
+.enq iframe{display:block;height:460px;background:var(--paper)}
+.pg.lp+.enq-band .enq{max-width:640px;justify-self:end}
+@media (min-width:901px){.pg.lp+.enq-band{grid-template-rows:auto 1fr}.pg.lp+.enq-band .enq-alt{align-self:start}}
