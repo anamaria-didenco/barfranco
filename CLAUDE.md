@@ -28,7 +28,7 @@ no framework, no server). The files here ARE the site — what you edit is what 
   with `static/chrome.js` tightening the masthead on scroll and running the footer's live
   "It's currently… / open status" clock in Ōtautahi time. The markup is repeated on each page (there is no
   templating), so change it on every page. The open page's tab is marked `aria-current="page"` with
-  Franco the dachshund under it. The phone dock and the Index takeover are still per-system.
+  Franco the dachshund under it. The Index takeover is still per-system. The phone dock (`.m-dock` / `.dock`) is styled and driven by chrome.css/chrome.js on every page: hidden on the first screen, hidden while scrolling down, back on scroll up, and hidden while the footer, `#enquire`, `#book` or the home hero's own `.g-hero-ask` buttons are on screen.
   On phones the footer is trimmed (status first, details without leaders, Facebook · Contact); pages that
   already show the address and hours just above it (home, Contact) use `<footer class="bf-foot bf-lite">`.
 - To preview: just open the file in a browser (e.g. `open index.html` on macOS). No server needed,
