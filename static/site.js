@@ -40,10 +40,10 @@ var BF_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
   }
   window.addEventListener('scroll', walk, { passive: true }); walk();
 
-  /* ---- "Enquire" scrolls to the #enquire band (header offset 72px) ---- */
+  /* ---- "Enquire" scrolls to the #enquire band (header offset 84px) ---- */
   function gotoEnquire() {
     var el = document.getElementById('enquire'); if (!el) return;
-    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: reduce ? 'auto' : 'smooth' });
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 84, behavior: reduce ? 'auto' : 'smooth' });
   }
   document.querySelectorAll('a[href$="#enquire"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
