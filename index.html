@@ -102,6 +102,19 @@
     [data-rv="2"]{transition-delay:140ms}[data-rv="3"]{transition-delay:280ms}
     [data-rv][data-in]{opacity:1;transform:none}[data-rv].g-ph[data-in]{clip-path:inset(0)}
     [data-motion="sparse"] [data-rv]{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
+    /* phones: the first screen is the name, one line on what Franco is, the two asks, and the photo coming in underneath */
+    @media (max-width:639.98px){
+      .g-hide-ph{display:none!important}
+      .g-grid:has(> .g-hero-ph){padding-top:18px!important;row-gap:20px!important}
+      .g-hero-logo{width:min(82%,320px)!important;max-height:30svh!important}
+      .g-hero-say{order:1}
+      .g-hero-ask{order:2;display:grid!important;grid-template-columns:1fr 1fr;gap:10px!important;padding:0!important}
+      .g-hero-ask a{justify-content:center!important;align-items:center!important;gap:10px!important;min-height:48px!important;box-sizing:border-box!important;padding:10px 12px!important;background:#FAD7C3!important;font-size:18px!important;line-height:1.1!important}
+      .g-hero-ask a::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor}
+      .g-hero-ask a i,.g-hero-ask a span+i+span{display:none!important}
+      .g-hero-ask a:hover{color:#AF0F00!important;text-decoration:none}
+      .g-hero-ph{order:3;height:56svh!important;min-height:320px!important;margin-top:4px!important}
+    }
     @media (max-width:1199.98px){.g-run{display:none!important}.g-cols{grid-template-columns:1fr!important}}
     @media (max-width:899.98px){
       .g-grid{grid-template-columns:1fr!important;grid-template-rows:none!important;row-gap:28px!important;align-content:start!important}.g-grid > *{grid-column:auto!important;grid-row:auto!important;justify-self:start!important;text-align:left!important;align-self:auto!important;width:100%;margin-top:0!important;margin-bottom:0!important}
@@ -150,13 +163,13 @@
 <a class="g-ask" href="Bookings.html" style="all: unset; font-family: Affairs, Georgia, serif; font-size: clamp(18px, 1.6vw, 22px); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Book a table</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a>
 <a class="g-ask" href="Functions.html#enquire" style="all: unset; font-family: Affairs, Georgia, serif; font-size: clamp(18px, 1.6vw, 22px); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Plan an event</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a></nav><main><section aria-label="Bar Franco — upstairs, down the laneway, 4pm till late" class="g-grid" data-screen-label="Hero — upstairs, down the laneway, 4pm till late" style="position: relative; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); gap: clamp(28px, 4vh, 48px) clamp(12px, 1.5vw, 24px); padding: clamp(28px,6vh,80px) var(--m) 0;">
 <p style="grid-column: 1 / -1; margin: 0px; font-style: italic; font-size: 16px;"><em>(upstairs)</em> · Down the laneway · 4pm till late</p>
-<img alt="Bar Franco" src="static/logos/bar-franco-script-incline/deep-red.svg" style="grid-area: 2 / 1 / auto / 8; display: block; width: min(100%, 640px); height: auto; max-height: 44svh; object-fit: contain; object-position: left center;"/>
-<nav aria-label="Book a table or plan an event" class="g-index" style="grid-area: 2 / 8 / 4 / -1; align-self: end; width: 100%; display: grid; gap: 18px; padding-bottom: 6px;">
+<img class="g-hero-logo" alt="Bar Franco" src="static/logos/bar-franco-script-incline/deep-red.svg" style="grid-area: 2 / 1 / auto / 8; display: block; width: min(100%, 640px); height: auto; max-height: 44svh; object-fit: contain; object-position: left center;"/>
+<nav aria-label="Book a table or plan an event" class="g-index g-hero-ask" style="grid-area: 2 / 8 / 4 / -1; align-self: end; width: 100%; display: grid; gap: 18px; padding-bottom: 6px;">
 <a href="Bookings.html" style="all: unset; font-family: inherit; font-feature-settings: inherit; font-kerning: inherit; font-optical-sizing: inherit; font-size: clamp(18px, 1.6vw, 22px); font-size-adjust: inherit; font-stretch: inherit; font-style: inherit; font-variant: inherit; font-variation-settings: inherit; font-weight: inherit; align-items: baseline; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Book a table</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="flex: 0 0 auto;">01</span></a>
 <a href="Functions.html#enquire" style="all: unset; font-family: inherit; font-feature-settings: inherit; font-kerning: inherit; font-optical-sizing: inherit; font-size: clamp(18px, 1.6vw, 22px); font-size-adjust: inherit; font-stretch: inherit; font-style: inherit; font-variant: inherit; font-variation-settings: inherit; font-weight: inherit; align-items: baseline; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Plan an event</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="flex: 0 0 auto;">02</span></a>
 </nav>
-<div style="grid-area: 3 / 1 / auto / 7; display: grid; gap: 14px; align-self: end;">
-<p style='margin: 0px; font-family: "VTC Marsha", "Arial Black", Impact, sans-serif; font-weight: 700; text-transform: uppercase; font-size: 24px; letter-spacing: 0.06em; line-height: 1.3; color: #AF0F00;'><br/></p>
+<div class="g-hero-say" style="grid-area: 3 / 1 / auto / 7; display: grid; gap: 14px; align-self: end;">
+<p class="g-hide-ph" style='margin: 0px; font-family: "VTC Marsha", "Arial Black", Impact, sans-serif; font-weight: 700; text-transform: uppercase; font-size: 24px; letter-spacing: 0.06em; line-height: 1.3; color: #AF0F00;'><br/></p>
 <h1 style='margin: 0px; font-family: Affairs, Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0px; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.35; max-width: 40ch; text-wrap: pretty; color: #6C0600;'>Modern Italian restaurant &amp; Negroni bar<br/>The Crossing, Christchurch</h1>
 </div>
 <div class="g-bleed g-ph g-hero-ph" data-rv="1" style="grid-area: 4 / 3 / auto / -1; width: calc(100% + var(--m)); height: clamp(420px, 82svh, 920px); overflow: hidden; background: #FAD7C3; margin-top: clamp(24px, 4vh, 56px); position: relative;">
