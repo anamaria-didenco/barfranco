@@ -98,3 +98,14 @@ html{scroll-padding-top:84px}
 .bf-lite .bf-foot-top{display:none}
 .bf-lite .bf-now{margin-top:0}
 .bf-lite{padding-top:clamp(40px,5vw,72px)}
+
+/* ---- calls to action, every page ----
+   Anything that books, plans, downloads or moves you on is Spritz #AF0F00 with an arrow at the end,
+   so it never reads as body copy (deep red). Hover settles it to deep red and nudges the arrow. */
+a.g-ask,nav.g-index.g-hero-ask a,a.lb,a.lb.deep,a.lb.almond,.bf-lead,.bf-pill,.m-dock a,.dock a{color:#AF0F00!important}
+a.g-ask::after,a.lb::after,.bf-lead::after{content:"\2192";flex:none;font-style:normal;transition:transform 220ms cubic-bezier(.25,.1,.25,1)}
+a.lb .arr{display:none!important}
+a.g-ask:hover,nav.g-index.g-hero-ask a:hover,a.lb:hover,.bf-lead:hover,.bf-pill:hover,.m-dock a:hover,.dock a:hover{color:#6C0600!important;background-color:transparent}
+.bf-pill:hover,.m-dock a:hover,.dock a:hover,nav.g-index.g-hero-ask a:hover{background-color:#FAD7C3!important}
+a.g-ask:hover::after,a.lb:hover::after,.bf-lead:hover::after{transform:translateX(4px)}
+@media (prefers-reduced-motion:reduce){a.g-ask::after,a.lb::after,.bf-lead::after{transition:none}}

@@ -87,7 +87,7 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
 - **Colours — text uses three reds only, by rank** (no other text colours, no gradients, no greys;
   tints are opacity of these):
   - `#6C0600` deep red — page titles / hero headlines (`h1`). `#F00000` is a focus-ring / small-accent colour only, never headline ink
-  - `#AF0F00` Spritz — section headings and sub-heads (`h2`–`h6`, Marsha display lines)
+  - `#AF0F00` Spritz — section headings and sub-heads (`h2`–`h6`, Marsha display lines) and every call to action (`.g-ask`, `.lb`, `.bf-pill`, `.bf-lead`, dock buttons), which also end in an arrow — see the CTA block at the end of `static/chrome.css`
   - `#6C0600` deep red — all body copy, captions, small print
   - Grounds: Paper `#FCFBF7` or Almond `#FAD7C3` only. The colour rules for the site.css pages sit
     in the "COLOUR HIERARCHY" block at the end of `static/site.css`.
