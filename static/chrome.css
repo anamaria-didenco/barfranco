@@ -6,7 +6,7 @@ html{scroll-padding-top:84px}
 
 /* ---- masthead ---- */
 .bf-mast{position:sticky;top:0;z-index:30;background:#FCFBF7;color:#6C0600;padding:0 var(--bf-m);font-family:"Affairs",Georgia,"Times New Roman",serif}
-.bf-mast::after{content:"";display:block;border-bottom:2px dotted #AF0F00}
+.bf-mast::after{content:"";display:block;height:6px;margin:2px 0 2px;border-top:2px dotted #6C0600;border-bottom:2px dotted #6C0600}  /* double dotted rule, 6px apart */
 .bf-mast a{color:inherit;text-decoration:none}
 .bf-row{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:clamp(18px,2.2vw,28px) 0 0}
 .bf-logo{display:block;flex:none}

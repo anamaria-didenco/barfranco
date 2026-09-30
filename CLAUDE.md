@@ -79,7 +79,7 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
 ## Brand (keep edits on-brand)
 - **Colours — text uses three reds only, by rank** (no other text colours, no gradients, no greys;
   tints are opacity of these):
-  - `#F00000` bright red — page titles / hero headlines (`h1`) only
+  - `#6C0600` deep red — page titles / hero headlines (`h1`). `#F00000` is a focus-ring / small-accent colour only, never headline ink
   - `#AF0F00` Spritz — section headings and sub-heads (`h2`–`h6`, Marsha display lines)
   - `#6C0600` deep red — all body copy, captions, small print
   - Grounds: Paper `#FCFBF7` or Almond `#FAD7C3` only. The colour rules for the site.css pages sit
