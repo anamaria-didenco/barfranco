@@ -157,7 +157,9 @@ var BF_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
   }
   function fit() {
     heads.forEach(function (h) {
-      h.style.fontSize = ''; h.style.maxWidth = ''; h.style.textWrap = '';
+      // back to the heading's own inline values (the design sets many sizes inline), then measure
+      if (!h.bfOrig) h.bfOrig = { fs: h.style.fontSize, mw: h.style.maxWidth, tw: h.style.textWrap };
+      h.style.fontSize = h.bfOrig.fs; h.style.maxWidth = h.bfOrig.mw; h.style.textWrap = h.bfOrig.tw;
       if (!h.offsetWidth) return;
       var base = parseFloat(getComputedStyle(h).fontSize), size = base;
       var words = (h.textContent || '').trim().split(/\s+/).length;
