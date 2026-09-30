@@ -21,9 +21,14 @@ html{scroll-padding-top:84px}
 .bf-pill:hover{color:#AF0F00;text-decoration:none}
 .bf-mast .bf-menu{all:unset;display:none;cursor:pointer;font-family:"Affairs",Georgia,serif;font-style:italic;font-size:18px;line-height:1;padding:10px 0;color:#6C0600}
 .bf-mast a:focus-visible,.bf-mast .bf-menu:focus-visible,.bf-foot a:focus-visible{outline:2px solid #AF0F00;outline-offset:3px}
-/* scrolled: the button row folds away and the bar tightens to one line */
-.bf-tight .bf-asks,.bf-tight .bf-dog{display:none}
-.bf-tight .bf-row{padding:14px 0}
+/* scrolled: the bar tightens to one line, and Book a table / Plan an event stay in it */
+.bf-mast.bf-tight{display:flex;flex-wrap:wrap;align-items:center;column-gap:clamp(20px,2.5vw,40px)}
+.bf-tight::after{flex-basis:100%}
+.bf-tight .bf-row{flex:1;min-width:0;align-items:center;padding:12px 0}
+.bf-tight .bf-asks{padding:12px 0}
+.bf-tight .bf-pill{padding:10px 16px}
+.bf-tight .bf-dog{display:none}
+@media (min-width:1000px) and (max-width:1279.98px){.bf-tight .bf-nav{gap:clamp(14px,1.6vw,22px);font-size:17px}.bf-tight .bf-pill{font-size:15px;padding:9px 12px}}
 @media (max-width:999.98px){.bf-nav{display:none}.bf-mast .bf-menu{display:block}.bf-dog{display:none}}
 @media (max-width:639.98px){.bf-asks{display:none}.bf-row{padding:14px 0;align-items:center}.bf-logo img{height:30px}}
 
