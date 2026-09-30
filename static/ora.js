@@ -154,3 +154,16 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit); else window.addEventListener('load', fit);
   fit();
 })();
+
+/* ---- VenueFlow enquiry: the widget posts its height, so the frame fits the form (no blank card under it).
+   It measures itself as at least as tall as its frame, so the frame starts at the form's own height (460px)
+   and only ever grows. ---- */
+window.addEventListener('message', function (e) {
+  if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
+  var d = e.data;
+  if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
+  if (!d || d.type !== 'vf-embed-height' || !(d.height > 0)) return;
+  [].forEach.call(document.querySelectorAll('iframe[src*="venueflowhq.com"]'), function (f) {
+    if (f.contentWindow === e.source) f.style.height = Math.ceil(d.height) + 'px';
+  });
+});
