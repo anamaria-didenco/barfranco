@@ -29,6 +29,8 @@ no framework, no server). The files here ARE the site — what you edit is what 
   "It's currently… / open status" clock in Ōtautahi time. The markup is repeated on each page (there is no
   templating), so change it on every page. The open page's tab is marked `aria-current="page"` with
   Franco the dachshund under it. The phone dock and the Index takeover are still per-system.
+  On phones the footer is trimmed (status first, details without leaders, Facebook · Contact); pages that
+  already show the address and hours just above it (home, Contact) use `<footer class="bf-foot bf-lite">`.
 - To preview: just open the file in a browser (e.g. `open index.html` on macOS). No server needed,
   though a simple static server (`python3 -m http.server`) avoids any file:// quirks.
 - Keep the writing voice warm, witty, never corporate (see Brand below).
