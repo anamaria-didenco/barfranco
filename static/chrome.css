@@ -1,0 +1,55 @@
+/* Bar Franco — shared masthead (nav bar) and footer, on every page.
+   Colours follow the three-red hierarchy: #AF0F00 Spritz for the open tab and display lines,
+   #6C0600 deep red for everything else, on paper #FCFBF7 with almond #FAD7C3 buttons. */
+:root{--bf-m:clamp(20px,4vw,64px)}
+html{scroll-padding-top:84px}
+
+/* ---- masthead ---- */
+.bf-mast{position:sticky;top:0;z-index:30;background:#FCFBF7;color:#6C0600;padding:0 var(--bf-m);font-family:"Affairs",Georgia,"Times New Roman",serif}
+.bf-mast::after{content:"";display:block;border-bottom:2px dotted #AF0F00}
+.bf-mast a{color:inherit;text-decoration:none}
+.bf-row{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:clamp(18px,2.2vw,28px) 0 0}
+.bf-logo{display:block;flex:none}
+.bf-logo img{display:block;height:clamp(32px,3.2vw,46px);width:auto}
+.bf-nav{display:flex;gap:clamp(18px,2.5vw,40px);font-size:clamp(18px,1.55vw,23px);line-height:1.2;white-space:nowrap}
+.bf-nav a{position:relative;display:block;padding:4px 0;transition:color 220ms cubic-bezier(.25,.1,.25,1)}
+.bf-nav a:hover,.bf-nav a[aria-current="page"]{color:#AF0F00}
+.bf-dog{position:absolute;left:50%;top:100%;width:34px;height:auto;margin-top:2px;transform:translateX(-50%);pointer-events:none}
+.bf-asks{display:flex;justify-content:flex-end;gap:12px;padding:20px 0 16px}
+.bf-pill{display:inline-flex;align-items:center;gap:10px;background:#FAD7C3;color:#6C0600;font-family:"Affairs",Georgia,serif;font-size:clamp(16px,1.3vw,19px);line-height:1;padding:12px 18px;text-decoration:none;white-space:nowrap;transition:color 220ms cubic-bezier(.25,.1,.25,1)}
+.bf-pill::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor}
+.bf-pill:hover{color:#AF0F00;text-decoration:none}
+.bf-mast .bf-menu{all:unset;display:none;cursor:pointer;font-family:"Affairs",Georgia,serif;font-style:italic;font-size:18px;line-height:1;padding:10px 0;color:#6C0600}
+.bf-mast a:focus-visible,.bf-mast .bf-menu:focus-visible,.bf-foot a:focus-visible{outline:2px solid #AF0F00;outline-offset:3px}
+/* scrolled: the button row folds away and the bar tightens to one line */
+.bf-tight .bf-asks,.bf-tight .bf-dog{display:none}
+.bf-tight .bf-row{padding:14px 0}
+@media (max-width:999.98px){.bf-nav{display:none}.bf-mast .bf-menu{display:block}.bf-dog{display:none}}
+@media (max-width:639.98px){.bf-asks{display:none}.bf-row{padding:14px 0;align-items:center}.bf-logo img{height:30px}}
+
+/* ---- footer ---- */
+.bf-foot{background:#FCFBF7;color:#6C0600;font-family:"Affairs",Georgia,"Times New Roman",serif;padding:clamp(72px,9vw,128px) var(--bf-m) clamp(24px,3vw,40px);line-height:1.4}
+.bf-foot a{color:inherit;text-decoration:none;transition:color 220ms cubic-bezier(.25,.1,.25,1)}
+.bf-foot a:hover{color:#AF0F00;text-decoration:none}
+.bf-foot p{margin:0}
+.bf-foot-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,120px);align-items:start}
+.bf-addr{font-style:italic;font-size:clamp(19px,1.7vw,25px);margin:0 0 clamp(20px,2.4vw,36px)!important}
+.bf-lead{display:flex;align-items:baseline;gap:16px;max-width:520px;font-size:clamp(21px,1.9vw,28px);padding:12px 0}
+.bf-lead i,.bf-facts i{flex:1;min-width:24px;border-bottom:1px dotted currentColor;opacity:.7}
+.bf-facts{margin:0;display:grid;gap:clamp(10px,1.1vw,16px);font-size:clamp(18px,1.55vw,24px)}
+.bf-facts div{display:flex;align-items:baseline;gap:14px}
+.bf-facts dt{flex:none}
+.bf-facts dd{margin:0;text-align:right}
+.bf-now{text-align:center;margin:clamp(88px,13vw,200px) 0 clamp(56px,7vw,96px)}
+.bf-now-k{font-style:italic;font-size:clamp(22px,2.2vw,34px)}
+.bf-now-h{margin:.12em 0 .18em!important;font-family:"VTC Marsha","Arial Black",Impact,sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(44px,8.4vw,132px);line-height:.9;letter-spacing:-.01em;color:#AF0F00;text-wrap:balance}
+.bf-now-t{font-size:clamp(22px,2.2vw,34px);font-variant-numeric:tabular-nums}
+.bf-pills{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.bf-more{margin-top:clamp(20px,2vw,28px);padding-top:clamp(18px,2vw,26px);border-top:2px dotted #AF0F00;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-style:italic;font-size:clamp(15px,1.15vw,17px)}
+.bf-legal{margin-top:14px!important;text-align:center;font-size:clamp(15px,1.15vw,18px);text-wrap:balance}
+.bf-legal a{text-decoration:underline 1px;text-underline-offset:.16em}
+@media (max-width:899.98px){
+  .bf-foot-top{grid-template-columns:1fr}
+  .bf-lead{max-width:none}
+  .bf-pills{justify-content:center}
+}

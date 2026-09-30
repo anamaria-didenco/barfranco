@@ -20,8 +20,12 @@ no framework, no server). The files here ARE the site — what you edit is what 
   The Ora masthead/footer are repeated inline on each of the seven pages — change them on all seven.
 - Every other page (Contact, the SEO landing pages, 404) still uses `static/site.css` + `static/site.js`.
   Don't load `site.css` on an Ora page or `ora.css` on the others.
-- Every page shares the same header (sticky, Deep Red, Menu takeover under 1100px), footer and
-  phone dock. If you change one, change it on every page — there is no templating.
+- Every page (except the Events Pack, which keeps its own print masthead) shares one masthead and
+  footer: `<header class="bf-mast">` and `<footer class="bf-foot">`, styled by `static/chrome.css`,
+  with `static/chrome.js` tightening the masthead on scroll and running the footer's live
+  "It's currently… / open status" clock in Ōtautahi time. The markup is repeated on each page (there is no
+  templating), so change it on every page. The open page's tab is marked `aria-current="page"` with
+  Franco the dachshund under it. The phone dock and the Index takeover are still per-system.
 - To preview: just open the file in a browser (e.g. `open index.html` on macOS). No server needed,
   though a simple static server (`python3 -m http.server`) avoids any file:// quirks.
 - Keep the writing voice warm, witty, never corporate (see Brand below).

@@ -69,10 +69,10 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeIndex(); });
   if (tk) tk.addEventListener('click', function (e) { if (e.target.closest('a[href]')) closeIndex(); });
 
-  /* ---- in-page jumps: land 60px under the masthead ---- */
+  /* ---- in-page jumps: land 84px down, under the masthead ---- */
   function go(id, smooth) {
     var el = document.getElementById(id); if (!el) return false;
-    var top = el.getBoundingClientRect().top + window.scrollY - 60;
+    var top = el.getBoundingClientRect().top + window.scrollY - 84;
     window.scrollTo({ top: top, behavior: reduce || !smooth ? 'auto' : 'smooth' });
     return true;
   }
