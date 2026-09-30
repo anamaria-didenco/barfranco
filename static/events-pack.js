@@ -20,7 +20,7 @@
   }
   function jump(ch) {
     var h = head(ch) || ch;
-    window.scrollTo({ top: h.getBoundingClientRect().top + window.scrollY - 64, behavior: reduce ? 'auto' : 'smooth' });
+    window.scrollTo({ top: h.getBoundingClientRect().top + window.scrollY - 90, behavior: reduce ? 'auto' : 'smooth' });  // clear of the site's sticky header
   }
 
   // click / tap a chapter head: open it, or close it if it's already open
@@ -60,7 +60,7 @@
   // deep links: /events-pack/#ch-drinks opens Drinks
   function fromHash() {
     var id = (location.hash || '').replace(/^#ch-/, '');
-    // ora.js also lands #links (84px down) 600ms after load; take the last word so the head sits 64px down
+    // ora.js also lands #links (84px down) 600ms after load; take the last word so the head sits just under the site header
     if (byId[id]) { open(id); setTimeout(function () { jump(byId[id]); }, 60); setTimeout(function () { jump(byId[id]); }, 700); }
   }
   fromHash();

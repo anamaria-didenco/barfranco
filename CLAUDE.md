@@ -23,7 +23,7 @@ no framework, no server). The files here ARE the site — what you edit is what 
   italic "Bar Franco · 01 ·" eyebrows, Spritz Marsha heads, dotted-leader links, almond enquiry and
   closing bands, hairline FAQ rows). Keep new styling for these pages in that block.
   Don't load `site.css` on an Ora page or `ora.css` on the others.
-- Every page (except the Events Pack, which has its own slim almond masthead) shares one masthead and
+- Every page shares one masthead and
   footer: `<header class="bf-mast">` and `<footer class="bf-foot">`, styled by `static/chrome.css`,
   with `static/chrome.js` tightening the masthead on scroll and running the footer's live
   "It's currently… / open status" clock in Ōtautahi time. The markup is repeated on each page (there is no
@@ -46,7 +46,7 @@ no framework, no server). The files here ARE the site — what you edit is what 
 | `Contact.html` | Location, hours, contact details |
 | `christmas-functions/`, `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/` | SEO landing pages, all on one template (hero → heading → split + stats → Deep Red list band → flipped split → optional `#enquire` band → FAQ → Bright Red closing band) |
 | `404.html` | Not-found page (absolute `/` paths) |
-| `events-pack/` | Events Pack 2026 — a masthead cover, then eight chapters that open underneath their title (hover on desktop, tap on phones; one open at a time; `#ch-food` etc. deep-link). Behaviour in `static/events-pack.js`; photos in `images/pack-2026/`. The old `Bar Franco Events Pack.html` redirects here |
+| `events-pack/` | Events Pack 2026 — a masthead cover, then eight chapters that open underneath their title (hover on desktop, tap on phones; one open at a time; `#ch-food` etc. deep-link). Behaviour in `static/events-pack.js`; photos in `images/pack-2026/`. Uses the shared masthead, footer and dock like every page. The old `Bar Franco Events Pack.html` redirects here |
 | `Brand Guide.html` | Internal one-page brand guide (not linked in site nav) |
 
 `index.html` is the home page (named `index.html` so hosts serve it automatically). All internal
