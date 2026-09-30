@@ -26,3 +26,6 @@
 @media (max-width:639.98px){.f-spacer{display:block!important}}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+
+/* phones: the "In this issue" contents panel is a desktop device; on a phone it pushed the page a screen down */
+@media (max-width:899.98px){.g-index{display:none!important}}

@@ -58,3 +58,26 @@ html{scroll-padding-top:84px}
   .bf-lead{max-width:none}
   .bf-pills{justify-content:center}
 }
+
+/* phones: one of everything — the open status first, the details as a plain list, a short line of links.
+   Book a table / Plan an event live in the dock, Instagram in the details, so the footer doesn't repeat them. */
+@media (max-width:639.98px){
+  .bf-foot{display:flex;flex-direction:column;padding-top:48px}
+  .bf-now{order:-1;margin:0 0 40px}
+  .bf-now-h{font-size:clamp(40px,12vw,56px)}
+  .bf-now-k,.bf-now-t{font-size:20px}
+  .bf-addr,.bf-lead{display:none}
+  .bf-facts{font-size:17px;gap:10px}
+  .bf-facts div{justify-content:space-between}
+  .bf-facts i{display:none}
+  .bf-facts dd{max-width:65%}
+  .bf-pills{justify-content:center;gap:0 24px;margin-top:32px}
+  .bf-pills .bf-pill{background:none;padding:6px 0;font-style:italic;font-size:17px}
+  .bf-pills .bf-pill::before{display:none}
+  .bf-pills a[href*="instagram"],.bf-pills a[href*="Bookings"],.bf-pills a[href$="enquire"]{display:none}
+  .bf-more{margin-top:20px;font-size:15px;gap:4px 14px}
+}
+/* pages that already show the address, hours and contacts just above (home, Contact): the footer skips its copy */
+.bf-lite .bf-foot-top{display:none}
+.bf-lite .bf-now{margin-top:0}
+.bf-lite{padding-top:clamp(40px,5vw,72px)}
