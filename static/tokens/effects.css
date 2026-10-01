@@ -10,7 +10,7 @@
 --frame-inner:var(--rule-thin) solid var(--rule); /* @kind other */
 
 --shadow-none:none;
---shadow-paper:0 1px 0 rgba(0,0,0,.06),0 12px 32px -12px rgba(60,20,10,.35); /* only for mocking printed pieces on a desk */
+--shadow-paper:none; /* flat print logic: no shadows */
 
 --leader-dot:"........................................................................................................................"; /* @kind other */
 

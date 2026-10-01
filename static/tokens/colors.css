@@ -1,14 +1,16 @@
-/* Bar Franco colour palette — from BarFranco_VisualIdentity.pdf p.12 (Semibold Studio). Print values in comments. */
+/* Legacy names for the brand colours: the values live in /static/tokens.css.
+   Note the naming flip: here "bright red" is #AF0F00 (tokens.css: --spritz) and "spritz" is #F00000 (--bright-red).
+   Bar Franco colour palette — from BarFranco_VisualIdentity.pdf p.12 (Semibold Studio). Print values in comments. */
 :root{
 /* Official palette */
---bf-deep-red:#6C0600;   /* DEEP RED  · RGB 108 6 0   · CMYK 35 100 100 50 */
---bf-almond:#FAD7C3;     /* ALMOND    · RGB 250 215 195 · CMYK 0 20 21 0 */
---bf-bright-red:#AF0F00; /* BRIGHT RED · RGB 175 15 0  · CMYK 5 100 100 20 */
---bf-spritz:#F00000;     /* SPRITZ    · RGB 240 0 0    · screen/RGB only, no CMYK equivalent */
+--bf-deep-red:var(--deep-red);   /* DEEP RED  · RGB 108 6 0   · CMYK 35 100 100 50 */
+--bf-almond:var(--almond);     /* ALMOND    · RGB 250 215 195 · CMYK 0 20 21 0 */
+--bf-bright-red:var(--spritz); /* BRIGHT RED · RGB 175 15 0  · CMYK 5 100 100 20 */
+--bf-spritz:var(--bright-red);     /* SPRITZ    · RGB 240 0 0    · screen/RGB only, no CMYK equivalent */
 /* White comes from the FFF logo variants. There is no black in this system: Deep Red is the darkest ink and the body-text colour. */
 --bf-white:#FFFFFF;
 /* Supporting neutrals — sampled from printed collateral, not in the official swatch page */
---bf-paper:#FCFBF7;      /* uncoated menu stock */
+--bf-paper:var(--paper);      /* uncoated menu stock */
 --bf-paper-cool:#F5F7EC; /* pale ground used behind one-colour illustrations */
 
 /* Semantic — surfaces */

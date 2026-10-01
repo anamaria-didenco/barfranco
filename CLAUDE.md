@@ -2,6 +2,18 @@
 
 This file tells Claude Code how this site is built and how to edit it. Read it before making changes.
 
+## Tokens
+
+- **`static/tokens.css` is the one token layer**, linked first on every page (`/static/tokens.css`). Colours:
+  `--deep-red #6C0600` (ink), `--spritz #AF0F00` (heads, links), `--almond #FAD7C3`, `--paper #FCFBF7`,
+  `--hairline rgba(108,6,0,.15)`, plus `--bright-red #F00000` for focus rings only. Tints are
+  `color-mix(in srgb, var(--deep-red) 25%, transparent)`. Never write a raw hex/rgb colour outside the token files.
+- Type scale `--fs-caption … --fs-display-lg` (11 steps, each an exact size already in use) and spacing `--space-1…10`.
+  Use them for new work. ~23% of font-size declarations are still one-off literals (cqw menu sheets, the 404 numeral,
+  campaign display sizes): snapping those onto the scale changes how they look, so do it only as a design decision.
+- `static/tokens/colors.css` and `site.css`'s `--deep`/`--bright`/`--hair` are older names that now read tokens.css.
+  Naming flip to watch: in `tokens/colors.css` "bright red" means #AF0F00 and "spritz" means #F00000 — the reverse of tokens.css.
+
 ## URLs
 
 - **One scheme: lowercase, folder-style, trailing slash.** `/`, `/menus/`, `/bookings/`, `/functions/`, `/contact/`,

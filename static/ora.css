@@ -6,12 +6,12 @@
 /* masthead nav: underline draws in from the left */
 .m-nl{position:relative;transition:color 220ms cubic-bezier(.25,.1,.25,1)}
 .m-nl::after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:1px;background:currentColor;transition:right 320ms cubic-bezier(.25,.1,.25,1)}
-.m-nl:hover{color:#AF0F00;text-decoration:none}.m-nl:hover::after{right:0}
-.m-tc:hover{color:#AF0F00}
+.m-nl:hover{color:var(--spritz);text-decoration:none}.m-nl:hover::after{right:0}
+.m-tc:hover{color:var(--spritz)}
 .g-ask{transition:color 220ms cubic-bezier(.25,.1,.25,1)}
-.g-ask:hover{color:#AF0F00;text-decoration:none}
+.g-ask:hover{color:var(--spritz);text-decoration:none}
 .g-ask:active{opacity:.6}
-.g-ask:focus-visible,.m-nl:focus-visible,.m-tc:focus-visible,[data-ora]:focus-visible{outline:2px solid #F00000;outline-offset:2px}
+.g-ask:focus-visible,.m-nl:focus-visible,.m-tc:focus-visible,[data-ora]:focus-visible{outline:2px solid var(--bright-red);outline-offset:2px}
 [data-ora-masthead]{transition:height 420ms cubic-bezier(.25,.1,.25,1)}
 @media (max-width:1199.98px){.m-plan{display:none!important}}
 @media (max-width:899.98px){.m-nav{display:none!important}.m-menu{display:inline-block!important}}

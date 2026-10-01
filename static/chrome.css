@@ -1,26 +1,26 @@
 /* Bar Franco — shared masthead (nav bar) and footer, on every page.
-   Colours follow the three-red hierarchy: #AF0F00 Spritz for the open tab and display lines,
-   #6C0600 deep red for everything else, on paper #FCFBF7 with almond #FAD7C3 buttons. */
+   Colours follow the three-red hierarchy: var(--spritz) Spritz for the open tab and display lines,
+   var(--deep-red) deep red for everything else, on paper var(--paper) with almond var(--almond) buttons. */
 :root{--bf-m:clamp(20px,4vw,64px)}
 html{scroll-padding-top:84px}
 
 /* ---- masthead ---- */
-.bf-mast{position:sticky;top:0;z-index:30;background:#FCFBF7;color:#6C0600;padding:0 var(--bf-m);font-family:"Affairs",Georgia,"Times New Roman",serif}
-.bf-mast::after{content:"";display:block;height:6px;margin:2px 0 2px;border-top:2px dotted #6C0600;border-bottom:2px dotted #6C0600}  /* double dotted rule, 6px apart */
+.bf-mast{position:sticky;top:0;z-index:30;background:var(--paper);color:var(--deep-red);padding:0 var(--bf-m);font-family:"Affairs",Georgia,"Times New Roman",serif}
+.bf-mast::after{content:"";display:block;height:6px;margin:2px 0 2px;border-top:2px dotted var(--deep-red);border-bottom:2px dotted var(--deep-red)}  /* double dotted rule, 6px apart */
 .bf-mast a{color:inherit;text-decoration:none}
 .bf-row{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:clamp(18px,2.2vw,28px) 0 0}
 .bf-logo{display:block;flex:none}
 .bf-logo img{display:block;height:clamp(32px,3.2vw,46px);width:auto}
 .bf-nav{display:flex;gap:clamp(18px,2.5vw,40px);font-size:clamp(18px,1.55vw,23px);line-height:1.2;white-space:nowrap}
 .bf-nav a{position:relative;display:block;padding:4px 0;transition:color 220ms cubic-bezier(.25,.1,.25,1)}
-.bf-nav a:hover,.bf-nav a[aria-current="page"]{color:#AF0F00}
+.bf-nav a:hover,.bf-nav a[aria-current="page"]{color:var(--spritz)}
 .bf-dog{position:absolute;left:50%;top:100%;width:34px;height:auto;margin-top:2px;transform:translateX(-50%);pointer-events:none}
 .bf-asks{display:flex;justify-content:flex-end;gap:12px;padding:20px 0 16px}
-.bf-pill{display:inline-flex;align-items:center;gap:10px;background:#FAD7C3;color:#6C0600;font-family:"Affairs",Georgia,serif;font-size:clamp(16px,1.3vw,19px);line-height:1;padding:12px 18px;text-decoration:none;white-space:nowrap;transition:color 220ms cubic-bezier(.25,.1,.25,1)}
+.bf-pill{display:inline-flex;align-items:center;gap:10px;background:var(--almond);color:var(--deep-red);font-family:"Affairs",Georgia,serif;font-size:clamp(16px,1.3vw,19px);line-height:1;padding:12px 18px;text-decoration:none;white-space:nowrap;transition:color 220ms cubic-bezier(.25,.1,.25,1)}
 .bf-pill::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor}
-.bf-pill:hover{color:#AF0F00;text-decoration:none}
-.bf-mast .bf-menu{all:unset;display:none;cursor:pointer;font-family:"Affairs",Georgia,serif;font-style:italic;font-size:18px;line-height:1;padding:10px 0;color:#6C0600}
-.bf-mast a:focus-visible,.bf-mast .bf-menu:focus-visible,.bf-foot a:focus-visible{outline:2px solid #AF0F00;outline-offset:3px}
+.bf-pill:hover{color:var(--spritz);text-decoration:none}
+.bf-mast .bf-menu{all:unset;display:none;cursor:pointer;font-family:"Affairs",Georgia,serif;font-style:italic;font-size:18px;line-height:1;padding:10px 0;color:var(--deep-red)}
+.bf-mast a:focus-visible,.bf-mast .bf-menu:focus-visible,.bf-foot a:focus-visible{outline:2px solid var(--spritz);outline-offset:3px}
 /* scrolled: the bar tightens to one line, and Book a table / Plan an event stay in it */
 .bf-mast.bf-tight{display:flex;flex-wrap:wrap;align-items:center;column-gap:clamp(20px,2.5vw,40px)}
 .bf-tight::after{flex-basis:100%}
@@ -28,7 +28,7 @@ html{scroll-padding-top:84px}
 .bf-tight .bf-asks{padding:12px 0}
 .bf-tight .bf-pill{padding:10px 16px}
 .bf-tight .bf-dog{display:none}
-@media (min-width:1000px) and (max-width:1279.98px){.bf-tight .bf-nav{gap:clamp(14px,1.6vw,22px);font-size:17px}.bf-tight .bf-pill{font-size:15px;padding:9px 12px}}
+@media (min-width:1000px) and (max-width:1279.98px){.bf-tight .bf-nav{gap:clamp(14px,1.6vw,22px);font-size:var(--fs-body)}.bf-tight .bf-pill{font-size:var(--fs-small);padding:9px 12px}}
 @media (max-width:999.98px){.bf-nav{display:none}.bf-mast .bf-menu{display:block}.bf-dog{display:none}}
 @media (max-width:639.98px){.bf-asks{display:none}.bf-row{padding:14px 0;align-items:center}.bf-logo img{height:30px}}
 
@@ -36,13 +36,13 @@ html{scroll-padding-top:84px}
    Two almond buttons like the masthead's, under the same double dotted rule, on paper.
    chrome.js slides it in and out (.bf-dock-on); without the script it simply stays put. */
 @media (max-width:639.98px){
-  .m-dock,.dock{gap:10px!important;padding:0 12px calc(12px + env(safe-area-inset-bottom))!important;background:#FCFBF7!important;border-top:0!important;transition:transform 320ms cubic-bezier(.25,.1,.25,1),visibility 0s linear 0s}
-  .m-dock::before,.dock::before{content:"";grid-column:1/-1;height:6px;margin:0 -12px 6px;border-top:2px dotted #6C0600;border-bottom:2px dotted #6C0600;background:#FCFBF7}
-  .m-dock a,.dock a{all:unset;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;min-height:48px!important;padding:10px 12px!important;background:#FAD7C3!important;color:#6C0600!important;font-family:"Affairs",Georgia,serif!important;font-style:normal!important;font-size:18px!important;line-height:1.1!important;text-align:center!important;cursor:pointer;border:0!important}
+  .m-dock,.dock{gap:10px!important;padding:0 12px calc(12px + env(safe-area-inset-bottom))!important;background:var(--paper)!important;border-top:0!important;transition:transform 320ms cubic-bezier(.25,.1,.25,1),visibility 0s linear 0s}
+  .m-dock::before,.dock::before{content:"";grid-column:1/-1;height:6px;margin:0 -12px 6px;border-top:2px dotted var(--deep-red);border-bottom:2px dotted var(--deep-red);background:var(--paper)}
+  .m-dock a,.dock a{all:unset;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;min-height:48px!important;padding:10px 12px!important;background:var(--almond)!important;color:var(--deep-red)!important;font-family:"Affairs",Georgia,serif!important;font-style:normal!important;font-size:18px!important;line-height:1.1!important;text-align:center!important;cursor:pointer;border:0!important}
   .m-dock a::before,.dock a::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor}
   .m-dock a i,.dock a::after{display:none!important}
-  .m-dock a:hover,.dock a:hover,.m-dock a:active,.dock a:active{color:#AF0F00!important;background:#FAD7C3!important}
-  .m-dock a:focus-visible,.dock a:focus-visible{outline:2px solid #AF0F00;outline-offset:2px}
+  .m-dock a:hover,.dock a:hover,.m-dock a:active,.dock a:active{color:var(--spritz)!important;background:var(--almond)!important}
+  .m-dock a:focus-visible,.dock a:focus-visible{outline:2px solid var(--spritz);outline-offset:2px}
   .bf-dockjs .m-dock:not(.bf-dock-on),.bf-dockjs .dock:not(.bf-dock-on){transform:translateY(calc(100% + 4px));visibility:hidden;transition:transform 320ms cubic-bezier(.25,.1,.25,1),visibility 0s linear 320ms}
   /* the dock only shows mid-page now, so the footer no longer needs room kept for it */
   .bf-dockjs .f-spacer,.bf-dockjs .ft-spacer{display:none!important}
@@ -50,9 +50,9 @@ html{scroll-padding-top:84px}
 @media (max-width:639.98px) and (prefers-reduced-motion:reduce){.m-dock,.dock{transition:none!important}}
 
 /* ---- footer ---- */
-.bf-foot{background:#FCFBF7;color:#6C0600;font-family:"Affairs",Georgia,"Times New Roman",serif;padding:clamp(72px,9vw,128px) var(--bf-m) clamp(24px,3vw,40px);line-height:1.4}
+.bf-foot{background:var(--paper);color:var(--deep-red);font-family:"Affairs",Georgia,"Times New Roman",serif;padding:clamp(72px,9vw,128px) var(--bf-m) clamp(24px,3vw,40px);line-height:1.4}
 .bf-foot a{color:inherit;text-decoration:none;transition:color 220ms cubic-bezier(.25,.1,.25,1)}
-.bf-foot a:hover{color:#AF0F00;text-decoration:none}
+.bf-foot a:hover{color:var(--spritz);text-decoration:none}
 .bf-foot p{margin:0}
 .bf-foot-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,120px);align-items:start}
 .bf-addr{font-style:italic;font-size:clamp(19px,1.7vw,25px);margin:0 0 clamp(20px,2.4vw,36px)!important}
@@ -64,10 +64,10 @@ html{scroll-padding-top:84px}
 .bf-facts dd{margin:0;text-align:right}
 .bf-now{text-align:center;margin:clamp(88px,13vw,200px) 0 clamp(56px,7vw,96px)}
 .bf-now-k{font-style:italic;font-size:clamp(22px,2.2vw,34px)}
-.bf-now-h{margin:.12em 0 .18em!important;font-family:"VTC Marsha","Arial Black",Impact,sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(44px,8.4vw,132px);line-height:.9;letter-spacing:-.01em;color:#AF0F00;text-wrap:balance}
+.bf-now-h{margin:.12em 0 .18em!important;font-family:"VTC Marsha","Arial Black",Impact,sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(44px,8.4vw,132px);line-height:.9;letter-spacing:-.01em;color:var(--spritz);text-wrap:balance}
 .bf-now-t{font-size:clamp(22px,2.2vw,34px);font-variant-numeric:tabular-nums}
 .bf-pills{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
-.bf-more{margin-top:clamp(20px,2vw,28px);padding-top:clamp(18px,2vw,26px);border-top:2px dotted #AF0F00;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-style:italic;font-size:clamp(15px,1.15vw,17px)}
+.bf-more{margin-top:clamp(20px,2vw,28px);padding-top:clamp(18px,2vw,26px);border-top:2px dotted var(--spritz);display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-style:italic;font-size:clamp(15px,1.15vw,17px)}
 .bf-legal{margin-top:14px!important;text-align:center;font-size:clamp(15px,1.15vw,18px);text-wrap:balance}
 .bf-legal a{text-decoration:underline 1px;text-underline-offset:.16em}
 @media (max-width:899.98px){
@@ -84,15 +84,15 @@ html{scroll-padding-top:84px}
   .bf-now-h{font-size:clamp(40px,12vw,56px)}
   .bf-now-k,.bf-now-t{font-size:20px}
   .bf-addr,.bf-lead{display:none}
-  .bf-facts{font-size:17px;gap:10px}
+  .bf-facts{font-size:var(--fs-body);gap:10px}
   .bf-facts div{justify-content:space-between}
   .bf-facts i{display:none}
   .bf-facts dd{max-width:65%}
   .bf-pills{justify-content:center;gap:0 24px;margin-top:32px}
-  .bf-pills .bf-pill{background:none;padding:6px 0;font-style:italic;font-size:17px}
+  .bf-pills .bf-pill{background:none;padding:6px 0;font-style:italic;font-size:var(--fs-body)}
   .bf-pills .bf-pill::before{display:none}
   .bf-pills a[href*="instagram"],.bf-pills a[href*="/bookings/"],.bf-pills a[href$="enquire"]{display:none}
-  .bf-more{margin-top:20px;font-size:15px;gap:4px 14px}
+  .bf-more{margin-top:20px;font-size:var(--fs-small);gap:4px 14px}
 }
 /* pages that already show the address, hours and contacts just above (home, Contact): the footer skips its copy */
 .bf-lite .bf-foot-top{display:none}
@@ -100,12 +100,12 @@ html{scroll-padding-top:84px}
 .bf-lite{padding-top:clamp(40px,5vw,72px)}
 
 /* ---- calls to action, every page ----
-   Anything that books, plans, downloads or moves you on is Spritz #AF0F00 with an arrow at the end,
+   Anything that books, plans, downloads or moves you on is Spritz var(--spritz) with an arrow at the end,
    so it never reads as body copy (deep red). Hover settles it to deep red and nudges the arrow. */
-a.g-ask,nav.g-index.g-hero-ask a,a.lb,a.lb.deep,a.lb.almond,.bf-lead,.bf-pill,.m-dock a,.dock a{color:#AF0F00!important}
+a.g-ask,nav.g-index.g-hero-ask a,a.lb,a.lb.deep,a.lb.almond,.bf-lead,.bf-pill,.m-dock a,.dock a{color:var(--spritz)!important}
 a.g-ask::after,a.lb::after,.bf-lead::after{content:"\2192";flex:none;font-style:normal;transition:transform 220ms cubic-bezier(.25,.1,.25,1)}
 a.lb .arr{display:none!important}
-a.g-ask:hover,nav.g-index.g-hero-ask a:hover,a.lb:hover,.bf-lead:hover,.bf-pill:hover,.m-dock a:hover,.dock a:hover{color:#6C0600!important;background-color:transparent}
-.bf-pill:hover,.m-dock a:hover,.dock a:hover,nav.g-index.g-hero-ask a:hover{background-color:#FAD7C3!important}
+a.g-ask:hover,nav.g-index.g-hero-ask a:hover,a.lb:hover,.bf-lead:hover,.bf-pill:hover,.m-dock a:hover,.dock a:hover{color:var(--deep-red)!important;background-color:transparent}
+.bf-pill:hover,.m-dock a:hover,.dock a:hover,nav.g-index.g-hero-ask a:hover{background-color:var(--almond)!important}
 a.g-ask:hover::after,a.lb:hover::after,.bf-lead:hover::after{transform:translateX(4px)}
 @media (prefers-reduced-motion:reduce){a.g-ask::after,a.lb::after,.bf-lead::after{transition:none}}

@@ -112,8 +112,8 @@
       tabs.forEach(function (t) {
         var on = t.getAttribute('data-ora') === 'tab-' + k;
         t.setAttribute('aria-selected', on ? 'true' : 'false');
-        t.style.color = on ? '#AF0F00' : '#6C0600';
-        t.style.borderColor = on ? '#AF0F00' : 'transparent';
+        t.style.color = on ? 'var(--spritz)' : 'var(--deep-red)';
+        t.style.borderColor = on ? 'var(--spritz)' : 'transparent';
       });
       document.querySelectorAll('[data-ora-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-ora-panel') !== k; });
       var sec = document.getElementById('sheets'); if (sec) sec.setAttribute('data-tab', k);
