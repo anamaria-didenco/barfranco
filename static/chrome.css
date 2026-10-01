@@ -91,7 +91,7 @@ html{scroll-padding-top:84px}
   .bf-pills{justify-content:center;gap:0 24px;margin-top:32px}
   .bf-pills .bf-pill{background:none;padding:6px 0;font-style:italic;font-size:17px}
   .bf-pills .bf-pill::before{display:none}
-  .bf-pills a[href*="instagram"],.bf-pills a[href*="Bookings"],.bf-pills a[href$="enquire"]{display:none}
+  .bf-pills a[href*="instagram"],.bf-pills a[href*="/bookings/"],.bf-pills a[href$="enquire"]{display:none}
   .bf-more{margin-top:20px;font-size:15px;gap:4px 14px}
 }
 /* pages that already show the address, hours and contacts just above (home, Contact): the footer skips its copy */
