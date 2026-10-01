@@ -357,7 +357,7 @@ button{font:inherit;color:inherit}
 .field{display:grid;gap:6px}
 .field label{font-style:italic;font-size:var(--fs-small)}
 .field input,.field textarea{appearance:none;width:100%;border:0;border-bottom:1px solid var(--bright);border-radius:0;background:transparent;font:inherit;font-style:normal;font-size:18px;color:var(--deep);padding:8px 0;outline:none}
-.field textarea{border:1px solid var(--bright);padding:12px 14px;min-height:120px;resize:vertical}
+.field textarea{min-height:120px;resize:vertical} /* same underline as the inputs: one field style */
 .field input:focus-visible,.field textarea:focus-visible{border-color:var(--deep);outline:none}
 .field ::placeholder{color:var(--deep);opacity:.5;font-style:italic}
 .form-done{font-style:italic;font-size:19px;line-height:1.4}
