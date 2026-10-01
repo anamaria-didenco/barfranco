@@ -11,8 +11,8 @@ no framework, no server). The files here ARE the site — what you edit is what 
 
 ## How to work on it
 - Open any `.html` file and edit the markup directly.
-- **Two systems are live.** The seven "Ora" pages (`index.html`, `Menus.html`, `Bookings.html`,
-  `Functions.html`, `christmas-functions/`, `Vouchers.html`, `events-pack/`) are built
+- **Two systems are live.** The six "Ora" pages (`index.html`, `Menus.html`, `Bookings.html`,
+  `Functions.html`, `Vouchers.html`, `events-pack/`) are built
   from the Ora handoff: each page's layout is in its own inline styles plus one `<style>` block in the
   `<head>` (that is the design spec — edit it there), on top of `static/styles.css` (design-system
   tokens + fonts), `static/ora.css` (shared masthead, Index takeover, dock, footer) and `static/ora.js`
@@ -44,7 +44,8 @@ no framework, no server). The files here ARE the site — what you edit is what 
 | `Menus.html` | Food & drinks menu overview |
 | `Vouchers.html` | Gift vouchers |
 | `Contact.html` | Location, hours, contact details |
-| `christmas-functions/`, `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/` | SEO landing pages, all on one template (hero → heading → split + stats → Deep Red list band → flipped split → optional `#enquire` band → FAQ → Bright Red closing band) |
+| `christmas-functions/` | Christmas landing page (v5, from the Claude Design handoff): its own slim masthead (Call / Enquire), a cover, a four-chapter row (Menu & prices · The rooms · The fine print · The night) that shows one chapter at a time, the enquiry box always below, a slim footer and a Call / Enquire phone dock. Styles in `static/pages/christmas-v5.css`; behaviour in the page's one inline script (tabs, `bf_call` / `bf_email` / `bf_cta` / `bf_enquiry` dataLayer pushes, VenueFlow height, dock). The Google Ads conversion tags in its `<head>` are kept verbatim |
+| `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/` | SEO landing pages, all on one template (hero → heading → split + stats → Deep Red list band → flipped split → optional `#enquire` band → FAQ → Bright Red closing band) |
 | `404.html` | Not-found page (absolute `/` paths) |
 | `events-pack/` | Events Pack 2026 — a masthead cover, then eight chapters that open underneath their title (hover on desktop, tap on phones; one open at a time; `#ch-food` etc. deep-link). Behaviour in `static/events-pack.js`; photos in `images/pack-2026/`. Uses the shared masthead, footer and dock like every page. The old `Bar Franco Events Pack.html` redirects here |
 | `Brand Guide.html` | Internal one-page brand guide (not linked in site nav) |
