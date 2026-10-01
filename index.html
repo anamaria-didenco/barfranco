@@ -88,192 +88,178 @@
 })();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Restaurant","@id":"https://www.barfranco.nz/#restaurant","name":"Bar Franco","description":"Modern Italian restaurant, cocktail bar and private event venue in central Christchurch, serving fresh pasta, aperitivo and curated cocktails across two vibrant levels.","url":"https://www.barfranco.nz/","telephone":"+64-21-221-1307","email":"ciao@barfranco.nz","servesCuisine":["Italian","Modern Italian","Cocktails"],"priceRange":"$","currenciesAccepted":"NZD","paymentAccepted":"Cash, Credit Card, EFTPOS","acceptsReservations":"https://www.barfranco.nz/bookings/","menu":"https://www.barfranco.nz/menus/","hasMenu":"https://www.barfranco.nz/menus/","image":["https://www.barfranco.nz/og-image.jpg?v=3","https://www.barfranco.nz/images/aperitivo-table-cheers.jpg","https://www.barfranco.nz/images/chef-open-kitchen.jpg","https://www.barfranco.nz/images/aperitivo-table-overhead.jpg"],"hasMap":"https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011","logo":"https://www.barfranco.nz/brand/franco-wordmark.png","address":{"@type":"PostalAddress","streetAddress":"The Crossing, 166 Cashel Street","addressLocality":"Christchurch Central","addressRegion":"Canterbury","postalCode":"8011","addressCountry":"NZ"},"geo":{"@type":"GeoCoordinates","latitude":-43.53262,"longitude":172.6362},"areaServed":"Christchurch","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"16:00","closes":"22:00"}],"sameAs":["https://www.instagram.com/bar__franco/","https://www.facebook.com/barfranco.chch/"]},{"@type":"EventVenue","@id":"https://www.barfranco.nz/#venue","name":"Bar Franco — Private Events & Venue Hire","description":"Private dining, cocktail functions and full venue hire for up to 240 guests across two levels in central Christchurch. Ideal for birthdays, engagements, corporate events and team celebrations.","url":"https://www.barfranco.nz/functions/","telephone":"+64-21-221-1307","email":"events@barfranco.nz","maximumAttendeeCapacity":240,"address":{"@id":"https://www.barfranco.nz/#restaurant"},"containedInPlace":{"@id":"https://www.barfranco.nz/#restaurant"}},{"@type":"WebSite","@id":"https://www.barfranco.nz/#website","url":"https://www.barfranco.nz/","name":"Bar Franco","publisher":{"@id":"https://www.barfranco.nz/#restaurant"},"inLanguage":"en-NZ"},{"@type":"FAQPage","@id":"https://www.barfranco.nz/#faq","mainEntity":[{"@type":"Question","name":"Where is Bar Franco located in Christchurch?","acceptedAnswer":{"@type":"Answer","text":"Bar Franco is in The Crossing at 166 Cashel Street, Christchurch Central 8011 — in the heart of the CBD."}},{"@type":"Question","name":"What kind of food does Bar Franco serve?","acceptedAnswer":{"@type":"Answer","text":"Bar Franco serves modern Italian food — fresh pasta, aperitivo and shared plates — alongside curated cocktails and a dedicated Negroni bar."}},{"@type":"Question","name":"Can I host a private event or function at Bar Franco?","acceptedAnswer":{"@type":"Answer","text":"Yes. Bar Franco offers private dining, cocktail functions and full venue hire for up to 240 guests across two levels, with no venue hire fee. Enquire at events@barfranco.nz."}},{"@type":"Question","name":"What are Bar Franco's opening hours?","acceptedAnswer":{"@type":"Answer","text":"Bar Franco's bar is open daily from 4pm and the kitchen from 5pm, both till late."}}]}]}</script>
-<link rel="stylesheet" href="/static/tokens.css"/>
-<link href="static/styles.css" rel="stylesheet"/>
-<link href="static/ora.css" rel="stylesheet"/>
-<style>
-    html{-webkit-text-size-adjust:100%;font-synthesis:none;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
-    body{margin:0;background:var(--paper);color:var(--deep-red);font-family:"Affairs",Georgia,"Times New Roman",serif;font-size:var(--fs-body);line-height:1.5;overflow-x:clip}
-    a{color:inherit;text-decoration:none}a:hover{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em}
-    ::selection{background:var(--almond);color:var(--deep-red)}
-    
-    .g-c{container-type:inline-size}
-    [data-rv]{opacity:0;transform:translateY(16px);transition:opacity 1100ms cubic-bezier(.2,.7,.2,1),transform 1100ms cubic-bezier(.2,.7,.2,1)}
-    [data-rv].g-ph{opacity:1;transform:none;clip-path:inset(100% 0 0 0);transition:clip-path 1400ms cubic-bezier(.2,.7,.2,1)}
-    [data-rv="2"]{transition-delay:140ms}[data-rv="3"]{transition-delay:280ms}
-    [data-rv][data-in]{opacity:1;transform:none}[data-rv].g-ph[data-in]{clip-path:inset(0)}
-    [data-motion="sparse"] [data-rv]{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
-    /* desktop: a cover — the name and the line on what Franco is down the left, the photo filling the right
-       from the masthead down, all on the first screen. Book / Plan already sit in the masthead, so the hero drops its copy. */
-    @media (min-width:900px){
-      .g-grid:has(> .g-hero-ph){grid-template-rows:auto 1fr auto!important;row-gap:clamp(28px,4vh,48px)!important;padding-top:clamp(20px,3vh,40px)!important}
-      .g-hero-tag{grid-area:1/1/auto/7!important;align-self:start}
-      .g-hero-h1{grid-area:2/1/auto/7!important;align-self:center!important}
-      .g-hero-logo{width:100%!important;max-height:min(46svh,520px)!important}
-      .g-hero-say{grid-area:3/1/auto/7!important;align-self:end!important;padding-bottom:4px}
-      .g-hero-ask{display:none!important}
-      .g-hero-ph{grid-area:1/7/4/-1!important;margin-top:0!important;height:clamp(480px,calc(100svh - 200px),860px)!important}
-    }
-    /* tablets: the masthead carries Book / Plan, so the hero keeps to the name, the line and the photo */
-    @media (min-width:640px) and (max-width:899.98px){
-      .g-hide-ph,.g-hero-ask{display:none!important}
-      .g-grid:has(> .g-hero-ph){padding-top:24px!important;row-gap:22px!important}
-      .g-hero-logo{width:min(78%,520px)!important;max-height:32svh!important}
-      .g-hero-ph{height:58svh!important;margin-top:4px!important}
-    }
-    /* phones: the first screen is the name, one line on what Franco is, the two asks, and the photo coming in underneath */
-    @media (max-width:639.98px){
-      .g-hide-ph{display:none!important}
-      .g-grid:has(> .g-hero-ph){padding-top:18px!important;row-gap:20px!important}
-      .g-hero-logo{width:min(82%,320px)!important;max-height:30svh!important}
-      .g-hero-say{order:1}
-      .g-hero-ask{order:2;display:grid!important;grid-template-columns:1fr 1fr;gap:10px!important;padding:0!important}
-      .g-hero-ask a{justify-content:center!important;align-items:center!important;gap:10px!important;min-height:48px!important;box-sizing:border-box!important;padding:10px 12px!important;background:var(--almond)!important;font-size:18px!important;line-height:1.1!important}
-      .g-hero-ask a::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor}
-      .g-hero-ask a i,.g-hero-ask a span+i+span{display:none!important}
-      .g-hero-ask a:hover{color:var(--spritz)!important;text-decoration:none}
-      .g-hero-ph{order:3;height:56svh!important;min-height:320px!important;margin-top:4px!important}
-    }
-    @media (max-width:1199.98px){.g-run{display:none!important}.g-cols{grid-template-columns:1fr!important}}
-    @media (max-width:899.98px){
-      .g-grid{grid-template-columns:1fr!important;grid-template-rows:none!important;row-gap:28px!important;align-content:start!important}.g-grid > *{grid-column:auto!important;grid-row:auto!important;justify-self:start!important;text-align:left!important;align-self:auto!important;width:100%;margin-top:0!important;margin-bottom:0!important}
-      .g-bleed{margin-left:calc(-1 * var(--m))!important;margin-right:calc(-1 * var(--m))!important;width:auto!important}
-      .g-hero-ph{height:66svh!important;min-height:380px!important;margin-top:8px!important}
-      .g-w60{width:60%!important}.g-w60r{width:60%!important;justify-self:end!important}.g-w75{width:78%!important}.g-w50r{width:52%!important;justify-self:end!important}
-      .g-over{width:56vw!important;max-width:260px;margin:-18vw 0 0 auto!important;justify-self:end!important}
-      .g-overl{width:52vw!important;max-width:240px;margin:-16vw 0 0 0!important}
-      .g-right{text-align:left!important;justify-items:start!important}
-      .g-full{height:72svh!important;min-height:360px!important}
-      .g-close{min-height:0!important}
-      .g-evs{padding-bottom:96px!important}.g-index{grid-row:auto!important}
-    }
-    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}[data-rv]{opacity:1!important;transform:none!important;clip-path:none!important}}
-    .g-ask:hover{color:var(--spritz);text-decoration:none}
-</style>
-<script defer="" src="static/ora.js"></script>
-<link rel="stylesheet" href="static/chrome.css">
-<script src="static/chrome.js" defer></script>
+<script>document.documentElement.classList.add('fx')</script>
+<link href="/static/franco.css" rel="stylesheet"/>
+<script defer src="/static/franco.js"></script>
+<script defer src="/static/chrome.js"></script>
 </head>
 <body>
-<div data-motion="immersive" style="--m: clamp(20px,4vw,64px); background: var(--paper); min-height: 100svh;"><header class="bf-mast"><div class="bf-row"><a class="bf-logo" href="/" aria-label="Bar Franco home"><img src="static/logos/emblem/deep-red.svg" alt="Bar Franco"></a><nav class="bf-nav" aria-label="Main"><a href="/" aria-current="page">Home<img class="bf-dog" src="static/illustrations/dachshund.png" alt="" width="280" height="132"></a><a href="/menus/">Menus</a><a href="/functions/">Functions</a><a href="/christmas-functions/">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav><button class="bf-menu hd-menu" type="button" data-ora="menu-open" aria-haspopup="dialog" aria-controls="ora-index" aria-expanded="false" aria-label="Open the site index">Index</button></div><div class="bf-asks"><a class="bf-pill" href="/bookings/">Book a table</a><a class="bf-pill" href="/functions/#enquire">Plan an event</a></div></header><div aria-label="Index" aria-modal="true" hidden="" id="ora-index" role="dialog" style="position: fixed; inset: 0px; z-index: 60; background: var(--almond); overflow: auto; padding: 0px clamp(20px, 4vw, 64px) clamp(24px, 4vw, 48px); box-sizing: border-box;">
-<div style="display: flex; justify-content: space-between; align-items: center; height: 76px;">
-<a aria-label="Bar Franco home" href="/" style="display: block; height: 26px;"><img alt="Bar Franco" src="static/logos/emblem/bright-red.svg" style="height: 26px; width: auto; display: block;"/></a>
-<button data-ora="menu-close" style="all: unset; font-family: inherit; font-feature-settings: inherit; font-kerning: inherit; font-optical-sizing: inherit; font-size: var(--fs-body); font-size-adjust: inherit; font-stretch: inherit; font-style: italic; font-variant: inherit; font-variation-settings: inherit; font-weight: inherit; cursor: pointer; line-height: inherit; padding: 12px 0px;" type="button">Close ×</button>
+<header class="bf-mast">
+  <div class="wrap">
+    <div class="mast-row">
+      <a class="mast-logo" href="/" aria-label="Bar Franco home"><img src="/static/logos/emblem/deep-red.svg" alt="Bar Franco" width="92" height="42"></a>
+      <nav class="mast-nav" aria-label="Main"><a href="/" aria-current="page">Home<img class="mast-dog" src="/static/illustrations/dachshund.png" alt="" width="280" height="132"></a><a href="/menus/">Menus</a><a href="/functions/">Functions</a><a href="/christmas-functions/">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav>
+      <div class="mast-asks"><a class="ask" href="/bookings/">Book a table</a><a class="ask" href="/functions/#enquire">Plan an event</a></div>
+      <button class="mast-menu" type="button" data-ora="menu-open" aria-haspopup="dialog" aria-controls="ora-index" aria-expanded="false" aria-label="Open the site index">Index</button>
+    </div>
+    <div class="rule2" aria-hidden="true"></div>
+  </div>
+</header>
+
+<div id="ora-index" class="ch-aframe" role="dialog" aria-modal="true" aria-label="Index" hidden>
+  <div class="ix-top"><a href="/" aria-label="Bar Franco home"><img src="/static/logos/emblem/bright-red.svg" alt="Bar Franco" width="58" height="26"></a><button class="ix-close" type="button" data-ora="menu-close">Close ×</button></div>
+  <article class="frame ix-card" data-settle>
+    <img class="ix-logo" src="/static/logos/bar-franco-script-incline/deep-red.svg" alt="Bar Franco" width="280" height="120">
+    <nav class="ix-nav" aria-label="Site">
+      <a class="ml" href="/"><span class="n">Home</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/menus/"><span class="n">Menus</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/bookings/"><span class="n">Bookings</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/functions/"><span class="n">Functions</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/christmas-functions/"><span class="n">Christmas</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/vouchers/"><span class="n">Vouchers</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/contact/"><span class="n">Contact</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+    </nav>
+    <p class="a4"><em>(upstairs)</em> · down the laneway · 4pm till late</p>
+    <div class="lines"><a class="line" href="/bookings/">Book a table</a><a class="line" href="/functions/#enquire">Plan an event</a></div>
+    <img class="emb" src="/static/logos/emblem/deep-red.svg" alt="" width="48" height="22">
+  </article>
 </div>
-<article aria-label="Index" style="position: relative; margin: clamp(12px, 3vh, 40px) auto 0px; width: min(100%, 720px); box-sizing: border-box; padding: clamp(36px, 5vw, 64px) clamp(24px, 5vw, 64px); background: var(--paper); display: grid; gap: clamp(28px, 4vh, 44px); justify-items: center;">
-<div aria-hidden="true" style="position: absolute; inset: 10px; border: 2px solid var(--deep-red); pointer-events: none;"></div>
-<div aria-hidden="true" style="position: absolute; inset: 16px; border: 1px solid var(--deep-red); pointer-events: none;"></div>
-<img alt="Bar Franco" src="static/logos/bar-franco-script-incline/deep-red.svg" style="width: min(56%, 280px); height: auto; display: block; margin-top: 8px;"/>
-<nav aria-label="Site" style="display: grid; gap: 10px; width: 100%;">
-<a href="/menus/" style="display: flex; align-items: baseline; gap: 12px; text-decoration: none; font-size: var(--fs-large); line-height: 1.3;"><span style="flex: 0 0 auto;"><span class="sc-interp">Menus</span></span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="flex: 0 0 auto;"><span class="sc-interp">01</span></span></a>
-<a href="/bookings/" style="display: flex; align-items: baseline; gap: 12px; text-decoration: none; font-size: var(--fs-large); line-height: 1.3;"><span style="flex: 0 0 auto;"><span class="sc-interp">Bookings</span></span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="flex: 0 0 auto;"><span class="sc-interp">02</span></span></a>
-<a href="/functions/" style="display: flex; align-items: baseline; gap: 12px; text-decoration: none; font-size: var(--fs-large); line-height: 1.3;"><span style="flex: 0 0 auto;"><span class="sc-interp">Functions</span></span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="flex: 0 0 auto;"><span class="sc-interp">03</span></span></a>
-<a href="/christmas-functions/" style="display: flex; align-items: baseline; gap: 12px; text-decoration: none; font-size: var(--fs-large); line-height: 1.3;"><span style="flex: 0 0 auto;"><span class="sc-interp">Christmas</span></span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="flex: 0 0 auto;"><span class="sc-interp">04</span></span></a>
-<a href="/vouchers/" style="display: flex; align-items: baseline; gap: 12px; text-decoration: none; font-size: var(--fs-large); line-height: 1.3;"><span style="flex: 0 0 auto;"><span class="sc-interp">Vouchers</span></span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="flex: 0 0 auto;"><span class="sc-interp">05</span></span></a>
-<a href="/#g-close" style="display: flex; align-items: baseline; gap: 12px; text-decoration: none; font-size: var(--fs-large); line-height: 1.3;"><span style="flex: 0 0 auto;"><span class="sc-interp">Contact</span></span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="flex: 0 0 auto;"><span class="sc-interp">06</span></span></a>
-</nav>
-<p style="margin: 0px; font-style: italic; font-size: clamp(16px, 1.6vw, 19px); text-align: center;"><em>(upstairs)</em> · down the laneway · 4pm till late</p>
-<div style="display: grid; gap: 12px; width: 100%;">
-<a class="g-ask" href="/bookings/" style="all: unset; font-family: Affairs, Georgia, serif; font-size: var(--fs-line); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Book a table</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a>
-<a class="g-ask" href="/functions/#enquire" style="all: unset; font-family: Affairs, Georgia, serif; font-size: var(--fs-line); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Plan an event</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a>
-</div>
-<img alt="" src="static/logos/emblem/bright-red.svg" style="height: 22px; width: auto; display: block;"/>
-</article></div><nav aria-label="Book or plan" class="m-dock" style="display: none; position: fixed; left: 0px; right: 0px; bottom: 0px; z-index: 40; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: var(--paper); border-top: 1px solid var(--deep-red);">
-<a class="g-ask" href="/bookings/" style="all: unset; font-family: Affairs, Georgia, serif; font-size: var(--fs-line); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Book a table</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a>
-<a class="g-ask" href="/functions/#enquire" style="all: unset; font-family: Affairs, Georgia, serif; font-size: var(--fs-line); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Plan an event</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a></nav><main><section aria-label="Bar Franco — upstairs, down the laneway, 4pm till late" class="g-grid" data-screen-label="Hero — upstairs, down the laneway, 4pm till late" style="position: relative; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); gap: clamp(28px, 4vh, 48px) clamp(12px, 1.5vw, 24px); padding: clamp(28px,6vh,80px) var(--m) 0;">
-<p class="g-hero-tag" style="grid-column: 1 / -1; margin: 0px; font-style: italic; font-size: var(--fs-meta);"><em>(upstairs)</em> · Down the laneway · 4pm till late</p>
-<h1 class="g-hero-h1" style="grid-area: 2 / 1 / auto / 8; margin: 0px; min-width: 0px;"><img class="g-hero-logo" alt="Bar Franco" src="static/logos/bar-franco-script-incline/deep-red.svg" style="display: block; width: min(100%, 640px); height: auto; max-height: 44svh; object-fit: contain; object-position: left center;"/></h1>
-<nav aria-label="Book a table or plan an event" class="g-index g-hero-ask" style="grid-area: 2 / 8 / 4 / -1; align-self: end; width: 100%; display: grid; gap: 18px; padding-bottom: 6px;">
-<a href="/bookings/" style="all: unset; font-family: inherit; font-feature-settings: inherit; font-kerning: inherit; font-optical-sizing: inherit; font-size: var(--fs-line); font-size-adjust: inherit; font-stretch: inherit; font-style: inherit; font-variant: inherit; font-variation-settings: inherit; font-weight: inherit; align-items: baseline; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Book a table</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="flex: 0 0 auto;">01</span></a>
-<a href="/functions/#enquire" style="all: unset; font-family: inherit; font-feature-settings: inherit; font-kerning: inherit; font-optical-sizing: inherit; font-size: var(--fs-line); font-size-adjust: inherit; font-stretch: inherit; font-style: inherit; font-variant: inherit; font-variation-settings: inherit; font-weight: inherit; align-items: baseline; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Plan an event</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="flex: 0 0 auto;">02</span></a>
-</nav>
-<div class="g-hero-say" style="grid-area: 3 / 1 / auto / 7; display: grid; gap: 14px; align-self: end;">
-<p class="g-hide-ph" style='margin: 0px; font-family: "VTC Marsha", "Arial Black", Impact, sans-serif; font-weight: 700; text-transform: uppercase; font-size: var(--fs-label); letter-spacing: 0.06em; line-height: 1.3; color: var(--spritz);'><br/></p>
-<p style='margin: 0px; font-family: Affairs, Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0px; font-size: var(--fs-line); line-height: 1.35; max-width: 40ch; text-wrap: pretty; color: var(--deep-red);'>Modern Italian restaurant &amp; Negroni bar<br/>The Crossing, Christchurch</p>
-</div>
-<div class="g-bleed g-ph g-hero-ph" data-rv="1" style="grid-area: 4 / 3 / auto / -1; width: calc(100% + var(--m)); height: clamp(420px, 82svh, 920px); overflow: hidden; background: var(--almond); margin-top: clamp(24px, 4vh, 56px); position: relative;">
-<img alt="Antipasti and spritzes on the marble table" height="2000" src="images/aperitivo-table-menus.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; display: block;" width="1334"/>
-<img alt="" src="static/logos/franco-script-incline/almond.svg" style="position: absolute; right: var(--m); bottom: clamp(24px, 4vw, 56px); width: clamp(120px, 12vw, 190px); height: auto; display: block;"/>
-</div></section><section aria-label="About Bar Franco" class="g-grid" data-screen-label="01 · About — vino, aperitivo and pasta fresca" style="position: relative; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); gap: clamp(24px, 3vw, 40px) clamp(12px, 1.5vw, 24px); padding: clamp(112px,16vh,240px) var(--m);">
-<p data-rv="1" style="grid-column: 1 / 4; margin: 0px; font-style: italic; font-size: var(--fs-meta);">Bar Franco · 01 · Dine &amp; host</p>
-<div data-rv="2" style="grid-column: 4 / -1; display: grid; gap: 24px; justify-items: start;">
-<p style="margin: 0px; font-size: clamp(22px, 2.4vw, 36px); line-height: 1.3; max-width: 34ch; text-wrap: pretty;">Vino, aperitivo and pasta fresca <em>(upstairs)</em> at 166 Cashel St. Pasta rolled in view, Negronis stirred to order, a short walk from One NZ Stadium.</p>
-<img alt="" src="static/logos/emblem/deep-red.svg" style="height: 22px; width: auto; display: block;"/>
-</div></section><section aria-label="The room" class="g-grid" data-screen-label="02 · The room" style="position: relative; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); gap: clamp(40px, 6vw, 96px) clamp(12px, 1.5vw, 24px); padding: 0 var(--m) clamp(112px,16vh,240px);">
-<p data-rv="1" style="grid-column: 1 / -1; margin: 0px; font-style: italic; font-size: var(--fs-meta);">Bar Franco · 02 · The room</p>
-<div class="g-ph g-bleed" data-rv="1" style="grid-area: 2 / 1 / auto / 9; aspect-ratio: 3 / 2; overflow: hidden; background: var(--almond); margin-left: calc(-1 * var(--m));"><img alt="Service on the floor at seven" decoding="async" height="1709" loading="lazy" src="images/room-pendants-crowd.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; display: block;" width="1187"/></div>
-<div class="g-ph g-w50r" data-rv="2" style="grid-area: 2 / 10 / auto / -1; align-self: end; margin: 0px 0px clamp(-80px, -6vw, -40px); aspect-ratio: 3 / 4; overflow: hidden; background: var(--almond); width: 100%;"><img alt="A tray of Negroni, spritz and wine" decoding="async" height="2400" loading="lazy" src="images/spritz-tray-oranges.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; display: block;" width="1600"/></div>
-<div class="g-ph g-w60" data-rv="1" style="grid-area: 3 / 1 / auto / 4; align-self: end; aspect-ratio: 3 / 4; overflow: hidden; background: var(--almond); width: 100%;"><img alt="A chef at the pass" decoding="async" height="1400" loading="lazy" src="images/chef-wink.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block;" width="934"/></div>
-<div class="g-ph g-w75" data-rv="2" style="grid-area: 3 / 6 / auto / 11; margin: clamp(40px, 8vw, 120px) 0px 0px; aspect-ratio: 1 / 1; overflow: hidden; background: var(--almond); width: 100%;"><img alt="Antipasti and spritzes on the marble table" decoding="async" height="1400" loading="lazy" src="images/burrata-tomato-close.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block;" width="1120"/></div></section><section aria-label="The menus" class="g-grid" data-screen-label="03 · The menus — Dine at Franco" id="g-food" style="position: relative; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); gap: clamp(32px, 4vw, 56px) clamp(12px, 1.5vw, 24px); padding: clamp(48px,8vh,112px) var(--m) clamp(112px,16vh,240px);">
-<div class="g-c" style="grid-column: 1 / 7; display: grid; gap: clamp(24px, 3vw, 40px); align-content: center;">
-<div data-rv="1" style="display: grid; gap: 14px;">
-<p style="margin: 0px; font-style: italic; font-size: var(--fs-meta);">Bar Franco · 03 · The menus</p>
-<h2 style='margin: 0px; font-family: "VTC Marsha", "Arial Black", Impact, sans-serif; font-weight: 700; text-transform: uppercase; font-size: var(--fs-display-lg); line-height: 0.86; letter-spacing: -0.01em; color: var(--spritz);'>Dine <em style="font-style: normal; font-size: 0.5em; vertical-align: 0.5em; letter-spacing: 0.04em;">at</em> Franco</h2>
-<p style='margin: 6px 0px 0px; font-family: "VTC Marsha", "Arial Black", Impact, sans-serif; font-weight: 700; text-transform: uppercase; font-size: var(--fs-label); letter-spacing: 0.06em; line-height: 1.3; color: var(--spritz);'>Pasta fresca • Negroni • Aperitivo • Vino</p>
-</div>
-<p data-rv="2" style="margin: 0px; font-style: italic; font-size: var(--fs-lead);"><em>(upstairs)</em> · bar from 4pm · kitchen from 5pm</p>
-<p data-rv="2" style="margin: 0px; font-size: var(--fs-lead); max-width: 40ch; text-wrap: pretty;">The menus — food on top, the drinks list beneath. All prices NZD · menus change with the seasons.</p>
-<div data-rv="3" style="width: min(100%, 320px);">
-<a class="g-ask" href="/menus/" style="all: unset; font-family: Affairs, Georgia, serif; font-size: var(--fs-line); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Read the full menus</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a>
-</div>
-</div>
-<div class="g-bleed g-ph" data-rv="1" style="grid-area: 1 / 8 / 3 / -1; width: calc(100% + var(--m)); aspect-ratio: 4 / 5; overflow: hidden; background: var(--almond);"><img alt="Fresh pasta and a glass of red at the table" decoding="async" height="1400" loading="lazy" src="images/dining-pasta.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; display: block;" width="934"/></div>
-<div class="g-overl" style="grid-area: 2 / 5 / auto / 8; align-self: end; position: relative; z-index: 2; margin: 0px calc(-1 * clamp(24px, 4vw, 64px)) clamp(32px, 5vw, 80px) 0px; width: calc(100% + clamp(24px, 4vw, 64px));">
-<div style="padding: clamp(8px, 1vw, 12px) 0px clamp(8px, 1vw, 12px) clamp(8px, 1vw, 12px); background: var(--paper); margin-left: -1px;"><div class="g-ph" data-rv="2" style="aspect-ratio: 1 / 1; overflow: hidden; background: var(--almond);"><img alt="Parmigiana and a spritz at the table" decoding="async" height="1400" loading="lazy" src="images/parmigiana-spritz.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block;" width="934"/></div></div>
-</div></section><section aria-label="A long candlelit table set for a private event" class="g-full" data-screen-label="Host at Franco — the room" style="position: relative; height: 100svh; min-height: 440px; overflow: hidden; background: var(--almond);">
-<img alt="A long candlelit table set for a private event" decoding="async" height="1000" loading="lazy" src="images/event-room-wide.jpg" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block;" width="1500"/>
-<img alt="" src="static/logos/franco-script-incline/almond.svg" style="position: absolute; left: var(--m); bottom: clamp(24px, 4vw, 56px); width: clamp(120px, 12vw, 190px); height: auto; display: block;"/></section><section aria-label="Host at Franco — private events" class="g-grid g-evs" data-screen-label="Host at Franco" id="g-ev" style="position: relative; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); gap: clamp(48px, 7vw, 112px) clamp(12px, 1.5vw, 24px); padding: clamp(80px,12vh,176px) var(--m) clamp(160px,22vh,300px);">
-<div class="g-c" data-rv="1" style="grid-area: 1 / 1 / auto / 9; display: grid; gap: 14px; align-content: start; width: 100%;">
-<p style="margin: 0px; font-style: italic; font-size: var(--fs-meta);">Private events &amp; venue hire</p>
-<h2 style='margin: 0px; font-family: "VTC Marsha", "Arial Black", Impact, sans-serif; font-weight: 700; text-transform: uppercase; font-size: var(--fs-display-lg); line-height: 0.84; letter-spacing: -0.015em; color: var(--spritz);'>Host <em style="font-style: normal; font-size: 0.5em; vertical-align: 0.5em; letter-spacing: 0.04em;">at</em> Franco</h2>
-</div>
-<div data-rv="2" style="grid-area: 1 / 9 / auto / -1; display: grid; gap: 16px; align-content: end; width: 100%;">
-<p style="margin: 0px; font-size: var(--fs-lead); text-wrap: pretty;">Long tables · Cocktail parties · The whole building</p>
-<p style="margin: 0px; font-style: italic; font-size: var(--fs-meta);">One level or both · up to 240 guests · no hire fee</p>
-<div style="width: 100%; margin-top: 8px;">
-<a class="g-ask" href="/functions/" style="all: unset; font-family: Affairs, Georgia, serif; font-size: var(--fs-line); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Plan an event</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a>
-</div>
-</div>
-<div class="g-bleed g-ph" data-rv="1" style="grid-area: 2 / 4 / auto / -1; width: calc(100% + var(--m)); aspect-ratio: 16 / 9; overflow: hidden; background: var(--almond);"><img alt="A dressed table upstairs" decoding="async" height="1400" loading="lazy" src="images/level2-event-table.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block;" width="1050"/></div>
-<div class="g-over" style="grid-area: 2 / 1 / auto / 5; align-self: end; position: relative; z-index: 2; margin-bottom: calc(-1 * clamp(40px, 7vw, 110px)); width: 100%;">
-<div style="padding: clamp(8px, 1vw, 12px) clamp(8px, 1vw, 12px) 0px 0px; background: var(--paper);"><div class="g-ph" data-rv="2" style="aspect-ratio: 3 / 4; overflow: hidden; background: var(--almond);"><img alt="Guests at a private event" decoding="async" height="1500" loading="lazy" src="images/event-guests.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block;" width="1000"/></div></div>
-</div></section><section aria-label="The spaces" data-screen-label="The spaces — pick a level, or take both" id="g-lv" style="position: relative; padding: clamp(64px,10vh,160px) var(--m) clamp(112px,16vh,240px); display: grid; gap: 0px;">
-<p data-rv="1" style="margin: 0px 0px clamp(24px, 3vw, 40px); font-style: italic; font-size: var(--fs-meta);">The spaces · Pick a level — or take both</p>
-<div class="g-grid" style="display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); gap: 24px clamp(12px, 1.5vw, 24px); align-items: end; padding: clamp(24px, 3vw, 48px) 0px; border-top: 1px solid var(--hairline);">
-<div class="g-ph g-w60" data-rv="1" style="grid-column: 1 / 3; aspect-ratio: 3 / 4; overflow: hidden; background: var(--almond); width: 100%;"><img alt="A long dinner upstairs in full swing" decoding="async" height="1400" loading="lazy" src="images/level2-long-dinner.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block;" width="933"/></div>
-<div class="g-c g-right" data-rv="2" style="grid-column: 5 / -1; display: grid; gap: 12px; justify-items: end; text-align: right; width: 100%;">
-<p style="margin: 0px; font-style: italic; font-size: var(--fs-meta);">Level 2</p>
-<h2 style='margin: 0px; font-family: "VTC Marsha", "Arial Black", Impact, sans-serif; font-weight: 700; text-transform: uppercase; font-size: var(--fs-display-lg); line-height: 0.84; letter-spacing: -0.015em; color: var(--spritz);'>The Restaurant</h2>
-<p style="margin: 0px; font-size: var(--fs-line); font-style: italic; max-width: 40ch;">An open-kitchen dining room made for the long table and seated celebrations of any kind.</p>
-<a class="g-ask" href="/bookings/" style="all: unset; font-family: Affairs, Georgia, serif; font-size: var(--fs-body); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Book a table</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a>
-</div>
-</div>
-<div class="g-grid" style="display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); gap: 24px clamp(12px, 1.5vw, 24px); align-items: end; padding: clamp(24px, 3vw, 48px) 0px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
-<div class="g-c" data-rv="1" style="grid-column: 1 / 9; display: grid; gap: 12px; justify-items: start; width: 100%;">
-<p style="margin: 0px; font-style: italic; font-size: var(--fs-meta);">Level 1</p>
-<h2 style='margin: 0px; font-family: "VTC Marsha", "Arial Black", Impact, sans-serif; font-weight: 700; text-transform: uppercase; font-size: var(--fs-display-lg); line-height: 0.84; letter-spacing: -0.015em; color: var(--spritz);'>The Negroni Bar</h2>
-<p style="margin: 0px; font-size: var(--fs-line); font-style: italic; max-width: 40ch;">A low-lit room built around the bar — for cocktail functions and stand-up celebrations.</p>
-<a class="g-ask" href="/menus/" style="all: unset; font-family: Affairs, Georgia, serif; font-size: var(--fs-body); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Drinks menu</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a>
-</div>
-<div class="g-ph g-w60r" data-rv="2" style="grid-column: 11 / -1; aspect-ratio: 3 / 4; overflow: hidden; background: var(--almond); width: 100%;"><img alt="The Negroni Bar, full" decoding="async" height="933" loading="lazy" src="images/level1-bar-crowd.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block;" width="1400"/></div>
-</div></section><section aria-label="Come say ciao" class="g-grid g-close" data-screen-label="04 · Come say ciao" id="g-close" style="position: relative; box-sizing: border-box; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); gap: clamp(40px, 6vw, 72px) clamp(12px, 1.5vw, 24px); align-items: start; padding: clamp(96px,14vh,200px) var(--m) clamp(64px,8vw,120px);">
-<div data-rv="1" style="grid-column: 1 / -1; display: grid; gap: 14px;">
-<p style="margin: 0px; font-style: italic; font-size: var(--fs-meta);">Bar Franco · 04 · Come say ciao</p>
-<h2 style='margin: 0px; font-family: "VTC Marsha", "Arial Black", Impact, sans-serif; font-weight: 700; text-transform: uppercase; font-size: var(--fs-display-md); line-height: 0.88; letter-spacing: -0.01em; color: var(--spritz);'>Come say ciao</h2>
-</div>
-<div data-rv="1" style="grid-column: 1 / 6; display: grid; gap: 12px; align-content: start; width: 100%;">
-<p style="margin: 0px 0px 8px; font-style: italic; font-size: var(--fs-lead);"><em>(upstairs)</em> The Crossing, 166 Cashel St, Ōtautahi</p>
-<div style="display: grid; gap: 12px; width: min(100%, 380px);">
-<a class="g-ask" href="/bookings/" style="all: unset; font-family: Affairs, Georgia, serif; font-size: var(--fs-line); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Book a table</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a>
-<a class="g-ask" href="/functions/#enquire" style="all: unset; font-family: Affairs, Georgia, serif; font-size: var(--fs-line); align-items: baseline; box-sizing: border-box; gap: 12px; cursor: pointer; display: flex; line-height: 1.3; min-height: 44px; padding: 8px 0px; text-align: left; width: 100%;"><span style="flex: 0 0 auto;">Plan an event</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i></a>
-</div>
-</div>
-<div data-rv="2" style="grid-column: 7 / -1; display: grid; gap: 10px; align-content: start; width: 100%;">
-<p style="margin: 0px; display: flex; align-items: baseline; gap: 10px; font-size: var(--fs-body);"><span style="flex: 0 0 auto;">Hours</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><span style="font-style: italic; text-align: right;">Bar from 4pm · kitchen from 5pm · daily, till late</span></p>
-<p style="margin: 0px; display: flex; align-items: baseline; gap: 10px; font-size: var(--fs-body);"><span style="flex: 0 0 auto;">Where</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><a href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011" style="font-style: italic; text-align: right;">166 Cashel St, Ōtautahi</a></p>
-<p style="margin: 0px; display: flex; align-items: baseline; gap: 10px; font-size: var(--fs-body);"><span style="flex: 0 0 auto;">Telephone</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><a href="tel:+64212211307" style=";">021 221 1307</a></p>
-<p style="margin: 0px; display: flex; align-items: baseline; gap: 10px; font-size: var(--fs-body);"><span style="flex: 0 0 auto;">Email</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><a href="mailto:ciao@barfranco.nz" style=";">ciao@barfranco.nz</a></p>
-<p style="margin: 0px; display: flex; align-items: baseline; gap: 10px; font-size: var(--fs-body);"><span style="flex: 0 0 auto;">Instagram</span><i aria-hidden="true" style="flex: 1 1 0%; border-bottom: 1px dotted currentcolor; align-self: baseline; transform: translateY(-1px);"></i><a href="https://www.instagram.com/bar__franco/" style=";">@bar__franco</a></p>
-</div></section></main><footer class="bf-foot bf-lite"><div class="bf-foot-top"><div><p class="bf-addr">(upstairs) The Crossing, 166 Cashel St, Ōtautahi</p><a class="bf-lead" href="/bookings/"><span>Book a table</span><i aria-hidden="true"></i></a><a class="bf-lead" href="/functions/#enquire"><span>Plan an event</span><i aria-hidden="true"></i></a></div><dl class="bf-facts"><div><dt>Hours</dt><i aria-hidden="true"></i><dd><em>Bar from 4pm · kitchen from 5pm · daily, till late</em></dd></div><div><dt>Where</dt><i aria-hidden="true"></i><dd><em>166 Cashel St, Ōtautahi</em></dd></div><div><dt>Telephone</dt><i aria-hidden="true"></i><dd><a href="tel:+64212211307">021 221 1307</a></dd></div><div><dt>Email</dt><i aria-hidden="true"></i><dd><a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a></dd></div><div><dt>Instagram</dt><i aria-hidden="true"></i><dd><a href="https://www.instagram.com/bar__franco/">@bar__franco</a></dd></div></dl></div><div class="bf-now"><p class="bf-now-k" data-bf-live hidden><em>It’s currently</em></p><p class="bf-now-h" data-bf-status>Bar from 4pm</p><p class="bf-now-t" data-bf-live hidden><span data-bf-clock></span> in Ōtautahi</p></div><nav class="bf-pills" aria-label="Elsewhere"><a class="bf-pill" href="https://www.instagram.com/bar__franco/">Instagram</a><a class="bf-pill" href="https://www.facebook.com/barfranco.chch">Facebook</a><a class="bf-pill" href="/bookings/">Book a table</a><a class="bf-pill" href="/functions/#enquire">Plan an event</a><a class="bf-pill" href="/contact/">Contact</a></nav><nav class="bf-more" aria-label="More from Franco"><span>More from Franco</span><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/corporate-events/">Corporate</a><a href="/weddings/">Weddings</a></nav><p class="bf-legal">All rights reserved © Bar Franco <span data-bf-year>2026</span>. <em>(upstairs)</em> The Crossing, 166 Cashel St, Ōtautahi · <a href="tel:+64212211307">021 221 1307</a> · <a href="mailto:events@barfranco.nz">events@barfranco.nz</a></p></footer><div aria-hidden="true" class="f-spacer" style="display: none; height: calc(68px + env(safe-area-inset-bottom)); background: var(--paper);"></div></div>
+
+<main>
+<section class="cover ch-menu" aria-label="Bar Franco — upstairs, down the laneway, 4pm till late" data-screen-label="Hero · Cover">
+  <div class="wrap grid">
+    <div class="cover-text">
+      <p class="a4"><em>(upstairs)</em> · Down the laneway · 4pm till late</p>
+      <h1 class="cover-h1"><img class="cover-logo" data-set src="/static/logos/bar-franco-script-incline/deep-red.svg" alt="Bar Franco" width="640" height="276"></h1>
+      <div class="intro">
+        <p class="a2 it">Modern Italian restaurant &amp; Negroni bar<br>The Crossing, Christchurch</p>
+        <nav class="lines cover-asks g-hero-ask" aria-label="Book a table or plan an event"><a class="line" href="/bookings/">Book a table</a><a class="line" href="/functions/#enquire">Plan an event</a></nav>
+      </div>
+    </div>
+    <div class="ph cover-ph bleed-r" data-unmask>
+      <img src="/images/aperitivo-table-menus.jpg" alt="Antipasti and spritzes on the marble table" width="1334" height="2000" style="object-position:50% 45%">
+      <img class="mark r" src="/static/logos/franco-script-incline/almond.svg" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="sec ch-menu" aria-label="About Bar Franco" data-screen-label="01 · Dine &amp; host">
+  <div class="wrap grid">
+    <div class="at-7 intro">
+      <p class="eyebrow">Bar Franco · 01 · Dine &amp; host</p>
+      <p class="a1">Vino, aperitivo and pasta fresca <em>(upstairs)</em> at 166 Cashel St. Pasta rolled in view, Negronis stirred to order, a short walk from One NZ Stadium.</p>
+      <img class="emb" src="/static/logos/emblem/deep-red.svg" alt="" width="48" height="22">
+    </div>
+  </div>
+</section>
+
+<section class="sec ch-menu" aria-label="The room" data-screen-label="02 · The room">
+  <div class="wrap">
+    <p class="eyebrow">Bar Franco · 02 · The room</p>
+    <div class="pair mt">
+      <div class="ph r-32 p7 bleed-l" data-unmask><img src="/images/room-pendants-crowd.jpg" alt="Service on the floor at seven" width="1187" height="1709" loading="lazy" decoding="async" style="object-position:50% 60%"></div>
+      <div class="ph r-45 p4"><img src="/images/spritz-tray-oranges.jpg" alt="A tray of Negroni, spritz and wine" width="1600" height="2400" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec ch-menu" id="g-food" aria-label="The menus" data-screen-label="03 · The menus">
+  <div class="wrap grid">
+    <div class="at-1-5 intro self-end">
+      <p class="eyebrow">Bar Franco · 03 · The menus</p>
+      <h2 class="m2" data-set>Dine <span class="sup">at</span> Franco</h2>
+      <p class="m4">Pasta fresca&nbsp;• Negroni&nbsp;• Aperitivo&nbsp;• Vino</p>
+      <p class="a4"><em>(upstairs)</em> · bar from 4pm · kitchen from 5pm</p>
+      <p class="a3">The menus — food on top, the drinks list beneath. All prices NZD · menus change with the seasons.</p>
+      <div class="lines"><a class="line" href="/menus/">Read the full menus</a></div>
+    </div>
+    <div class="at-7 print">
+      <div class="ph r-45 bleed-r" data-unmask><img src="/images/dining-pasta.jpg" alt="Fresh pasta and a glass of red at the table" width="934" height="1400" loading="lazy" decoding="async"></div>
+      <div class="mat"><div class="ph r-45"><img src="/images/parmigiana-spritz.jpg" alt="Parmigiana and a spritz at the table" width="934" height="1400" loading="lazy" decoding="async"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ch-night" id="g-ev" aria-label="Host at Franco — private events" data-screen-label="04 · Host at Franco (Night)" style="margin-top:var(--between)">
+  <div class="ph r-169 full" data-unmask>
+    <img src="/images/event-room-wide.jpg" alt="A long candlelit table set for a private event" width="1500" height="1000" loading="lazy" decoding="async">
+    <img class="mark" src="/static/logos/franco-script-incline/almond.svg" alt="">
+  </div>
+  <div class="wrap grid band">
+    <div class="at-1-5 intro">
+      <p class="eyebrow">Bar Franco · 04 · Host at Franco</p>
+      <h2 class="m2" data-set>Host <span class="sup">at</span> Franco</h2>
+    </div>
+    <div class="at-7 intro self-end">
+      <p class="a2">Long tables · Cocktail parties · The whole building</p>
+      <p class="a4">One level or both · up to 240 guests · no hire fee</p>
+      <div class="lines"><a class="line" href="/functions/">Plan an event</a></div>
+    </div>
+    <div class="at-all pair flip">
+      <div class="ph r-32 p7 bleed-r"><img src="/images/level2-event-table.jpg" alt="A dressed table upstairs" width="1050" height="1400" loading="lazy" decoding="async" style="object-position:50% 55%"></div>
+      <div class="ph r-45 p4"><img src="/images/event-guests.jpg" alt="Guests at a private event" width="1000" height="1500" loading="lazy" decoding="async" style="object-position:50% 30%"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec last ch-menu" id="g-lv" aria-label="The spaces" data-screen-label="05 · The spaces">
+  <div class="wrap">
+    <p class="eyebrow">Bar Franco · 05 · The spaces — pick a level, or take both</p>
+    <div class="mt hair-b">
+      <div class="level grid hair">
+        <div class="ph r-45 lv-ph"><img src="/images/level2-long-dinner.jpg" alt="A long dinner upstairs in full swing" width="933" height="1400" loading="lazy" decoding="async"></div>
+        <div class="lv-txt intro">
+          <p class="eyebrow">Level 2</p>
+          <h2 class="m3">The Restaurant</h2>
+          <p class="a2 it">An open-kitchen dining room made for the long table and seated celebrations of any kind.</p>
+          <a class="ask" href="/bookings/">Book a table</a>
+        </div>
+      </div>
+      <div class="level grid hair">
+        <div class="ph r-45 lv-ph"><img src="/images/level1-bar-crowd.jpg" alt="The Negroni Bar, full" width="1400" height="933" loading="lazy" decoding="async" style="object-position:50% 55%"></div>
+        <div class="lv-txt intro">
+          <p class="eyebrow">Level 1</p>
+          <h2 class="m3">The Negroni Bar</h2>
+          <p class="a2 it">A low-lit room built around the bar — for cocktail functions and stand-up celebrations.</p>
+          <a class="ask" href="/menus/">Drinks menu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ch-aframe band" id="g-close" aria-label="Come say ciao" data-screen-label="06 · Come say ciao (A-frame)">
+  <div class="wrap grid">
+    <div class="at-1-5 intro">
+      <p class="eyebrow">Bar Franco · 06 · Come say ciao</p>
+      <h2 class="m2 title"><span class="aside">(upstairs)</span> 166 Cashel St</h2>
+      <p class="a2">The Crossing, Ōtautahi — down the laneway, from 4pm.</p>
+      <div class="lines mt"><a class="line" href="/bookings/">Book a table</a><a class="line" href="/functions/#enquire">Plan an event</a></div>
+    </div>
+    <div class="at-7 lines-list self-end">
+      <p class="ml"><span class="n">Hours</span><i class="lead" aria-hidden="true"></i><span class="v">Bar from 4pm · kitchen from 5pm · daily, till late</span></p>
+      <p class="ml"><span class="n">Where</span><i class="lead" aria-hidden="true"></i><a class="v" href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">166 Cashel St, Ōtautahi</a></p>
+      <p class="ml"><span class="n">Telephone</span><i class="lead" aria-hidden="true"></i><a class="v r" href="tel:+64212211307">021 221 1307</a></p>
+      <p class="ml"><span class="n">Email</span><i class="lead" aria-hidden="true"></i><a class="v r" href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a></p>
+      <p class="ml"><span class="n">Instagram</span><i class="lead" aria-hidden="true"></i><a class="v r" href="https://www.instagram.com/bar__franco/">@bar__franco</a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="bf-foot bf-lite ch-night">
+  <div class="wrap">
+    <div class="now">
+      <p class="now-k" data-bf-live hidden><em>It’s currently</em></p>
+      <p class="m2" data-bf-status>Bar from 4pm</p>
+      <p class="now-t" data-bf-live hidden><span data-bf-clock></span> in Ōtautahi</p>
+    </div>
+    <nav class="foot-more" aria-label="More from Franco"><span>More from Franco</span><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/corporate-events/">Corporate</a><a href="/weddings/">Weddings</a><a href="/events-pack/">Events pack</a><a href="/contact/">Contact</a><a href="https://www.instagram.com/bar__franco/">Instagram</a><a href="https://www.facebook.com/barfranco.chch">Facebook</a></nav>
+    <p class="foot-legal">All rights reserved © Bar Franco <span data-bf-year>2026</span> · <em>(upstairs)</em> The Crossing, 166 Cashel St, Ōtautahi · <a href="tel:+64212211307">021 221 1307</a> · <a href="mailto:events@barfranco.nz">events@barfranco.nz</a></p>
+    <img class="foot-emb" src="/static/logos/emblem/almond.svg" alt="" width="52" height="22">
+  </div>
+</footer>
+
+<nav class="dock ch-night" aria-label="Book or plan"><a class="line" href="/bookings/">Book a table</a><a class="line" href="/functions/#enquire">Plan an event</a></nav>
 </body>
 </html>
