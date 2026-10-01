@@ -267,6 +267,7 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .mast-menu.always{display:block}
 .mast-asks+.mast-menu.always{margin-left:clamp(16px,2vw,28px)}
 @media (min-width:1000px){.mast-row:not(:has(.mast-nav)) .mast-asks{margin-left:auto}}
+@media (max-width:639.98px){.mast-asks+.mast-menu.always{margin-left:auto}}
 
 /* ==== index.html ==== */
 /* the cover logo is the page h1 */
@@ -274,3 +275,223 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .cover-h1 .cover-logo{max-width:none}
 @media (max-width:899.98px){.cover-h1{max-width:420px}}
 @media (max-width:639.98px){.cover-h1{max-width:300px}}
+
+/* ==== menus/index.html ==== */
+/* hero: title + lede, the lead photograph, and the tabs sitting right above the sheets */
+.pg-menus .mn-hero{padding-top:clamp(24px,3vw,40px);padding-bottom:var(--inside)}
+.pg-menus .mn-txt{grid-column:1/6;grid-row:1;align-self:end}
+.pg-menus .mn-ph{grid-column:8/13;grid-row:1/3}
+.pg-menus .mn-tabs{grid-column:1/6;grid-row:2;align-self:end}
+/* the sheets: one centred printed menu at a time */
+.pg-menus .mn-sheet{grid-column:3/11}
+.pg-menus .mn-sheet .frame{padding-top:56px;padding-bottom:56px}
+.pg-menus .course{display:grid;gap:6px;justify-items:center;width:100%;max-width:680px}
+.pg-menus .course .m4{margin-bottom:6px}
+.pg-menus .dish{font-size:var(--a3);line-height:1.4;text-wrap:balance}
+.pg-menus .dish .pr{white-space:nowrap}
+.pg-menus .course .ml{font-size:var(--a3)}
+.pg-menus .mn-foot{grid-column:3/11;justify-items:center;text-align:center}
+.pg-menus .mn-pdf{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 32px}
+@media (max-width:899.98px){
+  .pg-menus .mn-txt,.pg-menus .mn-ph,.pg-menus .mn-tabs,.pg-menus .mn-sheet,.pg-menus .mn-foot{grid-column:1/-1;grid-row:auto}
+  .pg-menus .mn-ph{margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin))}
+}
+@media (min-width:640px) and (max-width:899.98px){.pg-menus .mn-ph{aspect-ratio:3/2}}
+
+/* ==== bookings/index.html ==== */
+/* first screen: title, one line and the live widget side by side */
+.pg-bookings .bk-hero{padding-top:clamp(24px,3vw,40px)}
+.pg-bookings .bk-txt{grid-column:1/6;align-self:start;padding-top:clamp(8px,2vw,32px)}
+.pg-bookings .bk-widget{grid-column:7/13;display:grid;gap:14px}
+.pg-bookings .bk-frame{display:grid;gap:16px;padding:36px}
+.pg-bookings .bk-label{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.pg-bookings .bk-iframe{width:100%;height:clamp(520px,calc(100svh - 280px),720px);border:0;background:var(--paper)}
+.pg-bookings .bk-help{text-align:center}
+@media (max-width:899.98px){
+  .pg-bookings .bk-txt,.pg-bookings .bk-widget{grid-column:1/-1}
+  .pg-bookings .bk-iframe{height:min(720px,80svh)}
+}
+@media (max-width:639.98px){.pg-bookings .bk-frame{padding:28px 22px}}
+
+/* ==== functions/index.html ==== */
+/* hero: title, asks and the framed "In this issue" index beside the lead photograph */
+.pg-functions .hero{padding-top:clamp(24px,3vw,40px)}
+.pg-functions .hero-txt{align-content:start}
+.pg-functions .hero-ix{width:100%;max-width:440px;margin-top:16px;gap:16px}
+.pg-functions .hero-ph{align-self:start}
+@media (max-width:899.98px){.pg-functions .hero-ph{margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin))}}
+@media (max-width:639.98px){.pg-functions .hero-ph{aspect-ratio:3/2}}   /* keeps the page inside seven phone screens */
+/* 01 · the enquiry card: the VenueFlow form inside the double rule, the PDF pack at its foot */
+.pg-functions .enq iframe{width:100%;height:460px;border:0;background:var(--obj)}
+.pg-functions .nw{white-space:nowrap}
+.pg-functions .enq-pdf{display:flex;flex-wrap:wrap;gap:4px 28px;margin-top:20px}
+/* 03 · the spaces card */
+.pg-functions .spaces-card .lv{display:grid;gap:10px;justify-items:center;width:100%}
+.pg-functions .spaces-card .lv-all{padding-top:22px;border-top:1px solid var(--hair)}
+.pg-functions .spaces-pair{grid-column:6/13;grid-template-columns:repeat(7,minmax(0,1fr))}
+.pg-functions .spaces-pair>.p4{grid-column:1/4;grid-row:1}
+.pg-functions .spaces-pair>.p7{grid-column:4/8}
+@media (max-width:899.98px){.pg-functions .spaces-pair{grid-column:1/-1}}
+@media (max-width:639.98px){.pg-functions .spaces-pair{grid-template-columns:1fr}.pg-functions .spaces-pair>.p7{grid-column:1/-1}}
+/* 04 · occasions: .m4 heads in two columns over hairlines */
+.pg-functions .occ{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter);border-bottom:1px solid var(--hair)}
+.pg-functions .occ>div{display:grid;gap:8px;align-content:start;padding:20px 0 24px}
+@media (max-width:639.98px){.pg-functions .occ{grid-template-columns:1fr}.pg-functions .occ>div{padding:16px 0 18px}}
+
+/* ==== vouchers/index.html ==== */
+/* hero: title and line beside the lead photograph */
+.pg-vouchers .hero{padding-top:clamp(24px,3vw,40px)}
+.pg-vouchers .hero-txt{align-content:start}
+.pg-vouchers .hero-ph{align-self:start}
+@media (max-width:899.98px){.pg-vouchers .hero-ph{margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin))}}
+/* 01 · the voucher: the one framed object */
+.pg-vouchers .voucher{width:100%;max-width:560px;justify-self:center}
+.pg-vouchers .voucher .v-logo{width:min(80%,340px);height:auto}
+.pg-vouchers .voucher .lines-list{max-width:360px}
+
+/* ==== contact/index.html ==== */
+/* Contact: the details beside the framed note, underline fields, the full-bleed map */
+.pg-contact .c-find{margin-top:var(--between)}
+.pg-contact .c-details{gap:14px}
+.pg-contact .c-details .lines-list:not(:last-child){margin-bottom:18px}
+.pg-contact .c-frame{align-self:start}
+.pg-contact .form{display:grid;gap:26px}
+.pg-contact .field{display:grid;gap:4px}
+.pg-contact .field label{font-style:italic;font-size:var(--a4);line-height:1.3}
+.pg-contact .field input,.pg-contact .field textarea{display:block;width:100%;margin:0;padding:8px 0 10px;border:0;border-bottom:1px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--affairs);font-size:var(--a2);line-height:1.4;appearance:none;-webkit-appearance:none}
+.pg-contact .field textarea{min-height:128px;resize:vertical}
+.pg-contact .field input:focus,.pg-contact .field textarea:focus{border-bottom-color:var(--head)}
+.pg-contact .field ::placeholder{color:var(--ink);opacity:.5;font-style:italic}
+.pg-contact .form .line{max-width:none}
+.pg-contact .form-done,.pg-contact .form-error{font-style:italic;font-size:var(--a2);line-height:1.4}
+.pg-contact .form-error a{text-decoration:underline 1px;text-underline-offset:.16em}
+.pg-contact .c-map .ph iframe{width:100%;height:100%;border:0}
+.pg-contact .c-note{padding-top:16px}
+.pg-contact .c-note .ask{font-size:var(--a4);padding:0}
+
+/* ==== christmas-functions/index.html ==== */
+/* the running head, the CHRISTMAS sign, the chapter row and the chapters under it */
+.pg-xmas .x-cover{padding-top:18px;padding-bottom:var(--inside)}
+.pg-xmas .x-run{display:grid;grid-template-columns:2fr 2fr 2fr 1fr;gap:16px}
+.pg-xmas .x-run span:last-child{text-align:right}
+.pg-xmas .x-h1{display:grid;gap:clamp(18px,2.4vw,28px);justify-items:center;width:100%;margin-top:clamp(28px,5vw,72px);font-weight:400}
+.pg-xmas .x-sub{max-width:22ch;text-wrap:balance}
+.pg-xmas .x-intro{display:grid;gap:20px;justify-items:center;text-align:center}
+.pg-xmas .x-lede{max-width:52ch}
+.pg-xmas .x-intro .lines,.pg-xmas .x-intro .line{max-width:520px}
+.pg-xmas .x-tabs{justify-content:center;margin-top:clamp(40px,5vw,64px)}
+.pg-xmas .x-tabs em{font-size:var(--a4);margin-right:.3em}
+.pg-xmas .x-panel{padding-top:var(--inside)}
+.pg-xmas .x-eb{max-width:none}
+.pg-xmas .x-card{max-width:760px;margin-left:auto;margin-right:auto;padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(48px,6vw,88px)}
+.pg-xmas .x-card .m4{margin-top:14px}
+.pg-xmas .x-card .lines-list{max-width:560px}
+.pg-xmas .x-solo{justify-content:center;text-align:center}
+.pg-xmas .x-hd{margin-top:4px}
+.pg-xmas .x-qa,.pg-xmas .x-list{width:100%;max-width:720px;margin-left:auto;margin-right:auto}
+.pg-xmas .x-list{max-width:620px}
+.pg-xmas .x-room{gap:14px}
+.pg-xmas .x-enq{max-width:820px;margin-left:auto;margin-right:auto}
+.pg-xmas .x-vf{width:100%;text-align:left}
+.pg-xmas .x-vf iframe{width:100%;height:460px;border:0;background:var(--paper)}
+@media (max-width:899.98px){
+  .pg-xmas .x-run{grid-template-columns:1fr 1fr}
+  .pg-xmas .x-run span:nth-child(2),.pg-xmas .x-run span:nth-child(3){display:none}
+}
+@media (max-width:639.98px){
+  .pg-xmas .x-h1 .m1{font-size:12.6vw}   /* nine letters must fit 390px; never under 24px */
+  .pg-xmas .x-tabs{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;border-bottom:0}
+  .pg-xmas .x-tabs button{text-align:center}
+  .pg-xmas .x-tabs button:not([aria-selected="true"]){border-bottom-color:var(--hair)}
+}
+.pg-xmas .intro.c{justify-items:center;text-align:center}
+
+/* ==== events-pack/index.html ==== */
+/* Events pack: the masthead cover, eight chapters that open underneath their row (events-pack.js), the three food tabs */
+.pg-pack .pk-cover{padding-top:clamp(24px,3vw,40px)}
+.pg-pack .pk-mast img{width:100%;height:auto}
+.pk-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.pg-pack .pk-date{display:grid;grid-template-columns:1fr auto 1fr;align-items:baseline;column-gap:var(--gutter);margin:clamp(14px,1.8vw,24px) 0;padding:12px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.pg-pack .pk-date>:last-child{text-align:right}
+.pg-pack .pk-date em{font-family:var(--affairs);font-weight:400;text-transform:none;letter-spacing:0;color:var(--title)}
+.pg-pack .pk-intro{margin:var(--inside) 0 12px}
+/* the chapter rows: number · title · italic line · Open ↓ */
+.pg-pack .pk-list{border-bottom:1px solid var(--hairline)}
+.pg-pack .pk-ch{border-top:1px solid var(--hair)}
+.pg-pack .pk-h{font:inherit}
+.pg-pack .pk-row{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:clamp(40px,5vw,72px) minmax(0,1fr) auto;align-items:center;column-gap:var(--gutter);width:100%;padding:clamp(14px,1.6vw,22px) 0}
+.pg-pack .pk-row:focus-visible,.pg-pack .pk-tab:focus-visible{outline:2px solid var(--spritz);outline-offset:2px}
+.pg-pack .pk-n{color:var(--head)}
+.pg-pack .pk-t{display:grid;gap:6px}
+.pg-pack .pk-row .m3,.pg-pack .pk-tt{color:var(--title);transition:color var(--t-ink) var(--ease-ink)}
+.pg-pack .pk-row:hover .m3,.pg-pack [data-open="true"] .pk-row .m3{color:var(--head)}
+.pg-pack [data-open="true"] .pk-plus,.pg-pack [data-open="false"] .pk-minus,.pk-pr{display:none}
+.fx .pg-pack [data-open="false"] .pk-body{display:none}
+.pg-pack .pk-body{display:grid;row-gap:var(--band);padding:8px 0 var(--band)}
+/* columns inside a chapter (a grid, never multi-column: columns froze Chromium at ~920px) */
+.pg-pack .pk-cols2,.pg-pack .pk-3{display:grid;gap:var(--inside) clamp(24px,4vw,64px);align-items:start}
+.pg-pack .pk-cols2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pg-pack .pk-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pg-pack .frame,.pg-pack .frame .pk-cols2,.pg-pack .intro>.ph{width:100%}
+.pg-pack .pk-col{display:grid;gap:var(--inside);align-content:start}
+.pg-pack .pk-m{display:grid;gap:6px;width:100%}
+.pg-pack .pk-m span.a4{white-space:nowrap}
+/* how it works: seven numbered steps */
+.pg-pack .pk-steps{list-style:none;padding:0;border-bottom:1px solid var(--hair)}
+.pg-pack .pk-steps li{display:grid;grid-template-columns:clamp(64px,10vw,148px) minmax(0,1fr);column-gap:var(--gutter);align-items:baseline;padding:var(--gutter) 0;border-top:1px solid var(--hair)}
+/* the three ways to feed the room */
+.pg-pack .pk-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gutter)}
+.pg-pack .pk-tab{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:8px;align-content:start;padding:clamp(18px,2.2vw,28px) 0;border-top:2px solid var(--hair)}
+.pg-pack .pk-tab[aria-selected="true"]{border-top-color:var(--bright)}
+.pg-pack .pk-tab:hover .pk-tt,.pg-pack .pk-tab[aria-selected="true"] .pk-tt{color:var(--bright)}
+.pg-pack .pk-tab[aria-selected="true"] .pk-off,.pg-pack .pk-tab[aria-selected="false"] .pk-on{display:none}
+.pg-pack .pk-colo .emb{margin:0 auto 12px}
+@media (max-width:899.98px){
+  .pg-pack .pk-date{grid-template-columns:minmax(0,1fr);row-gap:6px;text-align:center}
+  .pg-pack .pk-date>:last-child{text-align:center}
+  .pg-pack .pk-cols2,.pg-pack .pk-3,.pg-pack .pk-tabs{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:639.98px){.pg-pack .pk-row{grid-template-columns:34px minmax(0,1fr) auto;column-gap:10px}}
+@media print{.pk-pr{display:grid;gap:12px}}
+
+/* ==== weddings/index.html ==== */
+/* Weddings · Corporate share one landing-page template (these rules also serve .pg-corporate) */
+:is(.pg-weddings,.pg-corporate) .ev-hero{padding-top:clamp(32px,4vw,64px)}
+:is(.pg-weddings,.pg-corporate) .ev-hero .ph.full{margin-top:var(--inside)}
+/* the enquiry card: the VenueFlow form, then the pack */
+:is(.pg-weddings,.pg-corporate) .ev-enq{display:grid;gap:24px;align-self:start}
+:is(.pg-weddings,.pg-corporate) .ev-enq iframe{width:100%;height:460px;border:0}
+:is(.pg-weddings,.pg-corporate) .ev-pack{display:flex;flex-wrap:wrap;gap:4px 28px;padding-top:16px}
+/* formats: Marsha category heads in two columns, a hairline above each */
+:is(.pg-weddings,.pg-corporate) .ev-fmts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter);border-bottom:1px solid var(--hair)}
+:is(.pg-weddings,.pg-corporate) .ev-fmts>div{display:grid;gap:10px;align-content:start;padding:24px 0 28px}
+@media (max-width:639.98px){:is(.pg-weddings,.pg-corporate) .ev-fmts{grid-template-columns:1fr}}
+/* the food card */
+:is(.pg-weddings,.pg-corporate) .ev-card .lines-list{max-width:440px}
+/* 01's photograph: four columns, to the right edge */
+@media (min-width:900px){:is(.pg-weddings,.pg-corporate) .ev-why{grid-column:9/13}}
+
+/* ==== corporate-events/index.html ==== */
+/* Corporate uses the shared Weddings · Corporate template rules in weddings.css */
+
+/* ==== aperitivo/index.html ==== */
+/* Aperitivo · Negroni Bar · Pasta fresca · Before the stadium share one dining landing-page template (.pg-dine) */
+.pg-dine .dine-hero{padding-top:clamp(32px,4vw,64px)}
+.pg-dine .dine-hero .ph.full{margin-top:var(--inside)}
+/* 02 · on the board: one centred printed card */
+.pg-dine .dine-board{width:100%;max-width:720px;margin:0 auto;gap:40px}
+.pg-dine .dine-cat{display:grid;gap:12px;justify-items:center;width:100%}
+.pg-dine .dine-cat>.a4{max-width:44ch;text-align:center}
+.pg-dine .dine-cat>.lines-list{margin-top:4px}
+@media (max-width:639.98px){.pg-dine .dine-board{gap:32px}.pg-dine .dine-board .lines-list .ml{font-size:var(--a4)}}
+.pg-dine .dine-board-head{justify-items:center}
+/* phones: a bled photograph runs edge to edge */
+@media (max-width:899.98px){.pg-dine .ph.bleed-l{margin-right:calc(-1 * var(--margin))}.pg-dine .ph.bleed-r{margin-left:calc(-1 * var(--margin))}}
+/* a title holding "Christchurch" (12 letters) can't fit 390px at the 44px M2 floor: on phones these pages step the title and the closing sign down to M3 */
+@media (max-width:639.98px){.pg-dine.dine-long .m2{font-size:var(--m3)}}
+
+/* ==== fresh-pasta/index.html ==== */
+/* the pasta card: each menu line carries the page's own note beneath it */
+.pg-pasta .dine-dishes{gap:18px}
+.pg-pasta .dine-dishes>div{display:grid;gap:2px}
+.pg-pasta .dine-dishes .a4{text-align:left;max-width:none}

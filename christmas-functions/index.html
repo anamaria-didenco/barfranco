@@ -85,113 +85,181 @@
 })();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"EventVenue","name":"Bar Franco — Christmas Functions & Venue Hire","url":"https://www.barfranco.nz/christmas-functions/","description":"Work Christmas parties, team dinners and end-of-year celebrations for December 2026 — up to 240 guests across two levels in central Christchurch, with no venue hire fee.","telephone":"+64-21-221-1307","email":"events@barfranco.nz","maximumAttendeeCapacity":240,"image":"https://www.barfranco.nz/og-image.jpg?v=3","address":{"@type":"PostalAddress","streetAddress":"The Crossing, 166 Cashel Street","addressLocality":"Christchurch Central","addressRegion":"Canterbury","postalCode":"8011","addressCountry":"NZ"},"geo":{"@type":"GeoCoordinates","latitude":-43.53262,"longitude":172.6362},"areaServed":"Christchurch"}</script>
-<link rel="stylesheet" href="/static/tokens.css"/>
-<link rel="stylesheet" href="../static/tokens/fonts.css"/>
-<link rel="stylesheet" href="../static/pages/christmas-v5.css"/>
+<script>document.documentElement.classList.add('fx')</script>
+<link href="/static/franco.css" rel="stylesheet"/>
+<script defer src="/static/franco.js"></script>
+<script defer src="/static/chrome.js"></script>
 </head>
 <body>
-<div class="x5" style="overflow-x: clip;">
-<header class="x5-mast" data-screen-label="Header"><a aria-label="Bar Franco home" href="/"><img alt="Bar Franco" src="../static/logos/emblem/deep-red.svg"></a><nav aria-label="Main" class="x5-nav"><a href="/">Home</a><a href="/menus/">Menus</a><a href="/bookings/">Bookings</a><a href="/functions/">Functions</a><a href="/christmas-functions/" aria-current="page">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav><div style="display: flex; gap: 10px;"><a class="x5-pill" href="tel:+64212211307">Call</a><a class="x5-pill" data-track="cta" href="#enquire">Enquire</a></div></header>
-<main>
-<section aria-label="Christmas functions at Bar Franco" data-screen-label="01 · Cover">
-<p class="x5-run"><span>Bar Franco</span><span>Christmas functions</span><span>The Crossing, Christchurch</span><span>2026</span></p>
-<div class="x5-cover">
-<h1 aria-label="Christmas functions at Bar Franco" style="display: grid; gap: clamp(18px, 2.4vw, 28px); justify-items: center; width: 100%;"><span aria-hidden="true" class="x5-mark x5-M"><span>C</span><span>H</span><span>R</span><span>I</span><span>S</span><span>T</span><span>M</span><span>A</span><span>S</span></span><span class="x5-sub">functions at <br>Bar Franco, the Italian way.</span></h1>
-<div class="x5-strip" style="margin: clamp(8px, 1.6vw, 20px) 0 clamp(8px, 1.6vw, 20px);"><img alt="Fresh pasta and a glass of red at the table" src="../images/christmas/web/dining-pasta.jpg"><img alt="An Aperol spritz, a Negroni and a highball on a painted tray" src="../images/coaster/new-5.jpg"><img alt="Rows of spritzes and flowers waiting for the guests" src="../images/christmas/spritz-table.jpg" style="object-position: 50% 60%;"></div>
-<p class="x5-lede">Two levels in the heart of The Crossing, <br>from a table of twenty to the whole building for 240. <br>House-made pasta, Negronis and candlelight, and a team that runs the night so you don’t have to. <br>No venue hire fee.</p>
-<div style="display: grid; width: min(100%, 520px);"><a class="x5-line" data-track="cta" href="#enquire" style="width: 100%;"><span>Enquire about your Christmas function</span><i aria-hidden="true"></i><span aria-hidden="true">→</span></a><a class="x5-line" href="tel:+64212211307" style="width: 100%; border-top: 0;"><span>Or call 021 221 1307</span><i aria-hidden="true"></i><span aria-hidden="true">→</span></a><a class="x5-line" href="/events-pack/" style="width: 100%; border-top: 0;"><span>Read the events pack</span><i aria-hidden="true"></i><span aria-hidden="true">→</span></a></div>
-<p style="font-style: italic; font-size: var(--fs-meta);">We reply within one business day</p>
+<header class="bf-mast">
+  <div class="wrap">
+    <div class="mast-row">
+      <a class="mast-logo" href="/" aria-label="Bar Franco home"><img src="/static/logos/emblem/deep-red.svg" alt="Bar Franco" width="92" height="42"></a>
+      <div class="mast-asks"><a class="ask" href="tel:+64212211307">Call 021 221 1307</a><a class="ask" href="#enquire" data-track="cta">Enquire</a></div>
+      <button class="mast-menu always" type="button" data-ora="menu-open" aria-haspopup="dialog" aria-controls="ora-index" aria-expanded="false" aria-label="Open the site index">Index</button>
+    </div>
+    <div class="rule2" aria-hidden="true"></div>
+  </div>
+</header>
 
-<nav aria-label="On this page" class="x5-toc"><button data-on="true" data-x5-tab="menu" aria-controls="menu" aria-expanded="true" type="button"><em>01</em><span>Menu &amp; prices</span></button><button data-on="false" data-x5-tab="rooms" aria-controls="rooms" aria-expanded="false" type="button"><em>02</em><span>The rooms</span></button><button data-on="false" data-x5-tab="details" aria-controls="details" aria-expanded="false" type="button"><em>03</em><span>The fine print</span></button><button data-on="false" data-x5-tab="night" aria-controls="night" aria-expanded="false" type="button"><em>04</em><span>The night</span></button></nav>
+<div id="ora-index" class="ch-aframe" role="dialog" aria-modal="true" aria-label="Index" hidden>
+  <div class="ix-top"><a href="/" aria-label="Bar Franco home"><img src="/static/logos/emblem/bright-red.svg" alt="Bar Franco" width="58" height="26"></a><button class="ix-close" type="button" data-ora="menu-close">Close ×</button></div>
+  <article class="frame ix-card" data-settle>
+    <img class="ix-logo" src="/static/logos/bar-franco-script-incline/deep-red.svg" alt="Bar Franco" width="280" height="120">
+    <nav class="ix-nav" aria-label="Site">
+      <a class="ml" href="/"><span class="n">Home</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/menus/"><span class="n">Menus</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/bookings/"><span class="n">Bookings</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/functions/"><span class="n">Functions</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/christmas-functions/"><span class="n">Christmas</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/vouchers/"><span class="n">Vouchers</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/contact/"><span class="n">Contact</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+    </nav>
+    <p class="a4"><em>(upstairs)</em> · down the laneway · 4pm till late</p>
+    <div class="lines"><a class="line" href="tel:+64212211307">Call 021 221 1307</a><a class="line" href="#enquire" data-track="cta">Enquire</a></div>
+    <img class="emb" src="/static/logos/emblem/deep-red.svg" alt="" width="48" height="22">
+  </article>
 </div>
 
+<main class="pg-xmas">
+<section class="ch-menu x-cover" aria-label="Christmas functions at Bar Franco" data-screen-label="Cover">
+  <div class="wrap">
+    <p class="a4 x-run"><span>Bar Franco</span><span>Christmas functions</span><span>The Crossing, Christchurch</span><span>2026</span></p>
+    <div class="x-head c">
+      <h1 aria-label="Christmas functions at Bar Franco" class="x-h1"><span class="m1" aria-hidden="true" data-set><span>C</span><span>H</span><span>R</span><span>I</span><span>S</span><span>T</span><span>M</span><span>A</span><span>S</span></span><span class="a1 it x-sub" aria-hidden="true">functions at <br>Bar Franco, the Italian way.</span></h1>
+    </div>
+    <div class="pair mt">
+      <div class="ph r-32 p7 bleed-l" data-unmask><img src="/images/christmas/spritz-table.jpg" alt="Rows of spritzes and flowers waiting for the guests" width="734" height="1100" style="object-position:50% 60%"></div>
+      <div class="ph r-45 p4"><img src="/images/coaster/new-5.jpg" alt="An Aperol spritz, a Negroni and a highball on a painted tray" width="640" height="959"></div>
+    </div>
+    <div class="x-intro c mt">
+      <p class="a2 x-lede">Two levels in the heart of The Crossing, <br>from a table of twenty to the whole building for 240. <br>House-made pasta, Negronis and candlelight, and a team that runs the night so you don’t have to. <br>No venue hire fee.</p>
+      <div class="lines"><a class="line" data-track="cta" href="#enquire">Enquire about your Christmas function</a><a class="line" href="tel:+64212211307">Or call 021 221 1307</a></div>
+      <a class="ask" href="/events-pack/">Read the events pack</a>
+      <p class="a4">We reply within one business day</p>
+    </div>
+    <div class="tabs x-tabs" role="tablist" aria-label="On this page">
+      <button role="tab" type="button" id="t-menu" aria-controls="menu" aria-selected="true"><em>01</em> Menu &amp; prices</button>
+      <button role="tab" type="button" id="t-rooms" aria-controls="rooms" aria-selected="false" tabindex="-1"><em>02</em> The rooms</button>
+      <button role="tab" type="button" id="t-details" aria-controls="details" aria-selected="false" tabindex="-1"><em>03</em> The fine print</button>
+      <button role="tab" type="button" id="t-night" aria-controls="night" aria-selected="false" tabindex="-1"><em>04</em> The night</button>
+    </div>
+  </div>
 </section>
 
-<section data-tab="" data-open="true" aria-label="The menu and the details" class="x5-card-wrap" data-screen-label="04 · The menu card" id="menu">
-<div class="x5-card">
-<p aria-hidden="true" class="x5-cardmark x5-M"><span>F</span><span>R</span><span>A</span><span>N</span><span>C</span><span>O</span></p>
-<p style="font-style: italic; font-size: var(--fs-body); margin-top: 8px;">Christmas, set the Italian way</p>
-<p style="font-size: clamp(16px, 1.3vw, 18px); line-height: 1.55; max-width: 44ch; margin-top: 10px;">House-made pasta and antipasti down the middle of the table, canapés passed on trays, and a bar that starts with a Negroni. Generous, Italian, and made to share.</p>
-<h2 class="x5-head x5-M">To eat</h2>
-<p class="x5-li"><span>Canapés — <em>passed on trays</em></span><i aria-hidden="true"></i><span>from 9</span></p>
-<p class="x5-li"><span>Shared Franco — <em>three courses down the table</em></span><i aria-hidden="true"></i><span>80pp</span></p>
-<p class="x5-li"><span>Tutto Franco — <em>canapés, then the shared feast</em></span><i aria-hidden="true"></i><span>110pp</span></p>
-<p class="x5-li"><span>Grazing table — <em>or a set amount from 1,000</em></span><i aria-hidden="true"></i><span>40pp</span></p>
-<h2 class="x5-head x5-M">To drink</h2>
-<p class="x5-li"><span>Spritzes, Negronis, Italian wine — <em>on consumption</em></span></p>
-<h2 class="x5-head x5-M">Good to know</h2>
-<p class="x5-li"><span>Venue hire fee</span><i aria-hidden="true"></i><span>none</span></p>
-<p class="x5-li"><span>Deposit — <em>off your drinks bill</em></span><i aria-hidden="true"></i><span>from 500</span></p>
-<p class="x5-li"><span>Fri &amp; Sat minimum spend</span><i aria-hidden="true"></i><span>from 4,000</span></p>
-<p class="x5-li"><span>Dietaries — <em>every one handled</em></span></p>
-<p class="x5-li"><span>Last drinks</span><i aria-hidden="true"></i><span>11:30pm</span></p>
-<p style="font-style: italic; font-size: var(--fs-small); margin-top: 18px;">All prices exclude GST · <a href="/events-pack/" style="text-decoration: underline 1px; text-underline-offset: 0.16em;">full menus and drinks in the events pack</a></p>
-<img alt="" src="../static/logos/emblem/deep-red.svg" style="height: 22px; width: auto; display: block; margin-top: 18px;">
-</div>
+<section class="ch-aframe band" role="tabpanel" id="menu" aria-labelledby="t-menu" data-screen-label="01 · Menu &amp; prices">
+  <div class="wrap">
+    <p class="eyebrow c x-eb">Bar Franco · 01 · Menu &amp; prices</p>
+    <article class="frame menu x-card mt" data-settle>
+      <p class="m1" aria-label="Franco"><span>F</span><span>R</span><span>A</span><span>N</span><span>C</span><span>O</span></p>
+      <p class="a2 it">Christmas, set the Italian way</p>
+      <p class="a3">House-made pasta and antipasti down the middle of the table, canapés passed on trays, and a bar that starts with a Negroni. Generous, Italian, and made to share.</p>
+      <h2 class="m4">To eat</h2>
+      <div class="lines-list">
+        <p class="ml"><span class="n">Canapés — <em>passed on trays</em></span><i class="lead" aria-hidden="true"></i><span class="v r">from 9</span></p>
+        <p class="ml"><span class="n">Shared Franco — <em>three courses down the table</em></span><i class="lead" aria-hidden="true"></i><span class="v r">80pp</span></p>
+        <p class="ml"><span class="n">Tutto Franco — <em>canapés, then the shared feast</em></span><i class="lead" aria-hidden="true"></i><span class="v r">110pp</span></p>
+        <p class="ml"><span class="n">Grazing table — <em>or a set amount from 1,000</em></span><i class="lead" aria-hidden="true"></i><span class="v r">40pp</span></p>
+      </div>
+      <h2 class="m4">To drink</h2>
+      <div class="lines-list">
+        <p class="ml x-solo"><span class="n">Spritzes, Negronis, Italian wine — <em>on consumption</em></span></p>
+      </div>
+      <h2 class="m4">Good to know</h2>
+      <div class="lines-list">
+        <p class="ml"><span class="n">Venue hire fee</span><i class="lead" aria-hidden="true"></i><span class="v r">none</span></p>
+        <p class="ml"><span class="n">Deposit — <em>off your drinks bill</em></span><i class="lead" aria-hidden="true"></i><span class="v r">from 500</span></p>
+        <p class="ml"><span class="n">Fri &amp; Sat minimum spend</span><i class="lead" aria-hidden="true"></i><span class="v r">from 4,000</span></p>
+        <p class="ml x-solo"><span class="n">Dietaries — <em>every one handled</em></span></p>
+        <p class="ml"><span class="n">Last drinks</span><i class="lead" aria-hidden="true"></i><span class="v r">11:30pm</span></p>
+      </div>
+      <p class="fine">All prices exclude GST · <a class="link" href="/events-pack/">full menus and drinks in the events pack</a></p>
+      <img class="emb" src="/static/logos/emblem/deep-red.svg" alt="" width="48" height="22">
+    </article>
+  </div>
 </section>
 
-<section aria-label="Enquire" class="x5-card-wrap" data-screen-label="02 · Enquire, in a menu box" id="enquire" style="background: var(--paper);">
-<div class="x5-card" style="max-width: 820px; background: var(--almond);">
-<p style="font-style: italic; font-size: var(--fs-body);">Enquire</p>
-<h2 class="x5-h x5-M" style="color: var(--spritz); font-size: clamp(34px, 4.4vw, 64px);">Lock in your date.</h2>
-<p class="x5-lede">December Fridays go first. Send your date and your numbers; we reply within one business day and pencil your date in while you decide.</p>
-<div class="x5-form" style="width: 100%; margin-top: 14px; text-align: left;"><iframe class="x5-iframe" loading="lazy" src="https://venueflowhq.com/enquire/bar-franco?embed=1&amp;accent=AF0F00&amp;font=Inter" title="Enquire about your Christmas function"></iframe></div>
-<p style="font-style: italic; font-size: var(--fs-meta); line-height: 1.6; margin-top: 14px;">Prefer to talk? Call <a href="tel:+64212211307" style="text-decoration: underline 1px; text-underline-offset: 0.16em;">021 221 1307</a> · <a href="mailto:events@barfranco.nz" style="text-decoration: underline 1px; text-underline-offset: 0.16em;">events@barfranco.nz</a></p>
-<img alt="" src="../static/logos/emblem/deep-red.svg" style="height: 22px; width: auto; display: block; margin-top: 16px;">
-</div>
+<section class="ch-menu x-panel" role="tabpanel" id="rooms" aria-labelledby="t-rooms" data-screen-label="02 · The rooms" hidden>
+  <div class="wrap grid">
+    <div class="at-all intro c">
+      <p class="eyebrow">Bar Franco · 02 · The rooms</p>
+      <h2 class="m2">Two levels. One world.</h2>
+    </div>
+    <div class="at-1 intro x-room">
+      <div class="ph r-45"><img src="/images/pack-2026/web/spaces-bar.jpg" alt="A bartender pouring spritzes at the Negroni &amp; Spritz Bar" width="1400" height="934" loading="lazy" decoding="async" style="object-position:45% 42%"></div>
+      <p class="eyebrow">Level 1</p>
+      <h3 class="m4">The Negroni &amp; Spritz Bar</h3>
+      <div class="lines-list">
+        <p class="ml"><span class="n">Seated</span><i class="lead" aria-hidden="true"></i><span class="v r">80</span></p>
+        <p class="ml"><span class="n">Standing</span><i class="lead" aria-hidden="true"></i><span class="v r">120</span></p>
+      </div>
+    </div>
+    <div class="at-7 intro x-room">
+      <div class="ph r-45"><img src="/images/christmas/web/room-pendants-crowd.jpg" alt="The Open Kitchen Restaurant under the artichoke lamps" width="695" height="1000" loading="lazy" decoding="async"></div>
+      <p class="eyebrow">Level 2</p>
+      <h3 class="m4">The Open Kitchen Restaurant</h3>
+      <div class="lines-list">
+        <p class="ml"><span class="n">Seated</span><i class="lead" aria-hidden="true"></i><span class="v r">90</span></p>
+        <p class="ml"><span class="n">Standing</span><i class="lead" aria-hidden="true"></i><span class="v r">120</span></p>
+      </div>
+    </div>
+    <p class="at-all a2 it c">Or take both levels, exclusively yours, for up to 240.</p>
+  </div>
 </section>
 
-<section data-tab="" data-open="false" aria-label="The rooms" class="x5-rooms" data-screen-label="03 · The rooms" id="rooms">
-<div style="display: grid; gap: 14px; justify-items: center; text-align: center;"><p style="font-style: italic; font-size: var(--fs-body);">The rooms</p><h2 class="x5-h x5-M" style="color: var(--spritz);">Two levels. One world.</h2></div>
-<div class="x5-two">
-<figure><img alt="A bartender pouring spritzes at the Negroni &amp; Spritz Bar" class="ph" loading="lazy" src="../images/pack-2026/web/spaces-bar.jpg" style="object-position: 45% 42%;"><p class="x5-M" style="font-size: clamp(24px, 2.2vw, 30px); color: var(--spritz);">The Negroni &amp; Spritz Bar</p><p style="font-style: italic; font-size: 18px;">Level 1 · 80 seated · 120 standing</p></figure>
-<figure><img alt="The Open Kitchen Restaurant under the artichoke lamps" class="ph" loading="lazy" src="../images/christmas/web/room-pendants-crowd.jpg"><p class="x5-M" style="font-size: clamp(24px, 2.2vw, 30px); color: var(--spritz);">The Open Kitchen Restaurant</p><p style="font-style: italic; font-size: 18px;">Level 2 · 90 seated · 120 standing</p></figure>
-</div>
-<p class="x5-lede" style="justify-self: center; text-align: center;">Or take both levels, exclusively yours, for up to 240.</p>
+<section class="ch-menu x-panel" role="tabpanel" id="details" aria-labelledby="t-details" data-screen-label="03 · The fine print" hidden>
+  <div class="wrap grid">
+    <div class="at-all intro c">
+      <p class="eyebrow">Bar Franco · 03 · The fine print</p>
+      <h2 class="m2">No surprises.</h2>
+      <p class="a1 it x-hd">One person looking after you, from the first email to the last drink.</p>
+    </div>
+    <div class="at-all qa x-qa">
+      <details><summary>How booking works</summary><p>Tell us your date, numbers and the kind of night you want. We send a tailored proposal and the events pack. A deposit from 500 secures the date, taken off your drinks bill. We confirm the run of the night, and you turn up and enjoy it.</p></details>
+      <details><summary>Minimum spend</summary><p>Friday and Saturday nights carry a food and drink minimum, set by the space: from 4,000 for the bar. Midweek there’s usually none. December Fridays book out months ahead.</p></details>
+      <details><summary>On the night</summary><p>Drinks run on consumption and we keep you posted on the spend, so there are no surprises on the invoice. Microphones for speeches, a projector and screen, and room for a band or a DJ. Last drinks 11:30pm.</p></details>
+      <details><summary>Dietaries and custom menus</summary><p>Every dietary handled, and custom food and drink menus on request. Final numbers and dietaries are due five days before.</p></details>
+      <details><summary>Getting here</summary><p>Upstairs at 166 Cashel Street, The Crossing. Take the lift near H&amp;M and Coffee Culture; The Crossing carpark is right there. We’re closed from 23 December to 5 January.</p></details>
+    </div>
+  </div>
 </section>
 
-<section data-tab="" data-open="false" aria-label="The fine print" class="x5-fine" data-screen-label="05 · The fine print" id="details">
-<p style="font-style: italic; font-size: var(--fs-body);">The fine print</p>
-<h2 class="x5-h x5-M" style="color: var(--spritz);">No surprises.</h2>
-<p class="x5-sub" style="color: var(--spritz);">One person looking after you, from the first email to the last drink.</p>
-<details><summary>How booking works</summary><div>Tell us your date, numbers and the kind of night you want. We send a tailored proposal and the events pack. A deposit from 500 secures the date, taken off your drinks bill. We confirm the run of the night, and you turn up and enjoy it.</div></details>
-<details><summary>Minimum spend</summary><div>Friday and Saturday nights carry a food and drink minimum, set by the space: from 4,000 for the bar. Midweek there’s usually none. December Fridays book out months ahead.</div></details>
-<details><summary>On the night</summary><div>Drinks run on consumption and we keep you posted on the spend, so there are no surprises on the invoice. Microphones for speeches, a projector and screen, and room for a band or a DJ. Last drinks 11:30pm.</div></details>
-<details><summary>Dietaries and custom menus</summary><div>Every dietary handled, and custom food and drink menus on request. Final numbers and dietaries are due five days before.</div></details>
-<details><summary>Getting here</summary><div>Upstairs at 166 Cashel Street, The Crossing. Take the lift near H&amp;M and Coffee Culture; The Crossing carpark is right there. We’re closed from 23 December to 5 January.</div></details>
+<section class="ch-night band" role="tabpanel" id="night" aria-labelledby="t-night" data-screen-label="04 · The night (Night)" hidden>
+  <div class="wrap grid">
+    <div class="at-all intro c">
+      <p class="eyebrow">Bar Franco · 04 · The night</p>
+      <h2 class="m2">We host.<br>You stay.</h2>
+      <p class="a2">Not a function room. <br>The night your team still talks about in March.</p>
+    </div>
+    <div class="at-all lines-list x-list">
+      <p class="ml"><span class="n">Downstairs</span><i class="lead" aria-hidden="true"></i><span class="v">arrival spritzes in the Negroni Bar</span></p>
+      <p class="ml"><span class="n">Upstairs</span><i class="lead" aria-hidden="true"></i><span class="v">dinner by the open kitchen</span></p>
+      <p class="ml"><span class="n">Back down</span><i class="lead" aria-hidden="true"></i><span class="v">dessert, drinks and dancing</span></p>
+    </div>
+    <div class="at-all pair flip">
+      <div class="ph r-32 p7 bleed-r"><img src="/images/pack-2026/web/drinks-poured-bar.jpg" alt="Drinks poured at the Negroni &amp; Spritz Bar" width="1400" height="934" loading="lazy" decoding="async"></div>
+      <div class="ph r-45 p4"><img src="/images/pack-2026/web/flow-dance.jpg" alt="A guest laughing on the dance floor" width="1400" height="934" loading="lazy" decoding="async" style="object-position:50% 30%"></div>
+    </div>
+  </div>
 </section>
 
-<section data-tab="" data-open="false" aria-label="The night" class="x5-night" data-screen-label="02 · The night" id="night">
-<p style="font-style: italic; font-size: var(--fs-body);">The night</p>
-<h2 class="x5-h x5-M">We host.<br>You stay.</h2>
-<p class="x5-lede">Not a function room. <br>The night your team still talks about in March.</p>
-<div class="x5-list">
-<p class="x5-li"><span>Downstairs</span><i aria-hidden="true"></i><em>arrival spritzes in the Negroni Bar</em></p>
-<p class="x5-li"><span>Upstairs</span><i aria-hidden="true"></i><em>dinner by the open kitchen</em></p>
-<p class="x5-li"><span>Back down</span><i aria-hidden="true"></i><em>dessert, drinks and dancing</em></p>
-</div>
-<div class="x5-strip"><img alt="Drinks poured at the Negroni &amp; Spritz Bar" loading="lazy" src="../images/pack-2026/web/drinks-poured-bar.jpg"><img alt="A guest laughing on the dance floor" loading="lazy" src="../images/pack-2026/web/flow-dance.jpg" style="object-position: 50% 30%;"><img alt="Guests celebrating at an end-of-year party" loading="lazy" src="../images/christmas/web/event-guests.jpg" style="object-position: 50% 30%;"></div>
+<section class="sec last ch-menu" id="enquire" aria-label="Enquire" data-screen-label="05 · Enquire">
+  <div class="wrap">
+    <article class="frame menu x-enq" data-settle>
+      <p class="eyebrow">Bar Franco · 05 · Enquire</p>
+      <h2 class="m3">Lock in your date.</h2>
+      <p class="a2">December Fridays go first. Send your date and your numbers; we reply within one business day and pencil your date in while you decide.</p>
+      <div class="x-vf"><iframe loading="lazy" src="https://venueflowhq.com/enquire/bar-franco?embed=1&amp;accent=AF0F00" title="Enquire about your Christmas function"></iframe></div>
+      <p class="a4">Prefer to talk? Call <a class="link" href="tel:+64212211307">021 221 1307</a> · <a class="link" href="mailto:events@barfranco.nz">events@barfranco.nz</a></p>
+      <img class="emb" src="/static/logos/emblem/deep-red.svg" alt="" width="48" height="22">
+    </article>
+  </div>
 </section>
-
-
 </main>
-<footer class="x5-foot" data-screen-label="Footer"><img alt="Bar Franco" src="../static/logos/emblem/bright-red.svg" style="height: 24px; width: auto; display: block;"><p style="font-style: italic;">(upstairs) The Crossing, 166 Cashel St, Ōtautahi · bar from 4pm, kitchen from 5pm</p><p><a href="tel:+64212211307" style="text-decoration: none;">021 221 1307</a> · <a href="mailto:events@barfranco.nz" style="text-decoration: none;">events@barfranco.nz</a></p><nav aria-label="Site" class="x5-foot-nav"><a href="/">Home</a><a href="/menus/">Menus</a><a href="/bookings/">Bookings</a><a href="/functions/">Functions</a><a href="/christmas-functions/" aria-current="page">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav></footer>
-<nav aria-label="Call or enquire" class="x5-dock"><a href="tel:+64212211307">Call</a><a data-track="cta" href="#enquire">Enquire</a></nav>
-</div>
-
 <script>
-/* Christmas v5: one chapter open at a time under the chapter row, tracking pushes, the VenueFlow box's height,
-   and the phone dock kept out of the way (hidden on the first screen and over the enquiry box and footer). */
+/* Christmas: dataLayer pushes for calls, emails, CTAs and a VenueFlow submit; #menu #rooms #details #night open their chapter.
+   Tabs, the VenueFlow height, the masthead and dock live in franco.js and chrome.js. */
 (function () {
-  var tabs = [].slice.call(document.querySelectorAll('[data-x5-tab]'));
-  function show(k) {
-    tabs.forEach(function (b) { var on = b.getAttribute('data-x5-tab') === k; b.setAttribute('data-on', on); b.setAttribute('aria-expanded', on); });
-    [].forEach.call(document.querySelectorAll('[data-tab]'), function (s) { s.setAttribute('data-open', s.id === k); });
-  }
-  tabs.forEach(function (b) { b.addEventListener('click', function () { show(b.getAttribute('data-x5-tab')); }); });
-  function fromHash() { var k = (location.hash || '').slice(1); if (k && document.querySelector('[data-tab]#' + k)) show(k); }
-  fromHash(); window.addEventListener('hashchange', fromHash);
-
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"], a[href^="mailto:"], [data-track]') : null;
     if (!a) return;
@@ -204,37 +272,32 @@
     var host = ''; try { host = new URL(e.origin).hostname; } catch (x) { return; }
     if (!/(^|\.)venueflowhq\.com$/.test(host)) return;
     var d = e.data; if (typeof d === 'string') { try { d = JSON.parse(d); } catch (x) { return; } }
-    if (!d || typeof d.type !== 'string') return;
-    if (d.type === 'vf-embed-height' && d.height > 0) { var f = document.querySelector('.x5-iframe'); if (f) f.style.height = Math.max(460, Math.ceil(d.height)) + 'px'; }
-    else if (/submit|success|complete|sent/i.test(d.type)) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'bf_enquiry', bf_page: 'christmas' }); }
+    if (!d || typeof d.type !== 'string' || d.type === 'vf-embed-height') return;
+    if (/submit|success|complete|sent/i.test(d.type)) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'bf_enquiry', bf_page: 'christmas' }); }
   });
-
-  var dock = document.querySelector('.x5-dock');
-  if (!dock) return;
-  document.documentElement.classList.add('x5-dockjs');
-  var lastY = window.scrollY || 0, drift = 0, raf = 0, blockers = 0;
-  function set(on) { dock.classList.toggle('x5-dock-on', on); [].forEach.call(dock.querySelectorAll('a'), function (a) { a.tabIndex = on ? 0 : -1; }); dock.setAttribute('aria-hidden', on ? 'false' : 'true'); }
-  set(false);
-  window.addEventListener('scroll', function () {
-    if (raf) return;
-    raf = requestAnimationFrame(function () {
-      raf = 0; var y = window.scrollY || 0, dy = y - lastY; lastY = y;
-      drift = (dy > 0) === (drift > 0) ? drift + dy : dy;
-      if (y < window.innerHeight * 0.6 || blockers > 0) set(false);
-      else if (drift > 24) set(false);
-      else if (drift < -24) set(true);
-    });
-  }, { passive: true });
-  if ('IntersectionObserver' in window) {
-    var seen = new Map();
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (x) { seen.set(x.target, x.isIntersecting); });
-      blockers = 0; seen.forEach(function (v) { if (v) blockers++; });
-      if (blockers) set(false);
-    }, { rootMargin: '0px 0px -10% 0px' });
-    [].forEach.call(document.querySelectorAll('#enquire, .x5-foot'), function (t) { io.observe(t); });
+  function fromHash() {
+    var k = (location.hash || '').slice(1);
+    var t = k && document.querySelector('.x-tabs [aria-controls="' + k + '"]');
+    if (t) { t.click(); document.getElementById(k).scrollIntoView(); }
   }
+  document.addEventListener('DOMContentLoaded', fromHash);
+  window.addEventListener('hashchange', fromHash);
 })();
 </script>
+
+<footer class="bf-foot bf-lite ch-night">
+  <div class="wrap">
+    <div class="now">
+      <p class="now-k" data-bf-live hidden><em>It’s currently</em></p>
+      <p class="m2" data-bf-status>Bar from 4pm</p>
+      <p class="now-t" data-bf-live hidden><span data-bf-clock></span> in Ōtautahi</p>
+    </div>
+    <nav class="foot-more" aria-label="More from Franco"><span>More from Franco</span><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/corporate-events/">Corporate</a><a href="/weddings/">Weddings</a><a href="/events-pack/">Events pack</a><a href="/contact/">Contact</a><a href="https://www.instagram.com/bar__franco/">Instagram</a><a href="https://www.facebook.com/barfranco.chch">Facebook</a></nav>
+    <p class="foot-legal">All rights reserved © Bar Franco <span data-bf-year>2026</span> · <em>(upstairs)</em> The Crossing, 166 Cashel St, Ōtautahi · <a href="tel:+64212211307">021 221 1307</a> · <a href="mailto:events@barfranco.nz">events@barfranco.nz</a></p>
+    <img class="foot-emb" src="/static/logos/emblem/almond.svg" alt="" width="52" height="22">
+  </div>
+</footer>
+
+<nav class="dock ch-night" aria-label="Call or enquire"><a class="line" href="tel:+64212211307">Call</a><a class="line" href="#enquire" data-track="cta">Enquire</a></nav>
 </body>
 </html>
