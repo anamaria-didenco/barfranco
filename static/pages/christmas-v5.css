@@ -110,3 +110,10 @@ body > .walker{display:none!important}
 /* prices never split across lines ("from 9", "from 4,000") */
 .x5-li > span:last-child:not(:first-child){white-space:nowrap}
 .x5-night .x5-li > span:first-child{white-space:nowrap}
+
+/* the way back to the rest of the site: the main links in the header on desktop, and in the footer everywhere */
+.x5-nav{display:flex;gap:clamp(14px,1.8vw,28px);font-size:var(--fs-body)}
+.x5-nav a,.x5-foot-nav a{text-decoration:none;transition:color 220ms cubic-bezier(.25,.1,.25,1)}
+.x5-nav a:hover,.x5-foot-nav a:hover,.x5-nav a[aria-current="page"],.x5-foot-nav a[aria-current="page"]{color:var(--spritz)}
+.x5-foot-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin-top:8px;font-style:italic;font-size:var(--fs-meta)}
+@media (max-width:1099.98px){.x5-nav{display:none}}
