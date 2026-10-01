@@ -57,11 +57,13 @@
     if (!tk) return;
     lastFocus = document.activeElement;
     tk.hidden = false; document.body.style.overflow = 'hidden';
+    document.querySelectorAll('[data-ora="menu-open"]').forEach(function (b) { b.setAttribute('aria-expanded', 'true'); });
     var c = tk.querySelector('[data-ora="menu-close"]'); if (c) c.focus();
   }
   function closeIndex() {
     if (!tk || tk.hidden) return;
     tk.hidden = true; document.body.style.overflow = '';
+    document.querySelectorAll('[data-ora="menu-open"]').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
   document.querySelectorAll('[data-ora="menu-open"]').forEach(function (b) { b.addEventListener('click', openIndex); });

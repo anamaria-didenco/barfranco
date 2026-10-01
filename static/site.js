@@ -9,12 +9,14 @@ var BF_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
     var closeBtn = tk.querySelector('.tk-close');
     var openMenu = function () {
       tk.classList.add('open'); tk.setAttribute('aria-hidden', 'false');
+      menuBtn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
       if (closeBtn) closeBtn.focus();
     };
     var closeMenu = function () {
       if (!tk.classList.contains('open')) return;
       tk.classList.remove('open'); tk.setAttribute('aria-hidden', 'true');
+      menuBtn.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
       menuBtn.focus();
     };
