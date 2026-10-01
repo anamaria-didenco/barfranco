@@ -57,11 +57,13 @@
     if (!tk) return;
     lastFocus = document.activeElement;
     tk.hidden = false; document.body.style.overflow = 'hidden';
+    document.querySelectorAll('[data-ora="menu-open"]').forEach(function (b) { b.setAttribute('aria-expanded', 'true'); });
     var c = tk.querySelector('[data-ora="menu-close"]'); if (c) c.focus();
   }
   function closeIndex() {
     if (!tk || tk.hidden) return;
     tk.hidden = true; document.body.style.overflow = '';
+    document.querySelectorAll('[data-ora="menu-open"]').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
   document.querySelectorAll('[data-ora="menu-open"]').forEach(function (b) { b.addEventListener('click', openIndex); });
@@ -112,8 +114,8 @@
       tabs.forEach(function (t) {
         var on = t.getAttribute('data-ora') === 'tab-' + k;
         t.setAttribute('aria-selected', on ? 'true' : 'false');
-        t.style.color = on ? '#AF0F00' : '#6C0600';
-        t.style.borderColor = on ? '#AF0F00' : 'transparent';
+        t.style.color = on ? 'var(--spritz)' : 'var(--deep-red)';
+        t.style.borderColor = on ? 'var(--spritz)' : 'transparent';
       });
       document.querySelectorAll('[data-ora-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-ora-panel') !== k; });
       var sec = document.getElementById('sheets'); if (sec) sec.setAttribute('data-tab', k);

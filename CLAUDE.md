@@ -2,6 +2,33 @@
 
 This file tells Claude Code how this site is built and how to edit it. Read it before making changes.
 
+## Tokens
+
+- **`static/tokens.css` is the one token layer**, linked first on every page (`/static/tokens.css`). Colours:
+  `--deep-red #6C0600` (ink), `--spritz #AF0F00` (heads, links), `--almond #FAD7C3`, `--paper #FCFBF7`,
+  `--hairline rgba(108,6,0,.15)`, plus `--bright-red #F00000` for focus rings only. Tints are
+  `color-mix(in srgb, var(--deep-red) 25%, transparent)`. Never write a raw hex/rgb colour outside the token files.
+- Type scale `--fs-caption … --fs-display-lg` (11 steps, each an exact size already in use) and spacing `--space-1…10`.
+  Use them for new work. ~23% of font-size declarations are still one-off literals (cqw menu sheets, the 404 numeral,
+  campaign display sizes): snapping those onto the scale changes how they look, so do it only as a design decision.
+- `static/tokens/colors.css` and `site.css`'s `--deep`/`--bright`/`--hair` are older names that now read tokens.css.
+  Naming flip to watch: in `tokens/colors.css` "bright red" means #AF0F00 and "spritz" means #F00000 — the reverse of tokens.css.
+
+## URLs
+
+- **One scheme: lowercase, folder-style, trailing slash.** `/`, `/menus/`, `/bookings/`, `/functions/`, `/contact/`,
+  `/vouchers/`, `/christmas-functions/`, `/events-pack/`, `/weddings/` … Each page is `<folder>/index.html`.
+- **Link with root paths** (`/menus/`, `/functions/#enquire`), never `Menus.html` or `../`, so a link reads the same
+  at any depth. Every page carries `<link rel="canonical">` to its own address (not 404.html, which is noindex).
+- **Hosting is GitHub Pages** (`CNAME` → www.barfranco.nz). It is case-sensitive and cannot send 301s, so:
+  - the old addresses (`Menus.html`, `Bookings.html`, `Functions.html`, `Contact.html`, `Vouchers.html`, and the
+    vanity folders `events/`, `reservations/`, `our-menus/` …) are stub pages: instant meta refresh + `location.replace`
+    keeping `?query#hash`, canonical to the new address, `noindex, follow`;
+  - `404.html` forwards any other casing or form (`/MENUS`, `/menus.html`, `/Functions`) to the canonical page;
+  - `/menus` → `/menus/` is GitHub's own 301.
+  Never point an internal link at a stub. Don't add `menus.html`-style lowercase files: a Mac checkout can't hold
+  both `Menus.html` and `menus.html`.
+
 ## What this is
 The **complete, production website for Bar Franco** — a modern Italian restaurant, cocktail bar
 and private event venue in central Christchurch, NZ. It is a **static HTML site** (no build step,
@@ -11,8 +38,8 @@ no framework, no server). The files here ARE the site — what you edit is what 
 
 ## How to work on it
 - Open any `.html` file and edit the markup directly.
-- **Two systems are live.** The six "Ora" pages (`index.html`, `Menus.html`, `Bookings.html`,
-  `Functions.html`, `Vouchers.html`, `events-pack/`) are built
+- **Two systems are live.** The six "Ora" pages (`index.html`, `menus/`, `bookings/`,
+  `functions/`, `vouchers/`, `events-pack/`) are built
   from the Ora handoff: each page's layout is in its own inline styles plus one `<style>` block in the
   `<head>` (that is the design spec — edit it there), on top of `static/styles.css` (design-system
   tokens + fonts), `static/ora.css` (shared masthead, Index takeover, dock, footer) and `static/ora.js`
@@ -39,11 +66,11 @@ no framework, no server). The files here ARE the site — what you edit is what 
 | File | Purpose |
 |------|---------|
 | `index.html` | Homepage — hero, about, the two levels, events band, moments gallery, contact form, footer |
-| `Bookings.html` | Reservations — embeds the NowBookIt booking widget |
-| `Functions.html` | Private events / venue hire — links to the Events Pack |
-| `Menus.html` | Food & drinks menu overview |
-| `Vouchers.html` | Gift vouchers |
-| `Contact.html` | Location, hours, contact details |
+| `bookings/` | Reservations — embeds the NowBookIt booking widget |
+| `functions/` | Private events / venue hire — links to the Events Pack |
+| `menus/` | Food & drinks menu overview (the folder also holds the printed menu PDFs) |
+| `vouchers/` | Gift vouchers |
+| `contact/` | Location, hours, contact details |
 | `christmas-functions/` | Christmas landing page (v5, from the Claude Design handoff): its own slim masthead (Call / Enquire), a cover, a four-chapter row (Menu & prices · The rooms · The fine print · The night) that shows one chapter at a time, the enquiry box always below, a slim footer and a Call / Enquire phone dock. Styles in `static/pages/christmas-v5.css`; behaviour in the page's one inline script (tabs, `bf_call` / `bf_email` / `bf_cta` / `bf_enquiry` dataLayer pushes, VenueFlow height, dock). The Google Ads conversion tags in its `<head>` are kept verbatim |
 | `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/` | SEO landing pages, all on one template (hero → heading → split + stats → Deep Red list band → flipped split → optional `#enquire` band → FAQ → Bright Red closing band) |
 | `404.html` | Not-found page (absolute `/` paths) |
@@ -63,7 +90,7 @@ nav/footer links point to `index.html`, not `Home.html`.
 - `static/styles.css` + `static/tokens/` — the design-system tokens and `@font-face` rules the Ora pages load
 - `static/ora.css`, `static/ora.js` — shared chrome and behaviour for the Ora pages
 - `static/legacy.css`, `static/legacy.js` — the previous Events Pack styling, no longer loaded by any page
-- `menus/` — the printed menus as PDFs (linked from Menus.html)
+- `menus/BarFranco-*-Menu.pdf` — the printed menus as PDFs (linked from the menus page)
 - `downloads/Bar-Franco-Events-Pack-2026.pdf` — the printable events pack ("Download the PDF pack" on Functions,
   Christmas, Corporate, Weddings and the Events Pack page). To update it, replace the file under the same name.
 - `home.css`, `fonts.css`, `site.js`, `events.css`, `image-slot.js` at the root — older passes, no
