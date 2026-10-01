@@ -2,17 +2,24 @@
 
 This file tells Claude Code how this site is built and how to edit it. Read it before making changes.
 
-## Tokens
-
-- **`static/tokens.css` is the one token layer**, linked first on every page (`/static/tokens.css`). Colours:
-  `--deep-red #6C0600` (ink), `--spritz #AF0F00` (heads, links), `--almond #FAD7C3`, `--paper #FCFBF7`,
-  `--hairline rgba(108,6,0,.15)`, plus `--bright-red #F00000` for focus rings only. Tints are
-  `color-mix(in srgb, var(--deep-red) 25%, transparent)`. Never write a raw hex/rgb colour outside the token files.
-- Type scale `--fs-caption … --fs-display-lg` (11 steps, each an exact size already in use) and spacing `--space-1…10`.
-  Use them for new work. ~23% of font-size declarations are still one-off literals (cqw menu sheets, the 404 numeral,
-  campaign display sizes): snapping those onto the scale changes how they look, so do it only as a design decision.
-- `static/tokens/colors.css` and `site.css`'s `--deep`/`--bright`/`--hair` are older names that now read tokens.css.
-  Naming flip to watch: in `tokens/colors.css` "bright red" means #AF0F00 and "spritz" means #F00000 — the reverse of tokens.css.
+## One stylesheet
+- **Every page loads `static/franco.css` + `static/franco.js` + `static/chrome.js`** and nothing else
+  (the Events Pack adds `static/events-pack.js`). No `<style>` blocks, no `style=""` (except `object-position`
+  on an `<img>`). The design brief behind it is `DESIGN-FIXES.md`.
+- **Tokens** (top of franco.css): Deep Red `--deep #6C0600` (ink), Almond `--almond #FAD7C3`, Bright Red
+  `--bright #AF0F00` (heads), Spritz `--spritz #F00000` (**focus rings only, never text**), Paper `--paper #F1EEE6`,
+  `--hairline rgba(108,6,0,.15)`. No other colours: no black, greys, gradients or shadows. Never write a raw hex outside the tokens.
+- **Chapters**: every section is one of `ch-menu` (Paper), `ch-aframe` (Almond), `ch-night` (Deep Red),
+  `ch-poster` (Bright Red), which sets its ground and inks. Pages open on paper; at most two non-paper chapters
+  plus the Night footer; never two of one colour adjacent; the band before the footer is never Night; one poster at most.
+- **Type**: Marsha `.m1`–`.m4` only (never below 24px, always capitals); Affairs `.a1`–`.a4`, `.fine`.
+  One `<h1>` per page; heading levels descend without skips.
+- **Grammar**: `.wrap .grid` + column classes; photographs `.ph r-169|r-32|r-45` (no captions, no thumbnails);
+  `.frame` (double rule) for printed objects; `.ml` menu lines (`.v.r` for prices/capacities); `.line` primary
+  asks, `.ask` secondary; `.qa` questions; `.tabs` (franco.js wires `role=tab` buttons to their panels).
+- **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
+- Page-specific CSS lives at the end of franco.css, one `/* ==== page ==== */` block each, every selector
+  prefixed by the page's `<main class="pg-…">`.
 
 ## URLs
 
@@ -37,29 +44,15 @@ no framework, no server). The files here ARE the site — what you edit is what 
 **Do not** convert this to React/Vue/Next/etc. unless explicitly asked. Edit the HTML/CSS directly.
 
 ## How to work on it
-- Open any `.html` file and edit the markup directly.
-- **Two systems are live.** The six "Ora" pages (`index.html`, `menus/`, `bookings/`,
-  `functions/`, `vouchers/`, `events-pack/`) are built
-  from the Ora handoff: each page's layout is in its own inline styles plus one `<style>` block in the
-  `<head>` (that is the design spec — edit it there), on top of `static/styles.css` (design-system
-  tokens + fonts), `static/ora.css` (shared masthead, Index takeover, dock, footer) and `static/ora.js`
-  (reveal motion, masthead condense, takeover, in-page jumps, running head, Menus tabs, print).
-  The Ora masthead/footer are repeated inline on each of the seven pages — change them on all seven.
-- Every other page (Contact, the SEO landing pages, 404) still uses `static/site.css` + `static/site.js`,
-  but is drawn in the Ora design by the "ORA SKIN" block at the end of `site.css` (left-aligned,
-  italic "Bar Franco · 01 ·" eyebrows, Spritz Marsha heads, dotted-leader links, almond enquiry and
-  closing bands, hairline FAQ rows). Keep new styling for these pages in that block.
-  Don't load `site.css` on an Ora page or `ora.css` on the others.
-- Every page shares one masthead and
-  footer: `<header class="bf-mast">` and `<footer class="bf-foot">`, styled by `static/chrome.css`,
-  with `static/chrome.js` tightening the masthead on scroll and running the footer's live
-  "It's currently… / open status" clock in Ōtautahi time. The markup is repeated on each page (there is no
-  templating), so change it on every page. The open page's tab is marked `aria-current="page"` with
-  Franco the dachshund under it. The Index takeover is still per-system. The phone dock (`.m-dock` / `.dock`) is styled and driven by chrome.css/chrome.js on every page: hidden on the first screen, hidden while scrolling down, back on scroll up, and hidden while the footer, `#enquire`, `#book` or the home hero's own `.g-hero-ask` buttons are on screen.
-  On phones the footer is trimmed (status first, details without leaders, Facebook · Contact); pages that
-  already show the address and hours just above it (home, Contact) use `<footer class="bf-foot bf-lite">`.
-- To preview: just open the file in a browser (e.g. `open index.html` on macOS). No server needed,
-  though a simple static server (`python3 -m http.server`) avoids any file:// quirks.
+- Open any `.html` file and edit the markup directly. Build with franco.css classes before writing new CSS.
+- **The chrome is repeated on every page** (there is no templating): the masthead `<header class="bf-mast">`
+  (open page marked `aria-current="page"` with Franco the dachshund under it), the phone Index `#ora-index`,
+  the Night footer (live open/closed clock in Ōtautahi time, run by chrome.js) and the phone dock.
+  Change them on every page. Home and Contact use the lite footer (no address block, as they show it above).
+  Christmas has its own campaign masthead (no nav; Call / Enquire; the Index button always shown).
+- franco.js also runs the FormSubmit contact form (`<form data-email data-subject>`, honeypot, Ads conversion)
+  and the VenueFlow iframe height.
+- To preview: a static server from the repo root (`python3 -m http.server`) — pages use root paths.
 - Keep the writing voice warm, witty, never corporate (see Brand below).
 
 ## Pages
@@ -71,38 +64,31 @@ no framework, no server). The files here ARE the site — what you edit is what 
 | `menus/` | Food & drinks menu overview (the folder also holds the printed menu PDFs) |
 | `vouchers/` | Gift vouchers |
 | `contact/` | Location, hours, contact details |
-| `christmas-functions/` | Christmas landing page (v5, from the Claude Design handoff): its own slim masthead (Call / Enquire), a cover, a four-chapter row (Menu & prices · The rooms · The fine print · The night) that shows one chapter at a time, the enquiry box always below, a slim footer and a Call / Enquire phone dock. Styles in `static/pages/christmas-v5.css`; behaviour in the page's one inline script (tabs, `bf_call` / `bf_email` / `bf_cta` / `bf_enquiry` dataLayer pushes, VenueFlow height, dock). The Google Ads conversion tags in its `<head>` are kept verbatim |
-| `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/` | SEO landing pages, all on one template (hero → heading → split + stats → Deep Red list band → flipped split → optional `#enquire` band → FAQ → Bright Red closing band) |
+| `christmas-functions/` | Christmas landing page: campaign masthead (Call / Enquire), cover, four chapter tabs (Menu & prices · The rooms · The fine print · The night), the `#enquire` box below, Call / Enquire phone dock. Keep the Google Ads conversion tags and the `bf_*` dataLayer pushes verbatim |
+| `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/` | SEO landing pages on the franco grammar (the four dining pages share `.pg-dine`) |
 | `404.html` | Not-found page (absolute `/` paths) |
-| `events-pack/` | Events Pack 2026 — a masthead cover, then eight chapters that open underneath their title (hover on desktop, tap on phones; one open at a time; `#ch-food` etc. deep-link). Behaviour in `static/events-pack.js`; photos in `images/pack-2026/`. Uses the shared masthead, footer and dock like every page. The old `Bar Franco Events Pack.html` redirects here |
+| `events-pack/` | Events Pack 2026 — a masthead cover, then eight chapters that open underneath their title (tap or click to open; Welcome open on load; one open at a time; `#ch-food` etc. deep-link). Behaviour in `static/events-pack.js`; photos in `images/pack-2026/`. Uses the shared masthead, footer and dock like every page. The old `Bar Franco Events Pack.html` redirects here |
 | `Brand Guide.html` | Internal one-page brand guide (not linked in site nav) |
 
-`index.html` is the home page (named `index.html` so hosts serve it automatically). All internal
-nav/footer links point to `index.html`, not `Home.html`.
+`index.html` is the home page (named `index.html` so hosts serve it automatically). Internal links
+point to `/`.
 
 ## Folder structure
-- `index.html` + other page `.html` files — the site pages (root level); landing pages in folders
-- `static/site.css` — the stylesheet (tokens at the top: Deep Red `#6C0600`, Almond `#FAD7C3`,
-  Bright Red `#AF0F00`, Paper `#FCFBF7`; gutter/section/band spacing; the two type faces)
-- `static/site.js` — shared JS (Menu takeover, dachshund scroll-walker on the bottom edge, `#enquire`
-  scroll with the 72px header offset, the Menus food/drinks swap, the FormSubmit contact form)
+- `index.html` + `<folder>/index.html` — the site pages
+- `static/franco.css`, `static/franco.js`, `static/chrome.js` — the one stylesheet and the shared behaviour
+- `static/events-pack.js` — the Events Pack chapters; `static/menu-data.js` — older menu data, not loaded by the pages
 - `static/fonts/`, `static/logos/`, `static/illustrations/` — the brand kit the pages use
-- `static/styles.css` + `static/tokens/` — the design-system tokens and `@font-face` rules the Ora pages load
-- `static/ora.css`, `static/ora.js` — shared chrome and behaviour for the Ora pages
-- `static/legacy.css`, `static/legacy.js` — the previous Events Pack styling, no longer loaded by any page
 - `menus/BarFranco-*-Menu.pdf` — the printed menus as PDFs (linked from the menus page)
-- `downloads/Bar-Franco-Events-Pack-2026.pdf` — the printable events pack ("Download the PDF pack" on Functions,
-  Christmas, Corporate, Weddings and the Events Pack page). To update it, replace the file under the same name.
-- `home.css`, `fonts.css`, `site.js`, `events.css`, `image-slot.js` at the root — older passes, no
-  longer loaded by any page. Safe to leave; harmless.
+- `downloads/Bar-Franco-Events-Pack-2026.pdf` — the printable events pack ("View / Download the PDF pack").
+  To update it, replace the file under the same name.
 - `brand/` — fonts (.otf) + brand marks (wordmark, dachshund, Negroni glass)
 - `brand-assets/` — organized brand kit (marks + fonts + README) for designers/printers
 - `images/` — all website photography, optimized for web (~150–280KB each)
 - `sitemap.xml`, `robots.txt` — SEO files
-- `favicon.png`, `apple-touch-icon.png`, `og-image.jpg` — icons + social share image
+- `favicon.svg`, `favicon.png`, `apple-touch-icon.png`, `og-image.jpg` — icons + social share image
 
 ## Photos
-All photos are **baked in** as `<img class="photo" src="images/....jpg">`. To change a photo:
+All photos are **baked in** as `<img src="/images/….jpg" width height alt>` inside a `.ph` figure (ratios 16:9, 3:2 or 4:5). To change a photo:
 1. Add the new image to `images/` (resize to ~1400px long edge, JPEG quality ~0.82 — keep files small).
 2. Update the `src=""` on the relevant `<img>` and write a descriptive `alt=""` (good for SEO).
 
@@ -112,15 +98,10 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
 `dining-room.jpg` are kept in `images/` unmodified.
 
 ## Brand (keep edits on-brand)
-- **Colours — text uses three reds only, by rank** (no other text colours, no gradients, no greys;
-  tints are opacity of these):
-  - `#6C0600` deep red — page titles / hero headlines (`h1`). `#F00000` is a focus-ring / small-accent colour only, never headline ink
-  - `#AF0F00` Spritz — section headings and sub-heads (`h2`–`h6`, Marsha display lines) and every call to action (`.g-ask`, `.lb`, `.bf-pill`, `.bf-lead`, dock buttons), which also end in an arrow — see the CTA block at the end of `static/chrome.css`
-  - `#6C0600` deep red — all body copy, captions, small print
-  - Grounds: Paper `#FCFBF7` or Almond `#FAD7C3` only. The colour rules for the site.css pages sit
-    in the "COLOUR HIERARCHY" block at the end of `static/site.css`.
+- **Colours:** Deep Red `#6C0600` ink, Bright Red `#AF0F00` heads, Almond `#FAD7C3`, Paper `#F1EEE6`;
+  Spritz `#F00000` is the focus ring only. Each chapter fixes its inks — see "One stylesheet" above.
 - **Type:** VTC Marsha Bold (display, always UPPERCASE) + Affairs Regular/Italic (body; never set in
-  capitals, never fake-bold). Radius 0 everywhere; shadows only on paper objects.
+  capitals, never fake-bold). Radius 0 and no shadows anywhere.
 - **Marks:** wordmark (the name), the dachshund (playful accent), the Negroni glass (the ritual).
 - **Voice:** warm, direct, a little witty. "Come say ciao," not "Contact us."
 - Full detail in `Brand Guide.html`.
@@ -150,7 +131,7 @@ After deploying once, future edits just need a re-upload (or a `git push` if usi
 
 ## Golden rules
 1. Edit the HTML/CSS directly — this is the real site, not a mockup.
-2. Stay on-brand (red/charcoal/cream, VTC Marsha + Affairs, witty warm voice).
+2. Stay on-brand (the franco.css tokens and chapters, VTC Marsha + Affairs, witty warm voice).
 3. Keep photos optimized and small.
 4. Don't break the SEO tags or JSON-LD.
 5. Keep facts (hours, address, contacts) consistent across all pages.
