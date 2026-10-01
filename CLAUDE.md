@@ -4,7 +4,7 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
 
 ## One stylesheet
 - **Every page loads `static/franco.css` + `static/franco.js` + `static/chrome.js`** and nothing else
-  (the Events Pack adds `static/events-pack.js`). No `<style>` blocks, no `style=""` (except `object-position`
+  (the Events Pack adds `static/events-pack.js`, Functions adds `static/functions.js`). No `<style>` blocks, no `style=""` (except `object-position`
   on an `<img>`). The design brief behind it is `DESIGN-FIXES.md`.
 - **Tokens** (top of franco.css): Deep Red `--deep #6C0600` (ink), Almond `--almond #FAD7C3`, Bright Red
   `--bright #AF0F00` (heads), Spritz `--spritz #F00000` (**focus rings only, never text**), Paper `--paper #F1EEE6`,
@@ -16,7 +16,10 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   One `<h1>` per page; heading levels descend without skips.
 - **Grammar**: `.wrap .grid` + column classes; photographs `.ph r-169|r-32|r-45` (no captions, no thumbnails);
   `.frame` (double rule) for printed objects; `.ml` menu lines (`.v.r` for prices/capacities); `.line` primary
-  asks, `.ask` secondary; `.qa` questions; `.tabs` (franco.js wires `role=tab` buttons to their panels).
+  asks (`<span>words</span><i class="lead"></i><em class="v">fact</em>` — the leader runs to a short fact where a price
+  would be: Book a table … 4pm till late · Plan an event … up to 240 · Read the full menus … food & drinks ·
+  Christmas parties … December; the dock and Send are the words alone. **No arrows anywhere**), `.ask` secondary; `.qa` questions; `.tabs` (franco.js wires `role=tab` buttons to their panels).
+- Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
 - Page-specific CSS lives at the end of franco.css, one `/* ==== page ==== */` block each, every selector
   prefixed by the page's `<main class="pg-…">`.
@@ -60,7 +63,7 @@ no framework, no server). The files here ARE the site — what you edit is what 
 |------|---------|
 | `index.html` | Homepage — hero, about, the two levels, events band, moments gallery, contact form, footer |
 | `bookings/` | Reservations — embeds the NowBookIt booking widget |
-| `functions/` | Private events / venue hire — links to the Events Pack |
+| `functions/` | Private events — the nameplate cover, the coaster (turns over, cycles `images/coaster/`; the one drop-shadow on the site), the framed VenueFlow card `#enquire`, the five-chapter guide (`#why #spaces #occasions #food #questions`), the seasonal Christmas Poster band (remove after December). Behaviour in `static/functions.js` |
 | `menus/` | Food & drinks menu overview (the folder also holds the printed menu PDFs) |
 | `vouchers/` | Gift vouchers |
 | `contact/` | Location, hours, contact details |

@@ -144,7 +144,7 @@
   ]
 }
 </script>
-<script>document.documentElement.classList.add('fx')</script>
+<script>document.documentElement.classList.add('fx');function bfVT(e){var t=e.viewTransition;if(t&&t.ready)t.ready.catch(function(){})}addEventListener('pagereveal',bfVT);addEventListener('pageswap',bfVT)</script>
 <link href="/static/franco.css" rel="stylesheet"/>
 <script defer src="/static/franco.js"></script>
 <script defer src="/static/chrome.js"></script>
@@ -167,16 +167,16 @@
   <article class="frame ix-card" data-settle>
     <img class="ix-logo" src="/static/logos/bar-franco-script-incline/deep-red.svg" alt="Bar Franco" width="280" height="120">
     <nav class="ix-nav" aria-label="Site">
-      <a class="ml" href="/"><span class="n">Home</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
-      <a class="ml" href="/menus/"><span class="n">Menus</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
-      <a class="ml" href="/bookings/"><span class="n">Bookings</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
-      <a class="ml" href="/functions/"><span class="n">Functions</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
-      <a class="ml" href="/christmas-functions/"><span class="n">Christmas</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
-      <a class="ml" href="/vouchers/"><span class="n">Vouchers</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
-      <a class="ml" href="/contact/"><span class="n">Contact</span><i class="lead" aria-hidden="true"></i><i class="v" aria-hidden="true"></i></a>
+      <a class="ml" href="/"><span class="n">Home</span></a>
+      <a class="ml" href="/menus/"><span class="n">Menus</span></a>
+      <a class="ml" href="/bookings/"><span class="n">Bookings</span></a>
+      <a class="ml" href="/functions/"><span class="n">Functions</span></a>
+      <a class="ml" href="/christmas-functions/"><span class="n">Christmas</span></a>
+      <a class="ml" href="/vouchers/"><span class="n">Vouchers</span></a>
+      <a class="ml" href="/contact/"><span class="n">Contact</span></a>
     </nav>
     <p class="a4"><em>(upstairs)</em> · down the laneway · 4pm till late</p>
-    <div class="lines"><a class="line" href="/bookings/">Book a table</a><a class="line" href="/functions/#enquire">Plan an event</a></div>
+    <div class="lines"><a class="line" href="/bookings/"><span>Book a table</span><i class="lead" aria-hidden="true"></i><em class="v">4pm till late</em></a><a class="line" href="/functions/#enquire"><span>Plan an event</span><i class="lead" aria-hidden="true"></i><em class="v">up to 240</em></a></div>
     <img class="emb" src="/static/logos/emblem/deep-red.svg" alt="" width="48" height="22">
   </article>
 </div>
@@ -221,7 +221,7 @@
         <div class="intro"><h2 class="m4">Send a note</h2><p class="a3 it">A table, a function, a question — we'll come straight back to you.</p></div>
         <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" type="text" autocomplete="name" required></div>
         <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" placeholder="Twelve of us, a Friday in November, somewhere upstairs…" required></textarea></div>
+        <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
         <button class="line" type="submit">Send</button>
       </form>
     </div>

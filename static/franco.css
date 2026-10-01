@@ -29,7 +29,6 @@
   /* motion */
   --ease-ink:cubic-bezier(.25,.1,.25,1);--ease-in:cubic-bezier(.2,.7,.2,1);
   --t-ink:200ms;--t-set:900ms;--t-unmask:1200ms;--t-settle:700ms;
-  --arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 12'%3E%3Cpath d='M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E");
 }
 @media (max-width:1199.98px){:root{--between:96px}}
 @media (max-width:899.98px){:root{--gutter:20px}}
@@ -60,6 +59,8 @@ em,i{font-style:italic}
 [hidden]{display:none!important}
 .link{color:var(--head);text-decoration:none}
 .link:hover{color:var(--ink);text-decoration:underline}
+.u{color:var(--head);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em}
+.u:hover{color:var(--ink)}
 
 /* ---- type ---- */
 .m1,.m2,.m3,.m4{font-family:var(--marsha);font-weight:700;text-transform:uppercase;color:var(--head);text-wrap:balance}
@@ -85,6 +86,7 @@ em,i{font-style:italic}
 .sec.last{padding-bottom:var(--between)}
 .band{padding-top:var(--band);padding-bottom:var(--band)}   /* a chapter of colour */
 .intro{display:grid;gap:16px;align-content:start;justify-items:start}
+.intro.c{justify-items:center;text-align:center}
 .mt{margin-top:var(--inside)}
 .emb{height:22px;width:auto}
 /* text starts on column 1 or column 7 */
@@ -141,20 +143,18 @@ em,i{font-style:italic}
 a.ml:hover{text-decoration:none;color:var(--head)}
 
 /* ---- asks ---- */
-/* primary: the menu line — words, a dotted leader, the fine arrow, a hairline above and below */
+/* primary: the menu line — the words, a dotted leader and a short fact where a price would be, a hairline above and below.
+   No arrows. With no fact (the dock, Send) it is the words alone between the rules */
 .line{display:flex;align-items:baseline;width:100%;max-width:440px;padding:16px 12px 15px;border:0;border-top:1px solid currentColor;border-bottom:1px solid currentColor;background:transparent;color:var(--ink);font-family:var(--affairs);font-style:normal;font-size:var(--a2);line-height:1.2;text-align:left;text-decoration:none;cursor:pointer;transition:background-color var(--t-ink) var(--ease-ink),color var(--t-ink) var(--ease-ink)}
-.line::before{content:"";order:1;flex:1 1 auto;min-width:1.25em;margin:0 .45em 0 .6em;border-bottom:2px dotted currentColor;transform:translateY(-.28em)}
-.line::after{content:"";order:2;flex:none;width:1.5em;height:.6em;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform var(--t-ink) var(--ease-ink)}
+.line>.lead{flex:1 1 auto;min-width:1.25em;margin:0 .5em;border-bottom:2px dotted currentColor;transform:translateY(-.28em)}
+.line>.v{flex:none;font-style:italic;white-space:nowrap}
 .line:hover,.line:focus-visible{background:var(--fill);color:var(--fill-text);text-decoration:none}
-.line:hover::after,.line:focus-visible::after{transform:translateX(.22em)}
 .line:active{opacity:.6}
 .line+.line{border-top:0}
 .lines{display:grid;width:100%;max-width:440px}
-/* secondary: the written ask — italic words and the fine arrow */
-.ask{display:inline-flex;align-items:baseline;gap:.45em;font-style:italic;font-size:var(--a2);line-height:1.3;color:var(--head);white-space:nowrap;padding:6px 0}
-.ask::after{content:"";flex:none;width:1.35em;height:.54em;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform var(--t-ink) var(--ease-ink)}
+/* secondary: the written ask — italic words in the head ink, underlined on hover */
+.ask{display:inline-flex;align-items:baseline;font-style:italic;font-size:var(--a2);line-height:1.3;color:var(--head);white-space:nowrap;padding:6px 0}
 .ask:hover{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
-.ask:hover::after{transform:translateX(.22em)}
 .ask:active{opacity:.6}
 @media (max-width:639.98px){.line{max-width:none;padding:15px 10px 14px}}
 
@@ -179,6 +179,13 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 @media (max-width:999.98px){.mast-nav{display:none}.mast-asks{margin-left:auto}.mast-menu{display:block}}
 @media (max-width:639.98px){.mast-asks{display:none}.mast-menu{margin-left:auto}.mast-row{align-items:center}}
 
+/* campaign pages (Christmas): the nav gives way to Call · Enquire, so the Index button shows at every width */
+.mast-menu.always{display:block}
+.mast-asks+.mast-menu.always{margin-left:clamp(16px,2vw,28px)}
+@media (min-width:1000px){.mast-row:not(:has(.mast-nav)) .mast-asks{margin-left:auto}}
+@media (max-width:639.98px){.mast-asks+.mast-menu.always{margin-left:auto}}
+
+
 /* ---- phone Index (every page) ---- */
 #ora-index{position:fixed;inset:0;z-index:60;overflow:auto;padding:0 var(--margin) 32px}
 .ix-top{display:flex;justify-content:space-between;align-items:center;height:72px}
@@ -188,15 +195,16 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .ix-card .ix-logo{width:min(60%,280px);height:auto}
 .ix-nav{display:grid;gap:6px;width:100%}
 .ix-nav .ml{font-size:clamp(20px,2.4vw,24px)}
-.ix-nav .ml>.v{flex:none;width:1.35em;height:.54em;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
+.ix-nav .ml{justify-content:center}
+.ix-nav .ml>.lead,.ix-nav .ml>.v{display:none}
 
 /* ---- phone dock: two menu lines on Night — chrome.js slides it (.bf-dock-on) ---- */
 .dock{display:none}
 @media (max-width:639.98px){
   .dock{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:1fr 1fr;padding:0 4px env(safe-area-inset-bottom);transition:transform 320ms var(--ease-ink),visibility 0s linear 0s}
   .dock .line{max-width:none;border:0;padding:17px 10px 16px;font-size:clamp(15px,4.3vw,17px);white-space:nowrap}
-  .dock .line::before{min-width:.8em;margin:0 .3em 0 .45em}
-  .dock .line::after{width:1.35em;height:.54em}
+  .dock .line{justify-content:center}
+  .dock .line>.lead,.dock .line>.v{display:none}
   .dock .line+.line{border-left:1px solid var(--hair)}  /* the divider between the two asks is a plain hairline */
   .dock .line:hover,.dock .line:active{background:var(--almond);color:var(--deep)}
   .bf-dockjs .dock:not(.bf-dock-on){transform:translateY(calc(100% + 4px));visibility:hidden;transition:transform 320ms var(--ease-ink),visibility 0s linear 320ms}
@@ -230,6 +238,24 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .tabs button[aria-selected="true"]{color:var(--head);border-bottom-color:var(--head)}
 .tabs button:focus-visible{outline:2px solid var(--spritz);outline-offset:3px}
 
+/* ---- forms: printed objects. Labels above, no placeholders, fields underline in the ink ---- */
+.form{display:grid;gap:22px;width:100%;text-align:left}
+.field{display:grid;gap:6px;width:100%}
+.field>label{font-style:italic;font-size:var(--a4);line-height:1.3}
+.field input,.field textarea,.field select{width:100%;margin:0;border:0;border-bottom:1px solid currentColor;border-radius:0;background:transparent;color:inherit;font-family:var(--affairs);font-size:var(--a2);line-height:1.3;padding:8px 0 10px;-webkit-appearance:none;appearance:none}
+.field textarea{min-height:140px;resize:vertical}
+.field .help{font-style:italic;font-size:var(--fine)}
+.form-note{font-style:italic;font-size:var(--a4)}
+.form-note.err{color:var(--head)}
+button.line{appearance:none;-webkit-appearance:none}
+.frame iframe{width:100%;border:0;background:transparent}
+
+/* ---- campaign cover strip (Christmas, Events Pack): 3–4 photographs at 4:5; two on phones ---- */
+.strip{position:relative;display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:var(--gutter)}
+@media (max-width:639.98px){.strip{grid-template-columns:1fr 1fr}.strip>:nth-child(n+3){display:none}}
+
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
 /* ---- motion: set · unmask · settle — once each, only with JS (html.fx), never with reduced motion ---- */
 .fx [data-set]{opacity:0;letter-spacing:.06em;transition:opacity var(--t-set) var(--ease-in),letter-spacing var(--t-set) var(--ease-in)}
 .fx img[data-set]{letter-spacing:normal}
@@ -245,6 +271,11 @@ a.ml:hover{text-decoration:none;color:var(--head)}
   .fx [data-unmask]::before{display:none}
 }
 @media print{.bf-mast,.dock,#ora-index{display:none!important}.fx [data-set],.fx [data-settle]{opacity:1;transform:none}.fx [data-unmask]::before{display:none}}
+/* between pages the masthead holds still and the page turns under it, like a menu (Chrome, Safari; elsewhere a normal load) */
+@view-transition{navigation:auto}
+.bf-mast{view-transition-name:bf-mast}
+::view-transition-old(root),::view-transition-new(root){animation-duration:420ms;animation-timing-function:cubic-bezier(.25,.1,.25,1)}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
 
 /* ---- Home: the cover ---- */
 .cover{padding-top:clamp(24px,3vw,40px)}
@@ -262,12 +293,6 @@ a.ml:hover{text-decoration:none;color:var(--head)}
   .level .lv-ph{grid-column:1/4}.level .lv-txt{grid-column:1/-1}
 }
 @media (max-width:639.98px){.cover-asks{display:grid}.cover-logo{max-width:300px}.level .lv-ph{grid-column:1/4}}
-
-/* campaign pages (Christmas): the nav gives way to Call · Enquire, so the Index button shows at every width */
-.mast-menu.always{display:block}
-.mast-asks+.mast-menu.always{margin-left:clamp(16px,2vw,28px)}
-@media (min-width:1000px){.mast-row:not(:has(.mast-nav)) .mast-asks{margin-left:auto}}
-@media (max-width:639.98px){.mast-asks+.mast-menu.always{margin-left:auto}}
 
 /* ==== index.html ==== */
 /* the cover logo is the page h1 */
@@ -314,29 +339,103 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 @media (max-width:639.98px){.pg-bookings .bk-frame{padding:28px 22px}}
 
 /* ==== functions/index.html ==== */
-/* hero: title, asks and the framed "In this issue" index beside the lead photograph */
-.pg-functions .hero{padding-top:clamp(24px,3vw,40px)}
-.pg-functions .hero-txt{align-content:start}
-.pg-functions .hero-ix{width:100%;max-width:440px;margin-top:16px;gap:16px}
-.pg-functions .hero-ph{align-self:start}
-@media (max-width:899.98px){.pg-functions .hero-ph{margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin))}}
-@media (max-width:639.98px){.pg-functions .hero-ph{aspect-ratio:3/2}}   /* keeps the page inside seven phone screens */
-/* 01 · the enquiry card: the VenueFlow form inside the double rule, the PDF pack at its foot */
-.pg-functions .enq iframe{width:100%;height:460px;border:0;background:var(--obj)}
-.pg-functions .nw{white-space:nowrap}
-.pg-functions .enq-pdf{display:flex;flex-wrap:wrap;gap:4px 28px;margin-top:20px}
-/* 03 · the spaces card */
-.pg-functions .spaces-card .lv{display:grid;gap:10px;justify-items:center;width:100%}
-.pg-functions .spaces-card .lv-all{padding-top:22px;border-top:1px solid var(--hair)}
-.pg-functions .spaces-pair{grid-column:6/13;grid-template-columns:repeat(7,minmax(0,1fr))}
-.pg-functions .spaces-pair>.p4{grid-column:1/4;grid-row:1}
-.pg-functions .spaces-pair>.p7{grid-column:4/8}
-@media (max-width:899.98px){.pg-functions .spaces-pair{grid-column:1/-1}}
-@media (max-width:639.98px){.pg-functions .spaces-pair{grid-template-columns:1fr}.pg-functions .spaces-pair>.p7{grid-column:1/-1}}
-/* 04 · occasions: .m4 heads in two columns over hairlines */
-.pg-functions .occ{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter);border-bottom:1px solid var(--hair)}
-.pg-functions .occ>div{display:grid;gap:8px;align-content:start;padding:20px 0 24px}
-@media (max-width:639.98px){.pg-functions .occ{grid-template-columns:1fr}.pg-functions .occ>div{padding:16px 0 18px}}
+/* ---- Page: Functions — the nameplate, the coaster, the five chapters (functions.js) ---- */
+/* the nameplate: functions.js sets one size for every line so the widest fills the frame; this is the fallback */
+.np-cover{padding-top:clamp(20px,3vw,44px)}
+.np{display:grid;justify-items:center;row-gap:.02em;position:relative;overflow:hidden;font-family:var(--marsha);font-weight:700;text-transform:uppercase;color:var(--title);line-height:.84;letter-spacing:-.005em;font-size:calc((min(100vw,1568px) - 2 * var(--margin)) / 13)}
+.np-l{display:block;width:max-content;white-space:nowrap}
+.np-probe{position:absolute;left:0;top:0;display:block;width:max-content;white-space:nowrap;visibility:hidden;pointer-events:none;font-size:100px;letter-spacing:-.005em}
+.np-date{margin-top:clamp(14px,1.8vw,24px);padding:12px 0;border-top:1px solid var(--deep);border-bottom:1px solid var(--deep);text-align:center}
+.np-cover .strip{margin-top:clamp(14px,1.8vw,24px)}
+@media (max-width:899.98px){.strip.all{grid-template-columns:1fr 1fr}}
+@media (max-width:639.98px){.np{font-size:calc((100vw - 2 * var(--margin)) / 7.5)}.np-w{display:block}.strip.all>:nth-child(n+3){display:block}}
+/* why people book Franco: the coaster and the words, beside the framed enquiry card */
+.hook{align-items:start;max-width:calc(1240px + 2 * var(--margin))}
+.hook-l{grid-column:1/7;display:grid;gap:16px;align-content:start;justify-items:start}
+.hook-mid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 28px;align-items:center;width:100%}
+.hook-copy{display:grid;gap:16px}
+.hook-mid>.coaster-wrap{display:grid;justify-items:center;gap:14px;margin:0 8px 0 0}
+@media (max-width:1099.98px){.hook-mid{display:contents}.hook-mid>.coaster-wrap{order:1;display:flex;gap:22px;margin:18px 0 0 6px}}
+.hook-talk{display:grid;gap:8px;width:100%;margin-top:20px}
+.hook-talk .ml{font-size:var(--a3)}
+.hook-talk .facts .a4{margin-top:2px}
+.hook-card{grid-column:7/13;display:grid;gap:14px;justify-items:center;text-align:center;scroll-margin-top:72px}
+.hook-card iframe{height:520px}
+/* phones: words, then the form, then the phone lines and the coaster */
+@media (max-width:899.98px){.hook{row-gap:16px}.hook-l{display:contents}.hook-l>*,.hook-mid>*,.hook-card{grid-column:1/-1}.hook-card{order:1;width:100%;max-width:680px;justify-self:center;margin:24px 0 8px}.hook-talk{order:2}.hook-mid>.coaster-wrap{order:3}}
+/* the coaster: a printed object set down on the table — the one shadow on the site. Turn it over */
+.coaster-wrap{display:flex;align-items:center;gap:22px;margin:18px 0 0 6px}
+.coaster{position:relative;width:clamp(180px,15vw,230px);aspect-ratio:1/1;transform:rotate(-8deg);filter:drop-shadow(0 1px .5px rgba(108,6,0,.22)) drop-shadow(0 6px 12px rgba(108,6,0,.10));transition:transform 1100ms var(--ease-in),filter 1100ms var(--ease-in),opacity 600ms var(--ease-ink)}
+.fx .coaster:not([data-settled]){opacity:0;transform:translateY(-18px) rotate(-16deg) scale(1.05);filter:drop-shadow(0 22px 26px rgba(108,6,0,.10))}
+@media (hover:hover) and (pointer:fine){.coaster[data-settled]:hover{transform:translateY(-4px) rotate(-6deg);filter:drop-shadow(0 2px 1px rgba(108,6,0,.20)) drop-shadow(0 14px 22px rgba(108,6,0,.12));transition-duration:500ms}}
+.co-flip{all:unset;position:absolute;inset:0;cursor:pointer;transform-style:preserve-3d;transform:perspective(900px) rotateY(0deg);transition:transform 850ms var(--ease-in)}
+.co-flip[data-turned="true"]{transform:perspective(900px) rotateY(180deg)}
+.co-flip:focus-visible{outline:2px solid var(--spritz);outline-offset:6px;border-radius:50%}
+.co-face{position:absolute;inset:0;display:block;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.co-back{transform:rotateY(180deg)}
+.co-bg,.co-cg{position:absolute;inset:0;display:block;-webkit-mask:url("shapes/coaster.svg") center/100% 100% no-repeat;mask:url("shapes/coaster.svg") center/100% 100% no-repeat}
+.co-bg{background:var(--almond)}
+.co-cg{background:var(--deep)}
+.co-cg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;opacity:0}
+.co-cg img[data-show]{opacity:1}
+.co-ring{position:absolute;inset:9%;border:1.5px solid var(--deep);border-radius:50%}
+.co-ring.in{inset:calc(9% + 4px);border-width:1px}
+.co-back .co-ring{border-color:var(--almond)}
+.co-emb{position:absolute;left:50%;top:50%;width:30%;height:auto;transform:translate(-50%,-50%)}
+.co-hint{margin:0;font-style:italic;font-size:var(--a4);transition:opacity 400ms var(--ease-ink)}
+.coaster-wrap:hover .co-hint{opacity:.5}
+@media (prefers-reduced-motion:reduce){.fx .coaster:not([data-settled]){opacity:1;transform:rotate(-8deg);filter:drop-shadow(0 1px .5px rgba(108,6,0,.22)) drop-shadow(0 6px 12px rgba(108,6,0,.10))}}
+/* the five chapters: across the page from 1100px (one always open), a list below (all closed) */
+.chx-intro{padding-top:var(--between)}
+.sec.chx-sec{padding-top:clamp(40px,4.5vw,64px)}
+.chx{margin-top:clamp(16px,2vw,24px)}
+.chx-h{position:relative;font:inherit}
+.chx-head{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:8px;align-content:start;width:100%;padding:18px 0 22px}
+.chx-head:focus-visible{outline:2px solid var(--spritz);outline-offset:4px}
+.chx-n{font-style:italic;font-size:var(--a4)}
+.chx-t{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:var(--m4);line-height:1.05;letter-spacing:.06em;text-wrap:balance;transition:color var(--t-ink) var(--ease-ink)}
+.chx-l{font-style:italic;font-size:var(--a4);line-height:1.4;text-wrap:pretty}
+.chx-oc{display:none;color:var(--head);font-size:24px;line-height:1}
+.chx-oc::before{content:"+"}
+.chx-ch[data-open="true"] .chx-oc::before{content:"\2212"}
+.chx-head:hover .chx-t,.chx-ch[data-open="true"] .chx-t{color:var(--head)}
+.chx-js .chx-ch:not([data-open="true"]) .chx-body{display:none}
+.chx-body{padding-top:var(--inside)}
+.chx-card{align-items:start}
+.chx-ph{grid-column:1/6}
+.chx-tx{grid-column:7/13;display:grid;gap:16px;align-content:start}
+.facts{display:grid;width:100%;border-bottom:1px solid var(--hair)}
+.facts>*{padding:9px 0;border-top:1px solid var(--hair);font-size:var(--a3);line-height:1.45}
+.lv2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px var(--gutter)}
+.lv2>div{display:grid;gap:8px;align-content:start}
+.qlist{display:grid;border-bottom:1px solid var(--hair)}
+.qlist>div{display:grid;gap:4px;padding:14px 0;border-top:1px solid var(--hair)}
+.qlist h4{font-size:var(--a2);font-weight:400;line-height:1.35;color:var(--head)}
+.links{display:flex;flex-wrap:wrap;gap:6px 24px}
+@media (min-width:1100px){
+  .chx{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+  .chx-ch{display:contents}
+  .chx-h{grid-row:1;padding-right:var(--gutter);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  .chx-h::after{content:"";position:absolute;left:0;right:var(--gutter);bottom:-1px;height:2px;background:transparent;transition:background-color var(--t-ink) var(--ease-ink)}
+  .chx-ch:last-child .chx-h{padding-right:0}
+  .chx-ch:last-child .chx-h::after{right:0}
+  .chx-ch[data-open="true"] .chx-h::after{background:var(--head)}
+  .chx-body{grid-column:1/-1}
+}
+@media (max-width:1099.98px){
+  .chx{border-bottom:1px solid var(--hair)}
+  .chx-h{border-top:1px solid var(--hair);transition:border-color var(--t-ink) var(--ease-ink)}
+  .chx-ch[data-open="true"] .chx-h{border-top-color:var(--head)}
+  .chx-head{grid-template-columns:2.2em minmax(0,1fr) auto;column-gap:12px;row-gap:6px;align-items:baseline;padding:20px 0}
+  .chx-n{grid-column:1;grid-row:1}
+  .chx-t{grid-column:2;grid-row:1;font-size:var(--m3);line-height:.9;letter-spacing:-.005em}
+  .chx-l{grid-column:2;grid-row:2}
+  .chx-oc{display:block;grid-column:3;grid-row:1}
+  .chx-body{padding:8px 0 var(--inside)}
+  .chx-ph,.chx-tx{grid-column:1/-1}
+  .chx-ph{order:2;aspect-ratio:3/2}
+  .lv2{grid-template-columns:1fr}
+}
 
 /* ==== vouchers/index.html ==== */
 /* hero: title and line beside the lead photograph */
@@ -355,16 +454,9 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .pg-contact .c-details{gap:14px}
 .pg-contact .c-details .lines-list:not(:last-child){margin-bottom:18px}
 .pg-contact .c-frame{align-self:start}
-.pg-contact .form{display:grid;gap:26px}
-.pg-contact .field{display:grid;gap:4px}
-.pg-contact .field label{font-style:italic;font-size:var(--a4);line-height:1.3}
-.pg-contact .field input,.pg-contact .field textarea{display:block;width:100%;margin:0;padding:8px 0 10px;border:0;border-bottom:1px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--affairs);font-size:var(--a2);line-height:1.4;appearance:none;-webkit-appearance:none}
-.pg-contact .field textarea{min-height:128px;resize:vertical}
 .pg-contact .field input:focus,.pg-contact .field textarea:focus{border-bottom-color:var(--head)}
-.pg-contact .field ::placeholder{color:var(--ink);opacity:.5;font-style:italic}
 .pg-contact .form .line{max-width:none}
-.pg-contact .form-done,.pg-contact .form-error{font-style:italic;font-size:var(--a2);line-height:1.4}
-.pg-contact .form-error a{text-decoration:underline 1px;text-underline-offset:.16em}
+.pg-contact .form-note a{text-decoration:underline 1px;text-underline-offset:.16em}
 .pg-contact .c-map .ph iframe{width:100%;height:100%;border:0}
 .pg-contact .c-note{padding-top:16px}
 .pg-contact .c-note .ask{font-size:var(--a4);padding:0}
@@ -445,7 +537,7 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .pg-pack .pk-tab[aria-selected="true"]{border-top-color:var(--bright)}
 .pg-pack .pk-tab:hover .pk-tt,.pg-pack .pk-tab[aria-selected="true"] .pk-tt{color:var(--bright)}
 .pg-pack .pk-tab[aria-selected="true"] .pk-off,.pg-pack .pk-tab[aria-selected="false"] .pk-on{display:none}
-.pg-pack .pk-colo .emb{margin:0 auto 12px}
+.pg-pack .pk-card{align-self:start}
 @media (max-width:899.98px){
   .pg-pack .pk-date{grid-template-columns:minmax(0,1fr);row-gap:6px;text-align:center}
   .pg-pack .pk-date>:last-child{text-align:center}
