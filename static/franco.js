@@ -125,14 +125,14 @@
             currency: 'NZD'
           });
         } catch (err) {}
-        f.innerHTML = '<p class="form-done">Grazie. We\'ll come straight back to you.</p>';
+        f.innerHTML = '<p class="form-note">Grazie. We\'ll come straight back to you.</p>';
       })
       .catch(function () {
         if (btn) { btn.disabled = false; btn.textContent = btnText; }
-        var err = f.querySelector('.form-error');
+        var err = f.querySelector('.form-note.err');
         if (!err) {
           err = document.createElement('p');
-          err.className = 'form-error';
+          err.className = 'form-note err';
           f.appendChild(err);
         }
         /* failures point to the inbox the form sends to */

@@ -3,16 +3,27 @@
 Implementation brief for Claude Code. Approved by Ana-Maria, 1 Oct 2026: **all packages P0–P10**, paper **#F1EEE6**.
 Supersedes the previous DESIGN-FIXES.md (homepage only, 18 Sep).
 
-The design source is `Creative Direction Audit.dc.html` (Omelette project). Everything it asks for is
-encoded in two new files and one rebuilt page. Copy them in first, then re-plate every other page the same way:
+Read `README.md` (same folder) first: it restates the grammar, tokens and component specs. Everything the
+audit asks for is encoded in two new files and one rebuilt page. Copy them in first (step 0), then re-plate every other page the same way:
 
 | File | What it is |
 |---|---|
 | `static/franco.css` | **The** stylesheet: tokens, colour chapters, type scale, grid, photographs, frames, menu lines, buttons, masthead, phone Index, dock, footer, questions, tabs, motion |
 | `static/franco.js` | The three movements (set · unmask · settle) and the phone Index. Replaces `static/ora.js` |
 | `index.html` | **Reference implementation.** Home rebuilt on franco.css; copy its masthead, Index, footer and dock |
+| `Functions.html` + `static/functions.js` | **Reference implementation** for the events pages: the nameplate, the coaster, the five-chapter guide |
 
 `static/chrome.js` stays, unchanged: it tightens `.bf-mast`, slides `.dock`, and runs the footer clock.
+
+## 0 · Copy in
+
+From `design_handoff_barfranco_site/` copy `static/franco.css` → `static/franco.css`, `static/franco.js` →
+`static/franco.js`, `index.html` and `Functions.html` (overwrite), `static/functions.js`, `static/shapes/coaster.svg`,
+`images/negroni-bar-guests.jpg`, `images/coaster/new-1…5.jpg`, and this file → `DESIGN-FIXES.md` at the repo root
+(replacing the 18 Sep brief).
+- [ ] Home loads with no console errors; the masthead tightens on scroll; the footer clock runs; the phone Index opens and closes (Esc too).
+
+Page-specific layout (like Home's cover) goes at the end of franco.css under a `/* ---- Page: … ---- */` heading — never in the page.
 
 ## Ground rules
 
@@ -47,7 +58,7 @@ The Events Pack also keeps `static/events-pack.js` (after step 1's edit).
 | Columns | `.at-1` (1–6) · `.at-1-5` (1–5) · `.at-1-8` · `.at-7` (7–12) · `.at-8` · `.at-all`. Text starts on column 1 or 7 |
 | Eyebrow | `<p class="eyebrow">Bar Franco · 03 · The spaces</p>` — every section numbered in order, or none |
 | Type | `.m2.title` page title (h1) · `.m2` chapter opener / closing sign · `.m3` section head · `.m4` category head (24px, never smaller) · `.a1` the one statement · `.a2` ledes & lines · `.a3` body · `.a4` notes · `.fine` legal · `.sup` small AT/AND/ST inside `.m2` · `.aside` italic (upstairs) inside `.m2` |
-| Primary ask | `<a class="line" href>Book a table</a>`; two stack inside `<div class="lines">`. Max one per section |
+| Primary ask | `<a class="line" href="Bookings.html"><span>Book a table</span><i class="lead"></i><em class="v">4pm till late</em></a>`; two stack inside `<div class="lines">`. Max one per section. **No arrows:** the leader runs to the ask's fixed fact, where a price would be — Book a table … *4pm till late* · Plan an event … *up to 240* · Read the full menus … *food & drinks* · Christmas parties … *December*. The dock and Send carry the words only |
 | Secondary ask | `<a class="ask" href>Read the full menus</a>` |
 | Link in text | `<a class="link">` |
 | Facts / prices / capacities | `<p class="ml"><span class="n">Seated</span><i class="lead"></i><span class="v r">90</span></p>` (`.v` italic and may wrap, `.v.r` roman and never wraps — use it for every price, capacity and number) inside `.lines-list` |
@@ -68,7 +79,7 @@ one column under 900px. In `static/events-pack.js` delete the `mouseenter`/`mous
 - [ ] Hovering a chapter does nothing; clicking opens it; Welcome is open on load; `#ch-drinks` deep links still work.
 
 **1b Functions capacity leader.** On phones Level 2's "Standing … 120" leader collapses (`.g-right`).
-Fixed by step 4's menu card; until then remove `g-right` from the Level 2 block.
+Fixed by the rebuilt Functions page (step 4).
 - [ ] Both levels' leaders are the same length at 390px.
 
 ## 2 · Shared chrome on every page (P1 P2 P3 P4 P5 P10)
@@ -107,31 +118,35 @@ belongs to Contact) and its line "The Crossing, Ōtautahi — down the laneway, 
 **Menus (`Menus.html`)** — Chapter hero: eyebrow, `.m2.title` "The menus", lede, tabs; lead photograph
 `images/parmigiana-cacio-overhead.jpg` (no longer Home's). The sheets section becomes `ch-aframe band`;
 each sheet is `<article class="frame menu" data-settle>` with the spaced word-mark
-`<p class="m1" aria-label="Franco"><span>F</span>…<span>O</span></p>` (sized inside frames by
+`<p class="m1" role="img" aria-label="Franco"><span>F</span>…<span>O</span></p>` (sized inside frames by
 `.frame .m1`), `.m4` section heads and the existing
 centred lines (keep the "… price" ellipsis — it is the printed menu's grammar). Tabs use `.tabs`.
 Move the "01 · The menus" eyebrow above the section. 02 Cooked with care: one `.pair` with
 `chef-wink.jpg` + `burrata-tomato-close.jpg`. Closing "Hungry yet?" stays `ch-aframe band`.
 - [ ] One tab style; sheets framed at inset 10 on Almond; no photo also leads another page.
 
-**Functions (`Functions.html`)** — Keep h1 "No hire fee." and the framed "In this issue" index (as
-`.frame` with `.ml` rows). Hero asks: one `.line` "Enquire now" + `.ask` "View the events pack"; the PDF link moves
-into the enquiry card. 01 Enquire: `ch-aframe band`, the VenueFlow iframe inside `.frame`. 02 head becomes the
-page's existing line **"From an intimate private dinner to a 240-strong cocktail party"**; delete the 240 / 2 / 0
-statistics row. 03 The spaces: one `.frame menu` card — `.m4` "Level 1 · The Negroni Bar" (Standing … 120,
-Seated … 80), `.m4` "Level 2 · The Restaurant" (Standing … 120, Seated … 90), "The whole building — both levels … 240",
-`.fine` "A food and beverage minimum spend instead of a hire fee" — beside one `.pair`
-(`cocktail-tray-branded.jpg`, `level2-event-table.jpg`). 04 Occasions unchanged in content, `.m4` heads in two
-columns with hairlines. Delete the gallery section. The Christmas cross-sell becomes `ch-poster band`:
-`.m2` "Booking the work do?", `.it` "December dates go first — lock yours in.", one `.line` "Christmas parties".
-- [ ] "No hire fee" appears in the h1 and once as a fact line only (plus the FAQ answer).
-- [ ] No level name is larger than its section head; no Marsha below 24px.
-- [ ] ≤ 7 phone screens (390px) before the footer.
+**Functions (`Functions.html`) — done, reference.** Rebuilt from Ana-Maria's Functions v2 handoff (2 Oct) on
+franco.css: the nameplate cover (*Private events / & dining* fitted to the frame, the dateline, four photographs),
+Why people book Franco with the coaster and the framed enquiry card (`#enquire`), the five-chapter guide (across
+from 1100px with Why Franco open, a closed list on phones, `#why` … `#questions` deep links), the Christmas Poster
+band and the Night footer. Copy it with `static/functions.js`, `static/shapes/coaster.svg`,
+`images/negroni-bar-guests.jpg` and `images/coaster/new-1…5.jpg`. Where v2 and the grammar differ, the grammar won:
+paper `#F1EEE6`; chapters open on click/tap only (no hover-intent, no scroll correction); no thumbnails in chapter
+heads (each chapter's photograph sits in its open body, 5 columns at 4:5 with the words from column 7, 3:2 on phones); no Marsha under 24px
+(dateline at M4, chapter numbers in italic); menu lines without arrows; the Christmas band on Poster red; the shared
+franco.css masthead, Index, dock and footer; "hover or tap a chapter" became "pick a chapter". The coaster keeps its
+drop-shadow — the one shadow on the site, a printed object set on the table.
+- [ ] At 1280: five chapters across (from 1100px), Why Franco open, clicking switches. At 390: all closed, tapping toggles, the dock shows, no horizontal scroll.
+- [ ] `Functions.html#spaces` opens The spaces; every "Plan an event" lands on `#enquire` and the form loads.
+- [ ] "Private events" fills the frame at 390 (three lines), 1280 and 1920.
+- [ ] The coaster settles, turns over on hover (desktop), tap (phone) and Enter, and cycles all five photographs.
+- [ ] Confirm with Ana-Maria: whole building seated, 165 or 170 (the page says around 170); the Christmas band comes off after December.
 
 **Christmas (`christmas-functions/`)** — Move onto franco.css: the force-justified CHRISTMAS sign = `.m1`;
 the card = `.frame menu` on `ch-aframe band`; the buttons = `.line`; the chapter row = `.tabs` (keep its
 show-one-chapter script and dataLayer pushes); 04 The night opens on `ch-night`; the enquiry box = the framed
-enquiry card. Shared masthead (Call · Enquire), dock and Night footer (lite). Keep the Google Ads tags verbatim.
+enquiry card on paper (Bright Red frame), because the band above it is Almond. The cover keeps its sign, italic
+line and `.strip` of three 4:5 photographs (`--n:3`). Shared masthead (Call · Enquire), dock and Night footer (lite). Keep the Google Ads tags verbatim.
 - [ ] Looks as it does today, but every component comes from franco.css; christmas-v5.css is no longer loaded.
 
 **Weddings · Corporate (`weddings/`, `corporate-events/`)** — Rebuild on the Functions structure: Chapter hero
@@ -156,8 +171,8 @@ Change `font=Lora` to the vendor's closest serif. Remove the photo caption; lead
 - [ ] No thumbnails, no captions; the widget is visible without scrolling at 1440×900.
 
 **Contact (`Contact.html`)** — Keep h1 "Come say ciao". Details become `.lines-list` under `.m4` heads
-FIND US · TABLES · EVENTS (same lines as the footer). The form goes inside `.frame` on `ch-aframe band`:
-underline fields, italic labels, Send = `<button class="line" type="submit">Send</button>`; keep the FormSubmit
+FIND US · TABLES · EVENTS (same lines as the footer). The form goes inside `.frame` on `ch-aframe band` as
+`.form` with `.field`s (label above, no placeholders), Send = `<button class="line" type="submit">Send</button>`; keep the FormSubmit
 endpoint and messages. The map is full-bleed 16:9 with no rule above it.
 - [ ] No Marsha below 24px; no solid button; the form still submits.
 
@@ -167,22 +182,25 @@ becomes `ch-poster band` with one `.line`.
 - [ ] One message, said once; one framed object.
 
 **Events Pack (`events-pack/`)** — After step 1: rebuild its `<style>` block into franco.css components
-(no `[style*=…]` selectors, no `!important` chains, no size declared twice). Chapter rows: number · `.m3`-sized
-Marsha title (22–32px is too small; use `.m4` 24px minimum) · italic line · "Open ↓" — delete the 48px thumbnails.
-Food tab heads in Bright Red, not `#F00000`. Night chapters and `#contact` stay `ch-night`.
-- [ ] No `#F00000` text; no thumbnails; page weight of CSS ≤ the old block.
+(no `[style*=…]` selectors, no `!important` chains, no size declared twice). Cover: keep its composition (tabloid
+logotype, the date row between 1px ink rules, a `.strip` of four 4:5 photographs) but on Paper — every page opens on
+Paper. Chapter rows: number (`.a4`) · Marsha title at `.m4` 24px (today 22–32px) · italic line · "Open ↓" — delete
+the 48px thumbnails. Food tab heads in Bright Red, not `#F00000`. Chapters that are Night today keep `ch-night`
+bodies; `#contact` becomes the framed enquiry card on `ch-aframe band`, and the almond sign-off strip goes.
+- [ ] No `#F00000` text; no thumbnails; the band before the footer is not Night; no more CSS than the old block.
 
 **404** — Utility opening on franco.css: `.m2.title`, one `.a2` line, two `.line` asks; delete the 96–240px numeral style.
 
 ## 5 · Global checks (grep the repo)
 
 - [ ] `style="` only on `<img>` (object-position) and the Night margin; no `<style>` blocks in pages.
-- [ ] No `#FCFBF7`, `#000`, `rgba(0,0,0`, `box-shadow`, `border-radius` (except the dock dot: none left), `text-shadow`.
+- [ ] No `#FCFBF7`, `#000`, `rgba(0,0,0`, `box-shadow`, `border-radius`, `text-shadow`.
 - [ ] No `data-rv`, `.g-ph`, hover-to-open, `.walk`, heading shrink-to-fit script.
 - [ ] Breakpoints only 640 / 900 / 1200 (franco.css also uses 1000 for the masthead nav).
 - [ ] VenueFlow and NowBookIt iframes no longer request `font=Inter` / `font=Lora`.
 - [ ] Lighthouse: no CLS regression (every `<img>` has width/height), hero not lazy-loaded.
 - [ ] `prefers-reduced-motion`: nothing moves.
+- [ ] No arrows: no `--arrow`, no drawn or typed arrow in any ask, nav or Index line.
 
 ## 6 · Clean up
 
@@ -197,7 +215,7 @@ paper `#F1EEE6`) and delete "red/charcoal/cream" from the golden rules.
 
 1. Is the page on paper `#F1EEE6`, with at most two other chapters and the Night footer?
 2. Is every headline one of the four Marsha sizes, and nothing in Marsha under 24px?
-3. Is every ask a menu line or a written ask with the drawn arrow?
+3. Is every ask a menu line ending in its fact, or a written ask — and is there no arrow anywhere?
 4. Is every framed thing a printed object (menu, card, voucher, enquiry, index) — and nothing else framed?
 5. Is every photograph 16:9, 3:2 or 4:5, uncaptioned, and leading only this page?
 6. Do only the title, the lead photograph and the framed objects move?
