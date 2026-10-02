@@ -1,12 +1,314 @@
 <!DOCTYPE html>
 <html lang="en-NZ">
 <head>
-<meta charset="utf-8"/>
-<title>Bar Franco — Private Dining</title>
-<meta name="robots" content="noindex, follow"/>
-<link rel="canonical" href="https://www.barfranco.nz/functions/"/>
-<meta http-equiv="refresh" content="0; url=/functions/"/>
-<script>location.replace('/functions/' + location.search + location.hash);</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Private Dining &amp; Birthday Dinners Christchurch | Bar Franco</title>
+<meta name="description" content="Private dining, birthday dinners and group tables in central Christchurch. Long tables, shared Italian menus from 80pp, no venue hire fee." />
+<meta name="keywords" content="private dining Christchurch, private dining room Christchurch, birthday dinner Christchurch, birthday venue Christchurch, group dining Christchurch, large group restaurant Christchurch, 21st venue Christchurch, 30th 40th 50th birthday Christchurch, anniversary dinner Christchurch" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="geo.region" content="NZ-CAN" />
+<meta name="geo.placename" content="Christchurch Central" />
+<meta name="geo.position" content="-43.53262;172.63620" />
+<meta name="ICBM" content="-43.53262, 172.63620" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Bar Franco — Christchurch" />
+<meta property="og:title" content="Private Dining &amp; Birthday Dinners Christchurch | Bar Franco" />
+<meta property="og:description" content="Private dining, birthday dinners and group tables in central Christchurch. Long tables, shared Italian menus from 80pp, no venue hire fee." />
+<meta property="og:url" content="https://www.barfranco.nz/private-dining/" />
+<meta property="og:locale" content="en_NZ" />
+<meta property="og:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Private Dining &amp; Birthday Dinners Christchurch | Bar Franco" />
+<meta name="twitter:description" content="Private dining, birthday dinners and group tables in central Christchurch. Long tables, shared Italian menus from 80pp, no venue hire fee." />
+<meta name="twitter:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3"/><link rel="icon" type="image/png" href="/favicon.png?v=3" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
+<link rel="canonical" href="https://www.barfranco.nz/private-dining/" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18456342571"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18456342571');
+</script>
+<script>
+(function () {
+  var LABELS = {
+    phone: 'AW-18456342571/lqN6CITV1_ocEKvg1eBE',   // Phone click
+    email: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',   // Email click - events enquiry
+    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE',   // Enquiry submitted (VenueFlow)
+    // Secondary action for a step-1 capture that never finishes. Create the
+    // conversion action in Google Ads, paste its label here, and this starts
+    // firing. Left null so it can never be counted against the form label.
+    partial: null                                   // Partial enquiry (VenueFlow)
+  };
+
+  function fire(label, value) {
+    try {
+      gtag('event', 'conversion', { 'send_to': label, 'value': value || 1.0, 'currency': 'NZD' });
+    } catch (e) {}
+  }
+
+  // 1. Phone and email links anywhere on the page
+  document.addEventListener('click', function (ev) {
+    var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = (a.getAttribute('href') || '').toLowerCase();
+    if (href.indexOf('tel:') === 0)    fire(LABELS.phone);
+    if (href.indexOf('mailto:') === 0) fire(LABELS.email);
+  }, true);
+
+  // 2. VenueFlow enquiry form — the widget posts `vf-enquiry-submitted` on a successful submit.
+  //    Budget bracket becomes the conversion value, so a $10k enquiry is worth more than a $2k one.
+  function budgetToValue(b) {
+    if (!b) return 1;
+    var nums = String(b).replace(/,/g, '').match(/\d+/g);
+    if (!nums) return 1;
+    var n = parseInt(nums[0], 10);
+    if (/k/i.test(String(b)) && n < 1000) n = n * 1000;
+    return n > 0 ? n : 1;
+  }
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
+    var d = e.data;
+    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
+    if (d && d.type === 'vf-enquiry-submitted') {
+      fire(LABELS.form, budgetToValue(d.budgetRange || d.budget_range || d.budget));
+    }
+    if (d && d.type === 'vf-partial-captured' && LABELS.partial) {
+      fire(LABELS.partial, budgetToValue(d.budgetRange || d.budget_range || d.budget));
+    }
+  });
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EventVenue",
+      "name": "Bar Franco — Private Dining & Birthdays",
+      "url": "https://www.barfranco.nz/private-dining/",
+      "description": "Private dining, birthday dinners and group tables in central Christchurch, with shared Italian menus and no venue hire fee. From ten guests to the whole building.",
+      "telephone": "+64-21-221-1307",
+      "email": "events@barfranco.nz",
+      "maximumAttendeeCapacity": 240,
+      "image": "https://www.barfranco.nz/images/room-wide-golden.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Crossing, 166 Cashel Street",
+        "addressLocality": "Christchurch Central",
+        "addressRegion": "Canterbury",
+        "postalCode": "8011",
+        "addressCountry": "NZ"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": -43.53262, "longitude": 172.63620 },
+      "areaServed": "Christchurch"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Bar Franco have a private dining area?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Smaller groups dine in the private dining area at the far end of the upstairs Restaurant, or in the Negroni Bar downstairs. Larger parties can take a whole level, or the whole building." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I book a birthday dinner for a big group without hiring a level?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. For ten or more we set you up with our events team and a shared menu, with no hire needed." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a venue hire fee for private dining?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. We work to a food and beverage minimum spend instead, tailored to your date, numbers and space." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much is a group menu?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Shared Italian set menus start from $80 per person, grazing tables from $40 per person and canapés from $9 each. Vegetarian, vegan, gluten-free and most allergies are catered for." }
+        },
+        {
+          "@type": "Question",
+          "name": "How many guests can Bar Franco hold for a birthday party?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Up to 240 standing across both levels, or around 165 seated. A single level suits a birthday dinner or a cocktail party." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script>document.documentElement.classList.add('fx');function bfVT(e){var t=e.viewTransition;if(t&&t.ready)t.ready.catch(function(){})}addEventListener('pagereveal',bfVT);addEventListener('pageswap',bfVT)</script>
+<link href="/static/franco.css" rel="stylesheet"/>
+<script defer src="/static/franco.js"></script>
+<script defer src="/static/chrome.js"></script>
 </head>
-<body><p>This page has moved to <a href="/functions/">https://www.barfranco.nz/functions/</a>.</p></body>
+<body>
+<header class="bf-mast">
+  <div class="wrap">
+    <div class="mast-row">
+      <a class="mast-logo" href="/" aria-label="Bar Franco home"><img src="/static/logos/emblem/deep-red.svg" alt="Bar Franco" width="92" height="42"></a>
+      <nav class="mast-nav" aria-label="Main"><a href="/">Home</a><a href="/menus/">Menus</a><a href="/functions/" aria-current="page">Functions<img class="mast-dog" src="/static/illustrations/dachshund.png" alt="" width="280" height="132"></a><a href="/christmas-functions/">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav>
+      <div class="mast-asks"><a class="ask" href="/bookings/">Book a table</a><a class="ask" href="#enquire">Plan an event</a></div>
+      <button class="mast-menu" type="button" data-ora="menu-open" aria-haspopup="dialog" aria-controls="ora-index" aria-expanded="false" aria-label="Open the site index">Index</button>
+    </div>
+    <div class="rule2" aria-hidden="true"></div>
+  </div>
+</header>
+
+<div id="ora-index" class="ch-aframe" role="dialog" aria-modal="true" aria-label="Index" hidden>
+  <div class="ix-top"><a href="/" aria-label="Bar Franco home"><img src="/static/logos/emblem/bright-red.svg" alt="Bar Franco" width="58" height="26"></a><button class="ix-close" type="button" data-ora="menu-close">Close ×</button></div>
+  <article class="frame ix-card" data-settle>
+    <img class="ix-logo" src="/static/logos/bar-franco-script-incline/deep-red.svg" alt="Bar Franco" width="280" height="120">
+    <nav class="ix-nav" aria-label="Site">
+      <a class="ml" href="/"><span class="n">Home</span></a>
+      <a class="ml" href="/menus/"><span class="n">Menus</span></a>
+      <a class="ml" href="/bookings/"><span class="n">Bookings</span></a>
+      <a class="ml" href="/functions/"><span class="n">Functions</span></a>
+      <a class="ml" href="/christmas-functions/"><span class="n">Christmas</span></a>
+      <a class="ml" href="/vouchers/"><span class="n">Vouchers</span></a>
+      <a class="ml" href="/contact/"><span class="n">Contact</span></a>
+    </nav>
+    <p class="a4"><em>(upstairs)</em> · down the laneway · 4pm till late</p>
+    <div class="lines"><a class="line" href="/bookings/"><span>Book a table</span><i class="lead" aria-hidden="true"></i><em class="v">4pm till late</em></a><a class="line" href="#enquire"><span>Plan an event</span><i class="lead" aria-hidden="true"></i><em class="v">up to 240</em></a></div>
+    <img class="emb" src="/static/logos/emblem/deep-red.svg" alt="" width="48" height="22">
+  </article>
+</div>
+
+<main class="pg-private">
+<section class="ch-menu ev-hero" aria-label="Private dining &amp; birthdays" data-screen-label="Hero · Private dining">
+  <div class="wrap grid">
+    <div class="at-1-8 intro">
+      <p class="eyebrow">Private dining at Franco · Christchurch</p>
+      <h1 class="m2 title" data-set>Private dining &amp;<br>birthdays</h1>
+      <p class="a2">A long table, your people and a shared Italian feast that keeps on coming. Birthdays, anniversaries and the dinners worth marking, upstairs in the CBD.</p>
+      <div class="lines mt"><a class="line" href="#enquire">Enquire about your date</a></div>
+      <a class="ask" href="/functions/">All functions</a>
+    </div>
+  </div>
+  <div class="ph r-169 full mt" data-unmask>
+    <img src="/images/room-wide-golden.jpg" alt="The upstairs dining room in late sun, bentwood chairs and copper pendants" width="1400" height="934" fetchpriority="high">
+    <img class="mark" src="/static/logos/franco-script-incline/almond.svg" alt="" width="180" height="126">
+  </div>
+</section>
+
+<section class="ch-aframe band" id="enquire" aria-label="Enquire" data-screen-label="Enquire (A-frame)">
+  <div class="wrap grid">
+    <div class="at-1-5 intro">
+      <h2 class="m2" data-set>Tell us the occasion</h2>
+      <p class="a3">Your date, how many are coming and what you’re celebrating. We'll come straight back with availability and a menu.</p>
+      <p class="a4">Or <a class="link" href="mailto:events@barfranco.nz">events@barfranco.nz</a> · <a class="link" href="tel:+64212211307">021 221 1307</a></p>
+    </div>
+    <div class="at-7 frame ev-enq" data-settle>
+      <iframe title="Private dining enquiry — Bar Franco" loading="lazy" src="https://venueflowhq.com/enquire/bar-franco?embed=1&amp;accent=AF0F00"></iframe>
+      <div class="ev-pack hair">
+        <a class="ask" href="/downloads/Bar-Franco-Events-Pack-2026.pdf" target="_blank" rel="noopener" type="application/pdf">View the PDF pack</a>
+        <a class="ask" href="/downloads/Bar-Franco-Events-Pack-2026.pdf" download type="application/pdf">Download the PDF pack</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec ch-menu" aria-label="Why Franco" data-screen-label="01 · Why Franco">
+  <div class="wrap grid">
+    <div class="at-1-5 intro self-end">
+      <p class="eyebrow">Bar Franco · 01 · Why Franco</p>
+      <h2 class="m3">A dinner party, without the dishes</h2>
+      <p class="a3">You bring the guest of honour. We bring the pasta, the Negronis and a team that keeps the table full, so you can actually sit down.</p>
+      <p class="a3">No venue hire fee. In the CBD at The Crossing, with the carpark right there.</p>
+    </div>
+    <div class="at-8 ph r-45 bleed-r ev-why" data-unmask><img src="/images/shared-table.jpg" alt="Friends sharing burrata and wine around a marble table" width="934" height="1400" loading="lazy" decoding="async"></div>
+  </div>
+</section>
+
+<section class="sec ch-menu" aria-label="Whatever you’re marking" data-screen-label="02 · Whatever you’re marking">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Bar Franco · 02 · Whatever you’re marking</p>
+      <h2 class="m3">From ten at a table to the whole building</h2>
+    </div>
+    <div class="ev-fmts mt">
+      <div class="hair"><h3 class="m4">Private dining</h3><p class="a3">The private dining area at the far end of the Restaurant, a long table and a shared menu.</p></div>
+      <div class="hair"><h3 class="m4">Birthdays</h3><p class="a3">21sts, 30ths, 40ths and every one after. Long tables and free-flowing drinks.</p></div>
+      <div class="hair"><h3 class="m4">Group dinners</h3><p class="a3">Ten or more? The events team sets you up with a shared menu, no hire needed.</p></div>
+      <div class="hair"><h3 class="m4">The big ones</h3><p class="a3">Anniversaries, farewells and reunions. Take a level, or both, up to 240.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec ch-menu" aria-label="The table" data-screen-label="03 · The table">
+  <div class="wrap grid">
+    <div class="at-1-5 intro self-end">
+      <p class="eyebrow">Bar Franco · 03 · The table</p>
+      <h2 class="m3">Shared Italian, down the middle</h2>
+      <p class="a3">Antipasti to graze, pasta rolled in the open kitchen, generous mains to pass and dolci to finish, with spritzes and a tidy wine list. Built around your group, your budget and your dietaries.</p>
+      <div class="lines mt"><a class="line" href="/menus/#sheet-events"><span>See the event menus</span><i class="lead" aria-hidden="true"></i><em class="v">from 80pp</em></a></div>
+    </div>
+    <article class="at-7 frame menu ev-card" data-settle>
+      <p class="m1" aria-label="Franco"><span>F</span><span>R</span><span>A</span><span>N</span><span>C</span><span>O</span></p>
+      <h3 class="m4">The table</h3>
+      <div class="lines-list">
+        <p class="ml"><span class="n">Seated shared menus from</span><i class="lead" aria-hidden="true"></i><span class="v r">80pp</span></p>
+        <p class="ml"><span class="n">Grazing tables from</span><i class="lead" aria-hidden="true"></i><span class="v r">40pp</span></p>
+        <p class="ml"><span class="n">Canapés from</span><i class="lead" aria-hidden="true"></i><span class="v r">9 each</span></p>
+      </div>
+      <img class="emb" src="/static/logos/emblem/deep-red.svg" alt="" width="48" height="22">
+    </article>
+  </div>
+</section>
+
+<section class="sec last ch-menu" aria-label="Good to know" data-screen-label="04 · Good to know">
+  <div class="wrap grid">
+    <div class="at-1-5 intro">
+      <p class="eyebrow">Bar Franco · 04 · Good to know</p>
+      <h2 class="m3">Questions</h2>
+    </div>
+    <div class="at-7 qa">
+      <details><summary>Is there a private dining area?</summary><p>Yes, at the far end of the upstairs Restaurant. Smaller groups can also take the bar; bigger ones, a level or the whole building.</p></details>
+      <details><summary>Do we need to hire a level for a big birthday?</summary><p>No. For ten or more we set you up with the events team and a shared menu, no hire needed.</p></details>
+      <details><summary>Is there a venue hire fee?</summary><p>No. A food and beverage minimum spend instead, tailored to your date, numbers and space.</p></details>
+      <details><summary>How much is a group menu?</summary><p>Shared set menus from 80pp, grazing tables from 40pp, canapés from 9 each. Vegetarian, vegan, gluten-free and most allergies are no problem.</p></details>
+      <details><summary>How many can you hold?</summary><p>Up to 240 standing across both levels, around 165 seated.</p></details>
+      <details><summary>How do we find you?</summary><p>Upstairs at 166 Cashel Street, The Crossing. Take the lift near H&amp;M and KOOKAÏ, or the stairs. The Crossing carpark is right there.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="ch-poster band" aria-label="Cent’anni" data-screen-label="Closing (Poster)">
+  <div class="wrap grid">
+    <div class="at-1-8 intro">
+      <h2 class="m2" data-set>Cent’anni</h2>
+      <p class="a2 it">A hundred years, the Italian birthday toast. Send your date and we’ll set the table.</p>
+      <div class="lines mt"><a class="line" href="#enquire">Send an enquiry</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="bf-foot ch-night">
+  <div class="wrap">
+    <div class="now">
+      <p class="now-k" data-bf-live hidden><em>It’s currently</em></p>
+      <p class="m2" data-bf-status>Bar from 4pm</p>
+      <p class="now-t" data-bf-live hidden><span data-bf-clock></span> in Ōtautahi</p>
+    </div>
+    <div class="foot-body">
+      <div class="lines"><a class="line" href="/bookings/"><span>Book a table</span><i class="lead" aria-hidden="true"></i><em class="v">4pm till late</em></a><a class="line" href="#enquire"><span>Plan an event</span><i class="lead" aria-hidden="true"></i><em class="v">up to 240</em></a></div>
+      <div class="lines-list">
+      <p class="ml"><span class="n">Hours</span><i class="lead" aria-hidden="true"></i><span class="v">Bar from 4pm · kitchen from 5pm · daily, till late</span></p>
+      <p class="ml"><span class="n">Where</span><i class="lead" aria-hidden="true"></i><a class="v" href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">166 Cashel St, Ōtautahi</a></p>
+      <p class="ml"><span class="n">Telephone</span><i class="lead" aria-hidden="true"></i><a class="v r" href="tel:+64212211307">021 221 1307</a></p>
+      <p class="ml"><span class="n">Email</span><i class="lead" aria-hidden="true"></i><a class="v r" href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a></p>
+      <p class="ml"><span class="n">Instagram</span><i class="lead" aria-hidden="true"></i><a class="v r" href="https://www.instagram.com/bar__franco/">@bar__franco</a></p>
+      </div>
+    </div>
+    <nav class="foot-more" aria-label="More from Franco"><span>More from Franco</span><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/private-dining/">Private dining</a><a href="/corporate-events/">Corporate</a><a href="/weddings/">Weddings</a><a href="/events-pack/">Events pack</a><a href="/contact/">Contact</a><a href="https://www.instagram.com/bar__franco/">Instagram</a><a href="https://www.facebook.com/barfranco.chch">Facebook</a></nav>
+    <p class="foot-legal">All rights reserved © Bar Franco <span data-bf-year>2026</span> · <em>(upstairs)</em> The Crossing, 166 Cashel St, Ōtautahi · <a href="tel:+64212211307">021 221 1307</a> · <a href="mailto:events@barfranco.nz">events@barfranco.nz</a></p>
+    <img class="foot-emb" src="/static/logos/emblem/almond.svg" alt="" width="52" height="22">
+  </div>
+</footer>
+
+<nav class="dock ch-night" aria-label="Book or plan"><a class="line" href="/bookings/">Book a table</a><a class="line" href="#enquire">Plan an event</a></nav>
+</body>
 </html>
