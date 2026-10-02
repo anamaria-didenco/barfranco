@@ -81,7 +81,7 @@ point to `/`.
 - `static/franco.css`, `static/franco.js`, `static/chrome.js` — the one stylesheet and the shared behaviour
 - `static/events-pack.js` — the Events Pack chapters; `static/menu-data.js` — older menu data, not loaded by the pages
 - `static/fonts/`, `static/logos/`, `static/illustrations/` — the brand kit the pages use
-- `menus/BarFranco-*-Menu.pdf` — the printed menus as PDFs (linked from the menus page)
+- `menus/BarFranco-*-Menu.pdf` and `menus/BarFranco-Event-Menus-2026.pdf` — the printed menus as PDFs (linked from the menus page; the Event menus are also its third tab, `/menus/#sheet-events`)
 - `downloads/Bar-Franco-Events-Pack-2026.pdf` — the printable events pack ("View / Download the PDF pack").
   To update it, replace the file under the same name.
 - `brand/` — fonts (.otf) + brand marks (wordmark, dachshund, Negroni glass)
