@@ -63,8 +63,11 @@
         if (k) { e.preventDefault(); show(tabs[(i + k + tabs.length) % tabs.length], true); }
       });
     });
-    var first = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
+    /* a link to a panel (e.g. /menus/#sheet-events) opens its tab */
+    var hashed = tabs.filter(function (t) { return '#' + t.getAttribute('aria-controls') === location.hash; })[0];
+    var first = hashed || tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
     if (first) show(first);
+    if (hashed) setTimeout(function () { var p = document.getElementById(hashed.getAttribute('aria-controls')); if (p) p.scrollIntoView(); }, 60);
   });
 })();
 
