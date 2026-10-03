@@ -410,6 +410,7 @@ button.line{appearance:none;-webkit-appearance:none}
 .chx-tx{grid-column:7/13;display:grid;gap:16px;align-content:start}
 .facts{display:grid;width:100%;border-bottom:1px solid var(--hair)}
 .facts>*{padding:9px 0;border-top:1px solid var(--hair);font-size:var(--a3);line-height:1.45}
+.facts .ml>.n{flex-shrink:0}   /* a label stays on one line; the fact wraps on the right */
 .lv2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px var(--gutter)}
 .lv2>div{display:grid;gap:8px;align-content:start}
 .qlist{display:grid;border-bottom:1px solid var(--hair)}
@@ -486,6 +487,7 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-xmas .x-hd{margin-top:4px}
 .pg-xmas .x-qa,.pg-xmas .x-list{width:100%;max-width:720px;margin-left:auto;margin-right:auto}
 .pg-xmas .x-list{max-width:620px}
+.pg-xmas .x-list .ml>.n{flex-shrink:0}   /* a label stays on one line; the fact wraps on the right */
 .pg-xmas .x-room{gap:14px}
 .pg-xmas .x-enq{max-width:820px;margin-left:auto;margin-right:auto}
 .pg-xmas .x-vf{width:100%;text-align:left}
