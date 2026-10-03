@@ -351,6 +351,9 @@ button.line{appearance:none;-webkit-appearance:none}
 .np-probe{position:absolute;left:0;top:0;display:block;width:max-content;white-space:nowrap;visibility:hidden;pointer-events:none;font-size:100px;letter-spacing:-.005em}
 .np-date{margin-top:clamp(14px,1.8vw,24px);padding:12px 0;border-top:1px solid var(--deep);border-bottom:1px solid var(--deep);text-align:center}
 .np-cover .strip{margin-top:clamp(14px,1.8vw,24px)}
+/* the cover answers first: who it fits, where it is, and one ask */
+.np-facts{margin:10px auto 0;max-width:62ch;text-align:center;text-wrap:balance}
+.np-ask{margin:clamp(20px,2.4vw,32px) auto 0;max-width:520px}
 @media (max-width:899.98px){.strip.all{grid-template-columns:1fr 1fr}}
 @media (max-width:639.98px){.np{font-size:calc((100vw - 2 * var(--margin)) / 7.5)}.np-w{display:block}.strip.all>:nth-child(n+3){display:block}}
 /* why people book Franco: the coaster and the words, beside the framed enquiry card */
@@ -469,8 +472,9 @@ button.line{appearance:none;-webkit-appearance:none}
 /* ==== christmas-functions/index.html ==== */
 /* the running head, the CHRISTMAS sign, the chapter row and the chapters under it */
 .pg-xmas .x-cover{padding-top:18px;padding-bottom:var(--inside)}
-.pg-xmas .x-run{display:grid;grid-template-columns:2fr 2fr 2fr 1fr;gap:16px}
+.pg-xmas .x-run{display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;gap:16px}
 .pg-xmas .x-run span:last-child{text-align:right}
+.pg-xmas .x-run span:nth-child(2),.pg-xmas .x-run span:nth-child(3){text-align:center}
 .pg-xmas .x-h1{display:grid;gap:clamp(12px,min(2.4vw,2.6vh),28px);justify-items:center;width:100%;margin-top:clamp(16px,min(5vw,4vh),72px);font-weight:400}
 /* the sign keeps its full width but never takes more than a slice of the screen's height, so the offer and the asks fit the first view */
 .pg-xmas .x-h1 .m1{font-size:min(var(--m1),16vh)}
@@ -495,8 +499,9 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-xmas .x-vf{width:100%;text-align:left}
 .pg-xmas .x-vf iframe{width:100%;height:460px;border:0;background:var(--paper)}
 @media (max-width:899.98px){
-  .pg-xmas .x-run{grid-template-columns:1fr 1fr}
-  .pg-xmas .x-run span:nth-child(2),.pg-xmas .x-run span:nth-child(3){display:none}
+  .pg-xmas .x-run{grid-template-columns:1fr 1fr;row-gap:4px}
+  .pg-xmas .x-run span:nth-child(2n+1){text-align:left}
+  .pg-xmas .x-run span:nth-child(2n){text-align:right}
 }
 @media (max-width:639.98px){
   .pg-xmas .x-h1 .m1{font-size:12.6vw}   /* nine letters must fit 390px; never under 24px */
@@ -557,6 +562,7 @@ button.line{appearance:none;-webkit-appearance:none}
 /* ==== weddings/index.html ==== */
 /* Weddings · Corporate · Private dining share one landing-page template (these rules also serve .pg-corporate and .pg-private) */
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{padding-top:clamp(32px,4vw,64px)}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-facts{margin-top:12px;max-width:44ch}
 /* desktop: one first view — the words on the left, the photograph with the form on the right */
 @media (min-width:900px){
   :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);padding-top:0}
