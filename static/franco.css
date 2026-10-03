@@ -282,17 +282,22 @@ button.line{appearance:none;-webkit-appearance:none}
 .cover-text{grid-column:1/6;display:grid;grid-template-rows:auto 1fr auto;gap:28px;padding-bottom:4px}
 .cover-logo{width:100%;max-width:560px;height:auto;align-self:center}
 .cover-ph{grid-column:6/13;height:clamp(480px,calc(100svh - 150px),860px)}
-.cover-asks{display:none}
+.cover .cover-asks{display:grid;max-width:480px;margin-top:24px}
 .level{padding:clamp(28px,3vw,44px) 0;align-items:end}
-.level .lv-ph{grid-column:1/5}
-.level .lv-txt{grid-column:7/13}
+.level .lv-ph{grid-column:1/8}
+.level .lv-txt{grid-column:9/13}
+.level.flip .lv-ph{grid-column:6/13}.level.flip .lv-txt{grid-column:1/5;grid-row:1}
+.level .lv-txt .facts{max-width:320px}
+.dish{font-size:var(--a3);line-height:1.4;text-wrap:balance}.dish .pr{white-space:nowrap}
+.now .m3{max-width:none}
+@media (min-width:900px){.phone-only{display:none}}
 @media (max-width:899.98px){
   .cover-text{grid-column:1/-1;grid-template-rows:none;gap:20px}
   .cover-logo{max-width:420px}
   .cover-ph{grid-column:1/-1;height:auto;aspect-ratio:4/5;margin-left:calc(-1 * var(--margin))!important;margin-right:calc(-1 * var(--margin))!important}
-  .level .lv-ph{grid-column:1/4}.level .lv-txt{grid-column:1/-1}
+  .level .lv-ph,.level.flip .lv-ph,.level .lv-txt,.level.flip .lv-txt{grid-column:1/-1;grid-row:auto}
 }
-@media (max-width:639.98px){.cover-asks{display:grid}.cover-logo{max-width:300px}.level .lv-ph{grid-column:1/4}}
+@media (max-width:639.98px){.cover-logo{max-width:300px}}
 
 /* ==== index.html ==== */
 /* the cover logo is the page h1 */
@@ -468,6 +473,15 @@ button.line{appearance:none;-webkit-appearance:none}
 .frame.plan img{display:block;width:100%;aspect-ratio:3/2;object-fit:contain}
 .frame.plan .a4{margin-top:10px;text-align:center}
 @media (max-width:639.98px){.plans{grid-template-columns:1fr}}
+
+/* the coaster, a touch smaller; the "turn it over" hint only where you can't hover */
+.coaster-wrap .coaster{width:180px}
+@media (hover:hover) and (pointer:fine){.co-hint{display:none}}
+/* answers settle open rather than snap */
+:root{interpolate-size:allow-keywords}
+.qa details::details-content{block-size:0;overflow:clip;transition:block-size 220ms var(--ease-ink),content-visibility 220ms allow-discrete}
+.qa details[open]::details-content{block-size:auto}
+@media (prefers-reduced-motion:reduce){.qa details::details-content{transition:none}}
 
 /* ==== vouchers/index.html ==== */
 /* hero: title and line beside the lead photograph */
