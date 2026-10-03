@@ -455,6 +455,9 @@ button.line{appearance:none;-webkit-appearance:none}
   .lv2{grid-template-columns:1fr}
 }
 
+/* the dark spread on event pages: a room full at night, after the opening chapter */
+.ch-night.spread{margin-top:var(--between)}
+
 /* ==== vouchers/index.html ==== */
 /* hero: title and line beside the lead photograph */
 .pg-vouchers .hero{padding-top:clamp(24px,3vw,40px)}
