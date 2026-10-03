@@ -113,7 +113,7 @@ em,i{font-style:italic}
 .pair{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);align-items:end}
 .pair>.p7{grid-column:1/8}.pair>.p4{grid-column:9/13}
 .pair.flip>.p7{grid-column:6/13}.pair.flip>.p4{grid-column:1/5;grid-row:1}
-@media (max-width:639.98px){.pair{grid-template-columns:1fr}.pair>.p4{display:none}.pair>.p7,.pair.flip>.p7{grid-column:1/-1;margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin))}}
+@media (max-width:639.98px){.pair{grid-template-columns:1fr}.pair>.p4,.pair.flip>.p4{display:block;grid-column:1/-1;grid-row:auto;width:72%;justify-self:end;margin-top:16px}.pair>.p7,.pair.flip>.p7{grid-column:1/-1;margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin))}}
 /* 3 · print on the table: one photograph on a paper mat over another, once per page */
 .print{position:relative}
 .print>.mat{position:absolute;left:calc(-1 * clamp(32px,6vw,96px));bottom:clamp(32px,5vw,72px);width:46%;background:var(--ground);padding:10px 10px 0 0;z-index:2}
@@ -177,13 +177,13 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .bf-tight .mast-dog{display:none}
 @media (max-width:1199.98px){.mast-nav{font-size:17px;gap:16px}.mast-asks .ask{font-size:16px}}
 @media (max-width:999.98px){.mast-nav{display:none}.mast-asks{margin-left:auto}.mast-menu{display:block}}
-@media (max-width:639.98px){.mast-asks{display:none}.mast-menu{margin-left:auto}.mast-row{align-items:center}}
+@media (max-width:639.98px){.mast-asks{margin-left:auto}.mast-asks .ask:not(.mast-keep){display:none}.mast-menu{margin-left:16px}.mast-row{align-items:center}}
 
 /* campaign pages (Christmas): the nav gives way to Call · Enquire, so the Index button shows at every width */
 .mast-menu.always{display:block}
 .mast-asks+.mast-menu.always{margin-left:clamp(16px,2vw,28px)}
 @media (min-width:1000px){.mast-row:not(:has(.mast-nav)) .mast-asks{margin-left:auto}}
-@media (max-width:639.98px){.mast-asks+.mast-menu.always{margin-left:auto}}
+@media (max-width:639.98px){.mast-asks+.mast-menu.always{margin-left:16px}}
 
 
 /* ---- phone Index (every page) ---- */
@@ -282,17 +282,22 @@ button.line{appearance:none;-webkit-appearance:none}
 .cover-text{grid-column:1/6;display:grid;grid-template-rows:auto 1fr auto;gap:28px;padding-bottom:4px}
 .cover-logo{width:100%;max-width:560px;height:auto;align-self:center}
 .cover-ph{grid-column:6/13;height:clamp(480px,calc(100svh - 150px),860px)}
-.cover-asks{display:none}
+.cover .cover-asks{display:grid;max-width:480px;margin-top:24px}
 .level{padding:clamp(28px,3vw,44px) 0;align-items:end}
-.level .lv-ph{grid-column:1/5}
-.level .lv-txt{grid-column:7/13}
+.level .lv-ph{grid-column:1/8}
+.level .lv-txt{grid-column:9/13}
+.level.flip .lv-ph{grid-column:6/13}.level.flip .lv-txt{grid-column:1/5;grid-row:1}
+.level .lv-txt .facts{max-width:320px}
+.dish{font-size:var(--a3);line-height:1.4;text-wrap:balance}.dish .pr{white-space:nowrap}
+.now .m3{max-width:none}
+@media (min-width:900px){.phone-only{display:none}}
 @media (max-width:899.98px){
   .cover-text{grid-column:1/-1;grid-template-rows:none;gap:20px}
   .cover-logo{max-width:420px}
   .cover-ph{grid-column:1/-1;height:auto;aspect-ratio:4/5;margin-left:calc(-1 * var(--margin))!important;margin-right:calc(-1 * var(--margin))!important}
-  .level .lv-ph{grid-column:1/4}.level .lv-txt{grid-column:1/-1}
+  .level .lv-ph,.level.flip .lv-ph,.level .lv-txt,.level.flip .lv-txt{grid-column:1/-1;grid-row:auto}
 }
-@media (max-width:639.98px){.cover-asks{display:grid}.cover-logo{max-width:300px}.level .lv-ph{grid-column:1/4}}
+@media (max-width:639.98px){.cover-logo{max-width:300px}}
 
 /* ==== index.html ==== */
 /* the cover logo is the page h1 */
@@ -351,6 +356,9 @@ button.line{appearance:none;-webkit-appearance:none}
 .np-probe{position:absolute;left:0;top:0;display:block;width:max-content;white-space:nowrap;visibility:hidden;pointer-events:none;font-size:100px;letter-spacing:-.005em}
 .np-date{margin-top:clamp(14px,1.8vw,24px);padding:12px 0;border-top:1px solid var(--deep);border-bottom:1px solid var(--deep);text-align:center}
 .np-cover .strip{margin-top:clamp(14px,1.8vw,24px)}
+/* the cover answers first: who it fits, where it is, and one ask */
+.np-facts{margin:10px auto 0;max-width:62ch;text-align:center;text-wrap:balance}
+.np-ask{margin:clamp(20px,2.4vw,32px) auto 0;max-width:520px}
 @media (max-width:899.98px){.strip.all{grid-template-columns:1fr 1fr}}
 @media (max-width:639.98px){.np{font-size:calc((100vw - 2 * var(--margin)) / 7.5)}.np-w{display:block}.strip.all>:nth-child(n+3){display:block}}
 /* why people book Franco: the coaster and the words, beside the framed enquiry card */
@@ -365,6 +373,14 @@ button.line{appearance:none;-webkit-appearance:none}
 .hook-talk .facts .a4{margin-top:2px}
 .hook-card{grid-column:7/13;display:grid;gap:14px;justify-items:center;text-align:center;scroll-margin-top:72px}
 .hook-card iframe{height:520px}
+/* the at-a-glance card where the form was: tell, then ask (the form is in #enquire) */
+.hook-card.glance{gap:14px;align-self:start;justify-items:stretch;text-align:left}
+.hook-card.glance>.eyebrow{text-align:center}
+.hook-card.glance .lines-list .ml>.n{flex-shrink:0}
+.hook-card.glance .fine{text-align:center}
+.hook-card.glance .lines{margin-top:4px}
+.hook-card.glance>.emb{justify-self:center}
+.fn-enq-l .hook-talk{margin-top:8px}
 /* phones: words, then the form, then the phone lines and the coaster */
 @media (max-width:899.98px){.hook{row-gap:16px}.hook-l{display:contents}.hook-l>*,.hook-mid>*,.hook-card{grid-column:1/-1}.hook-card{order:1;width:100%;max-width:680px;justify-self:center;margin:24px 0 8px}.hook-talk{order:2}.hook-mid>.coaster-wrap{order:3}}
 /* the coaster: a printed object set down on the table — the one shadow on the site. Turn it over */
@@ -403,31 +419,31 @@ button.line{appearance:none;-webkit-appearance:none}
 .chx-oc::before{content:"+"}
 .chx-ch[data-open="true"] .chx-oc::before{content:"\2212"}
 .chx-head:hover .chx-t,.chx-ch[data-open="true"] .chx-t{color:var(--head)}
-.chx-js .chx-ch:not([data-open="true"]) .chx-body{display:none}
-.chx-body{padding-top:var(--inside)}
+.chx-body{display:grid;grid-template-rows:1fr;transition:grid-template-rows 220ms var(--ease-ink)}
+.chx-js .chx-ch[data-open="false"] .chx-body{grid-template-rows:0fr}
+.chx-body>.chx-card{min-height:0;overflow:clip;overflow-clip-margin:28px}
+@media (prefers-reduced-motion:reduce){.chx-body{transition:none}}
+.chx-index{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--gutter);margin-top:clamp(16px,2vw,24px);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.chx-index a{display:grid;gap:6px;align-content:start;padding:16px 0 18px;color:var(--ink);text-decoration:none}
+.chx-index a:hover .chx-t{color:var(--head)}
+.chx-index .chx-t{font-size:var(--m4)}
+.chx-ch{scroll-margin-top:84px}
+@media (max-width:899.98px){.chx-index{display:none}}
 .chx-card{align-items:start}
 .chx-ph{grid-column:1/6}
 .chx-tx{grid-column:7/13;display:grid;gap:16px;align-content:start}
 .facts{display:grid;width:100%;border-bottom:1px solid var(--hair)}
 .facts>*{padding:9px 0;border-top:1px solid var(--hair);font-size:var(--a3);line-height:1.45}
 .facts .ml>.n{flex-shrink:0}   /* a label stays on one line; the fact wraps on the right */
+.facts .ml:has(>.n em)>.n{flex-shrink:1}   /* …but a dish with its note wraps, so the price never leaves the line */
 .lv2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px var(--gutter)}
 .lv2>div{display:grid;gap:8px;align-content:start}
 .qlist{display:grid;border-bottom:1px solid var(--hair)}
 .qlist>div{display:grid;gap:4px;padding:14px 0;border-top:1px solid var(--hair)}
 .qlist h4{font-size:var(--a2);font-weight:400;line-height:1.35;color:var(--head)}
 .links{display:flex;flex-wrap:wrap;gap:6px 24px}
-@media (min-width:1100px){
-  .chx{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
-  .chx-ch{display:contents}
-  .chx-h{grid-row:1;padding-right:var(--gutter);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-  .chx-h::after{content:"";position:absolute;left:0;right:var(--gutter);bottom:-1px;height:2px;background:transparent;transition:background-color var(--t-ink) var(--ease-ink)}
-  .chx-ch:last-child .chx-h{padding-right:0}
-  .chx-ch:last-child .chx-h::after{right:0}
-  .chx-ch[data-open="true"] .chx-h::after{background:var(--head)}
-  .chx-body{grid-column:1/-1}
-}
-@media (max-width:1099.98px){
+/* the chapters: one stacked list at every width, all open; a head folds its own away */
+@media all{
   .chx{border-bottom:1px solid var(--hair)}
   .chx-h{border-top:1px solid var(--hair);transition:border-color var(--t-ink) var(--ease-ink)}
   .chx-ch[data-open="true"] .chx-h{border-top-color:var(--head)}
@@ -436,11 +452,40 @@ button.line{appearance:none;-webkit-appearance:none}
   .chx-t{grid-column:2;grid-row:1;font-size:var(--m3);line-height:.9;letter-spacing:-.005em}
   .chx-l{grid-column:2;grid-row:2}
   .chx-oc{display:block;grid-column:3;grid-row:1}
-  .chx-body{padding:8px 0 var(--inside)}
+}
+.chx-body>.chx-card{padding:8px 0 var(--inside)}
+@media (max-width:899.98px){
   .chx-ph,.chx-tx{grid-column:1/-1}
   .chx-ph{order:2;aspect-ratio:3/2}
   .lv2{grid-template-columns:1fr}
 }
+
+/* the dark spread on event pages: a room full at night, after the opening chapter */
+.ch-night.spread{margin-top:var(--between)}
+
+/* proof: planners in their own words, and the floor plans as printed objects */
+.quotes{display:grid;gap:18px;width:100%;padding:18px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.said{display:grid;gap:6px;margin:0}
+.said blockquote{margin:0;max-width:62ch;text-wrap:pretty}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter);width:100%}
+.plans[hidden]{display:none}
+.frame.plan{padding:28px}
+.frame.plan img{display:block;width:100%;aspect-ratio:3/2;object-fit:contain}
+.frame.plan .a4{margin-top:10px;text-align:center}
+@media (max-width:639.98px){.plans{grid-template-columns:1fr}}
+
+/* the coaster, a touch smaller; the "turn it over" hint only where you can't hover */
+.coaster-wrap .coaster{width:180px}
+@media (hover:hover) and (pointer:fine){.co-hint{display:none}}
+/* answers settle open rather than snap */
+:root{interpolate-size:allow-keywords}
+.qa details::details-content{block-size:0;overflow:clip;transition:block-size 220ms var(--ease-ink),content-visibility 220ms allow-discrete}
+.qa details[open]::details-content{block-size:auto}
+@media (prefers-reduced-motion:reduce){.qa details::details-content{transition:none}}
+
+/* nothing cut off: running text breaks well, heads balance */
+:is(.intro,.hook-copy,.chx-tx,.pk-body) :is(.a1,.a2,.a3){text-wrap:pretty}
+:is(.m2,.m3){text-wrap:balance}
 
 /* ==== vouchers/index.html ==== */
 /* hero: title and line beside the lead photograph */
@@ -469,16 +514,21 @@ button.line{appearance:none;-webkit-appearance:none}
 /* ==== christmas-functions/index.html ==== */
 /* the running head, the CHRISTMAS sign, the chapter row and the chapters under it */
 .pg-xmas .x-cover{padding-top:18px;padding-bottom:var(--inside)}
-.pg-xmas .x-run{display:grid;grid-template-columns:2fr 2fr 2fr 1fr;gap:16px}
+.pg-xmas .x-run{display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;gap:16px}
 .pg-xmas .x-run span:last-child{text-align:right}
-.pg-xmas .x-h1{display:grid;gap:clamp(18px,2.4vw,28px);justify-items:center;width:100%;margin-top:clamp(28px,5vw,72px);font-weight:400}
+.pg-xmas .x-run span:nth-child(2),.pg-xmas .x-run span:nth-child(3){text-align:center}
+.pg-xmas .x-h1{display:grid;gap:clamp(12px,min(2.4vw,2.6vh),28px);justify-items:center;width:100%;margin-top:clamp(16px,min(5vw,4vh),72px);font-weight:400}
+/* the sign keeps its full width but never takes more than a slice of the screen's height, so the offer and the asks fit the first view */
+.pg-xmas .x-h1 .m1{font-size:min(var(--m1),16vh)}
 .pg-xmas .x-sub{max-width:22ch;text-wrap:balance}
-.pg-xmas .x-intro{display:grid;gap:20px;justify-items:center;text-align:center}
+.pg-xmas .x-intro{display:grid;gap:clamp(12px,2.2vh,20px);justify-items:center;text-align:center}
 .pg-xmas .x-lede{max-width:52ch}
 .pg-xmas .x-intro .lines,.pg-xmas .x-intro .line{max-width:520px}
 .pg-xmas .x-tabs{justify-content:center;margin-top:clamp(40px,5vw,64px)}
 .pg-xmas .x-tabs em{font-size:var(--a4);margin-right:.3em}
-.pg-xmas .x-panel{padding-top:var(--inside)}
+.pg-xmas .x-tabs a{font-style:italic;font-size:19px;padding:0 0 12px;margin-bottom:-1px;border-bottom:1px solid transparent;text-decoration:none;color:inherit;transition:color var(--t-ink) var(--ease-ink),border-color var(--t-ink) var(--ease-ink)}
+.pg-xmas .x-tabs a:hover{color:var(--head);border-bottom-color:var(--head)}
+.pg-xmas section[id]{scroll-margin-top:72px}
 .pg-xmas .x-eb{max-width:none}
 .pg-xmas .x-card{max-width:760px;margin-left:auto;margin-right:auto;padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(48px,6vw,88px)}
 .pg-xmas .x-card .m4{margin-top:14px}
@@ -493,14 +543,14 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-xmas .x-vf{width:100%;text-align:left}
 .pg-xmas .x-vf iframe{width:100%;height:460px;border:0;background:var(--paper)}
 @media (max-width:899.98px){
-  .pg-xmas .x-run{grid-template-columns:1fr 1fr}
-  .pg-xmas .x-run span:nth-child(2),.pg-xmas .x-run span:nth-child(3){display:none}
+  .pg-xmas .x-run{grid-template-columns:1fr 1fr;row-gap:4px}
+  .pg-xmas .x-run span:nth-child(2n+1){text-align:left}
+  .pg-xmas .x-run span:nth-child(2n){text-align:right}
 }
 @media (max-width:639.98px){
   .pg-xmas .x-h1 .m1{font-size:12.6vw}   /* nine letters must fit 390px; never under 24px */
   .pg-xmas .x-tabs{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;border-bottom:0}
-  .pg-xmas .x-tabs button{text-align:center}
-  .pg-xmas .x-tabs button:not([aria-selected="true"]){border-bottom-color:var(--hair)}
+  .pg-xmas .x-tabs a{text-align:center;border-bottom-color:var(--hair)}
 }
 .pg-xmas .intro.c{justify-items:center;text-align:center}
 
@@ -552,17 +602,44 @@ button.line{appearance:none;-webkit-appearance:none}
 @media (max-width:639.98px){.pg-pack .pk-row{grid-template-columns:34px minmax(0,1fr) auto;column-gap:10px}}
 @media print{.pk-pr{display:grid;gap:12px}}
 
+.pg-pack .pk-ask{max-width:520px;margin-top:18px}
+
 /* ==== weddings/index.html ==== */
 /* Weddings · Corporate · Private dining share one landing-page template (these rules also serve .pg-corporate and .pg-private) */
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{padding-top:clamp(32px,4vw,64px)}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero .ph.full{margin-top:var(--inside)}
-/* the enquiry card: the VenueFlow form, then the pack */
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq{display:grid;gap:24px;align-self:start}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-facts{margin-top:12px;max-width:44ch}
+/* desktop: one first view — the words on the left, the photograph with the form on the right */
+@media (min-width:900px){
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);padding-top:0}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero>.wrap{display:block;margin:0;padding-right:var(--gutter);align-self:center;padding-top:var(--inside);padding-bottom:var(--inside)}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero>.wrap>.intro{max-width:none}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero .m2{font-size:clamp(36px,min(4.4vw,8.5vh),88px)}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero .a2{font-size:var(--a3)}
+}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{margin-top:var(--inside)}
+/* the enquiry card sits on the lead photograph: the room and the form in one view.
+   Desktop: photo and card share one grid cell, the photo stretching to the card if the card is taller.
+   Phones: the card rides up over the foot of the photo. */
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq{display:grid;gap:16px;align-content:start;scroll-margin-top:72px}
+@media (min-width:900px){
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{display:grid}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>*{grid-area:1/1}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{margin-top:0}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ph{aspect-ratio:auto;min-height:calc(100svh - 80px);height:100%}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ev-enq{justify-self:center;align-self:start;width:min(440px,calc(100% - 2 * var(--inside)));margin:var(--inside) 0;padding:32px}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ph .mark{display:none}
+}
+@media (max-width:899.98px){
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ev-enq{margin:-72px var(--margin) 0}
+}
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq iframe{width:100%;height:460px;border:0}
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-pack{display:flex;flex-wrap:wrap;gap:4px 28px;padding-top:16px}
 /* formats: Marsha category heads in two columns, a hairline above each */
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter);border-bottom:1px solid var(--hair)}
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts>div{display:grid;gap:10px;align-content:start;padding:24px 0 28px}
+/* corporate: the planners' own words, a quote and a name in each cell */
+.pg-corporate .ev-said{display:grid;gap:12px}
+.pg-corporate .ev-said blockquote{max-width:44ch}
 @media (max-width:639.98px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts{grid-template-columns:1fr}}
 /* the food card */
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-card .lines-list{max-width:440px}
