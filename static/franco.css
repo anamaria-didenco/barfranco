@@ -113,7 +113,7 @@ em,i{font-style:italic}
 .pair{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);align-items:end}
 .pair>.p7{grid-column:1/8}.pair>.p4{grid-column:9/13}
 .pair.flip>.p7{grid-column:6/13}.pair.flip>.p4{grid-column:1/5;grid-row:1}
-@media (max-width:639.98px){.pair{grid-template-columns:1fr}.pair>.p4{display:none}.pair>.p7,.pair.flip>.p7{grid-column:1/-1;margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin))}}
+@media (max-width:639.98px){.pair{grid-template-columns:1fr}.pair>.p4,.pair.flip>.p4{display:block;grid-column:1/-1;grid-row:auto;width:72%;justify-self:end;margin-top:16px}.pair>.p7,.pair.flip>.p7{grid-column:1/-1;margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin))}}
 /* 3 · print on the table: one photograph on a paper mat over another, once per page */
 .print{position:relative}
 .print>.mat{position:absolute;left:calc(-1 * clamp(32px,6vw,96px));bottom:clamp(32px,5vw,72px);width:46%;background:var(--ground);padding:10px 10px 0 0;z-index:2}
@@ -177,13 +177,13 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .bf-tight .mast-dog{display:none}
 @media (max-width:1199.98px){.mast-nav{font-size:17px;gap:16px}.mast-asks .ask{font-size:16px}}
 @media (max-width:999.98px){.mast-nav{display:none}.mast-asks{margin-left:auto}.mast-menu{display:block}}
-@media (max-width:639.98px){.mast-asks{display:none}.mast-menu{margin-left:auto}.mast-row{align-items:center}}
+@media (max-width:639.98px){.mast-asks{margin-left:auto}.mast-asks .ask:not(.mast-keep){display:none}.mast-menu{margin-left:16px}.mast-row{align-items:center}}
 
 /* campaign pages (Christmas): the nav gives way to Call · Enquire, so the Index button shows at every width */
 .mast-menu.always{display:block}
 .mast-asks+.mast-menu.always{margin-left:clamp(16px,2vw,28px)}
 @media (min-width:1000px){.mast-row:not(:has(.mast-nav)) .mast-asks{margin-left:auto}}
-@media (max-width:639.98px){.mast-asks+.mast-menu.always{margin-left:auto}}
+@media (max-width:639.98px){.mast-asks+.mast-menu.always{margin-left:16px}}
 
 
 /* ---- phone Index (every page) ---- */

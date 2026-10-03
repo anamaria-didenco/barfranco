@@ -28,6 +28,7 @@
   if (dock) {
     document.documentElement.classList.add('bf-dockjs');
     var lastY = window.scrollY || 0, drift = 0, dRaf = 0, blockers = 0;
+    var stay = /^\/(functions|christmas-functions)\//.test(location.pathname);
     var dockTargets = document.querySelectorAll('.bf-foot, #enquire, #book, .g-hero-ask');
     var setDock = function (on) {
       if (dock.classList.contains('bf-dock-on') === on) return;
@@ -42,6 +43,7 @@
         var y = window.scrollY || 0, dy = y - lastY; lastY = y;
         drift = (dy > 0) === (drift > 0) ? drift + dy : dy;   // distance travelled in the current direction
         if (y < window.innerHeight * 0.6 || blockers > 0) setDock(false);
+        else if (stay) setDock(true);   // Functions and Christmas: once past the first screen, the ask stays
         else if (drift > 24) setDock(false);
         else if (drift < -24) setDock(true);
       });
