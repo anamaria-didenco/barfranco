@@ -483,6 +483,10 @@ button.line{appearance:none;-webkit-appearance:none}
 .qa details[open]::details-content{block-size:auto}
 @media (prefers-reduced-motion:reduce){.qa details::details-content{transition:none}}
 
+/* nothing cut off: running text breaks well, heads balance */
+:is(.intro,.hook-copy,.chx-tx,.pk-body) :is(.a1,.a2,.a3){text-wrap:pretty}
+:is(.m2,.m3){text-wrap:balance}
+
 /* ==== vouchers/index.html ==== */
 /* hero: title and line beside the lead photograph */
 .pg-vouchers .hero{padding-top:clamp(24px,3vw,40px)}
