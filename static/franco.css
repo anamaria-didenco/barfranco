@@ -471,9 +471,11 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-xmas .x-cover{padding-top:18px;padding-bottom:var(--inside)}
 .pg-xmas .x-run{display:grid;grid-template-columns:2fr 2fr 2fr 1fr;gap:16px}
 .pg-xmas .x-run span:last-child{text-align:right}
-.pg-xmas .x-h1{display:grid;gap:clamp(18px,2.4vw,28px);justify-items:center;width:100%;margin-top:clamp(28px,5vw,72px);font-weight:400}
+.pg-xmas .x-h1{display:grid;gap:clamp(12px,min(2.4vw,2.6vh),28px);justify-items:center;width:100%;margin-top:clamp(16px,min(5vw,4vh),72px);font-weight:400}
+/* the sign keeps its full width but never takes more than a slice of the screen's height, so the offer and the asks fit the first view */
+.pg-xmas .x-h1 .m1{font-size:min(var(--m1),16vh)}
 .pg-xmas .x-sub{max-width:22ch;text-wrap:balance}
-.pg-xmas .x-intro{display:grid;gap:20px;justify-items:center;text-align:center}
+.pg-xmas .x-intro{display:grid;gap:clamp(12px,2.2vh,20px);justify-items:center;text-align:center}
 .pg-xmas .x-lede{max-width:52ch}
 .pg-xmas .x-intro .lines,.pg-xmas .x-intro .line{max-width:520px}
 .pg-xmas .x-tabs{justify-content:center;margin-top:clamp(40px,5vw,64px)}
@@ -555,6 +557,14 @@ button.line{appearance:none;-webkit-appearance:none}
 /* ==== weddings/index.html ==== */
 /* Weddings · Corporate · Private dining share one landing-page template (these rules also serve .pg-corporate and .pg-private) */
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{padding-top:clamp(32px,4vw,64px)}
+/* desktop: one first view — the words on the left, the photograph with the form on the right */
+@media (min-width:900px){
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);padding-top:0}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero>.wrap{display:block;margin:0;padding-right:var(--gutter);align-self:center;padding-top:var(--inside);padding-bottom:var(--inside)}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero>.wrap>.intro{max-width:none}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero .m2{font-size:clamp(36px,min(4.4vw,8.5vh),88px)}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero .a2{font-size:var(--a3)}
+}
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{margin-top:var(--inside)}
 /* the enquiry card sits on the lead photograph: the room and the form in one view.
    Desktop: photo and card share one grid cell, the photo stretching to the card if the card is taller.
@@ -563,8 +573,10 @@ button.line{appearance:none;-webkit-appearance:none}
 @media (min-width:900px){
   :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{display:grid}
   :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>*{grid-area:1/1}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ph{aspect-ratio:auto;min-height:calc(100vw * 9 / 16)}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ev-enq{justify-self:end;align-self:center;width:min(480px,42vw);margin:var(--inside) var(--margin)}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{margin-top:0}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ph{aspect-ratio:auto;min-height:calc(100svh - 80px);height:100%}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ev-enq{justify-self:center;align-self:start;width:min(440px,calc(100% - 2 * var(--inside)));margin:var(--inside) 0;padding:32px}
+  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ph .mark{display:none}
 }
 @media (max-width:899.98px){
   :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ev-enq{margin:-72px var(--margin) 0}

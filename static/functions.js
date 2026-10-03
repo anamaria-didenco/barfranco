@@ -20,7 +20,9 @@
       max = Math.max(max, probe.getBoundingClientRect().width);
     });
     np.removeChild(probe);
-    if (max > 0) np.style.fontSize = Math.max(34, Math.min(230, 99.5 * avail / max)).toFixed(2) + 'px';
+    /* …but never taller than a slice of the screen, so the cover and the strip under it fit the first view */
+    var tall = (w.innerHeight || 800) * 0.15;
+    if (max > 0) np.style.fontSize = Math.max(34, Math.min(230, tall, 99.5 * avail / max)).toFixed(2) + 'px';
   }
   var rt;
   function refit() { clearTimeout(rt); rt = setTimeout(fit, 100); }
