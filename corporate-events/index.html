@@ -104,7 +104,11 @@
         "postalCode": "8011",
         "addressCountry": "NZ"
       },
-      "geo": { "@type": "GeoCoordinates", "latitude": -43.53262, "longitude": 172.63620 },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -43.53262,
+        "longitude": 172.6362
+      },
       "areaServed": "Christchurch"
     },
     {
@@ -112,23 +116,67 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How many guests can Bar Franco host for a corporate event?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Up to 240 guests across two levels for a standing function, or around 165 seated. A single level suits team dinners and client evenings; take both for the whole company." }
+          "name": "How many guests can you host?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Up to 240 standing across both floors, or around 165 seated. One floor suits a team or client dinner."
+          }
         },
         {
           "@type": "Question",
-          "name": "Is there a venue hire fee for corporate functions?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No venue hire fee. We work to a food and beverage minimum spend instead, tailored to your event, date and space." }
+          "name": "Is there a venue hire fee?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A food and drink minimum spend instead, set by your date and space."
+          }
         },
         {
           "@type": "Question",
-          "name": "Do you offer set menus for corporate groups?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes — shared Italian set menus from $80 per person, canapé and grazing options for standing functions, and a drinks list led by the Negroni. We tailor the menu to your group, budget and dietaries." }
+          "name": "How quickly will I hear back?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Within one business day, with availability, a proposal and the events pack."
+          }
         },
         {
           "@type": "Question",
-          "name": "Where is Bar Franco and is it easy for staff and clients to get to?",
-          "acceptedAnswer": { "@type": "Answer", "text": "We're in The Crossing at 166 Cashel Street, right in the Christchurch CBD — next to H&M, with The Crossing car park and central bus and tram routes close by. Easy to reach, easy to carry on afterwards." }
+          "name": "Is there AV for speeches and presentations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Microphones, a projector and screen, and room for a band or a DJ."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does billing work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A deposit from $500 holds the date and comes off your drinks bill. Drinks run on consumption, and we keep you posted on the spend on the night."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer set menus and dietaries?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Shared set menus from $80pp, canapés and grazing tables, and every dietary handled."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How easy is it to get there?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Crossing, 166 Cashel Street, in the CBD. Lift near H&M; the carpark is in the same block, buses and tram minutes away."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How far ahead should we book?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "December and Friday nights: as early as you can. Midweek: often at short notice."
+          }
         }
       ]
     }
@@ -178,13 +226,13 @@
     <div class="at-1-8 intro">
       <p class="eyebrow">Corporate events · Christchurch CBD</p>
       <h1 class="m2 title" data-set>Corporate events,<br>the Italian way</h1>
-      <p class="a2">Client dinners that close the deal, team nights people turn up for, end-of-year functions worth the wait. Up to 240 guests, no venue hire fee, and a team that handles the night.</p>
+      <p class="a2">Client dinners that close the deal, team nights people turn up for, end-of-year parties worth the wait. One venue, two floors, up to 240 guests, no venue hire fee, and a team of hosts running the night.</p>
       <div class="lines mt"><a class="line" href="#enquire">Enquire about your event</a></div>
       <a class="ask" href="/functions/">All functions</a>
     </div>
   </div>
   <div class="ph r-169 full mt" data-unmask>
-    <img src="/images/level2-corporate.jpg" alt="The upstairs dining room set with long tables for a corporate function" width="1400" height="1050" fetchpriority="high" style="object-position:50% 60%">
+    <img src="/images/level2-corporate.jpg" alt="The restaurant upstairs set with long tables for a corporate dinner, a presentation on the screen" width="1400" height="1050" fetchpriority="high" style="object-position:50% 60%">
     <img class="mark" src="/static/logos/franco-script-incline/almond.svg" alt="" width="180" height="126">
   </div>
 </section>
@@ -193,7 +241,7 @@
   <div class="wrap grid">
     <div class="at-1-5 intro">
       <h2 class="m2" data-set>Let's plan your event</h2>
-      <p class="a3">Send the date, the headcount and the kind of night — we'll come back with availability and a tailored proposal.</p>
+      <p class="a3">Send the date, the headcount and the kind of night. Within one business day we'll come back with availability and a tailored proposal.</p>
       <p class="a4">Or <a class="link" href="mailto:events@barfranco.nz">events@barfranco.nz</a> · <a class="link" href="tel:+64212211307">021 221 1307</a></p>
     </div>
     <div class="at-7 frame ev-enq" data-settle>
@@ -210,25 +258,27 @@
   <div class="wrap grid">
     <div class="at-1-5 intro self-end">
       <p class="eyebrow">Bar Franco · 01 · Why Franco</p>
-      <h2 class="m3">Impressive without trying too hard</h2>
-      <p class="a3">Some venues feel like a conference room with catering. Franco feels like the best night out your company has had — pasta rolled in view, Negronis stirred to order, shared tables that get people talking.</p>
-      <p class="a3">In the CBD at The Crossing, so everyone can get there — and carry on afterwards.</p>
+      <h2 class="m3">Why planners book us</h2>
+      <p class="a3">We host events, we don’t just hold them. A team with hospitality in their bones runs the food, the drinks and the night, so you get to be a guest at your own event.</p>
+      <p class="a3">Pasta made here, not catered in. No venue hire fee. One host from your first email to the last drink. In the CBD at The Crossing, so everyone can get there, and carry on afterwards.</p>
     </div>
-    <div class="at-8 ph r-45 bleed-r ev-why" data-unmask><img src="/images/event-service.jpg" alt="Table service at a corporate function" width="1000" height="1500" loading="lazy" decoding="async"></div>
+    <div class="at-8 ph r-45 bleed-r ev-why" data-unmask><img src="/images/event-service.jpg" alt="One of the team bringing water to the table at a corporate dinner" width="1000" height="1500" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
 <section class="sec ch-menu" aria-label="Formats" data-screen-label="02 · Formats">
   <div class="wrap">
     <div class="intro">
-      <p class="eyebrow">Bar Franco · 02 · Formats</p>
-      <h2 class="m3">Every kind of work occasion</h2>
+      <p class="eyebrow">Bar Franco · 02 · Spaces &amp; formats</p>
+      <h2 class="m3">One venue, two floors, set up your way</h2>
     </div>
     <div class="ev-fmts mt">
-      <div class="hair"><h3 class="m4">Client dinners</h3><p class="a3">A long table, a shared Italian menu and polished service.</p></div>
-      <div class="hair"><h3 class="m4">Team dinners</h3><p class="a3">Milestones, farewells and wins — the good seats by the open kitchen.</p></div>
-      <div class="hair"><h3 class="m4">End-of-year parties</h3><p class="a3">Seated or stand-up for the whole company. December goes first.</p></div>
-      <div class="hair"><h3 class="m4">Cocktail functions</h3><p class="a3">Stand-up evenings around the Negroni bar, spritzes by the tray.</p></div>
+      <div class="hair"><h3 class="m4">The bar, downstairs</h3><p class="a3">Rose-red plaster, fringed lamps and curved velvet booths. 80 seated, 120 standing.</p></div>
+      <div class="hair"><h3 class="m4">The restaurant, upstairs</h3><p class="a3">A curved wall of windows, plants, copper lamps, the open kitchen. 90 seated, 120 standing.</p></div>
+      <div class="hair"><h3 class="m4">Client dinners</h3><p class="a3">A long table upstairs, a shared Italian menu and polished service.</p></div>
+      <div class="hair"><h3 class="m4">Team dinners</h3><p class="a3">Milestones, farewells and wins, seated in the bar or upstairs.</p></div>
+      <div class="hair"><h3 class="m4">End-of-year parties</h3><p class="a3">Canapés in the bar, dinner upstairs, back down to the bar. Up to 240.</p></div>
+      <div class="hair"><h3 class="m4">Cocktail functions</h3><p class="a3">Standing, on either floor, spritzes by the tray.</p></div>
     </div>
   </div>
 </section>
@@ -238,7 +288,7 @@
     <div class="at-1-5 intro self-end">
       <p class="eyebrow">Bar Franco · 03 · Food &amp; drink</p>
       <h2 class="m3">Menus for a table in full swing</h2>
-      <p class="a3">Speeches, presentations or something particular in mind? Tell us and we'll make it work.</p>
+      <p class="a3">Not function catering: pasta rolled in our open kitchen, built around your group, budget and dietaries. Microphones for speeches, a projector and screen for presentations.</p>
       <div class="lines mt"><a class="line" href="/menus/"><span>See the menus</span><i class="lead" aria-hidden="true"></i><em class="v">food &amp; drinks</em></a></div>
     </div>
     <article class="at-7 frame menu ev-card" data-settle>
@@ -259,14 +309,17 @@
   <div class="wrap grid">
     <div class="at-1-5 intro">
       <p class="eyebrow">Bar Franco · 04 · Good to know</p>
-      <h2 class="m3">Questions</h2>
+      <h2 class="m3">What planners ask</h2>
     </div>
     <div class="at-7 qa">
-      <details><summary>How many guests can you host?</summary><p>Up to 240 standing across both levels, or around 165 seated.</p></details>
-      <details><summary>Is there a venue hire fee?</summary><p>No — a food and beverage minimum spend instead, tailored to your event.</p></details>
-      <details><summary>Do you offer set menus and dietaries?</summary><p>Shared set menus from 80pp, canapé and grazing options, and full dietary coverage.</p></details>
-      <details><summary>How easy is it to get there?</summary><p>The Crossing, 166 Cashel Street, by H&amp;M — car park in the same block, buses and tram minutes away.</p></details>
-      <details><summary>How far ahead should we book?</summary><p>For December and Friday nights, as early as you can. Midweek is often free at shorter notice.</p></details>
+      <details><summary>How many guests can you host?</summary><p>Up to 240 standing across both floors, or around 165 seated. One floor suits a team or client dinner.</p></details>
+      <details><summary>Is there a venue hire fee?</summary><p>No. A food and drink minimum spend instead, set by your date and space.</p></details>
+      <details><summary>How quickly will I hear back?</summary><p>Within one business day, with availability, a proposal and the events pack.</p></details>
+      <details><summary>Is there AV for speeches and presentations?</summary><p>Microphones, a projector and screen, and room for a band or a DJ.</p></details>
+      <details><summary>How does billing work?</summary><p>A deposit from 500 holds the date and comes off your drinks bill. Drinks run on consumption, and we keep you posted on the spend on the night.</p></details>
+      <details><summary>Do you offer set menus and dietaries?</summary><p>Shared set menus from 80pp, canapés and grazing tables, and every dietary handled.</p></details>
+      <details><summary>How easy is it to get there?</summary><p>The Crossing, 166 Cashel Street, in the CBD. Lift near H&amp;M; the carpark is in the same block, buses and tram minutes away.</p></details>
+      <details><summary>How far ahead should we book?</summary><p>December and Friday nights: as early as you can. Midweek: often at short notice.</p></details>
     </div>
   </div>
 </section>
