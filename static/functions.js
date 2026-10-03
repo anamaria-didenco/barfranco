@@ -1,4 +1,4 @@
-/* Bar Franco — functions.js · the Functions page: the nameplate, the coaster and the five chapters.
+/* Bar Franco — functions.js · the Functions page: the nameplate, the coaster and the five chapters (all open; each head folds its own).
    Plain JS, no dependencies. Without it the page is complete: every chapter shows, the coaster rests. */
 (function () {
   var d = document, w = window, root = d.documentElement;
@@ -62,49 +62,32 @@
     flip.addEventListener('click', function (e) { if (fine() && e.detail !== 0) return; turn(!turned()); });
   }
 
-  /* ---- the chapters: across the page from 1100px (one always open), a list below (all closed) ---- */
+  /* ---- the chapters: every chapter open on arrival; each head folds its own away (and back) ---- */
   var IDS = ['why', 'spaces', 'occasions', 'food', 'questions'];
   var secs = IDS.map(function (id) { return d.getElementById(id); }).filter(Boolean);
   if (!secs.length) return;
-  var open = null;
-  var mq = w.matchMedia ? w.matchMedia('(min-width: 1100px)') : null;
-  function across() { return mq ? mq.matches : w.innerWidth >= 1100; }
-  function set(id) {
-    open = id;
-    secs.forEach(function (s) {
-      var on = s.id === id, b = s.querySelector('.chx-head');
-      s.setAttribute('data-open', on ? 'true' : 'false');
-      if (b) b.setAttribute('aria-expanded', on ? 'true' : 'false');
-    });
+  function setOne(s, on) {
+    var b = s.querySelector('.chx-head');
+    s.setAttribute('data-open', on ? 'true' : 'false');
+    if (b) b.setAttribute('aria-expanded', on ? 'true' : 'false');
   }
   function jump(id) {
     var s = d.getElementById(id); if (!s) return;
     var t = s.querySelector('.chx-head') || s;
-    var y = t.getBoundingClientRect().top + w.scrollY;
     var mast = d.querySelector('.bf-mast');
-    var off = (y > 90 ? 56 : (mast ? mast.getBoundingClientRect().height : 64)) + 8;
-    w.scrollTo({ top: y - off, behavior: reduce ? 'auto' : 'smooth' });
+    var off = (mast ? mast.getBoundingClientRect().height : 64) + 8;
+    w.scrollTo({ top: t.getBoundingClientRect().top + w.scrollY - off, behavior: reduce ? 'auto' : 'smooth' });
   }
   secs.forEach(function (s) {
+    setOne(s, true);
     var b = s.querySelector('.chx-head'); if (!b) return;
-    b.addEventListener('click', function () {
-      if (across()) { if (open !== s.id) set(s.id); return; }
-      var next = open === s.id ? null : s.id;
-      set(next);
-      if (next) setTimeout(function () { jump(next); }, 30);
-    });
+    b.addEventListener('click', function () { setOne(s, s.getAttribute('data-open') !== 'true'); });
   });
   function fromHash() {
     var h = (w.location.hash || '').slice(1);
-    if (IDS.indexOf(h) > -1) { set(h); setTimeout(function () { jump(h); }, 80); return true; }
-    if (h === 'hook') setTimeout(function () { jump('hook'); }, 400);
-    return false;
+    if (IDS.indexOf(h) > -1) { setOne(d.getElementById(h), true); setTimeout(function () { jump(h); }, 80); }
+    else if (h === 'hook') setTimeout(function () { jump('hook'); }, 400);
   }
-  if (!fromHash()) set(across() ? 'why' : null);
+  fromHash();
   w.addEventListener('hashchange', fromHash);
-  function check() { if (across() && !open) set('why'); }
-  w.addEventListener('resize', check);
-  if (mq) { if (mq.addEventListener) mq.addEventListener('change', check); else if (mq.addListener) mq.addListener(check); }
-  var chx = d.getElementById('chapters');
-  if (chx && 'ResizeObserver' in w) new ResizeObserver(check).observe(chx);
 })();

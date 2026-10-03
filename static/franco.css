@@ -368,6 +368,14 @@ button.line{appearance:none;-webkit-appearance:none}
 .hook-talk .facts .a4{margin-top:2px}
 .hook-card{grid-column:7/13;display:grid;gap:14px;justify-items:center;text-align:center;scroll-margin-top:72px}
 .hook-card iframe{height:520px}
+/* the at-a-glance card where the form was: tell, then ask (the form is in #enquire) */
+.hook-card.glance{gap:14px;align-self:start;justify-items:stretch;text-align:left}
+.hook-card.glance>.eyebrow{text-align:center}
+.hook-card.glance .lines-list .ml>.n{flex-shrink:0}
+.hook-card.glance .fine{text-align:center}
+.hook-card.glance .lines{margin-top:4px}
+.hook-card.glance>.emb{justify-self:center}
+.fn-enq-l .hook-talk{margin-top:8px}
 /* phones: words, then the form, then the phone lines and the coaster */
 @media (max-width:899.98px){.hook{row-gap:16px}.hook-l{display:contents}.hook-l>*,.hook-mid>*,.hook-card{grid-column:1/-1}.hook-card{order:1;width:100%;max-width:680px;justify-self:center;margin:24px 0 8px}.hook-talk{order:2}.hook-mid>.coaster-wrap{order:3}}
 /* the coaster: a printed object set down on the table — the one shadow on the site. Turn it over */
@@ -406,31 +414,31 @@ button.line{appearance:none;-webkit-appearance:none}
 .chx-oc::before{content:"+"}
 .chx-ch[data-open="true"] .chx-oc::before{content:"\2212"}
 .chx-head:hover .chx-t,.chx-ch[data-open="true"] .chx-t{color:var(--head)}
-.chx-js .chx-ch:not([data-open="true"]) .chx-body{display:none}
-.chx-body{padding-top:var(--inside)}
+.chx-body{display:grid;grid-template-rows:1fr;transition:grid-template-rows 220ms var(--ease-ink)}
+.chx-js .chx-ch[data-open="false"] .chx-body{grid-template-rows:0fr}
+.chx-body>.chx-card{min-height:0;overflow:clip;overflow-clip-margin:28px}
+@media (prefers-reduced-motion:reduce){.chx-body{transition:none}}
+.chx-index{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--gutter);margin-top:clamp(16px,2vw,24px);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.chx-index a{display:grid;gap:6px;align-content:start;padding:16px 0 18px;color:var(--ink);text-decoration:none}
+.chx-index a:hover .chx-t{color:var(--head)}
+.chx-index .chx-t{font-size:var(--m4)}
+.chx-ch{scroll-margin-top:84px}
+@media (max-width:899.98px){.chx-index{display:none}}
 .chx-card{align-items:start}
 .chx-ph{grid-column:1/6}
 .chx-tx{grid-column:7/13;display:grid;gap:16px;align-content:start}
 .facts{display:grid;width:100%;border-bottom:1px solid var(--hair)}
 .facts>*{padding:9px 0;border-top:1px solid var(--hair);font-size:var(--a3);line-height:1.45}
 .facts .ml>.n{flex-shrink:0}   /* a label stays on one line; the fact wraps on the right */
+.facts .ml:has(>.n em)>.n{flex-shrink:1}   /* …but a dish with its note wraps, so the price never leaves the line */
 .lv2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px var(--gutter)}
 .lv2>div{display:grid;gap:8px;align-content:start}
 .qlist{display:grid;border-bottom:1px solid var(--hair)}
 .qlist>div{display:grid;gap:4px;padding:14px 0;border-top:1px solid var(--hair)}
 .qlist h4{font-size:var(--a2);font-weight:400;line-height:1.35;color:var(--head)}
 .links{display:flex;flex-wrap:wrap;gap:6px 24px}
-@media (min-width:1100px){
-  .chx{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
-  .chx-ch{display:contents}
-  .chx-h{grid-row:1;padding-right:var(--gutter);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-  .chx-h::after{content:"";position:absolute;left:0;right:var(--gutter);bottom:-1px;height:2px;background:transparent;transition:background-color var(--t-ink) var(--ease-ink)}
-  .chx-ch:last-child .chx-h{padding-right:0}
-  .chx-ch:last-child .chx-h::after{right:0}
-  .chx-ch[data-open="true"] .chx-h::after{background:var(--head)}
-  .chx-body{grid-column:1/-1}
-}
-@media (max-width:1099.98px){
+/* the chapters: one stacked list at every width, all open; a head folds its own away */
+@media all{
   .chx{border-bottom:1px solid var(--hair)}
   .chx-h{border-top:1px solid var(--hair);transition:border-color var(--t-ink) var(--ease-ink)}
   .chx-ch[data-open="true"] .chx-h{border-top-color:var(--head)}
@@ -439,7 +447,9 @@ button.line{appearance:none;-webkit-appearance:none}
   .chx-t{grid-column:2;grid-row:1;font-size:var(--m3);line-height:.9;letter-spacing:-.005em}
   .chx-l{grid-column:2;grid-row:2}
   .chx-oc{display:block;grid-column:3;grid-row:1}
-  .chx-body{padding:8px 0 var(--inside)}
+}
+.chx-body>.chx-card{padding:8px 0 var(--inside)}
+@media (max-width:899.98px){
   .chx-ph,.chx-tx{grid-column:1/-1}
   .chx-ph{order:2;aspect-ratio:3/2}
   .lv2{grid-template-columns:1fr}
@@ -484,7 +494,9 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-xmas .x-intro .lines,.pg-xmas .x-intro .line{max-width:520px}
 .pg-xmas .x-tabs{justify-content:center;margin-top:clamp(40px,5vw,64px)}
 .pg-xmas .x-tabs em{font-size:var(--a4);margin-right:.3em}
-.pg-xmas .x-panel{padding-top:var(--inside)}
+.pg-xmas .x-tabs a{font-style:italic;font-size:19px;padding:0 0 12px;margin-bottom:-1px;border-bottom:1px solid transparent;text-decoration:none;color:inherit;transition:color var(--t-ink) var(--ease-ink),border-color var(--t-ink) var(--ease-ink)}
+.pg-xmas .x-tabs a:hover{color:var(--head);border-bottom-color:var(--head)}
+.pg-xmas section[id]{scroll-margin-top:72px}
 .pg-xmas .x-eb{max-width:none}
 .pg-xmas .x-card{max-width:760px;margin-left:auto;margin-right:auto;padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(48px,6vw,88px)}
 .pg-xmas .x-card .m4{margin-top:14px}
@@ -506,8 +518,7 @@ button.line{appearance:none;-webkit-appearance:none}
 @media (max-width:639.98px){
   .pg-xmas .x-h1 .m1{font-size:12.6vw}   /* nine letters must fit 390px; never under 24px */
   .pg-xmas .x-tabs{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;border-bottom:0}
-  .pg-xmas .x-tabs button{text-align:center}
-  .pg-xmas .x-tabs button:not([aria-selected="true"]){border-bottom-color:var(--hair)}
+  .pg-xmas .x-tabs a{text-align:center;border-bottom-color:var(--hair)}
 }
 .pg-xmas .intro.c{justify-items:center;text-align:center}
 
@@ -558,6 +569,8 @@ button.line{appearance:none;-webkit-appearance:none}
 }
 @media (max-width:639.98px){.pg-pack .pk-row{grid-template-columns:34px minmax(0,1fr) auto;column-gap:10px}}
 @media print{.pk-pr{display:grid;gap:12px}}
+
+.pg-pack .pk-ask{max-width:520px;margin-top:18px}
 
 /* ==== weddings/index.html ==== */
 /* Weddings · Corporate · Private dining share one landing-page template (these rules also serve .pg-corporate and .pg-private) */

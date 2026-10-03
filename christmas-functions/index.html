@@ -138,16 +138,16 @@
       <div class="ph r-32 p7 bleed-l" data-unmask><img src="/images/christmas/spritz-table.jpg" alt="Rows of spritzes and flowers waiting for the guests" width="734" height="1100" style="object-position:50% 60%"></div>
       <div class="ph r-45 p4"><img src="/images/coaster/new-5.jpg" alt="An Aperol spritz, a Negroni and a highball on a painted tray" width="640" height="959"></div>
     </div>
-    <div class="tabs x-tabs" role="tablist" aria-label="On this page">
-      <button role="tab" type="button" id="t-menu" aria-controls="menu" aria-selected="true"><em>01</em> Menu &amp; prices</button>
-      <button role="tab" type="button" id="t-rooms" aria-controls="rooms" aria-selected="false" tabindex="-1"><em>02</em> The rooms</button>
-      <button role="tab" type="button" id="t-details" aria-controls="details" aria-selected="false" tabindex="-1"><em>03</em> How it works</button>
-      <button role="tab" type="button" id="t-night" aria-controls="night" aria-selected="false" tabindex="-1"><em>04</em> The night</button>
-    </div>
+    <nav class="tabs x-tabs" aria-label="On this page">
+      <a href="#menu"><em>01</em> Menu &amp; prices</a>
+      <a href="#rooms"><em>02</em> The rooms</a>
+      <a href="#details"><em>03</em> How it works</a>
+      <a href="#night"><em>04</em> The night</a>
+    </nav>
   </div>
 </section>
 
-<section class="ch-aframe band" role="tabpanel" id="menu" aria-labelledby="t-menu" data-screen-label="01 · Menu &amp; prices">
+<section class="ch-aframe band" id="menu" aria-label="Menu &amp; prices" data-screen-label="01 · Menu &amp; prices">
   <div class="wrap">
     <p class="eyebrow c x-eb">Bar Franco · 01 · Menu &amp; prices</p>
     <article class="frame menu x-card mt" data-settle>
@@ -169,7 +169,11 @@
       <div class="lines-list">
         <p class="ml"><span class="n">Venue hire fee</span><i class="lead" aria-hidden="true"></i><span class="v r">none</span></p>
         <p class="ml"><span class="n">Deposit — <em>off your drinks bill</em></span><i class="lead" aria-hidden="true"></i><span class="v r">from 500</span></p>
-        <p class="ml"><span class="n">Fri &amp; Sat minimum spend</span><i class="lead" aria-hidden="true"></i><span class="v r">from 4,000</span></p>
+        <p class="ml"><span class="n">Minimum spend, Fri &amp; Sat — <em>the bar</em></span><i class="lead" aria-hidden="true"></i><span class="v r">from 4,000</span></p>
+        <p class="ml"><span class="n">— <em>the Restaurant</em></span><i class="lead" aria-hidden="true"></i><span class="v r">from 7,500</span></p>
+        <p class="ml"><span class="n">— <em>the whole building</em></span><i class="lead" aria-hidden="true"></i><span class="v r">from 15,000</span></p>
+        <p class="ml"><span class="n">Minimum spend, Sun to Thu</span><i class="lead" aria-hidden="true"></i><span class="v r">usually none</span></p>
+        <p class="ml"><span class="n">Christmas parties</span><i class="lead" aria-hidden="true"></i><span class="v r">1–23 December</span></p>
         <p class="ml x-solo"><span class="n">Dietaries — <em>every one handled</em></span></p>
         <p class="ml"><span class="n">Last drinks</span><i class="lead" aria-hidden="true"></i><span class="v r">11:30pm</span></p>
       </div>
@@ -179,7 +183,7 @@
   </div>
 </section>
 
-<section class="ch-menu x-panel" role="tabpanel" id="rooms" aria-labelledby="t-rooms" data-screen-label="02 · The rooms" hidden>
+<section class="sec ch-menu" id="rooms" aria-label="The rooms" data-screen-label="02 · The rooms">
   <div class="wrap grid">
     <div class="at-all intro c">
       <p class="eyebrow">Bar Franco · 02 · The rooms</p>
@@ -214,7 +218,7 @@
   </div>
 </section>
 
-<section class="ch-menu x-panel" role="tabpanel" id="details" aria-labelledby="t-details" data-screen-label="03 · How it works" hidden>
+<section class="sec ch-menu" id="details" aria-label="How it works" data-screen-label="03 · How it works">
   <div class="wrap grid">
     <div class="at-all intro c">
       <p class="eyebrow">Bar Franco · 03 · How it works</p>
@@ -231,7 +235,7 @@
   </div>
 </section>
 
-<section class="ch-night band" role="tabpanel" id="night" aria-labelledby="t-night" data-screen-label="04 · The night (Night)" hidden>
+<section class="ch-night band" id="night" aria-label="The night" data-screen-label="04 · The night (Night)">
   <div class="wrap grid">
     <div class="at-all intro c">
       <p class="eyebrow">Bar Franco · 04 · The night</p>
@@ -264,8 +268,8 @@
 </section>
 </main>
 <script>
-/* Christmas: dataLayer pushes for calls, emails, CTAs and a VenueFlow submit; #menu #rooms #details #night open their chapter.
-   Tabs, the VenueFlow height, the masthead and dock live in franco.js and chrome.js. */
+/* Christmas: dataLayer pushes for calls, emails, CTAs and a VenueFlow submit; #menu #rooms #details #night are all on the page.
+   The VenueFlow height, the masthead and dock live in franco.js and chrome.js. */
 (function () {
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"], a[href^="mailto:"], [data-track]') : null;
@@ -282,13 +286,6 @@
     if (!d || typeof d.type !== 'string' || d.type === 'vf-embed-height') return;
     if (/submit|success|complete|sent/i.test(d.type)) { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'bf_enquiry', bf_page: 'christmas' }); }
   });
-  function fromHash() {
-    var k = (location.hash || '').slice(1);
-    var t = k && document.querySelector('.x-tabs [aria-controls="' + k + '"]');
-    if (t) { t.click(); document.getElementById(k).scrollIntoView(); }
-  }
-  document.addEventListener('DOMContentLoaded', fromHash);
-  window.addEventListener('hashchange', fromHash);
 })();
 </script>
 

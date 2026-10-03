@@ -1,4 +1,4 @@
-/* Bar Franco — Events Pack: eight chapters that open underneath their row (one at a time; Welcome open on
+/* Bar Franco — Events Pack: eight chapters that open underneath their row (Welcome, The spaces and Pricing open on
    load), opened by click / tap only, #ch-… deep links, and the three food tabs.
    Runs alongside static/franco.js (motion). Without JS every chapter and menu shows (franco.css hides closed
    chapters only under html.fx). */
@@ -47,7 +47,7 @@
   function fromHash(first) {
     var id = (location.hash || '').replace(/^#ch-/, '');
     if (byId[id]) { open(id); setTimeout(function () { jump(byId[id]); }, 60); }
-    else if (first === true) open('welcome');
+    else if (first === true) ['welcome', 'spaces', 'pricing'].forEach(function (k) { if (byId[k]) setOpen(byId[k], true); });
   }
   fromHash(true);
   window.addEventListener('hashchange', fromHash);
