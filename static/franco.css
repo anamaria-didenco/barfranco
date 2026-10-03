@@ -551,24 +551,27 @@ button.line{appearance:none;-webkit-appearance:none}
 @media print{.pk-pr{display:grid;gap:12px}}
 
 /* ==== weddings/index.html ==== */
-/* Weddings · Corporate share one landing-page template (these rules also serve .pg-corporate) */
-:is(.pg-weddings,.pg-corporate) .ev-hero{padding-top:clamp(32px,4vw,64px)}
-:is(.pg-weddings,.pg-corporate) .ev-hero .ph.full{margin-top:var(--inside)}
+/* Weddings · Corporate · Private dining share one landing-page template (these rules also serve .pg-corporate and .pg-private) */
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{padding-top:clamp(32px,4vw,64px)}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero .ph.full{margin-top:var(--inside)}
 /* the enquiry card: the VenueFlow form, then the pack */
-:is(.pg-weddings,.pg-corporate) .ev-enq{display:grid;gap:24px;align-self:start}
-:is(.pg-weddings,.pg-corporate) .ev-enq iframe{width:100%;height:460px;border:0}
-:is(.pg-weddings,.pg-corporate) .ev-pack{display:flex;flex-wrap:wrap;gap:4px 28px;padding-top:16px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq{display:grid;gap:24px;align-self:start}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq iframe{width:100%;height:460px;border:0}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-pack{display:flex;flex-wrap:wrap;gap:4px 28px;padding-top:16px}
 /* formats: Marsha category heads in two columns, a hairline above each */
-:is(.pg-weddings,.pg-corporate) .ev-fmts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter);border-bottom:1px solid var(--hair)}
-:is(.pg-weddings,.pg-corporate) .ev-fmts>div{display:grid;gap:10px;align-content:start;padding:24px 0 28px}
-@media (max-width:639.98px){:is(.pg-weddings,.pg-corporate) .ev-fmts{grid-template-columns:1fr}}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter);border-bottom:1px solid var(--hair)}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts>div{display:grid;gap:10px;align-content:start;padding:24px 0 28px}
+@media (max-width:639.98px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts{grid-template-columns:1fr}}
 /* the food card */
-:is(.pg-weddings,.pg-corporate) .ev-card .lines-list{max-width:440px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card .lines-list{max-width:440px}
 /* 01's photograph: four columns, to the right edge */
-@media (min-width:900px){:is(.pg-weddings,.pg-corporate) .ev-why{grid-column:9/13}}
+@media (min-width:900px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-why{grid-column:9/13}}
 
 /* ==== corporate-events/index.html ==== */
-/* Corporate uses the shared Weddings · Corporate template rules in weddings.css */
+/* Corporate uses the shared Weddings · Corporate template rules above */
+
+/* ==== private-dining/index.html ==== */
+/* Private dining uses the shared Weddings · Corporate template rules above */
 
 /* ==== aperitivo/index.html ==== */
 /* Aperitivo · Negroni Bar · Pasta fresca · Before the stadium share one dining landing-page template (.pg-dine) */

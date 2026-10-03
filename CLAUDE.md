@@ -68,7 +68,7 @@ no framework, no server). The files here ARE the site — what you edit is what 
 | `vouchers/` | Gift vouchers |
 | `contact/` | Location, hours, contact details |
 | `christmas-functions/` | Christmas landing page: campaign masthead (Call / Enquire), cover, four chapter tabs (Menu & prices · The rooms · The fine print · The night), the `#enquire` box below, Call / Enquire phone dock. Keep the Google Ads conversion tags and the `bf_*` dataLayer pushes verbatim |
-| `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/` | SEO landing pages on the franco grammar (the four dining pages share `.pg-dine`) |
+| `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/`, `private-dining/` | SEO landing pages on the franco grammar (the four dining pages share `.pg-dine`; weddings, corporate and private dining & birthdays share the `.ev-*` template) |
 | `404.html` | Not-found page (absolute `/` paths) |
 | `events-pack/` | Events Pack 2026 — a masthead cover, then eight chapters that open underneath their title (tap or click to open; Welcome open on load; one open at a time; `#ch-food` etc. deep-link). Behaviour in `static/events-pack.js`; photos in `images/pack-2026/`. Uses the shared masthead, footer and dock like every page. The old `Bar Franco Events Pack.html` redirects here |
 | `Brand Guide.html` | Internal one-page brand guide (not linked in site nav) |

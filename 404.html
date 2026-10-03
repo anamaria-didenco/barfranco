@@ -6,7 +6,7 @@
 /* GitHub Pages is case-sensitive and can't 301, so any wrong casing or old form of a page address lands here:
    /MENUS, /menus.html, /Functions, /functions/index.html … forward to the one canonical address, keeping ?query and #hash. */
 (function () {
-  var pages = ['menus','bookings','functions','contact','vouchers','christmas-functions','events-pack','aperitivo','negroni-bar','fresh-pasta','pre-stadium-dining','corporate-events','weddings'];
+  var pages = ['menus','bookings','functions','contact','vouchers','christmas-functions','events-pack','aperitivo','negroni-bar','fresh-pasta','pre-stadium-dining','corporate-events','weddings','private-dining'];
   var p = location.pathname.toLowerCase().replace(/\/index\.html$/, '').replace(/\.html$/, '').replace(/\/+$/, '').replace(/^\/+/, '');
   if (p === '' || p === 'index' || p === 'home') { location.replace('/' + location.search + location.hash); return; }
   if (pages.indexOf(p) > -1 && location.pathname !== '/' + p + '/') location.replace('/' + p + '/' + location.search + location.hash);
@@ -144,7 +144,7 @@
       <p class="ml"><span class="n">Instagram</span><i class="lead" aria-hidden="true"></i><a class="v r" href="https://www.instagram.com/bar__franco/">@bar__franco</a></p>
       </div>
     </div>
-    <nav class="foot-more" aria-label="More from Franco"><span>More from Franco</span><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/corporate-events/">Corporate</a><a href="/weddings/">Weddings</a><a href="/events-pack/">Events pack</a><a href="/contact/">Contact</a><a href="https://www.instagram.com/bar__franco/">Instagram</a><a href="https://www.facebook.com/barfranco.chch">Facebook</a></nav>
+    <nav class="foot-more" aria-label="More from Franco"><span>More from Franco</span><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/private-dining/">Private dining</a><a href="/corporate-events/">Corporate</a><a href="/weddings/">Weddings</a><a href="/events-pack/">Events pack</a><a href="/contact/">Contact</a><a href="https://www.instagram.com/bar__franco/">Instagram</a><a href="https://www.facebook.com/barfranco.chch">Facebook</a></nav>
     <p class="foot-legal">All rights reserved © Bar Franco <span data-bf-year>2026</span> · <em>(upstairs)</em> The Crossing, 166 Cashel St, Ōtautahi · <a href="tel:+64212211307">021 221 1307</a> · <a href="mailto:events@barfranco.nz">events@barfranco.nz</a></p>
     <img class="foot-emb" src="/static/logos/emblem/almond.svg" alt="" width="52" height="22">
   </div>
