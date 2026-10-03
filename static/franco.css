@@ -563,6 +563,9 @@ button.line{appearance:none;-webkit-appearance:none}
 /* formats: Marsha category heads in two columns, a hairline above each */
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter);border-bottom:1px solid var(--hair)}
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts>div{display:grid;gap:10px;align-content:start;padding:24px 0 28px}
+/* corporate: the planners' own words, a quote and a name in each cell */
+.pg-corporate .ev-said{display:grid;gap:12px}
+.pg-corporate .ev-said blockquote{max-width:44ch}
 @media (max-width:639.98px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts{grid-template-columns:1fr}}
 /* the food card */
 :is(.pg-weddings,.pg-corporate,.pg-private) .ev-card .lines-list{max-width:440px}
