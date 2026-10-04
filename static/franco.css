@@ -327,6 +327,8 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-home .hm-facts{max-width:40ch;font-style:italic}
 .pg-home .hm-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
 .pg-home .hm-hero-ph{display:none}
+.pg-home .hm-story .intro{gap:18px}
+.pg-home .hm-story .a2{max-width:52ch}
 .pg-home .hm-word{margin-bottom:var(--inside);max-width:none}
 .pg-home .card-quote{max-width:36ch;padding-left:14px;border-left:1px solid var(--hair)}
 .pg-home .card-quote .fine{display:block;margin-top:4px;font-style:normal}
@@ -354,6 +356,34 @@ button.line{appearance:none;-webkit-appearance:none}
   .pg-home .hm-btns .btn{flex:1 1 auto;text-align:center}
   .pg-home .card .ph.r-169{aspect-ratio:3/2}
 }
+
+/* ==== our-story/index.html ==== */
+/* the letter: a signature, three rules in Marsha, the long table, two levels on Night, and a sign-off */
+.pg-story p{text-wrap:pretty;hyphens:manual}
+.pg-story .st-cover{padding-top:clamp(28px,4vw,56px)}
+.pg-story .st-cover .intro{gap:20px}
+.pg-story .st-cover .m2{max-width:16ch;text-wrap:balance}
+.pg-story .st-lead{max-width:30ch}
+.pg-story .st-sig{grid-column:9/13;align-self:end;display:grid;gap:10px;margin:0}
+.pg-story .st-sig img{width:100%;height:auto}
+.pg-story .st-text{display:grid;gap:24px;max-width:58ch}
+.pg-story .st-rules{list-style:none;padding:0;margin:8px 0;display:grid;gap:14px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:22px 0}
+.pg-story .st-rules .m4{max-width:none}
+.pg-story .st-word{display:block;margin-bottom:6px}
+.pg-story .st-levels .m3{margin-bottom:var(--inside)}
+.pg-story .st-pair{row-gap:var(--inside)}
+.pg-story .st-level{display:grid;gap:16px}
+.pg-story .st-level .a2{max-width:34ch}
+.pg-story .st-tucked{margin-top:var(--inside);max-width:48ch}
+.pg-story .st-close .m2{max-width:16ch;text-wrap:balance}
+.pg-story .st-sign{font-style:italic}
+.pg-story .st-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+@media (max-width:899.98px){
+  .pg-story .st-sig{grid-column:1/-1;max-width:360px}
+  .pg-story .st-level{grid-column:1/-1}
+  .pg-story .st-level .ph{margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin))}
+}
+@media (max-width:639.98px){.pg-story .st-btns .btn{flex:1 1 auto;text-align:center}}
 
 /* ==== menus/index.html ==== */
 /* hero: title + lede, the lead photograph, and the tabs sitting right above the sheets */
