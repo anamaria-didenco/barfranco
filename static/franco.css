@@ -454,41 +454,31 @@ button.line{appearance:none;-webkit-appearance:none}
 @media (max-width:639.98px){.pg-bookings .bk-frame{padding:28px 22px}}
 
 /* ==== functions/index.html ==== */
-/* ---- Page: Functions — the nameplate, the coaster, the five chapters (functions.js) ---- */
-/* the nameplate: functions.js sets one size for every line so the widest fills the frame; this is the fallback */
-.np-cover{padding-top:clamp(20px,3vw,44px)}
-.np{display:grid;justify-items:center;row-gap:.02em;position:relative;overflow:hidden;font-family:var(--marsha);font-weight:700;text-transform:uppercase;color:var(--title);line-height:.84;letter-spacing:-.005em;font-size:calc((min(100vw,1568px) - 2 * var(--margin)) / 13)}
-.np-l{display:block;width:max-content;white-space:nowrap}
-.np-probe{position:absolute;left:0;top:0;display:block;width:max-content;white-space:nowrap;visibility:hidden;pointer-events:none;font-size:100px;letter-spacing:-.005em}
-.np-date{margin-top:clamp(14px,1.8vw,24px);padding:12px 0;border-top:1px solid var(--deep);border-bottom:1px solid var(--deep);text-align:center}
-.np-cover .strip{margin-top:clamp(14px,1.8vw,24px)}
-/* the cover answers first: who it fits, where it is, and one ask */
-.np-facts{margin:10px auto 0;max-width:62ch;text-align:center;text-wrap:balance}
-.np-ask{margin:clamp(20px,2.4vw,32px) auto 0;max-width:520px}
-@media (max-width:899.98px){.strip.all{grid-template-columns:1fr 1fr}}
-@media (max-width:639.98px){.np{font-size:calc((100vw - 2 * var(--margin)) / 7.5)}.np-w{display:block}.strip.all>:nth-child(n+3){display:block}}
-/* why people book Franco: the coaster and the words, beside the framed enquiry card */
-.hook{align-items:start;max-width:calc(1240px + 2 * var(--margin))}
-.hook-l{grid-column:1/7;display:grid;gap:16px;align-content:start;justify-items:start}
-.hook-mid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 28px;align-items:center;width:100%}
-.hook-copy{display:grid;gap:16px}
-.hook-mid>.coaster-wrap{display:grid;justify-items:center;gap:14px;margin:0 8px 0 0}
-@media (max-width:1099.98px){.hook-mid{display:contents}.hook-mid>.coaster-wrap{order:1;display:flex;gap:22px;margin:18px 0 0 6px}}
-.hook-talk{display:grid;gap:8px;width:100%;margin-top:20px}
-.hook-talk .ml{font-size:var(--a3)}
-.hook-talk .facts .a4{margin-top:2px}
-.hook-card{grid-column:7/13;display:grid;gap:14px;justify-items:center;text-align:center;scroll-margin-top:72px}
-.hook-card iframe{height:520px}
-/* the at-a-glance card where the form was: tell, then ask (the form is in #enquire) */
-.hook-card.glance{gap:14px;align-self:start;justify-items:stretch;text-align:left}
-.hook-card.glance>.eyebrow{text-align:center}
-.hook-card.glance .lines-list .ml>.n{flex-shrink:0}
-.hook-card.glance .fine{text-align:center}
-.hook-card.glance .lines{margin-top:4px}
-.hook-card.glance>.emb{justify-self:center}
-.fn-enq-l .hook-talk{margin-top:8px}
-/* phones: words, then the form, then the phone lines and the coaster */
-@media (max-width:899.98px){.hook{row-gap:16px}.hook-l{display:contents}.hook-l>*,.hook-mid>*,.hook-card{grid-column:1/-1}.hook-card{order:1;width:100%;max-width:680px;justify-self:center;margin:24px 0 8px}.hook-talk{order:2}.hook-mid>.coaster-wrap{order:3}}
+/* Functions on the Table: the nameplate as a word, the at-a-glance card, the night in three chapters, the spaces, the EVENTI card, the form (functions.js keeps the coaster) */
+.pg-fn .fn-cover{gap:clamp(16px,2vw,28px)}
+.pg-fn .fn-title{font-size:clamp(44px,9.4vw,160px)}
+.pg-fn .fn-date{width:100%;max-width:720px;padding:12px 0;border-top:1px solid var(--deep);border-bottom:1px solid var(--deep);text-align:center}
+.pg-fn .fn-facts{max-width:62ch;text-wrap:balance}
+.pg-fn .fn-strip{width:100%;margin-top:clamp(8px,1.4vw,20px)}
+.pg-fn .fn-glance{align-items:start}
+.pg-fn .fn-glance .said{display:grid;gap:6px}
+.pg-fn .fn-card{justify-items:stretch;text-align:left;gap:14px}
+.pg-fn .fn-card>.eyebrow,.pg-fn .fn-card .fine{text-align:center}
+.pg-fn .fn-card .fn-sub{padding-top:6px}
+.pg-fn .fn-card .lines,.pg-fn .fn-card .line{max-width:none}
+.pg-fn .fn-card>.emb{justify-self:center}
+.pg-fn .fn-night{margin-top:var(--between)}
+.pg-fn .fn-three{--n:3;width:100%;margin-top:12px}
+.pg-fn .fn-head{align-items:end}
+.pg-fn .fn-lead{max-width:44ch}
+.pg-fn .fn-whole{text-align:center}
+.pg-fn .fn-eventi{width:100%;max-width:720px;margin-left:auto;margin-right:auto}
+.pg-fn .fn-eventi .lines-list{max-width:560px}
+.pg-fn .fn-enq .facts{max-width:420px}
+.pg-fn .fn-form{display:grid;gap:14px}
+.pg-fn .fn-form iframe{height:520px}
+@media (max-width:899.98px){.pg-fn .strip.all{grid-template-columns:1fr 1fr}}
+@media (max-width:639.98px){.pg-fn .strip.all>:nth-child(n+3){display:none}.pg-fn .fn-three{grid-template-columns:1fr}.pg-fn .fn-three>:nth-child(n+3){display:grid}}
 /* the coaster: a printed object set down on the table — the one shadow on the site. Turn it over */
 .coaster-wrap{display:flex;align-items:center;gap:22px;margin:18px 0 0 6px}
 .coaster{position:relative;width:clamp(180px,15vw,230px);aspect-ratio:1/1;transform:rotate(-8deg);filter:drop-shadow(0 1px .5px rgba(108,6,0,.22)) drop-shadow(0 6px 12px rgba(108,6,0,.10));transition:transform 1100ms var(--ease-in),filter 1100ms var(--ease-in),opacity 600ms var(--ease-ink)}
@@ -512,88 +502,6 @@ button.line{appearance:none;-webkit-appearance:none}
 .coaster-wrap:hover .co-hint{opacity:.5}
 @media (prefers-reduced-motion:reduce){.fx .coaster:not([data-settled]){opacity:1;transform:rotate(-8deg);filter:drop-shadow(0 1px .5px rgba(108,6,0,.22)) drop-shadow(0 6px 12px rgba(108,6,0,.10))}}
 /* the five chapters: across the page from 1100px (one always open), a list below (all closed) */
-.chx-intro{padding-top:var(--between)}
-.sec.chx-sec{padding-top:clamp(40px,4.5vw,64px)}
-.chx{margin-top:clamp(16px,2vw,24px)}
-.chx-h{position:relative;font:inherit}
-.chx-head{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:8px;align-content:start;width:100%;padding:18px 0 22px}
-.chx-head:focus-visible{outline:2px solid var(--spritz);outline-offset:4px}
-.chx-n{font-style:italic;font-size:var(--a4)}
-.chx-t{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:var(--m4);line-height:1.05;letter-spacing:.06em;text-wrap:balance;transition:color var(--t-ink) var(--ease-ink)}
-.chx-l{font-style:italic;font-size:var(--a4);line-height:1.4;text-wrap:pretty}
-.chx-oc{display:none;color:var(--head);font-size:24px;line-height:1}
-.chx-oc::before{content:"+"}
-.chx-ch[data-open="true"] .chx-oc::before{content:"\2212"}
-.chx-head:hover .chx-t,.chx-ch[data-open="true"] .chx-t{color:var(--head)}
-.chx-body{display:grid;grid-template-rows:1fr;transition:grid-template-rows 220ms var(--ease-ink)}
-.chx-js .chx-ch[data-open="false"] .chx-body{grid-template-rows:0fr}
-.chx-body>.chx-card{min-height:0;overflow:clip;overflow-clip-margin:28px;transition:padding 220ms var(--ease-ink)}
-@media (prefers-reduced-motion:reduce){.chx-body{transition:none}}
-.chx-index{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--gutter);margin-top:clamp(16px,2vw,24px);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.chx-index a{display:grid;gap:6px;align-content:start;padding:16px 0 18px;color:var(--ink);text-decoration:none}
-.chx-index a:hover .chx-t{color:var(--head)}
-.chx-index .chx-t{font-size:var(--m4)}
-.chx-ch{scroll-margin-top:84px}
-@media (max-width:899.98px){.chx-index{display:none}}
-.chx-card{align-items:start}
-.chx-ph{grid-column:1/6}
-.chx-tx{grid-column:7/13;display:grid;gap:16px;align-content:start}
-.facts{display:grid;width:100%;border-bottom:1px solid var(--hair)}
-.facts>*{padding:9px 0;border-top:1px solid var(--hair);font-size:var(--a3);line-height:1.45}
-.facts .ml>.n{flex-shrink:0}   /* a label stays on one line; the fact wraps on the right */
-.facts .ml:has(>.n em)>.n{flex-shrink:1}   /* …but a dish with its note wraps, so the price never leaves the line */
-.lv2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px var(--gutter)}
-.lv2>div{display:grid;gap:8px;align-content:start}
-.qlist{display:grid;border-bottom:1px solid var(--hair)}
-.qlist>div{display:grid;gap:4px;padding:14px 0;border-top:1px solid var(--hair)}
-.qlist h4{font-size:var(--a2);font-weight:400;line-height:1.35;color:var(--head)}
-.links{display:flex;flex-wrap:wrap;gap:6px 24px}
-/* the chapters: one stacked list at every width, all open; a head folds its own away */
-@media all{
-  .chx{border-bottom:1px solid var(--hair)}
-  .chx-h{border-top:1px solid var(--hair);transition:border-color var(--t-ink) var(--ease-ink)}
-  .chx-ch[data-open="true"] .chx-h{border-top-color:var(--head)}
-  .chx-head{grid-template-columns:2.2em minmax(0,1fr) auto;column-gap:12px;row-gap:6px;align-items:baseline;padding:20px 0}
-  .chx-n{grid-column:1;grid-row:1}
-  .chx-t{grid-column:2;grid-row:1;font-size:var(--m3);line-height:.9;letter-spacing:-.005em}
-  .chx-l{grid-column:2;grid-row:2}
-  .chx-oc{display:block;grid-column:3;grid-row:1}
-}
-.chx-body>.chx-card{padding:8px 0 var(--inside)}
-/* folded: no padding and no clip margin, so nothing of the chapter peeks under its head */
-.chx-js .chx-ch[data-open="false"] .chx-body>.chx-card{padding-top:0;padding-bottom:0;overflow-clip-margin:0px}
-@media (max-width:899.98px){
-  .chx-ph,.chx-tx{grid-column:1/-1}
-  .chx-ph{order:2;aspect-ratio:3/2}
-  .lv2{grid-template-columns:1fr}
-}
-
-/* the dark spread on event pages: a room full at night, after the opening chapter */
-.ch-night.spread{margin-top:var(--between)}
-
-/* proof: planners in their own words, and the floor plans as printed objects */
-.quotes{display:grid;gap:18px;width:100%;padding:18px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.said{display:grid;gap:6px;margin:0}
-.said blockquote{margin:0;max-width:62ch;text-wrap:pretty}
-.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter);width:100%}
-.plans[hidden]{display:none}
-.frame.plan{padding:28px}
-.frame.plan img{display:block;width:100%;aspect-ratio:3/2;object-fit:contain}
-.frame.plan .a4{margin-top:10px;text-align:center}
-@media (max-width:639.98px){.plans{grid-template-columns:1fr}}
-
-/* the coaster, a touch smaller; the "turn it over" hint only where you can't hover */
-.coaster-wrap .coaster{width:180px}
-@media (hover:hover) and (pointer:fine){.co-hint{display:none}}
-/* answers settle open rather than snap */
-:root{interpolate-size:allow-keywords}
-.qa details::details-content{block-size:0;overflow:clip;transition:block-size 220ms var(--ease-ink),content-visibility 220ms allow-discrete}
-.qa details[open]::details-content{block-size:auto}
-@media (prefers-reduced-motion:reduce){.qa details::details-content{transition:none}}
-
-/* nothing cut off: running text breaks well, heads balance */
-:is(.intro,.hook-copy,.chx-tx,.pk-body) :is(.a1,.a2,.a3){text-wrap:pretty}
-:is(.m2,.m3){text-wrap:balance}
 
 /* ==== vouchers/index.html ==== */
 /* hero: title and line beside the lead photograph */
