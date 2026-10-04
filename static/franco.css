@@ -509,6 +509,7 @@ button.line{appearance:none;-webkit-appearance:none}
 @media (max-width:639.98px){.pg-xmas .x-sign{font-size:12.6vw}.pg-xmas .x-three{grid-template-columns:1fr}.pg-xmas .x-three>:nth-child(n+3){display:grid}}
 
 /* ==== events-pack/index.html ==== */
+.pg-pack .pk-strip{padding-top:12px}.pg-pack .pk-strip .lines{margin:0 auto}
 /* Events pack: the masthead cover, eight chapters that open underneath their row (events-pack.js), the three food tabs */
 .pg-pack .pk-cover{padding-top:clamp(24px,3vw,40px)}
 .pg-pack .pk-mast img{width:100%;height:auto}
