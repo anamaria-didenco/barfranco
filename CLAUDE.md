@@ -19,8 +19,20 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   asks (`<span>words</span><i class="lead"></i><em class="v">fact</em>` — the leader runs to a short fact where a price
   would be: Book a table … 4pm till late · Plan an event … up to 240 · Read the full menus … food & drinks ·
   Christmas parties … December; the dock and Send are the words alone. **No arrows anywhere**), `.ask` secondary; `.btn` the square ask (`.fill` for the primary of a pair); `.card` (one photograph `.ph`, a `.card-row` with the `h2.m4` name and the `.card-num` fact where a price would be, one `.card-sub` line, one `.btn`), laid out by `.cards`; `.qa` questions; `.tabs` (franco.js wires `role=tab` buttons to their panels).
+- **The Table** (the design the whole site is built on; brief in `DESIGN-PHILOSOPHY.md` of the handoff): one object per
+  section, say it once, photographs do emotion and type does facts. Its pieces: `.word` (a Marsha statement with an
+  Affairs-italic `<em>` turn; `.h1` for the page title, `.rules` on Almond, `.night` on Night, `.close` for the last
+  word, `.deep` for Deep Red ink), `.quiet` (a centred statement with its `.lines`), `.two` (two photographs side by
+  side, Downstairs then upstairs), `.hosts` (the hosts' line), `.runhead` (the one-line running head under the masthead
+  on pages that have no cover). Every page ends on two asks: dining pages Book a table · Plan an event, event pages Call ·
+  Check your date. Menus: food is `.dish`, drinks are `.ml` with a spaced en dash. Lines that stay: (upstairs) ·
+  We host. You stay. · Not a bar. A world. · Some places want to be seen. Bar Franco wants to be felt. · Come as you
+  are. Leave slower than you arrived. · Ti aspettiamo. Never: "Franco means frank", any country name, "the table is my
+  grandmother's". The story facts live in `/our-story/` and nowhere else is allowed to contradict them.
 - Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
+  franco.js shows whatever is on the first screen at once (`data-now`) and moves the rest once as it is seen; at 2.5 s
+  everything is on regardless, and reduced-motion gets no movement at all.
 - Page-specific CSS lives at the end of franco.css, one `/* ==== page ==== */` block each, every selector
   prefixed by the page's `<main class="pg-…">`.
 
@@ -49,10 +61,12 @@ no framework, no server). The files here ARE the site — what you edit is what 
 ## How to work on it
 - Open any `.html` file and edit the markup directly. Build with franco.css classes before writing new CSS.
 - **The chrome is repeated on every page** (there is no templating): the masthead `<header class="bf-mast">`
-  (open page marked `aria-current="page"` with Franco the dachshund under it), the phone Index `#ora-index`,
-  the Night footer (live open/closed clock in Ōtautahi time, run by chrome.js) and the phone dock.
+  (open page marked `aria-current="page"` with Franco the dachshund under it; on phones the nav hides and the
+  Index button shows), the phone Index `#ora-index`, the Night footer (live open/closed line and HH:MM clock in
+  Ōtautahi time, run by chrome.js, which also fills `data-bf-date` and `data-bf-year`) and the phone dock.
   Change them on every page. Home and Contact use the lite footer (no address block, as they show it above).
-  Christmas has its own campaign masthead (no nav; Call / Enquire; the Index button always shown).
+  Christmas has its own campaign masthead (`.mast-campaign`: Hold a date · Call; the Index button always shown).
+  Pages without a cover photograph carry the `.runhead` line under the masthead instead.
 - franco.js also runs the FormSubmit contact form (`<form data-email data-subject>`, honeypot, Ads conversion)
   and the VenueFlow iframe height.
 - To preview: a static server from the repo root (`python3 -m http.server`) — pages use root paths.
@@ -61,14 +75,15 @@ no framework, no server). The files here ARE the site — what you edit is what 
 ## Pages
 | File | Purpose |
 |------|---------|
-| `index.html` | Homepage — the claim and two asks, then cards (one photograph, a name, a number, an action): Your event and The work do on Night, pasta / the Negroni Bar / the Restaurant on Paper, what planners said on Almond, Come say ciao. Built to the Brand Conversion brief: every screen makes you want it and lets you act on it |
-| `bookings/` | Reservations — embeds the NowBookIt booking widget |
-| `functions/` | Private events — the nameplate cover, the coaster (turns over, cycles `images/coaster/`; the one drop-shadow on the site), the framed VenueFlow card `#enquire`, the five-chapter guide (`#why #spaces #occasions #food #questions`), the seasonal Christmas Poster band (remove after December). Behaviour in `static/functions.js` |
+| `index.html` | Homepage, on the Table: the cover photograph of the table from above with its running line, `h1.word.h1` Not a bar. A world., the rules on Almond, Where it comes from (three generations and the Our story ask), Downstairs then upstairs (`.two`), We host. You stay. on Night with the hosts' line, Come as you are with Book a table · Plan an event. JSON-LD Restaurant (`#restaurant`, the one the other pages reference) + WebSite |
+| `our-story/` | Our story: the approved copy from the handoff (cover, the rules on Almond, the letter, Two levels on Night, Come as you are). The only place the story facts are told; the press bio lives here too |
+| `bookings/` | Reservations, on the Table: cover with the NowBookIt widget, Pick a level, two questions, the Planning something bigger? Poster |
+| `functions/` | Private events, on the Table: the nameplate cover, At a glance `#hook`, The night on Night, `#spaces`, `#food` (the EVENTI card), `#questions` (six), `#enquire` (the VenueFlow card with the coaster beside it: turns over, cycles `images/coaster/`, the one drop-shadow on the site), the seasonal Christmas Poster band `#christmas` (remove after December). JSON-LD EventVenue `#venue` (the one the event pages reference). Behaviour in `static/functions.js` |
 | `menus/` | Food & drinks menu overview (the folder also holds the printed menu PDFs) |
 | `vouchers/` | Gift vouchers |
 | `contact/` | Location, hours, contact details |
-| `christmas-functions/` | Christmas landing page: campaign masthead (Call / Enquire), cover, four chapter tabs (Menu & prices · The rooms · The fine print · The night), the `#enquire` box below, Call / Enquire phone dock. Keep the Google Ads conversion tags and the `bf_*` dataLayer pushes verbatim |
-| `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/`, `private-dining/` | SEO landing pages on the franco grammar (the four dining pages share `.pg-dine`; weddings, corporate and private dining & birthdays share the `.ev-*` template) |
+| `christmas-functions/` | Christmas landing page, on the Table: campaign masthead `.mast-nav.mast-campaign` (Hold a date · Call; phones show Hold a date only), the CHRISTMAS sign cover, `#menu` on Almond, `#night` on Night, `#rooms`, `#details`, `#enquire`, Call / Enquire phone dock. Keep the Google Ads conversion tags and the `bf_*` dataLayer pushes verbatim |
+| `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/`, `private-dining/` | SEO landing pages on the Table (the four dining pages share `.pg-dine`: cover, the sign, the recipe card, nights, and Before the stadium keeps its Te Kaha fixtures lines by hand; weddings, corporate and private dining & birthdays share the `.ev-*` template with FAQPage built from the five visible questions) |
 | `404.html` | Not-found page (absolute `/` paths) |
 | `events-pack/` | Events Pack 2026 — a masthead cover, then eight chapters that open underneath their title (tap or click to open; Welcome open on load; one open at a time; `#ch-food` etc. deep-link). Behaviour in `static/events-pack.js`; photos in `images/pack-2026/`. Uses the shared masthead, footer and dock like every page. The old `Bar Franco Events Pack.html` redirects here |
 | `Brand Guide.html` | Internal one-page brand guide (not linked in site nav) |
