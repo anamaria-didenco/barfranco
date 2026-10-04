@@ -288,11 +288,6 @@ button.line{appearance:none;-webkit-appearance:none}
 .cover-logo{width:100%;max-width:560px;height:auto;align-self:center}
 .cover-ph{grid-column:6/13;height:clamp(480px,calc(100svh - 150px),860px)}
 .cover .cover-asks{display:grid;max-width:480px;margin-top:24px}
-.level{padding:clamp(28px,3vw,44px) 0;align-items:end}
-.level .lv-ph{grid-column:1/8}
-.level .lv-txt{grid-column:9/13}
-.level.flip .lv-ph{grid-column:6/13}.level.flip .lv-txt{grid-column:1/5;grid-row:1}
-.level .lv-txt .facts{max-width:320px}
 .dish{font-size:var(--a3);line-height:1.4;text-wrap:balance}.dish .pr{white-space:nowrap}
 .now .m3{max-width:none}
 @media (min-width:900px){.phone-only{display:none}}
@@ -300,16 +295,40 @@ button.line{appearance:none;-webkit-appearance:none}
   .cover-text{grid-column:1/-1;grid-template-rows:none;gap:20px}
   .cover-logo{max-width:420px}
   .cover-ph{grid-column:1/-1;height:auto;aspect-ratio:4/5;margin-left:calc(-1 * var(--margin))!important;margin-right:calc(-1 * var(--margin))!important}
-  .level .lv-ph,.level.flip .lv-ph,.level .lv-txt,.level.flip .lv-txt{grid-column:1/-1;grid-row:auto}
 }
 @media (max-width:639.98px){.cover-logo{max-width:300px}}
 
 /* ==== index.html ==== */
-/* the cover logo is the page h1 */
-.cover-h1{align-self:center;max-width:560px;width:100%}
-.cover-h1 .cover-logo{max-width:none}
-@media (max-width:899.98px){.cover-h1{max-width:420px}}
-@media (max-width:639.98px){.cover-h1{max-width:300px}}
+/* the home page opens on the room: one full-screen photograph on Night, the wordmark set over its foot.
+   Then the chant and three dishes on Paper, the two floors as two tall photographs on Night, Host on Almond, Ciao on Paper. */
+.pg-home .hm-hero{position:relative;display:grid;align-content:end;min-height:calc(100svh - 92px);padding:var(--inside) 0}
+.pg-home .hm-hero-ph{position:absolute;inset:0;aspect-ratio:auto;background:var(--deep)}
+.pg-home .hm-hero-ph::after{content:"";position:absolute;inset:0;background:rgba(108,6,0,.24)}   /* a flat deep-red gel, so the almond type reads; never a gradient */
+.pg-home .hm-hero-text{position:relative;z-index:2;display:grid;gap:22px;justify-items:start}
+.pg-home .hm-hero-text .cover-h1{width:min(100%,520px);max-width:none}
+.pg-home .hm-hero-text .lines{max-width:440px;margin-top:6px}
+.pg-home .hm-full{margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin))}   /* phones: edge to edge */
+/* dine: the chant, one photograph, three dishes */
+.pg-home .hm-dine .hm-ph{grid-column:7/13;grid-row:1/3}
+.pg-home .hm-dine .hm-dine-h,.pg-home .hm-dishes{grid-column:1/6}
+.pg-home .hm-dishes{align-self:end;row-gap:12px}
+.pg-home .hm-dishes .lines{margin-top:12px}
+/* two floors: two tall photographs on Night, titled beneath */
+.pg-home .hm-rooms-h{max-width:720px}
+.pg-home .hm-room-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--inside) var(--gutter);margin-top:var(--inside)}
+.pg-home .hm-room{display:grid;gap:10px;justify-items:start;align-content:start}
+.pg-home .hm-room .ph{width:100%;margin-bottom:10px}
+/* host: the photograph sits flush at the top of the Almond band */
+.pg-home .hm-host{padding-top:0}
+.pg-home .hm-host .wrap{margin-top:var(--inside)}
+@media (min-width:900px){.pg-home .hm-full{margin:0}}
+@media (max-width:899.98px){
+  .pg-home .hm-hero{min-height:calc(100svh - 62px)}
+  .pg-home .hm-hero-text .cover-h1{width:min(78%,320px)}
+  .pg-home .hm-dine .hm-ph,.pg-home .hm-dine .hm-dine-h,.pg-home .hm-dishes{grid-column:1/-1;grid-row:auto}
+  .pg-home .hm-room-grid{grid-template-columns:1fr;gap:var(--between)}
+  .pg-home .hm-room .ph{margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin));width:auto;align-self:stretch;justify-self:stretch}
+}
 
 /* ==== menus/index.html ==== */
 /* hero: title + lede, the lead photograph, and the tabs sitting right above the sheets */
