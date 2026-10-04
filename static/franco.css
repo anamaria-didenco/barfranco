@@ -82,9 +82,10 @@ em,i{font-style:italic}
 .a1{font-size:var(--a1);line-height:1.3;max-width:30ch;text-wrap:pretty}
 .a2{font-size:var(--a2);line-height:1.4;max-width:44ch;text-wrap:pretty}
 .a3{font-size:var(--a3);line-height:1.5;max-width:44ch;text-wrap:pretty}
-.a4,.eyebrow{font-size:var(--a4);font-style:italic;line-height:1.4}
+.a4,.eyebrow{font-size:var(--a4);font-style:italic;line-height:1.4;text-wrap:pretty}
+blockquote{text-wrap:pretty}
 .it{font-style:italic}
-.fine{font-size:var(--fine);font-style:italic;line-height:1.45}
+.fine{font-size:var(--fine);font-style:italic;line-height:1.45;text-wrap:pretty}
 .c{text-align:center;justify-items:center;margin-left:auto;margin-right:auto}
 
 /* ---- layout ---- */
@@ -181,10 +182,12 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .line+.line{border-top:0}
 .lines{display:grid;width:100%;max-width:440px}
 /* secondary: the written ask — italic words in the head ink, underlined on hover */
-.ask{display:inline-flex;align-items:baseline;font-style:italic;font-size:var(--a2);line-height:1.3;color:var(--head);white-space:nowrap;padding:6px 0}
+.ask{display:inline-flex;align-items:baseline;max-width:100%;font-style:italic;font-size:var(--a2);line-height:1.3;color:var(--head);text-wrap:balance;padding:6px 0}
 .ask:hover{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 .ask:active{opacity:.6}
 @media (max-width:639.98px){.line{max-width:none;padding:15px 10px 14px}}
+/* the narrowest phones: the fact drops under the words rather than running off the edge */
+@media (max-width:399.98px){.line:not(.dock .line){flex-wrap:wrap;row-gap:4px}.line:not(.dock .line)>.v{flex:1 0 100%;text-align:left;white-space:normal}}
 /* the square ask: the words in a one-line box, filled (.fill) for the primary of a pair. Chapter-aware through --fill/--fill-text */
 .btn{display:inline-block;padding:14px 22px;border:1px solid currentColor;color:var(--ink);font-family:var(--affairs);font-size:var(--a3);line-height:1;text-decoration:none;transition:background-color var(--t-ink) var(--ease-ink),color var(--t-ink) var(--ease-ink)}
 .btn.fill{background:var(--fill);color:var(--fill-text);border-color:var(--fill)}
@@ -611,3 +614,6 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-dine .dn-nights{align-items:end}
 .pg-dine .dn-fixtures .ml>.n{flex:0 1 auto}
 @media (max-width:639.98px){.pg-dine .dine-board{gap:32px}.pg-dine .dine-board .lines-list .ml{font-size:var(--a4)}.pg-dine .dn-hours{font-size:8.2vw}}
+
+/* the narrowest phones: a display word as long as ENGAGEMENTS still fits the measure */
+@media (max-width:359.98px){.m2,:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top .m2{font-size:34px}}
