@@ -18,7 +18,7 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   `.frame` (double rule) for printed objects; `.ml` menu lines (`.v.r` for prices/capacities); `.line` primary
   asks (`<span>words</span><i class="lead"></i><em class="v">fact</em>` — the leader runs to a short fact where a price
   would be: Book a table … 4pm till late · Plan an event … up to 240 · Read the full menus … food & drinks ·
-  Christmas parties … December; the dock and Send are the words alone. **No arrows anywhere**), `.ask` secondary; `.qa` questions; `.tabs` (franco.js wires `role=tab` buttons to their panels).
+  Christmas parties … December; the dock and Send are the words alone. **No arrows anywhere**), `.ask` secondary; `.btn` the square ask (`.fill` for the primary of a pair; the home page's asks); `.qa` questions; `.tabs` (franco.js wires `role=tab` buttons to their panels).
 - Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
 - Page-specific CSS lives at the end of franco.css, one `/* ==== page ==== */` block each, every selector
@@ -61,7 +61,7 @@ no framework, no server). The files here ARE the site — what you edit is what 
 ## Pages
 | File | Purpose |
 |------|---------|
-| `index.html` | Homepage — hero, about, the two levels, events band, moments gallery, contact form, footer |
+| `index.html` | Homepage — the claim and two asks, then cards (one photograph, a name, a number, an action): Your event and The work do on Night, pasta / the Negroni Bar / the Restaurant on Paper, what planners said on Almond, Come say ciao. Built to the Brand Conversion brief: every screen makes you want it and lets you act on it |
 | `bookings/` | Reservations — embeds the NowBookIt booking widget |
 | `functions/` | Private events — the nameplate cover, the coaster (turns over, cycles `images/coaster/`; the one drop-shadow on the site), the framed VenueFlow card `#enquire`, the five-chapter guide (`#why #spaces #occasions #food #questions`), the seasonal Christmas Poster band (remove after December). Behaviour in `static/functions.js` |
 | `menus/` | Food & drinks menu overview (the folder also holds the printed menu PDFs) |
