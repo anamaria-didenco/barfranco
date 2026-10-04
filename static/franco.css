@@ -315,24 +315,45 @@ button.line{appearance:none;-webkit-appearance:none}
 @media (max-width:639.98px){.cover-logo{max-width:300px}}
 
 /* ==== index.html ==== */
-/* the home page: one claim and two asks, then cards (see .card). Chapters: Paper → Night (events) → Paper (food, bar, restaurant) → Almond (said) → Paper (ciao) → Night footer */
+/* the home page: one claim and two asks beside a cut-out of the velvet curtain, then cards (see .card) under one Italian word
+   per chapter, and a sign-off. Chapters: Paper → Night (Festa) → Paper (Aperitivo & cena) → Almond (said) → Paper (ciao) → Night footer.
+   Type is set so no phrase breaks mid-name and no line starts on a bracket: balanced claim, pretty paragraphs, no hyphenation */
+.pg-home p{text-wrap:pretty;hyphens:manual}
+.pg-home .ch-menu,.pg-home .ch-aframe{--hair:var(--almond)}   /* the rules on paper are peach, not a grey tint */
+.pg-home .ch-aframe{--hair:rgba(108,6,0,.18)}
 .pg-home .hm-hero{padding-top:clamp(28px,4vw,56px)}
-.pg-home .hm-hero .intro{gap:24px}
-.pg-home .hm-claim{max-width:30ch}
+.pg-home .hm-hero-text{gap:22px}
+.pg-home .hm-claim{max-width:24ch;text-wrap:balance}
+.pg-home .hm-facts{max-width:40ch;font-style:italic}
 .pg-home .hm-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
-.pg-home .hm-cards{margin-top:var(--inside)}
+.pg-home .hm-hero-ph{display:none}
+.pg-home .hm-word{margin-bottom:var(--inside);max-width:none}
+.pg-home .card-quote{max-width:36ch;padding-left:14px;border-left:1px solid var(--hair)}
+.pg-home .card-quote .fine{display:block;margin-top:4px;font-style:normal}
+.pg-home .card-icon{display:inline-block;width:30px;height:30px;vertical-align:-6px;margin-right:10px}
 .pg-home .hm-quotes{display:grid;gap:28px}
 .pg-home .hm-quotes figure{display:grid;gap:8px;max-width:34ch}
 .pg-home .hm-reply{margin-top:var(--inside);padding-top:20px;border-top:1px solid var(--hair);max-width:60ch}
 .pg-home .hm-reply .ask{margin-right:16px}
+.pg-home .hm-ciao{max-width:none}
+.pg-home .hm-dogrule{display:flex;align-items:flex-end;border-bottom:1px solid currentColor;margin:8px 0 var(--inside)}
+.pg-home .hm-dog{height:44px;width:auto;margin-left:2px}
 @media (min-width:640px){
   .pg-home .hm-cards>:first-child{grid-column:1/-1}
-  .pg-home .hm-quotes{grid-template-columns:1fr 1fr 1fr;gap:32px}
+  .pg-home .hm-quotes{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media (min-width:900px){
+  .pg-home .hm-hero-text{grid-column:1/8;align-self:center}
+  .pg-home .hm-hero-ph{display:block;grid-column:9/13;align-self:center}
+  .pg-home .hm-cards>:first-child .ph{max-height:calc(100svh - 120px)}
 }
 @media (max-width:899.98px){
   .pg-home .hm-full{margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin));width:auto;justify-self:stretch}
 }
-@media (max-width:639.98px){.pg-home .hm-btns .btn{flex:1 1 auto;text-align:center}}
+@media (max-width:639.98px){
+  .pg-home .hm-btns .btn{flex:1 1 auto;text-align:center}
+  .pg-home .card .ph.r-169{aspect-ratio:3/2}
+}
 
 /* ==== menus/index.html ==== */
 /* hero: title + lede, the lead photograph, and the tabs sitting right above the sheets */
