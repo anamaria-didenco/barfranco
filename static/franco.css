@@ -528,47 +528,27 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-contact .c-note .ask{font-size:var(--a4);padding:0}
 
 /* ==== christmas-functions/index.html ==== */
-/* the running head, the CHRISTMAS sign, the chapter row and the chapters under it */
-.pg-xmas .x-cover{padding-top:18px;padding-bottom:var(--inside)}
-.pg-xmas .x-run{display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;gap:16px}
-.pg-xmas .x-run span:last-child{text-align:right}
-.pg-xmas .x-run span:nth-child(2),.pg-xmas .x-run span:nth-child(3){text-align:center}
-.pg-xmas .x-h1{display:grid;gap:clamp(12px,min(2.4vw,2.6vh),28px);justify-items:center;width:100%;margin-top:clamp(16px,min(5vw,4vh),72px);font-weight:400}
-/* the sign keeps its full width but never takes more than a slice of the screen's height, so the offer and the asks fit the first view */
-.pg-xmas .x-h1 .m1{font-size:min(var(--m1),16vh)}
-.pg-xmas .x-sub{max-width:22ch;text-wrap:balance}
-.pg-xmas .x-intro{display:grid;gap:clamp(12px,2.2vh,20px);justify-items:center;text-align:center}
-.pg-xmas .x-lede{max-width:52ch}
-.pg-xmas .x-intro .lines,.pg-xmas .x-intro .line{max-width:520px}
-.pg-xmas .x-tabs{justify-content:center;margin-top:clamp(40px,5vw,64px)}
-.pg-xmas .x-tabs em{font-size:var(--a4);margin-right:.3em}
-.pg-xmas .x-tabs a{font-style:italic;font-size:19px;padding:0 0 12px;margin-bottom:-1px;border-bottom:1px solid transparent;text-decoration:none;color:inherit;transition:color var(--t-ink) var(--ease-ink),border-color var(--t-ink) var(--ease-ink)}
-.pg-xmas .x-tabs a:hover{color:var(--head);border-bottom-color:var(--head)}
-.pg-xmas section[id]{scroll-margin-top:72px}
-.pg-xmas .x-eb{max-width:none}
-.pg-xmas .x-card{max-width:760px;margin-left:auto;margin-right:auto;padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(48px,6vw,88px)}
+/* Christmas on the Table: the running line, the CHRISTMAS sign at 16vh so the photo pair enters the first screen, the NATALE card, the night, the rooms, five questions, the form */
+.pg-xmas .x-cover{gap:clamp(16px,2vw,28px);padding-top:clamp(18px,2.4vw,36px)}
+.pg-xmas .x-sign{font-size:min(var(--m1),16vh)}
+.pg-xmas .x-sub{max-width:24ch}
+.pg-xmas .x-pair{width:100%;margin-top:clamp(8px,1.4vw,20px)}
+.pg-xmas .x-menu{margin-top:var(--between)}
+.pg-xmas .x-eb{text-align:center;max-width:none}
+.pg-xmas .x-card{width:100%;max-width:760px;margin-left:auto;margin-right:auto}
 .pg-xmas .x-card .m4{margin-top:14px}
 .pg-xmas .x-card .lines-list{max-width:560px}
-.pg-xmas .x-solo{justify-content:center;text-align:center}
-.pg-xmas .x-hd{margin-top:4px}
-.pg-xmas .x-qa,.pg-xmas .x-list{width:100%;max-width:720px;margin-left:auto;margin-right:auto}
-.pg-xmas .x-list{max-width:620px}
-.pg-xmas .x-list .ml>.n{flex-shrink:0}   /* a label stays on one line; the fact wraps on the right */
-.pg-xmas .x-room{gap:14px}
-.pg-xmas .x-enq{max-width:820px;margin-left:auto;margin-right:auto}
-.pg-xmas .x-vf{width:100%;text-align:left}
-.pg-xmas .x-vf iframe{width:100%;height:460px;border:0;background:var(--paper)}
-@media (max-width:899.98px){
-  .pg-xmas .x-run{grid-template-columns:1fr 1fr;row-gap:4px}
-  .pg-xmas .x-run span:nth-child(2n+1){text-align:left}
-  .pg-xmas .x-run span:nth-child(2n){text-align:right}
-}
-@media (max-width:639.98px){
-  .pg-xmas .x-h1 .m1{font-size:12.6vw}   /* nine letters must fit 390px; never under 24px */
-  .pg-xmas .x-tabs{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;border-bottom:0}
-  .pg-xmas .x-tabs a{text-align:center;border-bottom-color:var(--hair)}
-}
-.pg-xmas .intro.c{justify-items:center;text-align:center}
+.pg-xmas .x-night{margin-top:var(--between)}
+.pg-xmas .x-three{--n:3;width:100%;margin-top:12px}
+.pg-xmas .x-said{display:grid;gap:6px;margin-top:8px;max-width:40ch}
+.pg-xmas .x-head{align-items:end}
+.pg-xmas .x-lead{max-width:44ch}
+.pg-xmas .x-enq .facts{max-width:420px}
+.pg-xmas .x-form{display:grid;gap:14px}
+.pg-xmas .x-vf{width:100%}
+.pg-xmas .x-vf iframe{width:100%;height:520px;border:0;background:var(--paper)}
+.pg-xmas section[id]{scroll-margin-top:72px}
+@media (max-width:639.98px){.pg-xmas .x-sign{font-size:12.6vw}.pg-xmas .x-three{grid-template-columns:1fr}.pg-xmas .x-three>:nth-child(n+3){display:grid}}
 
 /* ==== events-pack/index.html ==== */
 /* Events pack: the masthead cover, eight chapters that open underneath their row (events-pack.js), the three food tabs */
