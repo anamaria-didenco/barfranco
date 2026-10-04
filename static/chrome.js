@@ -61,22 +61,23 @@
     window.addEventListener('scroll', onDock, { passive: true });
   }
 
-  var st = document.querySelector('[data-bf-status]'), ck = document.querySelector('[data-bf-clock]');
-  if (!st || !ck) return;
+  var sts = document.querySelectorAll('[data-bf-status]'), cks = document.querySelectorAll('[data-bf-clock]');
+  if (!sts.length) return;
   var fmt;
-  try { fmt = new Intl.DateTimeFormat('en-NZ', { timeZone: 'Pacific/Auckland', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }); }
+  try { fmt = new Intl.DateTimeFormat('en-NZ', { timeZone: 'Pacific/Auckland', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }); }
   catch (e) { return; }
   function tick() {
     var p = {};
     fmt.formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
     var h = +p.hour;
     var s = h < 16 ? 'Opening at 4pm' : h < 17 ? 'Open, kitchen at 5pm' : 'Open till late';
-    if (st.textContent !== s) st.textContent = s;
-    ck.textContent = p.hour + ':' + p.minute + ':' + p.second;
+    var t = p.hour + ':' + p.minute;
+    sts.forEach(function (e) { if (e.textContent !== s) e.textContent = s; });
+    cks.forEach(function (e) { if (e.textContent !== t) e.textContent = t; });
   }
   tick();
   document.querySelectorAll('[data-bf-live]').forEach(function (e) { e.hidden = false; });
-  setInterval(tick, 1000);
+  setInterval(tick, 30000);
   var y = document.querySelector('[data-bf-year]');
   if (y) y.textContent = new Date().getFullYear();
 })();

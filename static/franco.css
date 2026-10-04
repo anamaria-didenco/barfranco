@@ -70,6 +70,14 @@ em,i{font-style:italic}
 .m4{font-size:var(--m4);line-height:1.1;letter-spacing:.06em}
 .title{color:var(--title)}                     /* page titles are Deep Red on paper */
 .sup{font-size:.5em;vertical-align:.5em;letter-spacing:.04em}   /* AT · AND · ST inside M1/M2 only */
+/* the word: a Marsha statement with its italic aside on the same line (We host. You stay.) */
+.word{font-family:var(--marsha);font-weight:700;text-transform:uppercase;color:var(--head);line-height:.88;letter-spacing:-.005em;text-wrap:balance;margin:0}
+.word em{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:.56em;line-height:1}
+.word.deep{color:var(--deep)}
+.word.h1{font-size:clamp(48px,9vw,150px)}      /* a page title */
+.word.night{font-size:clamp(44px,8vw,132px)}   /* a Night head */
+.word.rules{font-size:clamp(34px,5.6vw,92px);max-width:18ch}
+.word.close{font-size:clamp(40px,7vw,120px)}
 .aside{font-family:var(--affairs);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;font-size:.42em;vertical-align:.5em}
 .a1{font-size:var(--a1);line-height:1.3;max-width:30ch;text-wrap:pretty}
 .a2{font-size:var(--a2);line-height:1.4;max-width:44ch;text-wrap:pretty}
@@ -119,6 +127,23 @@ em,i{font-style:italic}
 .print>.mat{position:absolute;left:calc(-1 * clamp(32px,6vw,96px));bottom:clamp(32px,5vw,72px);width:46%;background:var(--ground);padding:10px 10px 0 0;z-index:2}
 @media (max-width:899.98px){.print>.mat{display:none}.print>.ph{margin-left:calc(-1 * var(--margin))!important;margin-right:calc(-1 * var(--margin))!important}}
 
+/* ---- the Table's layouts: a quiet centred statement, two columns, the hosts block, the running head ---- */
+.quiet{display:grid;justify-items:center;text-align:center;gap:clamp(18px,2.4vw,32px);padding:clamp(28px,4vw,56px) var(--margin) 0}
+.quiet.deep{padding-top:clamp(80px,11vw,176px);padding-bottom:clamp(80px,11vw,176px);gap:clamp(20px,2.6vw,36px)}
+.quiet .a1{max-width:34ch}.quiet .a2{max-width:44ch}.quiet .lines{margin-top:8px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--inside) var(--gutter);align-items:start}
+.two>.intro{justify-items:stretch;gap:14px}.two .eyebrow{margin-top:10px}.two .facts{max-width:360px}
+.two .ml,.two .dish{font-size:var(--a3);text-align:left}
+.hosts{display:grid;gap:12px;justify-items:center;text-align:center}
+.hosts .a2{max-width:44ch}
+.runhead-wrap{padding-top:14px}.runhead-line{text-align:center}
+.runhead{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px;width:100%}
+.strip figure{margin:0;display:grid;gap:10px;justify-items:start;text-align:left}
+.strip figure .ph{width:100%}
+.strip .ml>.n{flex:none}
+@media (max-width:1199.98px){.strip .ml{flex-wrap:wrap;row-gap:2px}.strip .ml>.lead{display:none}.strip .ml>.v{flex:1 1 100%;margin-left:0;text-align:left}}
+@media (max-width:639.98px){.two{grid-template-columns:1fr}.strip figure .ph{aspect-ratio:3/2}}
+
 /* ---- rules & frames ---- */
 .hair{border-top:1px solid var(--hair)}
 .hair-b{border-bottom:1px solid var(--hair)}
@@ -138,6 +163,9 @@ em,i{font-style:italic}
 .ml>.lead{flex:1 1 24px;min-width:24px;border-bottom:2px dotted currentColor;transform:translateY(-.28em)}
 .ml>.v{flex:0 1 auto;min-width:0;text-align:right;font-style:italic;text-wrap:balance}
 .ml>.v.r{flex:none;white-space:nowrap;font-style:normal}
+.ml:has(>.v.r){flex-wrap:wrap}.ml:has(>.v.r)>.n{max-width:100%}.ml:has(>.v.r)>.v{margin-left:auto}
+.frame.menu .lines-list .ml>.n{flex:0 1 auto}.frame.menu .lines-list .ml>.v{white-space:normal;text-align:right}   /* a plain label stays whole and the value wraps right; a label with italic ingredients wraps as a menu line */
+.frame .line>span:first-child{flex:none;white-space:nowrap}.frame .line>.v{white-space:normal;text-align:right}
 .lines-list{display:grid;gap:8px;width:100%}
 .lines-list .ml{font-size:var(--a3)}
 a.ml:hover{text-decoration:none;color:var(--head)}
@@ -192,14 +220,13 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .bf-tight .mast-logo img{height:28px}
 .bf-tight .mast-dog{display:none}
 @media (max-width:1199.98px){.mast-nav{font-size:17px;gap:16px}.mast-asks .ask{font-size:16px}}
-@media (max-width:999.98px){.mast-nav{display:none}.mast-asks{margin-left:auto}.mast-menu{display:block}}
-@media (max-width:639.98px){.mast-asks{margin-left:auto}.mast-asks .ask:not(.mast-keep){display:none}.mast-menu{margin-left:16px}.mast-row{align-items:center}}
+@media (max-width:999.98px){.mast-nav:not(.mast-campaign){display:none}.mast-menu{display:block;margin-left:auto}}
+@media (max-width:639.98px){.mast-row{align-items:center}.mast-campaign{font-size:16px;gap:14px;margin-left:auto}.mast-campaign a:last-child{display:none}.mast-campaign+.mast-menu{margin-left:14px}}   /* on a phone the campaign line keeps Hold a date; Call lives in the dock */
 
-/* campaign pages (Christmas): the nav gives way to Call · Enquire, so the Index button shows at every width */
+/* campaign pages (Christmas): the nav is one line, Hold a date · Call, and the Index button shows at every width */
+.mast-campaign{font-style:italic;color:var(--bright)}
 .mast-menu.always{display:block}
-.mast-asks+.mast-menu.always{margin-left:clamp(16px,2vw,28px)}
-@media (min-width:1000px){.mast-row:not(:has(.mast-nav)) .mast-asks{margin-left:auto}}
-@media (max-width:639.98px){.mast-asks+.mast-menu.always{margin-left:16px}}
+.mast-nav+.mast-menu.always{margin-left:clamp(16px,2vw,28px)}
 
 
 /* ---- phone Index (every page) ---- */

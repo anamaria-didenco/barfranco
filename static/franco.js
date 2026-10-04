@@ -6,26 +6,27 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---- set · unmask · settle: each element moves once, the first time it is seen ---- */
-  var movers = [].slice.call(d.querySelectorAll('[data-set],[data-unmask],[data-settle]'));
-  function on(e) { e.setAttribute('data-on', ''); }
-  /* the first screen is simply there: whatever is already in view when the page arrives shows at once,
-     without its movement, so the title and the lead photograph never wait on a transition */
-  var vh = window.innerHeight || 800;
-  movers = movers.filter(function (e) {
-    var r = e.getBoundingClientRect();
-    if (r.bottom <= 0 || r.top >= vh) return true;
-    e.setAttribute('data-now', ''); on(e); return false;
-  });
-  if (reduce || !('IntersectionObserver' in window)) {
-    movers.forEach(on);
-  } else {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (x) { if (x.isIntersecting) { on(x.target); io.unobserve(x.target); } });
+  var sel = '[data-set]:not([data-on]),[data-unmask]:not([data-on]),[data-settle]:not([data-on])';
+  var all = reduce || d.hidden, io = null;
+  if (!all && 'IntersectionObserver' in window) {
+    io = new IntersectionObserver(function (es) {
+      es.forEach(function (x) { if (x.isIntersecting) { x.target.setAttribute('data-on', ''); io.unobserve(x.target); } });
     }, { threshold: 0.18 });
-    movers.forEach(function (e) { io.observe(e); });
-    // background tabs and print previews never scroll: show everything rather than leave it blank
-    setTimeout(function () { if (d.hidden) movers.forEach(on); }, 2500);
   }
+  /* the first screen is simply there: whatever is in view (or just below) when the page arrives shows at once,
+     without its movement; the rest moves once as it is seen. Retries cover late layout; at 2.5 s everything is on */
+  function arm() {
+    var lim = (window.innerHeight || 800) * 1.15;
+    [].forEach.call(d.querySelectorAll(sel), function (e) {
+      if (all || !io || e.getBoundingClientRect().top < lim) { e.setAttribute('data-now', ''); e.setAttribute('data-on', ''); return; }
+      if (!e.bfSeen) { e.bfSeen = true; io.observe(e); }
+    });
+  }
+  arm();
+  requestAnimationFrame(arm);
+  setTimeout(arm, 300); setTimeout(arm, 1000);
+  setTimeout(function () { all = true; arm(); }, 2500);
+  window.addEventListener('resize', arm);
 
   /* ---- phone Index ---- */
   var ix = d.getElementById('ora-index'), last = null;
