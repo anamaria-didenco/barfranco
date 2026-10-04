@@ -78,6 +78,8 @@
   tick();
   document.querySelectorAll('[data-bf-live]').forEach(function (e) { e.hidden = false; });
   setInterval(tick, 30000);
+  var ds = document.querySelectorAll('[data-bf-date]');
+  if (ds.length) { try { var df = new Intl.DateTimeFormat('en-NZ', { timeZone: 'Pacific/Auckland', weekday: 'long', day: 'numeric', month: 'long' }); var dv = df.format(new Date()); ds.forEach(function (e) { e.textContent = dv; }); } catch (e) {} }
   var y = document.querySelector('[data-bf-year]');
   if (y) y.textContent = new Date().getFullYear();
 })();

@@ -594,23 +594,19 @@ button.line{appearance:none;-webkit-appearance:none}
 /* Private dining uses the shared template rules above */
 
 /* ==== aperitivo/index.html ==== */
-/* Aperitivo · Negroni Bar · Pasta fresca · Before the stadium share one dining landing-page template (.pg-dine) */
-.pg-dine .dine-hero{padding-top:clamp(32px,4vw,64px)}
-.pg-dine .dine-hero .ph.full{margin-top:var(--inside)}
-/* 02 · on the board: one centred printed card */
-.pg-dine .dine-board{width:100%;max-width:720px;margin:0 auto;gap:40px}
+/* Aperitivo · Negroni bar · Pasta fresca · Before the stadium share one Table template (.pg-dine): a word, one sentence, Book a table, the room full-bleed; one object per section; two questions; a close on Almond */
+.pg-dine .dn-cover .a2{max-width:44ch}
+.pg-dine .dn-lead{width:100%;margin-top:clamp(8px,1.4vw,20px)}
+.pg-dine .dn-sign{gap:16px}
+.pg-dine .dn-hours{color:var(--deep);font-size:min(var(--m1),14vh)}
+.pg-dine .dine-board{width:100%;max-width:720px;margin-left:auto;margin-right:auto;gap:40px}
 .pg-dine .dine-cat{display:grid;gap:12px;justify-items:center;width:100%}
-.pg-dine .dine-cat>.a4{max-width:44ch;text-align:center}
 .pg-dine .dine-cat>.lines-list{margin-top:4px}
-@media (max-width:639.98px){.pg-dine .dine-board{gap:32px}.pg-dine .dine-board .lines-list .ml{font-size:var(--a4)}}
-.pg-dine .dine-board-head{justify-items:center}
-/* phones: a bled photograph runs edge to edge */
-@media (max-width:899.98px){.pg-dine .ph.bleed-l{margin-right:calc(-1 * var(--margin))}.pg-dine .ph.bleed-r{margin-left:calc(-1 * var(--margin))}}
-/* a title holding "Christchurch" (12 letters) can't fit 390px at the 44px M2 floor: on phones these pages step the title and the closing sign down to M3 */
-@media (max-width:639.98px){.pg-dine.dine-long .m2{font-size:var(--m3)}}
-
-/* ==== fresh-pasta/index.html ==== */
-/* the pasta card: each menu line carries the page's own note beneath it */
-.pg-pasta .dine-dishes{gap:18px}
-.pg-pasta .dine-dishes>div{display:grid;gap:2px}
-.pg-pasta .dine-dishes .a4{text-align:left;max-width:none}
+.pg-dine .dine-board-head{justify-items:center;text-align:center}
+.pg-dine .dn-recipe{width:100%;max-width:560px;margin-left:auto;margin-right:auto;gap:18px}
+.pg-dine .dn-recipe .lines-list{max-width:360px}
+.pg-dine .dn-recipe .a3{max-width:34ch}
+.pg-dine .dn-photo{align-items:end}
+.pg-dine .dn-nights{align-items:end}
+.pg-dine .dn-fixtures .ml>.n{flex:0 1 auto}
+@media (max-width:639.98px){.pg-dine .dine-board{gap:32px}.pg-dine .dine-board .lines-list .ml{font-size:var(--a4)}.pg-dine .dn-hours{font-size:8.2vw}}
