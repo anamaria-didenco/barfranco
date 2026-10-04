@@ -559,52 +559,39 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-pack .pk-ask{max-width:520px;margin-top:18px}
 
 /* ==== weddings/index.html ==== */
-/* Weddings · Corporate · Private dining share one landing-page template (these rules also serve .pg-corporate and .pg-private) */
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{padding-top:clamp(32px,4vw,64px)}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-facts{margin-top:12px;max-width:44ch}
-/* desktop: one first view — the words on the left, the photograph with the form on the right */
-@media (min-width:900px){
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);padding-top:0}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero>.wrap{display:block;margin:0;padding-right:var(--gutter);align-self:center;padding-top:var(--inside);padding-bottom:var(--inside)}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero>.wrap>.intro{max-width:none}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero .m2{font-size:clamp(36px,min(4.4vw,8.5vh),88px)}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero .a2{font-size:var(--a3)}
-}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{margin-top:var(--inside)}
-/* the enquiry card sits on the lead photograph: the room and the form in one view.
-   Desktop: photo and card share one grid cell, the photo stretching to the card if the card is taller.
-   Phones: the card rides up over the foot of the photo. */
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq{display:grid;gap:16px;align-content:start;scroll-margin-top:72px}
-@media (min-width:900px){
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{display:grid}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>*{grid-area:1/1}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{margin-top:0}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ph{aspect-ratio:auto;min-height:calc(100svh - 80px);height:100%}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ev-enq{justify-self:center;align-self:start;width:min(440px,calc(100% - 2 * var(--inside)));margin:var(--inside) 0;padding:32px}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ph .mark{display:none}
-}
-@media (max-width:899.98px){
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ev-enq{margin:-72px var(--margin) 0}
-}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq iframe{width:100%;height:460px;border:0}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-pack{display:flex;flex-wrap:wrap;gap:4px 28px;padding-top:16px}
-/* formats: Marsha category heads in two columns, a hairline above each */
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter);border-bottom:1px solid var(--hair)}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts>div{display:grid;gap:10px;align-content:start;padding:24px 0 28px}
-/* corporate: the planners' own words, a quote and a name in each cell */
-.pg-corporate .ev-said{display:grid;gap:12px}
-.pg-corporate .ev-said blockquote{max-width:44ch}
-@media (max-width:639.98px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts{grid-template-columns:1fr}}
-/* the food card */
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card .lines-list{max-width:440px}
-/* 01's photograph: four columns, to the right edge */
-@media (min-width:900px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-why{grid-column:9/13}}
+/* Weddings · Corporate · Private dining share one Table template: the title beside the at-a-glance card, the lead photograph full-bleed below;
+   a quote at statement size beside the Why photograph; the night in three chapters; set up your way (five lines, then the pair); the EVENTI card; five questions; the form last; a poster close */
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-cover{padding-top:clamp(24px,3vw,40px)}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top{align-items:start}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top .intro{gap:18px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top .m2{font-size:clamp(40px,min(5vw,9vh),88px)}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top .a2{max-width:40ch}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-facts{max-width:44ch}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card{justify-items:stretch;text-align:left;gap:14px;align-self:start}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card>.eyebrow,:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card .fine{text-align:center}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card>.emb{justify-self:center}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-why{align-items:start}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-quotes{grid-column:1/8;gap:22px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-quotes .said{display:grid;gap:6px;max-width:30ch}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-why-ph{grid-column:9/13}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-night{margin-top:var(--between)}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-three{--n:3;width:100%;margin-top:12px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-head{align-items:end}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts .ml>.n{flex:none}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-pair{width:100%}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-eventi{width:100%;max-width:720px;margin-left:auto;margin-right:auto}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-eventi .lines-list{max-width:560px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq .facts{max-width:420px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-form{display:grid;gap:14px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-form iframe{width:100%;height:520px;border:0}
+@media (max-width:899.98px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-quotes,:is(.pg-weddings,.pg-corporate,.pg-private) .ev-why-ph{grid-column:1/-1}}
+@media (max-width:639.98px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-three{grid-template-columns:1fr}:is(.pg-weddings,.pg-corporate,.pg-private) .ev-three>:nth-child(n+3){display:grid}}
 
 /* ==== corporate-events/index.html ==== */
-/* Corporate uses the shared Weddings · Corporate template rules above */
+/* Corporate uses the shared template rules above */
 
 /* ==== private-dining/index.html ==== */
-/* Private dining uses the shared Weddings · Corporate template rules above */
+/* Private dining uses the shared template rules above */
 
 /* ==== aperitivo/index.html ==== */
 /* Aperitivo · Negroni Bar · Pasta fresca · Before the stadium share one dining landing-page template (.pg-dine) */
