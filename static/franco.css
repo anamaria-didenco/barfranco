@@ -163,6 +163,16 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .btn:hover,.btn:focus-visible{background:var(--fill);color:var(--fill-text);border-color:var(--fill);text-decoration:none}
 .btn.fill:hover,.btn.fill:focus-visible{background:transparent;color:var(--ink);border-color:currentColor}
 .btn:active{opacity:.6}
+/* the card: one photograph, a name, a number where a price would be, one line, one ask. .cards lays them out (2-up from 640px) */
+.card{display:grid;gap:14px;justify-items:start;align-content:start}
+.card .ph{width:100%;margin-bottom:6px}
+.card-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;width:100%}
+.card-row .m4{max-width:none}
+.card-num{margin:0}
+.card-sub{max-width:40ch}
+.cards{display:grid;gap:var(--between) var(--gutter)}
+@media (min-width:640px){.cards{grid-template-columns:1fr 1fr;gap:var(--inside) var(--gutter)}.cards:has(>.card:only-child){grid-template-columns:1fr}}
+@media (max-width:639.98px){.card .ph.r-45{aspect-ratio:3/2}}   /* on a phone every card photo is 3:2, so photo, name, number and ask share one screen */
 
 /* ---- masthead (every page) — chrome.js adds .bf-tight past 90px ---- */
 .bf-mast{position:sticky;top:0;z-index:30;background:var(--paper);color:var(--deep);--frame:var(--bright);--head:var(--bright);--ink:var(--deep)}
@@ -305,36 +315,24 @@ button.line{appearance:none;-webkit-appearance:none}
 @media (max-width:639.98px){.cover-logo{max-width:300px}}
 
 /* ==== index.html ==== */
-/* the home page: one claim and two asks, then cards. A card is one photograph, a name, a number and an action;
-   the number sits where a price would. Chapters: Paper → Night (events) → Paper (food, bar, restaurant) → Almond (said) → Paper (ciao) → Night footer */
+/* the home page: one claim and two asks, then cards (see .card). Chapters: Paper → Night (events) → Paper (food, bar, restaurant) → Almond (said) → Paper (ciao) → Night footer */
 .pg-home .hm-hero{padding-top:clamp(28px,4vw,56px)}
 .pg-home .hm-hero .intro{gap:24px}
 .pg-home .hm-claim{max-width:30ch}
 .pg-home .hm-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
-.pg-home .hm-card{display:grid;gap:14px;justify-items:start;align-content:start}
-.pg-home .hm-card .ph{width:100%;margin-bottom:6px}
-.pg-home .hm-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;width:100%}
-.pg-home .hm-row .m4{max-width:none}
-.pg-home .hm-num{margin:0}
-.pg-home .hm-sub{max-width:40ch}
-.pg-home .hm-band,.pg-home .hm-cards{display:grid;gap:var(--between) var(--gutter)}
 .pg-home .hm-cards{margin-top:var(--inside)}
 .pg-home .hm-quotes{display:grid;gap:28px}
 .pg-home .hm-quotes figure{display:grid;gap:8px;max-width:34ch}
 .pg-home .hm-reply{margin-top:var(--inside);padding-top:20px;border-top:1px solid var(--hair);max-width:60ch}
 .pg-home .hm-reply .ask{margin-right:16px}
 @media (min-width:640px){
-  .pg-home .hm-band,.pg-home .hm-cards{grid-template-columns:1fr 1fr;gap:var(--inside) var(--gutter)}
   .pg-home .hm-cards>:first-child{grid-column:1/-1}
   .pg-home .hm-quotes{grid-template-columns:1fr 1fr 1fr;gap:32px}
 }
 @media (max-width:899.98px){
   .pg-home .hm-full{margin-left:calc(-1 * var(--margin));margin-right:calc(-1 * var(--margin));width:auto;justify-self:stretch}
 }
-@media (max-width:639.98px){
-  .pg-home .hm-btns .btn{flex:1 1 auto;text-align:center}
-  .pg-home .hm-card .ph.r-45{aspect-ratio:3/2}   /* on a phone every card photo is 3:2, so photo, name, number and ask share one screen */
-}
+@media (max-width:639.98px){.pg-home .hm-btns .btn{flex:1 1 auto;text-align:center}}
 
 /* ==== menus/index.html ==== */
 /* hero: title + lede, the lead photograph, and the tabs sitting right above the sheets */

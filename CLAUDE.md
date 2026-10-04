@@ -18,7 +18,7 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   `.frame` (double rule) for printed objects; `.ml` menu lines (`.v.r` for prices/capacities); `.line` primary
   asks (`<span>words</span><i class="lead"></i><em class="v">fact</em>` — the leader runs to a short fact where a price
   would be: Book a table … 4pm till late · Plan an event … up to 240 · Read the full menus … food & drinks ·
-  Christmas parties … December; the dock and Send are the words alone. **No arrows anywhere**), `.ask` secondary; `.btn` the square ask (`.fill` for the primary of a pair; the home page's asks); `.qa` questions; `.tabs` (franco.js wires `role=tab` buttons to their panels).
+  Christmas parties … December; the dock and Send are the words alone. **No arrows anywhere**), `.ask` secondary; `.btn` the square ask (`.fill` for the primary of a pair); `.card` (one photograph `.ph`, a `.card-row` with the `h2.m4` name and the `.card-num` fact where a price would be, one `.card-sub` line, one `.btn`), laid out by `.cards`; `.qa` questions; `.tabs` (franco.js wires `role=tab` buttons to their panels).
 - Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
 - Page-specific CSS lives at the end of franco.css, one `/* ==== page ==== */` block each, every selector
@@ -120,7 +120,7 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
 
 ## SEO — already set up, keep it intact
 Each page has a unique `<title>`, meta description, Open Graph + Twitter card tags, canonical URL,
-and JSON-LD structured data (Restaurant / Bar / LocalBusiness + FAQ on the homepage). When editing:
+and JSON-LD structured data (Restaurant / EventVenue / WebSite on the homepage; FAQPage only on pages that show the Q&A, such as Functions). When editing:
 - Keep one unique `<title>` and meta description per page.
 - If you add a page, add it to `sitemap.xml`.
 - Don't remove the JSON-LD `<script type="application/ld+json">` blocks — they power rich results.
