@@ -8,6 +8,14 @@
   /* ---- set · unmask · settle: each element moves once, the first time it is seen ---- */
   var movers = [].slice.call(d.querySelectorAll('[data-set],[data-unmask],[data-settle]'));
   function on(e) { e.setAttribute('data-on', ''); }
+  /* the first screen is simply there: whatever is already in view when the page arrives shows at once,
+     without its movement, so the title and the lead photograph never wait on a transition */
+  var vh = window.innerHeight || 800;
+  movers = movers.filter(function (e) {
+    var r = e.getBoundingClientRect();
+    if (r.bottom <= 0 || r.top >= vh) return true;
+    e.setAttribute('data-now', ''); on(e); return false;
+  });
   if (reduce || !('IntersectionObserver' in window)) {
     movers.forEach(on);
   } else {
@@ -149,6 +157,18 @@
 /* ---- VenueFlow enquiry: the widget posts its height, so the frame fits the form (no blank card under it).
    It measures itself as at least as tall as its frame, so the frame starts at the form's own height (460px)
    and only ever grows. ---- */
+[].forEach.call(document.querySelectorAll('iframe[src*="venueflowhq.com"]'), function (f) {
+  /* while the form is on its way the card says so (and where to write instead), rather than sitting empty */
+  var box = document.createElement('div'), p = document.createElement('p');
+  box.className = 'vf';
+  p.className = 'vf-wait a4';
+  p.innerHTML = 'Loading the enquiry form… <em>or email <a href="mailto:events@barfranco.nz">events@barfranco.nz</a></em>';
+  f.parentNode.insertBefore(box, f);
+  box.appendChild(p); box.appendChild(f);
+  var done = function () { if (p.parentNode) p.parentNode.removeChild(p); };
+  f.addEventListener('load', done);
+  setTimeout(function () { if (p.parentNode) p.firstChild.nodeValue = 'The form is taking a while… '; }, 8000);
+});
 window.addEventListener('message', function (e) {
   if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
   var d = e.data;

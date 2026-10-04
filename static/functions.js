@@ -62,7 +62,8 @@
     flip.addEventListener('click', function (e) { if (fine() && e.detail !== 0) return; turn(!turned()); });
   }
 
-  /* ---- the chapters: every chapter open on arrival; each head folds its own away (and back) ---- */
+  /* ---- the chapters: the first two open on arrival, the rest fold out on a tap (or from the index above).
+     Each head folds its own away (and back). ---- */
   var IDS = ['why', 'spaces', 'occasions', 'food', 'questions'];
   var secs = IDS.map(function (id) { return d.getElementById(id); }).filter(Boolean);
   if (!secs.length) return;
@@ -78,8 +79,8 @@
     var off = (mast ? mast.getBoundingClientRect().height : 64) + 8;
     w.scrollTo({ top: t.getBoundingClientRect().top + w.scrollY - off, behavior: reduce ? 'auto' : 'smooth' });
   }
-  secs.forEach(function (s) {
-    setOne(s, true);
+  secs.forEach(function (s, i) {
+    setOne(s, i < 2);
     var b = s.querySelector('.chx-head'); if (!b) return;
     b.addEventListener('click', function () { setOne(s, s.getAttribute('data-open') !== 'true'); });
   });
@@ -87,6 +88,8 @@
     var h = (w.location.hash || '').slice(1);
     if (IDS.indexOf(h) > -1) { setOne(d.getElementById(h), true); setTimeout(function () { jump(h); }, 80); }
     else if (h === 'hook') setTimeout(function () { jump('hook'); }, 400);
+    // any other anchor (#enquire from the home page): land on it again once the folded chapters have settled the page
+    else if (h && d.getElementById(h)) setTimeout(function () { jump(h); }, 260);
   }
   fromHash();
   w.addEventListener('hashchange', fromHash);
