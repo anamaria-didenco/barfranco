@@ -399,19 +399,17 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-menus .dish .tg{white-space:nowrap}
 
 /* ==== bookings/index.html ==== */
-/* first screen: title, one line and the live widget side by side */
-.pg-bookings .bk-hero{padding-top:clamp(24px,3vw,40px)}
-.pg-bookings .bk-txt{grid-column:1/6;align-self:start;padding-top:clamp(8px,2vw,32px)}
-.pg-bookings .bk-widget{grid-column:7/13;display:grid;gap:14px}
-.pg-bookings .bk-frame{display:grid;gap:16px;padding:36px}
+/* Bookings on the Table: BOOK a table., one sentence, the framed widget, three facts; two levels; two questions; the poster */
+.pg-bookings .bk-cover .a2{max-width:40ch}
+.pg-bookings .bk-book{width:100%;max-width:760px;display:grid;gap:16px;padding:36px;text-align:left}
 .pg-bookings .bk-label{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
-.pg-bookings .bk-iframe{width:100%;height:clamp(520px,calc(100svh - 280px),720px);border:0;background:var(--paper)}
+.pg-bookings .bk-iframe{width:100%;height:clamp(520px,calc(100svh - 300px),720px);border:0;background:var(--paper)}
 .pg-bookings .bk-help{text-align:center}
-@media (max-width:899.98px){
-  .pg-bookings .bk-txt,.pg-bookings .bk-widget{grid-column:1/-1}
-  .pg-bookings .bk-iframe{height:min(720px,80svh)}
-}
-@media (max-width:639.98px){.pg-bookings .bk-frame{padding:28px 22px}}
+.pg-bookings .bk-facts{max-width:560px;text-align:left}
+.pg-bookings .bk-facts .ml>.n{flex:none}
+.pg-bookings .bk-head{align-items:end}
+.pg-bookings .bk-lead{max-width:44ch}
+@media (max-width:639.98px){.pg-bookings .bk-book{padding:28px 22px}.pg-bookings .bk-iframe{height:min(720px,80svh)}}
 
 /* ==== functions/index.html ==== */
 /* Functions on the Table: the nameplate as a word, the at-a-glance card, the night in three chapters, the spaces, the EVENTI card, the form (functions.js keeps the coaster) */
