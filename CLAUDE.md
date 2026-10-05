@@ -91,7 +91,10 @@ no framework, no server). The files here ARE the site — what you edit is what 
   (open page marked `aria-current="page"` with Franco the dachshund under it; on phones the nav hides and the
   Index button shows), the phone Index `#ora-index`, the Night footer (it opens on the sign-off "Ti aspettiamo, we're waiting for you."; **no live status,
   clock or date anywhere on the site**, the owner removed them; chrome.js fills `data-bf-year`) and the phone dock.
-  Change them on every page. Home and Contact use the lite footer (no address block, as they show it above).
+  Change them on every page. The footer (`.bf-foot.ft`) is curated: the sign-off set as a word, four quiet columns under one
+  hairline (Find us · Say ciao · Franco · More, the open page underlined), then a base line (© · emblem · Instagram · Facebook);
+  each fact once, no asks in it. Home and Contact use the lite footer (`.bf-lite`: no Find us / Say ciao, as they show them above).
+  Functions and Christmas still carry the older footer until the owner says otherwise.
   Christmas has its own campaign masthead (`.mast-campaign`: Hold a date · Call; the Index button always shown).
   Pages without a cover photograph carry the `.runhead` line under the masthead instead.
   **Home is phone-first, the dock is the store:** on phones Home's dock (Book a table · Plan an event) shows from the first

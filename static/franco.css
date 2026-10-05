@@ -939,3 +939,36 @@ body:has(.pg-hero) .bf-mast nav a[aria-current="page"]{text-decoration:underline
   body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .strip>figure:nth-child(odd) .ph{margin-right:calc(-1 * var(--margin));margin-left:10%}
   body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .strip>figure:nth-child(even) .ph{margin-left:calc(-1 * (var(--margin) + var(--ind)));margin-right:14%}
 }
+
+/* ==== The footer, curated (every page but Functions and Christmas, which keep theirs for now) ====
+   the sign-off as a word, then four quiet columns under one hairline (Find us · Say ciao · Franco · More), then a base line.
+   Each fact once: no asks (the page's close and the dock carry them), no repeated address in the legal line. */
+.ft{text-align:left;padding:clamp(72px,9vw,128px) 0 28px}
+.ft-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);align-items:start}
+.ft-sign{grid-column:1/-1;margin:0 0 clamp(56px,6vw,96px);font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:var(--m3);line-height:.95;letter-spacing:-.005em;color:var(--almond)}
+.ft-sign em{display:block;margin-top:.25em;font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:.6em}
+.ft-col{grid-column:span 3;display:grid;justify-items:start;align-content:start;gap:4px;padding-top:18px;border-top:1px solid var(--hair);font-size:var(--a3);line-height:1.5}
+.ft-col p{margin:0}
+.ft-col p+p{margin-top:10px}
+.ft-col p+a{margin-top:10px}
+.ft-k{font-style:italic;font-size:var(--fine);margin-bottom:10px!important}
+.ft-col a{text-decoration:none}
+.ft-col a:hover,.ft-col a[aria-current="page"]{text-decoration:underline 1px;text-underline-offset:.2em}
+.ft-base{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:clamp(56px,6vw,88px);padding-top:16px;border-top:1px solid var(--hair);font-size:var(--fine);font-style:italic}
+.ft-base p{margin:0}
+.ft-base p:last-child{text-align:right}
+.ft-base .foot-emb{margin:0}
+.bf-lite .ft-visit,.bf-lite .ft-talk{display:none}
+.bf-lite .ft-col{grid-column:span 3}
+@media (max-width:899.98px){
+  .ft-col,.bf-lite .ft-col{grid-column:span 6}
+  .ft-grid{row-gap:40px}
+  .ft-base{margin-top:16px}
+}
+@media (max-width:639.98px){
+  .ft-sign{margin-bottom:16px}
+  .ft-visit,.ft-talk{grid-column:1/-1}
+  .ft-base{flex-wrap:wrap;row-gap:14px}
+  .ft-base p{white-space:nowrap}
+  .ft-base .foot-emb{order:-1;margin-right:calc(100% - 52px)}
+}
