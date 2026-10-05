@@ -34,7 +34,7 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
 - **Structure like Milan, behave like Italy.** The grammar above is the discipline; each page may add one deliberate act of
   misbehaviour, never more. The page follows the building: in every Level 1 / Level 2 pair (`.two`) downstairs sits
   lower than upstairs, and in the three-chapter strips (`.fn-three`, `.x-three`, `.ev-three`) 02 Upstairs sits highest.
-  **Text never overlaps a photograph** (the owner rejected the title crossing Home's cover). **No oversized words or numbers**
+  **Text never overlaps a photograph**, with one exception the owner chose: Home's hero (the editorial layout below). **No oversized words or numbers**
   (no giant 240, STAY or 17:00 spread across a page): the owner rejected them; facts stay at heading size or smaller.
   No checkerboards, Vespas, postcards or trattoria red-and-white.
 - **Art direction, three standing rules.** Cinema: on desktop full-bleed photographs (`.ph.full.r-169`) are cut 2.39:1,
@@ -95,7 +95,7 @@ no framework, no server). The files here ARE the site — what you edit is what 
 ## Pages
 | File | Purpose |
 |------|---------|
-| `index.html` | Homepage, on the Table: the nameplate (Bar Franco script left, descriptor right), the cover photograph of the table from above, `h1.word.h1` Not a bar. A world. set flush left with the entry sentence ("Ciao. This is Bar Franco, a Negroni bar and Italian restaurant (upstairs) at The Crossing, Christchurch.") and the asks in the right columns, the rules as a staircase on Bright Red (`.hm-stair`, each rule a step down and to the right, arriving one after another), Where it comes from (three generations and the Our story ask), Downstairs then upstairs (`.two`), We host. You stay. on Night with the hosts' line, Come as you are with Book a table · Plan an event. JSON-LD Restaurant (`#restaurant`, the one the other pages reference) + WebSite |
+| `index.html` | Homepage, on the owner's editorial reference layout: **no masthead band on Home** (`.bf-mast` hidden); the hero is the tray photograph (`cocktail-tray.jpg`) with the Bar Franco script, the nav and a boxed Book a table on it (Index on phones), `h1` Not a bar. A world. and the Ciao entry sentence on the photograph, a round down arrow and the note Aperitivo sempre; then the house rules staircase on Bright Red, Where it comes from, numbered chapters 01 The Restaurant (text left, two photographs offset, the note Buon cibo…, Due livelli — una sola anima up the edge), 02 The Negroni Bar (Deep Red, the photograph on the right), 03 We host. You stay. (a wide photograph, Pasta, vino, persone); Come as you are. JSON-LD Restaurant (`#restaurant`) + WebSite |
 | `our-story/` | Our story: the approved copy from the handoff (cover, the rules on Almond, the letter, Two levels on Night, Come as you are). The only place the story facts are told; the press bio lives here too |
 | `bookings/` | Reservations, on the Table: cover with the NowBookIt widget, Pick a level, two questions, the Planning something bigger? Poster |
 | `functions/` | Private events, on the Table: the nameplate cover, At a glance `#hook`, The night on Night, `#spaces`, `#food` (the EVENTI card), `#questions` (six), `#enquire` (the VenueFlow card with the coaster beside it: turns over, cycles `images/coaster/`, the one drop-shadow on the site), the seasonal Christmas Poster band `#christmas` (remove after December). JSON-LD EventVenue `#venue` (the one the event pages reference). Behaviour in `static/functions.js` |
