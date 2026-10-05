@@ -1077,11 +1077,10 @@ body:has(.pg-hero) .bf-mast nav a[aria-current="page"]{text-decoration:underline
 .pg-bookings .lv-cap .m4{color:var(--deep)}
 .pg-bookings .lv-cap .a2{max-width:32ch}
 @media (max-width:767.98px){
-  .pg-bookings .lv-split{column-gap:clamp(14px,4vw,24px)}
-  .pg-bookings .lv-down{margin-top:clamp(28px,12vw,64px)}
-  .pg-bookings .lv-floor{gap:.6em;margin-bottom:12px;padding-top:9px}
-  .pg-bookings .lv-fn{font-size:clamp(15px,4.4vw,20px)}
-  .pg-bookings .lv-fk{font-size:13px}
-  body:has(.pg-hero) main .bk-levels .lv .lv-cap .m4{font-size:min(4.6vw,20px);line-height:1.04;letter-spacing:0;max-width:none}
-  body:has(.pg-hero) main .bk-levels .lv .lv-cap .a2{font-size:13px;max-width:none}
+  /* phones: recompose as a stacked elevation — upstairs above, downstairs below — full-width, not squashed */
+  .pg-bookings .lv-split{grid-template-columns:1fr;row-gap:clamp(40px,10vw,64px)}
+  .pg-bookings .lv-up{order:-1}                 /* upstairs on top; you read down into the bar */
+  .pg-bookings .lv-down{margin-top:0}
+  .pg-bookings .lv-floor{margin-bottom:clamp(14px,3.5vw,20px)}
+  .pg-bookings .lv-cap{padding-top:clamp(16px,4vw,24px)}
 }
