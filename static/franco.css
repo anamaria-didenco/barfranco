@@ -827,3 +827,16 @@ body:has(.pg-home .hm-hero) .bf-mast{display:none}
   .pg-home .hm-details{margin-top:28px}
 }
 @media (max-width:639.98px){.pg-home .hm-h1{font-size:min(48px,11.2vw)}}
+/* Home +30%: a photograph beside the intro, a second beside Host at Franco, the event room lifted */
+.pg-home .hm-lead{grid-column:2/8}
+.pg-home .hm-intro-ph{grid-column:9/13;margin-top:clamp(-40px,-3vw,0px)}
+.pg-home .hm-intro-ph .ph{aspect-ratio:4/5}
+.pg-home .hm-ev .hm-txt{grid-column:3/8}
+.pg-home .hm-ev-ph{grid-column:9/12;margin-top:clamp(-140px,-9vw,-60px);position:relative;z-index:2}
+.pg-home .hm-ev-ph .ph{aspect-ratio:3/4}
+.pg-home .hm-ev .hm-wide img{filter:brightness(1.18) contrast(1.02) saturate(.95) sepia(.06)}
+@media (max-width:899.98px){
+  .pg-home .hm-lead,.pg-home .hm-intro-ph,.pg-home .hm-ev .hm-txt,.pg-home .hm-ev-ph{grid-column:1/-1}
+  .pg-home .hm-intro-ph{margin-top:32px;width:78%;justify-self:end}
+  .pg-home .hm-ev-ph{margin-top:28px;width:62%;justify-self:end}
+}
