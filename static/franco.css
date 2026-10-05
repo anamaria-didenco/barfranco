@@ -840,3 +840,29 @@ body:has(.pg-home .hm-hero) .bf-mast{display:none}
   .pg-home .hm-intro-ph{margin-top:32px;width:78%;justify-self:end}
   .pg-home .hm-ev-ph{margin-top:28px;width:62%;justify-self:end}
 }
+/* ==== Home on phones: the desktop's spacing philosophy, at phone scale ====
+   a narrow margin carries the chapter number and its rule; text is indented from it; photographs break out to
+   alternate edges (one bleeds right, the next sits indented left, the next bleeds left) */
+@media (max-width:899.98px){
+  .pg-home .hm-ch{padding:clamp(64px,16vw,88px) 0}
+  .pg-home .hm-grid{grid-template-columns:28px minmax(0,1fr);column-gap:16px;row-gap:0}
+  .pg-home .hm-num{grid-column:1;grid-row:1;justify-self:start;padding-top:22px}
+  .pg-home .hm-num::after{display:block;height:44px;margin:10px 0 0 4px}
+  .pg-home .hm-txt,.pg-home .hm-lead,.pg-home .hm-ciao2 .hm-txt{grid-column:2;grid-row:1}
+  .pg-home .hm-intro .hm-num{display:block;visibility:hidden}
+  /* 00 · intro: the burrata sits indented, flush to the right edge */
+  .pg-home .hm-intro-ph{grid-column:2;grid-row:2;width:auto;justify-self:stretch;margin:40px calc(-1 * var(--hp)) 0 18%}
+  /* 01 · restaurant: the big photograph bleeds right, the small one sits indented left */
+  .pg-home .hm-pa{grid-column:1/-1;grid-row:2;margin:44px calc(-1 * var(--hp)) 0 18%}
+  .pg-home .hm-pb{grid-column:2;grid-row:3;width:64%;justify-self:start;margin-top:16px}
+  .pg-home .hm-tags{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:var(--a3)}
+  /* 03 · events: the wide photograph bleeds left, the waiter sits indented right under the text */
+  .pg-home .hm-ev .hm-wide{grid-column:1/-1;grid-row:1;margin:0 18% 0 calc(-1 * var(--hp))}
+  .pg-home .hm-ev .hm-wide .ph{aspect-ratio:4/3}
+  .pg-home .hm-ev .hm-num{grid-column:1;grid-row:2;justify-self:start}
+  .pg-home .hm-ev .hm-txt{grid-column:2;grid-row:2;margin-top:0}
+  .pg-home .hm-ev-ph{grid-column:2;grid-row:3;width:64%;justify-self:end;margin:32px 0 0}
+  /* 04 · details sit under the text, in the same indent */
+  .pg-home .hm-details{grid-column:2;grid-row:2;margin-top:36px}
+  .pg-home .hm-dark .hm-ch{padding-top:56px}
+}
