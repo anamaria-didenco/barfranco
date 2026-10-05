@@ -714,3 +714,4 @@ button.line{appearance:none;-webkit-appearance:none}
   .pg-home .hm-stair>em{margin-left:2.4em}
   .pg-home .ch-poster .hm-rules .a2,.pg-home .ch-poster .hm-rules .emb{margin-left:0}
 }
+.pg-home .hm-open .grid{row-gap:0}.pg-home .hm-hour{margin-bottom:clamp(12px,1.4vw,18px)}   /* the evening's first hour sits over the title */
