@@ -83,6 +83,10 @@ no framework, no server). The files here ARE the site — what you edit is what 
   Change them on every page. Home and Contact use the lite footer (no address block, as they show it above).
   Christmas has its own campaign masthead (`.mast-campaign`: Hold a date · Call; the Index button always shown).
   Pages without a cover photograph carry the `.runhead` line under the masthead instead.
+  **Home is phone-first, the dock is the store:** on phones Home's dock (Book a table · Plan an event) shows from the first
+  screen to the footer and never hides (chrome.js `always`); Home's inline copies of those two asks (`.g-hero-ask`, `.hm-dup`) hide on
+  phones. Every phone screen passes the desire test (a photograph, a line or a colour moment, plus the dock); the first screen
+  is script, photograph and Not a bar. A world. above the dock on phones from 375×667 up.
 - franco.js also runs the FormSubmit contact form (`<form data-email data-subject>`, honeypot, Ads conversion)
   and the VenueFlow iframe height.
 - To preview: a static server from the repo root (`python3 -m http.server`) — pages use root paths.
@@ -91,7 +95,7 @@ no framework, no server). The files here ARE the site — what you edit is what 
 ## Pages
 | File | Purpose |
 |------|---------|
-| `index.html` | Homepage, on the Table: the nameplate (Bar Franco script left, descriptor right), the cover photograph of the table from above, `h1.word.h1` Not a bar. A world. set flush left with its sentence and asks in the right columns, the rules as a staircase on Bright Red (`.hm-stair`, each rule a step down and to the right, arriving one after another), Where it comes from (three generations and the Our story ask), Downstairs then upstairs (`.two`), We host. You stay. on Night with the hosts' line, Come as you are with Book a table · Plan an event. JSON-LD Restaurant (`#restaurant`, the one the other pages reference) + WebSite |
+| `index.html` | Homepage, on the Table: the nameplate (Bar Franco script left, descriptor right), the cover photograph of the table from above, `h1.word.h1` Not a bar. A world. set flush left with the entry sentence ("Ciao. This is Bar Franco, a Negroni bar and Italian restaurant (upstairs) at The Crossing, Christchurch.") and the asks in the right columns, the rules as a staircase on Bright Red (`.hm-stair`, each rule a step down and to the right, arriving one after another), Where it comes from (three generations and the Our story ask), Downstairs then upstairs (`.two`), We host. You stay. on Night with the hosts' line, Come as you are with Book a table · Plan an event. JSON-LD Restaurant (`#restaurant`, the one the other pages reference) + WebSite |
 | `our-story/` | Our story: the approved copy from the handoff (cover, the rules on Almond, the letter, Two levels on Night, Come as you are). The only place the story facts are told; the press bio lives here too |
 | `bookings/` | Reservations, on the Table: cover with the NowBookIt widget, Pick a level, two questions, the Planning something bigger? Poster |
 | `functions/` | Private events, on the Table: the nameplate cover, At a glance `#hook`, The night on Night, `#spaces`, `#food` (the EVENTI card), `#questions` (six), `#enquire` (the VenueFlow card with the coaster beside it: turns over, cycles `images/coaster/`, the one drop-shadow on the site), the seasonal Christmas Poster band `#christmas` (remove after December). JSON-LD EventVenue `#venue` (the one the event pages reference). Behaviour in `static/functions.js` |

@@ -716,3 +716,14 @@ button.line{appearance:none;-webkit-appearance:none}
 }
 .pg-home .hm-open .grid{row-gap:0}.pg-home .hm-hour{margin-bottom:clamp(12px,1.4vw,18px)}   /* the evening's first hour sits over the title */
 .pg-home .ch-poster+.hm-from{margin-top:0}   /* Bright Red cuts straight to the long table: no dead strip of Almond between */
+
+/* ==== Home, phone first: the dock is the store ==== */
+/* on phones Book a table · Plan an event live in the dock for the whole visit; the inline copies of the same two asks step aside */
+@media (max-width:639.98px){
+  .pg-home .g-hero-ask,.pg-home .hm-dup{display:none}
+  body:has(.pg-home) .bf-foot{padding-bottom:calc(40px + 58px + env(safe-area-inset-bottom))}
+  /* the first screen is the whole promise: script, the table, and Not a bar. A world. above the dock */
+  .pg-home .hm-cover-ph{aspect-ratio:auto;height:clamp(180px,calc(100svh - 390px),100vw)}
+  .pg-home .hm-plate{flex-direction:row;align-items:flex-end}.pg-home .hm-plate .a4{text-align:right;font-size:14px}.pg-home .hm-script{width:96px}
+  .pg-home .hm-open{padding-top:22px}
+}
