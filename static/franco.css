@@ -651,3 +651,11 @@ button.line{appearance:none;-webkit-appearance:none}
    3 · One grade: every photograph gets the same warm, matte grade so the library reads as one shoot. */
 @media (min-width:900px){.full.r-169:not(:has(iframe)){aspect-ratio:2.39/1}}   /* the Contact map keeps its height */
 .ph>img:first-child{filter:contrast(1.04) saturate(.9) sepia(.06)}
+
+/* ==== refinements ==== */
+/* the italic turn of a rules sign is its own line, set to a reading measure and balanced: no lone "friend." */
+.word.rules em{display:block;max-width:21em;margin:.3em auto 0;line-height:1.14;text-wrap:balance}
+/* a plain opening never runs into the Deep Red rule of the Almond chapter below it */
+.quiet:not(.deep)+.ch-aframe{margin-top:clamp(48px,6vw,96px)}
+/* Our story: the letter is set as a letter, a centred reading column, not a left column with the page empty beside it */
+@media (min-width:900px){.pg-story .st-letter .wrap>.st-text:first-child{grid-column:1/-1;justify-self:center;width:min(100%,58ch)}}
