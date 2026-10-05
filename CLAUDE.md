@@ -29,10 +29,18 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   We host. You stay. · Not a bar. A world. · Some places want to be seen. Bar Franco wants to be felt. · Come as you
   are. Leave slower than you arrived. · Ti aspettiamo. Never: "Franco means frank", any country name, "the table is my
   grandmother's". The story facts live in `/our-story/` and nowhere else is allowed to contradict them.
+- **Structure like Milan, behave like Italy.** The grammar above is the discipline; each page may add one deliberate act of
+  misbehaviour, never more. The page follows the building: in every Level 1 / Level 2 pair (`.two`) downstairs sits
+  lower than upstairs, and in the three-chapter strips (`.fn-three`, `.x-three`, `.ev-three`) 02 Upstairs sits highest.
+  The acts so far: Home's title crosses the lower edge of the cover photograph and `.giant` STAY runs off its Night band;
+  Functions sets `.giant` 240 (with a small `.giant-k` "Up to") at the scale of the room. `.giant` is a composition, not
+  a heading: `aria-hidden`, Bright Red on Night, one per page at most. No checkerboards, Vespas, postcards or trattoria red-and-white.
 - Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
   franco.js shows whatever is on the first screen at once (`data-now`) and moves the rest once as it is seen; at 2.5 s
   everything is on regardless, and reduced-motion gets no movement at all.
+  Two scroll-driven movements live in CSS only (where the browser supports `animation-timeline`, never under reduced
+  motion): `.giant` crosses its band, and full-bleed photographs (`.ph.full`) drift a few percent inside their frames.
 - Page-specific CSS lives at the end of franco.css, one `/* ==== page ==== */` block each, every selector
   prefixed by the page's `<main class="pg-…">`.
 
