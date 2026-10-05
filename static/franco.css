@@ -185,6 +185,14 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .line>.v{flex:none;font-style:italic;white-space:nowrap}
 .line:hover,.line:focus-visible{background:var(--fill);color:var(--fill-text);text-decoration:none}
 .line:active{opacity:.6}
+/* hover swap: the words slide up and a duplicate slides in from below (built by franco.js) */
+.line>span.swap{position:relative;display:inline-block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em;vertical-align:bottom}
+.line>span.swap .lbl{display:block;transition:transform .42s var(--ease-ink)}
+.line>span.swap .lbl-dup{position:absolute;left:0;top:0;transform:translateY(112%)}
+.line:hover>span.swap .lbl,.line:focus-visible>span.swap .lbl{transform:translateY(-112%)}
+.line:hover>span.swap .lbl-dup,.line:focus-visible>span.swap .lbl-dup{transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){.line>span.swap .lbl,.line>span.swap .lbl-dup{transition:none;transform:none!important}.line>span.swap .lbl-dup{display:none}}
+@media (hover:none){.line>span.swap .lbl-dup{display:none}}   /* touch devices: no swap, no clipped duplicate */
 .line+.line{border-top:0}
 .lines{display:grid;width:100%;max-width:440px}
 /* secondary: the written ask — italic words in the head ink, underlined on hover */
@@ -313,9 +321,9 @@ button.line{appearance:none;-webkit-appearance:none}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* ---- motion: set · unmask · settle — once each, only with JS (html.fx), never with reduced motion ---- */
-.fx [data-set]{opacity:0;letter-spacing:.06em;transition:opacity var(--t-set) var(--ease-in),letter-spacing var(--t-set) var(--ease-in)}
+.fx [data-set]{opacity:0;transform:translateY(.5em);letter-spacing:.02em;transition:opacity var(--t-set) var(--ease-in),transform var(--t-set) var(--ease-in),letter-spacing var(--t-set) var(--ease-in)}
 .fx img[data-set]{letter-spacing:normal}
-.fx [data-set][data-on]{opacity:1;letter-spacing:var(--ls,-.005em)}
+.fx [data-set][data-on]{opacity:1;transform:none;letter-spacing:var(--ls,-.005em)}
 .fx [data-unmask]::before{content:"";position:absolute;inset:0;z-index:3;background:var(--ground);transform-origin:50% 100%;transition:transform var(--t-unmask) var(--ease-in);pointer-events:none}
 .fx [data-unmask][data-on]::before{transform:scaleY(0)}
 .fx [data-settle]{opacity:0;transform:translateY(12px);transition:opacity var(--t-settle) var(--ease-in),transform var(--t-settle) var(--ease-in)}
