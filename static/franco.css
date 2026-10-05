@@ -715,3 +715,4 @@ button.line{appearance:none;-webkit-appearance:none}
   .pg-home .ch-poster .hm-rules .a2,.pg-home .ch-poster .hm-rules .emb{margin-left:0}
 }
 .pg-home .hm-open .grid{row-gap:0}.pg-home .hm-hour{margin-bottom:clamp(12px,1.4vw,18px)}   /* the evening's first hour sits over the title */
+.pg-home .ch-poster+.hm-from{margin-top:0}   /* Bright Red cuts straight to the long table: no dead strip of Almond between */
