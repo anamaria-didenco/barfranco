@@ -75,8 +75,8 @@ no framework, no server). The files here ARE the site — what you edit is what 
 - Open any `.html` file and edit the markup directly. Build with franco.css classes before writing new CSS.
 - **The chrome is repeated on every page** (there is no templating): the masthead `<header class="bf-mast">`
   (open page marked `aria-current="page"` with Franco the dachshund under it; on phones the nav hides and the
-  Index button shows), the phone Index `#ora-index`, the Night footer (live open/closed line and HH:MM clock in
-  Ōtautahi time, run by chrome.js, which also fills `data-bf-date` and `data-bf-year`) and the phone dock.
+  Index button shows), the phone Index `#ora-index`, the Night footer (it opens on the sign-off "Ti aspettiamo, we're waiting for you."; **no live status,
+  clock or date anywhere on the site**, the owner removed them; chrome.js fills `data-bf-year`) and the phone dock.
   Change them on every page. Home and Contact use the lite footer (no address block, as they show it above).
   Christmas has its own campaign masthead (`.mast-campaign`: Hold a date · Call; the Index button always shown).
   Pages without a cover photograph carry the `.runhead` line under the masthead instead.
