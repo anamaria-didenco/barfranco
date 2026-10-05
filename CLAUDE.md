@@ -40,6 +40,9 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
 - **Art direction, three standing rules.** Cinema: on desktop full-bleed photographs (`.ph.full.r-169`) are cut 2.39:1,
   film stills not banners (a map keeps its height). No watermark: photographs never carry the Franco script (`.mark` is retired);
   the Bar Franco script (`static/logos/bar-franco-script-incline/`) heads Home's hero above the running line. One grade: every photograph carries the same warm matte grade (`.ph>img` filter), so the library reads as one shoot.
+- **Every page opens on a hero photograph** (`<div class="ph opener" data-unmask>` first in `<main>`, before the running
+  head): full width, cut wide on desktop (`clamp(340px, 100svh - 300px, 760px)` tall), 4:5 on phones, no text on it.
+  Home's hero is the table from above under the Bar Franco script. The hero counts toward one photograph, one page.
 - Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
   franco.js shows whatever is on the first screen at once (`data-now`) and moves the rest once as it is seen; at 2.5 s

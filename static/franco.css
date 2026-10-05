@@ -659,3 +659,17 @@ button.line{appearance:none;-webkit-appearance:none}
 .quiet:not(.deep)+.ch-aframe{margin-top:clamp(48px,6vw,96px)}
 /* Our story: the letter is set as a letter, a centred reading column, not a left column with the page empty beside it */
 @media (min-width:900px){.pg-story .st-letter .wrap>.st-text:first-child{grid-column:1/-1;justify-self:center;width:min(100%,58ch)}}
+
+/* ==== the hero: every page opens on one full-width photograph, cut wide like a film still, no text on it ==== */
+.opener{width:100%;height:clamp(340px,calc(100svh - 300px),760px);margin:0}
+@media (max-width:639.98px){.opener{height:auto;aspect-ratio:4/5}}
+/* Home: the table from above becomes the hero, under the Bar Franco script and its line */
+.pg-home .hm-cover{padding-left:0;padding-right:0}
+.pg-home .hm-cover-ph{width:100%;aspect-ratio:auto;height:clamp(340px,calc(100svh - 360px),760px)}
+@media (max-width:639.98px){.pg-home .hm-cover-ph{height:auto;aspect-ratio:4/5}}
+/* the openings that used to share their row with a photograph are now centred under the hero */
+.pg-fn .fn-strip{--n:3}
+@media (min-width:640px){
+  .pg-contact .c-hero .wrap>.intro,.pg-vouchers .hero .wrap>.hero-txt,.pg-menus .mn-hero .wrap>.mn-txt{grid-column:1/-1;justify-self:center;justify-items:center;text-align:center;max-width:46ch}
+  .pg-menus .mn-hero .wrap>.mn-tabs{grid-column:1/-1;justify-self:center}
+}
