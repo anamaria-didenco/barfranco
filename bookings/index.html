@@ -84,8 +84,8 @@
   });
 })();
 </script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"Bar Franco","url":"https://www.barfranco.nz/","acceptsReservations":"https://www.barfranco.nz/bookings/","telephone":"+64-21-221-1307","servesCuisine":["Italian","Modern Italian"],"priceRange":"$","address":{"@type":"PostalAddress","streetAddress":"The Crossing, 166 Cashel Street","addressLocality":"Christchurch Central","addressRegion":"Canterbury","postalCode":"8011","addressCountry":"NZ"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"16:00","closes":"22:00"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Bar Franco take walk-ins?","acceptedAnswer":{"@type":"Answer","text":"Always — the bar downstairs keeps stools for walk-ins. For a dinner table, especially Thursday to Saturday or for a group, booking ahead is the safe bet."}},{"@type":"Question","name":"How do I book a table at Bar Franco?","acceptedAnswer":{"@type":"Answer","text":"Book online using the live availability widget on our Bookings page, or call us on 021 221 1307. For 10 or more guests or full venue hire, our functions team will tailor the night."}},{"@type":"Question","name":"Can you cater dietary requirements?","acceptedAnswer":{"@type":"Answer","text":"Yes — vegetarian, vegan, gluten-free and most allergies are no trouble. Just note it in your booking or tell your server."}},{"@type":"Question","name":"What are Bar Franco's opening hours?","acceptedAnswer":{"@type":"Answer","text":"Open daily — the bar from 4pm and the kitchen from 5pm, till late."}},{"@type":"Question","name":"Is there parking near Bar Franco?","acceptedAnswer":{"@type":"Answer","text":"We're in The Crossing at 166 Cashel Street, with parking in The Crossing car park and plenty of central-city parking close by."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","about":{"@id":"https://www.barfranco.nz/#restaurant"}}</script>
+
 <script>document.documentElement.classList.add('fx');function bfVT(e){var t=e.viewTransition;if(t&&t.ready)t.ready.catch(function(){})}addEventListener('pagereveal',bfVT);addEventListener('pageswap',bfVT)</script>
 <link href="/static/franco.css" rel="stylesheet"/><link rel="preload" href="/static/fonts/VTCMarsha-Bold.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="/static/fonts/Affairs-Regular.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="/static/fonts/Affairs-Italic.otf" as="font" type="font/otf" crossorigin>
 <script defer src="/static/franco.js"></script>
@@ -96,8 +96,7 @@
   <div class="wrap">
     <div class="mast-row">
       <a class="mast-logo" href="/" aria-label="Bar Franco home"><img src="/static/logos/emblem/deep-red.svg" alt="Bar Franco" width="92" height="42"></a>
-      <nav class="mast-nav" aria-label="Main"><a href="/">Home</a><a href="/menus/">Menus</a><a href="/functions/">Functions</a><a href="/christmas-functions/">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav>
-      <div class="mast-asks"><a class="ask mast-keep" href="/bookings/">Book a table</a><a class="ask" href="/functions/#enquire">Plan an event</a></div>
+      <nav class="mast-nav" aria-label="Main"><a href="/">Home</a><a href="/menus/">Menus</a><a href="/bookings/" aria-current="page">Bookings<img class="mast-dog" src="/static/illustrations/dachshund.png" alt="" width="280" height="132"></a><a href="/functions/">Functions</a><a href="/christmas-functions/">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav>
       <button class="mast-menu" type="button" data-ora="menu-open" aria-haspopup="dialog" aria-controls="ora-index" aria-expanded="false" aria-label="Open the site index">Index</button>
     </div>
     <div class="rule2" aria-hidden="true"></div>
@@ -110,6 +109,7 @@
     <img class="ix-logo" src="/static/logos/bar-franco-script-incline/deep-red.svg" alt="Bar Franco" width="280" height="120">
     <nav class="ix-nav" aria-label="Site">
       <a class="ml" href="/"><span class="n">Home</span></a>
+      <a class="ml" href="/our-story/"><span class="n">Our story</span></a>
       <a class="ml" href="/menus/"><span class="n">Menus</span></a>
       <a class="ml" href="/bookings/"><span class="n">Bookings</span></a>
       <a class="ml" href="/functions/"><span class="n">Functions</span></a>
@@ -124,93 +124,66 @@
 </div>
 
 <main class="pg-bookings">
-<section class="bk-hero ch-menu" aria-label="Book a table" data-screen-label="Book a table — opening">
-  <div class="wrap grid">
-    <div class="bk-txt intro">
-      <p class="a4">Reservations</p>
-      <h1 class="m2 title" data-set>Book a table</h1>
-      <p class="a2">Dinner for two or a long table for the whole crew. Open daily — bar from 4pm, kitchen from 5pm.</p>
-      <div class="lines mt phone-only"><a class="line" href="#book"><span>Reserve online</span><i class="lead" aria-hidden="true"></i><em class="v">live availability</em></a></div>
-      <a class="ask" href="/functions/">Plan a large group</a>
+<section class="pg-hero" aria-label="Bookings">
+  <img class="pg-hero-ph" fetchpriority="high" src="/images/fig1-the-pour.jpg" alt="Fresh pasta and a spritz on the marble table, from above" width="1024" height="1535">
+  <div class="pg-hero-in"><p class="pg-hero-k"><em>(upstairs)</em>&nbsp;· The Crossing<span class="k-more">&nbsp;· 166&nbsp;Cashel&nbsp;St&nbsp;· Ōtautahi</span></p><h1 class="pg-h1" data-set>Book <em>a table.</em></h1></div>
+</section>
+<section class="ch-menu quiet bk-cover" aria-label="Book a table" data-screen-label="Cover · Book a table · the widget">
+  
+  <p class="a2">Dinner for two, or a long table for the whole&nbsp;crew.</p>
+  <article class="frame bk-book" id="book" data-settle>
+    <div class="bk-label"><p class="m4">Reserve</p><p class="a4 it">Live availability</p></div>
+    <iframe class="bk-iframe" allow="payment" src="https://bookings.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&amp;venueid=12388&amp;theme=light&amp;colors=hex,AF0F00,6C0600" title="Book a table at Bar Franco"></iframe>
+    <p class="a4 it bk-help">Widget not loading? <a class="link" href="https://bookings.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&amp;venueid=12388" rel="noopener" target="_blank">Open the booking page</a> or call <a class="link" href="tel:+64212211307">021 221 1307</a></p>
+  </article>
+  <div class="facts bk-facts">
+    <p class="ml"><span class="n">Hours</span><i class="lead" aria-hidden="true"></i><span class="v">Bar 4pm · kitchen 5pm · daily, till late</span></p>
+    <p class="ml"><span class="n">Walk-ins</span><i class="lead" aria-hidden="true"></i><span class="v">always, at the bar</span></p>
+    <p class="ml"><span class="n">Ten or more</span><i class="lead" aria-hidden="true"></i><a class="v" href="/functions/">the functions team tailors the night</a></p>
+  </div>
+</section>
+<section class="sec ch-menu" aria-label="Two levels" data-screen-label="01 · Pick a level">
+  <div class="wrap">
+    <div class="grid bk-head">
+      <div class="at-1-5 intro"><p class="eyebrow"><span class="ch-n">01</span>Two levels</p><h2 class="m3" data-set>Downstairs, then upstairs</h2></div>
     </div>
-    <div class="bk-widget">
-      <div class="frame bk-frame" id="book" data-settle>
-        <div class="bk-label"><p class="m4">Reserve</p><p class="a4">Live availability</p></div>
-        <iframe class="bk-iframe" allow="payment" src="https://bookings.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&amp;venueid=12388&amp;theme=light&amp;colors=hex,AF0F00,6C0600" title="Book a table at Bar Franco"></iframe>
+    <div class="two mt">
+      <div class="intro">
+        <div class="ph r-45" data-unmask><img src="/images/level1-aperitivo.jpg" alt="Spritzes on the bar downstairs" width="933" height="1400" loading="lazy" decoding="async"></div>
+        <p class="eyebrow">Level 1</p>
+        <h3 class="m4">The Negroni Bar</h3>
+        <p class="a2 it">Rose-red plaster, fringed lamps, blue velvet&nbsp;booths.</p>
+        <a class="ask" href="/menus/#sheet-drink">Drinks menu</a>
       </div>
-      <p class="a4 bk-help">Widget not loading? <a class="link" href="https://bookings.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&amp;venueid=12388" rel="noopener" target="_blank">Open the booking page</a> or call <a class="link" href="tel:+64212211307">021 221 1307</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="sec ch-menu" aria-label="Reserve online" data-screen-label="01 · Reserve online">
-  <div class="ph r-169 full" data-unmask>
-    <img src="/images/room-tables-bentwood.jpg" alt="The dining room set for dinner, bentwood chairs at the tables" width="1400" height="934" loading="lazy" decoding="async">
-    <img class="mark" src="/static/logos/franco-script-incline/almond.svg" alt="" width="180" height="126">
-  </div>
-  <div class="wrap grid mt">
-    <div class="at-1-5 intro">
-      <p class="eyebrow">Bar Franco · 01 · Reserve online</p>
-      <h2 class="m3">Tables at Franco</h2>
-      <p class="a3">Pick your date, time and party size and you're set. For ten or more, or the whole building, the functions team will tailor the night.</p>
-    </div>
-    <div class="at-7 lines-list self-end">
-      <p class="ml"><span class="n">Hours</span><i class="lead" aria-hidden="true"></i><span class="v">Bar 4pm · kitchen 5pm</span></p>
-      <p class="ml"><span class="n">Where</span><i class="lead" aria-hidden="true"></i><span class="v">166 Cashel St, upstairs</span></p>
-      <p class="ml"><span class="n">Walk-ins</span><i class="lead" aria-hidden="true"></i><span class="v">Always, at the bar</span></p>
-      <p class="ml"><span class="n">Ten or more</span><i class="lead" aria-hidden="true"></i><a class="v r" href="/functions/">Functions</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="sec last ch-menu" aria-label="Booking questions" data-screen-label="02 · Good to know — booking questions">
-  <div class="wrap grid">
-    <div class="at-1-5 intro">
-      <p class="eyebrow">Bar Franco · 02 · Good to know</p>
-      <h2 class="m3">Booking questions</h2>
-    </div>
-    <div class="at-7 qa">
-      <details><summary>Do you take walk-ins?</summary><p>Always — the bar downstairs keeps stools for walk-ins. For a dinner table, especially Thursday to Saturday or for a group, booking ahead is the safe bet.</p></details>
-      <details><summary>How do I book a table?</summary><p>Use the live availability on this page, or call 021 221 1307. For ten or more, or the whole venue, the functions team will tailor the night.</p></details>
-      <details><summary>Can you cater dietary requirements?</summary><p>Vegetarian, vegan, gluten-free and most allergies are no trouble. Note it in your booking or tell your server.</p></details>
-      <details><summary>What are your opening hours?</summary><p>Open daily — the bar from 4pm and the kitchen from 5pm, till late.</p></details>
-      <details><summary>Is there parking nearby?</summary><p>The Crossing car park is in the same block, with plenty of central-city parking close by.</p></details>
+      <div class="intro">
+        <div class="ph r-45" data-unmask><img src="/images/level-restaurant-graded.jpg" alt="The Restaurant upstairs, set for the evening" width="933" height="1400" loading="lazy" decoding="async"></div>
+        <p class="eyebrow">Level 2</p>
+        <h3 class="m4">The Restaurant</h3>
+        <p class="a2 it">A wall of windows, copper lamps, the open kitchen in&nbsp;view.</p>
+        <a class="ask" href="/menus/#sheet-food">Food menu</a>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="ch-poster band" aria-label="Planning something bigger?" data-screen-label="03 · Planning something bigger? (Poster)">
-  <div class="wrap grid">
-    <div class="at-1-8 intro">
-      <p class="eyebrow">Bar Franco · 03 · Planning something bigger?</p>
-      <h2 class="m2" data-set>Planning something bigger?</h2>
-      <p class="a2 it">Private dining, cocktail functions and the whole building · up to 240 guests</p>
-      <div class="lines mt"><a class="line" href="/functions/"><span>Plan an event</span><i class="lead" aria-hidden="true"></i><em class="v">up to 240</em></a></div>
-    </div>
+  <div class="wrap intro c">
+    <p class="eyebrow">Planning something bigger?</p>
+    <h2 class="m2" data-set>Planning something bigger?</h2>
+    <p class="a2 it">Private dining, cocktail functions and the whole building · up to 240 guests</p>
+    <div class="lines mt"><a class="line" href="/functions/#enquire"><span>Plan an event</span><i class="lead" aria-hidden="true"></i><em class="v">up to 240</em></a></div>
   </div>
 </section>
 </main>
 
-<footer class="bf-foot ch-night">
-  <div class="wrap">
-    <div class="now">
-      <p class="now-k" data-bf-live hidden><em>It’s currently</em></p>
-      <p class="m3" data-bf-status>Bar from 4pm</p>
-      <p class="now-t" data-bf-live hidden><span data-bf-clock></span> in Ōtautahi</p>
-    </div>
-    <div class="foot-body">
-      <div class="lines"><a class="line" href="/bookings/"><span>Book a table</span><i class="lead" aria-hidden="true"></i><em class="v">4pm till late</em></a><a class="line" href="/functions/#enquire"><span>Plan an event</span><i class="lead" aria-hidden="true"></i><em class="v">up to 240</em></a></div>
-      <div class="lines-list">
-      <p class="ml"><span class="n">Hours</span><i class="lead" aria-hidden="true"></i><span class="v">Bar from 4pm · kitchen from 5pm · daily, till late</span></p>
-      <p class="ml"><span class="n">Where</span><i class="lead" aria-hidden="true"></i><a class="v" href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">166 Cashel St, Ōtautahi</a></p>
-      <p class="ml"><span class="n">Telephone</span><i class="lead" aria-hidden="true"></i><a class="v r" href="tel:+64212211307">021 221 1307</a></p>
-      <p class="ml"><span class="n">Email</span><i class="lead" aria-hidden="true"></i><a class="v r" href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a></p>
-      <p class="ml"><span class="n">Instagram</span><i class="lead" aria-hidden="true"></i><a class="v r" href="https://www.instagram.com/bar__franco/">@bar__franco</a></p>
-      </div>
-    </div>
-    <nav class="foot-more" aria-label="More from Franco"><span>More from Franco</span><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/private-dining/">Private dining</a><a href="/corporate-events/">Corporate</a><a href="/weddings/">Weddings</a><a href="/events-pack/">Events pack</a><a href="/vouchers/">Gift vouchers</a><a href="/contact/">Contact</a><a href="https://www.instagram.com/bar__franco/">Instagram</a><a href="https://www.facebook.com/barfranco.chch">Facebook</a></nav>
-    <p class="foot-legal">All rights reserved © Bar Franco <span data-bf-year>2026</span> · <em>(upstairs)</em> The Crossing, 166 Cashel St, Ōtautahi · <a href="tel:+64212211307">021 221 1307</a> · <a href="mailto:events@barfranco.nz">events@barfranco.nz</a></p>
-    <img class="foot-emb" src="/static/logos/emblem/almond.svg" alt="" width="52" height="22">
+<footer class="bf-foot ft ch-night">
+  <div class="wrap ft-grid">
+    <p class="ft-sign">Ti aspettiamo, <em>we’re waiting for you.</em></p>
+    <div class="ft-col ft-visit"><p class="ft-k">Find us</p><p><em>(upstairs)</em> The Crossing<br>166 Cashel St, Ōtautahi</p><p>Bar from 4pm, kitchen from 5pm<br>daily, till late</p><a href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">Open in Maps</a></div>
+    <div class="ft-col ft-talk"><p class="ft-k">Say ciao</p><a href="tel:+64212211307">021 221 1307</a><a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a><a href="https://www.instagram.com/bar__franco/">@bar__franco</a></div>
+    <nav class="ft-col ft-nav" aria-label="Bar Franco"><p class="ft-k">Franco</p><a href="/menus/">Menus</a><a href="/bookings/" aria-current="page">Book a table</a><a href="/functions/">Functions &amp; events</a><a href="/our-story/">Our story</a><a href="/vouchers/">Gift vouchers</a><a href="/events-pack/">Events pack</a><a href="/contact/">Contact</a></nav>
+    <nav class="ft-col ft-also" aria-label="More from Franco"><p class="ft-k">More</p><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/private-dining/">Private dining</a><a href="/corporate-events/">Corporate events</a><a href="/weddings/">Weddings</a></nav>
+    <div class="ft-base"><p>© Bar Franco <span data-bf-year>2026</span></p><img class="foot-emb" src="/static/logos/emblem/almond.svg" alt="" width="52" height="22"><p><a href="https://www.instagram.com/bar__franco/">Instagram</a> · <a href="https://www.facebook.com/barfranco.chch">Facebook</a></p></div>
   </div>
 </footer>
 

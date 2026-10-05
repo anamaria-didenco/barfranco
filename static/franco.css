@@ -14,7 +14,7 @@
 /* ---- tokens ---- */
 :root{
   /* the four inks + the menu stock. Nothing else: no black, no greys, no tints except the hairline */
-  --deep:#6C0600;--almond:#FAD7C3;--bright:#AF0F00;--spritz:#F00000;--paper:#F1EEE6;
+  --deep:#6C0600;--almond:#FAD7C3;--bright:#AF0F00;--spritz:#F00000;
   --hairline:rgba(108,6,0,.15);
   --marsha:"VTC Marsha","Arial Black",Impact,sans-serif;
   --affairs:"Affairs",Georgia,"Times New Roman",serif;
@@ -35,25 +35,31 @@
 @media (max-width:639.98px){:root{--gutter:16px;--between:64px;--band:64px;--inside:40px;--a2:18px;--a3:17px}}
 
 /* ---- chapters: a ground and its fixed inks. Every section is one of these ---- */
-:root,.ch-menu{--ground:var(--paper);--ink:var(--deep);--head:var(--bright);--title:var(--deep);--frame:var(--bright);--obj:var(--paper);--fill:var(--deep);--fill-text:var(--almond);--hair:var(--hairline)}
-.ch-aframe{--ground:var(--almond);--ink:var(--deep);--head:var(--bright);--title:var(--deep);--frame:var(--deep);--obj:var(--paper);--fill:var(--deep);--fill-text:var(--almond);--hair:var(--hairline)}
+:root,.ch-menu{--ground:var(--almond);--ink:var(--deep);--head:var(--bright);--title:var(--deep);--frame:var(--bright);--obj:var(--almond);--fill:var(--deep);--fill-text:var(--almond);--hair:var(--hairline)}
+.ch-aframe{--ground:var(--almond);--ink:var(--deep);--head:var(--bright);--title:var(--deep);--frame:var(--deep);--obj:var(--almond);--fill:var(--deep);--fill-text:var(--almond);--hair:var(--hairline)}
 .ch-night{--ground:var(--deep);--ink:var(--almond);--head:var(--almond);--title:var(--almond);--frame:var(--almond);--obj:var(--deep);--fill:var(--almond);--fill-text:var(--deep);--hair:rgba(250,215,195,.3)}
 .ch-poster{--ground:var(--bright);--ink:var(--almond);--head:var(--almond);--title:var(--almond);--frame:var(--almond);--obj:var(--bright);--fill:var(--almond);--fill-text:var(--bright);--hair:rgba(250,215,195,.35)}
 .ch-menu,.ch-aframe,.ch-night,.ch-poster{background:var(--ground);color:var(--ink)}
 /* framed objects are paper even inside an Almond chapter, so they take the Paper inks */
 .ch-aframe .frame{--ink:var(--deep);--head:var(--bright)}
+/* the brand has four colours and no paper: every page sits on Almond, so an Almond chapter is set apart
+   by the masthead's own rule (2px · 4px · 1px, Deep Red) above and below it */
+.ch-aframe{position:relative}
+.ch-aframe::before,.ch-aframe::after{content:"";position:absolute;left:var(--edge);right:var(--edge);height:7px;border:0 solid var(--deep);pointer-events:none}
+.ch-aframe::before{top:0;border-top-width:2px;border-bottom-width:1px}
+.ch-aframe::after{bottom:0;border-top-width:1px;border-bottom-width:2px}
 
 /* ---- base ---- */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;font-synthesis:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;scroll-padding-top:96px}
-body{margin:0;background:var(--paper);color:var(--deep);font-family:var(--affairs);font-size:var(--a3);line-height:1.5;overflow-x:clip}
+body{margin:0;background:var(--almond);color:var(--deep);font-family:var(--affairs);font-size:var(--a3);line-height:1.5;overflow-x:clip}
 p,h1,h2,h3,h4,ul,ol,figure,dl,dd,blockquote{margin:0}
 img,svg,iframe{display:block;max-width:100%}
 a{color:inherit;text-decoration:none;transition:color var(--t-ink) var(--ease-ink)}
 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em}
 button{font:inherit;color:inherit}
 em,i{font-style:italic}
-::selection{background:var(--almond);color:var(--deep)}
+::selection{background:var(--deep);color:var(--almond)}
 :focus-visible{outline:2px solid var(--spritz);outline-offset:2px}
 .ch-night :focus-visible,.ch-poster :focus-visible,.dock :focus-visible{outline-color:var(--almond)}
 [hidden]{display:none!important}
@@ -70,13 +76,22 @@ em,i{font-style:italic}
 .m4{font-size:var(--m4);line-height:1.1;letter-spacing:.06em}
 .title{color:var(--title)}                     /* page titles are Deep Red on paper */
 .sup{font-size:.5em;vertical-align:.5em;letter-spacing:.04em}   /* AT · AND · ST inside M1/M2 only */
+/* the word: a Marsha statement with its italic aside on the same line (We host. You stay.) */
+.word{font-family:var(--marsha);font-weight:700;text-transform:uppercase;color:var(--head);line-height:.88;letter-spacing:-.005em;text-wrap:balance;margin:0}
+.word em{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:.56em;line-height:1}
+.word.deep{color:var(--deep)}
+.word.h1{font-size:clamp(48px,9vw,150px)}      /* a page title */
+.word.night{font-size:clamp(44px,8vw,132px)}   /* a Night head */
+.word.rules{font-size:clamp(34px,5.6vw,92px);max-width:18ch}
+.word.close{font-size:clamp(40px,7vw,120px)}
 .aside{font-family:var(--affairs);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;font-size:.42em;vertical-align:.5em}
 .a1{font-size:var(--a1);line-height:1.3;max-width:30ch;text-wrap:pretty}
 .a2{font-size:var(--a2);line-height:1.4;max-width:44ch;text-wrap:pretty}
 .a3{font-size:var(--a3);line-height:1.5;max-width:44ch;text-wrap:pretty}
-.a4,.eyebrow{font-size:var(--a4);font-style:italic;line-height:1.4}
+.a4,.eyebrow{font-size:var(--a4);font-style:italic;line-height:1.4;text-wrap:pretty}
+blockquote{text-wrap:pretty}
 .it{font-style:italic}
-.fine{font-size:var(--fine);font-style:italic;line-height:1.45}
+.fine{font-size:var(--fine);font-style:italic;line-height:1.45;text-wrap:pretty}
 .c{text-align:center;justify-items:center;margin-left:auto;margin-right:auto}
 
 /* ---- layout ---- */
@@ -119,6 +134,23 @@ em,i{font-style:italic}
 .print>.mat{position:absolute;left:calc(-1 * clamp(32px,6vw,96px));bottom:clamp(32px,5vw,72px);width:46%;background:var(--ground);padding:10px 10px 0 0;z-index:2}
 @media (max-width:899.98px){.print>.mat{display:none}.print>.ph{margin-left:calc(-1 * var(--margin))!important;margin-right:calc(-1 * var(--margin))!important}}
 
+/* ---- the Table's layouts: a quiet centred statement, two columns, the hosts block, the running head ---- */
+.quiet{display:grid;justify-items:center;text-align:center;gap:clamp(18px,2.4vw,32px);padding:clamp(28px,4vw,56px) var(--margin) 0}
+.quiet.deep{padding-top:clamp(80px,11vw,176px);padding-bottom:clamp(80px,11vw,176px);gap:clamp(20px,2.6vw,36px)}
+.quiet .a1{max-width:34ch}.quiet .a2{max-width:44ch}.quiet .lines{margin-top:8px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--inside) var(--gutter);align-items:start}
+.two>.intro{justify-items:stretch;gap:14px}.two .eyebrow{margin-top:10px}.two .facts{max-width:360px}
+.two .ml,.two .dish{font-size:var(--a3);text-align:left}
+.hosts{display:grid;gap:12px;justify-items:center;text-align:center}
+.hosts .a2{max-width:44ch}
+.runhead-wrap{padding-top:14px}.runhead-line{text-align:center}
+.runhead{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px;width:100%}
+.strip figure{margin:0;display:grid;gap:10px;justify-items:start;text-align:left}
+.strip figure .ph{width:100%}
+.strip .ml>.n{flex:none}
+@media (max-width:1199.98px){.strip .ml{flex-wrap:wrap;row-gap:2px}.strip .ml>.lead{display:none}.strip .ml>.v{flex:1 1 100%;margin-left:0;text-align:left}}
+@media (max-width:639.98px){.two{grid-template-columns:1fr}.strip figure .ph{aspect-ratio:3/2}}
+
 /* ---- rules & frames ---- */
 .hair{border-top:1px solid var(--hair)}
 .hair-b{border-bottom:1px solid var(--hair)}
@@ -138,6 +170,9 @@ em,i{font-style:italic}
 .ml>.lead{flex:1 1 24px;min-width:24px;border-bottom:2px dotted currentColor;transform:translateY(-.28em)}
 .ml>.v{flex:0 1 auto;min-width:0;text-align:right;font-style:italic;text-wrap:balance}
 .ml>.v.r{flex:none;white-space:nowrap;font-style:normal}
+.ml:has(>.v.r){flex-wrap:wrap}.ml:has(>.v.r)>.n{max-width:100%}.ml:has(>.v.r)>.v{margin-left:auto}
+.frame.menu .lines-list .ml>.n{flex:0 1 auto}.frame.menu .lines-list .ml>.v{white-space:normal;text-align:right}   /* a plain label stays whole and the value wraps right; a label with italic ingredients wraps as a menu line */
+.frame .line>span:first-child{flex:none;white-space:nowrap}.frame .line>.v{white-space:normal;text-align:right}
 .lines-list{display:grid;gap:8px;width:100%}
 .lines-list .ml{font-size:var(--a3)}
 a.ml:hover{text-decoration:none;color:var(--head)}
@@ -153,13 +188,31 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .line+.line{border-top:0}
 .lines{display:grid;width:100%;max-width:440px}
 /* secondary: the written ask — italic words in the head ink, underlined on hover */
-.ask{display:inline-flex;align-items:baseline;font-style:italic;font-size:var(--a2);line-height:1.3;color:var(--head);white-space:nowrap;padding:6px 0}
+.ask{display:inline-flex;align-items:baseline;max-width:100%;font-style:italic;font-size:var(--a2);line-height:1.3;color:var(--head);text-wrap:balance;padding:6px 0}
 .ask:hover{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 .ask:active{opacity:.6}
 @media (max-width:639.98px){.line{max-width:none;padding:15px 10px 14px}}
+/* the narrowest phones: the fact drops under the words rather than running off the edge */
+@media (max-width:371.98px){.line:not(.dock .line){flex-wrap:wrap;row-gap:4px}.line:not(.dock .line)>.v{flex:1 0 100%;text-align:left;white-space:normal}}
+/* the square ask: the words in a one-line box, filled (.fill) for the primary of a pair. Chapter-aware through --fill/--fill-text */
+.btn{display:inline-block;padding:14px 22px;border:1px solid currentColor;color:var(--ink);font-family:var(--affairs);font-size:var(--a3);line-height:1;text-decoration:none;transition:background-color var(--t-ink) var(--ease-ink),color var(--t-ink) var(--ease-ink)}
+.btn.fill{background:var(--fill);color:var(--fill-text);border-color:var(--fill)}
+.btn:hover,.btn:focus-visible{background:var(--fill);color:var(--fill-text);border-color:var(--fill);text-decoration:none}
+.btn.fill:hover,.btn.fill:focus-visible{background:transparent;color:var(--ink);border-color:currentColor}
+.btn:active{opacity:.6}
+/* the card: one photograph, a name, a number where a price would be, one line, one ask. .cards lays them out (2-up from 640px) */
+.card{display:grid;gap:14px;justify-items:start;align-content:start}
+.card .ph{width:100%;margin-bottom:6px}
+.card-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;width:100%}
+.card-row .m4{max-width:none}
+.card-num{margin:0}
+.card-sub{max-width:40ch}
+.cards{display:grid;gap:var(--between) var(--gutter)}
+@media (min-width:640px){.cards{grid-template-columns:1fr 1fr;gap:var(--inside) var(--gutter)}.cards:has(>.card:only-child){grid-template-columns:1fr}}
+@media (max-width:639.98px){.card .ph.r-45{aspect-ratio:3/2}}   /* on a phone every card photo is 3:2, so photo, name, number and ask share one screen */
 
 /* ---- masthead (every page) — chrome.js adds .bf-tight past 90px ---- */
-.bf-mast{position:sticky;top:0;z-index:30;background:var(--paper);color:var(--deep);--frame:var(--bright);--head:var(--bright);--ink:var(--deep)}
+.bf-mast{position:sticky;top:0;z-index:30;background:var(--almond);color:var(--deep);--frame:var(--bright);--head:var(--bright);--ink:var(--deep)}
 .mast-row{display:flex;align-items:flex-start;gap:16px clamp(20px,2.5vw,40px);padding-top:clamp(16px,2vw,26px);padding-bottom:clamp(12px,1.4vw,18px)}
 .mast-logo{flex:none}
 .mast-logo img{height:clamp(30px,3vw,42px);width:auto}
@@ -176,14 +229,13 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .bf-tight .mast-logo img{height:28px}
 .bf-tight .mast-dog{display:none}
 @media (max-width:1199.98px){.mast-nav{font-size:17px;gap:16px}.mast-asks .ask{font-size:16px}}
-@media (max-width:999.98px){.mast-nav{display:none}.mast-asks{margin-left:auto}.mast-menu{display:block}}
-@media (max-width:639.98px){.mast-asks{margin-left:auto}.mast-asks .ask:not(.mast-keep){display:none}.mast-menu{margin-left:16px}.mast-row{align-items:center}}
+@media (max-width:999.98px){.mast-nav:not(.mast-campaign){display:none}.mast-menu{display:block;margin-left:auto}}
+@media (max-width:639.98px){.mast-row{align-items:center}.mast-campaign{font-size:16px;gap:14px;margin-left:auto}.mast-campaign a:last-child{display:none}.mast-campaign+.mast-menu{margin-left:14px}}   /* on a phone the campaign line keeps Hold a date; Call lives in the dock */
 
-/* campaign pages (Christmas): the nav gives way to Call · Enquire, so the Index button shows at every width */
+/* campaign pages (Christmas): the nav is one line, Hold a date · Call, and the Index button shows at every width */
+.mast-campaign{font-style:italic;color:var(--bright)}
 .mast-menu.always{display:block}
-.mast-asks+.mast-menu.always{margin-left:clamp(16px,2vw,28px)}
-@media (min-width:1000px){.mast-row:not(:has(.mast-nav)) .mast-asks{margin-left:auto}}
-@media (max-width:639.98px){.mast-asks+.mast-menu.always{margin-left:16px}}
+.mast-nav+.mast-menu.always{margin-left:clamp(16px,2vw,28px)}
 
 
 /* ---- phone Index (every page) ---- */
@@ -288,11 +340,6 @@ button.line{appearance:none;-webkit-appearance:none}
 .cover-logo{width:100%;max-width:560px;height:auto;align-self:center}
 .cover-ph{grid-column:6/13;height:clamp(480px,calc(100svh - 150px),860px)}
 .cover .cover-asks{display:grid;max-width:480px;margin-top:24px}
-.level{padding:clamp(28px,3vw,44px) 0;align-items:end}
-.level .lv-ph{grid-column:1/8}
-.level .lv-txt{grid-column:9/13}
-.level.flip .lv-ph{grid-column:6/13}.level.flip .lv-txt{grid-column:1/5;grid-row:1}
-.level .lv-txt .facts{max-width:320px}
 .dish{font-size:var(--a3);line-height:1.4;text-wrap:balance}.dish .pr{white-space:nowrap}
 .now .m3{max-width:none}
 @media (min-width:900px){.phone-only{display:none}}
@@ -300,16 +347,39 @@ button.line{appearance:none;-webkit-appearance:none}
   .cover-text{grid-column:1/-1;grid-template-rows:none;gap:20px}
   .cover-logo{max-width:420px}
   .cover-ph{grid-column:1/-1;height:auto;aspect-ratio:4/5;margin-left:calc(-1 * var(--margin))!important;margin-right:calc(-1 * var(--margin))!important}
-  .level .lv-ph,.level.flip .lv-ph,.level .lv-txt,.level.flip .lv-txt{grid-column:1/-1;grid-row:auto}
 }
 @media (max-width:639.98px){.cover-logo{max-width:300px}}
 
 /* ==== index.html ==== */
-/* the cover logo is the page h1 */
-.cover-h1{align-self:center;max-width:560px;width:100%}
-.cover-h1 .cover-logo{max-width:none}
-@media (max-width:899.98px){.cover-h1{max-width:420px}}
-@media (max-width:639.98px){.cover-h1{max-width:300px}}
+/* Home on the Table: one italic line and the table from above; Not a bar. A world.; the rules on Almond; the long table; two levels; We host. You stay.; Come as you are */
+.pg-home .hm-cover{display:grid;justify-items:center;gap:18px;padding:clamp(20px,3vw,40px) var(--margin) 0;text-align:center}
+.pg-home .hm-cover-ph{width:min(100%,calc((100svh - 190px) * .8));aspect-ratio:4/5}
+.pg-home .hm-rules{display:grid;justify-items:center;text-align:center;gap:clamp(14px,2vw,28px)}
+.pg-home .hm-rules .a2{max-width:40ch}
+.pg-home .hm-from{margin-top:var(--between)}
+.pg-home .hm-from-text{padding-top:var(--inside)}
+.pg-home .hm-head{align-items:end}
+.pg-home .hm-lead{max-width:44ch}
+.pg-home .hm-host{margin-top:var(--between)}
+.pg-home .hm-ciao{max-width:560px;text-align:left}
+.pg-home .hm-ciao .ml>.n{flex:none}
+@media (max-width:639.98px){.pg-home .hm-cover{padding-left:0;padding-right:0}.pg-home .hm-cover-ph{width:100%}}
+
+/* ==== our-story/index.html ==== */
+/* the letter: I'm not Italian., the rules on Almond, the letter beside the signature, two levels on Night, the sign-off */
+.pg-story p{text-wrap:pretty;hyphens:manual}
+.pg-story .st-cover .a1{max-width:40ch}
+.pg-story .st-rules{display:grid;justify-items:center;text-align:center;gap:clamp(14px,2vw,28px)}
+.pg-story .st-rules .a2{max-width:40ch}
+.pg-story .st-rules .word{max-width:24ch}
+.pg-story .st-text{display:grid;gap:24px;max-width:58ch}
+.pg-story .st-sig{display:grid;gap:10px;margin:0;align-self:start}
+.pg-story .st-sig img{width:min(100%,360px);height:auto}
+.pg-story .st-pair{width:100%;margin-top:var(--inside);text-align:left}
+.pg-story .st-pair .a2{max-width:34ch}
+.pg-story .st-tucked{margin-top:var(--inside)}
+.pg-story .st-sign{font-style:italic}
+@media (max-width:899.98px){.pg-story .st-sig{grid-column:1/-1}.pg-story .st-text{grid-column:1/-1}}
 
 /* ==== menus/index.html ==== */
 /* hero: title + lede, the lead photograph, and the tabs sitting right above the sheets */
@@ -338,56 +408,44 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-menus .dish .tg{white-space:nowrap}
 
 /* ==== bookings/index.html ==== */
-/* first screen: title, one line and the live widget side by side */
-.pg-bookings .bk-hero{padding-top:clamp(24px,3vw,40px)}
-.pg-bookings .bk-txt{grid-column:1/6;align-self:start;padding-top:clamp(8px,2vw,32px)}
-.pg-bookings .bk-widget{grid-column:7/13;display:grid;gap:14px}
-.pg-bookings .bk-frame{display:grid;gap:16px;padding:36px}
+/* Bookings on the Table: BOOK a table., one sentence, the framed widget, three facts; two levels; two questions; the poster */
+.pg-bookings .bk-cover .a2{max-width:40ch}
+.pg-bookings .bk-book{width:100%;max-width:760px;display:grid;gap:16px;padding:36px;text-align:left}
 .pg-bookings .bk-label{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
-.pg-bookings .bk-iframe{width:100%;height:clamp(520px,calc(100svh - 280px),720px);border:0;background:var(--paper)}
+.pg-bookings .bk-iframe{width:100%;height:clamp(520px,calc(100svh - 300px),720px);border:0;background:var(--almond)}
 .pg-bookings .bk-help{text-align:center}
-@media (max-width:899.98px){
-  .pg-bookings .bk-txt,.pg-bookings .bk-widget{grid-column:1/-1}
-  .pg-bookings .bk-iframe{height:min(720px,80svh)}
-}
-@media (max-width:639.98px){.pg-bookings .bk-frame{padding:28px 22px}}
+.pg-bookings .bk-facts{max-width:560px;text-align:left}
+.pg-bookings .bk-facts .ml>.n{flex:none}
+.pg-bookings .bk-head{align-items:end}
+.pg-bookings .bk-lead{max-width:44ch}
+@media (max-width:639.98px){.pg-bookings .bk-book{padding:28px 22px}.pg-bookings .bk-iframe{height:min(720px,80svh)}}
 
 /* ==== functions/index.html ==== */
-/* ---- Page: Functions — the nameplate, the coaster, the five chapters (functions.js) ---- */
-/* the nameplate: functions.js sets one size for every line so the widest fills the frame; this is the fallback */
-.np-cover{padding-top:clamp(20px,3vw,44px)}
-.np{display:grid;justify-items:center;row-gap:.02em;position:relative;overflow:hidden;font-family:var(--marsha);font-weight:700;text-transform:uppercase;color:var(--title);line-height:.84;letter-spacing:-.005em;font-size:calc((min(100vw,1568px) - 2 * var(--margin)) / 13)}
-.np-l{display:block;width:max-content;white-space:nowrap}
-.np-probe{position:absolute;left:0;top:0;display:block;width:max-content;white-space:nowrap;visibility:hidden;pointer-events:none;font-size:100px;letter-spacing:-.005em}
-.np-date{margin-top:clamp(14px,1.8vw,24px);padding:12px 0;border-top:1px solid var(--deep);border-bottom:1px solid var(--deep);text-align:center}
-.np-cover .strip{margin-top:clamp(14px,1.8vw,24px)}
-/* the cover answers first: who it fits, where it is, and one ask */
-.np-facts{margin:10px auto 0;max-width:62ch;text-align:center;text-wrap:balance}
-.np-ask{margin:clamp(20px,2.4vw,32px) auto 0;max-width:520px}
-@media (max-width:899.98px){.strip.all{grid-template-columns:1fr 1fr}}
-@media (max-width:639.98px){.np{font-size:calc((100vw - 2 * var(--margin)) / 7.5)}.np-w{display:block}.strip.all>:nth-child(n+3){display:block}}
-/* why people book Franco: the coaster and the words, beside the framed enquiry card */
-.hook{align-items:start;max-width:calc(1240px + 2 * var(--margin))}
-.hook-l{grid-column:1/7;display:grid;gap:16px;align-content:start;justify-items:start}
-.hook-mid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 28px;align-items:center;width:100%}
-.hook-copy{display:grid;gap:16px}
-.hook-mid>.coaster-wrap{display:grid;justify-items:center;gap:14px;margin:0 8px 0 0}
-@media (max-width:1099.98px){.hook-mid{display:contents}.hook-mid>.coaster-wrap{order:1;display:flex;gap:22px;margin:18px 0 0 6px}}
-.hook-talk{display:grid;gap:8px;width:100%;margin-top:20px}
-.hook-talk .ml{font-size:var(--a3)}
-.hook-talk .facts .a4{margin-top:2px}
-.hook-card{grid-column:7/13;display:grid;gap:14px;justify-items:center;text-align:center;scroll-margin-top:72px}
-.hook-card iframe{height:520px}
-/* the at-a-glance card where the form was: tell, then ask (the form is in #enquire) */
-.hook-card.glance{gap:14px;align-self:start;justify-items:stretch;text-align:left}
-.hook-card.glance>.eyebrow{text-align:center}
-.hook-card.glance .lines-list .ml>.n{flex-shrink:0}
-.hook-card.glance .fine{text-align:center}
-.hook-card.glance .lines{margin-top:4px}
-.hook-card.glance>.emb{justify-self:center}
-.fn-enq-l .hook-talk{margin-top:8px}
-/* phones: words, then the form, then the phone lines and the coaster */
-@media (max-width:899.98px){.hook{row-gap:16px}.hook-l{display:contents}.hook-l>*,.hook-mid>*,.hook-card{grid-column:1/-1}.hook-card{order:1;width:100%;max-width:680px;justify-self:center;margin:24px 0 8px}.hook-talk{order:2}.hook-mid>.coaster-wrap{order:3}}
+/* Functions on the Table: the nameplate as a word, the at-a-glance card, the night in three chapters, the spaces, the EVENTI card, the form (functions.js keeps the coaster) */
+.pg-fn .fn-cover{gap:clamp(16px,2vw,28px)}
+.pg-fn .fn-title{font-size:clamp(44px,9.4vw,160px)}
+.pg-fn .fn-date{width:100%;max-width:720px;padding:12px 0;border-top:1px solid var(--deep);border-bottom:1px solid var(--deep);text-align:center}
+.pg-fn .fn-facts{max-width:62ch;text-wrap:balance}
+.pg-fn .fn-strip{width:100%;margin-top:clamp(8px,1.4vw,20px)}
+.pg-fn .fn-glance{align-items:start}
+.pg-fn .fn-glance .said{display:grid;gap:6px}
+.pg-fn .fn-card{justify-items:stretch;text-align:left;gap:14px}
+.pg-fn .fn-card>.eyebrow,.pg-fn .fn-card .fine{text-align:center}
+.pg-fn .fn-card .fn-sub{padding-top:6px}
+.pg-fn .fn-card .lines,.pg-fn .fn-card .line{max-width:none}
+.pg-fn .fn-card>.emb{justify-self:center}
+.pg-fn .fn-night{margin-top:var(--between)}
+.pg-fn .fn-three{--n:3;width:100%;margin-top:12px}
+.pg-fn .fn-head{align-items:end}
+.pg-fn .fn-lead{max-width:44ch}
+.pg-fn .fn-whole{text-align:center}
+.pg-fn .fn-eventi{width:100%;max-width:720px;margin-left:auto;margin-right:auto}
+.pg-fn .fn-eventi .lines-list{max-width:560px}
+.pg-fn .fn-enq .facts{max-width:420px}
+.pg-fn .fn-form{display:grid;gap:14px}
+.pg-fn .fn-form iframe{height:520px}
+@media (max-width:899.98px){.pg-fn .strip.all{grid-template-columns:1fr 1fr}}
+@media (max-width:639.98px){.pg-fn .strip.all>:nth-child(n+3){display:none}.pg-fn .fn-three{grid-template-columns:1fr}.pg-fn .fn-three>:nth-child(n+3){display:grid}}
 /* the coaster: a printed object set down on the table — the one shadow on the site. Turn it over */
 .coaster-wrap{display:flex;align-items:center;gap:22px;margin:18px 0 0 6px}
 .coaster{position:relative;width:clamp(180px,15vw,230px);aspect-ratio:1/1;transform:rotate(-8deg);filter:drop-shadow(0 1px .5px rgba(108,6,0,.22)) drop-shadow(0 6px 12px rgba(108,6,0,.10));transition:transform 1100ms var(--ease-in),filter 1100ms var(--ease-in),opacity 600ms var(--ease-ink)}
@@ -411,88 +469,6 @@ button.line{appearance:none;-webkit-appearance:none}
 .coaster-wrap:hover .co-hint{opacity:.5}
 @media (prefers-reduced-motion:reduce){.fx .coaster:not([data-settled]){opacity:1;transform:rotate(-8deg);filter:drop-shadow(0 1px .5px rgba(108,6,0,.22)) drop-shadow(0 6px 12px rgba(108,6,0,.10))}}
 /* the five chapters: across the page from 1100px (one always open), a list below (all closed) */
-.chx-intro{padding-top:var(--between)}
-.sec.chx-sec{padding-top:clamp(40px,4.5vw,64px)}
-.chx{margin-top:clamp(16px,2vw,24px)}
-.chx-h{position:relative;font:inherit}
-.chx-head{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:8px;align-content:start;width:100%;padding:18px 0 22px}
-.chx-head:focus-visible{outline:2px solid var(--spritz);outline-offset:4px}
-.chx-n{font-style:italic;font-size:var(--a4)}
-.chx-t{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:var(--m4);line-height:1.05;letter-spacing:.06em;text-wrap:balance;transition:color var(--t-ink) var(--ease-ink)}
-.chx-l{font-style:italic;font-size:var(--a4);line-height:1.4;text-wrap:pretty}
-.chx-oc{display:none;color:var(--head);font-size:24px;line-height:1}
-.chx-oc::before{content:"+"}
-.chx-ch[data-open="true"] .chx-oc::before{content:"\2212"}
-.chx-head:hover .chx-t,.chx-ch[data-open="true"] .chx-t{color:var(--head)}
-.chx-body{display:grid;grid-template-rows:1fr;transition:grid-template-rows 220ms var(--ease-ink)}
-.chx-js .chx-ch[data-open="false"] .chx-body{grid-template-rows:0fr}
-.chx-body>.chx-card{min-height:0;overflow:clip;overflow-clip-margin:28px;transition:padding 220ms var(--ease-ink)}
-@media (prefers-reduced-motion:reduce){.chx-body{transition:none}}
-.chx-index{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--gutter);margin-top:clamp(16px,2vw,24px);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.chx-index a{display:grid;gap:6px;align-content:start;padding:16px 0 18px;color:var(--ink);text-decoration:none}
-.chx-index a:hover .chx-t{color:var(--head)}
-.chx-index .chx-t{font-size:var(--m4)}
-.chx-ch{scroll-margin-top:84px}
-@media (max-width:899.98px){.chx-index{display:none}}
-.chx-card{align-items:start}
-.chx-ph{grid-column:1/6}
-.chx-tx{grid-column:7/13;display:grid;gap:16px;align-content:start}
-.facts{display:grid;width:100%;border-bottom:1px solid var(--hair)}
-.facts>*{padding:9px 0;border-top:1px solid var(--hair);font-size:var(--a3);line-height:1.45}
-.facts .ml>.n{flex-shrink:0}   /* a label stays on one line; the fact wraps on the right */
-.facts .ml:has(>.n em)>.n{flex-shrink:1}   /* …but a dish with its note wraps, so the price never leaves the line */
-.lv2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px var(--gutter)}
-.lv2>div{display:grid;gap:8px;align-content:start}
-.qlist{display:grid;border-bottom:1px solid var(--hair)}
-.qlist>div{display:grid;gap:4px;padding:14px 0;border-top:1px solid var(--hair)}
-.qlist h4{font-size:var(--a2);font-weight:400;line-height:1.35;color:var(--head)}
-.links{display:flex;flex-wrap:wrap;gap:6px 24px}
-/* the chapters: one stacked list at every width, all open; a head folds its own away */
-@media all{
-  .chx{border-bottom:1px solid var(--hair)}
-  .chx-h{border-top:1px solid var(--hair);transition:border-color var(--t-ink) var(--ease-ink)}
-  .chx-ch[data-open="true"] .chx-h{border-top-color:var(--head)}
-  .chx-head{grid-template-columns:2.2em minmax(0,1fr) auto;column-gap:12px;row-gap:6px;align-items:baseline;padding:20px 0}
-  .chx-n{grid-column:1;grid-row:1}
-  .chx-t{grid-column:2;grid-row:1;font-size:var(--m3);line-height:.9;letter-spacing:-.005em}
-  .chx-l{grid-column:2;grid-row:2}
-  .chx-oc{display:block;grid-column:3;grid-row:1}
-}
-.chx-body>.chx-card{padding:8px 0 var(--inside)}
-/* folded: no padding and no clip margin, so nothing of the chapter peeks under its head */
-.chx-js .chx-ch[data-open="false"] .chx-body>.chx-card{padding-top:0;padding-bottom:0;overflow-clip-margin:0px}
-@media (max-width:899.98px){
-  .chx-ph,.chx-tx{grid-column:1/-1}
-  .chx-ph{order:2;aspect-ratio:3/2}
-  .lv2{grid-template-columns:1fr}
-}
-
-/* the dark spread on event pages: a room full at night, after the opening chapter */
-.ch-night.spread{margin-top:var(--between)}
-
-/* proof: planners in their own words, and the floor plans as printed objects */
-.quotes{display:grid;gap:18px;width:100%;padding:18px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.said{display:grid;gap:6px;margin:0}
-.said blockquote{margin:0;max-width:62ch;text-wrap:pretty}
-.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter);width:100%}
-.plans[hidden]{display:none}
-.frame.plan{padding:28px}
-.frame.plan img{display:block;width:100%;aspect-ratio:3/2;object-fit:contain}
-.frame.plan .a4{margin-top:10px;text-align:center}
-@media (max-width:639.98px){.plans{grid-template-columns:1fr}}
-
-/* the coaster, a touch smaller; the "turn it over" hint only where you can't hover */
-.coaster-wrap .coaster{width:180px}
-@media (hover:hover) and (pointer:fine){.co-hint{display:none}}
-/* answers settle open rather than snap */
-:root{interpolate-size:allow-keywords}
-.qa details::details-content{block-size:0;overflow:clip;transition:block-size 220ms var(--ease-ink),content-visibility 220ms allow-discrete}
-.qa details[open]::details-content{block-size:auto}
-@media (prefers-reduced-motion:reduce){.qa details::details-content{transition:none}}
-
-/* nothing cut off: running text breaks well, heads balance */
-:is(.intro,.hook-copy,.chx-tx,.pk-body) :is(.a1,.a2,.a3){text-wrap:pretty}
-:is(.m2,.m3){text-wrap:balance}
 
 /* ==== vouchers/index.html ==== */
 /* hero: title and line beside the lead photograph */
@@ -519,49 +495,30 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-contact .c-note .ask{font-size:var(--a4);padding:0}
 
 /* ==== christmas-functions/index.html ==== */
-/* the running head, the CHRISTMAS sign, the chapter row and the chapters under it */
-.pg-xmas .x-cover{padding-top:18px;padding-bottom:var(--inside)}
-.pg-xmas .x-run{display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;gap:16px}
-.pg-xmas .x-run span:last-child{text-align:right}
-.pg-xmas .x-run span:nth-child(2),.pg-xmas .x-run span:nth-child(3){text-align:center}
-.pg-xmas .x-h1{display:grid;gap:clamp(12px,min(2.4vw,2.6vh),28px);justify-items:center;width:100%;margin-top:clamp(16px,min(5vw,4vh),72px);font-weight:400}
-/* the sign keeps its full width but never takes more than a slice of the screen's height, so the offer and the asks fit the first view */
-.pg-xmas .x-h1 .m1{font-size:min(var(--m1),16vh)}
-.pg-xmas .x-sub{max-width:22ch;text-wrap:balance}
-.pg-xmas .x-intro{display:grid;gap:clamp(12px,2.2vh,20px);justify-items:center;text-align:center}
-.pg-xmas .x-lede{max-width:52ch}
-.pg-xmas .x-intro .lines,.pg-xmas .x-intro .line{max-width:520px}
-.pg-xmas .x-tabs{justify-content:center;margin-top:clamp(40px,5vw,64px)}
-.pg-xmas .x-tabs em{font-size:var(--a4);margin-right:.3em}
-.pg-xmas .x-tabs a{font-style:italic;font-size:19px;padding:0 0 12px;margin-bottom:-1px;border-bottom:1px solid transparent;text-decoration:none;color:inherit;transition:color var(--t-ink) var(--ease-ink),border-color var(--t-ink) var(--ease-ink)}
-.pg-xmas .x-tabs a:hover{color:var(--head);border-bottom-color:var(--head)}
-.pg-xmas section[id]{scroll-margin-top:72px}
-.pg-xmas .x-eb{max-width:none}
-.pg-xmas .x-card{max-width:760px;margin-left:auto;margin-right:auto;padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(48px,6vw,88px)}
+/* Christmas on the Table: the running line, the CHRISTMAS sign at 16vh so the photo pair enters the first screen, the NATALE card, the night, the rooms, five questions, the form */
+.pg-xmas .x-cover{gap:clamp(16px,2vw,28px);padding-top:clamp(18px,2.4vw,36px)}
+.pg-xmas .x-sign{font-size:min(var(--m1),16vh)}
+.pg-xmas .x-sub{max-width:24ch}
+.pg-xmas .x-pair{width:100%;margin-top:clamp(8px,1.4vw,20px)}
+.pg-xmas .x-menu{margin-top:var(--between)}
+.pg-xmas .x-eb{text-align:center;max-width:none}
+.pg-xmas .x-card{width:100%;max-width:760px;margin-left:auto;margin-right:auto}
 .pg-xmas .x-card .m4{margin-top:14px}
 .pg-xmas .x-card .lines-list{max-width:560px}
-.pg-xmas .x-solo{justify-content:center;text-align:center}
-.pg-xmas .x-hd{margin-top:4px}
-.pg-xmas .x-qa,.pg-xmas .x-list{width:100%;max-width:720px;margin-left:auto;margin-right:auto}
-.pg-xmas .x-list{max-width:620px}
-.pg-xmas .x-list .ml>.n{flex-shrink:0}   /* a label stays on one line; the fact wraps on the right */
-.pg-xmas .x-room{gap:14px}
-.pg-xmas .x-enq{max-width:820px;margin-left:auto;margin-right:auto}
-.pg-xmas .x-vf{width:100%;text-align:left}
-.pg-xmas .x-vf iframe{width:100%;height:460px;border:0;background:var(--paper)}
-@media (max-width:899.98px){
-  .pg-xmas .x-run{grid-template-columns:1fr 1fr;row-gap:4px}
-  .pg-xmas .x-run span:nth-child(2n+1){text-align:left}
-  .pg-xmas .x-run span:nth-child(2n){text-align:right}
-}
-@media (max-width:639.98px){
-  .pg-xmas .x-h1 .m1{font-size:12.6vw}   /* nine letters must fit 390px; never under 24px */
-  .pg-xmas .x-tabs{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;border-bottom:0}
-  .pg-xmas .x-tabs a{text-align:center;border-bottom-color:var(--hair)}
-}
-.pg-xmas .intro.c{justify-items:center;text-align:center}
+.pg-xmas .x-night{margin-top:var(--between)}
+.pg-xmas .x-three{--n:3;width:100%;margin-top:12px}
+.pg-xmas .x-said{display:grid;gap:6px;margin-top:8px;max-width:40ch}
+.pg-xmas .x-head{align-items:end}
+.pg-xmas .x-lead{max-width:44ch}
+.pg-xmas .x-enq .facts{max-width:420px}
+.pg-xmas .x-form{display:grid;gap:14px}
+.pg-xmas .x-vf{width:100%}
+.pg-xmas .x-vf iframe{width:100%;height:520px;border:0;background:var(--almond)}
+.pg-xmas section[id]{scroll-margin-top:72px}
+@media (max-width:639.98px){.pg-xmas .x-sign{font-size:12.6vw}.pg-xmas .x-three{grid-template-columns:1fr}.pg-xmas .x-three>:nth-child(n+3){display:grid}}
 
 /* ==== events-pack/index.html ==== */
+.pg-pack .pk-strip{padding-top:12px}.pg-pack .pk-strip .lines{margin:0 auto}
 /* Events pack: the masthead cover, eight chapters that open underneath their row (events-pack.js), the three food tabs */
 .pg-pack .pk-cover{padding-top:clamp(24px,3vw,40px)}
 .pg-pack .pk-mast img{width:100%;height:auto}
@@ -612,71 +569,445 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-pack .pk-ask{max-width:520px;margin-top:18px}
 
 /* ==== weddings/index.html ==== */
-/* Weddings · Corporate · Private dining share one landing-page template (these rules also serve .pg-corporate and .pg-private) */
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{padding-top:clamp(32px,4vw,64px)}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-facts{margin-top:12px;max-width:44ch}
-/* desktop: one first view — the words on the left, the photograph with the form on the right */
-@media (min-width:900px){
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);padding-top:0}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero>.wrap{display:block;margin:0;padding-right:var(--gutter);align-self:center;padding-top:var(--inside);padding-bottom:var(--inside)}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero>.wrap>.intro{max-width:none}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero .m2{font-size:clamp(36px,min(4.4vw,8.5vh),88px)}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-hero .a2{font-size:var(--a3)}
-}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{margin-top:var(--inside)}
-/* the enquiry card sits on the lead photograph: the room and the form in one view.
-   Desktop: photo and card share one grid cell, the photo stretching to the card if the card is taller.
-   Phones: the card rides up over the foot of the photo. */
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq{display:grid;gap:16px;align-content:start;scroll-margin-top:72px}
-@media (min-width:900px){
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{display:grid}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>*{grid-area:1/1}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage{margin-top:0}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ph{aspect-ratio:auto;min-height:calc(100svh - 80px);height:100%}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ev-enq{justify-self:center;align-self:start;width:min(440px,calc(100% - 2 * var(--inside)));margin:var(--inside) 0;padding:32px}
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ph .mark{display:none}
-}
-@media (max-width:899.98px){
-  :is(.pg-weddings,.pg-corporate,.pg-private) .ev-stage>.ev-enq{margin:-72px var(--margin) 0}
-}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq iframe{width:100%;height:460px;border:0}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-pack{display:flex;flex-wrap:wrap;gap:4px 28px;padding-top:16px}
-/* formats: Marsha category heads in two columns, a hairline above each */
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--gutter);border-bottom:1px solid var(--hair)}
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts>div{display:grid;gap:10px;align-content:start;padding:24px 0 28px}
-/* corporate: the planners' own words, a quote and a name in each cell */
-.pg-corporate .ev-said{display:grid;gap:12px}
-.pg-corporate .ev-said blockquote{max-width:44ch}
-@media (max-width:639.98px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts{grid-template-columns:1fr}}
-/* the food card */
-:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card .lines-list{max-width:440px}
-/* 01's photograph: four columns, to the right edge */
-@media (min-width:900px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-why{grid-column:9/13}}
+/* Weddings · Corporate · Private dining share one Table template: the title beside the at-a-glance card, the lead photograph full-bleed below;
+   a quote at statement size beside the Why photograph; the night in three chapters; set up your way (five lines, then the pair); the EVENTI card; five questions; the form last; a poster close */
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-cover{padding-top:clamp(24px,3vw,40px)}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top{align-items:start}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top .intro{gap:18px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top .m2{font-size:clamp(40px,min(5vw,9vh),88px)}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top .a2{max-width:40ch}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-facts{max-width:44ch}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card{justify-items:stretch;text-align:left;gap:14px;align-self:start}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card>.eyebrow,:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card .fine{text-align:center}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-card>.emb{justify-self:center}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-why{align-items:start}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-quotes{grid-column:1/8;gap:22px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-quotes .said{display:grid;gap:6px;max-width:30ch}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-why-ph{grid-column:9/13}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-night{margin-top:var(--between)}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-three{--n:3;width:100%;margin-top:12px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-head{align-items:end}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-fmts .ml>.n{flex:none}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-pair{width:100%}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-eventi{width:100%;max-width:720px;margin-left:auto;margin-right:auto}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-eventi .lines-list{max-width:560px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-enq .facts{max-width:420px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-form{display:grid;gap:14px}
+:is(.pg-weddings,.pg-corporate,.pg-private) .ev-form iframe{width:100%;height:520px;border:0}
+@media (max-width:899.98px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-quotes,:is(.pg-weddings,.pg-corporate,.pg-private) .ev-why-ph{grid-column:1/-1}}
+@media (max-width:639.98px){:is(.pg-weddings,.pg-corporate,.pg-private) .ev-three{grid-template-columns:1fr}:is(.pg-weddings,.pg-corporate,.pg-private) .ev-three>:nth-child(n+3){display:grid}}
 
 /* ==== corporate-events/index.html ==== */
-/* Corporate uses the shared Weddings · Corporate template rules above */
+/* Corporate uses the shared template rules above */
 
 /* ==== private-dining/index.html ==== */
-/* Private dining uses the shared Weddings · Corporate template rules above */
+/* Private dining uses the shared template rules above */
 
 /* ==== aperitivo/index.html ==== */
-/* Aperitivo · Negroni Bar · Pasta fresca · Before the stadium share one dining landing-page template (.pg-dine) */
-.pg-dine .dine-hero{padding-top:clamp(32px,4vw,64px)}
-.pg-dine .dine-hero .ph.full{margin-top:var(--inside)}
-/* 02 · on the board: one centred printed card */
-.pg-dine .dine-board{width:100%;max-width:720px;margin:0 auto;gap:40px}
+/* Aperitivo · Negroni bar · Pasta fresca · Before the stadium share one Table template (.pg-dine): a word, one sentence, Book a table, the room full-bleed; one object per section; two questions; a close on Almond */
+.pg-dine .dn-cover .a2{max-width:44ch}
+.pg-dine .dn-lead{width:100%;margin-top:clamp(8px,1.4vw,20px)}
+.pg-dine .dn-sign{gap:16px}
+.pg-dine .dn-hours{color:var(--deep);max-width:none}
+.pg-dine .dine-board{width:100%;max-width:720px;margin-left:auto;margin-right:auto;gap:40px}
 .pg-dine .dine-cat{display:grid;gap:12px;justify-items:center;width:100%}
-.pg-dine .dine-cat>.a4{max-width:44ch;text-align:center}
 .pg-dine .dine-cat>.lines-list{margin-top:4px}
+.pg-dine .dine-board-head{justify-items:center;text-align:center}
+.pg-dine .dn-recipe{width:100%;max-width:560px;margin-left:auto;margin-right:auto;gap:18px}
+.pg-dine .dn-recipe .lines-list{max-width:360px}
+.pg-dine .dn-recipe .a3{max-width:34ch}
+.pg-dine .dn-photo{align-items:end}
+.pg-dine .dn-nights{align-items:end}
+.pg-dine .dn-fixtures .ml>.n{flex:0 1 auto}
 @media (max-width:639.98px){.pg-dine .dine-board{gap:32px}.pg-dine .dine-board .lines-list .ml{font-size:var(--a4)}}
-.pg-dine .dine-board-head{justify-items:center}
-/* phones: a bled photograph runs edge to edge */
-@media (max-width:899.98px){.pg-dine .ph.bleed-l{margin-right:calc(-1 * var(--margin))}.pg-dine .ph.bleed-r{margin-left:calc(-1 * var(--margin))}}
-/* a title holding "Christchurch" (12 letters) can't fit 390px at the 44px M2 floor: on phones these pages step the title and the closing sign down to M3 */
-@media (max-width:639.98px){.pg-dine.dine-long .m2{font-size:var(--m3)}}
 
-/* ==== fresh-pasta/index.html ==== */
-/* the pasta card: each menu line carries the page's own note beneath it */
-.pg-pasta .dine-dishes{gap:18px}
-.pg-pasta .dine-dishes>div{display:grid;gap:2px}
-.pg-pasta .dine-dishes .a4{text-align:left;max-width:none}
+/* the narrowest phones: a display word as long as ENGAGEMENTS still fits the measure */
+@media (max-width:359.98px){.m2,:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top .m2{font-size:34px}}
+
+/* ==== Milan: discipline with one interruption ====
+   The page follows the building: downstairs always sits lower on the page than upstairs.
+   One deliberate act per page, never more: Full-bleed photographs drift a little inside their
+   frames as they pass. All of it is still without scroll-driven animation support or under reduced motion. */
+@media (min-width:900px){
+  .two:has(>.intro:nth-child(2):last-child)>.intro:first-child{margin-top:clamp(96px,11vw,200px)}
+  .strip:is(.fn-three,.x-three,.ev-three){align-items:start}
+  .strip:is(.fn-three,.x-three,.ev-three)>:not(:nth-child(2)){margin-top:clamp(64px,8vw,140px)}
+}
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .ph.full>img:first-child{scale:1.1;animation:bf-drift linear both;animation-timeline:view()}
+  }
+}
+@keyframes bf-drift{from{translate:0 -4.5%}to{translate:0 4.5%}}
+/* Home: the cover photograph is sized so the title lands just below it on the first screen */
+.pg-home .hm-cover+.quiet{padding-top:clamp(28px,3.4vw,48px)}   /* the title follows the photograph closely: one opening, not two sections */
+/* the Bar Franco script heads the hero, above the running line; the first screen is script, line and photograph; the title follows just below */
+.pg-home .hm-script{display:block;width:clamp(116px,10.5vw,152px);height:auto}
+@media (min-width:640px){.pg-home .hm-cover-ph{width:min(100%,calc((100svh - 330px) * .8))}}  /* the title sits just below the photograph, still on the first screen */
+
+/* ==== art direction: three interventions ====
+   1 · Cinema: on desktop the full-bleed photographs are cut to 2.39:1, film stills rather than banners.
+   2 · No watermark: photographs carry no script; the Bar Franco script heads Home's hero instead.
+   3 · One grade: every photograph gets the same warm, matte grade so the library reads as one shoot. */
+@media (min-width:900px){.full.r-169:not(:has(iframe)){aspect-ratio:2.39/1}}   /* the Contact map keeps its height */
+.ph>img:first-child{filter:contrast(1.04) saturate(.9) sepia(.06)}
+
+/* ==== refinements ==== */
+/* the italic turn of a rules sign is its own line, set to a reading measure and balanced: no lone "friend." */
+.word.rules em{display:block;max-width:21em;margin:.3em auto 0;line-height:1.14;text-wrap:balance}
+/* a plain opening never runs into the Deep Red rule of the Almond chapter below it */
+.quiet:not(.deep)+.ch-aframe{margin-top:clamp(48px,6vw,96px)}
+/* Our story: the letter is set as a letter, a centred reading column, not a left column with the page empty beside it */
+@media (min-width:900px){.pg-story .st-letter .wrap>.st-text:first-child{grid-column:1/-1;justify-self:center;width:min(100%,58ch)}}
+
+/* ==== the hero: every page opens on one full-width photograph, cut wide like a film still, no text on it ==== */
+.opener{width:100%;height:clamp(340px,calc(100svh - 300px),760px);margin:0}
+@media (max-width:639.98px){.opener{height:auto;aspect-ratio:4/5}}
+/* Home: the table from above becomes the hero, under the Bar Franco script and its line */
+.pg-home .hm-cover{padding-left:0;padding-right:0}
+.pg-home .hm-cover-ph{width:100%;aspect-ratio:auto;height:clamp(340px,calc(100svh - 360px),760px)}
+@media (max-width:639.98px){.pg-home .hm-cover-ph{height:auto;aspect-ratio:4/5}}
+/* the openings that used to share their row with a photograph are now centred under the hero */
+.pg-fn .fn-strip{--n:3}
+@media (min-width:640px){
+  .pg-contact .c-hero .wrap>.intro,.pg-vouchers .hero .wrap>.hero-txt,.pg-menus .mn-hero .wrap>.mn-txt{grid-column:1/-1;justify-self:center;justify-items:center;text-align:center;max-width:46ch}
+  .pg-menus .mn-hero .wrap>.mn-tabs{grid-column:1/-1;justify-self:center}
+}
+.pg-home .hm-from-h .m3{max-width:20ch}   /* three or four lines, not five */
+/* Functions: the two-line statement sets on two lines, not four */
+.pg-fn .fn-two{max-width:none;white-space:nowrap;font-size:clamp(36px,5vw,80px)}@media (max-width:639.98px){.pg-fn .fn-two{font-size:min(40px,11.4vw)}}
+/* the At a glance card on phones: a label never breaks, its fact drops right beneath */
+@media (max-width:639.98px){.pg-fn .fn-card .ml{flex-wrap:wrap}.pg-fn .fn-card .ml>.n{white-space:nowrap}.pg-fn .fn-card .ml>.v{margin-left:auto}.pg-fn .fn-card .line{flex-wrap:wrap;row-gap:4px}.pg-fn .fn-card .line>.v{flex:1 0 100%;text-align:left;white-space:normal}}
+
+/* ==== Home: three interventions ==== */
+/* 1 · the nameplate: script left, the descriptor set right on its baseline, like the masthead of a paper */
+.pg-home .hm-cover{justify-items:stretch;text-align:left}
+.pg-home .hm-plate{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.pg-home .hm-plate .a4{margin:0;text-align:right;line-height:1.45}
+/* 2 · the opening breaks the centre: the title flush left across the page, the sentence and asks in the right columns */
+.pg-home .hm-open{padding:clamp(36px,5vw,72px) 0 clamp(80px,10vw,160px)}
+.pg-home .hm-open .word.h1{text-align:left;max-width:none}
+.pg-home .hm-open-txt{grid-column:7/13;display:grid;gap:28px;margin-top:clamp(20px,2.4vw,36px)}
+.pg-home .hm-open-txt .a1{max-width:30ch}
+.pg-home .hm-open-txt .lines{margin:0}
+/* 3 · the rules are a staircase on Bright Red: each rule on its own line, a step down and to the right */
+.pg-home .ch-poster .hm-rules{--rs:clamp(28px,4.4vw,70px);justify-items:start;text-align:left}
+.pg-home .hm-stair{max-width:none;color:var(--almond);font-size:var(--rs)}
+.pg-home .hm-stair>span,.pg-home .hm-stair>em{display:block}
+.pg-home .hm-stair>span{white-space:nowrap}
+.pg-home .hm-stair>span+span{margin-left:calc(2.6 * var(--rs))}
+.pg-home .hm-stair>em{margin:.5em 0 0 calc(5.2 * var(--rs));max-width:16em;text-align:left;line-height:1.14}
+.pg-home .ch-poster .hm-rules .a2,.pg-home .ch-poster .hm-rules .emb{margin-left:calc(5.2 * var(--rs))}
+.pg-home .ch-poster .hm-rules .a2{max-width:36ch}
+.fx .hm-stair[data-set]>*{opacity:0;transform:translateY(.3em);transition:opacity .7s var(--ease-in),transform .7s var(--ease-in)}
+.fx .hm-stair[data-set][data-on]>*{opacity:1;transform:none}
+.fx .hm-stair[data-on]>:nth-child(2){transition-delay:.22s}.fx .hm-stair[data-on]>:nth-child(3){transition-delay:.44s}
+.fx .hm-stair[data-now]>*{transition:none}
+@media (prefers-reduced-motion:reduce){.fx .hm-stair[data-set]>*{opacity:1;transform:none;transition:none}}
+@media (max-width:639.98px){
+  .pg-home .hm-plate{flex-direction:column;align-items:flex-start;gap:12px}
+  .pg-home .hm-plate .a4{text-align:left}
+  .pg-home .hm-open-txt{grid-column:1/-1}
+  .pg-home .ch-poster .hm-rules{--rs:clamp(26px,7.4vw,34px)}
+  .pg-home .hm-stair>span{white-space:normal}
+  .pg-home .hm-stair>span+span{margin-left:1.2em}
+  .pg-home .hm-stair>em{margin-left:2.4em}
+  .pg-home .ch-poster .hm-rules .a2,.pg-home .ch-poster .hm-rules .emb{margin-left:0}
+}
+.pg-home .hm-open .grid{row-gap:0}.pg-home .hm-hour{margin-bottom:clamp(12px,1.4vw,18px)}   /* the evening's first hour sits over the title */
+.pg-home .ch-poster+.hm-from{margin-top:0}   /* Bright Red cuts straight to the long table: no dead strip of Almond between */
+
+/* ==== Home, phone first: the dock is the store ==== */
+/* on phones Book a table · Plan an event live in the dock for the whole visit; the inline copies of the same two asks step aside */
+@media (max-width:639.98px){
+  .pg-home .g-hero-ask,.pg-home .hm-dup{display:none}
+  body:has(.pg-home) .bf-foot{padding-bottom:calc(40px + 58px + env(safe-area-inset-bottom))}
+  /* the first screen is the whole promise: script, the table, and Not a bar. A world. above the dock */
+  .pg-home .hm-cover-ph{aspect-ratio:auto;height:clamp(180px,calc(100svh - 390px),100vw)}
+  .pg-home .hm-plate{flex-direction:row;align-items:flex-end}.pg-home .hm-plate .a4{text-align:right;font-size:14px}.pg-home .hm-script{width:96px}
+  .pg-home .hm-open{padding-top:22px}
+}
+
+/* ==== Home: the editorial layout (owner's reference) ====
+   No masthead band on Home: the Bar Franco script and the nav sit on the hero photograph; the title and the Ciao
+   sentence are set on the photograph (the owner's choice for Home). Then numbered chapters: 01 the Restaurant
+   (text left, two photographs offset), 02 the Negroni Bar (full-bleed, dark), 03 private events (a wide photograph). */
+body:has(.pg-home .hm-hero) .bf-mast{display:none}
+.pg-home{--hp:var(--margin)}
+.pg-home .hm-hero{position:relative;height:min(100svh,920px);min-height:600px;overflow:hidden;background:var(--deep);color:var(--almond)}
+.pg-home .hm-hero-ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 62%;filter:brightness(.72) contrast(1.05) saturate(.92) sepia(.06)}
+.pg-home .hm-top{position:absolute;left:0;right:0;top:0;z-index:5;display:flex;align-items:center;gap:clamp(20px,3vw,40px);padding:22px var(--hp)}
+.pg-home .hm-name{margin-right:auto;display:block}.pg-home .hm-name img{display:block;width:clamp(96px,8vw,128px);height:auto}
+.pg-home .hm-nav{display:flex;gap:clamp(20px,3vw,44px)}
+.pg-home .hm-nav a,.pg-home .hm-book{font-family:var(--affairs);font-size:18px;color:var(--almond);text-decoration:none}
+.pg-home .hm-book{font-style:italic;border:1px solid var(--almond);padding:8px 14px}
+.pg-home .hm-nav a:hover,.pg-home .hm-book:hover{color:var(--almond);opacity:.7}
+.pg-home .hm-ix{display:none;background:none;border:0;color:var(--almond);font:italic 18px var(--affairs);cursor:pointer;padding:6px 0}
+.pg-home .hm-hero-in{position:absolute;left:var(--hp);top:50%;transform:translateY(-42%);z-index:2;display:grid;justify-items:start;gap:24px;max-width:min(600px,50vw)}
+.pg-home .hm-h1{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:clamp(48px,6.6vw,108px);line-height:.88;letter-spacing:-.005em;color:var(--almond);margin:0}
+.pg-home .hm-h1 em{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:.56em}
+.pg-home .hm-hero-k{font-family:var(--affairs);font-style:italic;font-size:var(--a2);line-height:1.4;max-width:32ch;margin:0}
+.pg-home .hm-down{width:48px;height:48px;border:1px solid var(--almond);border-radius:50%;display:grid;place-items:center;color:var(--almond);text-decoration:none;font-size:18px;margin-top:12px}
+.pg-home .hm-note{position:absolute;right:calc(var(--hp) + 2vw);bottom:clamp(60px,12vh,130px);z-index:2;font-family:var(--affairs);font-style:italic;color:var(--almond);font-size:clamp(30px,3.4vw,54px);line-height:.95;transform:rotate(-12deg);text-align:right;margin:0}
+.pg-home .hm-note span{display:block;margin-right:-.6em}
+.pg-home .hm-ch{position:relative;padding:clamp(56px,7vw,112px) 0}
+.pg-home .hm-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);padding:0 var(--hp);max-width:calc(var(--frame-max) + 2 * var(--margin));margin:0 auto;align-items:start}
+.pg-home .hm-num{grid-column:1/2;font-family:var(--affairs);font-style:italic;font-size:var(--a4);color:var(--head);margin:0}
+.pg-home .hm-num::after{content:"";display:block;width:1px;height:64px;background:currentColor;margin:14px 0 0 4px;opacity:.6}
+.pg-home .hm-txt{grid-column:2/6;display:grid;gap:22px;align-content:start;padding-top:20px}
+.pg-home .hm-k{font-family:var(--affairs);font-style:italic;font-size:var(--a4);margin:0}
+.pg-home .hm-txt .m3{max-width:none;margin:0}
+.pg-home .hm-txt .a3{max-width:34ch;margin:0}
+.pg-home .hm-txt .facts{max-width:320px}
+.pg-home .hm-more{justify-self:start;font-family:var(--affairs);font-style:italic;font-size:var(--a2);color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:5px;margin-top:6px}
+.pg-home .hm-pa{grid-column:6/10}.pg-home .hm-pb{grid-column:10/12;margin-top:clamp(110px,12vw,200px)}
+.pg-home .hm-pa .ph{aspect-ratio:4/5}.pg-home .hm-pb .ph{aspect-ratio:3/4}
+.pg-home .hm-scr{position:absolute;right:calc(var(--hp) + 3vw);top:clamp(48px,5vw,90px);font-family:var(--affairs);font-style:italic;color:var(--head);font-size:clamp(22px,2.1vw,32px);line-height:1.1;transform:rotate(-10deg);text-align:right;margin:0}
+.pg-home .hm-scr span{display:block}.pg-home .hm-scr span:nth-child(2){margin-right:-1em}
+.pg-home .hm-vert{position:absolute;right:calc(var(--hp) - 8px);top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--affairs);font-style:italic;font-size:var(--a4);margin:0}
+.pg-home .hm-dark{position:relative;overflow:hidden;min-height:clamp(560px,46vw,740px);display:grid;align-items:center}
+.pg-home .hm-dark-ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:75% 40%;filter:brightness(.5) contrast(1.06) saturate(.9) sepia(.1)}
+.pg-home .hm-dark .hm-ch{position:relative;z-index:2;width:100%}
+.pg-home .hm-dark .m3,.pg-home .hm-dark .hm-num{color:var(--almond)}
+.pg-home .hm-ev .hm-scr{left:var(--hp);right:auto;text-align:left}
+.pg-home .hm-ev .hm-wide{grid-column:3/12}.pg-home .hm-ev .hm-wide .ph{aspect-ratio:2.1/1}
+.pg-home .hm-ev .hm-num{grid-column:12/13;justify-self:end}
+.pg-home .hm-ev .hm-txt{grid-column:3/10;margin-top:28px}
+.pg-home .hm-ev .lines{margin:0}
+.pg-home .hm-from{margin-top:0}
+@media (max-width:899.98px){
+  .pg-home .hm-nav,.pg-home .hm-book{display:none}.pg-home .hm-ix{display:block}
+  .pg-home .hm-top{padding:18px var(--hp)}
+  .pg-home .hm-hero-in{max-width:none;right:var(--hp);top:auto;bottom:clamp(120px,20vh,180px);transform:none}
+  .pg-home .hm-hero-ph{object-position:58% 60%}
+  .pg-home .hm-note{bottom:40px;font-size:28px}
+  .pg-home .hm-grid{grid-template-columns:1fr}
+  .pg-home .hm-num,.pg-home .hm-txt,.pg-home .hm-pa,.pg-home .hm-pb,.pg-home .hm-ev .hm-wide,.pg-home .hm-ev .hm-txt,.pg-home .hm-ev .hm-num{grid-column:1/-1;justify-self:start}
+  .pg-home .hm-num::after{display:none}
+  .pg-home .hm-pa{margin-top:28px}
+  .pg-home .hm-pb{margin-top:16px;width:62%;justify-self:end}
+  .pg-home .hm-scr,.pg-home .hm-ev .hm-scr{position:static;margin:0 var(--hp) 36px;text-align:left}
+  .pg-home .hm-vert{display:none}
+  .pg-home .hm-scr span:nth-child(2){margin-right:0}
+}
+@media (max-width:639.98px){.pg-home .hm-hero{height:calc(100svh - 58px);min-height:560px}}
+.pg-home .hm-ev .word{font-size:clamp(40px,4.8vw,80px)}
+@media (min-width:900px){.pg-home .hm-dark-ph{left:42%;width:58%;object-position:60% 40%;filter:contrast(1.04) saturate(.9) sepia(.06)}}
+.pg-home .hm-ev+.quiet.deep{padding-top:clamp(40px,5vw,80px)}
+/* Home with the live site's copy */
+.pg-home .hm-h1{font-size:clamp(44px,5.4vw,92px)}
+.pg-home .hm-hero-k em{font-style:normal}
+.pg-home .hm-intro{padding-bottom:clamp(24px,3vw,48px)}
+.pg-home .hm-lead{grid-column:2/10;display:grid;gap:26px}
+.pg-home .hm-lead .a1{max-width:30ch;margin:0}.pg-home .hm-lead .lines{margin:0}
+.pg-home .hm-intro .hm-num{visibility:hidden}
+.pg-home .hm-tags{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:var(--m4);letter-spacing:.04em;color:var(--head);margin:0}
+.pg-home .hm-dishes{display:grid;gap:6px;max-width:40ch}
+.pg-home .hm-aside{font-family:var(--affairs);font-style:italic;font-weight:400;text-transform:none;font-size:.5em;vertical-align:.5em}
+.pg-home .hm-ciao2 .hm-txt{grid-column:2/7}
+.pg-home .hm-details{grid-column:8/13;align-self:end}
+.pg-home .hm-ev .hm-txt .a2{margin:0}
+@media (max-width:899.98px){.pg-home .hm-lead,.pg-home .hm-ciao2 .hm-txt,.pg-home .hm-details{grid-column:1/-1}.pg-home .hm-intro .hm-num{display:none}.pg-home .hm-details{margin-top:28px}}
+@media (max-width:639.98px){.pg-home .hm-h1{font-size:min(48px,11.6vw)}}
+/* Home, +20%: a calmer title, a wider intro, readable dishes, the Negroni Bar band on phones, details aligned */
+.pg-home .hm-hero-in{max-width:min(860px,62vw)}
+.pg-home .hm-h1{font-size:clamp(44px,5.2vw,86px);line-height:.92}
+.pg-home .hm-amp{display:block}
+.pg-home .hm-hero-k{font-size:var(--a3)}
+.pg-home .hm-lead{grid-column:2/12}
+.pg-home .hm-lead .a1{max-width:34ch}
+.pg-home .hm-lead .lines{max-width:440px}
+.pg-home .hm-hero-k{max-width:44ch}
+.pg-home .hm-dishes .dish{font-size:var(--a3)}
+.pg-home .hm-details{align-self:start;margin-top:clamp(40px,4vw,64px)}
+@media (max-width:899.98px){
+  .pg-home .hm-hero-in{max-width:none}
+  .pg-home .hm-dark{display:block;min-height:0}
+  .pg-home .hm-dark-ph{position:static;height:auto;aspect-ratio:4/3;filter:contrast(1.04) saturate(.9) sepia(.06)}
+  .pg-home .hm-details{margin-top:28px}
+}
+@media (max-width:639.98px){.pg-home .hm-h1{font-size:min(48px,11.2vw)}}
+/* Home +30%: a photograph beside the intro, a second beside Host at Franco, the event room lifted */
+.pg-home .hm-lead{grid-column:2/8}
+.pg-home .hm-intro-ph{grid-column:9/13;margin-top:clamp(-40px,-3vw,0px)}
+.pg-home .hm-intro-ph .ph{aspect-ratio:4/5}
+.pg-home .hm-ev .hm-txt{grid-column:3/8}
+.pg-home .hm-ev-ph{grid-column:9/12;margin-top:clamp(-140px,-9vw,-60px);position:relative;z-index:2}
+.pg-home .hm-ev-ph .ph{aspect-ratio:3/4}
+.pg-home .hm-ev .hm-wide img{filter:brightness(1.18) contrast(1.02) saturate(.95) sepia(.06)}
+@media (max-width:899.98px){
+  .pg-home .hm-lead,.pg-home .hm-intro-ph,.pg-home .hm-ev .hm-txt,.pg-home .hm-ev-ph{grid-column:1/-1}
+  .pg-home .hm-intro-ph{margin-top:32px;width:78%;justify-self:end}
+  .pg-home .hm-ev-ph{margin-top:28px;width:62%;justify-self:end}
+}
+/* ==== Home on phones: the desktop's spacing philosophy, at phone scale ====
+   a narrow margin carries the chapter number and its rule; text is indented from it; photographs break out to
+   alternate edges (one bleeds right, the next sits indented left, the next bleeds left) */
+@media (max-width:899.98px){
+  .pg-home .hm-ch{padding:clamp(64px,16vw,88px) 0}
+  .pg-home .hm-grid{grid-template-columns:28px minmax(0,1fr);column-gap:16px;row-gap:0}
+  .pg-home .hm-num{grid-column:1;grid-row:1;justify-self:start;padding-top:22px}
+  .pg-home .hm-num::after{display:block;height:44px;margin:10px 0 0 4px}
+  .pg-home .hm-txt,.pg-home .hm-lead,.pg-home .hm-ciao2 .hm-txt{grid-column:2;grid-row:1}
+  .pg-home .hm-intro .hm-num{display:block;visibility:hidden}
+  /* 00 · intro: the burrata sits indented, flush to the right edge */
+  .pg-home .hm-intro-ph{grid-column:2;grid-row:2;width:auto;justify-self:stretch;margin:40px calc(-1 * var(--hp)) 0 18%}
+  /* 01 · restaurant: the big photograph bleeds right, the small one sits indented left */
+  .pg-home .hm-pa{grid-column:1/-1;grid-row:2;margin:44px calc(-1 * var(--hp)) 0 18%}
+  .pg-home .hm-pb{grid-column:2;grid-row:3;width:64%;justify-self:start;margin-top:16px}
+  .pg-home .hm-tags{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:var(--a3)}
+  /* 03 · events: the wide photograph bleeds left, the waiter sits indented right under the text */
+  .pg-home .hm-ev .hm-wide{grid-column:1/-1;grid-row:1;margin:0 18% 0 calc(-1 * var(--hp))}
+  .pg-home .hm-ev .hm-wide .ph{aspect-ratio:4/3}
+  .pg-home .hm-ev .hm-num{grid-column:1;grid-row:2;justify-self:start}
+  .pg-home .hm-ev .hm-txt{grid-column:2;grid-row:2;margin-top:0}
+  .pg-home .hm-ev-ph{grid-column:2;grid-row:3;width:64%;justify-self:end;margin:32px 0 0}
+  /* 04 · details sit under the text, in the same indent */
+  .pg-home .hm-details{grid-column:2;grid-row:2;margin-top:36px}
+  .pg-home .hm-dark .hm-ch{padding-top:56px}
+}
+
+/* ==== Every page on Home's editorial system ====
+   1 · the hero: the page title and its running line sit on the hero photograph
+   2 · the masthead lies transparent over the hero, in Almond
+   3 · chapter numbers hang in the left margin with their rule (inline with a rule on phones and in centred sections)
+   4 · on phones, photograph pairs break out to alternate edges */
+.pg-hero{position:relative;height:clamp(460px,calc(100svh - 40px),860px);overflow:hidden;background:var(--deep);color:var(--almond)}
+.pg-hero-ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.66) contrast(1.05) saturate(.92) sepia(.06)}
+.pg-hero-in{position:absolute;left:var(--margin);right:var(--margin);bottom:clamp(48px,9vh,110px);z-index:2;display:grid;justify-items:start;gap:18px;max-width:min(900px,70vw)}
+.pg-hero-k{font-family:var(--affairs);font-style:italic;font-size:var(--a3);margin:0;color:var(--almond)}
+.pg-hero-k em{font-style:normal}
+.pg-h1{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:clamp(44px,6vw,104px);line-height:.9;letter-spacing:-.005em;color:var(--almond);margin:0;text-wrap:balance}
+.pg-h1 em{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:.56em}
+body:has(.pg-hero) .bf-mast{position:absolute;left:0;right:0;top:0;background:transparent;color:var(--almond);--frame:var(--almond);--head:var(--almond);--ink:var(--almond);z-index:30}
+body:has(.pg-hero) .bf-mast a,body:has(.pg-hero) .bf-mast button,body:has(.pg-hero) .mast-campaign{color:var(--almond)}
+body:has(.pg-hero) .bf-mast .mast-dog,body:has(.pg-hero) .bf-mast .rule2{display:none}
+body:has(.pg-hero) .bf-mast .mast-logo img{filter:brightness(0) invert(.92) sepia(.25) saturate(2.4) hue-rotate(-12deg)}
+body:has(.pg-hero) .bf-mast nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+/* the section the title used to open now starts closer to the hero */
+.pg-hero+section,.pg-hero+.wrap{margin-top:0}
+/* chapter numbers */
+.ch-n{font-style:italic;margin-right:.7em}
+.ch-n::after{content:"";display:inline-block;width:28px;height:1px;background:currentColor;vertical-align:.32em;margin-left:.6em;opacity:.6}
+@media (min-width:1180px){
+  main:not(.pg-fn):not(.pg-xmas) section{position:relative}
+  .ch-n{position:absolute;left:calc(var(--edge) - 52px);margin:0}
+  .ch-n::after{display:block;width:1px;height:56px;margin:12px 0 0 6px;vertical-align:0}
+  :is(.c,.quiet,.hosts,.intro.c,[class*="cover"]) .ch-n{position:static;margin-right:.7em}
+  :is(.c,.quiet,.hosts,.intro.c,[class*="cover"]) .ch-n::after{display:inline-block;width:28px;height:1px;margin:0 0 0 .6em;vertical-align:.32em}
+}
+@media (max-width:639.98px){
+  .pg-hero{height:calc(100svh - 58px);min-height:520px}
+  .pg-hero-in{max-width:none}
+  .pg-h1{font-size:min(50px,10.2vw)}
+  main:not(.pg-fn):not(.pg-xmas) .two>.intro:first-child>.ph{margin-right:calc(-1 * var(--margin));margin-left:12%}
+  main:not(.pg-fn):not(.pg-xmas) .two>.intro:last-child>.ph{margin-left:calc(-1 * var(--margin));margin-right:12%}
+}
+/* +20%: the section under each hero reads like Home's intro: left, indented one column, the lead at a1 */
+.pg-hero+section :is(p.a1,p.a2){font-size:var(--a1);line-height:1.3;max-width:30ch;text-align:left}
+.pg-hero+section.quiet{justify-items:start;text-align:left;padding-top:clamp(56px,7vw,112px);padding-bottom:clamp(40px,5vw,80px)}
+.pg-hero+section.quiet .lines{margin-left:0}
+@media (min-width:900px){
+  .pg-hero+section.quiet{padding-left:calc(var(--edge) + (100vw - 2 * var(--edge)) / 12);padding-right:var(--edge)}
+  .pg-contact .c-hero .wrap>.intro,.pg-vouchers .hero .wrap>.hero-txt,.pg-menus .mn-hero .wrap>.mn-txt{grid-column:2/10;justify-self:start;justify-items:start;text-align:left;max-width:none}
+  .pg-menus .mn-hero .wrap>.mn-tabs{grid-column:2/-1;justify-self:start}
+}
+
+/* ==== Every page on phones: Home's phone philosophy ====
+   the chapter number and its rule sit in a narrow left margin, text is indented from it, everything reads left;
+   photographs break out to alternate edges (odd chapters bleed right, even chapters bleed left);
+   printed objects (frames, cards) keep the full measure. Functions and Christmas are left as they were. */
+@media (max-width:639.98px){
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas){--ind:40px}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas)>section:not(.pg-hero){position:relative}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas)>section:not(.pg-hero) .wrap,
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas)>section.quiet{padding-left:calc(var(--margin) + var(--ind))}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ch-n{position:absolute;left:var(--margin);margin:0;padding-top:2px}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ch-n::after{display:block;width:1px;height:44px;margin:10px 0 0 4px;vertical-align:0}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.c,.quiet,.hosts,.intro.c,.st-rules){text-align:left;justify-items:start;margin-left:0;margin-right:0}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.c,.quiet,.hosts) :is(.lines,.word,.lines-list,p){margin-left:0;text-align:left}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.c,.quiet,.hosts,.intro){grid-template-columns:minmax(0,1fr)}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.c,.quiet,.hosts,.intro)>*{max-width:100%;min-width:0}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.wrap,.quiet) :is(.frame,.card,.cards){margin-left:calc(-1 * var(--ind))}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .frame .frame{margin-left:0}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas)>section:nth-of-type(odd) .ph:not(.full):not(.frame .ph):not(.card .ph):not(.strip .ph):not(.two .ph){margin-right:calc(-1 * var(--margin));margin-left:10%}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas)>section:nth-of-type(even) .ph:not(.full):not(.frame .ph):not(.card .ph):not(.strip .ph):not(.two .ph){margin-left:calc(-1 * (var(--margin) + var(--ind)));margin-right:14%}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ph.full{margin-left:calc(-1 * (var(--margin) + var(--ind)))}
+  main:not(.pg-fn):not(.pg-xmas) .two>.intro:first-child>.ph{margin-right:calc(-1 * var(--margin));margin-left:10%}
+  main:not(.pg-fn):not(.pg-xmas) .two>.intro:last-child>.ph{margin-left:calc(-1 * (var(--margin) + var(--ind)));margin-right:14%}
+  /* the three-chapter strips: right, left, right, like Home's 01 */
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .strip>figure:nth-child(odd) .ph{margin-right:calc(-1 * var(--margin));margin-left:10%}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .strip>figure:nth-child(even) .ph{margin-left:calc(-1 * (var(--margin) + var(--ind)));margin-right:14%}
+}
+
+/* ==== The footer, curated (every page but Functions and Christmas, which keep theirs for now) ====
+   the sign-off as a word, then four quiet columns under one hairline (Find us · Say ciao · Franco · More), then a base line.
+   Each fact once: no asks (the page's close and the dock carry them), no repeated address in the legal line. */
+.ft{text-align:left;padding:clamp(72px,9vw,128px) 0 28px}
+.ft-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);align-items:start}
+.ft-sign{grid-column:1/-1;margin:0 0 clamp(56px,6vw,96px);font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:var(--m3);line-height:.95;letter-spacing:-.005em;color:var(--almond)}
+.ft-sign em{display:block;margin-top:.25em;font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:.6em}
+.ft-col{grid-column:span 3;display:grid;justify-items:start;align-content:start;gap:4px;padding-top:18px;border-top:1px solid var(--hair);font-size:var(--a3);line-height:1.5}
+.ft-col p{margin:0}
+.ft-col p+p{margin-top:10px}
+.ft-col p+a{margin-top:10px}
+.ft-k{font-style:italic;font-size:var(--fine);margin-bottom:10px!important}
+.ft-col a{text-decoration:none}
+.ft-col a:hover,.ft-col a[aria-current="page"]{text-decoration:underline 1px;text-underline-offset:.2em}
+.ft-base{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:clamp(56px,6vw,88px);padding-top:16px;border-top:1px solid var(--hair);font-size:var(--fine);font-style:italic}
+.ft-base p{margin:0}
+.ft-base p:last-child{text-align:right}
+.ft-base .foot-emb{margin:0}
+.bf-lite .ft-visit,.bf-lite .ft-talk{display:none}
+.bf-lite .ft-col{grid-column:span 3}
+@media (max-width:899.98px){
+  .ft-col,.bf-lite .ft-col{grid-column:span 6}
+  .ft-grid{row-gap:40px}
+  .ft-base{margin-top:16px}
+}
+@media (max-width:639.98px){
+  .ft-sign{margin-bottom:16px}
+  .ft-visit,.ft-talk{grid-column:1/-1}
+  .ft-base{flex-wrap:wrap;row-gap:14px}
+  .ft-base p{white-space:nowrap}
+  .ft-base .foot-emb{order:-1;margin-right:calc(100% - 52px)}
+}
+
+/* ==== Phone typography: calmer, fewer sizes (every page but Functions and Christmas) ====
+   two display sizes (the title and closing words at the title's size, chapter heads at m3), one reading size,
+   one small italic; menu lines drop their dotted leader on phones so a wrapped line never leaves a stray row of dots:
+   the name reads left, the price or fact sits right on the first line. */
+@media (max-width:639.98px){
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas){--ind:32px}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.m2,.word){font-size:min(44px,10.2vw);line-height:.92}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .word em{font-size:.6em}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .m3{font-size:min(32px,8vw);line-height:.95}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.a2,.a3){font-size:18px;line-height:1.5}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.a4,.eyebrow,.fine){font-size:15px}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ml:not(.strip .ml){display:grid;grid-template-columns:minmax(min(11ch,50%),1fr) auto;column-gap:20px;align-items:baseline;font-size:17px;line-height:1.45}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ml:not(.strip .ml)>.lead{display:none}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ml:not(.strip .ml)>.v{max-width:15ch;margin-left:0;text-align:right}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .lines-list{gap:10px}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .line>span{white-space:nowrap}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .line>.v{font-size:15px;flex:0 1 auto;white-space:normal;text-align:right}
+}
+
+/* ==== The menu, closed: pages other than Menus never show half a menu ====
+   a framed cover (the letterspaced name, which menu, one line, one button) that opens the full menu on /menus/ */
+.menu-cover{display:grid;justify-items:center;text-align:center;gap:18px;width:100%;max-width:560px;margin-left:auto;margin-right:auto;padding:clamp(40px,5vw,64px) clamp(24px,4vw,48px)}
+.menu-cover .m4{margin-top:8px}
+.menu-cover .a3{max-width:28ch;margin:0}
+.menu-cover .btn{margin-top:8px}
+@media (max-width:639.98px){
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .menu-cover{max-width:none;margin-left:calc(-1 * var(--ind));width:calc(100% + var(--ind))}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .menu-cover .btn{width:100%;text-align:center}
+}
+
+/* ==== Phones: the dock is the ask (as on Home) ====
+   the dock is on from the first screen on every hero page, so the cover's own copies of its asks hide on phones */
+@media (max-width:639.98px){
+  :is(.pg-dine,.pg-weddings,.pg-corporate,.pg-private) .pg-hero+section .lines{display:none}
+  :is(.pg-dine,.pg-weddings,.pg-corporate,.pg-private)>section:last-of-type .lines{display:none}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .pg-hero+section :is(p.a1,p.a2){font-size:22px;line-height:1.35}
+  .pg-hero-k .k-more{display:none}   /* the running line fits one line: (upstairs) · The Crossing */
+}

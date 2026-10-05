@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bar Franco · Structure like Milan. Behave like Italy.</title>
+<link rel="stylesheet" href="/static/franco.css">
+<style>
+/* MOCKUP ONLY: one page, styles inline so it can be judged before it is built into franco.css */
+:root{--col:12;--g:var(--gutter,24px);--m:var(--margin,clamp(20px,4vw,64px))}
+html,body{overflow-x:clip}body{background:var(--paper);color:var(--deep)}
+.cv .ph img,.sliver img,.lv .lev img{height:auto}
+.g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);padding:0 var(--m);max-width:1600px;margin:0 auto;position:relative}
+.rule{border-top:1px solid var(--deep)}
+.hair{border-top:1px solid rgba(108,6,0,.15)}
+.idx{font-family:var(--affairs);font-style:italic;font-size:13px;letter-spacing:.02em}
+.caps{font-family:var(--marsha);font-weight:700;text-transform:uppercase}
+
+/* ---- the masthead: a timetable ---- */
+.mm{padding-top:14px;padding-bottom:12px;align-items:baseline}
+.mm .em{grid-column:1/3}.mm .em img{height:26px;width:auto;display:block}
+.mm .what{grid-column:3/6}.mm .clk{grid-column:6/9;white-space:nowrap}.mm .clk span{display:inline;font:inherit;color:inherit}.mm nav{grid-column:9/13;display:flex;justify-content:space-between;font-size:17px}
+.mm nav a{text-decoration:none}.mm nav a[aria-current]{color:var(--bright);font-style:italic}
+.coords{padding-top:6px;padding-bottom:6px}
+.coords span{font-family:var(--affairs);font-style:italic;font-size:11px;opacity:.55}
+
+/* ---- 01 cover ---- */
+.cv{padding-top:clamp(28px,4vw,56px);padding-bottom:clamp(64px,8vw,120px);align-items:start}
+.cv h1{grid-column:1/10;grid-row:1;position:relative;z-index:2;margin:0;font-size:clamp(68px,12.4vw,212px);line-height:.84;letter-spacing:-.012em;color:var(--bright)}
+.cv h1 em{display:block;font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;font-size:.42em;letter-spacing:0;color:var(--deep);margin:.18em 0 0 1.1em}
+.cv .ph{grid-column:7/13;grid-row:1/3;margin-top:clamp(40px,7vw,120px);margin-right:calc(-1 * var(--m) - 4vw);transform:rotate(-2.4deg);transform-origin:20% 0;will-change:transform}
+.cv .ph img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.cv .facts{grid-column:1/6;grid-row:2;margin-top:clamp(28px,3vw,44px);display:grid;gap:0}
+.cv .facts .ml{font-size:var(--a3);padding:9px 0;border-bottom:1px solid rgba(108,6,0,.15);margin:0}
+.cv .facts .ml:first-child{border-top:1px solid var(--deep)}
+.cv .lines{margin-top:26px;max-width:none}
+.cv .lead-in{grid-column:1/6;grid-row:3;margin-top:22px;max-width:36ch}
+
+/* ---- 02 the rules: a table of three ---- */
+.ru{padding-top:clamp(56px,7vw,112px)}
+.ru .head{grid-column:1/13;display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px}
+.ru .r{grid-column:span 4;padding:18px 0 0;border-top:1px solid var(--deep);display:grid;grid-template-rows:auto 1fr;gap:clamp(20px,3vw,48px);min-height:clamp(220px,22vw,340px)}
+.ru .r b{font-family:var(--affairs);font-weight:400;font-style:italic;font-size:15px;display:inline-block;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.ru .r:hover b{transform:rotate(-14deg) translateY(-3px)}
+.ru .r p{font-size:clamp(30px,3.4vw,56px);line-height:.92;color:var(--bright);align-self:end;margin:0;text-wrap:balance}
+.ru .r:nth-child(4) p em{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;color:var(--deep);font-size:.62em;display:block;margin-top:.2em}
+/* the break: a sliver of the pour, crops off the right edge */
+.sliver{grid-column:4/13;margin-top:clamp(48px,6vw,96px);margin-right:calc(-1 * var(--m));position:relative}
+.sliver img{width:100%;aspect-ratio:21/8;object-fit:cover;object-position:50% 58%;display:block}
+.sliver .idx{position:absolute;left:0;bottom:-26px}
+
+/* ---- 03 Almond: two levels, the second a flight lower ---- */
+.lv{background:var(--almond);margin-top:clamp(80px,9vw,140px);padding:clamp(56px,7vw,112px) 0 clamp(88px,10vw,160px)}
+.lv .head{grid-column:1/13;display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--deep);padding-bottom:12px;margin-bottom:clamp(28px,4vw,56px)}
+.lv h2{margin:0;font-size:clamp(40px,6vw,104px);line-height:.86;color:var(--bright)}
+.lv h2 em{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;color:var(--deep);font-size:.5em}
+.lv .lev{display:grid;gap:14px;align-content:start}
+.lv .l1{grid-column:1/6}.lv .l2{grid-column:8/13;margin-top:clamp(120px,16vw,260px)}
+.lv .lev img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.lv .lev h3{margin:6px 0 0;font-size:24px;letter-spacing:.06em;color:var(--bright)}
+.lv .lev .ml{font-size:var(--a3);margin:0;padding:6px 0;border-bottom:1px solid rgba(108,6,0,.2)}
+.lv .dog{grid-column:5/9;grid-row:2;align-self:center;justify-self:center;width:clamp(150px,17vw,260px);transform:rotate(-9deg);position:relative;z-index:2;pointer-events:none}
+
+/* ---- 04 Night: the word STAY runs off the page ---- */
+.nt{background:var(--deep);color:var(--almond);padding:clamp(64px,8vw,128px) 0 0;overflow:hidden}
+.nt .k{grid-column:1/13;display:flex;justify-content:space-between;border-bottom:1px solid rgba(250,215,195,.35);padding-bottom:12px}
+.nt .say{grid-column:1/8;margin-top:clamp(28px,4vw,56px)}
+.nt .say h2{margin:0;font-size:clamp(48px,7vw,124px);line-height:.86;color:var(--almond)}
+.nt .say h2 em{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;font-size:.5em}
+.nt .say p{margin-top:22px;max-width:40ch;font-size:var(--a2)}
+.nt .tab{grid-column:9/13;margin-top:clamp(28px,4vw,56px);align-self:end}
+.nt .tab .ml{font-size:var(--a3);margin:0;padding:8px 0;border-bottom:1px solid rgba(250,215,195,.3)}
+.nt .tab .ml:first-child{border-top:1px solid var(--almond)}
+.nt .lines{grid-column:1/6;margin-top:30px}
+.nt .line{color:var(--almond)}
+.nt .hosts{grid-column:1/13;margin-top:36px;font-style:italic;opacity:.8}
+/* STAY starts with its S on the page and slides left as you scroll */
+.nt .giant{padding-left:var(--m);font-family:var(--marsha);font-weight:700;font-size:clamp(220px,46vw,820px);line-height:.72;color:var(--bright);white-space:nowrap;margin:clamp(24px,4vw,60px) 0 0;transform:translateX(var(--sx,0vw));will-change:transform;user-select:none}
+
+/* ---- 05 Paper close ---- */
+.cl{padding:clamp(72px,9vw,140px) 0}
+.cl h2{grid-column:3/11;text-align:center;margin:0;font-size:clamp(40px,6vw,100px);line-height:.86;color:var(--bright)}
+.cl h2 em{display:block;font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;color:var(--deep);font-size:.48em;margin-top:.2em}
+.cl .list{grid-column:4/10;margin-top:40px}
+.cl .list .ml{font-size:var(--a3);margin:0;padding:8px 0;border-bottom:1px solid rgba(108,6,0,.15)}
+.cl .list .ml:first-child{border-top:1px solid var(--deep)}
+.cl .lines{grid-column:5/9;margin:30px auto 0;max-width:none}
+.ft{background:var(--deep);color:var(--almond);padding:56px 0 64px}
+.ft .s{grid-column:1/8;font-size:clamp(36px,5vw,80px);line-height:.86;margin:0;color:var(--almond)}
+.ft .c{grid-column:9/13;align-self:end;font-style:italic}
+
+/* ---- the grid, made visible (press G or the button) ---- */
+.grid-on .overlay{display:block}
+.overlay{display:none;position:fixed;inset:0;z-index:50;pointer-events:none}
+.overlay .g{height:100%}
+.overlay .g i{background:rgba(240,0,0,.07);border-left:1px solid rgba(240,0,0,.28);border-right:1px solid rgba(240,0,0,.28)}
+.note{display:none;position:absolute;z-index:51;font-family:var(--affairs);font-style:italic;font-size:13px;line-height:1.25;padding:5px 8px;background:var(--paper);border:1px solid var(--spritz,#F00000);color:var(--deep);max-width:200px}
+.grid-on .note{display:block}
+.note b{font-weight:400;color:var(--spritz,#F00000)}
+.tg{position:fixed;right:16px;bottom:16px;z-index:60;font-family:var(--affairs);font-style:italic;font-size:15px;background:var(--paper);color:var(--deep);border:1px solid var(--deep);padding:8px 12px;cursor:pointer}
+.tg:focus-visible{outline:2px solid var(--spritz,#F00000);outline-offset:2px}
+
+@media (prefers-reduced-motion:reduce){.cv .ph,.nt .giant{transform:none!important}.ru .r b{transition:none}}
+
+/* ---- phones: 4 columns, the same rules ---- */
+@media (max-width:759.98px){
+  .g{grid-template-columns:repeat(4,minmax(0,1fr));column-gap:14px}
+  .mm .em{grid-column:1/3}.mm .what,.mm .clk{display:none}.mm nav{display:none}.mm .ix{grid-column:3/5;justify-self:end;font-style:italic}
+  .coords span:nth-child(n+5){display:none}
+  .cv h1{grid-column:1/5;font-size:clamp(60px,19vw,96px)}
+  .cv .ph{grid-column:2/5;grid-row:2;margin-top:18px;margin-right:calc(-1 * var(--m) - 8vw)}
+  .cv h1 em{margin-left:.4em}
+  .cv .facts{grid-column:1/5;grid-row:3}
+  .cv .lead-in{grid-column:1/5;grid-row:4}
+  .ru .head{flex-direction:column;gap:4px}
+  .ru .r{grid-column:1/5;min-height:0;gap:18px;padding-bottom:28px}
+  .ru .r p{font-size:clamp(30px,9vw,44px)}
+  .sliver{grid-column:1/5;margin-left:calc(-1 * var(--m));margin-right:0;width:auto}
+  .sliver .idx{left:var(--m)}
+  .lv .head{flex-direction:column;gap:6px}
+  .lv .l1{grid-column:1/4;grid-row:2}.lv .l2{grid-column:2/5;grid-row:3;margin-top:48px}
+  .lv .dog{grid-column:3/5;grid-row:2;justify-self:end;align-self:start;width:110px;margin:-40px -6px 0 0}
+  .lv h2{font-size:clamp(36px,11vw,56px)}.lv h2 em{display:block;margin-top:.15em}
+  .nt .say,.nt .tab,.nt .lines,.nt .hosts{grid-column:1/5}
+  .nt .giant{font-size:62vw}
+  .nt .say h2 em{display:block;margin-top:.15em}
+  .cl h2,.cl .list,.cl .lines{grid-column:1/5}
+  .ft .s,.ft .c{grid-column:1/5}.ft .c{margin-top:20px}
+}
+@media (min-width:760px){.mm .ix{display:none}}
+</style>
+</head>
+<body>
+
+<div class="overlay" aria-hidden="true"><div class="g"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+
+<header>
+  <div class="g mm">
+    <a class="em" href="/" aria-label="Bar Franco, home"><img src="/static/logos/emblem/deep-red.svg" alt="Bar Franco" width="60" height="27"></a>
+    <span class="what idx">Ristorante &amp; Negroni bar · (upstairs) 166 Cashel St</span>
+    <span class="clk idx"><span data-bf-clock>16:00</span> in Ōtautahi · <span data-bf-status>Opening at 4pm</span></span>
+    <nav aria-label="Main"><a href="/" aria-current="page">Home</a><a href="/menus/">Menus</a><a href="/bookings/">Bookings</a><a href="/functions/">Functions</a><a href="/contact/">Contact</a></nav>
+    <span class="ix idx">Index</span>
+  </div>
+  <div class="g rule"></div>
+  <div class="g coords" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span></div>
+</header>
+
+<main>
+<!-- 01 · Milan sets the type on the grid. Italy tilts the photograph and lets it run off the page. -->
+<section class="g cv" aria-label="Bar Franco">
+  <h1 class="caps">Not a bar.<em>A world.</em></h1>
+  <figure class="ph" id="tilt"><img src="/images/aperitivo-table-cheers.jpg" alt="Spritzes and Negronis raised over a marble table" width="1067" height="1600" fetchpriority="high"></figure>
+  <div class="facts">
+    <p class="ml"><span class="n">Bar</span><i class="lead" aria-hidden="true"></i><span class="v">from 4pm, daily</span></p>
+    <p class="ml"><span class="n">Kitchen</span><i class="lead" aria-hidden="true"></i><span class="v">from 5pm, till late</span></p>
+    <p class="ml"><span class="n">Pasta</span><i class="lead" aria-hidden="true"></i><span class="v">made by hand, upstairs</span></p>
+    <p class="ml"><span class="n">Events</span><i class="lead" aria-hidden="true"></i><span class="v">10 to 240, no hire fee</span></p>
+    <div class="lines"><a class="line" href="/bookings/"><span>Book a table</span><i class="lead" aria-hidden="true"></i><em class="v">4pm till late</em></a><a class="line" href="/functions/#enquire"><span>Plan an event</span><i class="lead" aria-hidden="true"></i><em class="v">up to 240</em></a></div>
+  </div>
+  <p class="lead-in a2">An Italian restaurant and Negroni bar, tucked off Cashel Street. No costume, no cliché. Just house-made pasta, a Negroni poured properly and a room that wants you in&nbsp;it.</p>
+  <span class="note" style="left:calc(var(--m) + 8px);top:96px"><b>Milan</b> · twelve columns, hairline rules, a timetable for a masthead</span>
+  <span class="note" style="right:24px;top:52%"><b>Italy</b> · the photograph tilts 2.4° and runs off the page</span>
+</section>
+
+<!-- 02 · Milan: a table of three. Italy: the numbers swing when you touch them, and a sliver of the pour crops off the edge. -->
+<section class="g ru" aria-label="The house rules">
+  <div class="head"><span class="idx">02 · What we learned at a grandmother’s table</span><span class="idx">Three rules, no exceptions</span></div>
+  <div class="r"><b>i.</b><p class="caps">No one’s glass is ever empty.</p></div>
+  <div class="r"><b>ii.</b><p class="caps">Everyone is fed.</p></div>
+  <div class="r"><b>iii.</b><p class="caps">A long-lost friend<em>every person through the door</em></p></div>
+  <figure class="sliver"><img src="/images/negroni-tray-hands.jpg" alt="Hands carrying a tray of Negronis" width="1400" height="934" loading="lazy"><span class="idx">The pour, 4:17pm</span></figure>
+  <span class="note" style="left:24px;top:62%"><b>Italy</b> · a 21:8 crop, off the right edge, captioned like a film still</span>
+</section>
+
+<!-- 03 · Almond. Milan: two specimen columns. Italy: the second level sits a flight lower, and Humphrey wanders across the gutter. -->
+<section class="lv" aria-label="Two levels, one world">
+  <div class="g">
+    <div class="head"><h2 class="caps">Downstairs, <em>then upstairs.</em></h2><span class="idx">03 · Two levels, one world</span></div>
+    <div class="lev l1">
+      <img src="/images/bar-lounge-window.jpg" alt="Fringed lamps and velvet booths in the Negroni bar" width="933" height="1400" loading="lazy">
+      <span class="idx">Level 1</span><h3 class="caps">The Negroni Bar</h3>
+      <p class="a3 it">Rose-red plaster, fringed lamps, curved velvet booths and a canopy of dried flowers. Where the evening starts&nbsp;slow.</p>
+      <p class="ml"><span class="n">Seated</span><i class="lead" aria-hidden="true"></i><span class="v r">80</span></p>
+      <p class="ml"><span class="n">Standing</span><i class="lead" aria-hidden="true"></i><span class="v r">120</span></p>
+    </div>
+    <img class="dog" src="/static/illustrations/dachshund.png" alt="" width="400" height="200">
+    <div class="lev l2">
+      <img src="/images/chef-open-kitchen.jpg" alt="A chef at work in the open kitchen upstairs" width="934" height="1400" loading="lazy">
+      <span class="idx">Level 2</span><h3 class="caps">The Restaurant</h3>
+      <p class="a3 it">A curved wall of windows, copper lamps and the open kitchen in full view. Where we cook like someone’s coming&nbsp;home.</p>
+      <p class="ml"><span class="n">Seated</span><i class="lead" aria-hidden="true"></i><span class="v r">90</span></p>
+      <p class="ml"><span class="n">Standing</span><i class="lead" aria-hidden="true"></i><span class="v r">120</span></p>
+    </div>
+  </div>
+  <span class="note" style="left:50%;margin-top:-60px"><b>Italy</b> · the second level drops a flight; the dog ignores the gutter</span>
+</section>
+
+<!-- 04 · Night. Milan: the facts in a ruled table. Italy: STAY, too big for the page, slides as you scroll. -->
+<section class="nt" aria-label="We host. You stay.">
+  <div class="g">
+    <div class="k"><span class="idx">04 · Private events &amp; dining</span><span class="idx">Hosted, not processed</span></div>
+    <div class="say"><h2 class="caps">We host. <em>You stay.</em></h2><p>Not a function room. Canapés in the bar, dinner upstairs, back down for dessert and dancing. One person looks after you from the first email to the last&nbsp;drink.</p></div>
+    <div class="tab">
+      <p class="ml"><span class="n">Guests</span><i class="lead" aria-hidden="true"></i><span class="v r">10–240</span></p>
+      <p class="ml"><span class="n">Levels</span><i class="lead" aria-hidden="true"></i><span class="v">one or both</span></p>
+      <p class="ml"><span class="n">Hire fee</span><i class="lead" aria-hidden="true"></i><span class="v">none</span></p>
+      <p class="ml"><span class="n">Reply</span><i class="lead" aria-hidden="true"></i><span class="v">one business day</span></p>
+    </div>
+    <div class="lines"><a class="line" href="/functions/#enquire"><span>Plan an event</span><i class="lead" aria-hidden="true"></i><em class="v">up to 240</em></a><a class="line" href="/christmas-functions/"><span>Christmas parties</span><i class="lead" aria-hidden="true"></i><em class="v">December</em></a></div>
+    <p class="hosts a4">Hosts to Forté Health · Sprout Agritech · Foodstuffs SI · Fulton Hogan · EY</p>
+  </div>
+  <p class="giant" aria-hidden="true" id="stay">STAY.</p>
+  <span class="note" style="right:24px;margin-top:-180px"><b>Italy</b> · the word is too big for the page and drifts with the scroll</span>
+</section>
+
+<!-- 05 · Paper, centred and quiet: back on the grid. -->
+<section class="cl" aria-label="Come as you are">
+  <div class="g">
+    <h2 class="caps">Come as you are.<em>Leave slower than you arrived.</em></h2>
+    <div class="list">
+      <p class="ml"><span class="n">Hours</span><i class="lead" aria-hidden="true"></i><span class="v">bar 4pm · kitchen 5pm · daily, till late</span></p>
+      <p class="ml"><span class="n">Where</span><i class="lead" aria-hidden="true"></i><span class="v">(upstairs) 166 Cashel St, Ōtautahi</span></p>
+      <p class="ml"><span class="n">Telephone</span><i class="lead" aria-hidden="true"></i><span class="v r">021 221 1307</span></p>
+    </div>
+    <div class="lines"><a class="line" href="/bookings/"><span>Book a table</span><i class="lead" aria-hidden="true"></i><em class="v">4pm till late</em></a></div>
+  </div>
+</section>
+</main>
+
+<footer class="ft"><div class="g"><p class="s caps"><span data-bf-status>Opening at 4pm</span></p><p class="c"><span data-bf-clock>16:00</span> in Ōtautahi · Ti aspettiamo, we’re waiting for you</p></div></footer>
+
+<button class="tg" type="button" aria-pressed="false" id="tg">Show the grid</button>
+
+<script src="/static/chrome.js"></script>
+<script>
+(function(){
+  var d=document,root=d.documentElement,tg=d.getElementById('tg');
+  function set(on){root.classList.toggle('grid-on',on);tg.setAttribute('aria-pressed',on);tg.textContent=on?'Hide the grid':'Show the grid';}
+  tg.addEventListener('click',function(){set(!root.classList.contains('grid-on'))});
+  d.addEventListener('keydown',function(e){if(e.key==='g'||e.key==='G')set(!root.classList.contains('grid-on'))});
+  if(location.hash==='#grid')set(true);
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var ph=d.getElementById('tilt'),st=d.getElementById('stay');
+  function f(){
+    var y=scrollY,h=innerHeight;
+    ph.style.transform='rotate('+(-2.4+Math.min(y/h,1)*1.6).toFixed(2)+'deg) translateY('+(y*.06).toFixed(1)+'px)';
+    var r=st.getBoundingClientRect(),p=Math.max(0,Math.min(1,1-(r.top/h)));st.style.setProperty('--sx',(-p*18).toFixed(2)+'vw');
+  }
+  addEventListener('scroll',function(){requestAnimationFrame(f)},{passive:true});f();
+})();
+</script>
+</body>
+</html>

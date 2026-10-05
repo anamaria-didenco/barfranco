@@ -29,6 +29,8 @@
     document.documentElement.classList.add('bf-dockjs');
     var lastY = window.scrollY || 0, drift = 0, dRaf = 0, blockers = 0;
     var stay = /^\/(functions|christmas-functions)\//.test(location.pathname);
+    var always = location.pathname === '/' || location.pathname === '/index.html';   // Home is the store: on phones Book / Plan never leave the screen
+    var calm = !always && !stay && !!document.querySelector('.pg-hero');   // every page on the editorial hero: the dock is the page's ask, on from the first screen, stepping aside only for a form or the footer
     var dockTargets = document.querySelectorAll('.bf-foot, #enquire, #book, .g-hero-ask');
     var setDock = function (on) {
       if (dock.classList.contains('bf-dock-on') === on) return;
@@ -42,7 +44,9 @@
         dRaf = 0;
         var y = window.scrollY || 0, dy = y - lastY; lastY = y;
         drift = (dy > 0) === (drift > 0) ? drift + dy : dy;   // distance travelled in the current direction
-        if (y < window.innerHeight * 0.6 || blockers > 0) setDock(false);
+        if (always) setDock(true);
+        else if (calm) setDock(blockers === 0);
+        else if (y < window.innerHeight * 0.6 || blockers > 0) setDock(false);
         else if (stay) setDock(true);   // Functions and Christmas: once past the first screen, the ask stays
         else if (drift > 24) setDock(false);
         else if (drift < -24) setDock(true);
@@ -53,30 +57,34 @@
       var io = new IntersectionObserver(function (es) {
         es.forEach(function (e) { seen.set(e.target, e.isIntersecting); });
         blockers = 0; seen.forEach(function (v) { if (v) blockers++; });
-        if (blockers) setDock(false);
+        if (blockers && !always) setDock(false);
+        else if (calm) setDock(blockers === 0);
       }, { rootMargin: '0px 0px -10% 0px' });
       [].forEach.call(dockTargets, function (t) { io.observe(t); });
     }
-    setDock(false);
+    setDock(always || calm);
     window.addEventListener('scroll', onDock, { passive: true });
   }
 
-  var st = document.querySelector('[data-bf-status]'), ck = document.querySelector('[data-bf-clock]');
-  if (!st || !ck) return;
+  var sts = document.querySelectorAll('[data-bf-status]'), cks = document.querySelectorAll('[data-bf-clock]');
+  if (!sts.length) return;
   var fmt;
-  try { fmt = new Intl.DateTimeFormat('en-NZ', { timeZone: 'Pacific/Auckland', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }); }
+  try { fmt = new Intl.DateTimeFormat('en-NZ', { timeZone: 'Pacific/Auckland', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }); }
   catch (e) { return; }
   function tick() {
     var p = {};
     fmt.formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
     var h = +p.hour;
     var s = h < 16 ? 'Opening at 4pm' : h < 17 ? 'Open, kitchen at 5pm' : 'Open till late';
-    if (st.textContent !== s) st.textContent = s;
-    ck.textContent = p.hour + ':' + p.minute + ':' + p.second;
+    var t = p.hour + ':' + p.minute;
+    sts.forEach(function (e) { if (e.textContent !== s) e.textContent = s; });
+    cks.forEach(function (e) { if (e.textContent !== t) e.textContent = t; });
   }
   tick();
   document.querySelectorAll('[data-bf-live]').forEach(function (e) { e.hidden = false; });
-  setInterval(tick, 1000);
+  setInterval(tick, 30000);
+  var ds = document.querySelectorAll('[data-bf-date]');
+  if (ds.length) { try { var df = new Intl.DateTimeFormat('en-NZ', { timeZone: 'Pacific/Auckland', weekday: 'long', day: 'numeric', month: 'long' }); var dv = df.format(new Date()); ds.forEach(function (e) { e.textContent = dv; }); } catch (e) {} }
   var y = document.querySelector('[data-bf-year]');
   if (y) y.textContent = new Date().getFullYear();
 })();
