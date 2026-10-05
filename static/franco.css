@@ -646,3 +646,5 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-home .hm-cover+.quiet .word.h1{position:relative;z-index:4;margin-top:-.46em}
 .pg-home .hm-cover-ph .mark{bottom:auto;top:clamp(16px,2.4vw,32px)}
 @media (min-width:640px){.pg-home .hm-cover-ph{width:min(100%,calc((100svh - 330px) * .8))}}  /* the whole title lands on the first screen, across the photograph's edge */
+/* phones: the title only grazes the photograph's lower edge, so NOT A stays readable over the darker crop */
+@media (max-width:639.98px){.pg-home .hm-cover+.quiet .word.h1{margin-top:-.2em}}
