@@ -43,6 +43,10 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
 - **Every page opens on a hero photograph** (`<div class="ph opener" data-unmask>` first in `<main>`, before the running
   head): full width, cut wide on desktop (`clamp(340px, 100svh - 300px, 760px)` tall), 4:5 on phones, no text on it.
   Home's hero is the table from above under the Bar Franco script. The hero counts toward one photograph, one page.
+- **Editorial hero on every page (except Functions and Christmas, left as they were):** each page opens on `.pg-hero`, the
+  hero photograph with the running line (`.pg-hero-k`) and the page title (`h1.pg-h1`) set on it; the masthead lies
+  transparent over it in Almond (no rule, no dachshund). Chapter labels carry their number in `.ch-n`, which hangs in the
+  left margin on wide screens. On phones the `.two` photographs break out to alternate edges, as on Home.
 - Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
   franco.js shows whatever is on the first screen at once (`data-now`) and moves the rest once as it is seen; at 2.5 s
