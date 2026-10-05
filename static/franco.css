@@ -758,6 +758,8 @@ body:has(.pg-home .hm-hero) .bf-mast{display:none}
 .pg-home .hm-creed-line{max-width:none}
 .pg-home .hm-creed-sub{font-family:var(--affairs);font-style:italic;font-size:var(--a1);line-height:1.3;color:var(--deep);max-width:30ch;margin:0}
 @media (min-width:900px){.pg-home .hm-creed .wrap{padding-left:max(var(--hp),9vw)}}
+.pg-home .hm-creed-br{display:none}
+@media (max-width:639.98px){.pg-home .hm-creed-br{display:inline}}
 .pg-home .hm-note{position:absolute;right:calc(var(--hp) + 2vw);bottom:clamp(60px,12vh,130px);z-index:2;font-family:var(--affairs);font-style:italic;color:var(--almond);font-size:clamp(30px,3.4vw,54px);line-height:.95;transform:rotate(-12deg);text-align:right;margin:0}
 .pg-home .hm-note span{display:block;margin-right:-.6em}
 .pg-home .hm-ch{position:relative;padding:clamp(56px,7vw,112px) 0}
