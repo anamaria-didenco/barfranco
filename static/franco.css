@@ -14,7 +14,7 @@
 /* ---- tokens ---- */
 :root{
   /* the four inks + the menu stock. Nothing else: no black, no greys, no tints except the hairline */
-  --deep:#6C0600;--almond:#FAD7C3;--bright:#AF0F00;--spritz:#F00000;--paper:#F1EEE6;
+  --deep:#6C0600;--almond:#FAD7C3;--bright:#AF0F00;--spritz:#F00000;
   --hairline:rgba(108,6,0,.15);
   --marsha:"VTC Marsha","Arial Black",Impact,sans-serif;
   --affairs:"Affairs",Georgia,"Times New Roman",serif;
@@ -35,25 +35,31 @@
 @media (max-width:639.98px){:root{--gutter:16px;--between:64px;--band:64px;--inside:40px;--a2:18px;--a3:17px}}
 
 /* ---- chapters: a ground and its fixed inks. Every section is one of these ---- */
-:root,.ch-menu{--ground:var(--paper);--ink:var(--deep);--head:var(--bright);--title:var(--deep);--frame:var(--bright);--obj:var(--paper);--fill:var(--deep);--fill-text:var(--almond);--hair:var(--hairline)}
-.ch-aframe{--ground:var(--almond);--ink:var(--deep);--head:var(--bright);--title:var(--deep);--frame:var(--deep);--obj:var(--paper);--fill:var(--deep);--fill-text:var(--almond);--hair:var(--hairline)}
+:root,.ch-menu{--ground:var(--almond);--ink:var(--deep);--head:var(--bright);--title:var(--deep);--frame:var(--bright);--obj:var(--almond);--fill:var(--deep);--fill-text:var(--almond);--hair:var(--hairline)}
+.ch-aframe{--ground:var(--almond);--ink:var(--deep);--head:var(--bright);--title:var(--deep);--frame:var(--deep);--obj:var(--almond);--fill:var(--deep);--fill-text:var(--almond);--hair:var(--hairline)}
 .ch-night{--ground:var(--deep);--ink:var(--almond);--head:var(--almond);--title:var(--almond);--frame:var(--almond);--obj:var(--deep);--fill:var(--almond);--fill-text:var(--deep);--hair:rgba(250,215,195,.3)}
 .ch-poster{--ground:var(--bright);--ink:var(--almond);--head:var(--almond);--title:var(--almond);--frame:var(--almond);--obj:var(--bright);--fill:var(--almond);--fill-text:var(--bright);--hair:rgba(250,215,195,.35)}
 .ch-menu,.ch-aframe,.ch-night,.ch-poster{background:var(--ground);color:var(--ink)}
 /* framed objects are paper even inside an Almond chapter, so they take the Paper inks */
 .ch-aframe .frame{--ink:var(--deep);--head:var(--bright)}
+/* the brand has four colours and no paper: every page sits on Almond, so an Almond chapter is set apart
+   by the masthead's own rule (2px · 4px · 1px, Deep Red) above and below it */
+.ch-aframe{position:relative}
+.ch-aframe::before,.ch-aframe::after{content:"";position:absolute;left:var(--edge);right:var(--edge);height:7px;border:0 solid var(--deep);pointer-events:none}
+.ch-aframe::before{top:0;border-top-width:2px;border-bottom-width:1px}
+.ch-aframe::after{bottom:0;border-top-width:1px;border-bottom-width:2px}
 
 /* ---- base ---- */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;font-synthesis:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;scroll-padding-top:96px}
-body{margin:0;background:var(--paper);color:var(--deep);font-family:var(--affairs);font-size:var(--a3);line-height:1.5;overflow-x:clip}
+body{margin:0;background:var(--almond);color:var(--deep);font-family:var(--affairs);font-size:var(--a3);line-height:1.5;overflow-x:clip}
 p,h1,h2,h3,h4,ul,ol,figure,dl,dd,blockquote{margin:0}
 img,svg,iframe{display:block;max-width:100%}
 a{color:inherit;text-decoration:none;transition:color var(--t-ink) var(--ease-ink)}
 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em}
 button{font:inherit;color:inherit}
 em,i{font-style:italic}
-::selection{background:var(--almond);color:var(--deep)}
+::selection{background:var(--deep);color:var(--almond)}
 :focus-visible{outline:2px solid var(--spritz);outline-offset:2px}
 .ch-night :focus-visible,.ch-poster :focus-visible,.dock :focus-visible{outline-color:var(--almond)}
 [hidden]{display:none!important}
@@ -206,7 +212,7 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 @media (max-width:639.98px){.card .ph.r-45{aspect-ratio:3/2}}   /* on a phone every card photo is 3:2, so photo, name, number and ask share one screen */
 
 /* ---- masthead (every page) — chrome.js adds .bf-tight past 90px ---- */
-.bf-mast{position:sticky;top:0;z-index:30;background:var(--paper);color:var(--deep);--frame:var(--bright);--head:var(--bright);--ink:var(--deep)}
+.bf-mast{position:sticky;top:0;z-index:30;background:var(--almond);color:var(--deep);--frame:var(--bright);--head:var(--bright);--ink:var(--deep)}
 .mast-row{display:flex;align-items:flex-start;gap:16px clamp(20px,2.5vw,40px);padding-top:clamp(16px,2vw,26px);padding-bottom:clamp(12px,1.4vw,18px)}
 .mast-logo{flex:none}
 .mast-logo img{height:clamp(30px,3vw,42px);width:auto}
@@ -406,7 +412,7 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-bookings .bk-cover .a2{max-width:40ch}
 .pg-bookings .bk-book{width:100%;max-width:760px;display:grid;gap:16px;padding:36px;text-align:left}
 .pg-bookings .bk-label{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
-.pg-bookings .bk-iframe{width:100%;height:clamp(520px,calc(100svh - 300px),720px);border:0;background:var(--paper)}
+.pg-bookings .bk-iframe{width:100%;height:clamp(520px,calc(100svh - 300px),720px);border:0;background:var(--almond)}
 .pg-bookings .bk-help{text-align:center}
 .pg-bookings .bk-facts{max-width:560px;text-align:left}
 .pg-bookings .bk-facts .ml>.n{flex:none}
@@ -507,7 +513,7 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-xmas .x-enq .facts{max-width:420px}
 .pg-xmas .x-form{display:grid;gap:14px}
 .pg-xmas .x-vf{width:100%}
-.pg-xmas .x-vf iframe{width:100%;height:520px;border:0;background:var(--paper)}
+.pg-xmas .x-vf iframe{width:100%;height:520px;border:0;background:var(--almond)}
 .pg-xmas section[id]{scroll-margin-top:72px}
 @media (max-width:639.98px){.pg-xmas .x-sign{font-size:12.6vw}.pg-xmas .x-three{grid-template-columns:1fr}.pg-xmas .x-three>:nth-child(n+3){display:grid}}
 

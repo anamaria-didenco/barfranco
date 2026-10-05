@@ -7,10 +7,12 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   (the Events Pack adds `static/events-pack.js`, Functions adds `static/functions.js`). No `<style>` blocks, no `style=""` (except `object-position`
   on an `<img>`). The design brief behind it is `DESIGN-FIXES.md`.
 - **Tokens** (top of franco.css): Deep Red `--deep #6C0600` (ink), Almond `--almond #FAD7C3`, Bright Red
-  `--bright #AF0F00` (heads), Spritz `--spritz #F00000` (**focus rings only, never text**), Paper `--paper #F1EEE6`,
-  `--hairline rgba(108,6,0,.15)`. No other colours: no black, greys, gradients or shadows. Never write a raw hex outside the tokens.
-- **Chapters**: every section is one of `ch-menu` (Paper), `ch-aframe` (Almond), `ch-night` (Deep Red),
-  `ch-poster` (Bright Red), which sets its ground and inks. Pages open on paper; at most two non-paper chapters
+  `--bright #AF0F00` (heads), Spritz `--spritz #F00000` (**focus rings only, never text**),
+  `--hairline rgba(108,6,0,.15)`. These four are the brand's approved palette (BarFranco_VisualIdentity.pdf, p.12) and the only
+  colours on the site; hairlines are tints of them. **There is no Paper**: every page sits on Almond. No black, white, greys,
+  gradients or shadows. Never write a raw hex outside the tokens.
+- **Chapters**: every section is one of `ch-menu` (Almond, the page ground), `ch-aframe` (Almond, set apart by the Deep Red masthead rule above and below), `ch-night` (Deep Red),
+  `ch-poster` (Bright Red), which sets its ground and inks. Pages open on `ch-menu`; at most two `ch-aframe`/`ch-night`/`ch-poster` chapters
   plus the Night footer; never two of one colour adjacent; the band before the footer is never Night; one poster at most.
 - **Type**: Marsha `.m1`–`.m4` only (never below 24px, always capitals); Affairs `.a1`–`.a4`, `.fine`.
   One `<h1>` per page; heading levels descend without skips.
@@ -128,8 +130,8 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
 `dining-room.jpg` are kept in `images/` unmodified.
 
 ## Brand (keep edits on-brand)
-- **Colours:** Deep Red `#6C0600` ink, Bright Red `#AF0F00` heads, Almond `#FAD7C3`, Paper `#F1EEE6`;
-  Spritz `#F00000` is the focus ring only. Each chapter fixes its inks — see "One stylesheet" above.
+- **Colours:** Deep Red `#6C0600` ink, Bright Red `#AF0F00` heads, Almond `#FAD7C3` the ground,
+  Spritz `#F00000` the focus ring only. Nothing else. Each chapter fixes its inks — see "One stylesheet" above.
 - **Type:** VTC Marsha Bold (display, always UPPERCASE) + Affairs Regular/Italic (body; never set in
   capitals, never fake-bold). Radius 0 and no shadows anywhere.
 - **Marks:** wordmark (the name), the dachshund (playful accent), the Negroni glass (the ritual).
