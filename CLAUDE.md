@@ -47,6 +47,9 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   hero photograph with the running line (`.pg-hero-k`) and the page title (`h1.pg-h1`) set on it; the masthead lies
   transparent over it in Almond (no rule, no dachshund). Chapter labels carry their number in `.ch-n`, which hangs in the
   left margin on wide screens. On phones the `.two` photographs break out to alternate edges, as on Home.
+- **Less text (owner's call):** no "Good to know" / question sections on any page except Functions, Christmas and the
+  Events pack, and so no FAQPage schema on those pages; event pages keep one quote and no "Set up your way" list.
+  Say it once and short; chapter numbers run 01, 02, 03 with no gaps.
 - Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
   franco.js shows whatever is on the first screen at once (`data-now`) and moves the rest once as it is seen; at 2.5 s
@@ -101,13 +104,13 @@ no framework, no server). The files here ARE the site — what you edit is what 
 |------|---------|
 | `index.html` | Homepage, on the owner's editorial reference layout with the live site's copy: **no masthead band on Home** (`.bf-mast` hidden); the tray hero (`cocktail-tray.jpg`) with the Bar Franco script, the nav and a boxed Book a table on it (Index on phones), `h1` Modern Italian restaurant & Negroni bar over the photograph, the note Aperitivo sempre; Dine & host (intro sentence, Book a table · Plan an event); numbered chapters 01 Dine at Franco (three dishes, Read the full menus), 02 The Negroni Bar (Deep Red, photograph right), 03 Host at Franco (wide photograph), 04 Come say ciao (details). JSON-LD Restaurant (`#restaurant`) + WebSite |
 | `our-story/` | Our story: the approved copy from the handoff (cover, the rules on Almond, the letter, Two levels on Night, Come as you are). The only place the story facts are told; the press bio lives here too |
-| `bookings/` | Reservations, on the Table: cover with the NowBookIt widget, Pick a level, two questions, the Planning something bigger? Poster |
+| `bookings/` | Reservations, on the Table: cover with the NowBookIt widget, Pick a level, the Planning something bigger? Poster |
 | `functions/` | Private events, on the Table: the nameplate cover, At a glance `#hook`, The night on Night, `#spaces`, `#food` (the EVENTI card), `#questions` (six), `#enquire` (the VenueFlow card with the coaster beside it: turns over, cycles `images/coaster/`, the one drop-shadow on the site), the seasonal Christmas Poster band `#christmas` (remove after December). JSON-LD EventVenue `#venue` (the one the event pages reference). Behaviour in `static/functions.js` |
 | `menus/` | Food & drinks menu overview (the folder also holds the printed menu PDFs) |
 | `vouchers/` | Gift vouchers |
 | `contact/` | Location, hours, contact details |
 | `christmas-functions/` | Christmas landing page, on the Table: campaign masthead `.mast-nav.mast-campaign` (Hold a date · Call; phones show Hold a date only), the CHRISTMAS sign cover, `#menu` on Almond, `#night` on Night, `#rooms`, `#details`, `#enquire`, Call / Enquire phone dock. Keep the Google Ads conversion tags and the `bf_*` dataLayer pushes verbatim |
-| `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/`, `private-dining/` | SEO landing pages on the Table (the four dining pages share `.pg-dine`: cover, the sign, the recipe card, nights, and Before the stadium keeps its Te Kaha fixtures lines by hand; weddings, corporate and private dining & birthdays share the `.ev-*` template with FAQPage built from the five visible questions) |
+| `aperitivo/`, `negroni-bar/`, `fresh-pasta/`, `pre-stadium-dining/`, `corporate-events/`, `weddings/`, `private-dining/` | SEO landing pages on the Table (the four dining pages share `.pg-dine`: cover, the sign, the recipe card, nights, and Before the stadium keeps its Te Kaha fixtures lines by hand; weddings, corporate and private dining & birthdays share the `.ev-*` template) |
 | `404.html` | Not-found page (absolute `/` paths) |
 | `events-pack/` | Events Pack 2026 — a masthead cover, then eight chapters that open underneath their title (tap or click to open; Welcome open on load; one open at a time; `#ch-food` etc. deep-link). Behaviour in `static/events-pack.js`; photos in `images/pack-2026/`. Uses the shared masthead, footer and dock like every page. The old `Bar Franco Events Pack.html` redirects here |
 | `Brand Guide.html` | Internal one-page brand guide (not linked in site nav) |
