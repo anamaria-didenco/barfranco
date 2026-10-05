@@ -602,7 +602,7 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-dine .dn-cover .a2{max-width:44ch}
 .pg-dine .dn-lead{width:100%;margin-top:clamp(8px,1.4vw,20px)}
 .pg-dine .dn-sign{gap:16px}
-.pg-dine .dn-hours{color:var(--deep);font-size:min(var(--m1),14vh)}
+.pg-dine .dn-hours{color:var(--deep);max-width:none}
 .pg-dine .dine-board{width:100%;max-width:720px;margin-left:auto;margin-right:auto;gap:40px}
 .pg-dine .dine-cat{display:grid;gap:12px;justify-items:center;width:100%}
 .pg-dine .dine-cat>.lines-list{margin-top:4px}
@@ -613,33 +613,25 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-dine .dn-photo{align-items:end}
 .pg-dine .dn-nights{align-items:end}
 .pg-dine .dn-fixtures .ml>.n{flex:0 1 auto}
-@media (max-width:639.98px){.pg-dine .dine-board{gap:32px}.pg-dine .dine-board .lines-list .ml{font-size:var(--a4)}.pg-dine .dn-hours{font-size:8.2vw}}
+@media (max-width:639.98px){.pg-dine .dine-board{gap:32px}.pg-dine .dine-board .lines-list .ml{font-size:var(--a4)}}
 
 /* the narrowest phones: a display word as long as ENGAGEMENTS still fits the measure */
 @media (max-width:359.98px){.m2,:is(.pg-weddings,.pg-corporate,.pg-private) .ev-top .m2{font-size:34px}}
 
 /* ==== Milan: discipline with one interruption ====
    The page follows the building: downstairs always sits lower on the page than upstairs.
-   One deliberate act per page, never more: Home lets the title cross the photograph and STAY run off the
-   Night band; Functions sets 240 at the scale of the room. Full-bleed photographs drift a little inside their
+   One deliberate act per page, never more: Home lets the title cross the photograph. Full-bleed photographs drift a little inside their
    frames as they pass. All of it is still without scroll-driven animation support or under reduced motion. */
 @media (min-width:900px){
   .two:has(>.intro:nth-child(2):last-child)>.intro:first-child{margin-top:clamp(96px,11vw,200px)}
   .strip:is(.fn-three,.x-three,.ev-three){align-items:start}
   .strip:is(.fn-three,.x-three,.ev-three)>:not(:nth-child(2)){margin-top:clamp(64px,8vw,140px)}
 }
-/* the oversized word: a composition, not a heading (aria-hidden), Bright Red on the Night ground */
-.giant{display:block;margin:clamp(40px,6vw,96px) 0 -.06em;padding-left:var(--margin);font-family:var(--marsha);font-weight:700;font-size:clamp(190px,38vw,680px);line-height:.74;letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap;color:var(--bright);user-select:none;pointer-events:none}
-.giant-k{display:block;padding-left:calc(var(--margin) + .4em);margin-top:clamp(40px,6vw,96px);color:var(--almond);font-style:italic}
-.giant-k+.giant{margin-top:6px}
-.ch-night:has(>.giant){overflow:clip}
 @media (prefers-reduced-motion:no-preference){
   @supports (animation-timeline:view()){
-    .giant{animation:bf-cross linear both;animation-timeline:view();animation-range:entry 0% exit 60%}
     .ph.full>img:first-child{scale:1.1;animation:bf-drift linear both;animation-timeline:view()}
   }
 }
-@keyframes bf-cross{from{transform:translateX(14vw)}to{transform:translateX(-18vw)}}
 @keyframes bf-drift{from{translate:0 -4.5%}to{translate:0 4.5%}}
 /* Home: the title crosses the lower edge of the cover photograph; the script moves to the top corner to make room */
 .pg-home .hm-cover+.quiet{padding-top:0}
