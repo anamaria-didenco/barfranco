@@ -809,3 +809,21 @@ body:has(.pg-home .hm-hero) .bf-mast{display:none}
 .pg-home .hm-ev .hm-txt .a2{margin:0}
 @media (max-width:899.98px){.pg-home .hm-lead,.pg-home .hm-ciao2 .hm-txt,.pg-home .hm-details{grid-column:1/-1}.pg-home .hm-intro .hm-num{display:none}.pg-home .hm-details{margin-top:28px}}
 @media (max-width:639.98px){.pg-home .hm-h1{font-size:min(48px,11.6vw)}}
+/* Home, +20%: a calmer title, a wider intro, readable dishes, the Negroni Bar band on phones, details aligned */
+.pg-home .hm-hero-in{max-width:min(860px,62vw)}
+.pg-home .hm-h1{font-size:clamp(44px,5.2vw,86px);line-height:.92}
+.pg-home .hm-amp{display:block}
+.pg-home .hm-hero-k{font-size:var(--a3)}
+.pg-home .hm-lead{grid-column:2/12}
+.pg-home .hm-lead .a1{max-width:34ch}
+.pg-home .hm-lead .lines{max-width:440px}
+.pg-home .hm-hero-k{max-width:44ch}
+.pg-home .hm-dishes .dish{font-size:var(--a3)}
+.pg-home .hm-details{align-self:start;margin-top:clamp(40px,4vw,64px)}
+@media (max-width:899.98px){
+  .pg-home .hm-hero-in{max-width:none}
+  .pg-home .hm-dark{display:block;min-height:0}
+  .pg-home .hm-dark-ph{position:static;height:auto;aspect-ratio:4/3;filter:contrast(1.04) saturate(.9) sepia(.06)}
+  .pg-home .hm-details{margin-top:28px}
+}
+@media (max-width:639.98px){.pg-home .hm-h1{font-size:min(48px,11.2vw)}}
