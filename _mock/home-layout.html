@@ -94,46 +94,63 @@
 <script defer src="/static/chrome.js"></script>
 <meta name="robots" content="noindex, nofollow">
 <style>
-/* TRIAL LAYOUT (reference: Ulysses-style editorial). Not the live Home. Styles inline so it can be judged before it is built into franco.css */
-.ly{--pad:var(--margin)}
-.ly-hero{position:relative;height:min(100svh - 92px,900px);min-height:560px;overflow:hidden;background:var(--deep);color:var(--almond)}
-.ly-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%;filter:brightness(.62) contrast(1.06) saturate(.9) sepia(.08)}
-.ly-hero .ly-in{position:relative;z-index:2;height:100%;display:grid;align-content:end;justify-items:start;padding:0 var(--pad) clamp(40px,7vh,88px) calc(var(--pad) + 46%)}
-.ly-hero h1{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:clamp(44px,6.4vw,104px);line-height:.88;letter-spacing:-.005em;color:var(--almond);margin:0}
-.ly-hero h1 em{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;font-size:.56em;letter-spacing:0}
-.ly-hero .ly-sub{margin-top:22px;max-width:30ch;font-size:var(--a3);font-style:italic}
-.ly-hero .ly-down{margin-top:28px;width:46px;height:46px;border:1px solid var(--almond);border-radius:50%;display:grid;place-items:center;color:var(--almond);text-decoration:none;font-size:18px}
-.ly-note{font-family:var(--affairs);font-style:italic;color:var(--almond);font-size:clamp(28px,3vw,46px);line-height:1;transform:rotate(-8deg);position:absolute;right:var(--pad);top:clamp(28px,6vw,80px);z-index:2}
-.ly-ch{position:relative;padding:clamp(64px,8vw,128px) 0}
-.ly-ch .wrap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gutter);align-items:start}
-.ly-num{grid-column:1/2;font-family:var(--affairs);font-style:italic;font-size:15px;border-left:1px solid currentColor;padding:2px 0 40px 10px;opacity:.85}
-.ly-txt{grid-column:2/6;display:grid;gap:22px;align-content:start;padding-top:18px}
-.ly-txt .ly-k{font-family:var(--affairs);font-style:italic;font-size:15px}
-.ly-txt h2{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:clamp(40px,4.6vw,76px);line-height:.9;margin:0;color:var(--head)}
-.ly-txt h2 em{font-family:var(--affairs);font-weight:400;font-style:italic;text-transform:none;font-size:.6em}
-.ly-txt p{max-width:34ch;margin:0}
-.ly-txt .ask{justify-self:start;border-bottom:1px solid currentColor;padding-bottom:4px}
-.ly-a{grid-column:6/10}.ly-b{grid-column:10/13;margin-top:clamp(120px,14vw,220px)}
+/* TRIAL LAYOUT, following the editorial reference closely. Not the live Home. Inline so it can be judged before it is built into franco.css */
+.bf-mast{display:none!important}
+.ly{--pad:clamp(20px,4.4vw,64px)}
+.ly-k{font-family:var(--affairs);font-size:12px;letter-spacing:.32em;text-transform:none;font-variant-caps:all-small-caps;font-size:15px}
+/* the bar on the photograph */
+.ly-top{position:absolute;left:0;right:0;top:0;z-index:5;display:flex;align-items:center;gap:32px;padding:26px var(--pad);color:var(--almond)}
+.ly-top .ly-name{font-family:var(--marsha);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:22px;color:var(--almond);text-decoration:none;margin-right:auto}
+.ly-top nav{display:flex;gap:clamp(20px,3.6vw,56px)}
+.ly-top nav a,.ly-top .ly-book{font-family:var(--affairs);font-variant-caps:all-small-caps;letter-spacing:.28em;font-size:15px;color:var(--almond);text-decoration:none}
+.ly-top .ly-book{border:1px solid var(--almond);padding:8px 14px}
+.ly-top nav a:hover,.ly-top .ly-book:hover{color:var(--almond);opacity:.7}
+.ly-top .ly-ix{display:none;background:none;border:0;color:var(--almond);font:italic 18px var(--affairs);cursor:pointer;padding:6px 0}
+/* hero */
+.ly-hero{position:relative;height:min(100svh,920px);min-height:600px;overflow:hidden;background:var(--deep);color:var(--almond)}
+.ly-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 62%;filter:brightness(.72) contrast(1.05) saturate(.92) sepia(.06)}
+.ly-hero .ly-in{position:absolute;left:var(--pad);top:50%;transform:translateY(-42%);z-index:2;display:grid;justify-items:start;gap:26px;max-width:min(560px,48vw)}
+.ly-hero h1{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:clamp(44px,5.6vw,90px);line-height:.9;letter-spacing:-.005em;color:var(--almond);margin:0}
+.ly-hero .ly-k{color:var(--almond);line-height:1.7}
+.ly-hero .ly-down{width:48px;height:48px;border:1px solid var(--almond);border-radius:50%;display:grid;place-items:center;color:var(--almond);text-decoration:none;font-size:18px;margin-top:20px}
+.ly-note{position:absolute;right:calc(var(--pad) + 2vw);bottom:clamp(60px,12vh,130px);z-index:2;font-family:var(--affairs);font-style:italic;color:var(--almond);font-size:clamp(30px,3.4vw,54px);line-height:.95;transform:rotate(-12deg);text-align:right}
+.ly-note span{display:block;margin-right:-.6em}
+/* chapters */
+.ly-ch{position:relative;padding:clamp(48px,6vw,96px) 0}
+.ly-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding:0 var(--pad);max-width:1600px;margin:0 auto;align-items:start}
+.ly-num{grid-column:1/2;font-family:var(--affairs);font-size:13px;letter-spacing:.2em;color:var(--bright);margin:0}
+.ly-num::after{content:"";display:block;width:1px;height:64px;background:currentColor;margin:16px 0 0 4px;opacity:.6}
+.ly-txt{grid-column:2/6;display:grid;gap:26px;align-content:start;padding-top:22px}
+.ly-txt .ly-k{line-height:1.5}
+.ly-txt h2{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:clamp(38px,4.2vw,68px);line-height:.92;margin:0;color:var(--deep)}
+.ly-txt p{max-width:30ch;margin:0;font-size:var(--a3)}
+.ly-txt .ly-more{justify-self:start;font-family:var(--affairs);font-variant-caps:all-small-caps;letter-spacing:.28em;font-size:14px;color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:6px;margin-top:10px}
+.ly-a{grid-column:6/10}.ly-b{grid-column:10/12;margin-top:clamp(110px,12vw,200px)}
 .ly-a .ph{aspect-ratio:4/5}.ly-b .ph{aspect-ratio:3/4}
-.ly-scribble{position:absolute;right:var(--pad);top:clamp(40px,5vw,80px);font-family:var(--affairs);font-style:italic;color:var(--bright);font-size:clamp(22px,2.2vw,34px);line-height:1.15;transform:rotate(-8deg);text-align:right}
-.ly-dark{position:relative;background:var(--deep);color:var(--almond);overflow:hidden;min-height:clamp(520px,60vw,780px);display:grid;align-items:center}
-.ly-dark>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;filter:brightness(.55) contrast(1.06) saturate(.9) sepia(.08)}
-.ly-dark .wrap{position:relative;z-index:2}
-.ly-dark .ly-txt h2,.ly-dark .ask{color:var(--almond)}
-.ly-ev .ly-wide{grid-column:3/13}.ly-ev .ly-wide .ph{aspect-ratio:2.2/1}
-.ly-ev .ly-txt{grid-column:2/9;margin-top:36px}
-.ly-ev .ly-scribble{left:auto;right:var(--pad);text-align:right;top:auto;bottom:clamp(64px,8vw,128px)}
+.ly-scr{position:absolute;right:calc(var(--pad) + 3vw);top:clamp(56px,6vw,100px);font-family:var(--affairs);font-style:italic;color:var(--bright);font-size:clamp(22px,2.1vw,32px);line-height:1.1;transform:rotate(-10deg);text-align:right}
+.ly-scr span{display:block}.ly-scr span:nth-child(2){margin-right:-1em}.ly-scr span:nth-child(3){margin-right:-.2em}
+.ly-vert{position:absolute;right:calc(var(--pad) - 6px);top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--affairs);font-variant-caps:all-small-caps;letter-spacing:.3em;font-size:13px;color:var(--deep)}
+.ly-dark{position:relative;background:var(--deep);color:var(--almond);overflow:hidden;min-height:clamp(560px,46vw,720px);display:grid;align-items:center}
+.ly-dark>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 45%;filter:brightness(.6) contrast(1.06) saturate(.9) sepia(.08)}
+.ly-dark .ly-fill{width:100%}
+.ly-dark .ly-grid{position:relative;z-index:2;width:100%}
+.ly-dark .ly-num{color:var(--almond)}
+.ly-dark .ly-txt h2,.ly-dark .ly-txt .ly-more{color:var(--almond)}
+.ly-ev .ly-scr{left:var(--pad);right:auto;text-align:left;top:clamp(60px,6vw,100px)}
+.ly-ev .ly-wide{grid-column:3/12}.ly-ev .ly-wide .ph{aspect-ratio:2.1/1}
+.ly-ev .ly-num{grid-column:12/13;justify-self:end}
+.ly-ev .ly-txt{grid-column:3/9;margin-top:40px}
 @media (max-width:899.98px){
-  .ly-hero .ly-in{padding-left:var(--pad)}
-  .ly-hero>img{object-position:62% 50%}
-  .ly-ch .wrap{grid-template-columns:1fr}
-  .ly-num,.ly-txt,.ly-a,.ly-b,.ly-ev .ly-wide,.ly-ev .ly-txt{grid-column:1/-1}
-  .ly-num{padding-bottom:0;border:0;padding-left:0}
+  .ly-top nav,.ly-top .ly-book{display:none}.ly-top .ly-ix{display:block}
+  .ly-top{padding:20px var(--pad)}
+  .ly-hero .ly-in{max-width:none;right:var(--pad);top:auto;bottom:clamp(140px,22vh,190px);transform:none}
+  .ly-hero>img{object-position:58% 60%}
+  .ly-note{bottom:48px;font-size:30px}
+  .ly-grid{grid-template-columns:1fr}
+  .ly-num,.ly-txt,.ly-a,.ly-b,.ly-ev .ly-wide,.ly-ev .ly-txt,.ly-ev .ly-num{grid-column:1/-1;justify-self:start}
   .ly-b{margin-top:16px;width:62%;justify-self:end}
-  .ly-scribble{position:static;margin:0 var(--pad) 18px;text-align:left}
-  .ly-note{display:none}
-  .ly-ch>.ly-scribble{margin-bottom:28px}
-  .ly-ev .ly-scribble{position:static}
+  .ly-scr,.ly-ev .ly-scr{position:static;margin:0 var(--pad) 40px;text-align:left}
+  .ly-vert{display:none}
 }
 </style>
 </head>
@@ -171,24 +188,31 @@
 
 <main class="pg-home ly">
 <section class="ly-hero" aria-label="Bar Franco">
-  <img src="/images/pack-2026/server-pasta-candlelit.jpg" alt="Fresh pasta carried through the candlelit room" width="1800" height="1200" fetchpriority="high">
-  <p class="ly-note" aria-hidden="true">Ti aspettiamo</p>
+  <div class="ly-top">
+    <a class="ly-name" href="/">Bar Franco</a>
+    <nav aria-label="Main"><a href="/menus/">Restaurant</a><a href="/menus/#sheet-drink">Negroni bar</a><a href="/menus/">Menus</a><a href="/functions/">Events</a><a href="/our-story/">About</a></nav>
+    <a class="ly-book" href="/bookings/">Book a table</a>
+    <button class="ly-ix" type="button" data-ora="menu-open">Index</button>
+  </div>
+  <img src="/images/cocktail-tray.jpg" alt="A Negroni, a spritz and a glass of red carried on a tray past the rose-plaster wall" width="934" height="1400" fetchpriority="high">
   <div class="ly-in">
-    <h1>Not a bar.<br><em>A world.</em></h1>
-    <p class="ly-sub">Ciao. This is Bar Franco, a Negroni bar and Italian restaurant (upstairs) at The Crossing, Christchurch.</p>
+    <h1>Good<br>food<br>late&nbsp;nights<br>&amp;&nbsp;Negronis</h1>
+    <p class="ly-k">An Italian restaurant<br>&amp; Negroni bar in Christchurch</p>
     <a class="ly-down" href="#ly-1" aria-label="Down the page">↓</a>
   </div>
+  <p class="ly-note" aria-hidden="true">Aperitivo<span>sempre</span></p>
 </section>
 
 <section class="ly-ch ch-menu" id="ly-1" aria-label="The Restaurant">
-  <p class="ly-scribble" aria-hidden="true">Buon cibo,<br>buona compagnia</p>
-  <div class="wrap">
+  <p class="ly-scr" aria-hidden="true"><span>Buon cibo,</span><span>buona compagnia,</span><span>sempre</span></p>
+  <p class="ly-vert" aria-hidden="true">Due livelli — una sola anima</p>
+  <div class="ly-grid">
     <p class="ly-num">01</p>
     <div class="ly-txt">
-      <p class="ly-k">Upstairs · the Restaurant</p>
-      <h2>Pasta made by hand. <em>Upstairs.</em></h2>
-      <p>A curved wall of windows, copper lamps overhead and the open kitchen in full view, where we cook like someone’s coming&nbsp;home.</p>
-      <a class="ask" href="/menus/">See the menus</a>
+      <p class="ly-k">The<br>restaurant</p>
+      <h2>Pasta by hand, upstairs</h2>
+      <p>Ciao. This is Bar Franco, a Negroni bar and Italian restaurant (upstairs) at The Crossing, Christchurch. Long lunches, late dinners and everything in&nbsp;between.</p>
+      <a class="ly-more" href="/menus/">Explore the restaurant</a>
     </div>
     <div class="ly-a"><div class="ph"><img src="/images/level-restaurant-graded.jpg" alt="The Restaurant upstairs, set for the evening" width="933" height="1400" loading="lazy"></div></div>
     <div class="ly-b"><div class="ph"><img src="/images/parmigiana-spritz.jpg" alt="Parmigiana and a spritz on the marble table" width="934" height="1400" loading="lazy"></div></div>
@@ -197,27 +221,27 @@
 
 <section class="ly-dark" aria-label="The Negroni Bar">
   <img src="/images/bar-lounge-lamps.jpg" alt="Fringed lamps over the rose-plastered Negroni bar" width="900" height="1125" loading="lazy">
-  <div class="ly-ch"><div class="wrap">
-      <p class="ly-num">02</p>
-      <div class="ly-txt">
-        <p class="ly-k">Downstairs · the Negroni Bar</p>
-        <h2>Same table. <em>A darker mood.</em></h2>
-        <p>Rose-red plaster, fringed lamps and curved velvet booths. Where the evening starts&nbsp;slow.</p>
-        <a class="ask" href="/menus/#sheet-drink">Drinks menu</a>
-      </div>
+  <div class="ly-ch ly-fill"><div class="ly-grid">
+    <p class="ly-num">02</p>
+    <div class="ly-txt">
+      <p class="ly-k">The<br>Negroni bar</p>
+      <h2>Same spirit.<br>A darker mood.</h2>
+      <p>Rose-red plaster, fringed lamps and curved velvet booths. For Negronis, spritzes and whatever the night calls&nbsp;for.</p>
+      <a class="ly-more" href="/menus/#sheet-drink">Explore the Negroni bar</a>
+    </div>
   </div></div>
 </section>
 
 <section class="ly-ch ly-ev ch-menu" aria-label="Events">
-  <p class="ly-scribble" aria-hidden="true">Pasta,<br>vino,<br>persone</p>
-  <div class="wrap">
-    <p class="ly-num">03</p>
+  <p class="ly-scr" aria-hidden="true"><span>Pasta,</span><span>vino,</span><span>persone</span></p>
+  <div class="ly-grid">
     <div class="ly-wide"><div class="ph"><img src="/images/event-candlelit-guests.jpg" alt="Guests at a long candlelit table" width="933" height="1400" loading="lazy"></div></div>
+    <p class="ly-num">03</p>
     <div class="ly-txt">
-      <p class="ly-k">Both floors · private events</p>
-      <h2>We host. <em>You stay.</em></h2>
-      <p>Not a function room. Canapés in the bar, dinner upstairs, back down for dessert and dancing. One level or both, no venue hire&nbsp;fee.</p>
-      <a class="ask" href="/functions/#enquire">Plan an event</a>
+      <p class="ly-k">Private<br>events</p>
+      <h2>We host. You stay.</h2>
+      <p>Not a function room. Canapés in the bar, dinner upstairs, back down for dessert and dancing. Up to 240, no venue hire&nbsp;fee.</p>
+      <a class="ly-more" href="/functions/#enquire">Plan an event</a>
     </div>
   </div>
 </section>
