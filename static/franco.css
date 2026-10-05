@@ -1059,3 +1059,27 @@ body:has(.pg-hero) .bf-mast nav a[aria-current="page"]{text-decoration:underline
 .ft .ft-grid{position:relative;z-index:1}
 .ft-dog{position:absolute;z-index:0;top:clamp(32px,3.4vw,60px);right:clamp(28px,4.5vw,96px);width:clamp(84px,9vw,132px);height:auto;opacity:.4;pointer-events:none}
 @media (max-width:899.98px){.ft-dog{display:none}}   /* phones keep Franco as the small base-line emblem; the big signature is a wider-screen moment */
+
+/* ==== Bookings · Two levels, one world: a descent ====
+   you begin upstairs in the light Restaurant (Level 2, Almond) and descend into the dark Negroni Bar
+   (Level 1, Deep Red); the ground deepens as you go down, each floor a cinematic full-bleed that drifts,
+   a station number and a short rule marking the shaft. Ends on the two menus, so it still converts. */
+.pg-bookings .bk-levels{position:relative;padding-top:var(--between)}
+.pg-bookings .bk-levels-head{display:grid;justify-items:start;gap:clamp(14px,2vw,26px);padding-bottom:clamp(28px,4vw,56px)}
+/* the diptych: two floors side by side, one dark, one light — a seam down the middle */
+.pg-bookings .lv-split{display:grid;grid-template-columns:1fr 1fr}
+.pg-bookings .lv{display:flex;flex-direction:column;padding:clamp(28px,3vw,52px) clamp(24px,3.4vw,56px) clamp(36px,4vw,64px)}
+.pg-bookings .lv-ph{width:100%}
+.pg-bookings .lv-cap{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:clamp(20px,2.4vw,40px);align-items:start;padding-top:clamp(22px,2.6vw,40px)}
+.pg-bookings .lv-n{font-family:var(--marsha);font-weight:700;font-size:clamp(32px,3.2vw,52px);line-height:.8;margin:0;color:currentColor}
+.pg-bookings .lv-n::after{content:"";display:block;width:1px;height:clamp(40px,4.6vw,76px);background:currentColor;opacity:.45;margin:14px 0 0 .12em}
+.pg-bookings .lv-txt{display:grid;justify-items:start;gap:clamp(10px,1.3vw,18px);max-width:34ch}
+.pg-bookings .lv-txt .m3{max-width:none}
+.pg-bookings .lv-txt .a2{max-width:30ch}
+@media (max-width:767.98px){
+  .pg-bookings .lv-split{grid-template-columns:1fr}   /* phones: the floors stack, dark below light */
+  .pg-bookings .lv{padding:clamp(24px,6vw,40px) var(--margin) clamp(32px,8vw,48px)}
+  .pg-bookings .lv-up{order:-1}                        /* upstairs on top, descend into the dark bar */
+  .pg-bookings .lv-cap{grid-template-columns:1fr;row-gap:14px}
+  .pg-bookings .lv-n::after{height:34px}
+}
