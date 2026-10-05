@@ -118,6 +118,10 @@ All photos are **baked in** as `<img src="/images/….jpg" width height alt>` in
 1. Add the new image to `images/` (resize to ~1400px long edge, JPEG quality ~0.82 — keep files small).
 2. Update the `src=""` on the relevant `<img>` and write a descriptive `alt=""` (good for SEO).
 
+**Curated: one photograph, one page.** No photograph appears on two pages (the coaster set aside). Each page's
+pictures are chosen as a set for its subject; before using a photo, check it isn't already on another page:
+`grep -l 'images/<name>.jpg' index.html */index.html`. The library holds far more than the site uses, so there is always another.
+
 Two level photos (`images/level-negroni-graded.jpg`, `images/level-restaurant-graded.jpg`) were
 **colour-graded** to match each other (warm, moody, matte blacks). If you swap them, try to keep a
 consistent warm/low-key grade so the set stays cohesive. Originals like `server-tray.jpg` and
