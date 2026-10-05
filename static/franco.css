@@ -1060,31 +1060,28 @@ body:has(.pg-hero) .bf-mast nav a[aria-current="page"]{text-decoration:underline
 .ft-dog{position:absolute;z-index:0;top:clamp(32px,3.4vw,60px);right:clamp(28px,4.5vw,96px);width:clamp(84px,9vw,132px);height:auto;opacity:.4;pointer-events:none}
 @media (max-width:899.98px){.ft-dog{display:none}}   /* phones keep Franco as the small base-line emblem; the big signature is a wider-screen moment */
 
-/* ==== Bookings · Two levels, one world: a descent ====
-   you begin upstairs in the light Restaurant (Level 2, Almond) and descend into the dark Negroni Bar
-   (Level 1, Deep Red); the ground deepens as you go down, each floor a cinematic full-bleed that drifts,
-   a station number and a short rule marking the shaft. Ends on the two menus, so it still converts. */
-.pg-bookings .bk-levels{position:relative;padding-top:var(--between);overflow:hidden}
-.pg-bookings .bk-levels-head{display:grid;justify-items:start;gap:clamp(14px,2vw,26px);padding-bottom:clamp(28px,4vw,56px)}
-/* the diptych: two floors side by side, one dark, one light — a seam down the middle */
-.pg-bookings .lv-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.pg-bookings .lv{display:flex;flex-direction:column;min-width:0;padding:clamp(28px,3vw,52px) clamp(24px,3.4vw,56px) clamp(36px,4vw,64px)}
-.pg-bookings .lv-txt>*{overflow-wrap:break-word}
+/* ==== Bookings · Two levels, one world: the building as an elevation ====
+   calm Almond ground, no colour blocks. The two floors are offset in space — downstairs sits lower than
+   upstairs — each marked by a floor-datum rule and a precise architectural label (01 Downstairs / 02 Upstairs).
+   Photography and type do the work; it ends on the two menus. */
+.pg-bookings .bk-levels{position:relative;padding-top:var(--between);padding-bottom:clamp(40px,6vw,96px)}
+.pg-bookings .bk-levels-head{display:grid;justify-items:start;gap:clamp(14px,2vw,26px);padding-bottom:clamp(44px,6vw,92px)}
+.pg-bookings .lv-split{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(28px,6vw,120px);align-items:start}
+.pg-bookings .lv-down{margin-top:clamp(52px,10vw,168px)}   /* downstairs sits lower — the building drawn in the layout */
+.pg-bookings .lv{display:flex;flex-direction:column;min-width:0}
+.pg-bookings .lv-floor{display:flex;align-items:baseline;gap:.9em;margin:0 0 clamp(18px,2.2vw,32px);padding-top:clamp(12px,1.4vw,18px);border-top:1px solid var(--hair);color:var(--bright)}
+.pg-bookings .lv-fn{font-family:var(--marsha);font-weight:700;font-size:clamp(19px,1.9vw,28px);line-height:1;letter-spacing:0}
+.pg-bookings .lv-fk{font-family:var(--affairs);font-style:italic;font-size:var(--a3)}
 .pg-bookings .lv-ph{width:100%}
-.pg-bookings .lv-cap{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:clamp(20px,2.4vw,40px);align-items:start;padding-top:clamp(22px,2.6vw,40px)}
-.pg-bookings .lv-n{font-family:var(--marsha);font-weight:700;font-size:clamp(32px,3.2vw,52px);line-height:.8;margin:0;color:currentColor}
-.pg-bookings .lv-n::after{content:"";display:block;width:1px;height:clamp(40px,4.6vw,76px);background:currentColor;opacity:.45;margin:14px 0 0 .12em}
-.pg-bookings .lv-txt{display:grid;justify-items:start;gap:clamp(10px,1.3vw,18px);max-width:34ch}
-.pg-bookings .lv-txt .m3{max-width:none}
-.pg-bookings .lv-txt .a2{max-width:30ch}
+.pg-bookings .lv-cap{display:grid;justify-items:start;gap:clamp(10px,1.3vw,18px);padding-top:clamp(18px,2.2vw,30px)}
+.pg-bookings .lv-cap .m4{color:var(--deep)}
+.pg-bookings .lv-cap .a2{max-width:32ch}
 @media (max-width:767.98px){
-  /* phones keep the two floors side by side — a narrow diptych, not a stack */
-  .pg-bookings .lv{padding:clamp(16px,4vw,28px) clamp(12px,3vw,20px) clamp(22px,5vw,34px)}
-  .pg-bookings .lv-cap{grid-template-columns:1fr;row-gap:10px;column-gap:0;padding-top:clamp(16px,4vw,26px)}
-  .pg-bookings .lv-n{font-size:clamp(26px,7vw,36px)}
-  .pg-bookings .lv-n::after{height:28px;margin-top:10px}
-  .pg-bookings .lv-txt{gap:9px}
-  body:has(.pg-hero) main .bk-levels .lv .lv-txt .m3{font-size:min(3.6vw,16px);line-height:1.05;letter-spacing:0;max-width:none}
-  body:has(.pg-hero) main .bk-levels .lv .lv-txt .a2{font-size:13px;max-width:none}
-  body:has(.pg-hero) main .bk-levels .lv .lv-txt .eyebrow{font-size:11px}
+  .pg-bookings .lv-split{column-gap:clamp(14px,4vw,24px)}
+  .pg-bookings .lv-down{margin-top:clamp(28px,12vw,64px)}
+  .pg-bookings .lv-floor{gap:.6em;margin-bottom:12px;padding-top:9px}
+  .pg-bookings .lv-fn{font-size:clamp(15px,4.4vw,20px)}
+  .pg-bookings .lv-fk{font-size:13px}
+  body:has(.pg-hero) main .bk-levels .lv .lv-cap .m4{font-size:min(4.6vw,20px);line-height:1.04;letter-spacing:0;max-width:none}
+  body:has(.pg-hero) main .bk-levels .lv .lv-cap .a2{font-size:13px;max-width:none}
 }
