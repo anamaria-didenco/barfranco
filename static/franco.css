@@ -1059,3 +1059,28 @@ body:has(.pg-hero) .bf-mast nav a[aria-current="page"]{text-decoration:underline
 .ft .ft-grid{position:relative;z-index:1}
 .ft-dog{position:absolute;z-index:0;top:clamp(32px,3.4vw,60px);right:clamp(28px,4.5vw,96px);width:clamp(84px,9vw,132px);height:auto;opacity:.4;pointer-events:none}
 @media (max-width:899.98px){.ft-dog{display:none}}   /* phones keep Franco as the small base-line emblem; the big signature is a wider-screen moment */
+
+/* ==== Bookings · Two levels, one world: the building as an elevation ====
+   calm Almond ground, no colour blocks. The two floors are offset in space — downstairs sits lower than
+   upstairs — each marked by a floor-datum rule and a precise architectural label (01 Downstairs / 02 Upstairs).
+   Photography and type do the work; it ends on the two menus. */
+.pg-bookings .bk-levels{position:relative;padding-top:var(--between);padding-bottom:clamp(40px,6vw,96px)}
+.pg-bookings .bk-levels-head{display:grid;justify-items:start;gap:clamp(14px,2vw,26px);padding-bottom:clamp(44px,6vw,92px)}
+.pg-bookings .lv-split{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(28px,6vw,120px);align-items:start}
+.pg-bookings .lv-down{margin-top:clamp(52px,10vw,168px)}   /* downstairs sits lower — the building drawn in the layout */
+.pg-bookings .lv{display:flex;flex-direction:column;min-width:0}
+.pg-bookings .lv-floor{display:flex;align-items:baseline;gap:.9em;margin:0 0 clamp(18px,2.2vw,32px);padding-top:clamp(12px,1.4vw,18px);border-top:1px solid var(--hair);color:var(--bright)}
+.pg-bookings .lv-fn{font-family:var(--marsha);font-weight:700;font-size:clamp(19px,1.9vw,28px);line-height:1;letter-spacing:0}
+.pg-bookings .lv-fk{font-family:var(--affairs);font-style:italic;font-size:var(--a3)}
+.pg-bookings .lv-ph{width:100%}
+.pg-bookings .lv-cap{display:grid;justify-items:start;gap:clamp(10px,1.3vw,18px);padding-top:clamp(18px,2.2vw,30px)}
+.pg-bookings .lv-cap .m4{color:var(--deep)}
+.pg-bookings .lv-cap .a2{max-width:32ch}
+@media (max-width:767.98px){
+  /* phones: recompose as a stacked elevation — upstairs above, downstairs below — full-width, not squashed */
+  .pg-bookings .lv-split{grid-template-columns:1fr;row-gap:clamp(40px,10vw,64px)}
+  .pg-bookings .lv-up{order:-1}                 /* upstairs on top; you read down into the bar */
+  .pg-bookings .lv-down{margin-top:0}
+  .pg-bookings .lv-floor{margin-bottom:clamp(14px,3.5vw,20px)}
+  .pg-bookings .lv-cap{padding-top:clamp(16px,4vw,24px)}
+}
