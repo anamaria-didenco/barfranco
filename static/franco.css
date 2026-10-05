@@ -641,11 +641,13 @@ button.line{appearance:none;-webkit-appearance:none}
 @keyframes bf-drift{from{translate:0 -4.5%}to{translate:0 4.5%}}
 /* Home: the cover photograph is sized so the title lands just below it on the first screen */
 .pg-home .hm-cover+.quiet{padding-top:clamp(28px,3.4vw,48px)}   /* the title follows the photograph closely: one opening, not two sections */
-@media (min-width:640px){.pg-home .hm-cover-ph{width:min(100%,calc((100svh - 360px) * .8))}}  /* the title sits just below the photograph, still on the first screen */
+/* the Bar Franco script heads the hero, above the running line; the first screen is script, line and photograph; the title follows just below */
+.pg-home .hm-script{display:block;width:clamp(116px,10.5vw,152px);height:auto}
+@media (min-width:640px){.pg-home .hm-cover-ph{width:min(100%,calc((100svh - 330px) * .8))}}  /* the title sits just below the photograph, still on the first screen */
 
 /* ==== art direction: three interventions ====
    1 · Cinema: on desktop the full-bleed photographs are cut to 2.39:1, film stills rather than banners.
-   2 · The signature once: the Franco script sits on a page's first photograph only (removed from the rest in the markup).
+   2 · No watermark: photographs carry no script; the Bar Franco script heads Home's hero instead.
    3 · One grade: every photograph gets the same warm, matte grade so the library reads as one shoot. */
 @media (min-width:900px){.full.r-169:not(:has(iframe)){aspect-ratio:2.39/1}}   /* the Contact map keeps its height */
 .ph>img:first-child{filter:contrast(1.04) saturate(.9) sepia(.06)}
