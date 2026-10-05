@@ -37,6 +37,9 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   The act so far: Home's title crosses the lower edge of the cover photograph. **No oversized words or numbers**
   (no giant 240, STAY or 17:00 spread across a page): the owner rejected them; facts stay at heading size or smaller.
   No checkerboards, Vespas, postcards or trattoria red-and-white.
+- **Art direction, three standing rules.** Cinema: on desktop full-bleed photographs (`.ph.full.r-169`) are cut 2.39:1,
+  film stills not banners (a map keeps its height). The signature once: the Franco script `.mark` sits on a page's first
+  photograph only. One grade: every photograph carries the same warm matte grade (`.ph>img` filter), so the library reads as one shoot.
 - Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
   franco.js shows whatever is on the first screen at once (`data-now`) and moves the rest once as it is seen; at 2.5 s
