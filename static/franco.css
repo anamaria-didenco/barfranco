@@ -193,7 +193,7 @@ a.ml:hover{text-decoration:none;color:var(--head)}
 .ask:active{opacity:.6}
 @media (max-width:639.98px){.line{max-width:none;padding:15px 10px 14px}}
 /* the narrowest phones: the fact drops under the words rather than running off the edge */
-@media (max-width:399.98px){.line:not(.dock .line){flex-wrap:wrap;row-gap:4px}.line:not(.dock .line)>.v{flex:1 0 100%;text-align:left;white-space:normal}}
+@media (max-width:371.98px){.line:not(.dock .line){flex-wrap:wrap;row-gap:4px}.line:not(.dock .line)>.v{flex:1 0 100%;text-align:left;white-space:normal}}
 /* the square ask: the words in a one-line box, filled (.fill) for the primary of a pair. Chapter-aware through --fill/--fill-text */
 .btn{display:inline-block;padding:14px 22px;border:1px solid currentColor;color:var(--ink);font-family:var(--affairs);font-size:var(--a3);line-height:1;text-decoration:none;transition:background-color var(--t-ink) var(--ease-ink),color var(--t-ink) var(--ease-ink)}
 .btn.fill{background:var(--fill);color:var(--fill-text);border-color:var(--fill)}
@@ -673,3 +673,4 @@ button.line{appearance:none;-webkit-appearance:none}
   .pg-contact .c-hero .wrap>.intro,.pg-vouchers .hero .wrap>.hero-txt,.pg-menus .mn-hero .wrap>.mn-txt{grid-column:1/-1;justify-self:center;justify-items:center;text-align:center;max-width:46ch}
   .pg-menus .mn-hero .wrap>.mn-tabs{grid-column:1/-1;justify-self:center}
 }
+.pg-home .hm-from-h .m3{max-width:20ch}   /* three or four lines, not five */
