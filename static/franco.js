@@ -28,6 +28,17 @@
   setTimeout(function () { all = true; arm(); }, 2500);
   window.addEventListener('resize', arm);
 
+  /* ---- hover swap: the primary asks' words slide up and a duplicate slides in from below ---- */
+  [].forEach.call(d.querySelectorAll('a.line > span'), function (s) {
+    if (s.querySelector('.lbl') || s.previousElementSibling) return;   // only the first span (the words), once
+    var text = s.textContent;
+    s.textContent = '';
+    s.classList.add('swap');
+    var a = d.createElement('span'); a.className = 'lbl'; a.textContent = text;
+    var b = d.createElement('span'); b.className = 'lbl lbl-dup'; b.setAttribute('aria-hidden', 'true'); b.textContent = text;
+    s.appendChild(a); s.appendChild(b);
+  });
+
   /* ---- phone Index ---- */
   var ix = d.getElementById('ora-index'), last = null;
   function open() {
