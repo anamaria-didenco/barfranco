@@ -674,3 +674,7 @@ button.line{appearance:none;-webkit-appearance:none}
   .pg-menus .mn-hero .wrap>.mn-tabs{grid-column:1/-1;justify-self:center}
 }
 .pg-home .hm-from-h .m3{max-width:20ch}   /* three or four lines, not five */
+/* Functions: the two-line statement sets on two lines, not four */
+.pg-fn .fn-two{max-width:none;white-space:nowrap;font-size:clamp(36px,5vw,80px)}@media (max-width:639.98px){.pg-fn .fn-two{font-size:min(40px,11.4vw)}}
+/* the At a glance card on phones: a label never breaks, its fact drops right beneath */
+@media (max-width:639.98px){.pg-fn .fn-card .ml{flex-wrap:wrap}.pg-fn .fn-card .ml>.n{white-space:nowrap}.pg-fn .fn-card .ml>.v{margin-left:auto}.pg-fn .fn-card .line{flex-wrap:wrap;row-gap:4px}.pg-fn .fn-card .line>.v{flex:1 0 100%;text-align:left;white-space:normal}}
