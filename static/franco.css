@@ -794,3 +794,18 @@ body:has(.pg-home .hm-hero) .bf-mast{display:none}
 .pg-home .hm-ev .word{font-size:clamp(40px,4.8vw,80px)}
 @media (min-width:900px){.pg-home .hm-dark-ph{left:42%;width:58%;object-position:60% 40%;filter:contrast(1.04) saturate(.9) sepia(.06)}}
 .pg-home .hm-ev+.quiet.deep{padding-top:clamp(40px,5vw,80px)}
+/* Home with the live site's copy */
+.pg-home .hm-h1{font-size:clamp(44px,5.4vw,92px)}
+.pg-home .hm-hero-k em{font-style:normal}
+.pg-home .hm-intro{padding-bottom:clamp(24px,3vw,48px)}
+.pg-home .hm-lead{grid-column:2/10;display:grid;gap:26px}
+.pg-home .hm-lead .a1{max-width:30ch;margin:0}.pg-home .hm-lead .lines{margin:0}
+.pg-home .hm-intro .hm-num{visibility:hidden}
+.pg-home .hm-tags{font-family:var(--marsha);font-weight:700;text-transform:uppercase;font-size:var(--m4);letter-spacing:.04em;color:var(--head);margin:0}
+.pg-home .hm-dishes{display:grid;gap:6px;max-width:40ch}
+.pg-home .hm-aside{font-family:var(--affairs);font-style:italic;font-weight:400;text-transform:none;font-size:.5em;vertical-align:.5em}
+.pg-home .hm-ciao2 .hm-txt{grid-column:2/7}
+.pg-home .hm-details{grid-column:8/13;align-self:end}
+.pg-home .hm-ev .hm-txt .a2{margin:0}
+@media (max-width:899.98px){.pg-home .hm-lead,.pg-home .hm-ciao2 .hm-txt,.pg-home .hm-details{grid-column:1/-1}.pg-home .hm-intro .hm-num{display:none}.pg-home .hm-details{margin-top:28px}}
+@media (max-width:639.98px){.pg-home .hm-h1{font-size:min(48px,11.6vw)}}
