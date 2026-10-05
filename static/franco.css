@@ -912,3 +912,30 @@ body:has(.pg-hero) .bf-mast nav a[aria-current="page"]{text-decoration:underline
   .pg-contact .c-hero .wrap>.intro,.pg-vouchers .hero .wrap>.hero-txt,.pg-menus .mn-hero .wrap>.mn-txt{grid-column:2/10;justify-self:start;justify-items:start;text-align:left;max-width:none}
   .pg-menus .mn-hero .wrap>.mn-tabs{grid-column:2/-1;justify-self:start}
 }
+
+/* ==== Every page on phones: Home's phone philosophy ====
+   the chapter number and its rule sit in a narrow left margin, text is indented from it, everything reads left;
+   photographs break out to alternate edges (odd chapters bleed right, even chapters bleed left);
+   printed objects (frames, cards) keep the full measure. Functions and Christmas are left as they were. */
+@media (max-width:639.98px){
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas){--ind:40px}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas)>section:not(.pg-hero){position:relative}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas)>section:not(.pg-hero) .wrap,
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas)>section.quiet{padding-left:calc(var(--margin) + var(--ind))}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ch-n{position:absolute;left:var(--margin);margin:0;padding-top:2px}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ch-n::after{display:block;width:1px;height:44px;margin:10px 0 0 4px;vertical-align:0}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.c,.quiet,.hosts,.intro.c,.st-rules){text-align:left;justify-items:start;margin-left:0;margin-right:0}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.c,.quiet,.hosts) :is(.lines,.word,.lines-list,p){margin-left:0;text-align:left}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.c,.quiet,.hosts,.intro){grid-template-columns:minmax(0,1fr)}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.c,.quiet,.hosts,.intro)>*{max-width:100%;min-width:0}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.wrap,.quiet) :is(.frame,.card,.cards){margin-left:calc(-1 * var(--ind))}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .frame .frame{margin-left:0}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas)>section:nth-of-type(odd) .ph:not(.full):not(.frame .ph):not(.card .ph):not(.strip .ph):not(.two .ph){margin-right:calc(-1 * var(--margin));margin-left:10%}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas)>section:nth-of-type(even) .ph:not(.full):not(.frame .ph):not(.card .ph):not(.strip .ph):not(.two .ph){margin-left:calc(-1 * (var(--margin) + var(--ind)));margin-right:14%}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ph.full{margin-left:calc(-1 * (var(--margin) + var(--ind)))}
+  main:not(.pg-fn):not(.pg-xmas) .two>.intro:first-child>.ph{margin-right:calc(-1 * var(--margin));margin-left:10%}
+  main:not(.pg-fn):not(.pg-xmas) .two>.intro:last-child>.ph{margin-left:calc(-1 * (var(--margin) + var(--ind)));margin-right:14%}
+  /* the three-chapter strips: right, left, right, like Home's 01 */
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .strip>figure:nth-child(odd) .ph{margin-right:calc(-1 * var(--margin));margin-left:10%}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .strip>figure:nth-child(even) .ph{margin-left:calc(-1 * (var(--margin) + var(--ind)));margin-right:14%}
+}

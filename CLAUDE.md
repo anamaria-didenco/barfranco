@@ -46,10 +46,14 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
 - **Editorial hero on every page (except Functions and Christmas, left as they were):** each page opens on `.pg-hero`, the
   hero photograph with the running line (`.pg-hero-k`) and the page title (`h1.pg-h1`) set on it; the masthead lies
   transparent over it in Almond (no rule, no dachshund). Chapter labels carry their number in `.ch-n`, which hangs in the
-  left margin on wide screens. On phones the `.two` photographs break out to alternate edges, as on Home.
+  left margin on wide screens. **On phones every page follows Home's phone layout** (the last block of franco.css): the chapter
+  number and its rule sit in a narrow left margin, text is indented from it and reads left (no centred sections), photographs
+  break out to alternate edges (odd chapters bleed right, even chapters bleed left; `.two` and the three-chapter strips
+  alternate photo by photo), and frames and cards keep the full measure.
 - **Less text (owner's call):** no "Good to know" / question sections on any page except Functions, Christmas and the
   Events pack, and so no FAQPage schema on those pages; event pages keep one quote and no "Set up your way" list.
-  Say it once and short; chapter numbers run 01, 02, 03 with no gaps.
+  Say it once and short: one lead sentence under the hero, no paragraph repeating a card or a heading, no line under
+  a closing word or a poster title that the ask already says; chapter numbers run 01, 02, 03 with no gaps.
 - Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
   franco.js shows whatever is on the first screen at once (`data-now`) and moves the rest once as it is seen; at 2.5 s
