@@ -53,7 +53,10 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
 - **Less text (owner's call):** no "Good to know" / question sections on any page except Functions, Christmas and the
   Events pack, and so no FAQPage schema on those pages; event pages keep one quote and no "Set up your way" list.
   On phones the type is calm: two display sizes, one reading size (18px), one small italic (15px); menu lines drop
-  their dotted leader so the fact sits right on the first line. Paragraphs are one short sentence. Say it once and short: one lead sentence under the hero, no paragraph repeating a card or a heading, no line under
+  their dotted leader so the fact sits right on the first line. Paragraphs are one short sentence. On a page that is not Menus, never print half a menu: the dining and event pages show a framed menu cover (the
+  letterspaced name, which menu, one line, one `.btn.fill`) that opens the full typed menu on `/menus/#sheet-…`. On phones the
+  dock carries the page's ask from the first screen (chrome.js `calm`), so the cover's and closing section's copies of it hide.
+  Say it once and short: one lead sentence under the hero, no paragraph repeating a card or a heading, no line under
   a closing word or a poster title that the ask already says; chapter numbers run 01, 02, 03 with no gaps.
 - Between pages the masthead holds still while the page turns (CSS view transitions; the inline `fx` script in each `<head>` carries their handler).
 - **Motion** only via `data-set` (page title), `data-unmask` (a chapter's lead photo), `data-settle` (framed objects).
