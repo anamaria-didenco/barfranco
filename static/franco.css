@@ -678,3 +678,39 @@ button.line{appearance:none;-webkit-appearance:none}
 .pg-fn .fn-two{max-width:none;white-space:nowrap;font-size:clamp(36px,5vw,80px)}@media (max-width:639.98px){.pg-fn .fn-two{font-size:min(40px,11.4vw)}}
 /* the At a glance card on phones: a label never breaks, its fact drops right beneath */
 @media (max-width:639.98px){.pg-fn .fn-card .ml{flex-wrap:wrap}.pg-fn .fn-card .ml>.n{white-space:nowrap}.pg-fn .fn-card .ml>.v{margin-left:auto}.pg-fn .fn-card .line{flex-wrap:wrap;row-gap:4px}.pg-fn .fn-card .line>.v{flex:1 0 100%;text-align:left;white-space:normal}}
+
+/* ==== Home: three interventions ==== */
+/* 1 · the nameplate: script left, the descriptor set right on its baseline, like the masthead of a paper */
+.pg-home .hm-cover{justify-items:stretch;text-align:left}
+.pg-home .hm-plate{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.pg-home .hm-plate .a4{margin:0;text-align:right;line-height:1.45}
+/* 2 · the opening breaks the centre: the title flush left across the page, the sentence and asks in the right columns */
+.pg-home .hm-open{padding:clamp(36px,5vw,72px) 0 clamp(80px,10vw,160px)}
+.pg-home .hm-open .word.h1{text-align:left;max-width:none}
+.pg-home .hm-open-txt{grid-column:7/13;display:grid;gap:28px;margin-top:clamp(20px,2.4vw,36px)}
+.pg-home .hm-open-txt .a1{max-width:30ch}
+.pg-home .hm-open-txt .lines{margin:0}
+/* 3 · the rules are a staircase on Bright Red: each rule on its own line, a step down and to the right */
+.pg-home .ch-poster .hm-rules{--rs:clamp(28px,4.4vw,70px);justify-items:start;text-align:left}
+.pg-home .hm-stair{max-width:none;color:var(--almond);font-size:var(--rs)}
+.pg-home .hm-stair>span,.pg-home .hm-stair>em{display:block}
+.pg-home .hm-stair>span{white-space:nowrap}
+.pg-home .hm-stair>span+span{margin-left:calc(2.6 * var(--rs))}
+.pg-home .hm-stair>em{margin:.5em 0 0 calc(5.2 * var(--rs));max-width:16em;text-align:left;line-height:1.14}
+.pg-home .ch-poster .hm-rules .a2,.pg-home .ch-poster .hm-rules .emb{margin-left:calc(5.2 * var(--rs))}
+.pg-home .ch-poster .hm-rules .a2{max-width:36ch}
+.fx .hm-stair[data-set]>*{opacity:0;transform:translateY(.3em);transition:opacity .7s var(--ease-in),transform .7s var(--ease-in)}
+.fx .hm-stair[data-set][data-on]>*{opacity:1;transform:none}
+.fx .hm-stair[data-on]>:nth-child(2){transition-delay:.22s}.fx .hm-stair[data-on]>:nth-child(3){transition-delay:.44s}
+.fx .hm-stair[data-now]>*{transition:none}
+@media (prefers-reduced-motion:reduce){.fx .hm-stair[data-set]>*{opacity:1;transform:none;transition:none}}
+@media (max-width:639.98px){
+  .pg-home .hm-plate{flex-direction:column;align-items:flex-start;gap:12px}
+  .pg-home .hm-plate .a4{text-align:left}
+  .pg-home .hm-open-txt{grid-column:1/-1}
+  .pg-home .ch-poster .hm-rules{--rs:clamp(26px,7.4vw,34px)}
+  .pg-home .hm-stair>span{white-space:normal}
+  .pg-home .hm-stair>span+span{margin-left:1.2em}
+  .pg-home .hm-stair>em{margin-left:2.4em}
+  .pg-home .ch-poster .hm-rules .a2,.pg-home .ch-poster .hm-rules .emb{margin-left:0}
+}
