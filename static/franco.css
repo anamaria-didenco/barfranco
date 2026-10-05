@@ -1023,3 +1023,10 @@ body:has(.pg-hero) .bf-mast nav a[aria-current="page"]{text-decoration:underline
   body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .pg-hero+section :is(p.a1,p.a2){font-size:22px;line-height:1.35}
   .pg-hero-k .k-more{display:none}   /* the running line fits one line: (upstairs) · The Crossing */
 }
+
+/* ==== Home sign-off: a Bright Red poster beat before the footer — the one colour punch, a line that stays ==== */
+.pg-home .hm-sign{padding:clamp(88px,13vw,208px) 0}
+.pg-home .hm-sign .wrap{display:grid;justify-items:start}
+.pg-home .hm-sign-line{font-size:clamp(38px,5.4vw,88px);max-width:20ch}
+.pg-home .hm-sign-line em{font-size:.5em;display:block;margin-top:.3em}
+@media (min-width:900px){.pg-home .hm-sign .wrap{padding-left:max(var(--hp),9vw)}}
