@@ -1049,5 +1049,5 @@ body:has(.pg-hero) .bf-mast nav a[aria-current="page"]{text-decoration:underline
 /* ==== Franco in the footer: the dachshund waits with "Ti aspettiamo" — a quiet signature on the back of the site ==== */
 .ft{position:relative;overflow:hidden}
 .ft .ft-grid{position:relative;z-index:1}
-.ft-dog{position:absolute;z-index:0;top:clamp(40px,6vw,104px);right:clamp(-24px,-1.5vw,0px);width:clamp(220px,28vw,420px);height:auto;opacity:.5;pointer-events:none}
+.ft-dog{position:absolute;z-index:0;top:clamp(36px,4vw,72px);right:clamp(24px,4vw,88px);width:clamp(132px,15vw,220px);height:auto;opacity:.45;pointer-events:none}
 @media (max-width:899.98px){.ft-dog{display:none}}   /* phones keep Franco as the small base-line emblem; the big signature is a wider-screen moment */
