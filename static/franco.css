@@ -972,3 +972,22 @@ body:has(.pg-hero) .bf-mast nav a[aria-current="page"]{text-decoration:underline
   .ft-base p{white-space:nowrap}
   .ft-base .foot-emb{order:-1;margin-right:calc(100% - 52px)}
 }
+
+/* ==== Phone typography: calmer, fewer sizes (every page but Functions and Christmas) ====
+   two display sizes (the title and closing words at the title's size, chapter heads at m3), one reading size,
+   one small italic; menu lines drop their dotted leader on phones so a wrapped line never leaves a stray row of dots:
+   the name reads left, the price or fact sits right on the first line. */
+@media (max-width:639.98px){
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas){--ind:32px}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.m2,.word){font-size:min(44px,10.2vw);line-height:.92}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .word em{font-size:.6em}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .m3{font-size:min(32px,8vw);line-height:.95}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.a2,.a3){font-size:18px;line-height:1.5}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) :is(.a4,.eyebrow,.fine){font-size:15px}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ml:not(.strip .ml){display:grid;grid-template-columns:minmax(min(11ch,50%),1fr) auto;column-gap:20px;align-items:baseline;font-size:17px;line-height:1.45}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ml:not(.strip .ml)>.lead{display:none}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .ml:not(.strip .ml)>.v{max-width:15ch;margin-left:0;text-align:right}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .lines-list{gap:10px}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .line>span{white-space:nowrap}
+  body:has(.pg-hero) main:not(.pg-fn):not(.pg-xmas) .line>.v{font-size:15px;flex:0 1 auto;white-space:normal;text-align:right}
+}
