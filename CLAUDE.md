@@ -34,7 +34,7 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
 - **Structure like Milan, behave like Italy.** The grammar above is the discipline; each page may add one deliberate act of
   misbehaviour, never more. The page follows the building: in every Level 1 / Level 2 pair (`.two`) downstairs sits
   lower than upstairs, and in the three-chapter strips (`.fn-three`, `.x-three`, `.ev-three`) 02 Upstairs sits highest.
-  The act so far: Home's title crosses the lower edge of the cover photograph. **No oversized words or numbers**
+  **Text never overlaps a photograph** (the owner rejected the title crossing Home's cover). **No oversized words or numbers**
   (no giant 240, STAY or 17:00 spread across a page): the owner rejected them; facts stay at heading size or smaller.
   No checkerboards, Vespas, postcards or trattoria red-and-white.
 - **Art direction, three standing rules.** Cinema: on desktop full-bleed photographs (`.ph.full.r-169`) are cut 2.39:1,

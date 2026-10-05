@@ -626,7 +626,7 @@ button.line{appearance:none;-webkit-appearance:none}
 
 /* ==== Milan: discipline with one interruption ====
    The page follows the building: downstairs always sits lower on the page than upstairs.
-   One deliberate act per page, never more: Home lets the title cross the photograph. Full-bleed photographs drift a little inside their
+   One deliberate act per page, never more: Full-bleed photographs drift a little inside their
    frames as they pass. All of it is still without scroll-driven animation support or under reduced motion. */
 @media (min-width:900px){
   .two:has(>.intro:nth-child(2):last-child)>.intro:first-child{margin-top:clamp(96px,11vw,200px)}
@@ -639,13 +639,9 @@ button.line{appearance:none;-webkit-appearance:none}
   }
 }
 @keyframes bf-drift{from{translate:0 -4.5%}to{translate:0 4.5%}}
-/* Home: the title crosses the lower edge of the cover photograph; the script moves to the top corner to make room */
-.pg-home .hm-cover+.quiet{padding-top:0}
-.pg-home .hm-cover+.quiet .word.h1{position:relative;z-index:4;margin-top:-.46em}
-.pg-home .hm-cover-ph .mark{bottom:auto;top:clamp(16px,2.4vw,32px)}
-@media (min-width:640px){.pg-home .hm-cover-ph{width:min(100%,calc((100svh - 330px) * .8))}}  /* the whole title lands on the first screen, across the photograph's edge */
-/* phones: the title only grazes the photograph's lower edge, so NOT A stays readable over the darker crop */
-@media (max-width:639.98px){.pg-home .hm-cover+.quiet .word.h1{margin-top:-.2em}}
+/* Home: the cover photograph is sized so the title lands just below it on the first screen */
+.pg-home .hm-cover+.quiet{padding-top:clamp(28px,3.4vw,48px)}   /* the title follows the photograph closely: one opening, not two sections */
+@media (min-width:640px){.pg-home .hm-cover-ph{width:min(100%,calc((100svh - 360px) * .8))}}  /* the title sits just below the photograph, still on the first screen */
 
 /* ==== art direction: three interventions ====
    1 · Cinema: on desktop the full-bleed photographs are cut to 2.39:1, film stills rather than banners.
