@@ -59,12 +59,12 @@ function fadeUp(el,k,dy){if(!el)return;el.style.opacity=k.toFixed(3);el.style.tr
 function geo(){var o=lead.getBoundingClientRect(),h=lh.getBoundingClientRect(),d=ldog.getBoundingClientRect();lsvg.setAttribute('viewBox','0 0 '+o.width.toFixed(0)+' '+o.height.toFixed(0));return{W:o.width,hx:h.right-o.left-14,hy:h.top-o.top+h.height/2,cx:d.left-o.left+d.width*.82,cy:d.top-o.top+d.height*.26}}
 /* the lead hangs as a soft cubic curve, not a straight line */
 function rope(x0,y0,x1,y1,sag){var dx=x1-x0,dy=y1-y0,s=sag*1.33;lpath.setAttribute('d','M'+x0.toFixed(1)+' '+y0.toFixed(1)+' C'+(x0+dx*.3).toFixed(1)+' '+(y0+dy*.3+s).toFixed(1)+' '+(x0+dx*.7).toFixed(1)+' '+(y0+dy*.7+s).toFixed(1)+' '+x1.toFixed(1)+' '+y1.toFixed(1))}
-function startLead(){clearTimeout(lTimer);lead.classList.remove('gone');lead.style.webkitMaskImage=lead.style.maskImage='';ldog.classList.add('sniff');lIn0=performance.now();lState='idle';lTimer=setTimeout(walkLead,coarse?7000:4400)}
+function startLead(){clearTimeout(lTimer);R.classList.add('lead-lock');scrollTo(0,0);lead.classList.remove('gone');lead.style.webkitMaskImage=lead.style.maskImage='';ldog.classList.add('sniff');lIn0=performance.now();lState='idle';lTimer=setTimeout(walkLead,coarse?7000:4400)}
 function walkLead(){if(lState!=='idle')return;clearTimeout(lTimer);lState='walk';lT0=performance.now();ldog.style.opacity='1';ldog.classList.remove('sniff')}
-function endLead(){lState='gone';lead.classList.add('gone');lead.style.webkitMaskImage=lead.style.maskImage=''}
+function endLead(){lState='gone';lead.classList.add('gone');lead.style.webkitMaskImage=lead.style.maskImage='';scrollTo(0,0);R.classList.remove('lead-lock')}
 /* one renderer for the walk: driven by time, or by a finger */
 function walkAt(p){var x1=lead.clientWidth+40,x=lX+(x1-lX)*p,dist=x-lX;
-ldog.style.transform='translate('+x.toFixed(1)+'px,'+(-1.5*Math.abs(Math.sin(Math.PI*dist/36))).toFixed(2)+'px) rotate('+(.6*Math.sin(2*Math.PI*dist/36)).toFixed(2)+'deg)';
+ldog.style.transform='translate('+x.toFixed(1)+'px,'+(-3.4*Math.abs(Math.sin(Math.PI*dist/34))).toFixed(2)+'px) rotate('+(1.1*Math.sin(2*Math.PI*dist/34)).toFixed(2)+'deg)';
 var W=lead.clientWidth,edge=p*W*1.14,band=W*.16,m='linear-gradient(90deg,transparent '+(edge-band).toFixed(0)+'px,#000 '+edge.toFixed(0)+'px)';lead.style.webkitMaskImage=m;lead.style.maskImage=m;
 var out=1-ss(0,.3,p);fadeUp(lmid&&lmid.children[0],out,-10);fadeUp(lmid&&lmid.children[1],out,-10);if(ltop)ltop.style.opacity=out.toFixed(3);lh.style.opacity=(1-ss(.04,.32,p)).toFixed(3);
 var g=geo(),ten=ss(0,.22,p),rel=ss(.3,.78,p),sx=g.hx+9+(g.cx-48-(g.hx+9))*rel,sy=g.hy+(g.cy+12-g.hy)*rel;
