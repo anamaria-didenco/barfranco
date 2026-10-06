@@ -1,6 +1,6 @@
 /* Bar Franco editorial system — shared by every page */
 
-:root{--dr:#6C0600;--al:#FAD7C3;--br:#AF0F00;--sp:#F00000;--pp:#FAD7C3;--mb:0px;--nv:96px;--ease:cubic-bezier(.2,.7,.2,1);--gx:clamp(20px,5vw,72px);--almond:brightness(0) invert(1) sepia(.35) saturate(1.8) hue-rotate(-14deg)}
+:root{--dr:#6C0600;--al:#FAD7C3;--br:#AF0F00;--sp:#F00000;--pp:#F1EEE6;--mb:0px;--nv:96px;--ease:cubic-bezier(.2,.7,.2,1);--gx:clamp(20px,5vw,72px);--almond:brightness(0) invert(1) sepia(.35) saturate(1.8) hue-rotate(-14deg)}
 *{box-sizing:border-box}
 html{scroll-behavior:auto}
 body{margin:0;background:var(--pp);font-family:var(--font-body),Georgia,serif;color:var(--dr);-webkit-font-smoothing:antialiased}

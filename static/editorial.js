@@ -13,7 +13,11 @@ function lget(k){try{return localStorage.getItem(k)}catch(e){return null}}functi
 var lights=new URLSearchParams(location.search).get('lights')||lget('bf-lights')||'auto';
 if(lget('bf-motion')==='calm')R.classList.add('calm');
 function isNight(){if(lights==='night')return true;if(lights==='day')return false;var h=nz().h;return h>=21||h<4}
+R.classList.toggle('night',isNight());
 
+/* the live clock in the closing band */
+function clock(){var oh=$('#openH'),ot=$('#openT');if(!oh)return;var t=nz(),h=t.h,m=t.m,h12=((h+11)%12)+1;ot.textContent=h12+':'+(m<10?'0':'')+m+(h<12?'am':'pm')+' in Ōtautahi';oh.innerHTML=h>=16&&h<17?'Open. Kitchen at 5pm':h>=17?'Open <em>till</em> late':'Opening at 4pm'}
+clock();setInterval(clock,30000);
 
 /* the header layer: the logo settles as you scroll; ink and veil follow what's beneath */
 var mast=$('.mast'),mk=$('.mk'),mastR=$('.mast-r'),hero=$('[data-hero]'),mkS=1;
@@ -97,6 +101,20 @@ document.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==
 if(u.origin!==location.origin||(u.pathname===location.pathname&&u.search===location.search))return;if(calm()||!walk)return;e.preventDefault();R.classList.remove('menu-open');sset('bf-walk','1');var gone=false,go=function(){if(gone)return;gone=true;location.href=u.href},safety=setTimeout(go,1600);walkAnim('out',function(){clearTimeout(safety);go()})});
 addEventListener('pageshow',function(e){if(e.persisted&&walk){walk.classList.remove('on');wpane.style.clipPath='';wdog.style.transform=''}});
 
+/* preview-only controls: hidden automatically on barfranco.nz */
+if(!/(^|\.)barfranco\.nz$/i.test(location.hostname)){
+$$('a[href]').forEach(function(a){var h=a.getAttribute('href');if(h&&!/^(https?:|mailto:|tel:|#)/i.test(h)&&/\/(#.*)?$/.test(h))a.setAttribute('href',h.replace(/\/(#.*)?$/,'/index.html$1'))});
+var mb=document.createElement('div');mb.className='mockbar';mb.setAttribute('role','toolbar');mb.setAttribute('aria-label','Preview controls');
+mb.innerHTML='<span class="mb-l">Lights</span><div class="seg" data-g="l"><button type="button" data-v="auto">Auto</button><button type="button" data-v="day">Day</button><button type="button" data-v="night">After 9</button></div><span class="mb-l">Motion</span><div class="seg" data-g="m"><button type="button" data-v="full">Full</button><button type="button" data-v="calm">Calm</button></div>'+(lead?'<button type="button" class="mb-btn" data-replay>Replay intro</button>':'')+'<span class="mb-note">Preview controls — not shown on barfranco.nz</span>';
+document.body.insertBefore(mb,document.body.firstChild);
+var mbSync=function(){$$('.seg[data-g="l"] button',mb).forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===lights))});var m=calm()?'calm':'full';$$('.seg[data-g="m"] button',mb).forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===m))});R.style.setProperty('--mb',mb.offsetHeight+'px')};
+mb.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var g=b.parentNode.dataset.g;
+if(g==='l'){lights=b.dataset.v;lset('bf-lights',lights);R.classList.toggle('night',isNight())}
+else if(g==='m'){var c=b.dataset.v==='calm';lset('bf-motion',c?'calm':'full');R.classList.toggle('calm',c);if(c)$$('.rv').forEach(function(f){f.classList.add('shown')})}
+else if(b.hasAttribute('data-replay')&&lead){scrollTo(0,0);startLead()}
+mbSync()});
+addEventListener('resize',mbSync);mbSync();
+}
 /* contact form: composes an email, as on the live site */
 $$('form[data-email]').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();var g=function(n){var el=f.querySelector('[name="'+n+'"]');return el?el.value.trim():''};location.href='mailto:'+f.dataset.email+'?subject='+encodeURIComponent(f.dataset.subject||'Message')+'&body='+encodeURIComponent(g('message')+'\n\n— '+g('name')+(g('email')?' ('+g('email')+')':''))})});
 /* menu tabs (Menus page) */
