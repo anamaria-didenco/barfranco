@@ -1,0 +1,37 @@
+/* Bar Franco colour palette — from BarFranco_VisualIdentity.pdf p.12 (Semibold Studio). Print values in comments. */
+:root{
+/* Official palette */
+--bf-deep-red:#6C0600;   /* DEEP RED  · RGB 108 6 0   · CMYK 35 100 100 50 */
+--bf-almond:#FAD7C3;     /* ALMOND    · RGB 250 215 195 · CMYK 0 20 21 0 */
+--bf-bright-red:#AF0F00; /* BRIGHT RED · RGB 175 15 0  · CMYK 5 100 100 20 */
+--bf-spritz:#F00000;     /* SPRITZ    · RGB 240 0 0    · screen/RGB only, no CMYK equivalent */
+/* White comes from the FFF logo variants. There is no black in this system: Deep Red is the darkest ink and the body-text colour. */
+--bf-white:#FFFFFF;
+/* Supporting neutrals — sampled from printed collateral, not in the official swatch page */
+--bf-paper:#F1EEE6;      /* uncoated menu stock */
+--bf-paper-cool:#F5F7EC; /* pale ground used behind one-colour illustrations */
+
+/* Semantic — surfaces */
+--surface-page:var(--bf-paper);
+--surface-white:var(--bf-white);
+--surface-soft:var(--bf-almond);
+--surface-brand:var(--bf-deep-red);
+--surface-accent:var(--bf-bright-red);
+--surface-dark:var(--bf-deep-red);
+/* Semantic — text */
+--text-body:var(--bf-deep-red);
+--text-heading:var(--bf-bright-red);
+--text-brand:var(--bf-deep-red);
+--text-muted:var(--bf-deep-red);
+--text-on-dark:var(--bf-almond);
+--text-on-brand:var(--bf-almond);
+--text-on-accent:var(--bf-almond);
+--text-on-soft:var(--bf-deep-red);
+/* Semantic — lines & interaction */
+--rule:var(--bf-bright-red);
+--rule-on-dark:var(--bf-almond);
+--link:var(--bf-bright-red);
+--link-hover:var(--bf-deep-red);
+--focus-ring:var(--bf-spritz);
+--selection:var(--bf-almond);
+}
