@@ -179,10 +179,10 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .fcols p{font-style:italic;font-size:13px;margin-bottom:8px;opacity:.85}
 .fcols a{display:block;text-decoration:none;font-size:15px;padding:3px 0}
 .fcols a:hover{text-decoration:underline}
-.open{text-align:center}
-.open .k{font-style:italic;font-size:clamp(17px,1.5vw,20px)}
-.open .d1{color:var(--al);margin:12px auto 14px;max-width:12ch}
-.open .t{font-style:italic;font-size:16px}
+#open{text-align:center}
+#open .k{font-style:italic;font-size:clamp(17px,1.5vw,20px)}
+#open .d1{color:var(--al);margin:12px auto 14px;max-width:12ch}
+#open .t{font-style:italic;font-size:16px}
 .legal{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:18px var(--gx);border-top:1px solid var(--rule);font-style:italic;font-size:13px}
 .legal img{width:42px;filter:var(--almond)}
 .legal span:last-child{text-align:right}
@@ -474,19 +474,29 @@ em.tg{font-style:normal;font-size:12px;letter-spacing:.06em;opacity:.75;white-sp
 
 /* ==== conversion CTAs (Functions, Christmas) ==== */
 .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.cta{display:inline-block;padding:11px 22px;font-family:var(--font-body);font-style:normal;font-size:15px;line-height:1;letter-spacing:.01em;text-decoration:none;border:1.5px solid var(--dr);color:var(--dr);background:transparent;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
-.cta:hover{background:var(--dr);color:var(--al)}
-.cta-fill{background:var(--br);border-color:var(--br);color:var(--al)}
-.cta-fill:hover{background:var(--dr);border-color:var(--dr);color:var(--al)}
+a.cta{display:inline-block;padding:11px 22px;font-family:var(--font-body);font-style:normal;font-size:15px;line-height:1;letter-spacing:.01em;text-decoration:none;border:1.5px solid var(--dr);color:var(--dr);background:transparent;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
+a.cta:hover{background:var(--dr);color:var(--al)}
+a.cta.cta-fill{background:var(--br);border-color:var(--br);color:var(--al)}
+a.cta.cta-fill:hover{background:var(--dr);border-color:var(--dr);color:var(--al)}
 .hero .hero-cap .cta-row{border-top:1px solid rgba(108,6,0,.22);padding-top:16px}
 .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--dr);color:var(--al);transform:translateY(105%);transition:transform .5s var(--ease);padding:12px var(--gx);box-shadow:0 -1px 0 rgba(250,215,195,.18)}
 .sticky-cta.show{transform:translateY(0)}
 .sticky-in{display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:1120px;margin:0 auto}
 .sticky-label{font-style:italic;font-size:15px;color:var(--al)}
 .sticky-btns{display:flex;gap:10px;flex-shrink:0}
-.sticky-cta .cta{border-color:rgba(250,215,195,.6);color:var(--al)}
-.sticky-cta .cta:hover{background:var(--al);color:var(--dr)}
-.sticky-cta .cta-fill{background:var(--al);border-color:var(--al);color:var(--dr)}
-.sticky-cta .cta-fill:hover{background:var(--br);border-color:var(--br);color:var(--al)}
-@media (max-width:620px){.sticky-label{display:none}.sticky-in{justify-content:stretch}.sticky-btns{flex:1}.sticky-cta .cta{flex:1;text-align:center;padding:12px 10px}}
+.sticky-cta a.cta{border-color:rgba(250,215,195,.6);color:var(--al)}
+.sticky-cta a.cta:hover{background:var(--al);color:var(--dr)}
+.sticky-cta a.cta.cta-fill{background:var(--al);border-color:var(--al);color:var(--dr)}
+.sticky-cta a.cta.cta-fill:hover{background:var(--br);border-color:var(--br);color:var(--al)}
+@media (max-width:620px){.sticky-label{display:none}.sticky-in{justify-content:stretch}.sticky-btns{flex:1}.sticky-cta a.cta{flex:1;text-align:center;padding:12px 10px}}
 @media (prefers-reduced-motion:reduce){.sticky-cta{transition:none}}
+/* keep short facts whole: no line breaks inside an address or a number */
+.nw{white-space:nowrap}
+a.cta{text-align:center}
+.hero .hero-cap .cta-row{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.ctas-after{margin-top:0;padding-bottom:clamp(40px,5vw,72px)}
+.foot-n:has(+.ctas-after){padding-bottom:0}
+.enq-ctas{align-self:end}
+@media (max-width:620px){.enq-ctas a.cta{flex:1 1 100%}}
+a.cta{white-space:nowrap}
+@media (max-width:620px){.hero .hero-cap .cta-row{grid-template-columns:1fr;gap:8px}.hero .hero-cap a.cta{padding:12px 14px}}
