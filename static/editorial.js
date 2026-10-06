@@ -94,11 +94,11 @@ if(!calm()&&!sget('bf-lead')&&!R.classList.contains('walking-in')){sset('bf-lead
 
 /* page to page: the dog pulls a deep-red cover across, then trots off on the next page */
 var walk=$('#walk'),wpane=walk&&$('.walk-pane',walk),wdog=walk&&$('.wdog',walk);
-function walkAnim(dir,done){if(!walk){if(done)done();return}walk.classList.add('on');var t0=performance.now(),D=dir==='out'?900:1150,W=innerWidth,dw=wdog.offsetWidth||100;
-function f(now){var t=clamp((now-t0)/D,0,1),e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2,x=-dw+(W+dw*1.3)*e,pct=clamp((x+dw*.8)/W,0,1)*100;wdog.style.transform='translateX('+x.toFixed(1)+'px)';wpane.style.clipPath=dir==='out'?'inset(0 '+(100-pct).toFixed(2)+'% 0 0)':'inset(0 0 0 '+pct.toFixed(2)+'%)';if(t<1)requestAnimationFrame(f);else if(done)done()}requestAnimationFrame(f)}
+function walkAnim(dir,done){if(!walk){if(done)done();return}walk.classList.add('on');var t0=performance.now(),D=dir==='out'?1350:1600,W=innerWidth,dw=wdog.offsetWidth||100;
+function f(now){var t=clamp((now-t0)/D,0,1),e=t*t*t*(t*(t*6-15)+10),x=-dw+(W+dw*1.3)*e,pct=clamp((x+dw*.8)/W,0,1)*100;wdog.style.transform='translateX('+x.toFixed(1)+'px)';wpane.style.clipPath=dir==='out'?'inset(0 '+(100-pct).toFixed(2)+'% 0 0)':'inset(0 0 0 '+pct.toFixed(2)+'%)';if(t<1)requestAnimationFrame(f);else if(done)done()}requestAnimationFrame(f)}
 if(walk&&R.classList.contains('walking-in')){try{sessionStorage.removeItem('bf-walk')}catch(e){}walk.classList.add('on');wpane.style.clipPath='inset(0 0 0 0)';R.classList.remove('walking-in');setTimeout(function(){walkAnim('in',function(){walk.classList.remove('on');wpane.style.clipPath=''})},120)}
 document.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;var a=e.target.closest('a[href]');if(!a||a.target==='_blank'||a.hasAttribute('download'))return;var h=a.getAttribute('href');if(!h||h.charAt(0)==='#'||/^(mailto|tel|sms|javascript):/i.test(h))return;var u;try{u=new URL(a.href,location.href)}catch(x){return}
-if(u.origin!==location.origin||(u.pathname===location.pathname&&u.search===location.search))return;if(calm()||!walk)return;e.preventDefault();R.classList.remove('menu-open');sset('bf-walk','1');var gone=false,go=function(){if(gone)return;gone=true;location.href=u.href},safety=setTimeout(go,1600);walkAnim('out',function(){clearTimeout(safety);go()})});
+if(u.origin!==location.origin||(u.pathname===location.pathname&&u.search===location.search))return;if(calm()||!walk)return;e.preventDefault();R.classList.remove('menu-open');sset('bf-walk','1');var gone=false,go=function(){if(gone)return;gone=true;location.href=u.href},safety=setTimeout(go,2100);walkAnim('out',function(){clearTimeout(safety);go()})});
 addEventListener('pageshow',function(e){if(e.persisted&&walk){walk.classList.remove('on');wpane.style.clipPath='';wdog.style.transform=''}});
 
 /* contact form: composes an email, as on the live site */
