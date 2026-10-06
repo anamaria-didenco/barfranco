@@ -471,3 +471,22 @@ em.tg{font-style:normal;font-size:12px;letter-spacing:.06em;opacity:.75;white-sp
 /* finer lead: a thin, half-clear line, like a real leash in low light */
 #lpath{stroke-width:1.1px;stroke-opacity:.55}
 #lloop{stroke-width:1.1px;stroke-opacity:.55;r:7px}
+
+/* ==== conversion CTAs (Functions, Christmas) ==== */
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.cta{display:inline-block;padding:11px 22px;font-family:var(--font-body);font-style:normal;font-size:15px;line-height:1;letter-spacing:.01em;text-decoration:none;border:1.5px solid var(--dr);color:var(--dr);background:transparent;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
+.cta:hover{background:var(--dr);color:var(--al)}
+.cta-fill{background:var(--br);border-color:var(--br);color:var(--al)}
+.cta-fill:hover{background:var(--dr);border-color:var(--dr);color:var(--al)}
+.hero .hero-cap .cta-row{border-top:1px solid rgba(108,6,0,.22);padding-top:16px}
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--dr);color:var(--al);transform:translateY(105%);transition:transform .5s var(--ease);padding:12px var(--gx);box-shadow:0 -1px 0 rgba(250,215,195,.18)}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-in{display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:1120px;margin:0 auto}
+.sticky-label{font-style:italic;font-size:15px;color:var(--al)}
+.sticky-btns{display:flex;gap:10px;flex-shrink:0}
+.sticky-cta .cta{border-color:rgba(250,215,195,.6);color:var(--al)}
+.sticky-cta .cta:hover{background:var(--al);color:var(--dr)}
+.sticky-cta .cta-fill{background:var(--al);border-color:var(--al);color:var(--dr)}
+.sticky-cta .cta-fill:hover{background:var(--br);border-color:var(--br);color:var(--al)}
+@media (max-width:620px){.sticky-label{display:none}.sticky-in{justify-content:stretch}.sticky-btns{flex:1}.sticky-cta .cta{flex:1;text-align:center;padding:12px 10px}}
+@media (prefers-reduced-motion:reduce){.sticky-cta{transition:none}}
