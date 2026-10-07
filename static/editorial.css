@@ -354,7 +354,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .night .sig img,.night .st-em{filter:brightness(0) invert(.9) sepia(.3)}
 
 /* bookings, vouchers, contact */
-.bk-frame{border:1px solid var(--rule);background:#fff}
+.bk-frame{border:1px solid var(--rule);background:var(--al);justify-self:stretch;width:100%}
 .bk-frame iframe{display:block;width:100%;height:680px;border:0}
 .vcard .vc-logo{width:min(300px,80%);height:auto;margin:14px 0 6px}
 .ct-card form{display:flex;flex-direction:column;gap:16px}
@@ -542,3 +542,30 @@ body[data-chapters] .strip{display:none}
 .bright a.cta.cta-fill{background:var(--al);border-color:var(--al);color:var(--dr)}
 button.cta{all:unset;box-sizing:border-box;display:inline-block;padding:11px 22px;font-family:var(--font-body);font-size:15px;line-height:1;white-space:nowrap;text-align:center;border:1.5px solid var(--dr);color:var(--dr);cursor:pointer}
 button.cta:focus-visible,a.cta:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
+
+/* ==== bug sweep ==== */
+/* phones: Go up for dinner stays hidden (floors are stacked) */
+@media (max-width:860px){button.cta[data-go-up]{display:none}}
+/* phones: the masthead sits on one solid band, so it never runs into the page */
+@media (max-width:900px){.veil{width:100%;height:calc(var(--vh,140px) + 14px)}.v2{display:none}
+.vd{background:linear-gradient(180deg,var(--dr) 72%,rgba(108,6,0,0))}
+.vp{background:linear-gradient(180deg,var(--pp) 72%,rgba(241,238,230,0))}
+.va{background:linear-gradient(180deg,var(--al) 72%,rgba(250,215,195,0))}}
+/* the menu overlay holds the page still */
+.menu-open body{overflow:hidden}
+/* Events pack: the "room is yours" card has room for its two columns */
+.xcard:has(.g2){max-width:none;justify-self:stretch}
+.xcard .g2{align-items:start}
+.xcard .d2+.g2{margin-top:clamp(18px,2.2vw,28px)}
+/* phones: label and value rows keep their leader; tabs and hero buttons sit evenly */
+@media (max-width:620px){
+.info li span{flex:0 1 auto;min-width:40%}
+.info li em{flex:0 1 55%;text-align:right}
+.mn-tabs{flex-wrap:nowrap;gap:14px}
+.mn-tabs button{font-size:clamp(16px,4.4vw,19px)}
+.hero-one .cta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hero-one .cta-row a.cta{padding:12px 8px}
+.hero-one .cta-row a.cta:only-child,.hero-one .cta-row a.cta:nth-child(3):last-child{grid-column:1/-1}
+}
+/* desktop: enquiry buttons in one row */
+@media (min-width:861px){.enq-ctas{flex-wrap:nowrap}}
