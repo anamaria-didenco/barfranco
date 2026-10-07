@@ -567,5 +567,14 @@ button.cta:focus-visible,a.cta:focus-visible{outline:2px solid var(--sp);outline
 .hero-one .cta-row a.cta{padding:12px 8px}
 .hero-one .cta-row a.cta:only-child,.hero-one .cta-row a.cta:nth-child(3):last-child{grid-column:1/-1}
 }
-/* desktop: enquiry buttons in one row */
-@media (min-width:861px){.enq-ctas{flex-wrap:nowrap}}
+
+/* ==== desktop sweep ==== */
+@media (min-width:861px){.enq-ctas{display:grid;grid-template-columns:minmax(0,300px);justify-content:end}}
+.hero .hero-cap{grid-template-columns:minmax(0,1fr)}
+.hero .hero-cap .hc-h{font-size:clamp(28px,3.1vw,46px)}
+@media (max-width:860px){.hero .hero-cap .cta-row{grid-template-columns:1fr}.hero .hero-cap a.cta{white-space:normal}.hero .hero-cap .hc-h{font-size:clamp(26px,7.5vw,33px)}}
+.mcard>div{display:block}
+.mcard .course ul{display:grid}
+.pk-b .g2{align-items:start}
+.legal{padding-inline:max(var(--gx),calc((100vw - 1240px)/2 + var(--gx)))}
+.trk .tl{cursor:pointer}
