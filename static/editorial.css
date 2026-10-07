@@ -61,7 +61,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .hero .ph:first-child{border-right:0}
 .h-mark{position:absolute;left:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,30px);color:#fff;display:grid;gap:8px;z-index:1}
 .h-mark p{font-style:italic;font-size:13px}
-.hero .ph:first-child::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,4,0,0) 55%,rgba(40,4,0,.55) 100%);pointer-events:none}
+.hero .ph:first-child::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,4,0,0) 45%,rgba(40,4,0,.74) 100%);pointer-events:none}
 .strip{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;padding:12px var(--gx);background:var(--al);color:var(--br);font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.06em;line-height:1.2}
 .strip .w{font-size:1.25em;letter-spacing:0;line-height:1}
 .strip{align-items:baseline}
@@ -86,7 +86,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 
 .levels{padding-top:clamp(20px,2.6vw,32px)}
 .lv-head{display:flex;justify-content:space-between;align-items:center;gap:12px 24px;flex-wrap:wrap;max-width:1240px;margin:0 auto;padding:0 var(--gx) clamp(16px,2vw,24px)}
-.lv-head .eb{margin:0}
+.lv-head .eb{margin:0;font-size:clamp(20px,2.2vw,28px);line-height:1.2}
 .lv-ctl{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap}
 .doors{position:relative;display:flex;gap:2px;height:clamp(440px,70vh,720px);background:var(--gr)}
 .door{all:unset;box-sizing:border-box;cursor:pointer;position:relative;flex:1 1 0;min-width:0;overflow:hidden;transition:flex-grow .9s var(--ease)}
@@ -249,7 +249,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .hero-one{position:relative;height:clamp(460px,84svh,880px)}
 .hero-one .ph{position:absolute;inset:0}
 .hero-one .ph::before{content:"";position:absolute;left:0;right:0;top:0;height:36%;z-index:1;background:linear-gradient(180deg,rgba(30,3,0,.52),rgba(30,3,0,0));pointer-events:none}
-.hero-one .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,4,0,0) 46%,rgba(40,4,0,.7));pointer-events:none}
+.hero-one .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,4,0,0) 38%,rgba(40,4,0,.84));pointer-events:none}
 .hero-cap{position:absolute;left:var(--gx);right:var(--gx);bottom:clamp(22px,4vh,44px);z-index:2;color:var(--al);display:grid;gap:8px;max-width:640px}
 .hero-cap .k{font-style:italic;font-size:15px}
 .hero-cap .s{font-style:italic;font-size:clamp(21px,2.1vw,30px);line-height:1.22}
@@ -259,7 +259,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .hero .hero-cap::before{content:"";position:absolute;inset:6px;border:1px solid var(--dr);pointer-events:none}
 .hero .hero-cap .k{font-size:13px;font-style:italic;margin:0 0 4px}
 .hero .hero-cap .hc-h{color:var(--br);letter-spacing:.02em;margin:0}
-.hero .hero-cap .hc-h em{margin-top:.2em;font-size:.56em}
+.hero .hero-cap .hc-h em{margin:0;font-size:1em}
 .hero .hero-cap .s{max-width:none;margin:12px 0 0;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.45}
 .hero .hero-cap .lns{margin:16px 0 0;max-width:none;border-top:1px solid rgba(108,6,0,.22);padding-top:2px}
 .hero .hero-cap .ln{border-bottom-color:rgba(108,6,0,.35)}
@@ -322,7 +322,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 
 /* functions + christmas, live structure */
 .hc-h{margin:2px 0 4px;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(32px,3.6vw,54px);line-height:.95;color:var(--al);text-wrap:balance}
-.hc-h em{font-family:var(--font-body);font-style:italic;font-weight:400;text-transform:none;font-size:.6em;letter-spacing:0;display:block;margin-top:.12em}
+.hc-h em{font-family:inherit;font-style:normal;font-weight:inherit;text-transform:uppercase;font-size:1em;letter-spacing:inherit;display:inline;margin:0}
 .hero-cap .s{font-size:clamp(16px,1.3vw,19px)}
 .glance .info+.eb{margin-top:10px}
 .qt{margin:6px 0 0;padding:16px 0 0;border-top:1px solid var(--rule);max-width:46ch}
@@ -339,7 +339,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .card h2.card-h{margin:0 0 6px}.card ul+h2.card-h{margin-top:18px}
 .card li span em{font-size:13px}
 .natale{color:var(--acc)}
-.ph.coaster{width:min(260px,60%);aspect-ratio:1;margin-top:8px}
+.ph.coaster{width:min(260px,60%);aspect-ratio:1;margin:8px auto 0}
 .enq-h{margin-top:clamp(28px,4vw,48px)}
 @media (max-width:860px){.steps{grid-template-columns:1fr}.step .ph{aspect-ratio:4/3}}
 
@@ -418,20 +418,16 @@ em.tg{font-style:normal;font-size:12px;letter-spacing:.06em;opacity:.75;white-sp
 .pk-b .eb>span:first-child::after{content:" · "}
 .xcard>div>div+div,.xcard>div>.stack+.stack,.xcard>div>div+.stack,.xcard>div>.stack+div{margin-top:clamp(18px,2.2vw,28px)}
 
-/* floors on phones: still side by side with the dog on the seam; the chosen floor's details sit underneath */
+/* floors on phones: stacked, each level's photo with its details right underneath */
 @media (max-width:860px){
-.floors{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.floor{display:contents}
-.f1 .f-ph{grid-column:1;grid-row:1;border-right:2px solid var(--dr)}
-.f2 .f-ph{grid-column:2;grid-row:1}
-.f-ph{height:clamp(300px,52svh,460px);cursor:pointer}
-.f-in{grid-column:1/-1;grid-row:2;background:var(--gr);color:var(--ink);transition:opacity .7s var(--ease),visibility 0s linear .7s}
-.floor:not(.on) .f-in{opacity:0;visibility:hidden;pointer-events:none}
-.floor.on .f-in{opacity:1;visibility:visible;transition:opacity .7s var(--ease) .1s,visibility 0s}
-.tdog{display:block;width:44px}
-.f1 .f-ph::before,.f2 .f-ph::before{position:absolute;left:12px;bottom:10px;z-index:2;font-style:italic;font-size:14px;color:var(--al);pointer-events:none;text-shadow:0 1px 8px rgba(30,3,0,.5)}
-.f1 .f-ph::before{content:"Level 1"}.f2 .f-ph::before{content:"Level 2"}
-.calm .f-in{transition:none}
+.floors{grid-template-columns:1fr}
+.floor{display:flex;flex-direction:column;cursor:default}
+.f1 .f-ph{border-right:0}
+.f-ph{height:clamp(260px,46svh,420px)}
+.floor .f-ph img,.night .floor .f-ph img{transform:none;filter:none}
+.f-in{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+.tdog,.lv-ctl{display:none}
+.f2{border-top:2px solid var(--dr)}
 }
 
 /* burgundy seams: photos meet on a deep-red line, never white */
@@ -500,3 +496,42 @@ a.cta{text-align:center}
 @media (max-width:620px){.enq-ctas a.cta{flex:1 1 100%}}
 a.cta{white-space:nowrap}
 @media (max-width:620px){.hero .hero-cap .cta-row{grid-template-columns:1fr;gap:8px}.hero .hero-cap a.cta{padding:12px 14px}}
+
+/* asks as buttons (Home); on phones the Go up button has nothing to do (floors are stacked) */
+.cta-row.on-home{margin-top:22px}
+@media (max-width:860px){[data-go-up]{display:none}}
+
+/* buttons on a dark hero photo */
+.hero-one a.cta{border-color:var(--al);color:var(--al)}
+.hero-one a.cta:hover{background:var(--al);color:var(--dr)}
+.hero-one a.cta.cta-fill{background:var(--br);border-color:var(--br);color:var(--al)}
+.hero-one a.cta.cta-fill:hover{background:var(--al);border-color:var(--al);color:var(--dr)}
+
+/* ==== vouchers: the voucher card in one font, VTC Marsha in capitals ==== */
+.vcard p,.vcard li span,.vcard em{font-family:var(--font-display);font-weight:700;font-style:normal;text-transform:uppercase;letter-spacing:.04em}
+.vcard .meta,.vcard .card-s{font-size:12.5px;line-height:1.5}
+.vcard li span{font-size:14px}
+
+/* ==== chapter index (Functions, Christmas): on phones the chapter names replace the facts strip ==== */
+.ch-index{display:none}
+@media (max-width:860px){
+body[data-chapters] .strip{display:none}
+.ch-index{display:block;background:var(--al);color:var(--dr);padding:6px var(--gx) 10px;border-bottom:2px solid var(--dr)}
+.ch-index a{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:baseline;padding:13px 0;border-top:1px solid rgba(108,6,0,.22);color:var(--dr);text-decoration:none;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:18px;line-height:1.1;letter-spacing:.01em}
+.ch-index a:first-child{border-top:0}
+.ch-index a::after{content:"+";font-family:var(--font-body);font-weight:400;font-size:20px;color:var(--br)}
+.ch-index .pk-n{color:var(--br);font-size:15px}
+.ch-index a:focus-visible{outline:2px solid var(--sp);outline-offset:2px}
+}
+
+/* ==== review fixes ==== */
+/* phones: the hero box takes its designed width (left:50% alone shrank it to half the hero) */
+@media (max-width:860px){.hero .hero-cap{width:min(78vw,320px)}}
+/* menu cards: the price never breaks, the leader never vanishes; descriptions drop under the name on phones */
+.card li div>span:last-child:not(:first-child){white-space:nowrap;flex-shrink:0;text-align:right}
+.card li div>span:first-child{min-width:0}
+.card li div i{min-width:14px}
+@media (max-width:620px){.card li span em{display:block;margin-top:2px}}
+/* night mode: outline buttons on the Deep Red ground read in Almond */
+.night .sec:not(.hero) a.cta:not(.cta-fill){border-color:var(--al);color:var(--al)}
+.night .sec:not(.hero) a.cta:not(.cta-fill):hover{background:var(--al);color:var(--dr)}
