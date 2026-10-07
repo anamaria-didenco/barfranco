@@ -101,10 +101,10 @@ document.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==
 if(u.origin!==location.origin||(u.pathname===location.pathname&&u.search===location.search))return;if(calm()||!walk)return;e.preventDefault();R.classList.remove('menu-open');sset('bf-walk','1');var gone=false,go=function(){if(gone)return;gone=true;location.href=u.href},safety=setTimeout(go,2500);walkAnim('out',function(){clearTimeout(safety);go()})});
 addEventListener('pageshow',function(e){if(e.persisted&&walk){walk.classList.remove('on');wpane.style.clipPath='';wdog.style.transform=''}});
 
-/* sticky conversion CTA (Functions, Christmas): shows once past the hero, hides at the enquiry form */
+/* sticky conversion CTA (Functions, Christmas): shows once past the hero, hides from the enquiry form down */
 var scta=$('.sticky-cta');
 if(scta){var sHero=$('.hero'),sEnq=$('#enquire');
-function sctaTick(){var past=sHero?sHero.getBoundingClientRect().bottom<80:true,atForm=false;if(sEnq){var r=sEnq.getBoundingClientRect();atForm=r.top<innerHeight*.85&&r.bottom>60}scta.classList.toggle('show',past&&!atForm)}
+function sctaTick(){var past=sHero?sHero.getBoundingClientRect().bottom<80:true,atForm=false;if(sEnq){var r=sEnq.getBoundingClientRect();atForm=r.top<innerHeight*.85}scta.classList.toggle('show',past&&!atForm)}
 addEventListener('scroll',sctaTick,{passive:true});addEventListener('resize',sctaTick);sctaTick()}
 
 /* contact form: composes an email, as on the live site */
