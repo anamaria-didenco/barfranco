@@ -501,14 +501,6 @@ a.cta{white-space:nowrap}
 .cta-row.on-home{margin-top:22px}
 @media (max-width:860px){[data-go-up]{display:none}}
 
-/* ==== menus: one font, VTC Marsha in capitals (owner's call) ==== */
-#sheets .mn-tabs button,#sheets .mcard li span,#sheets .mcard li em,#sheets .mcard .card-s,#sheets .mcard .meta,#sheets .mcard .ev-sub,#sheets .mcard p,#sheets .mn-foot .meta,#sheets .mn-head .eb{font-family:var(--font-display);font-weight:700;font-style:normal;text-transform:uppercase;letter-spacing:.03em}
-#sheets .mn-tabs button{font-size:clamp(15px,1.3vw,18px);letter-spacing:.05em}
-#sheets .mcard li span{font-size:15px;line-height:1.35}
-#sheets .mcard li em{font-size:12.5px;line-height:1.4;opacity:.78}
-#sheets .mcard .card-s,#sheets .mcard .meta,#sheets .mn-foot .meta,#sheets .mcard .ev-sub{font-size:13px;line-height:1.45}
-#sheets .mn-head .eb{font-size:13px;letter-spacing:.06em}
-@media (max-width:620px){#sheets .mcard li span{font-size:14px}#sheets .mcard li em{display:block;margin-top:2px}}
 /* buttons on a dark hero photo */
 .hero-one a.cta{border-color:var(--al);color:var(--al)}
 .hero-one a.cta:hover{background:var(--al);color:var(--dr)}
