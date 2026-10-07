@@ -5,7 +5,7 @@
 html{scroll-behavior:auto}
 body{margin:0;background:var(--pp);font-family:var(--font-body),Georgia,serif;color:var(--dr);-webkit-font-smoothing:antialiased}
 a{color:inherit}a:hover{color:inherit}
-img{display:block;max-width:100%}
+img{display:block;max-width:100%;height:auto}
 p{margin:0;text-wrap:pretty}
 :focus-visible{outline:2px solid var(--sp);outline-offset:3px}
 .w,.d1 em,.d2 em{font-family:var(--font-body);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
