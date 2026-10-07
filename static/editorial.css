@@ -528,7 +528,8 @@ body[data-chapters] .strip{display:none}
 /* phones: the hero box takes its designed width (left:50% alone shrank it to half the hero) */
 @media (max-width:860px){.hero .hero-cap{width:min(78vw,320px)}}
 /* menu cards: the price never breaks, the leader never vanishes; descriptions drop under the name on phones */
-.card li div>span:last-child{white-space:nowrap;flex-shrink:0;text-align:right}
+.card li div>span:last-child:not(:first-child){white-space:nowrap;flex-shrink:0;text-align:right}
+.card li div>span:first-child{min-width:0}
 .card li div i{min-width:14px}
 @media (max-width:620px){.card li span em{display:block;margin-top:2px}}
 /* night mode: outline buttons on the Deep Red ground read in Almond */
