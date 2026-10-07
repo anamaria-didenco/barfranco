@@ -90,7 +90,7 @@ lead.addEventListener('pointerdown',function(e){if(lState!=='idle')return;draggi
 lead.addEventListener('pointermove',function(e){if(!dragging)return;var W=lead.clientWidth,d=Math.max(e.clientX-dX,dY-e.clientY),now=performance.now();vX=(e.clientX-lastX)/Math.max(1,now-lastT);lastX=e.clientX;lastT=now;dP=clamp(d/(W*.65),0,1);if(lState==='idle'&&d>8){lState='drag';clearTimeout(lTimer);ldog.classList.remove('sniff');ldog.style.opacity='1';try{lead.setPointerCapture(e.pointerId)}catch(_){}}});
 var endDrag=function(){if(!dragging)return;dragging=false;if(lState==='drag')fling(dP,(dP>.26||vX>.45)?1:0)};
 lead.addEventListener('pointerup',endDrag);lead.addEventListener('pointercancel',endDrag);
-if(!calm()&&!sget('bf-lead')&&!R.classList.contains('walking-in')){sset('bf-lead','1');startLead()}}
+if(!calm()&&!sget('bf-lead')&&!R.classList.contains('walking-in')&&!location.hash&&!/[?&](gclid|gbraid|wbraid|utm_)/.test(location.search)){sset('bf-lead','1');startLead()}}
 
 /* page to page: the dog pulls a deep-red cover across, then trots off on the next page */
 var walk=$('#walk'),wpane=walk&&$('.walk-pane',walk),wdog=walk&&$('.wdog',walk);
