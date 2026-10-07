@@ -339,7 +339,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .card h2.card-h{margin:0 0 6px}.card ul+h2.card-h{margin-top:18px}
 .card li span em{font-size:13px}
 .natale{color:var(--acc)}
-.ph.coaster{width:min(260px,60%);aspect-ratio:1;margin-top:8px}
+.ph.coaster{width:min(260px,60%);aspect-ratio:1;margin:8px auto 0}
 .enq-h{margin-top:clamp(28px,4vw,48px)}
 @media (max-width:860px){.steps{grid-template-columns:1fr}.step .ph{aspect-ratio:4/3}}
 
