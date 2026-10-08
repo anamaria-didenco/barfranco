@@ -168,6 +168,12 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
   capitals, never fake-bold). Radius 0 and no shadows anywhere.
 - **Marks:** wordmark (the name), the dachshund (playful accent), the Negroni glass (the ritual).
 - **Voice:** warm, direct, a little witty. "Come say ciao," not "Contact us."
+- **Leader dots (owner's rule):** dots between a name and its price or fact sit LOW on the baseline,
+  like full stops, never in the middle of the line. One rule in `static/editorial.css` draws every leader.
+- **Menus page = the printed menus.** The Food and Drinks sheets on `/menus/` are typed exactly as the
+  printed PDFs in `menus/`: food centred, one dish per line, a short run of dots, then the price; drinks
+  left-aligned, `Name – italic description`, dots across to the price; Birra and Non-alc side by side.
+  Normal case (never capitals) for dishes and drinks. When the PDFs change, retype the sheets to match.
 - Full detail in `Brand Guide.html`.
 
 ## Key facts (keep accurate across pages if they change)
