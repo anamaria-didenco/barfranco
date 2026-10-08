@@ -782,3 +782,22 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 .evm-d li{font-size:14.5px}
 .evm-d li>i{min-width:10px}
 }
+
+/* ==== the curtain, quieter and quicker: only the script and its line; a faint lead, a small soft dog ==== */
+.lead .l-top{display:none}
+.lead .l-handle{left:0;width:22px;font-size:1px;color:transparent;padding:10px 0}
+.lead .l-handle::after{display:none!important}
+#lloop{display:none}
+#lpath{stroke-width:1px;stroke-opacity:.32}
+.lead .ldog{width:clamp(62px,5.6vw,84px)}
+.lead .ldog img{opacity:.62}
+.lead .l-floor{border-top-color:rgba(250,215,195,.18)}
+.lead .l-mid{top:46%;will-change:transform}
+
+/* ==== the page turn: a slow deep-red dip, the dachshund a faint mark in the middle, no running ==== */
+.walk-pane{clip-path:none!important;opacity:0}
+.walking-in .walk-pane{opacity:1}
+.walk-floor{display:none}
+.wdog{left:50%;top:50%;bottom:auto;width:clamp(56px,4.6vw,72px);margin:-14px 0 0;transform:translate(-50%,0);opacity:0}
+.walking-in .wdog{opacity:.42}
+.wdog img{animation:none}
