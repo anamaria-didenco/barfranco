@@ -583,12 +583,14 @@ button.cta:focus-visible,a.cta:focus-visible{outline:2px solid var(--sp);outline
 /* "The long table": a photo mosaic hero, the facts on a ticket, three ways to book in photographs, the guests' words.
    Every selector hangs off body.dir-a, which only /christmas-functions/ and /functions/ carry. */
 
-/* hero: one large photograph and two stacked; the almond box sits on the large one */
-body.dir-a .hero{grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:2px;background:var(--dr);height:clamp(520px,calc(100svh - 236px),840px);min-height:0}
+/* hero: one large photograph and two stacked; the almond box sits on the large one, on the same left edge as the ticket under it */
+body.dir-a .hero{--xl:max(var(--gx),calc((100% - 1240px) / 2 + var(--gx)));grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:2px;background:var(--dr);height:clamp(520px,calc(100svh - 236px),840px);min-height:0}
 body.dir-a .hero .xa-h1{grid-row:1/3}
 body.dir-a .hero .xa-h3::before{display:none}
-body.dir-a .hero .hero-cap{left:clamp(18px,3.2vw,48px);right:auto;top:auto;bottom:clamp(22px,4.4vh,48px);transform:none;width:min(470px,calc(61.8% - 2 * clamp(18px,3.2vw,48px)));max-width:none}
+body.dir-a .hero .hero-cap{left:var(--xl);right:auto;top:auto;bottom:clamp(22px,4.4vh,48px);transform:none;width:min(470px,calc(61.8% - var(--xl) - 24px));max-width:none}
 body.dir-a .hero .hero-cap .s{margin-top:10px}
+body.pg-xmas .hero .xa-h1>img{object-position:50% 74%}
+body.pg-fn .hero .xa-h1>img{object-position:50% 85%}
 
 /* the ticket: the buying facts in one framed almond card, right under the hero */
 body.dir-a .xa-tk{padding-top:clamp(16px,2vw,28px)}
@@ -599,9 +601,9 @@ body.dir-a .xa-facts li{display:grid;grid-row:span 2;grid-template-rows:subgrid;
 body.dir-a .xa-facts li:first-child{border-left:0}
 body.dir-a .xa-facts b{font-family:var(--font-display);font-weight:700;text-transform:uppercase;color:var(--br);font-size:clamp(17px,1.38vw,20px);line-height:1.04;letter-spacing:.01em;text-wrap:balance;align-self:end}
 body.dir-a .xa-facts span{font-style:italic;font-size:15px;line-height:1.38;text-wrap:balance}
-body.dir-a .xa-incl{margin:clamp(14px,1.4vw,18px) clamp(16px,1.8vw,28px) 0;padding-top:clamp(10px,1vw,14px);border-top:1px solid rgba(108,6,0,.28);font-style:italic;font-size:14.5px;line-height:1.45;text-align:center;text-wrap:balance}
+body.dir-a .xa-incl{margin:clamp(14px,1.4vw,18px) clamp(16px,1.8vw,28px) 0;padding-top:clamp(10px,1vw,14px);border-top:1px solid rgba(108,6,0,.28);font-style:italic;font-size:15px;line-height:1.45;text-align:center;text-wrap:balance}
 
-/* three ways: photo, name, one line, the fact where a price would be, a small button */
+/* three ways: photo, name, the fact where a price would be, one line, a small button */
 body.dir-a .xa-ways{padding-top:clamp(44px,5.4vw,88px);padding-bottom:clamp(44px,5.4vw,88px)}
 body.dir-a .xa-ways-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px clamp(28px,5vw,80px);align-items:end;margin-bottom:clamp(22px,2.6vw,36px)}
 body.dir-a .xa-ways-head .lede{max-width:46ch;justify-self:end}
@@ -609,16 +611,26 @@ body.dir-a .xa-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));ga
 body.dir-a .xa-way{display:flex;flex-direction:column;min-width:0;margin:0}
 body.dir-a .xa-way .ph{aspect-ratio:4/3.3}
 body.dir-a .xa-way-b{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding-top:16px}
-body.dir-a .xa-way-k{font-style:italic;font-size:14px;line-height:1.2}
+body.dir-a .xa-way-k{margin:0;font-style:italic;font-size:14px;line-height:1.2}
 body.dir-a .xa-way-h{margin:0;font-family:var(--font-display);font-weight:700;text-transform:uppercase;color:var(--acc);font-size:clamp(22px,1.9vw,28px);line-height:1;letter-spacing:.01em}
-body.dir-a .xa-way-d{font-size:16px;line-height:1.45;max-width:34ch}
+body.dir-a .xa-way-d{margin:0 0 12px;font-size:16px;line-height:1.45;max-width:34ch}
 body.dir-a .xa-way .info{margin:4px 0 2px}
 body.dir-a .xa-way .info li{font-size:15px}
 body.dir-a .xa-way .info li:first-child{border-top:1px solid var(--rule)}
 body.dir-a .xa-way .info li em{font-style:normal;font-size:19px;line-height:1;color:var(--acc)}
 body.dir-a .xa-way a.cta{margin-top:auto;padding:10px 18px;font-size:14.5px}
-body.dir-a .xa-way-d{margin-bottom:12px}
-body.dir-a .xa-ways-n{margin-top:clamp(18px,2vw,26px);max-width:none}
+body.dir-a .xa-ways-n{margin-top:clamp(20px,2.2vw,30px);max-width:none}
+/* wide screens: the three cards share their rows, so names, fact lines and buttons line up even when a name wraps */
+@supports (grid-template-rows:subgrid){@media (min-width:861px){
+body.dir-a .xa-row{grid-template-rows:repeat(6,auto);row-gap:0}
+body.dir-a .xa-way{display:grid;grid-row:span 6;grid-template-rows:subgrid}
+body.dir-a .xa-way-b{display:contents}
+body.dir-a .xa-way-k{margin-top:16px}
+body.dir-a .xa-way-h{margin-top:7px;align-self:end}
+body.dir-a .xa-way .info{margin:11px 0 0;align-self:start}
+body.dir-a .xa-way-d{margin:11px 0 0;align-self:start}
+body.dir-a .xa-way a.cta{justify-self:start;align-self:start;margin-top:18px}
+}}
 
 /* the guests' words, big and warm, beside a photograph */
 body.dir-a .xa-q-g{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:stretch}
@@ -628,29 +640,37 @@ body.dir-a .xa-q-t{display:grid;align-content:center;padding:clamp(40px,6vw,96px
 body.dir-a .xa-q .qt{margin:0;padding:0;border:0;max-width:none}
 body.dir-a .xa-q .qt p{font-size:clamp(26px,2.7vw,40px);line-height:1.2;color:var(--al);max-width:17em}
 body.dir-a .xa-q .qt cite{margin-top:18px;font-size:15px;padding-top:12px;border-top:1px solid var(--rule);display:inline-block}
+body.pg-xmas .xa-q .ph>img{object-position:50% 12%}
+/* at night every band is Deep Red, so the guests' words turn Almond to stay the colour moment */
+html.night body.dir-a .xa-q{--gr:var(--al);--ink:var(--dr);--acc:var(--br);--rule:rgba(108,6,0,.32)}
+html.night body.dir-a .xa-q .qt p{color:var(--dr)}
 
 /* menu chapter: a photograph under the words, not the coaster */
 body.dir-a .xa-c-ph{width:100%;aspect-ratio:4/3;margin-top:8px}
 
 @media (max-width:860px){
-/* phones: one strong photograph behind the box, the box resting on its lower half */
-body.dir-a .hero{display:block;height:clamp(460px,calc(100svh - 326px),640px);min-height:0}
+/* phones: one strong photograph, a compact box on its lower edge (the ticket under it carries the date and the numbers) */
+body.dir-a .hero{display:block;height:clamp(390px,calc(100svh - 340px),640px);min-height:0}
 body.dir-a .hero .xa-h1{position:absolute;inset:0}
 body.dir-a .hero .xa-h2,body.dir-a .hero .xa-h3{display:none}
-body.dir-a .hero .hero-cap{left:0;right:0;bottom:var(--gx);margin:0 auto;width:min(calc(100% - 2 * var(--gx)),440px);padding:18px 20px 20px}
-body.dir-a .hero .hero-cap .s{margin-top:8px;font-size:14.5px}
-body.dir-a .hero .hero-cap .cta-row{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:8px;margin-top:14px;padding-top:14px}
+body.dir-a .hero .hero-cap{left:var(--gx);right:auto;bottom:12px;margin:0;width:min(calc(100% - 2 * var(--gx)),440px);padding:14px 16px 16px}
+body.dir-a .hero .hero-cap .k,body.dir-a .hero .hero-cap .s{display:none}
+body.dir-a .hero .hero-cap .hc-h{font-size:clamp(28px,8.4vw,34px)}
+body.dir-a .hero .hero-cap .cta-row{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:8px;margin-top:12px;padding-top:12px}
 body.dir-a .hero .hero-cap a.cta{white-space:nowrap;padding:13px 8px}
+/* the photograph sits low in its frame, so the candles and the table show above the box, not the dark wall */
+body.dir-a .hero .xa-h1>img{position:absolute;left:0;bottom:0;height:122%}
+body.pg-xmas .hero .xa-h1>img{height:140%;object-position:30% 50%}
 /* the ticket, two by two */
 body.dir-a .xa-tk{padding-top:14px;padding-bottom:14px}
-body.dir-a .xa-ticket>div{padding:4px 0 12px}
+body.dir-a .xa-ticket>div{padding:2px 0 10px}
 body.dir-a .xa-facts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-body.dir-a .xa-facts li{padding:12px 12px 10px 14px;border-left:0;row-gap:5px}
+body.dir-a .xa-facts li{padding:10px 10px 8px 12px;border-left:0;row-gap:5px}
 body.dir-a .xa-facts li:nth-child(even){border-left:1px solid rgba(108,6,0,.28)}
 body.dir-a .xa-facts li:nth-child(n+3){border-top:1px solid rgba(108,6,0,.28)}
-body.dir-a .xa-facts b{font-size:clamp(16px,4.4vw,20px);line-height:1.04}
-body.dir-a .xa-facts span{font-size:14px;line-height:1.3}
-body.dir-a .xa-incl{margin:4px 14px 0;padding-top:10px;font-size:13.5px;text-align:left}
+body.dir-a .xa-facts b{font-size:clamp(15px,4.2vw,19px);line-height:1.04}
+body.dir-a .xa-facts span{font-size:15px;line-height:1.28}
+body.dir-a .xa-incl{margin:2px 12px 0;padding-top:8px;font-size:15px;line-height:1.36;text-align:left}
 /* three ways: a swipe row, one card and a bit of the next */
 body.dir-a .xa-ways{padding-top:clamp(36px,9vw,56px);padding-bottom:clamp(36px,9vw,56px)}
 body.dir-a .xa-ways-head{grid-template-columns:minmax(0,1fr);margin-bottom:20px}
@@ -659,11 +679,18 @@ body.dir-a .xa-row{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:c
 body.dir-a .xa-row::-webkit-scrollbar{display:none}
 body.dir-a .xa-way{flex:0 0 min(78vw,340px);scroll-snap-align:start}
 body.dir-a .xa-way .ph{aspect-ratio:16/10}
+body.dir-a .xa-way-k{font-size:15px}
 body.dir-a .xa-way-d{font-size:15.5px}
+body.dir-a .xa-way a.cta{padding:14px 18px}
 /* the guests' words: the photograph full width, the quote under it */
 body.dir-a .xa-q-g{grid-template-columns:minmax(0,1fr)}
 body.dir-a .xa-q .ph{min-height:0;aspect-ratio:4/3}
 body.dir-a .xa-q-t{padding:32px var(--gx) 44px}
 body.dir-a .xa-q .qt p{font-size:clamp(24px,6.4vw,30px)}
 body.dir-a .xa-c-ph{aspect-ratio:4/3}
+}
+/* small phones: the dotted leader runs from the label to the fact, as on wide screens */
+@media (max-width:620px){
+body.dir-a .info li span{flex:0 1 auto;min-width:0}
+body.dir-a .info li em{flex:0 0 auto}
 }
