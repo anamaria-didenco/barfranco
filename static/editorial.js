@@ -20,7 +20,7 @@ function clock(){var oh=$('#openH'),ot=$('#openT');if(!oh)return;var t=nz(),h=t.
 clock();setInterval(clock,30000);
 
 /* the header layer: the logo settles as you scroll; ink and veil follow what's beneath */
-var mast=$('.mast'),mk=$('.mk'),mastR=$('.mast-r'),hero=$('[data-hero]'),mkS=1;
+var mast=$('.mast'),mk=$('.mk'),mastR=$('.mast-r'),hero=$('[data-hero]'),mhName=$('.mh-name'),mkS=1;
 function tog(c,on){if(on!==mast.classList.contains(c))mast.classList.toggle(c,on)}
 function toneAt(x,y){if(R.classList.contains('night'))return'dark';var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var e=els[i];if(e.closest('.mast,.lead,.walk-ov,.mockbar,a,button,.card,.cta-row'))continue;var t=e.closest('[data-tone]');if(t)return t.dataset.tone;
 for(var n=e;n&&n!==document.documentElement;n=n.parentElement){if(n.tagName==='IMG'||n.tagName==='VIDEO')return'dark';var cs=getComputedStyle(n);if(cs.backgroundImage&&cs.backgroundImage!=='none'&&cs.backgroundImage.indexOf('gradient')<0)return'dark';var m=cs.backgroundColor.match(/[\d.]+/g);if(m&&(m.length<4||+m[3]>.5)){var r=+m[0],g=+m[1],b=+m[2],L=(.2126*r+.7152*g+.0722*b)/255;return L<.5?'dark':(Math.abs(r-250)<14&&Math.abs(g-215)<16?'almond':'light')}}
@@ -28,7 +28,7 @@ return'light'}return'light'}
 function mastTick(){if(!mast||!mk)return;var tgt=1-.5*smooth(scrollY/(innerHeight*.75));mkS=calm()?tgt:lerp(mkS,tgt,.08);if(Math.abs(mkS-tgt)<.0004)mkS=tgt;mk.style.transform='scale('+mkS.toFixed(4)+')';
 if(R.classList.contains('menu-open'))return;
 var a=mk.getBoundingClientRect(),b=mastR.getBoundingClientRect(),t1=toneAt(a.left+Math.min(24,a.width/3),a.top+a.height/2),t2=toneAt(b.left+b.width/2,b.top+b.height/2);if(innerWidth<=900)t2=t1;
-tog('lk-l',t1!=='dark');tog('lk-a',t1==='almond');tog('nv-l',t2!=='dark');tog('nv-a',t2==='almond');tog('vo',scrollY>(hero?hero.offsetHeight:innerHeight*.6)-110);
+tog('lk-l',t1!=='dark');tog('lk-a',t1==='almond');tog('nv-l',t2!=='dark');tog('nv-a',t2==='almond');tog('vo',scrollY>(hero?hero.offsetHeight:innerHeight*.6)-110);if(mhName)R.classList.toggle('mh-top',mhName.getBoundingClientRect().bottom>40);
 mast.style.setProperty('--vh',Math.round(a.bottom-mast.getBoundingClientRect().top+40)+'px')}
 var mbtn=$('.mast-menu');
 if(mbtn)mbtn.addEventListener('click',function(){var o=R.classList.toggle('menu-open');mbtn.setAttribute('aria-expanded',String(o));mbtn.textContent=o?'Close':'Menu'});

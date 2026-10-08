@@ -154,7 +154,28 @@ any photo showing the old yellow artichoke pendant lamps; the site shows the new
 
 **Curated: one photograph, one page.** No photograph appears on two pages (the coaster set aside). Each page's
 pictures are chosen as a set for its subject; before using a photo, check it isn't already on another page:
-`grep -l 'images/<name>.jpg' index.html */index.html`. The library holds far more than the site uses, so there is always another.
+`grep -l 'images/<name>.jpg' index.html */index.html`. **Careful: many files are the same shot under another name**
+(e.g. `hero-table` = `aperitivo-table-cheers` = `aperitivo-table-menus`; `dining-pasta` = `pasta-marble-table`;
+`server-tray` = `level-negroni-graded`; `bar-dancing` = `party-dancing-bar`), so compare the pictures, not the names. The library
+is close to used up: ask the owner for new photographs rather than repeating one. Header photographs never repeat across pages.
+
+**Headers (owner's call): only three pages changed.** Functions, Christmas and Private dining open on `.hero.hero4.mh`, a copy
+of the cover of `downloads/Bar-Franco-Events-Pack-2026.pdf`: the page's own name across the full width in VTC Marsha capitals and
+Bright Red (`h1.mh-name`, sized from the container with the title's measured width in `--k1` (one line) and `--k2` (two lines on
+phones)), the Bar Franco logo type under it (`.mh-logo`), a double rule, one line (`.mh-line`: small italic label left, a short
+tagline centred in Marsha capitals with an Affairs-italic turn, `(upstairs) · 166 Cashel St, Ōtautahi` right), a double rule,
+then four photographs of different widths (1.1 : 1.5 : 1 : 1, the same on phones as on desktop) and the buttons, a matched pair
+(52px tall, `Check your date` + `Call 021 221 1307`). No text on any photograph. The small script logo steps aside while the
+name is on screen (`html.mh-top`). **Every other page keeps the header it has** (the two-photo `.hero` with its almond card, or
+the single-photo `.hero-one`): the owner asked for no changes beyond these three pages. Our story is the one other change she
+asked for: one small portrait of Ana‑Maria beside the title (`.st-open`), and no other photograph on that page.
+
+**Functions is a copy of the Events Pack (owner's call):** after the header comes the pack's `.pk-in` line ("On this page · tap a
+chapter…" with every chapter as a link), then numbered chapters as `section.pk-ch > details.pk-d` built from the pack's own pieces
+(a 16:9 lead photo, eyebrow + `.d2`, `.say`, `.grid3` of `.h4x` + `.bt`, `.info` lists, `.pk-opts`, `.pk-steps`), then the almond
+enquiry section. No peach boxes of facts. **Christmas and Private dining** are to be rebuilt on the owner's "Christmas Functions
+v5" Claude Design layout, keeping every fact they carry now and the immersive feel (the cover header, big photographs); until
+then they carry the same pack layout as Functions. Corporate and Weddings stay exactly as they are on the live site.
 
 Two level photos (`images/level-negroni-graded.jpg`, `images/level-restaurant-graded.jpg`) were
 **colour-graded** to match each other (warm, moody, matte blacks). If you swap them, try to keep a
@@ -170,6 +191,7 @@ consistent warm/low-key grade so the set stays cohesive. Originals like `server-
 - **Voice:** warm, direct, a little witty. "Come say ciao," not "Contact us."
 - **Leader dots (owner's rule):** dots between a name and its price or fact sit LOW on the baseline,
   like full stops, never in the middle of the line. One rule in `static/editorial.css` draws every leader.
+  On phones (≤620px) there are no leader dots at all (owner's call); the fact still sits at the end of the line.
 - **Menus page = the printed menus.** The Food and Drinks sheets on `/menus/` are typed exactly as the
   printed PDFs in `menus/`: food centred, one dish per line, a short run of dots, then the price; drinks
   left-aligned, `Name – italic description`, dots across to the price; Birra and Non-alc side by side.

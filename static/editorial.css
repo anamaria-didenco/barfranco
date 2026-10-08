@@ -794,6 +794,67 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 .lead .l-floor{border-top-color:rgba(250,215,195,.18)}
 .lead .l-mid{top:46%;will-change:transform}
 
+/* ==== the masthead header: the Events Pack cover on every page with a photo header ====
+   the page's name across the page in VTC Marsha, the Bar Franco logo type under it, a double rule, a three-part line,
+   a double rule, four photographs of different widths (the same on phones), then the buttons */
+.hero.hero4{display:block;height:auto;min-height:0;background:var(--pp);color:var(--dr);padding:calc(var(--mb) + 92px) 0 clamp(26px,3.2vw,48px)}
+.hero.hero4 .mh-w{container-type:inline-size}
+.mh-name{display:block;margin:0;font-family:"VTC Marsha",var(--font-display);font-weight:700;text-transform:uppercase;font-size:min(calc(100cqi / var(--k1,14)),calc(100cqi / 7.4));line-height:.84;letter-spacing:-.01em;color:var(--br);white-space:nowrap}
+.mh-name.mh-home{display:flex;justify-content:space-between;font-size:calc(100cqi / 7.4)}
+.mh-logo{display:block;width:clamp(150px,18vw,250px);margin-top:clamp(12px,1.3vw,18px);line-height:0;text-decoration:none}
+.mh-logo img{display:block;width:100%;height:auto}
+.mh-logo:focus-visible{outline:2px solid var(--sp);outline-offset:4px}
+.mh-line{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px clamp(14px,2vw,32px);margin-top:clamp(14px,1.6vw,22px);padding:clamp(10px,1.1vw,15px) 0;border-top:3px double var(--br);border-bottom:3px double var(--br)}
+.mh-home+.mh-line{margin-top:clamp(16px,2vw,28px)}
+.mh-l,.mh-r{margin:0;font-style:italic;font-size:clamp(13px,1.05vw,16px);line-height:1.25}
+.mh-r{text-align:right}
+.mh-h{margin:0;text-align:center;font-family:"VTC Marsha",var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(16px,1.55vw,22px);line-height:1.1;letter-spacing:.005em;color:var(--dr);text-wrap:balance;max-width:44em}
+.mh-h em{font-family:var(--font-body);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;font-size:1.06em}
+.mh-h small{font-size:.5em;vertical-align:baseline}
+.mh-photos{display:grid;grid-template-columns:1.1fr 1.5fr 1fr 1fr;gap:clamp(6px,1vw,12px);margin-top:clamp(12px,1.5vw,20px);height:clamp(300px,calc(100svh - 500px),680px)}
+.mh-photos .ph{min-width:0;height:100%;background:var(--dr)}
+.mh-photos .ph::before,.mh-photos .ph::after{display:none!important}
+.mh-photos .ph>img{display:block;width:100%;height:100%;object-fit:cover}
+.mh-foot{display:flex;justify-content:center;margin-top:clamp(18px,2.2vw,30px)}
+.mh-foot .cta-row{margin:0;justify-content:center;gap:12px}
+.mh-foot a.cta{display:inline-flex;align-items:center;justify-content:center;min-width:clamp(190px,17vw,250px);min-height:52px;padding:14px 28px;font-size:17px;line-height:1.1;white-space:nowrap}
+/* the small script logo steps aside while the name is on screen, then settles in the corner as you scroll */
+html.mh-top .mk{opacity:0;pointer-events:none}
+.mk{transition:opacity .5s var(--ease)}
+@media (max-width:860px){
+.hero.hero4{padding-top:calc(var(--mb) + 62px)}
+.mh-name{font-size:min(calc(100cqi / var(--k2,9)),15cqi);line-height:.9}
+.mh-name:not(.mh-home) span{display:block}
+.mh-logo{width:min(46%,190px)}
+.mh-line{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.mh-h{grid-column:1/-1;grid-row:1;font-size:clamp(16px,4.8vw,20px);max-width:none}
+.mh-l{grid-row:2}.mh-r{grid-row:2}
+.mh-l,.mh-r{font-size:13px}
+.mh-photos{height:clamp(300px,calc(100svh - 470px),460px)}
+.mh-foot .cta-row{display:grid;grid-template-columns:minmax(0,1fr);width:100%}
+.mh-foot a.cta{min-width:0;width:100%}
+}
+
+/* ==== the ticket: every fact a link to its chapter, heads on one top line, lines under them on one line ==== */
+body.dir-a .xa-facts li>a{display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:7px;align-content:start;color:inherit;text-decoration:none}
+body.dir-a .xa-facts b{align-self:start}
+body.dir-a .xa-facts span{align-self:start}
+body.dir-a .xa-facts li>a:hover b,body.dir-a .xa-incl a:hover{text-decoration:underline;text-underline-offset:.16em;text-decoration-thickness:1px}
+body.dir-a .xa-facts li>a:focus-visible,body.dir-a .xa-incl a:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
+body.dir-a .xa-incl a{color:inherit;text-decoration:none}
+@media (min-width:861px){body.dir-a .xa-facts li{text-align:center}body.dir-a .xa-facts b,body.dir-a .xa-facts span{justify-self:center}}
+@media (max-width:860px){body.dir-a .xa-facts li>a{row-gap:5px}}
+
+/* ==== the index: every chapter one click away (a row on wide screens, a list on phones) ==== */
+@media (min-width:861px){
+.ch-index{display:flex;flex-wrap:wrap;justify-content:center;max-width:1240px;margin:0 auto;padding:clamp(6px,.8vw,12px) var(--gx) clamp(10px,1vw,14px);border-bottom:1px solid rgba(108,6,0,.22)}
+.ch-index a{display:inline-flex;align-items:baseline;gap:9px;padding:10px clamp(14px,1.6vw,26px);color:var(--dr);text-decoration:none;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(14px,1.05vw,16px);line-height:1.1;letter-spacing:.02em;border-left:1px solid rgba(108,6,0,.22)}
+.ch-index a:first-child{border-left:0}
+.ch-index .pk-n{color:var(--br);font-size:.8em}
+.ch-index a:hover span:last-child{text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.ch-index a:focus-visible{outline:2px solid var(--sp);outline-offset:2px}
+}
+
 /* ==== the page turn: a slow deep-red dip, the dachshund a faint mark in the middle, no running ==== */
 .walk-pane{clip-path:none!important;opacity:0}
 .walking-in .walk-pane{opacity:1}
@@ -801,3 +862,25 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 .wdog{left:50%;top:50%;bottom:auto;width:clamp(56px,4.6vw,72px);margin:-14px 0 0;transform:translate(-50%,0);opacity:0}
 .walking-in .wdog{opacity:.42}
 .wdog img{animation:none}
+
+/* ==== event pages on the Events Pack layout (Functions, Christmas, Corporate, Weddings, Private dining) ==== */
+body.pg-pack .xm-card{display:grid;justify-items:center}
+body.pg-pack .xm-card .card,body.pg-pack .pk-b .g2 .card{justify-self:center;margin:0}
+body.pg-pack .pk-b .g2{align-items:start}
+body.pg-pack .pk-b .grid3 .cta-row{margin-top:4px}
+body.pg-pack .pk-b .grid3 a.cta{padding:10px 18px;font-size:14.5px}
+body.pg-pack .pk-b .qt{max-width:40ch}
+
+/* ==== Our story: no photograph header; one small portrait of Ana-Maria beside the title (owner's call) ==== */
+.st-open{padding:calc(var(--nv) + clamp(48px,7vw,120px)) 0 clamp(40px,5vw,72px)}
+.st-open-g{display:grid;grid-template-columns:clamp(150px,17vw,230px) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end}
+.st-me{aspect-ratio:4/5;margin:0;border:1px solid var(--rule)}
+.st-me>img{object-position:50% 22%}
+.st-open-t .d1{color:var(--acc);max-width:14ch}
+.st-open-t .lede{max-width:44ch}
+.st-open+.sec .say{margin-top:0}
+@media (max-width:620px){
+.st-open{padding-top:calc(var(--nv) + 28px)}
+.st-open-g{grid-template-columns:minmax(0,1fr);align-items:start}
+.st-me{width:132px}
+}
