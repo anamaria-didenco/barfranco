@@ -694,3 +694,40 @@ body.dir-a .xa-c-ph{aspect-ratio:4/3}
 body.dir-a .info li span{flex:0 1 auto;min-width:0}
 body.dir-a .info li em{flex:0 0 auto}
 }
+
+/* ==== leader dots: low on the line, like full stops (owner's rule, everywhere) ==== */
+.ln i,.dishes li div i,.card li div i,.info li i,.pm-drink li>i{border-bottom:0!important;transform:none!important;height:3px;align-self:baseline;opacity:.75;
+background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bottom/5px 3px repeat-x}
+
+/* ==== printed menus, typed as they are printed (Menus page) ==== */
+.pm{max-width:820px;margin-inline:auto}
+.pm>div{display:block;columns:auto}
+.pm .pm-title{text-align:center;letter-spacing:.42em;padding-left:.42em;margin-bottom:clamp(20px,3vw,36px)}
+.pm .course{margin:0 0 clamp(22px,3vw,34px)}
+.pm .card-h{text-align:center;font-size:clamp(17px,1.6vw,21px);letter-spacing:.04em;margin:0 0 8px}
+.pm ul{display:block;list-style:none;margin:0;padding:0}
+/* food: centred, one line each, a short run of dots, then the price */
+.pm-food li{text-align:center;padding:2px 0;border:0;font-size:clamp(15.5px,1.25vw,17.5px);line-height:1.55}
+.pm-d{letter-spacing:.06em;font-size:.82em;opacity:.8;white-space:nowrap}
+.pm-food .pm-p{white-space:nowrap}
+/* drinks: left, the description in italics after a dash, dots across to the price */
+.pm-drink{max-width:720px}
+.pm-drink li{display:flex;align-items:baseline;gap:6px;padding:3px 0;border:0;font-size:clamp(15px,1.2vw,17px);line-height:1.45}
+.pm-drink li>i{flex:1;min-width:14px}
+.pm-drink .pm-n{min-width:0}
+.pm-drink .pm-p{white-space:nowrap;flex-shrink:0}
+.pm-drink em{font-style:italic}
+.pm-two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px)}
+.pm-drink .pm-sub{display:block;padding:3px 0}
+.pm .card-em{margin:clamp(8px,2vw,18px) auto 0}
+@media (max-width:520px){.pm-two{grid-template-columns:1fr}.pm .pm-title{letter-spacing:.3em;padding-left:.3em}}
+.pm li em,.pm li span em{font-size:inherit;display:inline;margin:0;opacity:1}
+/* drinks: the dots run from the end of the words to the price, on the last line, as printed */
+.pm-drink li{display:block;position:relative;padding:3px 3.3em 3px 0}
+.pm-drink li.pm-sub{padding-right:0}
+.pm-drink li>i{position:absolute;left:0;right:3.1em;bottom:3px;height:1.45em;line-height:1.45;overflow:hidden;white-space:nowrap;background:none!important;opacity:.7;font-style:normal;align-self:auto}
+.pm-drink li>i::before{content:"................................................................................................................................................................................................................................................";letter-spacing:.12em}
+.pm-drink .pm-n{position:relative;z-index:1;background:var(--gr);padding-right:.3em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.pm-drink .pm-p{position:absolute;right:0;bottom:3px;line-height:1.45}
+.pm-drink li>i{right:0}
+.pm-drink .pm-p{z-index:1;background:var(--gr);padding-left:.3em}
