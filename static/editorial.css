@@ -731,3 +731,15 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 .pm-drink .pm-p{position:absolute;right:0;bottom:3px;line-height:1.45}
 .pm-drink li>i{right:0}
 .pm-drink .pm-p{z-index:1;background:var(--gr);padding-left:.3em}
+/* phones: menus set smaller, so most dishes and drinks sit on one line, as printed */
+@media (max-width:620px){
+.pm.card{padding:4px}
+.pm>div{padding:20px 14px}
+.pm .pm-title{font-size:clamp(38px,12vw,52px);margin-bottom:16px}
+.pm .card-h{font-size:15px;margin-bottom:6px}
+.pm .course{margin-bottom:20px}
+.pm-food li{font-size:13.5px;line-height:1.5;padding:1px 0}
+.pm-drink li,.pm-drink .pm-sub{font-size:13.5px;line-height:1.45}
+.mcard:not(.pm) li div{font-size:14px}
+.mcard:not(.pm) .card-h{font-size:15px}
+}
