@@ -743,3 +743,13 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 .mcard:not(.pm) li div{font-size:14px}
 .mcard:not(.pm) .card-h{font-size:15px}
 }
+/* phones: the menus as a small printed card: tighter margins, type scaled to the screen */
+@media (max-width:620px){
+#sheets .wrap{padding-left:12px;padding-right:12px}
+.pm.card{padding:3px}
+.pm>div{padding:18px 10px}
+.pm-food li,.pm-drink li,.pm-drink .pm-sub{font-size:clamp(11px,2.95vw,12.5px);line-height:1.5}
+.pm .card-h{font-size:13px;margin-bottom:5px}
+.pm .course{margin-bottom:16px}
+.pm .pm-title{font-size:clamp(34px,11vw,48px);margin-bottom:12px}
+}
