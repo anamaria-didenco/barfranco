@@ -72,9 +72,10 @@ var st={n:clamp(+ls('bf-sdf-n','40')||40,10,240),s:ls('bf-sdf-s','seat'),d:ls('b
 /* 1 · find your floor */
 var row=$('#sdRow'),HASF=!!(row&&$('#dogF')),cards=HASF?$$('#sdRow .xa-way'):[],dogF=HASF?new Dog($('#dogF')):null;if(dogF)dogs.push(dogF);
 var nIn=$('#sdN');if(nIn)nIn.value=st.n;var STK=$('#sdSticky')?$('#sdSticky').textContent:'';
-function fits(){var k=st.s==='seat'?'seat':'stand';var one=cards.filter(function(c){return c.dataset.room!=='all'&&+c.dataset[k]>=st.n});if(one.length)return one;return cards.filter(function(c){return c.dataset.room==='all'&&+c.dataset[k]>=st.n})}
+var VC=row&&row.dataset.seat?{seat:+row.dataset.seat,stand:+row.dataset.stand}:null;
+function fits(){var k=st.s==='seat'?'seat':'stand';if(VC)return st.n<=VC[k]?cards.slice():[];var one=cards.filter(function(c){return c.dataset.room!=='all'&&+c.dataset[k]>=st.n});if(one.length)return one;return cards.filter(function(c){return c.dataset.room==='all'&&+c.dataset[k]>=st.n})}
 function name(r){return r==='bar'?'the Negroni Bar':r==='rest'?'the Restaurant':'the whole building'}
-function floorLine(){var f=fits(),how=st.s==='seat'?'seated':'standing';if(!f.length)return'More than 165 seated? Go standing: the whole building takes 240.';var names=f.map(function(c){return name(c.dataset.room)});var s='<b>'+st.n+' '+how+'</b>: ';s+=names.length>1?'either floor. '+cap(names[0])+' for booths and a big bar, or '+names[1]+' for a long table by the windows.':cap(names[0])+(f[0].dataset.room==='all'?', exclusively yours.':' is your floor.');if(matchMedia('(max-width:860px)').matches)return'<b>'+st.n+' '+how+'</b>: '+(names.length>1?'either floor.':cap(names[0])+'.');if(st.n<=20&&st.s==='seat')s+=' Under 20? A long table without hiring a level.';s+=' '+spendLine(f);return s}
+function floorLine(){var f=fits(),how=st.s==='seat'?'seated':'standing';if(VC){if(!f.length)return'More than '+VC.seat+' seated? Go standing: up to '+VC.stand+'.';if(matchMedia('(max-width:860px)').matches)return'<b>'+st.n+' '+how+'</b>: you fit.';return'<b>'+st.n+' '+how+'</b>: you fit. Seated up to '+VC.seat+', standing up to '+VC.stand+'. '+(st.d==='wk'?'Sunday to Thursday: usually no minimum spend, and never a hire fee.':'Fri &amp; Sat minimum spend from $4,000. No hire fee.')}if(!f.length)return'More than 165 seated? Go standing: the whole building takes 240.';var names=f.map(function(c){return name(c.dataset.room)});var s='<b>'+st.n+' '+how+'</b>: ';s+=names.length>1?'either floor. '+cap(names[0])+' for booths and a big bar, or '+names[1]+' for a long table by the windows.':cap(names[0])+(f[0].dataset.room==='all'?', exclusively yours.':' is your floor.');if(matchMedia('(max-width:860px)').matches)return'<b>'+st.n+' '+how+'</b>: '+(names.length>1?'either floor.':cap(names[0])+'.');if(st.n<=20&&st.s==='seat')s+=' Under 20? A long table without hiring a level.';s+=' '+spendLine(f);return s}
 function spendLine(f){if(st.d==='wk')return'Sunday to Thursday: usually no minimum spend, and never a hire fee.';return'Fri &amp; Sat minimum spend: '+f.map(function(c){return name(c.dataset.room).replace('the ','')+' from '+c.dataset.min}).join(', ')+'. No hire fee.'}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 var lastPick='';
@@ -105,7 +106,7 @@ function parse(s){var p=s.split('-');return{y:+p[0],m:+p[1]-1,d:+p[2]}}
 var CLOSE=+(hold&&hold.dataset.close)||23;function shut(m,d){return(m===11&&d>=CLOSE)||(m===0&&d<=5)}
 function fmt(s){var q=parse(s);return DAY[wd(q.y,q.m,q.d)]+' '+q.d+' '+MON[q.m]}
 if(st.date){var q=parse(st.date),k=MONTHS.findIndex(function(x){return x.y===q.y&&x.m===q.m});if(k<0||U(q.y,q.m,q.d)<TU)st.date='';else mi=k}
-if(!st.date&&hold&&hold.dataset.mo){var k2=MONTHS.findIndex(function(x){return x.m===+hold.dataset.mo});if(k2>-1)mi=k2}
+if(hold&&hold.dataset.mo){var k2=MONTHS.findIndex(function(x){return x.m===+hold.dataset.mo});if(k2>-1)mi=k2}
 $('#sdMo').innerHTML=MONTHS.map(function(x,i){return'<button type="button" data-i="'+i+'">'+MON[x.m]+'</button>'}).join('');
 function spot(){var dw=dogC.w(),dh=dogC.h(),b=st.date&&G.querySelector('[data-iso="'+st.date+'"]');if(b){var r=rel(b,hold);return[r.l+(r.w-dw)/2,r.t+r.h-dh-6]}var g=rel(G,hold);return[g.l+g.w-dw-4,g.t-dh-2]}
 function buildCal(){var Y=MONTHS[mi].y,m=MONTHS[mi].m,lead=(wd(Y,m,1)+6)%7,n=new Date(U(Y,m+1,0)).getUTCDate(),h='',i;
@@ -115,7 +116,7 @@ for(i=(lead+n)%7;i&&i<7;i++)h+='<span class="sd-x"></span>';
 G.innerHTML=h;$$('#sdMo button').forEach(function(b){b.setAttribute('aria-pressed',String(+b.dataset.i===mi))});var p=spot();dogC.put(p[0],p[1])}
 function isFS(){if(!st.date)return st.d==='fs';var q=parse(st.date),w=wd(q.y,q.m,q.d);return w===5||w===6}
 function summary(){var how=st.s==='seat'?'seated':'standing',f=fits();$('#sdSumN').textContent=HASF?st.n+', '+how:String(st.n);var room=st.room&&st.room!=='either'?st.room:(f.length===1?f[0].dataset.room:null);if($('#sdSumR'))$('#sdSumR').textContent=room?cap(name(room)):f.length?'either floor':'the whole building, standing';$('#sdSumD').textContent=st.date?fmt(st.date):'pick one';
-var mins={bar:'4,000',rest:'7,500',all:'15,000'};$('#sdSumM').textContent=!st.date?'pick a date':isFS()?'from '+(room?mins[room]:'4,000'):'usually none';
+var mins={bar:'$4,000',rest:'$7,500',all:'$15,000'};$('#sdSumM').textContent=!st.date?'pick a date':isFS()?'from '+(room?mins[room]:'$4,000'):'usually none';
 $('#sdHoldBtn').textContent=st.date?'Hold '+fmt(st.date).replace(/ \d{4}$/,''):'Pick a date to hold';
 var sl=$('#sdSticky');if(sl&&sd())sl.textContent=st.date?'Holding '+fmt(st.date)+' · '+st.n+' guests':STK;syncForm()}
 var vfT=0;function syncForm(){clearTimeout(vfT);vfT=setTimeout(function(){var f=$('.enq-f iframe');if(!f)return;var u;try{u=new URL(f.getAttribute('src'),location.href)}catch(x){return}['prefillDate','prefillGuests','prefillFormat'].forEach(function(k){u.searchParams.delete(k)});if(st.date)u.searchParams.set('prefillDate',st.date);if(HASF){u.searchParams.set('prefillGuests',String(st.n));u.searchParams.set('prefillFormat',st.s==='seat'?'seated':'standing')}if(u.href!==f.src)f.src=u.href},600)}
@@ -130,6 +131,12 @@ addEventListener('scroll',function(){if(!bandRaf)bandRaf=requestAnimationFrame(f
 
 /* the enquiry form takes the height VenueFlow reports, so there's no empty band under it */
 addEventListener('message',function(e){var host='';try{host=new URL(e.origin).hostname}catch(x){return}if(!/(^|\.)venueflowhq\.com$/.test(host))return;var d=e.data;if(typeof d==='string'){try{d=JSON.parse(d)}catch(x){return}}if(d&&d.type==='vf-embed-height'&&d.height>0)R.style.setProperty('--vfh',Math.max(420,Math.ceil(d.height))+'px')});
+
+/* Christmas: the availability strip. Edit the dates inside <b id="sdAvailD"> on the page (e.g. "11 &amp; 18");
+   Fridays that have passed (NZ time) drop off here, and when none are left the line says so. */
+(function(){var b=$('#sdAvailD');if(!b)return;var Y=+(b.dataset.year||T.y),days=(b.textContent.match(/\d+/g)||[]).map(Number).filter(function(d){return U(Y,11,d)>=TU});
+var p=b.parentNode;if(!days.length){p.innerHTML=b.dataset.none||'December Fridays: fully booked · Midweek &amp; lunch dates open.';return}
+var f=days.map(function(d){return'Fri '+d});b.textContent=f.length>1?f.slice(0,-1).join(', ')+' & '+f[f.length-1]:f[0]})();
 
 /* Christmas: an honest countdown to the first December Friday */
 (function(){var fr=$('#sdFri'),lv=$('#sdLive');if(!fr)return;var Y=T.m===11&&T.d>23?T.y+1:T.y,f=1;while(wd(Y,11,f)!==5)f++;var days=Math.round((U(Y,11,f)-TU)/864e5),s;if(days>=14)s=Math.round(days/7)+' weeks to the first December Friday';else if(days>1)s=days+' days to the first December Friday';else if(days>=0)s='December Fridays are here';else{var left=0;for(var d=T.d;d<CLOSE;d++)if(wd(Y,11,d)===5)left++;s=left?left+(left>1?' December Fridays left':' December Friday left'):'Now booking Christmas '+(Y+1)}fr.textContent=s})();
