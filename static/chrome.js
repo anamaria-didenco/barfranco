@@ -1,6 +1,6 @@
 /* Bar Franco — shared masthead and footer behaviour, on every page.
    The masthead tightens to one line once scrolled; the footer tells you whether Franco is open,
-   on a live Ōtautahi clock. */
+   on a live Christchurch clock. */
 (function () {
   var m = document.querySelector('.bf-mast');
   if (m) {

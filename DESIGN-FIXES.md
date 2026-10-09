@@ -110,7 +110,7 @@ Acceptance:
 `index.html` is already re-plated: cover hero; 01 Dine & host; 02 The room (one editorial pair);
 03 The menus (print on the table); 04 Host at Franco on Night; 05 The spaces; 06 on Almond headed
 "(upstairs) 166 Cashel St"; Night footer (lite). Copy changes made: 06's head (was "Come say ciao", which now
-belongs to Contact) and its line "The Crossing, Ōtautahi — down the laneway, from 4pm."
+belongs to Contact) and its line "The Crossing, Christchurch — down the laneway, from 4pm."
 - [ ] Sections numbered 01–06 in order; every photo 16:9, 3:2 or 4:5; one full-bleed photograph.
 
 ## 4 · Page by page
