@@ -801,3 +801,17 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 .wdog{left:50%;top:50%;bottom:auto;width:clamp(56px,4.6vw,72px);margin:-14px 0 0;transform:translate(-50%,0);opacity:0}
 .walking-in .wdog{opacity:.42}
 .wdog img{animation:none}
+
+/* ==== Our story: no photograph header; one small portrait of Ana-Maria beside the title (owner's call) ==== */
+.st-open{padding:calc(var(--nv) + clamp(48px,7vw,120px)) 0 clamp(40px,5vw,72px)}
+.st-open-g{display:grid;grid-template-columns:clamp(150px,17vw,230px) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end}
+.st-me{aspect-ratio:4/5;margin:0;border:1px solid var(--rule)}
+.st-me>img{object-position:50% 22%}
+.st-open-t .d1{color:var(--acc);max-width:14ch}
+.st-open-t .lede{max-width:44ch}
+.st-open+.sec .say{margin-top:0}
+@media (max-width:620px){
+.st-open{padding-top:calc(var(--nv) + 28px)}
+.st-open-g{grid-template-columns:minmax(0,1fr);align-items:start}
+.st-me{width:132px}
+}
