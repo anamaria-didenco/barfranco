@@ -159,18 +159,19 @@ pictures are chosen as a set for its subject; before using a photo, check it isn
 `server-tray` = `level-negroni-graded`; `bar-dancing` = `party-dancing-bar`), so compare the pictures, not the names. The library
 is close to used up: ask the owner for new photographs rather than repeating one. Header photographs never repeat across pages.
 
-**Christmas and Private dining are on the owner's events design (from her Claude Design handoff, `Bar_Franco_xmas.zip`).** They
+**Functions, Christmas and Private dining are on the owner's events design (from her Claude Design handoff, `Bar_Franco_xmas.zip`).** They
 load `static/sd-events.css` after `editorial.css` and `static/sd-events.js` (`defer`, before `editorial.js`). The `<html>` class is the
-switch: Christmas `sd`, Private dining `sd sd-lift` (letters rise instead of hanging on a thread). Both open on the cream cover
+switch: Christmas `sd`, Functions and Private dining `sd sd-lift` (letters rise instead of hanging on a thread). Both open on the cream cover
 (`#sdCover[data-hero]`: a three-photo strip, the banner word in VTC Marsha with the dachshund, a subtitle, a facts line, the three
 buttons, one quote), then a two-photo band, the hover index, the page's sections, the "Pick your night" calendar and the VenueFlow
 form in the Eventi frame. **Keep on every edit:** the live `<title>` (the handoff's "Samuel Day ·" prefix was removed), the
 `googletagmanager.com/gtag/js?id=AW-18456342571` loader line (the handoff dropped it) with its `gtag('config')` and conversion
 calls, and Christmas's `bf_*` dataLayer pushes and `data-track` attributes. Private dining has no room finder (the script copes
 without one); its calendar closes 24 December to 5 January (`data-close="24"`) and `data-guests="0"` keeps the guest count out of
-its held-date message. Our story keeps one small portrait of Ana‑Maria beside the title (`.st-open`). **Functions and every other
-page keep the layout they have on the live site**: the owner asked for no changes beyond Christmas and Private dining. The
-handoff also holds a Functions page; it is not approved, so it is not in the repo.
+its held-date message. Functions keeps the room finder (a guest slider that lights the floors that fit); its opening photo is
+`images/negroni-night-dancing.jpg`. All three calendars close from 24 December (the venue is open until the 23rd). Our story keeps one
+small portrait of Ana‑Maria beside the title (`.st-open`). **Every other page keeps the layout it has on the live site**: the owner
+asked for no changes beyond Functions, Christmas, Private dining and Our story.
 
 Two level photos (`images/level-negroni-graded.jpg`, `images/level-restaurant-graded.jpg`) were
 **colour-graded** to match each other (warm, moody, matte blacks). If you swap them, try to keep a
