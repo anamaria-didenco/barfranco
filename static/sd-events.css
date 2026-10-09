@@ -349,3 +349,20 @@ html:not(.sd) .sd-dog{display:none}
 
 /* the narrowest phones: the banner word scales with the screen so nine letters never run off the edge */
 @media (max-width:380px){.sd-mark{font-size:13vw}}
+
+/* the lunch line under the cover facts: one short italic line, shown on phones too */
+.sd-note{margin:-4px 0 0;font-style:italic;font-size:clamp(15px,1.2vw,17px);color:var(--dr);text-align:center}
+/* Christmas: the December availability strip under the cover (edit the dates in the page) */
+.sd-avail{margin:0;padding:11px var(--gx,20px);background:var(--dr);color:var(--al);text-align:center;font-style:italic;font-size:clamp(14px,1.2vw,16px);line-height:1.4}
+.sd-avail b{font-style:normal;font-weight:400;letter-spacing:.02em}
+/* proof above the enquiry form: the Google rating and three short quotes */
+.sd-rev{max-width:760px;margin:clamp(28px,4vw,48px) auto 0;text-align:center}
+.sd-rev+.sd-fcard{margin-top:22px}
+.sd-rev-g{margin:0 0 18px;font-size:15px}
+.sd-rev-g a{color:var(--br);text-underline-offset:.2em}
+.sd-rev ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.sd-rev li{border-top:1px solid var(--br);padding-top:12px}
+.sd-rev q{display:block;font-style:italic;font-size:16px;line-height:1.45}
+.sd-rev cite{display:block;margin-top:8px;font-style:normal;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--br)}
+@media (max-width:860px){.sd-rev,.sd-rev ul{text-align:left}.sd-rev ul{grid-template-columns:1fr;gap:14px}.sd-rev q{font-size:15px}}
+.sd .sd-cap{max-width:420px;margin-top:6px}
