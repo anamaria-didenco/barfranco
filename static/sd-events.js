@@ -98,7 +98,8 @@ var G=$('#sdG'),hold=$('#sdHold'),dogC=new Dog($('#dogC'));dogs.push(dogC);
 function nz(){var p={};new Intl.DateTimeFormat('en-NZ',{timeZone:'Pacific/Auckland',year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});return{y:+p.year,m:+p.month-1,d:+p.day}}
 function U(y,m,d){return Date.UTC(y,m,d)}
 function wd(y,m,d){return new Date(U(y,m,d)).getUTCDay()}
-var T=nz(),TU=U(T.y,T.m,T.d),MONTHS=[0,1,2,3].map(function(i){var m=T.m+i;return{y:T.y+Math.floor(m/12),m:m%12}}),mi=0;
+var T=nz(),TU=U(T.y,T.m,T.d),MONTHS=[0,1,2,3,4,5,6,7,8,9,10,11].map(function(i){var m=T.m+i;return{y:T.y+Math.floor(m/12),m:m%12}}),mi=0;
+var ONLY=hold&&hold.dataset.months?hold.dataset.months.split(',').map(Number):null;MONTHS=(ONLY?MONTHS.filter(function(x){return ONLY.indexOf(x.m)>-1}):MONTHS).slice(0,ONLY?ONLY.length:4);
 function iso(y,m,d){return y+'-'+(m<9?'0':'')+(m+1)+'-'+(d<10?'0':'')+d}
 function parse(s){var p=s.split('-');return{y:+p[0],m:+p[1]-1,d:+p[2]}}
 var CLOSE=+(hold&&hold.dataset.close)||23;function shut(m,d){return(m===11&&d>=CLOSE)||(m===0&&d<=5)}
@@ -116,7 +117,8 @@ function isFS(){if(!st.date)return st.d==='fs';var q=parse(st.date),w=wd(q.y,q.m
 function summary(){var how=st.s==='seat'?'seated':'standing',f=fits();$('#sdSumN').textContent=HASF?st.n+', '+how:String(st.n);var room=st.room&&st.room!=='either'?st.room:(f.length===1?f[0].dataset.room:null);if($('#sdSumR'))$('#sdSumR').textContent=room?cap(name(room)):f.length?'either floor':'the whole building, standing';$('#sdSumD').textContent=st.date?fmt(st.date):'pick one';
 var mins={bar:'4,000',rest:'7,500',all:'15,000'};$('#sdSumM').textContent=!st.date?'pick a date':isFS()?'from '+(room?mins[room]:'4,000'):'usually none';
 $('#sdHoldBtn').textContent=st.date?'Hold '+fmt(st.date).replace(/ \d{4}$/,''):'Pick a date to hold';
-var sl=$('#sdSticky');if(sl&&sd())sl.textContent=st.date?'Holding '+fmt(st.date)+' · '+st.n+' guests':STK}
+var sl=$('#sdSticky');if(sl&&sd())sl.textContent=st.date?'Holding '+fmt(st.date)+' · '+st.n+' guests':STK;syncForm()}
+var vfT=0;function syncForm(){clearTimeout(vfT);vfT=setTimeout(function(){var f=$('.enq-f iframe');if(!f)return;var u;try{u=new URL(f.getAttribute('src'),location.href)}catch(x){return}['prefillDate','prefillGuests','prefillFormat'].forEach(function(k){u.searchParams.delete(k)});if(st.date)u.searchParams.set('prefillDate',st.date);if(HASF){u.searchParams.set('prefillGuests',String(st.n));u.searchParams.set('prefillFormat',st.s==='seat'?'seated':'standing')}if(u.href!==f.src)f.src=u.href},600)}
 G.addEventListener('click',function(e){var b=e.target.closest('.sd-d');if(!b||b.disabled)return;st.date=b.dataset.iso;ss('bf-sdf-date',st.date);$$('.sd-d',G).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});$('#sdHeld').textContent='';summary();var p=spot(),w=wd.apply(null,[parse(st.date).y,parse(st.date).m,parse(st.date).d]);dogC.go(p[0],p[1],function(){dogC.say(w===5?'A Friday. Good choice.':w===6?'Saturday. Bene.':'Held.',1800)})});
 $('#sdMo').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;mi=+b.dataset.i;buildCal()});
 $('#sdHoldBtn').addEventListener('click',function(e){if(!sd())return;if(!st.date){e.preventDefault();dogC.say('Pick a date first.',1800);return}$('#sdHeld').textContent='Holding '+fmt(st.date)+($('#sdHold')&&$('#sdHold').dataset.guests==='0'?'':' for '+st.n+' guests')+'. Send it below and Jenna or Ana-Maria will pencil it in.'});
