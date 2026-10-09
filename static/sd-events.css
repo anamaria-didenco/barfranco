@@ -346,3 +346,6 @@ html:not(.sd) .sd-dog{display:none}
 /* Private dining: four chapters in the index, and no room finder, so the date summary drops its guests and floor rows */
 @media (min-width:861px){.sd-idx-4 .wrap{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .sd-sum li[hidden]{display:none}
+
+/* the narrowest phones: the banner word scales with the screen so nine letters never run off the edge */
+@media (max-width:380px){.sd-mark{font-size:13vw}}
