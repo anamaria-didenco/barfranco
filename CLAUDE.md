@@ -159,23 +159,18 @@ pictures are chosen as a set for its subject; before using a photo, check it isn
 `server-tray` = `level-negroni-graded`; `bar-dancing` = `party-dancing-bar`), so compare the pictures, not the names. The library
 is close to used up: ask the owner for new photographs rather than repeating one. Header photographs never repeat across pages.
 
-**Headers (owner's call): only three pages changed.** Functions, Christmas and Private dining open on `.hero.hero4.mh`, a copy
-of the cover of `downloads/Bar-Franco-Events-Pack-2026.pdf`: the page's own name across the full width in VTC Marsha capitals and
-Bright Red (`h1.mh-name`, sized from the container with the title's measured width in `--k1` (one line) and `--k2` (two lines on
-phones)), the Bar Franco logo type under it (`.mh-logo`), a double rule, one line (`.mh-line`: small italic label left, a short
-tagline centred in Marsha capitals with an Affairs-italic turn, `(upstairs) · 166 Cashel St, Ōtautahi` right), a double rule,
-then four photographs of different widths (1.1 : 1.5 : 1 : 1, the same on phones as on desktop) and the buttons, a matched pair
-(52px tall, `Check your date` + `Call 021 221 1307`). No text on any photograph. The small script logo steps aside while the
-name is on screen (`html.mh-top`). **Every other page keeps the header it has** (the two-photo `.hero` with its almond card, or
-the single-photo `.hero-one`): the owner asked for no changes beyond these three pages. Our story is the one other change she
-asked for: one small portrait of Ana‑Maria beside the title (`.st-open`), and no other photograph on that page.
-
-**Functions is a copy of the Events Pack (owner's call):** after the header comes the pack's `.pk-in` line ("On this page · tap a
-chapter…" with every chapter as a link), then numbered chapters as `section.pk-ch > details.pk-d` built from the pack's own pieces
-(a 16:9 lead photo, eyebrow + `.d2`, `.say`, `.grid3` of `.h4x` + `.bt`, `.info` lists, `.pk-opts`, `.pk-steps`), then the almond
-enquiry section. No peach boxes of facts. **Christmas and Private dining** are to be rebuilt on the owner's "Christmas Functions
-v5" Claude Design layout, keeping every fact they carry now and the immersive feel (the cover header, big photographs); until
-then they carry the same pack layout as Functions. Corporate and Weddings stay exactly as they are on the live site.
+**Christmas and Private dining are on the owner's events design (from her Claude Design handoff, `Bar_Franco_xmas.zip`).** They
+load `static/sd-events.css` after `editorial.css` and `static/sd-events.js` (`defer`, before `editorial.js`). The `<html>` class is the
+switch: Christmas `sd`, Private dining `sd sd-lift` (letters rise instead of hanging on a thread). Both open on the cream cover
+(`#sdCover[data-hero]`: a three-photo strip, the banner word in VTC Marsha with the dachshund, a subtitle, a facts line, the three
+buttons, one quote), then a two-photo band, the hover index, the page's sections, the "Pick your night" calendar and the VenueFlow
+form in the Eventi frame. **Keep on every edit:** the live `<title>` (the handoff's "Samuel Day ·" prefix was removed), the
+`googletagmanager.com/gtag/js?id=AW-18456342571` loader line (the handoff dropped it) with its `gtag('config')` and conversion
+calls, and Christmas's `bf_*` dataLayer pushes and `data-track` attributes. Private dining has no room finder (the script copes
+without one); its calendar closes 24 December to 5 January (`data-close="24"`) and `data-guests="0"` keeps the guest count out of
+its held-date message. Our story keeps one small portrait of Ana‑Maria beside the title (`.st-open`). **Functions and every other
+page keep the layout they have on the live site**: the owner asked for no changes beyond Christmas and Private dining. The
+handoff also holds a Functions page; it is not approved, so it is not in the repo.
 
 Two level photos (`images/level-negroni-graded.jpg`, `images/level-restaurant-graded.jpg`) were
 **colour-graded** to match each other (warm, moody, matte blacks). If you swap them, try to keep a
