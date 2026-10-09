@@ -366,3 +366,5 @@ html:not(.sd) .sd-dog{display:none}
 .sd-rev cite{display:block;margin-top:8px;font-style:normal;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--br)}
 @media (max-width:860px){.sd-rev,.sd-rev ul{text-align:left}.sd-rev ul{grid-template-columns:1fr;gap:14px}.sd-rev q{font-size:15px}}
 .sd .sd-cap{max-width:420px;margin-top:6px}
+/* short laptop screens: the photo strip gives back a little height so the cover's asks stay on the first screen */
+@media (min-width:861px) and (max-height:900px){.sd-cv>.sd-strip .ph{height:clamp(200px,calc(34vh - 44px),380px)}}
