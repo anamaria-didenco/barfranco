@@ -815,3 +815,7 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 .st-open-g{grid-template-columns:minmax(0,1fr);align-items:start}
 .st-me{width:132px}
 }
+
+/* the narrowest phones: big display words (Ti aspettiamo, chapter titles) scale with the screen so the longest word never runs off the edge */
+@media (max-width:360px){.d1{font-size:clamp(32px,12.4vw,42px)}}
+@media (max-width:360px){.xcard .cta{white-space:normal;text-align:center}}
