@@ -181,7 +181,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd .sec:not(.dark):not([data-tone="dark"]){--gr:var(--cr)}
 .sd #faq,.sd #how,.sd #enquire{--gr:var(--al)}
 .sd .floor:not(.dark){--gr:var(--cr)}
-.sd .mast .vp{background:linear-gradient(180deg,rgba(251,244,234,.96),rgba(251,244,234,.74) 55%,rgba(251,244,234,0))}
+.sd .mast .vp{background:linear-gradient(180deg,var(--cr) 0,var(--cr) calc(100% - 54px),rgba(251,244,234,0) 100%)}
 .sd .sd-ix.open .sd-ix-h,.sd .sd-ix.open .sd-ix-in{background:var(--al)!important}
 .sd .sd-ix-h:hover{background:rgba(250,215,195,.45)}
 .sd .sd-hold,.sd #enquire .sd-hold,.sd .sd-fcard{background:var(--cr)!important}

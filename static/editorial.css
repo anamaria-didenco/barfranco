@@ -9,8 +9,9 @@ img{display:block;max-width:100%;height:auto}
 p{margin:0;text-wrap:pretty}
 :focus-visible{outline:2px solid var(--sp);outline-offset:3px}
 .w,.d1 em,.d2 em{font-family:var(--font-body);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
-.d1 .w,.d2 .w{font-size:1.04em;display:inline-block;line-height:1;padding-bottom:.06em}
+.d1 .w,.d2 .w{font-size:.98em;display:inline;line-height:0;padding-bottom:0;margin-right:-.04em}
 .d1 em,.d2 em{font-size:.62em}
+.d2 em.amp{vertical-align:.2em;margin-left:-.036em;margin-right:.036em}
 
 
 .sec{--gr:var(--pp);--ink:var(--dr);--acc:var(--br);--rule:rgba(108,6,0,.32);position:relative;background:var(--gr);color:var(--ink);scroll-margin-top:calc(var(--mb) + var(--nv))}
@@ -229,9 +230,9 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .v1{left:0}.v2{right:0}
 .mast.vo .veil{opacity:1}
 .veil i{position:absolute;inset:0;transition:opacity 1.1s var(--ease)}
-.vd{background:linear-gradient(180deg,rgba(108,6,0,.94),rgba(108,6,0,.7) 55%,rgba(108,6,0,0))}
-.vp{opacity:0;background:linear-gradient(180deg,rgba(241,238,230,.96),rgba(241,238,230,.74) 55%,rgba(241,238,230,0))}
-.va{opacity:0;background:linear-gradient(180deg,rgba(250,215,195,.96),rgba(250,215,195,.74) 55%,rgba(250,215,195,0))}
+.vd{background:linear-gradient(180deg,var(--dr) 0,var(--dr) calc(100% - 54px),rgba(108,6,0,0) 100%)}
+.vp{opacity:0;background:linear-gradient(180deg,var(--pp) 0,var(--pp) calc(100% - 54px),rgba(241,238,230,0) 100%)}
+.va{opacity:0;background:linear-gradient(180deg,var(--al) 0,var(--al) calc(100% - 54px),rgba(250,215,195,0) 100%)}
 .mast.lk-l:not(.lk-a) .v1 .vp,.mast.nv-l:not(.nv-a) .v2 .vp,.mast.lk-a .v1 .va,.mast.nv-a .v2 .va{opacity:1}
 .mast.lk-l .v1 .vd,.mast.nv-l .v2 .vd{opacity:0}
 .calm .veil,.calm .veil i{transition:none}
@@ -548,9 +549,9 @@ button.cta:focus-visible,a.cta:focus-visible{outline:2px solid var(--sp);outline
 @media (max-width:860px){button.cta[data-go-up]{display:none}}
 /* phones: the masthead sits on one solid band, so it never runs into the page */
 @media (max-width:900px){.veil{width:100%;height:calc(var(--vh,140px) + 14px)}.v2{display:none}
-.vd{background:linear-gradient(180deg,var(--dr) 72%,rgba(108,6,0,0))}
-.vp{background:linear-gradient(180deg,var(--pp) 72%,rgba(241,238,230,0))}
-.va{background:linear-gradient(180deg,var(--al) 72%,rgba(250,215,195,0))}}
+.vd{background:linear-gradient(180deg,var(--dr) 0,var(--dr) calc(100% - 34px),rgba(108,6,0,0) 100%)}
+.vp{background:linear-gradient(180deg,var(--pp) 0,var(--pp) calc(100% - 34px),rgba(241,238,230,0) 100%)}
+.va{background:linear-gradient(180deg,var(--al) 0,var(--al) calc(100% - 34px),rgba(250,215,195,0) 100%)}}
 /* the menu overlay holds the page still */
 .menu-open body{overflow:hidden}
 /* Events pack: the "room is yours" card has room for its two columns */
