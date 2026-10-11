@@ -5,11 +5,12 @@ html:not(.sd) .sd-only{display:none!important}
 .sd-dog .fl{display:block;transform:scaleX(var(--fx,-1))}
 .sd-dog img{display:block;width:100%;height:auto;transform-origin:50% 100%}
 html:not(.sd) .sd-dog{display:none}
-.sd-dog.trot img{animation:sdTrot .32s steps(2) infinite}
+/* his step: a smooth bob about a stride and a half a second. It was a two-frame flick (steps(2)) every .32s, which read as a twitch, not a walk */
+.sd-dog.trot img{animation:sdTrot .64s ease-in-out infinite}
 .sd-dog.sniff img{animation:sdSniff 5.4s ease-in-out infinite}
 .sd-dog.hop img{animation:sdHop .6s var(--ease)}
 .sd-calm .sd-dog img{animation:none!important}
-@keyframes sdTrot{50%{transform:translateY(-2px) rotate(-1.5deg)}}
+@keyframes sdTrot{0%,100%{transform:none}50%{transform:translateY(-1.6px) rotate(-.8deg)}}
 @keyframes sdSniff{0%,86%,100%{transform:none}92%{transform:translateY(2px) rotate(3deg)}}
 @keyframes sdHop{40%{transform:translateY(-14px) rotate(-6deg)}}
 .sd-tag{font-family:var(--font-body);text-transform:none;font-weight:400;letter-spacing:normal;position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);white-space:nowrap;font-style:italic;font-size:14px;line-height:1.3;padding:3px 10px;border:1px solid var(--dr);background:var(--pp);color:var(--dr);opacity:0;transition:opacity .4s var(--ease);pointer-events:none}
@@ -181,7 +182,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd .sec:not(.dark):not([data-tone="dark"]){--gr:var(--cr)}
 .sd #faq,.sd #how,.sd #enquire{--gr:var(--al)}
 .sd .floor:not(.dark){--gr:var(--cr)}
-.sd .mast .vp{background:linear-gradient(180deg,rgba(251,244,234,.96),rgba(251,244,234,.74) 55%,rgba(251,244,234,0))}
+.sd .mast .vp{background:linear-gradient(180deg,var(--cr) 0,var(--cr) calc(100% - 54px),rgba(251,244,234,0) 100%)}
 .sd .sd-ix.open .sd-ix-h,.sd .sd-ix.open .sd-ix-in{background:var(--al)!important}
 .sd .sd-ix-h:hover{background:rgba(250,215,195,.45)}
 .sd .sd-hold,.sd #enquire .sd-hold,.sd .sd-fcard{background:var(--cr)!important}

@@ -28,8 +28,15 @@ return'light'}return'light'}
 function mastTick(){if(!mast||!mk)return;var tgt=1-.5*smooth(scrollY/(innerHeight*.75));mkS=calm()?tgt:lerp(mkS,tgt,.08);if(Math.abs(mkS-tgt)<.0004)mkS=tgt;mk.style.transform='scale('+mkS.toFixed(4)+')';
 if(R.classList.contains('menu-open'))return;
 var a=mk.getBoundingClientRect(),b=mastR.getBoundingClientRect(),t1=toneAt(a.left+Math.min(24,a.width/3),a.top+a.height/2),t2=toneAt(b.left+b.width/2,b.top+b.height/2);if(innerWidth<=900)t2=t1;
-tog('lk-l',t1!=='dark');tog('lk-a',t1==='almond');tog('nv-l',t2!=='dark');tog('nv-a',t2==='almond');tog('vo',scrollY>(hero?hero.offsetHeight:innerHeight*.6)-110);
-mast.style.setProperty('--vh',Math.round(a.bottom-mast.getBoundingClientRect().top+40)+'px')}
+tog('lk-l',t1!=='dark');tog('lk-a',t1==='almond');tog('nv-l',t2!=='dark');tog('nv-a',t2==='almond');
+/* the veil comes up the moment the page starts moving, not only past the hero:
+   anything that scrolls under a bare header stays readable through it, and on
+   the long cover sections that was most of a screenful. */
+tog('vo',scrollY>8);
+/* tall enough to cover whichever of the two sits lower — the logo or the nav
+   row — then 32px of clear air, then the 54px the gradient spends fading out,
+   so a line of page copy is never caught half-lit right under the links. */
+mast.style.setProperty('--vh',Math.round(Math.max(a.bottom,b.bottom)-mast.getBoundingClientRect().top+86)+'px')}
 var mbtn=$('.mast-menu');
 if(mbtn)mbtn.addEventListener('click',function(){var o=R.classList.toggle('menu-open');mbtn.setAttribute('aria-expanded',String(o));mbtn.textContent=o?'Close':'Menu'});
 if(mbtn)addEventListener('keydown',function(e){if(e.key==='Escape'&&R.classList.contains('menu-open')){R.classList.remove('menu-open');mbtn.setAttribute('aria-expanded','false');mbtn.textContent='Menu';mbtn.focus()}});
