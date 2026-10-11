@@ -46,9 +46,19 @@ function bnLoop(now){var dt=Math.min(.033,Math.max(0,(now-bnLast)/1000));bnLast=
 function bnKick(){if(!bnRaf){bnLast=performance.now();bnRaf=requestAnimationFrame(bnLoop)}}
 function startBanner(){R.classList.remove('sd-pre');if(!sd())return;measureBanner();var dw=dogB.w(),dh=dogB.h(),H=bn.clientHeight,end=B.W-dw;
 if(calm()){B.phase='done';LT.forEach(function(l){l.on=true;l.t0=0;l.th=0;l.w=0});measureBanner();pinR.style.opacity='1';dogB.put(end,H-dh);dogB.face(-1);return}
-if(matchMedia('(max-width:860px)').matches){FADE=true;B.phase='done';var n0=performance.now();LT.forEach(function(l,i){l.on=true;l.t0=n0+i*70;l.th=0;l.w=0});bnPath.style.strokeDashoffset='0';pinR.style.opacity='1';dogB.put(end,H-dh);dogB.face(-1);bnKick();setTimeout(function(){dogB.say(dogB.el.dataset.say||'Ciao. How many are coming?',2600)},900);return}
-B.phase='walk';LT.forEach(function(l){l.on=false;l.t0=0;l.th=0;l.w=0});bnPath.style.strokeDashoffset=String(B.len);pinR.style.opacity='0';dogB.put(-dw-24,H-dh);bnKick();
-dogB.a=null;dogB.face(1);dogB.el.classList.remove('sniff');dogB.el.classList.add('trot');dogB.a={x0:-dw-24,y0:H-dh,x1:end,y1:H-dh,t0:performance.now(),dur:2400,arc:0,lin:true,done:function(){B.phase='done';bnPath.style.strokeDashoffset='0';pinR.style.opacity='1';LT.forEach(function(l){l.on=true});dogB.face(-1);dogB.say(dogB.el.dataset.say||'Ciao. How many are coming?',3200)}};kick()}
+/* Owner's call, Oct 2026: the cover word fades up instead of being revealed
+   letter by letter. It used to be gated on the dog's walk — each letter only
+   switched on as his nose reached it — so the word could not finish until he
+   had crossed the full banner, 2.4s away. Now every letter is a 420ms opacity
+   ramp (drawLetters' FADE branch) with an 18ms stagger, which reads as one
+   word arriving rather than a queue. The dog still trots in; he just no longer
+   holds the word hostage. */
+FADE=true;B.phase='done';var n0=performance.now();
+LT.forEach(function(l,i){l.on=true;l.t0=n0+i*18;l.th=0;l.w=0});
+bnPath.style.strokeDashoffset='0';pinR.style.opacity='1';bnKick();
+if(matchMedia('(max-width:860px)').matches){dogB.put(end,H-dh);dogB.face(-1);setTimeout(function(){dogB.say(dogB.el.dataset.say||'Ciao. How many are coming?',2600)},900);return}
+dogB.put(-dw-24,H-dh);dogB.a=null;dogB.face(1);dogB.el.classList.remove('sniff');dogB.el.classList.add('trot');
+dogB.a={x0:-dw-24,y0:H-dh,x1:end,y1:H-dh,t0:n0,dur:1100,arc:0,lin:true,done:function(){dogB.face(-1);dogB.say(dogB.el.dataset.say||'Ciao. How many are coming?',3200)}};kick()}
 LT.forEach(function(l){l.e.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'&&!calm()&&sd()&&!LIFT){l.w+=(Math.random()<.5?-1:1)*50;bnKick()}})});
 dogB.el.addEventListener('click',function(){if(calm()||LIFT)return;LT.slice().reverse().forEach(function(l,i){setTimeout(function(){l.w+=55;bnKick()},i*60)})});
 dogs.push(dogB);
