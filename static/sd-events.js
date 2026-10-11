@@ -5,6 +5,11 @@ function ls(k,d){try{var v=localStorage.getItem(k);return v===null?d:v}catch(e){
 function ss(k,v){try{localStorage.setItem(k,String(v))}catch(e){}}
 function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
 function io(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+/* how a dog walks: picks up speed over the first fifth, cruises, and takes the
+   last quarter to settle. Top speed is 1.3x the average, where io() hit 2x in
+   mid-stride, so he ambles rather than lunges. (Not called walk(): that name
+   is taken further down by the night steps.) */
+function amble(t){var a=.2,b=.28,v=1/(1-a/2-b/2);return t<a?v*t*t/(2*a):t>1-b?1-v*(1-t)*(1-t)/(2*b):v*(a/2+t-a)}
 function sd(){return R.classList.contains('sd')}
 function calm(){return R.classList.contains('sd-calm')}
 function press(sel,key,val){$$(sel).forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset[key]===val))})}
@@ -22,8 +27,8 @@ Dog.prototype.face=function(d){if(Math.abs(d)>.5)this.fl.style.setProperty('--fx
 Dog.prototype.draw=function(){this.el.style.transform='translate('+this.x.toFixed(1)+'px,'+this.y.toFixed(1)+'px)'};
 Dog.prototype.rest=function(){this.el.classList.remove('trot');this.el.classList.add('sniff')};
 Dog.prototype.put=function(x,y){this.a=null;this.x=x;this.y=y;this.rest();this.draw()};
-Dog.prototype.go=function(x,y,done){var dx=x-this.x,dy=y-this.y,d=Math.sqrt(dx*dx+dy*dy);if(calm()||d<1){this.put(x,y);if(done)done();return}this.face(dx);this.el.classList.remove('sniff');this.el.classList.add('trot');this.a={x0:this.x,y0:this.y,x1:x,y1:y,t0:performance.now(),dur:clamp(d*2.2,380,1500),arc:Math.abs(dy)>3?Math.min(48,Math.abs(dy)*.45+14):0,done:done};kick()};
-Dog.prototype.tick=function(now){var a=this.a;if(!a)return false;var t=clamp((now-a.t0)/a.dur,0,1),e=a.lin?t:io(t);this.x=a.x0+(a.x1-a.x0)*e;this.y=a.y0+(a.y1-a.y0)*e-Math.sin(Math.PI*t)*a.arc;this.draw();if(t>=1){this.a=null;this.rest();if(a.done)a.done();return false}return true};
+Dog.prototype.go=function(x,y,done){var dx=x-this.x,dy=y-this.y,d=Math.sqrt(dx*dx+dy*dy);if(calm()||d<1){this.put(x,y);if(done)done();return}this.face(dx);this.el.classList.remove('sniff');this.el.classList.add('trot');this.a={x0:this.x,y0:this.y,x1:x,y1:y,t0:performance.now(),dur:clamp(d*3,560,2400),arc:Math.abs(dy)>3?Math.min(48,Math.abs(dy)*.45+14):0,done:done};kick()};
+Dog.prototype.tick=function(now){var a=this.a;if(!a)return false;var t=clamp((now-a.t0)/a.dur,0,1),e=a.lin?t:amble(t);this.x=a.x0+(a.x1-a.x0)*e;this.y=a.y0+(a.y1-a.y0)*e-Math.sin(Math.PI*t)*a.arc;this.draw();if(t>=1){this.a=null;this.rest();if(a.done)a.done();return false}return true};
 Dog.prototype.say=function(txt,ms){var t=this.tg,p=this.el.offsetParent;if(!t||!sd()||!p)return;t.textContent=txt;t.classList.toggle('r',this.x>p.clientWidth*.66);t.classList.toggle('l',this.x<p.clientWidth*.14);t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('on')},ms||2600)};
 Dog.prototype.woof=function(){var el=this.el;el.classList.remove('hop');void el.offsetWidth;el.classList.add('hop');this.say('Woof.',1200);setTimeout(function(){el.classList.remove('hop')},650)};
 var dogs=[],raf=0;function kick(){if(!raf)raf=requestAnimationFrame(loop)}
@@ -52,13 +57,16 @@ if(calm()){B.phase='done';LT.forEach(function(l){l.on=true;l.t0=0;l.th=0;l.w=0})
    had crossed the full banner, 2.4s away. Now every letter is a 420ms opacity
    ramp (drawLetters' FADE branch) with an 18ms stagger, which reads as one
    word arriving rather than a queue. The dog still trots in; he just no longer
-   holds the word hostage. */
+   holds the word hostage. And since he no longer holds anything up, he can take
+   his time: about 380px a second (a 1440 screen in ~3.5s) instead of the
+   1,200px-a-second dash, eased in and out, with a beat to settle before he
+   speaks. */
 FADE=true;B.phase='done';var n0=performance.now();
 LT.forEach(function(l,i){l.on=true;l.t0=n0+i*18;l.th=0;l.w=0});
 bnPath.style.strokeDashoffset='0';pinR.style.opacity='1';bnKick();
 if(matchMedia('(max-width:860px)').matches){dogB.put(end,H-dh);dogB.face(-1);setTimeout(function(){dogB.say(dogB.el.dataset.say||'Ciao. How many are coming?',2600)},900);return}
 dogB.put(-dw-24,H-dh);dogB.a=null;dogB.face(1);dogB.el.classList.remove('sniff');dogB.el.classList.add('trot');
-dogB.a={x0:-dw-24,y0:H-dh,x1:end,y1:H-dh,t0:n0,dur:1100,arc:0,lin:true,done:function(){dogB.face(-1);dogB.say(dogB.el.dataset.say||'Ciao. How many are coming?',3200)}};kick()}
+dogB.a={x0:-dw-24,y0:H-dh,x1:end,y1:H-dh,t0:n0+260,dur:clamp((end+dw+24)/.38,2600,4200),arc:0,done:function(){dogB.face(-1);setTimeout(function(){dogB.say(dogB.el.dataset.say||'Ciao. How many are coming?',3200)},420)}};kick()}
 LT.forEach(function(l){l.e.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'&&!calm()&&sd()&&!LIFT){l.w+=(Math.random()<.5?-1:1)*50;bnKick()}})});
 dogB.el.addEventListener('click',function(){if(calm()||LIFT)return;LT.slice().reverse().forEach(function(l,i){setTimeout(function(){l.w+=55;bnKick()},i*60)})});
 dogs.push(dogB);
