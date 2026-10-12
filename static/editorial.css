@@ -398,7 +398,7 @@ em.tg{font-style:normal;font-size:12px;letter-spacing:.06em;opacity:.75;white-sp
 .pk-ch{padding:0}
 .pk-d>summary{list-style:none;display:grid;grid-template-columns:clamp(44px,5vw,72px) minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:clamp(18px,2.2vw,28px) 0;cursor:pointer}
 .pk-d>summary::-webkit-details-marker{display:none}
-.pk-d>summary:hover .d2{color:var(--acc)}
+.pk-d>summary:hover .d2{color:var(--ink)}
 .pk-d>summary:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
 .pk-n{font-family:var(--font-display);font-weight:700;font-size:clamp(18px,1.6vw,24px);color:var(--acc)}
 .pk-t{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline}
@@ -539,9 +539,9 @@ body[data-chapters] .strip{display:none}
 
 /* buttons on Deep Red and Bright Red grounds; the Go up button shares the look */
 .dark a.cta:not(.cta-fill),.bright a.cta:not(.cta-fill),.dark button.cta:not(.cta-fill){border-color:var(--al);color:var(--al)}
-.dark a.cta:not(.cta-fill):hover,.bright a.cta:not(.cta-fill):hover{background:var(--al);color:var(--dr)}
+.dark a.cta:not(.cta-fill):hover,.bright a.cta:not(.cta-fill):hover,.dark button.cta:not(.cta-fill):hover{background:var(--al);color:var(--dr)}
 .bright a.cta.cta-fill{background:var(--al);border-color:var(--al);color:var(--dr)}
-button.cta{all:unset;box-sizing:border-box;display:inline-block;padding:11px 22px;font-family:var(--font-body);font-size:15px;line-height:1;white-space:nowrap;text-align:center;border:1.5px solid var(--dr);color:var(--dr);cursor:pointer}
+button.cta{all:unset;box-sizing:border-box;display:inline-block;padding:11px 22px;font-family:var(--font-body);font-size:15px;line-height:1;white-space:nowrap;text-align:center;border:1.5px solid var(--dr);color:var(--dr);cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease)}
 button.cta:focus-visible,a.cta:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
 
 /* ==== bug sweep ==== */
@@ -853,3 +853,5 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 @media (max-width:620px){a.cta,button.cta{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
 /* phones: a closed chapter takes no keyboard stops (hidden once its .7s fold has finished) */
 @media (max-width:860px){.ch-in{visibility:hidden;transition:visibility 0s .7s}.chap.open .ch-in{visibility:visible;transition-delay:0s}.calm .ch-in{transition:none}}
+/* Contact Send answers the hover like the other asks: Bright Red to the ink */
+.ct-card button{transition:color .3s var(--ease)}.ct-card button:hover{color:var(--ink)}
