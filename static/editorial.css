@@ -640,7 +640,7 @@ body.dir-a .xa-q .ph>img{position:absolute;inset:0}
 body.dir-a .xa-q-t{display:grid;align-content:center;padding:clamp(40px,6vw,96px) max(var(--gx),calc((100vw - 1240px)/2 + var(--gx))) clamp(40px,6vw,96px) clamp(32px,6vw,104px)}
 body.dir-a .xa-q .qt{margin:0;padding:0;border:0;max-width:none}
 body.dir-a .xa-q .qt p{font-size:clamp(26px,2.7vw,40px);line-height:1.2;color:var(--al);max-width:17em}
-body.dir-a .xa-q .qt cite{margin-top:18px;font-size:15px;padding-top:12px;border-top:1px solid var(--rule);display:inline-block}
+body.dir-a .xa-q .qt cite{margin-top:18px;font-size:14px;padding-top:12px;border-top:1px solid var(--rule);display:inline-block}
 body.pg-xmas .xa-q .ph>img{object-position:50% 12%}
 /* at night every band is Deep Red, so the guests' words turn Almond to stay the colour moment */
 html.night body.dir-a .xa-q{--gr:var(--al);--ink:var(--dr);--acc:var(--br);--rule:rgba(108,6,0,.32)}
