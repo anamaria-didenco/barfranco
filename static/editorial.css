@@ -697,7 +697,7 @@ body.dir-a .info li em{flex:0 0 auto}
 }
 
 /* ==== leader dots: low on the line, like full stops (owner's rule, everywhere) ==== */
-.ln i,.dishes li div i,.card li div i,.info li i,.pm-drink li>i,.evm-d li>i{border-bottom:0!important;transform:none!important;height:3px;align-self:baseline;opacity:.75;
+.ln i,.dishes li div i,.card li div i,.info li i,.pm-drink li>i,.evm-d li>i,.sd-ix-h i{border-bottom:0!important;transform:none!important;height:3px;align-self:baseline;opacity:.75;
 background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bottom/5px 3px repeat-x}
 
 /* ==== printed menus: the PDF page itself, scaled to the screen (Menus page) ====
@@ -745,7 +745,7 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 @media (max-width:860px){.hero .hero-cap .hc-h.hc-fit{font-size:calc((min(78vw,320px) - 50px) / 11.9)}}
 /* phones: no leader dots anywhere (owner's call); the fact still sits at the end of its line */
 @media (max-width:620px){
-.ln i,.dishes li div i,.card li div i,.info li i,.pm-drink li>i,.evm-d li>i{background:none!important}
+.ln i,.dishes li div i,.card li div i,.info li i,.pm-drink li>i,.evm-d li>i,.sd-ix-h i{background:none!important}
 .pm-drink li>i::before{content:none}
 .pm-food .pm-d{display:none}
 }
