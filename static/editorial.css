@@ -839,3 +839,6 @@ a[href^="tel:"]{white-space:nowrap}
 .card-h,.h4x{text-wrap:balance}
 /* a line after a row of buttons keeps its distance (Our story's closer) */
 .cta-row+.meta{margin-top:14px}
+/* one underline, the masthead's: 1px, .26em below the baseline, on every hover; links inside a sentence carry it at rest (a phone has no hover) */
+a:hover,.fcols a:hover,.legal a:hover,.info li a:hover,.ln:hover>span,.faq summary:hover,p a:not([class]),.evm-n2 a{text-decoration-thickness:1px;text-underline-offset:.26em}
+p a:not([class]),.evm-n2 a{text-decoration-line:underline}

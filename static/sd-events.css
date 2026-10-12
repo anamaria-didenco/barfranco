@@ -86,7 +86,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-ix-in .info li em{font-style:normal;color:var(--br)}
 .sd-ix-in .meta{margin:8px 0 0}
 .sd-ix-b{margin:0;font-size:17px;line-height:1.55;max-width:44ch}
-.sd-ix-go{display:inline-block;margin-top:14px;font-style:italic;font-size:16px;color:var(--dr);text-underline-offset:.2em}
+.sd-ix-go{display:inline-block;margin-top:14px;font-style:italic;font-size:16px;color:var(--dr);text-underline-offset:.26em}
 .sd-ix-go:hover{color:var(--br)}
 .sd-calm .sd-ix-p,.sd-calm .sd-ix-in{transition:none}
 @media (min-width:861px){
@@ -223,7 +223,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-cnt input::-moz-range-track{height:2px;background:var(--dr)!important}
 .sd .enq-ctas{display:none}
 .sd-talk{text-align:center;font-style:italic;font-size:16px;margin:18px 0 0}
-.sd-talk a{color:var(--dr);text-underline-offset:.2em}
+.sd-talk a{color:var(--dr);text-underline-offset:.26em}
 @media (max-width:860px){
 .sd-run{font-size:12px;gap:10px}
 .sd-sub{font-size:19px!important;line-height:1.25}
@@ -360,7 +360,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-rev{max-width:760px;margin:clamp(28px,4vw,48px) auto 0;text-align:center}
 .sd-rev+.sd-fcard{margin-top:22px}
 .sd-rev-g{margin:0 0 18px;font-size:15px}
-.sd-rev-g a{color:var(--br);text-underline-offset:.2em}
+.sd-rev-g a{color:var(--br);text-underline-offset:.26em}
 .sd-rev ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .sd-rev li{border-top:1px solid var(--br);padding-top:12px}
 .sd-rev q{display:block;font-style:italic;font-size:16px;line-height:1.45}
