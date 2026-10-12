@@ -40,7 +40,7 @@ p{margin:0;text-wrap:pretty}
 .d2{font-family:var(--font-display);font-weight:700;text-transform:uppercase;color:var(--acc);font-size:clamp(32px,3.4vw,52px);line-height:1.02;letter-spacing:-.005em;margin:0;text-wrap:balance}
 .nb{white-space:nowrap;display:inline-block;line-height:1.02}
 #vouchers{scroll-margin-top:calc(var(--mb) + var(--nv) + 24px)}
-.lede{font-size:clamp(17px,1.3vw,19px);line-height:1.5;max-width:44ch}
+.lede{font-size:clamp(18px,1.3vw,19px);line-height:1.5;max-width:44ch}
 .meta{font-style:italic;font-size:14px;line-height:1.5}
 .stack{display:grid;gap:18px;align-content:start;justify-items:start}
 .lns{display:grid;gap:4px;width:100%;max-width:400px;margin-top:6px}
@@ -824,3 +824,10 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 /* ==== detail pass (October 2026): one voice per role, typeset like print ==== */
 /* the eyebrow is a label on its heading: 14px under it in a stack, as in block flow (the grid gap no longer adds to its margin) */
 .stack>.eb{margin-bottom:-4px}
+/* the footnote voice (Events pack fine print): small italic under the copy it qualifies, never larger than it */
+.fine{font-style:italic;font-size:14px;line-height:1.5}
+/* phones are calm (owner's rule): one reading size, 18px; one small italic, 15px, for every eyebrow, kicker, note and attribution */
+@media (max-width:620px){
+.bt{font-size:18px}
+.eb,.meta,.fine,.fcols p,.hours,.trk,.qt cite,.h-mark p,.hero-cap .k,.hero .hero-cap .k,.hero .hero-cap .s{font-size:15px}
+}

@@ -233,7 +233,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-lede{font-size:15px}
 .sd-line{font-size:13.5px!important;padding:12px 6px!important;white-space:normal;text-wrap:balance;line-height:1.25}
 .sd-line span{white-space:normal}
-.meta{font-size:12.5px}
+.meta{font-size:15px}
 .sd-ix-h{padding:12px 4px}
 .sd-ix-h .t{font-size:20px!important}
 .sd-ix-h em{font-size:12px}
@@ -295,7 +295,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-st .ph{aspect-ratio:4/5}
 .sd .sec.pad{padding-top:44px;padding-bottom:44px}
 .sd .d2{font-size:26px}
-.sd .eb{font-size:12px}
+.sd .eb{font-size:15px}.sd .sd-hold-h .eb{font-size:19px}.sd .lv-head .eb{font-size:20px}
 }
 
 /* a photo band between the opening and the index */
