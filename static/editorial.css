@@ -833,3 +833,5 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 }
 /* the sign-off holds one line on phones: "Ti" never sits alone above "aspettiamo," (it missed by 3px at 42px) */
 @media (max-width:413px){.foot .d1{white-space:nowrap;font-size:min(42px,10.2vw)}}
+/* a phone number is one word: 021 221 1307 never breaks across lines */
+a[href^="tel:"]{white-space:nowrap}
