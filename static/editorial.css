@@ -885,3 +885,4 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 }
 /* an hours row inside a hero box: the button row below already draws the rule */
 .hero-cap .info li:last-child{border-bottom:0}
+.hero-cap .info li span{min-width:0}
