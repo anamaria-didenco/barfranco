@@ -855,3 +855,6 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 @media (max-width:860px){.ch-in{visibility:hidden;transition:visibility 0s .7s}.chap.open .ch-in{visibility:visible;transition-delay:0s}.calm .ch-in{transition:none}}
 /* Contact Send answers the hover like the other asks: Bright Red to the ink */
 .ct-card button{transition:color .3s var(--ease)}.ct-card button:hover{color:var(--ink)}
+/* one text edge: the photo-hero caption on the page column on wide screens (the formula .legal and the events heroes use); floor text on the phone gutter */
+.hero-one .hero-cap{left:max(var(--gx),calc((100% - 1240px) / 2 + var(--gx)))}
+@media (max-width:860px){.f-in{padding-left:var(--gx);padding-right:var(--gx)}}
