@@ -883,3 +883,5 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .hf-g{grid-template-columns:minmax(0,1fr);gap:14px}
 .hf-side{gap:14px}
 }
+/* an hours row inside a hero box: the button row below already draws the rule */
+.hero-cap .info li:last-child{border-bottom:0}
