@@ -37,10 +37,10 @@ p{margin:0;text-wrap:pretty}
 .pad{padding-top:clamp(64px,9vw,140px);padding-bottom:clamp(64px,9vw,140px)}
 .eb{font-style:italic;font-size:14px;margin-bottom:14px}
 .d1{font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(42px,5.6vw,86px);line-height:.9;letter-spacing:-.005em;margin:0;text-wrap:balance}
-.d2{font-family:var(--font-display);font-weight:700;text-transform:uppercase;color:var(--acc);font-size:clamp(32px,3.4vw,52px);line-height:1.02;margin:0;text-wrap:balance}
+.d2{font-family:var(--font-display);font-weight:700;text-transform:uppercase;color:var(--acc);font-size:clamp(32px,3.4vw,52px);line-height:1.02;letter-spacing:-.005em;margin:0;text-wrap:balance}
 .nb{white-space:nowrap;display:inline-block;line-height:1.02}
 #vouchers{scroll-margin-top:calc(var(--mb) + var(--nv) + 24px)}
-.lede{font-size:clamp(17px,1.3vw,19px);line-height:1.5;max-width:44ch}
+.lede{font-size:clamp(18px,1.3vw,19px);line-height:1.5;max-width:44ch}
 .meta{font-style:italic;font-size:14px;line-height:1.5}
 .stack{display:grid;gap:18px;align-content:start;justify-items:start}
 .lns{display:grid;gap:4px;width:100%;max-width:400px;margin-top:6px}
@@ -60,7 +60,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 
 .hero{display:grid;grid-template-columns:1fr 1fr;height:calc(100svh - var(--mb) - 44px);min-height:540px}
 .hero .ph:first-child{border-right:0}
-.h-mark{position:absolute;left:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,30px);color:#fff;display:grid;gap:8px;z-index:1}
+.h-mark{position:absolute;left:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,30px);color:var(--al);display:grid;gap:8px;z-index:1}
 .h-mark p{font-style:italic;font-size:13px}
 .hero .ph:first-child::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,4,0,0) 45%,rgba(40,4,0,.74) 100%);pointer-events:none}
 .strip{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;padding:12px var(--gx);background:var(--al);color:var(--br);font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.06em;line-height:1.2}
@@ -177,7 +177,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .foot .d1{color:var(--al)}
 .foot .sub{font-style:italic;font-size:clamp(18px,1.6vw,22px);margin-top:10px}
 .fcols{display:grid;grid-template-columns:repeat(2,minmax(0,220px));gap:clamp(24px,5vw,80px);margin-top:clamp(36px,5vw,64px);border-top:1px solid var(--rule);padding-top:16px}
-.fcols p{font-style:italic;font-size:13px;margin-bottom:8px;opacity:.85}
+.fcols p{font-style:italic;font-size:14px;margin-bottom:8px;opacity:.85}
 .fcols a{display:block;text-decoration:none;font-size:15px;padding:3px 0}
 .fcols a:hover{text-decoration:underline}
 #open{text-align:center}
@@ -252,14 +252,14 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .hero-one .ph::before{content:"";position:absolute;left:0;right:0;top:0;height:36%;z-index:1;background:linear-gradient(180deg,rgba(30,3,0,.52),rgba(30,3,0,0));pointer-events:none}
 .hero-one .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,4,0,0) 38%,rgba(40,4,0,.84));pointer-events:none}
 .hero-cap{position:absolute;left:var(--gx);right:var(--gx);bottom:clamp(22px,4vh,44px);z-index:2;color:var(--al);display:grid;gap:8px;max-width:640px}
-.hero-cap .k{font-style:italic;font-size:15px}
+.hero-cap .k{font-style:italic;font-size:14px}
 .hero-cap .s{font-style:italic;font-size:clamp(21px,2.1vw,30px);line-height:1.22}
 .hero-cap .lns{max-width:420px;margin-top:6px}
 .hero-cap .ln{border-bottom-color:rgba(250,215,195,.45)}
 .hero .hero-cap{left:50%;right:auto;top:50%;bottom:auto;transform:translate(-50%,-50%);max-width:min(500px,52%);padding:clamp(26px,2.8vw,40px);background:var(--al);color:var(--dr);border:2px solid var(--dr);gap:0;text-align:left}
 .hero .hero-cap::before{content:"";position:absolute;inset:6px;border:1px solid var(--dr);pointer-events:none}
-.hero .hero-cap .k{font-size:13px;font-style:italic;margin:0 0 4px}
-.hero .hero-cap .hc-h{color:var(--br);letter-spacing:.02em;margin:0}
+.hero .hero-cap .k{font-size:14px;font-style:italic;margin:0 0 4px}
+.hero .hero-cap .hc-h{color:var(--br);letter-spacing:-.005em;margin:0}
 .hero .hero-cap .hc-h em{margin:0;font-size:1em}
 .hero .hero-cap .s{max-width:none;margin:12px 0 0;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.45}
 .hero .hero-cap .lns{margin:16px 0 0;max-width:none;border-top:1px solid rgba(108,6,0,.22);padding-top:2px}
@@ -294,11 +294,11 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .faq summary:hover{text-decoration:underline;text-underline-offset:.2em}
 .faq details p{padding:0 0 18px;max-width:62ch;font-size:16px;line-height:1.55}
 .enq-f{border:2px solid var(--acc);padding:5px;margin-top:clamp(24px,3vw,40px)}
-.enq-f>div{border:1px solid var(--acc);background:#fff}
+.enq-f>div{border:1px solid var(--acc);background:var(--pp)}
 .enq-f iframe{display:block;width:100%;min-height:880px;border:0}
 .enq .meta{margin-top:14px}
 .cta .d1{color:var(--acc);max-width:15ch}
-.cta .lede{margin-top:14px}
+.sec.cta .lede{margin-top:18px}.sec.cta .cta-row{margin-top:34px}
 .cta .lns{margin-top:22px}
 .price .card{justify-self:end}
 .walk-ov{position:fixed;inset:0;z-index:95;pointer-events:none;visibility:hidden}
@@ -327,7 +327,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .hero-cap .s{font-size:clamp(16px,1.3vw,19px)}
 .glance .info+.eb{margin-top:10px}
 .qt{margin:6px 0 0;padding:16px 0 0;border-top:1px solid var(--rule);max-width:46ch}
-.qt p{font-style:italic;font-size:clamp(19px,1.6vw,23px);line-height:1.35;color:var(--acc)}
+.qt p{font-style:italic;font-size:clamp(19px,1.6vw,23px);line-height:1.35;color:var(--acc);text-wrap:balance}
 .qt cite{display:block;margin-top:8px;font-style:italic;font-size:14px}
 .wide-q{margin-top:clamp(32px,4vw,56px);max-width:60ch}
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin-top:clamp(28px,4vw,48px)}
@@ -369,7 +369,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .map-f{width:100%;aspect-ratio:16/7;min-height:320px;background:var(--al)}
 .map-f iframe{display:block;width:100%;height:100%;border:0}
 .c-map .meta{padding-top:14px;padding-bottom:clamp(40px,5vw,72px)}
-.sub-eb{margin-top:clamp(18px,2.2vw,28px)}
+.sub-eb{margin-top:clamp(18px,2.2vw,28px);font-family:var(--font-body);font-weight:400;text-transform:none;letter-spacing:0;line-height:inherit;color:inherit}
 
 /* menus + events pack */
 .h4x{font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(18px,1.5vw,22px);line-height:1.05;margin:0}
@@ -382,7 +382,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .mn-tabs button{all:unset;cursor:pointer;font-style:italic;font-size:clamp(18px,1.5vw,22px);padding:4px 0;border-bottom:1px solid transparent;color:inherit;transition:color .4s var(--ease),border-color .4s var(--ease)}
 .mn-tabs button:hover{color:var(--acc)}
 .mn-tabs button[aria-selected="true"]{border-bottom-color:currentColor;color:var(--acc)}
-.mn-tabs button:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.mn-tabs button:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
 .mcard{max-width:none}
 .mcard>div{columns:2 320px;column-gap:clamp(32px,4vw,64px)}
 .mcard .m-title{column-span:all;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(44px,6vw,92px);line-height:.9;letter-spacing:.08em;color:var(--acc);margin:0 0 clamp(18px,2.4vw,30px)}
@@ -398,8 +398,8 @@ em.tg{font-style:normal;font-size:12px;letter-spacing:.06em;opacity:.75;white-sp
 .pk-ch{padding:0}
 .pk-d>summary{list-style:none;display:grid;grid-template-columns:clamp(44px,5vw,72px) minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:clamp(18px,2.2vw,28px) 0;cursor:pointer}
 .pk-d>summary::-webkit-details-marker{display:none}
-.pk-d>summary:hover .d2{color:var(--acc)}
-.pk-d>summary:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.pk-d>summary:hover .d2{color:var(--ink)}
+.pk-d>summary:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
 .pk-n{font-family:var(--font-display);font-weight:700;font-size:clamp(18px,1.6vw,24px);color:var(--acc)}
 .pk-t{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline}
 .pk-t .d2{margin:0;transition:color .4s var(--ease)}
@@ -452,7 +452,7 @@ em.tg{font-style:normal;font-size:12px;letter-spacing:.06em;opacity:.75;white-sp
 @media (max-width:860px){
 .chap{padding-top:0!important;padding-bottom:0!important}
 .ch-row{all:unset;box-sizing:border-box;display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:baseline;width:100%;padding:20px var(--gx);border-top:1px solid var(--rule);cursor:pointer;color:inherit}
-.ch-row:focus-visible{outline:2px solid var(--acc);outline-offset:-4px}
+.ch-row:focus-visible{outline:2px solid var(--sp);outline-offset:-4px}
 .ch-row .d2{margin:0;font-size:clamp(21px,5.6vw,28px);line-height:1.02;text-wrap:balance}
 .chap.open .ch-row .pk-oc::before{content:"−"}
 .ch-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
@@ -539,9 +539,9 @@ body[data-chapters] .strip{display:none}
 
 /* buttons on Deep Red and Bright Red grounds; the Go up button shares the look */
 .dark a.cta:not(.cta-fill),.bright a.cta:not(.cta-fill),.dark button.cta:not(.cta-fill){border-color:var(--al);color:var(--al)}
-.dark a.cta:not(.cta-fill):hover,.bright a.cta:not(.cta-fill):hover{background:var(--al);color:var(--dr)}
+.dark a.cta:not(.cta-fill):hover,.bright a.cta:not(.cta-fill):hover,.dark button.cta:not(.cta-fill):hover{background:var(--al);color:var(--dr)}
 .bright a.cta.cta-fill{background:var(--al);border-color:var(--al);color:var(--dr)}
-button.cta{all:unset;box-sizing:border-box;display:inline-block;padding:11px 22px;font-family:var(--font-body);font-size:15px;line-height:1;white-space:nowrap;text-align:center;border:1.5px solid var(--dr);color:var(--dr);cursor:pointer}
+button.cta{all:unset;box-sizing:border-box;display:inline-block;padding:11px 22px;font-family:var(--font-body);font-size:15px;line-height:1;white-space:nowrap;text-align:center;border:1.5px solid var(--dr);color:var(--dr);cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease)}
 button.cta:focus-visible,a.cta:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
 
 /* ==== bug sweep ==== */
@@ -620,7 +620,7 @@ body.dir-a .xa-way .info li{font-size:15px}
 body.dir-a .xa-way .info li:first-child{border-top:1px solid var(--rule)}
 body.dir-a .xa-way .info li em{font-style:normal;font-size:19px;line-height:1;color:var(--acc)}
 body.dir-a .xa-way a.cta{margin-top:auto;padding:10px 18px;font-size:14.5px}
-body.dir-a .xa-ways-n{margin-top:clamp(20px,2.2vw,30px);max-width:none}
+body.dir-a .xa-ways-n{margin-top:clamp(20px,2.2vw,30px);max-width:64ch}
 /* wide screens: the three cards share their rows, so names, fact lines and buttons line up even when a name wraps */
 @supports (grid-template-rows:subgrid){@media (min-width:861px){
 body.dir-a .xa-row{grid-template-rows:repeat(6,auto);row-gap:0}
@@ -640,7 +640,7 @@ body.dir-a .xa-q .ph>img{position:absolute;inset:0}
 body.dir-a .xa-q-t{display:grid;align-content:center;padding:clamp(40px,6vw,96px) max(var(--gx),calc((100vw - 1240px)/2 + var(--gx))) clamp(40px,6vw,96px) clamp(32px,6vw,104px)}
 body.dir-a .xa-q .qt{margin:0;padding:0;border:0;max-width:none}
 body.dir-a .xa-q .qt p{font-size:clamp(26px,2.7vw,40px);line-height:1.2;color:var(--al);max-width:17em}
-body.dir-a .xa-q .qt cite{margin-top:18px;font-size:15px;padding-top:12px;border-top:1px solid var(--rule);display:inline-block}
+body.dir-a .xa-q .qt cite{margin-top:18px;font-size:14px;padding-top:12px;border-top:1px solid var(--rule);display:inline-block}
 body.pg-xmas .xa-q .ph>img{object-position:50% 12%}
 /* at night every band is Deep Red, so the guests' words turn Almond to stay the colour moment */
 html.night body.dir-a .xa-q{--gr:var(--al);--ink:var(--dr);--acc:var(--br);--rule:rgba(108,6,0,.32)}
@@ -697,7 +697,7 @@ body.dir-a .info li em{flex:0 0 auto}
 }
 
 /* ==== leader dots: low on the line, like full stops (owner's rule, everywhere) ==== */
-.ln i,.dishes li div i,.card li div i,.info li i,.pm-drink li>i,.evm-d li>i{border-bottom:0!important;transform:none!important;height:3px;align-self:baseline;opacity:.75;
+.ln i,.dishes li div i,.card li div i,.info li i,.pm-drink li>i,.evm-d li>i,.sd-ix-h i{border-bottom:0!important;transform:none!important;height:3px;align-self:baseline;opacity:.75;
 background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bottom/5px 3px repeat-x}
 
 /* ==== printed menus: the PDF page itself, scaled to the screen (Menus page) ====
@@ -745,7 +745,7 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 @media (max-width:860px){.hero .hero-cap .hc-h.hc-fit{font-size:calc((min(78vw,320px) - 50px) / 11.9)}}
 /* phones: no leader dots anywhere (owner's call); the fact still sits at the end of its line */
 @media (max-width:620px){
-.ln i,.dishes li div i,.card li div i,.info li i,.pm-drink li>i,.evm-d li>i{background:none!important}
+.ln i,.dishes li div i,.card li div i,.info li i,.pm-drink li>i,.evm-d li>i,.sd-ix-h i{background:none!important}
 .pm-drink li>i::before{content:none}
 .pm-food .pm-d{display:none}
 }
@@ -820,3 +820,41 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 /* the narrowest phones: big display words (Ti aspettiamo, chapter titles) scale with the screen so the longest word never runs off the edge */
 @media (max-width:360px){.d1{font-size:clamp(32px,12.4vw,42px)}}
 @media (max-width:360px){.xcard .cta{white-space:normal;text-align:center}}
+
+/* ==== detail pass (October 2026): one voice per role, typeset like print ==== */
+/* the eyebrow is a label on its heading: 14px under it in a stack, as in block flow (the grid gap no longer adds to its margin) */
+.stack>.eb{margin-bottom:-4px}
+/* the footnote voice (Events pack fine print): small italic under the copy it qualifies, never larger than it */
+.fine{font-style:italic;font-size:14px;line-height:1.5}
+/* phones are calm (owner's rule): one reading size, 18px; one small italic, 15px, for every eyebrow, kicker, note and attribution */
+@media (max-width:620px){
+.bt{font-size:18px}
+.eb,.meta,.fine,.fcols p,.hours,.trk,.qt cite,.h-mark p,.hero-cap .k,.hero .hero-cap .k,.hero .hero-cap .s{font-size:15px}
+}
+/* the sign-off holds one line on phones: "Ti" never sits alone above "aspettiamo," (it missed by 3px at 42px) */
+@media (max-width:413px){.foot .d1{white-space:nowrap;font-size:min(42px,10.2vw)}}
+/* a phone number is one word: 021 221 1307 never breaks across lines */
+a[href^="tel:"]{white-space:nowrap}
+/* small Marsha heads balance like the big ones: no "Saturday" or "share" alone on a line */
+.card-h,.h4x{text-wrap:balance}
+/* a line after a row of buttons keeps its distance (Our story's closer) */
+.cta-row+.meta{margin-top:14px}
+/* one underline, the masthead's: 1px, .26em below the baseline, on every hover; links inside a sentence carry it at rest (a phone has no hover) */
+a:hover,.fcols a:hover,.legal a:hover,.info li a:hover,.ln:hover>span,.faq summary:hover,p a:not([class]),.evm-n2 a{text-decoration-thickness:1px;text-underline-offset:.26em}
+p a:not([class]),.evm-n2 a{text-decoration-line:underline}
+/* one hairline on light grounds, also inside the almond hero box (it stays almond at night, so the tint is written out, not var(--rule)) */
+.hero .hero-cap .lns,.hero .hero-cap .cta-row{border-top-color:rgba(108,6,0,.32)}.hero .hero-cap .ln{border-bottom-color:rgba(108,6,0,.32)}
+/* selected text shows on every ground: Bright Red with Almond ink, Deep Red where the ground is already Bright Red */
+::selection{background:var(--br);color:var(--al)}.bright ::selection,.cta-fill::selection{background:var(--dr)}
+/* Spritz rings the phone Index button too (its all:unset had wiped the ring) */
+.mast-menu:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
+/* phones: the masthead links are thumb-sized (padding cancelled by margin, nothing moves) and every ask is one 44px height */
+@media (max-width:900px){.mast-book,.mast-menu{padding:12px 8px;margin:-12px -8px}}
+@media (max-width:620px){a.cta,button.cta{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
+/* phones: a closed chapter takes no keyboard stops (hidden once its .7s fold has finished) */
+@media (max-width:860px){.ch-in{visibility:hidden;transition:visibility 0s .7s}.chap.open .ch-in{visibility:visible;transition-delay:0s}.calm .ch-in{transition:none}}
+/* Contact Send answers the hover like the other asks: Bright Red to the ink */
+.ct-card button{transition:color .3s var(--ease)}.ct-card button:hover{color:var(--ink)}
+/* one text edge: the photo-hero caption on the page column on wide screens (the formula .legal and the events heroes use); floor text on the phone gutter */
+.hero-one .hero-cap{left:max(var(--gx),calc((100% - 1240px) / 2 + var(--gx)))}
+@media (max-width:860px){.f-in{padding-left:var(--gx);padding-right:var(--gx)}}

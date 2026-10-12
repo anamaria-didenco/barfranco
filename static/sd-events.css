@@ -38,7 +38,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,20px);width:min(100%,1180px);margin:clamp(8px,1.6vw,20px) 0}
 .sd-strip .ph{margin:0;aspect-ratio:4/5;overflow:hidden}
 .sd-strip img{width:100%;height:100%;object-fit:cover}
-.sd-lede{margin:0;font-size:clamp(18px,1.5vw,21px);line-height:1.55;max-width:46ch;text-wrap:pretty}
+.sd-lede{margin:0;font-size:clamp(18px,1.5vw,21px);line-height:1.55;max-width:46ch;text-wrap:balance}
 .sd-lines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:min(100%,780px);border-top:2px solid var(--dr);border-bottom:1px solid var(--dr)}
 .sd-line{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 12px;border-left:1px solid rgba(108,6,0,.25);font-size:clamp(16px,1.3vw,18px);text-decoration:none;color:var(--dr);text-align:center;transition:background-color .2s,color .2s}
 .sd-line:first-child{border-left:0;background:var(--br);color:var(--al)}
@@ -52,8 +52,8 @@ html:not(.sd) .sd-dog{display:none}
 .sd-facts li{padding:0 14px;border-left:1px dotted var(--dr)}
 .sd-facts li:first-child{border-left:0}
 .sd-facts li:nth-child(odd){font-style:italic}
-.sd-proof{margin:-6px 0 0;font-style:italic;font-size:16px;max-width:52ch}
-.sd-proof span{font-style:normal;font-size:13px;letter-spacing:.04em;text-transform:uppercase;margin-left:6px;color:var(--br)}
+.sd-proof{margin:-6px 0 0;font-style:italic;font-size:16px;max-width:52ch;text-wrap:balance}
+.sd-proof span{display:block;margin-top:2px;font-size:14px;color:var(--br)}
 .sd-res-go{justify-self:start}
 .sd-trust{text-align:center;font-style:italic;font-size:15px;margin:6px 0 0}
 .sd-cnt input{accent-color:var(--br)}
@@ -86,7 +86,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-ix-in .info li em{font-style:normal;color:var(--br)}
 .sd-ix-in .meta{margin:8px 0 0}
 .sd-ix-b{margin:0;font-size:17px;line-height:1.55;max-width:44ch}
-.sd-ix-go{display:inline-block;margin-top:14px;font-style:italic;font-size:16px;color:var(--dr);text-underline-offset:.2em}
+.sd-ix-go{display:inline-block;margin-top:14px;font-style:italic;font-size:16px;color:var(--dr);text-underline-offset:.26em}
 .sd-ix-go:hover{color:var(--br)}
 .sd-calm .sd-ix-p,.sd-calm .sd-ix-in{transition:none}
 @media (min-width:861px){
@@ -223,7 +223,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-cnt input::-moz-range-track{height:2px;background:var(--dr)!important}
 .sd .enq-ctas{display:none}
 .sd-talk{text-align:center;font-style:italic;font-size:16px;margin:18px 0 0}
-.sd-talk a{color:var(--dr);text-underline-offset:.2em}
+.sd-talk a{color:var(--dr);text-underline-offset:.26em}
 @media (max-width:860px){
 .sd-run{font-size:12px;gap:10px}
 .sd-sub{font-size:19px!important;line-height:1.25}
@@ -233,7 +233,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-lede{font-size:15px}
 .sd-line{font-size:13.5px!important;padding:12px 6px!important;white-space:normal;text-wrap:balance;line-height:1.25}
 .sd-line span{white-space:normal}
-.meta{font-size:12.5px}
+.meta{font-size:15px}
 .sd-ix-h{padding:12px 4px}
 .sd-ix-h .t{font-size:20px!important}
 .sd-ix-h em{font-size:12px}
@@ -295,7 +295,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-st .ph{aspect-ratio:4/5}
 .sd .sec.pad{padding-top:44px;padding-bottom:44px}
 .sd .d2{font-size:26px}
-.sd .eb{font-size:12px}
+.sd .eb{font-size:15px}.sd .sd-hold-h .eb{font-size:19px}.sd .lv-head .eb{font-size:20px}
 }
 
 /* a photo band between the opening and the index */
@@ -360,12 +360,15 @@ html:not(.sd) .sd-dog{display:none}
 .sd-rev{max-width:760px;margin:clamp(28px,4vw,48px) auto 0;text-align:center}
 .sd-rev+.sd-fcard{margin-top:22px}
 .sd-rev-g{margin:0 0 18px;font-size:15px}
-.sd-rev-g a{color:var(--br);text-underline-offset:.2em}
+.sd-rev-g a{color:var(--br);text-underline-offset:.26em}
 .sd-rev ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .sd-rev li{border-top:1px solid var(--br);padding-top:12px}
 .sd-rev q{display:block;font-style:italic;font-size:16px;line-height:1.45}
-.sd-rev cite{display:block;margin-top:8px;font-style:normal;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--br)}
+.sd-rev cite{display:block;margin-top:8px;font-style:italic;font-size:14px;color:var(--br)}
 @media (max-width:860px){.sd-rev,.sd-rev ul{text-align:left}.sd-rev ul{grid-template-columns:1fr;gap:14px}.sd-rev q{font-size:15px}}
 .sd .sd-cap{max-width:420px;margin-top:6px}
 /* short laptop screens: the photo strip gives back a little height so the cover's asks stay on the first screen */
 @media (min-width:861px) and (max-height:900px){.sd-cv>.sd-strip .ph{height:clamp(200px,calc(34vh - 44px),380px)}}
+
+/* detail pass: the room-finder and month buttons answer the hover in Bright Red */
+.sd-seg button:not([aria-pressed="true"]):hover,.sd-mo button:not([aria-pressed="true"]):hover{color:var(--br)}
