@@ -298,7 +298,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .enq-f iframe{display:block;width:100%;min-height:880px;border:0}
 .enq .meta{margin-top:14px}
 .cta .d1{color:var(--acc);max-width:15ch}
-.cta .lede{margin-top:14px}
+.sec.cta .lede{margin-top:18px}.sec.cta .cta-row{margin-top:34px}
 .cta .lns{margin-top:22px}
 .price .card{justify-self:end}
 .walk-ov{position:fixed;inset:0;z-index:95;pointer-events:none;visibility:hidden}
@@ -837,3 +837,5 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 a[href^="tel:"]{white-space:nowrap}
 /* small Marsha heads balance like the big ones: no "Saturday" or "share" alone on a line */
 .card-h,.h4x{text-wrap:balance}
+/* a line after a row of buttons keeps its distance (Our story's closer) */
+.cta-row+.meta{margin-top:14px}
