@@ -831,3 +831,5 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 .bt{font-size:18px}
 .eb,.meta,.fine,.fcols p,.hours,.trk,.qt cite,.h-mark p,.hero-cap .k,.hero .hero-cap .k,.hero .hero-cap .s{font-size:15px}
 }
+/* the sign-off holds one line on phones: "Ti" never sits alone above "aspettiamo," (it missed by 3px at 42px) */
+@media (max-width:413px){.foot .d1{white-space:nowrap;font-size:min(42px,10.2vw)}}
