@@ -327,7 +327,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .hero-cap .s{font-size:clamp(16px,1.3vw,19px)}
 .glance .info+.eb{margin-top:10px}
 .qt{margin:6px 0 0;padding:16px 0 0;border-top:1px solid var(--rule);max-width:46ch}
-.qt p{font-style:italic;font-size:clamp(19px,1.6vw,23px);line-height:1.35;color:var(--acc)}
+.qt p{font-style:italic;font-size:clamp(19px,1.6vw,23px);line-height:1.35;color:var(--acc);text-wrap:balance}
 .qt cite{display:block;margin-top:8px;font-style:italic;font-size:14px}
 .wide-q{margin-top:clamp(32px,4vw,56px);max-width:60ch}
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin-top:clamp(28px,4vw,48px)}
@@ -620,7 +620,7 @@ body.dir-a .xa-way .info li{font-size:15px}
 body.dir-a .xa-way .info li:first-child{border-top:1px solid var(--rule)}
 body.dir-a .xa-way .info li em{font-style:normal;font-size:19px;line-height:1;color:var(--acc)}
 body.dir-a .xa-way a.cta{margin-top:auto;padding:10px 18px;font-size:14.5px}
-body.dir-a .xa-ways-n{margin-top:clamp(20px,2.2vw,30px);max-width:none}
+body.dir-a .xa-ways-n{margin-top:clamp(20px,2.2vw,30px);max-width:64ch}
 /* wide screens: the three cards share their rows, so names, fact lines and buttons line up even when a name wraps */
 @supports (grid-template-rows:subgrid){@media (min-width:861px){
 body.dir-a .xa-row{grid-template-rows:repeat(6,auto);row-gap:0}
@@ -835,3 +835,5 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 @media (max-width:413px){.foot .d1{white-space:nowrap;font-size:min(42px,10.2vw)}}
 /* a phone number is one word: 021 221 1307 never breaks across lines */
 a[href^="tel:"]{white-space:nowrap}
+/* small Marsha heads balance like the big ones: no "Saturday" or "share" alone on a line */
+.card-h,.h4x{text-wrap:balance}

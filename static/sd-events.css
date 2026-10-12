@@ -38,7 +38,7 @@ html:not(.sd) .sd-dog{display:none}
 .sd-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,20px);width:min(100%,1180px);margin:clamp(8px,1.6vw,20px) 0}
 .sd-strip .ph{margin:0;aspect-ratio:4/5;overflow:hidden}
 .sd-strip img{width:100%;height:100%;object-fit:cover}
-.sd-lede{margin:0;font-size:clamp(18px,1.5vw,21px);line-height:1.55;max-width:46ch;text-wrap:pretty}
+.sd-lede{margin:0;font-size:clamp(18px,1.5vw,21px);line-height:1.55;max-width:46ch;text-wrap:balance}
 .sd-lines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:min(100%,780px);border-top:2px solid var(--dr);border-bottom:1px solid var(--dr)}
 .sd-line{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 12px;border-left:1px solid rgba(108,6,0,.25);font-size:clamp(16px,1.3vw,18px);text-decoration:none;color:var(--dr);text-align:center;transition:background-color .2s,color .2s}
 .sd-line:first-child{border-left:0;background:var(--br);color:var(--al)}
