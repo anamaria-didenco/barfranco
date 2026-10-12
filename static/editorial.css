@@ -883,6 +883,20 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .hf-g{grid-template-columns:minmax(0,1fr);gap:14px}
 .hf-side{gap:14px}
 }
-/* an hours row inside a hero box: the button row below already draws the rule */
-.hero-cap .info li:last-child{border-bottom:0}
-.hero-cap .info li span{min-width:0}
+
+/* ==== Restaurant: the opening spread (owner: the boxed caption looked bolted on) ==== */
+/* The two photographs stand untouched, side by side; the type sits beneath them on Paper,
+   set like the foot of a printed menu: a running head over a hairline, the title, then one
+   row of the line, the hours and the ask. All of it inside the first screen. */
+.rs-fold{display:flex;flex-direction:column;height:100vh;height:100svh}
+.rs-fold>.hero{flex:1 1 0;height:auto;min-height:0;gap:2px;background:var(--dr)}
+.rs-fold>.hero .ph:first-child::after{display:none}
+.rs-copy{width:100%;padding-top:clamp(12px,2.2vh,26px);padding-bottom:clamp(16px,3vh,36px)}
+.eb.rs-head{margin:0 0 clamp(10px,1.8vh,20px);padding-bottom:9px;border-bottom:1px solid var(--rule)}
+.rs-copy .d1{color:var(--acc)}
+.rs-row{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) auto;gap:clamp(20px,3.2vw,52px);align-items:start;margin-top:clamp(14px,2.4vh,28px)}
+.rs-row .lede{margin-top:6px}
+.rs-row .cta-row{align-self:end}
+.rs-row .lede{max-width:32ch}
+.rs-row .info li:last-child{border-bottom:0}
+@media (max-width:860px){.rs-row{grid-template-columns:minmax(0,1fr);gap:12px}.rs-row .cta-row{margin-top:2px}}
