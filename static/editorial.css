@@ -60,7 +60,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 
 .hero{display:grid;grid-template-columns:1fr 1fr;height:calc(100svh - var(--mb) - 44px);min-height:540px}
 .hero .ph:first-child{border-right:0}
-.h-mark{position:absolute;left:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,30px);color:#fff;display:grid;gap:8px;z-index:1}
+.h-mark{position:absolute;left:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,30px);color:var(--al);display:grid;gap:8px;z-index:1}
 .h-mark p{font-style:italic;font-size:13px}
 .hero .ph:first-child::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,4,0,0) 45%,rgba(40,4,0,.74) 100%);pointer-events:none}
 .strip{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;padding:12px var(--gx);background:var(--al);color:var(--br);font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.06em;line-height:1.2}
@@ -294,7 +294,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .faq summary:hover{text-decoration:underline;text-underline-offset:.2em}
 .faq details p{padding:0 0 18px;max-width:62ch;font-size:16px;line-height:1.55}
 .enq-f{border:2px solid var(--acc);padding:5px;margin-top:clamp(24px,3vw,40px)}
-.enq-f>div{border:1px solid var(--acc);background:#fff}
+.enq-f>div{border:1px solid var(--acc);background:var(--pp)}
 .enq-f iframe{display:block;width:100%;min-height:880px;border:0}
 .enq .meta{margin-top:14px}
 .cta .d1{color:var(--acc);max-width:15ch}
@@ -842,3 +842,7 @@ a[href^="tel:"]{white-space:nowrap}
 /* one underline, the masthead's: 1px, .26em below the baseline, on every hover; links inside a sentence carry it at rest (a phone has no hover) */
 a:hover,.fcols a:hover,.legal a:hover,.info li a:hover,.ln:hover>span,.faq summary:hover,p a:not([class]),.evm-n2 a{text-decoration-thickness:1px;text-underline-offset:.26em}
 p a:not([class]),.evm-n2 a{text-decoration-line:underline}
+/* one hairline on light grounds, also inside the almond hero box (it stays almond at night, so the tint is written out, not var(--rule)) */
+.hero .hero-cap .lns,.hero .hero-cap .cta-row{border-top-color:rgba(108,6,0,.32)}.hero .hero-cap .ln{border-bottom-color:rgba(108,6,0,.32)}
+/* selected text shows on every ground: Bright Red with Almond ink, Deep Red where the ground is already Bright Red */
+::selection{background:var(--br);color:var(--al)}.bright ::selection,.cta-fill::selection{background:var(--dr)}
