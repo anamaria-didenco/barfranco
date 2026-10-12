@@ -37,7 +37,7 @@ p{margin:0;text-wrap:pretty}
 .pad{padding-top:clamp(64px,9vw,140px);padding-bottom:clamp(64px,9vw,140px)}
 .eb{font-style:italic;font-size:14px;margin-bottom:14px}
 .d1{font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(42px,5.6vw,86px);line-height:.9;letter-spacing:-.005em;margin:0;text-wrap:balance}
-.d2{font-family:var(--font-display);font-weight:700;text-transform:uppercase;color:var(--acc);font-size:clamp(32px,3.4vw,52px);line-height:1.02;margin:0;text-wrap:balance}
+.d2{font-family:var(--font-display);font-weight:700;text-transform:uppercase;color:var(--acc);font-size:clamp(32px,3.4vw,52px);line-height:1.02;letter-spacing:-.005em;margin:0;text-wrap:balance}
 .nb{white-space:nowrap;display:inline-block;line-height:1.02}
 #vouchers{scroll-margin-top:calc(var(--mb) + var(--nv) + 24px)}
 .lede{font-size:clamp(17px,1.3vw,19px);line-height:1.5;max-width:44ch}
@@ -259,7 +259,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .hero .hero-cap{left:50%;right:auto;top:50%;bottom:auto;transform:translate(-50%,-50%);max-width:min(500px,52%);padding:clamp(26px,2.8vw,40px);background:var(--al);color:var(--dr);border:2px solid var(--dr);gap:0;text-align:left}
 .hero .hero-cap::before{content:"";position:absolute;inset:6px;border:1px solid var(--dr);pointer-events:none}
 .hero .hero-cap .k{font-size:13px;font-style:italic;margin:0 0 4px}
-.hero .hero-cap .hc-h{color:var(--br);letter-spacing:.02em;margin:0}
+.hero .hero-cap .hc-h{color:var(--br);letter-spacing:-.005em;margin:0}
 .hero .hero-cap .hc-h em{margin:0;font-size:1em}
 .hero .hero-cap .s{max-width:none;margin:12px 0 0;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.45}
 .hero .hero-cap .lns{margin:16px 0 0;max-width:none;border-top:1px solid rgba(108,6,0,.22);padding-top:2px}
