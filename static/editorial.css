@@ -382,7 +382,7 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .mn-tabs button{all:unset;cursor:pointer;font-style:italic;font-size:clamp(18px,1.5vw,22px);padding:4px 0;border-bottom:1px solid transparent;color:inherit;transition:color .4s var(--ease),border-color .4s var(--ease)}
 .mn-tabs button:hover{color:var(--acc)}
 .mn-tabs button[aria-selected="true"]{border-bottom-color:currentColor;color:var(--acc)}
-.mn-tabs button:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.mn-tabs button:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
 .mcard{max-width:none}
 .mcard>div{columns:2 320px;column-gap:clamp(32px,4vw,64px)}
 .mcard .m-title{column-span:all;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(44px,6vw,92px);line-height:.9;letter-spacing:.08em;color:var(--acc);margin:0 0 clamp(18px,2.4vw,30px)}
@@ -399,7 +399,7 @@ em.tg{font-style:normal;font-size:12px;letter-spacing:.06em;opacity:.75;white-sp
 .pk-d>summary{list-style:none;display:grid;grid-template-columns:clamp(44px,5vw,72px) minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:clamp(18px,2.2vw,28px) 0;cursor:pointer}
 .pk-d>summary::-webkit-details-marker{display:none}
 .pk-d>summary:hover .d2{color:var(--acc)}
-.pk-d>summary:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.pk-d>summary:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
 .pk-n{font-family:var(--font-display);font-weight:700;font-size:clamp(18px,1.6vw,24px);color:var(--acc)}
 .pk-t{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline}
 .pk-t .d2{margin:0;transition:color .4s var(--ease)}
@@ -452,7 +452,7 @@ em.tg{font-style:normal;font-size:12px;letter-spacing:.06em;opacity:.75;white-sp
 @media (max-width:860px){
 .chap{padding-top:0!important;padding-bottom:0!important}
 .ch-row{all:unset;box-sizing:border-box;display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:baseline;width:100%;padding:20px var(--gx);border-top:1px solid var(--rule);cursor:pointer;color:inherit}
-.ch-row:focus-visible{outline:2px solid var(--acc);outline-offset:-4px}
+.ch-row:focus-visible{outline:2px solid var(--sp);outline-offset:-4px}
 .ch-row .d2{margin:0;font-size:clamp(21px,5.6vw,28px);line-height:1.02;text-wrap:balance}
 .chap.open .ch-row .pk-oc::before{content:"−"}
 .ch-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
@@ -846,3 +846,10 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .hero .hero-cap .lns,.hero .hero-cap .cta-row{border-top-color:rgba(108,6,0,.32)}.hero .hero-cap .ln{border-bottom-color:rgba(108,6,0,.32)}
 /* selected text shows on every ground: Bright Red with Almond ink, Deep Red where the ground is already Bright Red */
 ::selection{background:var(--br);color:var(--al)}.bright ::selection,.cta-fill::selection{background:var(--dr)}
+/* Spritz rings the phone Index button too (its all:unset had wiped the ring) */
+.mast-menu:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
+/* phones: the masthead links are thumb-sized (padding cancelled by margin, nothing moves) and every ask is one 44px height */
+@media (max-width:900px){.mast-book,.mast-menu{padding:12px 8px;margin:-12px -8px}}
+@media (max-width:620px){a.cta,button.cta{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
+/* phones: a closed chapter takes no keyboard stops (hidden once its .7s fold has finished) */
+@media (max-width:860px){.ch-in{visibility:hidden;transition:visibility 0s .7s}.chap.open .ch-in{visibility:visible;transition-delay:0s}.calm .ch-in{transition:none}}
