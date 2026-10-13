@@ -28,64 +28,7 @@
 <link rel="icon" type="image/svg+xml" href="https://www.barfranco.nz/favicon.svg?v=4"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=4"/><link href="https://www.barfranco.nz/favicon.png?v=4" rel="icon" type="image/png"/>
 <link href="https://www.barfranco.nz/apple-touch-icon.png?v=4" rel="apple-touch-icon"/>
 <link href="https://www.barfranco.nz/christmas-functions/" rel="canonical"/>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-18456342571"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18456342571');
-</script>
-<script>
-(function () {
-  var LABELS = {
-    phone: 'AW-18456342571/lqN6CITV1_ocEKvg1eBE',   // Phone click
-    email: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',   // Email click - events enquiry
-    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE',   // Enquiry submitted (VenueFlow)
-    // Secondary action for a step-1 capture that never finishes. Create the
-    // conversion action in Google Ads, paste its label here, and this starts
-    // firing. Left null so it can never be counted against the form label.
-    partial: null                                   // Partial enquiry (VenueFlow)
-  };
-
-  function fire(label, value) {
-    try {
-      gtag('event', 'conversion', { 'send_to': label, 'value': value || 1.0, 'currency': 'NZD' });
-    } catch (e) {}
-  }
-
-  // 1. Phone and email links anywhere on the page
-  document.addEventListener('click', function (ev) {
-    var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
-    if (!a) return;
-    var href = (a.getAttribute('href') || '').toLowerCase();
-    if (href.indexOf('tel:') === 0)    fire(LABELS.phone);
-    if (href.indexOf('mailto:') === 0) fire(LABELS.email);
-  }, true);
-
-  // 2. VenueFlow enquiry form — the widget posts `vf-enquiry-submitted` on a successful submit.
-  //    Budget bracket becomes the conversion value, so a $10k enquiry is worth more than a $2k one.
-  function budgetToValue(b) {
-    if (!b) return 1;
-    var nums = String(b).replace(/,/g, '').match(/\d+/g);
-    if (!nums) return 1;
-    var n = parseInt(nums[0], 10);
-    if (/k/i.test(String(b)) && n < 1000) n = n * 1000;
-    return n > 0 ? n : 1;
-  }
-  window.addEventListener('message', function (e) {
-    if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
-    var d = e.data;
-    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
-    if (d && d.type === 'vf-enquiry-submitted') {
-      fire(LABELS.form, budgetToValue(d.budgetRange || d.budget_range || d.budget));
-    }
-    if (d && d.type === 'vf-partial-captured' && LABELS.partial) {
-      fire(LABELS.partial, budgetToValue(d.budgetRange || d.budget_range || d.budget));
-    }
-  });
-})();
-</script>
+<script src="/static/vf-tracking.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"EventVenue","@id":"https://www.barfranco.nz/christmas-functions/#venue","containedInPlace":{"@id":"https://www.barfranco.nz/#restaurant"},"name":"Bar Franco — Christmas Functions & Venue Hire","url":"https://www.barfranco.nz/christmas-functions/","description":"Work Christmas parties, team dinners and end-of-year celebrations for December 2026 — up to 240 guests across two levels in central Christchurch, with no venue hire fee.","telephone":"+64-21-221-1307","email":"events@barfranco.nz","maximumAttendeeCapacity":240,"image":"https://www.barfranco.nz/images/og/christmas.jpg?v=1","address":{"@type":"PostalAddress","streetAddress":"The Crossing, 166 Cashel Street","addressLocality":"Christchurch Central","addressRegion":"Canterbury","postalCode":"8011","addressCountry":"NZ"},"geo":{"@type":"GeoCoordinates","latitude":-43.53262,"longitude":172.6362},"areaServed":"Christchurch"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I book?","acceptedAnswer":{"@type":"Answer","text":"Send your date and numbers. Within one business day we send a proposal and the events pack. A deposit from $500 holds the date, and comes off your drinks bill."}},{"@type":"Question","name":"What will it cost?","acceptedAnswer":{"@type":"Answer","text":"Shared menus from $80pp (grazing table from $40pp), drinks on consumption, no venue hire fee. Friday and Saturday carry a minimum spend, from $4,000 for the bar; midweek, usually none. We keep you posted on the spend on the night, so the invoice holds no surprises."}},{"@type":"Question","name":"Do you do Christmas lunch?","acceptedAnswer":{"@type":"Answer","text":"Yes. Lunch or dinner, on either level. Tell us the day and the time in your enquiry."}},{"@type":"Question","name":"What’s included on the night?","acceptedAnswer":{"@type":"Answer","text":"Your host, microphones for speeches, a projector and screen, and room for a band or a DJ. Last drinks 11:30pm."}},{"@type":"Question","name":"Can you handle dietaries?","acceptedAnswer":{"@type":"Answer","text":"Every one. Custom food and drink menus on request; final numbers and dietaries five days before."}},{"@type":"Question","name":"How do guests get there?","acceptedAnswer":{"@type":"Answer","text":"Upstairs at 166 Cashel Street, The Crossing, in the CBD. Lift near H&M and KOOKAÏ; the carpark is right there. Closed 24 December to 5 January."}}]}]}</script>
 <link rel="preload" href="/static/fonts/VTCMarsha-Bold.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="/static/fonts/Affairs-Regular.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="/static/fonts/Affairs-Italic.otf" as="font" type="font/otf" crossorigin>
 <link href="/static/styles.css" rel="stylesheet"/><link href="/static/editorial.css" rel="stylesheet"/><link href="/static/sd-events.css" rel="stylesheet"/>
