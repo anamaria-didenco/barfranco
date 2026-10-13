@@ -26,64 +26,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=4"/><link href="/favicon.png?v=4" rel="icon" type="image/png"/>
 <link href="/apple-touch-icon.png?v=4" rel="apple-touch-icon"/>
 <link href="https://www.barfranco.nz/vouchers/" rel="canonical"/>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-18456342571"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18456342571');
-</script>
-<script>
-(function () {
-  var LABELS = {
-    phone: 'AW-18456342571/lqN6CITV1_ocEKvg1eBE',   // Phone click
-    email: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',   // Email click - events enquiry
-    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE',   // Enquiry submitted (VenueFlow)
-    // Secondary action for a step-1 capture that never finishes: its own
-    // conversion action, so it can never be counted against the form label.
-    partial: 'AW-18456342571/sgcCCPbB4podEKvg1eBE', // Partial enquiry (VenueFlow). Fires on {type:'vf-partial-captured'}
-    bookClick: 'AW-18456342571/KQwdCPnB4podEKvg1eBE' // Book a table click (NowBookIt)
-  };
-
-  function fire(label, value) {
-    try {
-      gtag('event', 'conversion', { 'send_to': label, 'value': value || 1.0, 'currency': 'NZD' });
-    } catch (e) {}
-  }
-
-  // 1. Phone and email links anywhere on the page
-  document.addEventListener('click', function (ev) {
-    var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
-    if (!a) return;
-    var href = (a.getAttribute('href') || '').toLowerCase();
-    if (href.indexOf('tel:') === 0)    fire(LABELS.phone);
-    if (href.indexOf('mailto:') === 0) fire(LABELS.email);
-  }, true);
-
-  // 2. VenueFlow enquiry form — the widget posts `vf-enquiry-submitted` on a successful submit.
-  //    Budget bracket becomes the conversion value, so a $10k enquiry is worth more than a $2k one.
-  function budgetToValue(b) {
-    if (!b) return 1;
-    var nums = String(b).replace(/,/g, '').match(/\d+/g);
-    if (!nums) return 1;
-    var n = parseInt(nums[0], 10);
-    if (/k/i.test(String(b)) && n < 1000) n = n * 1000;
-    return n > 0 ? n : 1;
-  }
-  window.addEventListener('message', function (e) {
-    if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
-    var d = e.data;
-    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
-    if (d && d.type === 'vf-enquiry-submitted') {
-      fire(LABELS.form, budgetToValue(d.budgetRange || d.budget_range || d.budget));
-    }
-    if (d && d.type === 'vf-partial-captured' && LABELS.partial) {
-      fire(LABELS.partial, budgetToValue(d.budgetRange || d.budget_range || d.budget));
-    }
-  });
-})();
-</script>
+<script src="/static/vf-tracking.js"></script>
 
 <link rel="preload" href="/static/fonts/VTCMarsha-Bold.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="/static/fonts/Affairs-Regular.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="/static/fonts/Affairs-Italic.otf" as="font" type="font/otf" crossorigin>
 <link href="/static/styles.css" rel="stylesheet"/><link href="/static/editorial.css" rel="stylesheet"/>
