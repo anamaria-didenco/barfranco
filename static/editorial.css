@@ -858,3 +858,31 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 /* one text edge: the photo-hero caption on the page column on wide screens (the formula .legal and the events heroes use); floor text on the phone gutter */
 .hero-one .hero-cap{left:max(var(--gx),calc((100% - 1240px) / 2 + var(--gx)))}
 @media (max-width:860px){.f-in{padding-left:var(--gx);padding-right:var(--gx)}}
+
+/* ==== Home: the first screen (owner's brief, Oct 2026) ==== */
+/* On every screen the first screenful holds the title, one line, the hours and Book a table.
+   Desktop keeps the two photographs and shortens them to whatever the copy leaves; under
+   700px one photograph runs full-bleed and the copy sits over a dark scrim at its foot.
+   svh, not vh: on a phone vh counts the browser toolbar, which would sit on the button. */
+.hf-fold{display:flex;flex-direction:column;height:100vh;height:100svh}
+.hf-fold>.hero{flex:1 1 0;height:auto;min-height:0}
+.hf-copy{padding:clamp(18px,3.2vh,40px) 0 clamp(18px,3.4vh,44px)}
+.hf-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:clamp(24px,4vw,64px);align-items:end}
+.hf-copy .d1{color:var(--ink);max-width:13ch}
+.hf-side{display:grid;gap:18px}
+.hf-act{display:flex;align-items:flex-end;justify-content:space-between;gap:14px 24px;flex-wrap:wrap}
+.hf-act a.cta{flex:0 0 auto}
+.hf-act .hours{text-align:right}
+@media (max-width:699.98px){
+.hf-fold{position:relative;display:block}
+.hf-fold>.hero{position:absolute;inset:0;display:block;height:auto}
+.hf-fold>.hero .ph:first-child{display:none}
+.hf-fold>.hero .ph:last-child{position:absolute;inset:0}
+/* the scrim is the copy's own ground, so it grows with the copy at any phone height */
+.hf-fold>.sec.hf-copy{position:absolute;left:0;right:0;bottom:0;z-index:2;--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.45);color:var(--al);padding:110px 0 clamp(20px,4svh,32px);background:linear-gradient(180deg,rgba(40,4,0,0),rgba(40,4,0,.86) 110px)}
+.hf-g{grid-template-columns:minmax(0,1fr);gap:14px}
+.hf-side{gap:14px}
+}
+
+/* ==== Restaurant: opens on Home's first screen (.hf-fold); the room photo carries no caption, so no caption scrim ==== */
+.pg-rest .hf-fold>.hero .ph:first-child::after{display:none}
