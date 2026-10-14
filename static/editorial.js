@@ -25,18 +25,12 @@ function tog(c,on){if(on!==mast.classList.contains(c))mast.classList.toggle(c,on
 function toneAt(x,y){if(R.classList.contains('night'))return'dark';var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var e=els[i];if(e.closest('.mast,.lead,.walk-ov,.mockbar,a,button,.card,.cta-row'))continue;var t=e.closest('[data-tone]');if(t)return t.dataset.tone;
 for(var n=e;n&&n!==document.documentElement;n=n.parentElement){if(n.tagName==='IMG'||n.tagName==='VIDEO')return'dark';var cs=getComputedStyle(n);if(cs.backgroundImage&&cs.backgroundImage!=='none'&&cs.backgroundImage.indexOf('gradient')<0)return'dark';var m=cs.backgroundColor.match(/[\d.]+/g);if(m&&(m.length<4||+m[3]>.5)){var r=+m[0],g=+m[1],b=+m[2],L=(.2126*r+.7152*g+.0722*b)/255;return L<.5?'dark':(Math.abs(r-250)<14&&Math.abs(g-215)<16?'almond':'light')}}
 return'light'}return'light'}
-function mastTick(){if(!mast||!mk)return;var tgt=1-.5*smooth(scrollY/(innerHeight*.75));mkS=calm()?tgt:lerp(mkS,tgt,.08);if(Math.abs(mkS-tgt)<.0004)mkS=tgt;mk.style.transform='scale('+mkS.toFixed(4)+')';
-if(R.classList.contains('menu-open'))return;
+var mastT=0;
+function mastTick(){if(!mast||!mk||R.classList.contains('menu-open'))return;
+/* below the top of the page the header is the cream bar (top bar), so its ink only matters up here: 4x a second, not every frame */
+if(scrollY>72){mastT=0;return}var now=performance.now();if(now-mastT<250)return;mastT=now;
 var a=mk.getBoundingClientRect(),b=mastR.getBoundingClientRect(),t1=toneAt(a.left+Math.min(24,a.width/3),a.top+a.height/2),t2=toneAt(b.left+b.width/2,b.top+b.height/2);if(innerWidth<=900)t2=t1;
-tog('lk-l',t1!=='dark');tog('lk-a',t1==='almond');tog('nv-l',t2!=='dark');tog('nv-a',t2==='almond');
-/* the veil comes up the moment the page starts moving, not only past the hero:
-   anything that scrolls under a bare header stays readable through it, and on
-   the long cover sections that was most of a screenful. */
-tog('vo',scrollY>8);
-/* tall enough to cover whichever of the two sits lower — the logo or the nav
-   row — then 32px of clear air, then the 54px the gradient spends fading out,
-   so a line of page copy is never caught half-lit right under the links. */
-mast.style.setProperty('--vh',Math.round(Math.max(a.bottom,b.bottom)-mast.getBoundingClientRect().top+86)+'px')}
+tog('lk-l',t1!=='dark');tog('lk-a',t1==='almond');tog('nv-l',t2!=='dark');tog('nv-a',t2==='almond')}
 var mbtn=$('.mast-menu');
 if(mbtn)mbtn.addEventListener('click',function(){var o=R.classList.toggle('menu-open');mbtn.setAttribute('aria-expanded',String(o));mbtn.textContent=o?'Close':'Menu'});
 if(mbtn)addEventListener('keydown',function(e){if(e.key==='Escape'&&R.classList.contains('menu-open')){R.classList.remove('menu-open');mbtn.setAttribute('aria-expanded','false');mbtn.textContent='Menu';mbtn.focus()}});
@@ -137,4 +131,33 @@ addEventListener('hashchange',openHash);openHash();
 /* one loop for everything that moves */
 function frame(now){if(lead&&lState!=='gone')leadTick(now);mastTick();seam(now);requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
+})();
+
+/* Bar Franco · top bar: away on the way down, back on the way up; one button that matches the page. Every page. */
+(function(){
+var R=document.documentElement,D=document,$=function(s,c){return(c||D).querySelector(s)};
+var mast=$('.mast');if(!mast||R.classList.contains('tb'))return;R.classList.add('tb');
+var book=$('.mast-book'),links=$('#links'),mb=$('.mast-menu');
+/* one button, matched to the page: event pages go to the enquiry form */
+/* #book only where it holds the booking widget (Bookings, Restaurant). Home's #book is a line that links to /bookings/,
+   so jumping there would add a step before anyone can book: Home keeps /bookings/. */
+if(book){if($('#enquire')){book.textContent='Check your date';book.setAttribute('href','#enquire')}else if($('#book iframe'))book.setAttribute('href','#book')}
+/* the skip link lands on <main>, or where a page has none (Home, the events pages) on its opening section */
+var skT=$('#main')||$('[data-hero][id]');if(skT&&!$('.tb-skip')){var sk=D.createElement('a');sk.className='tb-skip';sk.href='#'+skT.id;sk.textContent='Skip to content';D.body.insertBefore(sk,D.body.firstChild)}
+/* phone menu: the essentials under the links */
+if(links&&!$('.tb-foot',links)){var f=D.createElement('div');f.className='tb-foot';var go=D.createElement('a');go.className='cta cta-fill';go.href=book?book.getAttribute('href'):'/bookings/';go.textContent=book?book.textContent:'Book a table';f.appendChild(go);
+var r=D.createElement('div');r.className='tb-foot-r';r.innerHTML='<a href="tel:+64212211307">Call 021 221 1307</a><a href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">Directions</a>';f.appendChild(r);
+var p=D.createElement('p');p.className='tb-hrs';p.textContent='Bar\u00a0from\u00a04pm\u00a0· Kitchen\u00a0from\u00a05pm\u00a0· 166\u00a0Cashel\u00a0St, upstairs';f.appendChild(p);links.appendChild(f)}
+function closeMenu(){if(!R.classList.contains('menu-open'))return;R.classList.remove('menu-open');if(mb){mb.setAttribute('aria-expanded','false');mb.textContent='Menu'}}
+if(links)links.addEventListener('click',function(e){if(e.target.closest('a'))closeMenu()});
+if(mb)mb.addEventListener('click',function(){if(R.classList.contains('menu-open')){var a=$('#links a');if(a)setTimeout(function(){a.focus({preventScroll:true})},60)}});
+D.addEventListener('keydown',function(e){if(e.key!=='Tab'||!R.classList.contains('menu-open'))return;var fs=[].slice.call(mast.querySelectorAll('a[href],button')).filter(function(x){return x.offsetParent!==null});if(!fs.length)return;var i=fs.indexOf(D.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();fs[fs.length-1].focus()}else if(!e.shiftKey&&i===fs.length-1){e.preventDefault();fs[0].focus()}});
+/* away on the way down, back on the way up */
+var TOP=72,lastY=scrollY,acc=0,state='';
+function set(s){if(s===state)return;state=s;R.classList.toggle('tb-bar',s!=='top');R.classList.toggle('tb-up',s==='up');R.classList.toggle('tb-away',s==='away')}
+function tick(){var y=Math.max(0,scrollY),dy=y-lastY;lastY=y;if(R.classList.contains('menu-open'))return;if(y<=TOP){acc=0;set('top');return}if(state==='top'){acc=0;set(dy>=0?'away':'up');return}
+if(dy>0){acc=acc>0?acc+dy:dy;if(acc>14)set('away')}else if(dy<0){acc=acc<0?acc+dy:dy;if(acc<-8)set('up')}}
+set(scrollY>TOP?'up':'top');
+var raf=0;addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(function(){raf=0;tick()})},{passive:true});
+mast.addEventListener('focusin',function(){if(state==='away')set('up')});
 })();
