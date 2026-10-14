@@ -6,14 +6,14 @@ R.classList.add('hx');
 function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
 function nz(){var p={};new Intl.DateTimeFormat('en-NZ',{timeZone:'Pacific/Auckland',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});return{h:+p.hour%24,m:+p.minute}}
 function ses(k,v){try{if(v===undefined)return sessionStorage.getItem(k);sessionStorage.setItem(k,v)}catch(e){return null}}
+/* the curtain is the visit's welcome: mark the lead intro as seen, so it never plays later in the visit on another page */
+ses('bf-lead','1');
 var NBI='https://bookings.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&venueid=12388';
 var tdog=$('#tdog'),dogSrc=(tdog&&$('img',tdog))?$('img',tdog).src:'/static/illustrations/dachshund.png';
 var fnA=$('a[href^="Functions.html"],a[href^="/functions/"]'),fnHref=fnA?fnA.getAttribute('href').split('#')[0]+'#enquire':'/functions/#enquire';
 
-/* open now: the third line of the hours says what's true right now (same hours as the closing band) */
-var hrs=$('.hf-act .hours'),nowEm=hrs&&$('em',hrs),tn=$('#hxTonight');
-function now(){var h=nz().h,open=h>=16;if(nowEm){nowEm.textContent=h>=16&&h<17?'Open now · kitchen at 5pm':h>=17?'Open now, till late':'See you at 4pm';nowEm.classList.add('hx-now');nowEm.classList.toggle('open',open)}if(tn){tn.textContent=h>=16&&h<17?'Open now. The kitchen opens at 5pm.':h>=17?'Open now, till late.':'Tonight: bar from 4pm, kitchen from 5pm.';tn.classList.add('hx-now');tn.classList.toggle('open',open)}}
-now();setInterval(now,30000);
+/* the hours stay as written: no live open-now line (owner, Oct 2026) */
+var hrs=$('.hf-act .hours');
 
 /* 1 · arrival: once a visit, the curtain parts and the words come up */
 var hero=$('.hero'),first=!ses('bf-hx'),arriving=false;
