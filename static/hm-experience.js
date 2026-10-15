@@ -16,7 +16,11 @@ var fnA=$('a[href^="Functions.html"],a[href^="/functions/"]'),fnHref=fnA?fnA.get
 var hrs=$('.hf-act .hours');
 
 /* 1 · arrival: once a visit, the curtain parts and the words come up */
-var hero=$('.hero'),first=!ses('bf-hx'),arriving=false;
+/* the curtain plays whenever someone arrives or reloads (a typed address, a search, an ad, a refresh), not when they click back to Home
+   from elsewhere on the site (that page change has its own walk), and not on the browser's back button. It used to play once per tab, so a
+   second look in the same tab showed nothing. (owner, Oct 2026) */
+function arrives(){var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0],t=n?n.type:'navigate';if(t==='back_forward')return false;var ref=D.referrer;return t==='reload'||!ref||ref.indexOf(location.origin)!==0}
+var hero=$('.hero'),first=arrives(),arriving=false;
 if(hero&&first&&!calm){ses('bf-hx','1');arriving=true;var cur=D.createElement('div');cur.className='hx-cur';cur.setAttribute('aria-hidden','true');cur.innerHTML='<i></i><i></i>';hero.appendChild(cur);
 var copy=[$('.hf-copy .d1'),$('.hf-copy .lede'),$('.hf-act')].filter(Boolean);copy.forEach(function(e){e.classList.add('hx-rise')});
 requestAnimationFrame(function(){requestAnimationFrame(function(){setTimeout(function(){cur.classList.add('open')},160)})});
