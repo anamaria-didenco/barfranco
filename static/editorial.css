@@ -1056,7 +1056,8 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .vcard .card-s{font-size:15px;line-height:1.45}
 .vcard li span{font-family:var(--font-body);font-weight:400;font-style:normal;text-transform:none;letter-spacing:0;font-size:16px}
 .vcard li span:last-child{font-style:italic}
-.night .vcard .vc-logo{filter:var(--almond)}
+/* the script logo turns Almond only where the night ground is Deep Red: an Almond band (#voucher) keeps it Deep Red */
+.night .sec:not(.almond) .vcard .vc-logo{filter:var(--almond)}
 /* Contact: the links in the list are thumb-sized (padding cancelled by margin, the rows don't move) */
 .ed-main #find .info li a{display:block;padding:10px 0;margin:-10px 0}
 @media (max-width:620px){
