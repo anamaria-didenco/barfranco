@@ -749,13 +749,14 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 .pm-drink li>i::before{content:none}
 .pm-food .pm-d{display:none}
 }
-/* phones: the printed food and drinks sheets at reading size. Scaled from the PDF, 8.5pt comes out near 8px on a phone,
-   so the sheet keeps its frame, title and courses, and the dishes wrap at 15px with the price at the end of the line */
+/* phones: the printed drinks sheet at reading size. Scaled from the PDF, 8.5pt comes out near 8px on a phone,
+   so the sheet keeps its frame, title and courses, and the drinks wrap at 15px with the price at the end of the line.
+   The food sheet stays the printed page scaled to the screen (owner's call) */
 @media (max-width:620px){
-#sheets .pm .card-h{font-size:17px;line-height:1.2}
-#sheets .pm-food li,#sheets .pm-drink li{font-size:15px;line-height:1.45;white-space:normal;margin-top:7px;padding:0 calc(var(--u)*30)}
-#sheets .pm .card-h+ul{margin-top:8px}
-#sheets .pm .course+.course{margin-top:22px}
+#sheets .pm-drink .card-h{font-size:17px;line-height:1.2}
+#sheets .pm-drink li{font-size:15px;line-height:1.45;white-space:normal;margin-top:7px;padding:0 calc(var(--u)*30)}
+#sheets .pm-drink .card-h+ul{margin-top:8px}
+#sheets .pm-drink .course+.course{margin-top:22px}
 #sheets .pm-drink li{gap:14px}
 #sheets .pm-drink .pm-n{flex:1 1 auto;min-width:0}
 #sheets .pm-drink li>i{display:none}
