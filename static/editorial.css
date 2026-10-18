@@ -1075,6 +1075,63 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 /* . */
 
 /* ---- E · events pack, robbie, 404, our story ---- */
+/* Events pack (main.pg-pack): one closing ask, Ana-Maria as a plain line under it */
+.pg-pack .h4x,.pg-pack #contact .d1{color:var(--acc)}   /* heads take the section's accent: Bright Red by day, Almond at night (they were Bright Red on Deep Red) */
+.pg-pack .xcard .cta-row+.bt{margin-top:4px}
+.pg-pack .xcard .cta-row+.bt a{text-decoration:underline;text-underline-offset:.18em}
+@media (max-width:620px){
+/* the page title is not smaller than the chapter heads; the closing word sits at chapter size; prices read at 15px */
+.pg-pack .hero .hero-cap .hc-h{font-size:32px}
+.pg-pack #contact .d1{font-size:32px}
+.pg-pack .card-s,.pg-pack .card li em,.pg-pack .card li span em{font-size:15px}
+.pg-pack .d1,.pg-pack .d2{text-wrap:balance}
+/* the flow of the night: landscape photographs cut 3:2, breaking out to alternate edges (01 right, 02 left, 03 right) */
+.pg-pack .pk-flow .ph.r-45{aspect-ratio:3/2;width:calc(100% + var(--gx))}
+.pg-pack .pk-flow>.stack:nth-child(odd) .ph{margin-right:calc(-1*var(--gx))}
+.pg-pack .pk-flow>.stack:nth-child(even) .ph{margin-left:calc(-1*var(--gx))}
+.pg-pack #contact .xcard .cta-row{display:grid;grid-template-columns:minmax(0,1fr);justify-self:stretch;gap:8px}
+}
+/* Robbie (the Organiser's Aperitivo): the ask is a pair of buttons, the facts are three lines */
+.rb-open .rb-info{margin-top:6px;border-top:1px solid var(--rule)}
+.rb-open .rb-info li{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:4px 16px;padding:12px 0 10px}
+.rb-open .rb-info li i{display:none}
+.rb-open .rb-info li em{text-align:left}
+.rb-open .cta-row{margin-top:8px}
+@media (max-width:620px){
+.rb-open .rb-info li{grid-template-columns:minmax(0,1fr);gap:2px}
+.rb-open .rb-info li span{font-size:15px;font-style:italic;opacity:.85}
+.rb-open .rb-info li em{font-style:normal;font-size:18px;line-height:1.4;text-align:left}
+.rb-open .cta-row,.rb .cta-row.rb-close{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;justify-self:stretch;width:100%}
+}
+/* 404: the framed card on Almond, no photographs (the two it had are on other pages) and no curtain */
+.ed-main>.sec.hero.nf{display:grid;place-items:center;grid-template-columns:minmax(0,1fr);height:auto;min-height:clamp(520px,calc(100svh - 120px),780px);padding:calc(var(--nv) + 32px) var(--gx) clamp(56px,8vw,96px)}
+.ed-main>.sec.hero.nf .hero-cap{position:relative;left:auto;right:auto;top:auto;bottom:auto;transform:none;width:min(100%,500px);max-width:none}
+@media (max-width:620px){
+.ed-main>.sec.hero.nf{min-height:calc(100svh - 80px);padding-top:calc(var(--nv) + 16px)}
+.ed-main>.sec.hero.nf .hero-cap{width:100%;padding:24px 22px}
+.nf .hero-cap .ln{min-height:44px;align-items:center;font-size:16px;padding:0}
+.nf .hero-cap .ln em{font-size:15px}
+}
+/* Our story (main.pg-story) */
+.pg-story .g2.st-row{align-items:start}
+.pg-story #climb .lv-head{justify-content:flex-end}
+.pg-story .st-sign{margin-top:10px}
+@media (max-width:860px){.pg-story #climb .lv-head{display:none}}
+@media (max-width:620px){
+/* the portrait beside the eyebrow and the title, the intro under both */
+.pg-story .st-open-g{grid-template-columns:minmax(0,1fr) 104px;column-gap:16px;row-gap:6px;align-items:end}
+.pg-story .st-open-t{display:contents}
+.pg-story .st-me{grid-column:2;grid-row:1/3;width:auto;align-self:end}
+.pg-story .st-open-t .eb{grid-column:1;grid-row:1;margin:0}
+.pg-story .st-open-t .d1{grid-column:1;grid-row:2;font-size:32px;margin:0}
+.pg-story .st-open-t .lede{grid-column:1/-1;grid-row:3;margin-top:18px}
+/* the script mid-letter is a small sign-off, not a logo stamp */
+.pg-story .st-row .sig img{width:120px}
+/* one italic display size, one closing size */
+.pg-story .d1 em,.pg-story .d2 em,.pg-story .d2 .w,.pg-story .say{font-size:24px}
+.pg-story .sec.cta .d1{font-size:32px}
+.pg-story .d1,.pg-story .d2{text-wrap:balance}
+}
 /* end E */
 /* . */
 /* . */
