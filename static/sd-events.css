@@ -375,9 +375,7 @@ html:not(.sd) .sd-dog{display:none}
 
 /* ==== phone audit, October 2026 ==== */
 @media (max-width:860px){
-/* one ask at a time: on arrival the cover's first line is the ask, so the top bar's copy waits until the cream bar
-   comes back on scroll (the dock carries it on the way down); the room cards and the menu chapter don't repeat it */
-html.sd:not(.tb-bar):not(.menu-open) .mast-book{visibility:hidden}
+/* the room cards and the menu chapter don't repeat the ask; the top bar keeps its button (owner's call) */
 .sd .xa-way .cta,.sd #food .cta-row .cta-fill,.sd #menu .ctas-after .cta-fill{display:none}
 /* the dog still walks the banner and sits on the picked date; only his words go, a phone has no free band for them */
 #dogB .sd-tag,#dogC .sd-tag{display:none}
