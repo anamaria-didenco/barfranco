@@ -13,7 +13,8 @@ function lget(k){try{return localStorage.getItem(k)}catch(e){return null}}functi
 var lights=new URLSearchParams(location.search).get('lights')||lget('bf-lights')||'auto';
 if(lget('bf-motion')==='calm')R.classList.add('calm');
 function isNight(){if(lights==='night')return true;if(lights==='day')return false;var h=nz().h;return h>=21||h<4}
-R.classList.toggle('night',isNight());
+/* the four events pages (html.sd) have no night palette: they keep their day colours after 9pm */
+R.classList.toggle('night',isNight()&&!R.classList.contains('sd'));
 
 /* the live clock in the closing band */
 function clock(){var oh=$('#openH'),ot=$('#openT');if(!oh)return;var t=nz(),h=t.h,m=t.m,h12=((h+11)%12)+1;ot.textContent=h12+':'+(m<10?'0':'')+m+(h<12?'am':'pm')+' in Christchurch';oh.innerHTML=h>=16&&h<17?'Open. Kitchen at 5pm':h>=17?'Open <em>till</em> late':'Opening at 4pm'}
@@ -62,9 +63,11 @@ function fadeUp(el,k,dy){if(!el)return;el.style.opacity=k.toFixed(3);el.style.tr
 function geo(){var o=lead.getBoundingClientRect(),h=lh.getBoundingClientRect(),d=ldog.getBoundingClientRect();lsvg.setAttribute('viewBox','0 0 '+o.width.toFixed(0)+' '+o.height.toFixed(0));return{W:o.width,hx:h.right-o.left-14,hy:h.top-o.top+h.height/2,cx:d.left-o.left+d.width*.82,cy:d.top-o.top+d.height*.26}}
 /* the lead hangs as a soft cubic curve, not a straight line */
 function rope(x0,y0,x1,y1,sag){var dx=x1-x0,dy=y1-y0,s=sag*1.33;lpath.setAttribute('d','M'+x0.toFixed(1)+' '+y0.toFixed(1)+' C'+(x0+dx*.3).toFixed(1)+' '+(y0+dy*.3+s).toFixed(1)+' '+(x0+dx*.7).toFixed(1)+' '+(y0+dy*.7+s).toFixed(1)+' '+x1.toFixed(1)+' '+y1.toFixed(1))}
-function startLead(){clearTimeout(lTimer);R.classList.add('lead-lock');scrollTo(0,0);lead.classList.remove('gone');lead.style.webkitMaskImage=lead.style.maskImage='';ldog.classList.add('sniff');lIn0=performance.now();lState='idle';lTimer=setTimeout(walkLead,coarse?1900:1500)}
+/* the curtain plays over the page but never holds it: the first scroll (a swipe, the wheel, a key) lets it go */
+function startLead(){clearTimeout(lTimer);lead.classList.remove('gone');lead.style.webkitMaskImage=lead.style.maskImage='';ldog.classList.add('sniff');lIn0=performance.now();lState='idle';lTimer=setTimeout(walkLead,coarse?1900:1500);addEventListener('scroll',leaveLead,{passive:true})}
 function walkLead(){if(lState!=='idle')return;clearTimeout(lTimer);lState='walk';lT0=performance.now();ldog.style.opacity='1';ldog.classList.remove('sniff')}
-function endLead(){lState='gone';lead.classList.add('gone');lead.style.webkitMaskImage=lead.style.maskImage='';scrollTo(0,0);R.classList.remove('lead-lock')}
+function endLead(){lState='gone';lead.classList.add('gone');lead.style.webkitMaskImage=lead.style.maskImage=lead.style.opacity=lead.style.transition=lead.style.pointerEvents='';removeEventListener('scroll',leaveLead)}
+function leaveLead(){if(lState==='gone'||lState==='leaving'||scrollY<3)return;clearTimeout(lTimer);lState='leaving';lead.style.pointerEvents='none';if(calm()){endLead();return}lead.style.transition='opacity .3s ease';lead.style.opacity='0';setTimeout(endLead,320)}
 /* one renderer for the walk: driven by time, or by a finger */
 function walkAt(p){var x1=lead.clientWidth+40,x=lX+(x1-lX)*p,dist=x-lX;
 ldog.style.transform='translate('+x.toFixed(1)+'px,'+(-3.4*Math.abs(Math.sin(Math.PI*dist/34))).toFixed(2)+'px) rotate('+(1.1*Math.sin(2*Math.PI*dist/34)).toFixed(2)+'deg)';
@@ -101,7 +104,12 @@ function walkAnim(dir,done){if(!walk){if(done)done();return}walk.classList.add('
 function f(now){var t=clamp((now-t0)/D,0,1),e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,o=dir==='out'?e:1-e;wpane.style.opacity=o.toFixed(3);wdog.style.opacity=(o*.42).toFixed(3);if(t<1)requestAnimationFrame(f);else if(done)done()}requestAnimationFrame(f)}
 if(walk&&R.classList.contains('walking-in')){try{sessionStorage.removeItem('bf-walk')}catch(e){}walk.classList.add('on');wpane.style.opacity='1';wdog.style.opacity='.42';R.classList.remove('walking-in');setTimeout(function(){walkAnim('in',function(){walk.classList.remove('on');wpane.style.opacity='';wdog.style.opacity=''})},80)}
 document.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;var a=e.target.closest('a[href]');if(!a||a.target==='_blank'||a.hasAttribute('download'))return;var h=a.getAttribute('href');if(!h||h.charAt(0)==='#'||/^(mailto|tel|sms|javascript):/i.test(h))return;var u;try{u=new URL(a.href,location.href)}catch(x){return}
-if(u.origin!==location.origin||(u.pathname===location.pathname&&u.search===location.search))return;if(calm()||!walk)return;e.preventDefault();R.classList.remove('menu-open');sset('bf-walk','1');var gone=false,go=function(){if(gone)return;gone=true;location.href=u.href},safety=setTimeout(go,1400);walkAnim('out',function(){clearTimeout(safety);go()})});
+if(u.origin!==location.origin||(u.pathname===location.pathname&&u.search===location.search))return;if(calm()||!walk)return;
+/* a file (the printed menus, the PDF pack) opens as itself, with no page turn */
+if(/\.(pdf|jpe?g|png|svg|zip)$/i.test(u.pathname))return;
+/* touch screens: the next page starts loading at once and only turns in on arrival, so a tap never waits on the dip */
+if(matchMedia('(pointer:coarse)').matches){sset('bf-walk','1');return}
+e.preventDefault();R.classList.remove('menu-open');sset('bf-walk','1');var gone=false,go=function(){if(gone)return;gone=true;location.href=u.href},safety=setTimeout(go,1400);walkAnim('out',function(){clearTimeout(safety);go()})});
 addEventListener('pageshow',function(e){if(e.persisted&&walk){walk.classList.remove('on');wpane.style.opacity='';wdog.style.opacity=''}});
 
 /* sticky conversion CTA (Functions, Christmas): shows once past the hero, hides from the enquiry form down */
@@ -123,7 +131,7 @@ var openHash=function(){var h=location.hash.slice(1);if(!h)return;var t=document
 /* phones: Functions and Christmas read like the events pack, in numbered chapters that open and close */
 if(document.body.hasAttribute('data-chapters')){var chn=0;$$('section.sec').forEach(function(s){var eb=s.querySelector('.eb'),m=eb&&eb.textContent.trim().match(/^(\d{2})\s*·\s*(.+)$/);if(!m||s.closest('.chap'))return;
 eb.setAttribute('data-ch-eb','');var row=document.createElement('button');row.type='button';row.className='ch-row';var n=document.createElement('span');n.className='pk-n';n.textContent=m[1];var tt=document.createElement('span');tt.className='d2';tt.textContent=m[2];var oc=document.createElement('span');oc.className='pk-oc';oc.setAttribute('aria-hidden','true');row.append(n,tt,oc);
-var b=document.createElement('div');b.className='ch-b';var inn=document.createElement('div');inn.className='ch-in';while(s.firstChild)inn.appendChild(s.firstChild);b.appendChild(inn);s.append(row,b);s.classList.add('chap');var first=chn++===0;s.classList.toggle('open',first);row.setAttribute('aria-expanded',String(first));
+var b=document.createElement('div');b.className='ch-b';var inn=document.createElement('div');inn.className='ch-in';while(s.firstChild)inn.appendChild(s.firstChild);b.appendChild(inn);s.append(row,b);s.classList.add('chap');var first=chn++===0||s.id==='enquire';s.classList.toggle('open',first);row.setAttribute('aria-expanded',String(first));
 row.addEventListener('click',function(){var o=!s.classList.contains('open');s.classList.toggle('open',o);row.setAttribute('aria-expanded',String(o))})})}
 var openChap=function(){var h=location.hash.slice(1),t=h&&document.getElementById(h),c=t&&t.closest('.chap');if(c&&!c.classList.contains('open')){c.classList.add('open');var r=c.querySelector('.ch-row');if(r)r.setAttribute('aria-expanded','true')}};
 addEventListener('hashchange',openChap);document.addEventListener('click',function(e){if(e.target.closest('a[href^="#"]'))setTimeout(function(){openChap();openHash()},0)});openChap();
@@ -141,17 +149,26 @@ var book=$('.mast-book'),links=$('#links'),mb=$('.mast-menu');
 /* one button, matched to the page: event pages go to the enquiry form */
 /* #book only where it holds the booking widget (Bookings, Restaurant). Home's #book is a line that links to /bookings/,
    so jumping there would add a step before anyone can book: Home keeps /bookings/. */
-if(book){if($('#enquire')){book.textContent='Check your date';book.setAttribute('href','#enquire')}else if($('#book iframe'))book.setAttribute('href','#book')}
+/* the four events pages (html.sd) say what their dock says (Christmas: Enquire now); the pack and Robbie (body[data-ask=events]) send you to the Functions form */
+if(book){var dockAsk=$('.sticky-btns .cta-fill');
+if(R.classList.contains('sd')){book.textContent=dockAsk&&dockAsk.textContent.trim()||'Check your date';book.setAttribute('href','#enquire')}
+else if(D.body.getAttribute('data-ask')==='events'){book.textContent='Check your date';book.setAttribute('href','/functions/#enquire')}
+else if($('#enquire')){book.textContent='Check your date';book.setAttribute('href','#enquire')}else if($('#book iframe'))book.setAttribute('href','#book')}
+/* phones: while the cover's own filled ask (the same words, or the same address) is on screen, the bar's copy steps back; it returns as the cover leaves */
+if(book&&'IntersectionObserver' in window){var norm=function(s){return(s||'').replace(/\s+/g,' ').trim().toLowerCase()},hAsk=null;
+[].slice.call(D.querySelectorAll('[data-hero] a.cta-fill,.hf-fold a.cta-fill')).some(function(a){if(norm(a.textContent)===norm(book.textContent)||a.href===book.href){hAsk=a;return true}return false});
+if(hAsk)new IntersectionObserver(function(es){var e=es[es.length-1];R.classList.toggle('tb-hask',e.isIntersecting&&getComputedStyle(hAsk).visibility!=='hidden')},{rootMargin:'-64px 0px 0px 0px'}).observe(hAsk)}
 /* the skip link lands on <main>, or where a page has none (Home, the events pages) on its opening section */
 var skT=$('#main')||$('[data-hero][id]');if(skT&&!$('.tb-skip')){var sk=D.createElement('a');sk.className='tb-skip';sk.href='#'+skT.id;sk.textContent='Skip to content';D.body.insertBefore(sk,D.body.firstChild)}
 /* phone menu: the essentials under the links */
 if(links&&!$('.tb-foot',links)){var f=D.createElement('div');f.className='tb-foot';var go=D.createElement('a');go.className='cta cta-fill';go.href=book?book.getAttribute('href'):'/bookings/';go.textContent=book?book.textContent:'Book a table';f.appendChild(go);
 var r=D.createElement('div');r.className='tb-foot-r';r.innerHTML='<a href="tel:+64212211307">Call 021 221 1307</a><a href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">Directions</a>';f.appendChild(r);
-var p=D.createElement('p');p.className='tb-hrs';p.textContent='Bar\u00a0from\u00a04pm\u00a0· Kitchen\u00a0from\u00a05pm\u00a0· 166\u00a0Cashel\u00a0St, upstairs';f.appendChild(p);links.appendChild(f)}
+/* the hours on one line, the address on the next: no middot left hanging at a line end */
+var p=D.createElement('p');p.className='tb-hrs';p.append('Bar\u00a0from\u00a04pm\u00a0· Kitchen\u00a0from\u00a05pm',D.createElement('br'),'166\u00a0Cashel\u00a0St, upstairs');f.appendChild(p);links.appendChild(f)}
 function closeMenu(){if(!R.classList.contains('menu-open'))return;R.classList.remove('menu-open');if(mb){mb.setAttribute('aria-expanded','false');mb.textContent='Menu'}}
 if(links)links.addEventListener('click',function(e){if(e.target.closest('a'))closeMenu()});
 if(mb)mb.addEventListener('click',function(){if(R.classList.contains('menu-open')){var a=$('#links a');if(a)setTimeout(function(){a.focus({preventScroll:true})},60)}});
-D.addEventListener('keydown',function(e){if(e.key!=='Tab'||!R.classList.contains('menu-open'))return;var fs=[].slice.call(mast.querySelectorAll('a[href],button')).filter(function(x){return x.offsetParent!==null});if(!fs.length)return;var i=fs.indexOf(D.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();fs[fs.length-1].focus()}else if(!e.shiftKey&&i===fs.length-1){e.preventDefault();fs[0].focus()}});
+D.addEventListener('keydown',function(e){if(e.key!=='Tab'||!R.classList.contains('menu-open'))return;var fs=[].slice.call(mast.querySelectorAll('a[href],button')).filter(function(x){return x.offsetParent!==null&&getComputedStyle(x).visibility!=='hidden'});if(!fs.length)return;var i=fs.indexOf(D.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();fs[fs.length-1].focus()}else if(!e.shiftKey&&i===fs.length-1){e.preventDefault();fs[0].focus()}});
 /* away on the way down, back on the way up */
 var TOP=72,lastY=scrollY,acc=0,state='';
 function set(s){if(s===state)return;state=s;R.classList.toggle('tb-bar',s!=='top');R.classList.toggle('tb-up',s==='up');R.classList.toggle('tb-away',s==='away')}
