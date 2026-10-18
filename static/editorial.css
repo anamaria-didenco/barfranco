@@ -1041,10 +1041,11 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 /* Restaurant on phones: the room opens the page, not the plate (Bookings keeps the pasta bowl) */
 @media (max-width:699.98px){
 .pg-rest .hf-fold>.hero .ph:first-child{display:block;position:absolute;inset:0}
-.pg-rest .hf-fold>.hero .ph:last-child{display:none}
 /* the room is bright at the top (the windows), so the top bar gets the deeper scrim */
 .pg-rest .hf-fold>.hero .ph:first-child::before{height:40%;background:linear-gradient(180deg,rgba(30,3,0,.78),rgba(30,3,0,.32) 55%,rgba(30,3,0,0))}
 }
+/* Restaurant: the room is the one hero photograph (its pasta bowl now opens Pasta fresca) */
+.pg-rest .hf-fold>.hero{grid-template-columns:minmax(0,1fr)}
 /* the menu cover: the letterspaced name, which menu, one line, one ask, all on one centre line */
 .card.cover>div{justify-items:center;text-align:center;gap:6px;padding:clamp(26px,3vw,40px) clamp(18px,2.4vw,28px)}
 .card.cover .cv-name{font-family:var(--font-display);font-weight:700;text-transform:uppercase;color:var(--acc);font-size:clamp(30px,2.6vw,38px);line-height:1;letter-spacing:.32em;margin:0 -.32em 6px 0}
