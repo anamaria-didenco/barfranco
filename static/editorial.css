@@ -1101,7 +1101,7 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 @media (max-width:620px){
 .rb-open .rb-info li{grid-template-columns:minmax(0,1fr);gap:2px}
 .rb-open .rb-info li span{font-size:15px;font-style:italic;opacity:.85}
-.rb-open .rb-info li em{font-style:normal;font-size:18px;line-height:1.4;text-align:left}
+.rb-open .rb-info li em{font-style:normal;font-size:18px;line-height:1.4;text-align:left;max-width:none}
 .rb-open .cta-row,.rb .cta-row.rb-close{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;justify-self:stretch;width:100%}
 }
 /* 404: the framed card on Almond, no photographs (the two it had are on other pages) and no curtain */
