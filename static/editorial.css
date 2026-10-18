@@ -1027,6 +1027,48 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 /* . */
 
 /* ---- D · dining pages (menus, restaurant, bookings, vouchers, contact, aperitivo, negroni bar, fresh pasta, before the stadium, weddings) ---- */
+/* phones: the split hero (aperitivo, negroni bar, pasta, stadium, weddings, events pack, 404) runs one photograph, the box at its foot.
+   Home and Restaurant (.hf-fold) and the events covers (#sdCover) are not .ed-main>.sec.hero, so they are untouched.
+   A page picks its phone photograph with .ph-m on the figure; without one, the first stays */
+@media (max-width:620px){
+.ed-main>.sec.hero{grid-template-columns:minmax(0,1fr)}
+.ed-main>.sec.hero>.ph:nth-of-type(2),.ed-main>.sec.hero:has(>.ph-m)>.ph:not(.ph-m){display:none}
+.ed-main>.sec.hero:has(>.ph-m)>.ph-m{display:block}
+.ed-main>.sec.hero .hero-cap{top:auto;bottom:20px;transform:translateX(-50%)}
+}
+/* Restaurant on phones: the room opens the page, not the plate (Bookings keeps the pasta bowl) */
+@media (max-width:699.98px){
+.pg-rest .hf-fold>.hero .ph:first-child{display:block;position:absolute;inset:0}
+.pg-rest .hf-fold>.hero .ph:last-child{display:none}
+/* the room is bright at the top (the windows), so the top bar gets the deeper scrim */
+.pg-rest .hf-fold>.hero .ph:first-child::before{height:40%;background:linear-gradient(180deg,rgba(30,3,0,.78),rgba(30,3,0,.32) 55%,rgba(30,3,0,0))}
+}
+/* the menu cover: the letterspaced name, which menu, one line, one ask, all on one centre line */
+.card.cover>div{justify-items:center;text-align:center;gap:6px;padding:clamp(26px,3vw,40px) clamp(18px,2.4vw,28px)}
+.card.cover .cv-name{font-family:var(--font-display);font-weight:700;text-transform:uppercase;color:var(--acc);font-size:clamp(30px,2.6vw,38px);line-height:1;letter-spacing:.32em;margin:0 -.32em 6px 0}
+.card.cover .card-s{font-size:16px;line-height:1.45;margin:2px 0 4px;max-width:30ch}
+.card.cover .cta-row{justify-content:center;margin-top:8px}
+.card.cover .card-em{margin-top:14px}
+/* a second course in a menu card (Trust Franco) keeps its distance from the rows above */
+.card:not(.xcard) ul+p.card-h{margin-top:22px}
+/* the voucher card: the name in Marsha, the sentences in Affairs */
+.vcard .card-s,.vcard em{font-family:var(--font-body);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0}
+.vcard .card-s{font-size:15px;line-height:1.45}
+.vcard li span{font-family:var(--font-body);font-weight:400;font-style:normal;text-transform:none;letter-spacing:0;font-size:16px}
+.vcard li span:last-child{font-style:italic}
+.night .vcard .vc-logo{filter:var(--almond)}
+/* Contact: the links in the list are thumb-sized (padding cancelled by margin, the rows don't move) */
+.ed-main #find .info li a{display:block;padding:10px 0;margin:-10px 0}
+@media (max-width:620px){
+/* Menus: the event pages sit inside the same margin as the printed sheets, the tabs are 44px to the thumb */
+#sheets .evm-pages{padding:0 11px}
+#sheets .evm-lead{padding:0 var(--gx)}
+.mn-tabs button{padding:10px 0}
+/* Weddings: the step name sits over its line */
+.step figcaption{flex-direction:column;gap:2px}
+}
+/* phones: a bright hero photograph (Bookings' white bowl) takes a deeper scrim under the top bar, so the logo and Menu read */
+@media (max-width:900px){.hero-one.hero-lit .ph::before{height:40%;background:linear-gradient(180deg,rgba(30,3,0,.78),rgba(30,3,0,.32) 55%,rgba(30,3,0,0))}}
 /* end D */
 /* . */
 /* . */
