@@ -67,7 +67,7 @@ wk.onfinish=function(){wk=null;host.classList.remove('walk');host.style.setPrope
 function dock(){host.classList.add('snap');host.style.transform='';host.classList.add('docked');host.classList.toggle('duck',hState==='duck');void host.offsetWidth;host.classList.remove('snap')}
 function undock(){var r=host.getBoundingClientRect();host.classList.add('snap');host.classList.remove('docked','duck');place([r.left,r.top]);void host.offsetWidth;host.classList.remove('snap')}
 function settle(){if(hState!=='hero'||!hrs)return;var a=anchor(),r=host.getBoundingClientRect();if(Math.abs(a[0]-r.left)+Math.abs(a[1]-r.top)>6)walkTo(a,settle,380)}
-function want(){if(hrs){var a=hrs.getBoundingClientRect();if(a.top>innerHeight*.3&&a.bottom<innerHeight+40)return'hero'}var c=$('#climb');if(c&&tdog&&tdog.offsetWidth){var r=c.getBoundingClientRect();if(r.top<innerHeight*.6&&r.bottom>innerHeight*.4)return'duck'}return'corner'}
+function want(){if(hrs){var a=hrs.getBoundingClientRect();if(a.top>innerHeight*.3&&a.bottom<innerHeight+40)return'hero'}var c=$('#climb');if(c&&tdog&&tdog.offsetWidth){var r=c.getBoundingClientRect();if(r.top<innerHeight*.6&&r.bottom>innerHeight*.4)return'duck'}var lg=$('#legal');if(lg&&lg.getBoundingClientRect().top<innerHeight)return'duck';return'corner'}
 var greeted=false;
 function setState(s){var prev=hState;hState=s;if(s==='corner'&&!greeted){greeted=true;setTimeout(function(){if(hState==='corner')talk('Ciao. Spritz first?',3000)},900)}
 if(s==='hero'){host.classList.remove('talk','sniff');if(!prev||calm||!hrs){if(wk){wk.cancel();wk=null}host.classList.remove('docked','duck','out');host.classList.add('hero');if(hrs)place(anchor());return}
