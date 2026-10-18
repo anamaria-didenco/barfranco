@@ -35,11 +35,11 @@
 <script defer src="/static/events-pack.js"></script>
 <link href="/static/styles.css" rel="stylesheet"/><link href="/static/editorial.css" rel="stylesheet"/>
 </head>
-<body class="sheeted"><script>try{if(sessionStorage.getItem('bf-walk')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('walking-in')}catch(e){}</script>
+<body class="sheeted" data-ask="events"><script>try{if(sessionStorage.getItem('bf-walk')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('walking-in')}catch(e){}</script>
 <div class="walk-ov" id="walk" aria-hidden="true"><div class="walk-pane"><div class="walk-floor"></div></div><span class="wdog"><span class="fl"><img src="/static/illustrations/dachshund.png" alt="" width="280" height="132"></span></span></div>
 <header class="mast" id="nav"><span class="veil v1" aria-hidden="true"><i class="vd"></i><i class="vp"></i><i class="va"></i></span><span class="veil v2" aria-hidden="true"><i class="vd"></i><i class="vp"></i><i class="va"></i></span>
 <a class="mk" id="mk" href="/" aria-label="Bar Franco, home"><span class="mk-in"><img class="mk-a" src="/static/logos/bar-franco-script-incline/almond.svg" alt="Bar Franco"><img class="mk-d" src="/static/logos/bar-franco-script-incline/deep-red.svg" alt=""></span></a>
-<div class="mast-r"><nav class="links" id="links" aria-label="Main"><a href="/menus/">Menus</a><a href="/functions/">Functions</a><a href="/christmas-functions/">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav><span class="mast-sep" aria-hidden="true"></span><a class="mast-book" href="/bookings/">Book a table</a><button type="button" class="mast-menu" aria-expanded="false">Menu</button></div></header>
+<div class="mast-r"><nav class="links" id="links" aria-label="Main"><a href="/menus/">Menus</a><a href="/restaurant/">Restaurant</a><a href="/functions/">Functions</a><a href="/christmas-functions/">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav><span class="mast-sep" aria-hidden="true"></span><a class="mast-book" href="/bookings/">Book a table</a><button type="button" class="mast-menu" aria-expanded="false">Menu</button></div></header>
 <div class="lead gone" id="lead">
 <div class="l-top" aria-hidden="true"><span>The Crossing · 166 Cashel St</span><span>Daily from 4pm</span></div>
 <svg class="lsvg" id="lsvg" aria-hidden="true"><path id="lpath" fill="none" stroke="#FAD7C3" stroke-width="2.4" stroke-linecap="round"></path><circle id="lloop" r="9" fill="none" stroke="#FAD7C3" stroke-width="2.4"></circle></svg>
@@ -50,16 +50,16 @@
 </div>
 
 
-<main class="ed-main" id="main">
+<main class="ed-main pg-pack" id="main">
 <section class="sec hero" data-tone="dark" data-hero="" id="top" aria-label="Events pack 2026">
-<figure data-tone="dark" class="ph rv"><img src="/images/pack-2026/bartender-pouring-spritzes.jpg" alt="Drinks poured at the Negroni &amp; Spritz Bar" width="1400" height="934"></figure>
+<figure data-tone="dark" class="ph rv"><img src="/images/pack-2026/long-table-end-of-night.jpg" alt="A long table at the end of the night, candles still burning" width="1200" height="1800"></figure>
 <figure data-tone="dark" class="ph rv"><img src="/images/burrata-plating.jpg" alt="Burrata plated in the open kitchen" width="934" height="1400"></figure>
-<div class="hero-cap"><p class="k">Events pack&nbsp;· 2026&nbsp;· <span class="nw">166 Cashel St</span>, Christchurch</p><h1 class="hc-h">Events pack <em>2026</em></h1><p class="s">Events <em>with</em> flavour. <em>Nights with feeling.</em></p><div class="cta-row"><a class="cta cta-fill" href="#contact">Check your date</a><a class="cta" href="/downloads/Bar-Franco-Events-Pack-2026.pdf">Download the PDF pack</a></div></div>
+<div class="hero-cap"><p class="k">(upstairs) <span class="nw">166 Cashel St</span>, Christchurch</p><h1 class="hc-h">Events pack <em>2026</em></h1><p class="s">Events <em>with</em> flavour. <em>Nights with feeling.</em></p><div class="cta-row"><a class="cta cta-fill" href="/functions/#enquire">Check your date</a><a class="cta" href="/downloads/Bar-Franco-Events-Pack-2026.pdf">Download the PDF pack</a></div></div>
 </section>
-<section class="sec pk-in"><div class="wrap"><p class="meta">In this pack · tap a chapter to open or close it · or <a href="/downloads/Bar-Franco-Events-Pack-2026.pdf">view</a> or <a href="/downloads/Bar-Franco-Events-Pack-2026.pdf" download="">download</a> the PDF pack</p></div></section>
-<section class="sec pk-ch rule-t" id="ch-welcome" aria-label="Welcome"><div class="wrap"><details class="pk-d" open=""><summary><span class="pk-n">01</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Welcome</span><span class="meta">Benvenuti&nbsp;· the food, the rooms, the hosting</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
+<section class="sec pk-in"><div class="wrap"><p class="meta">Eight chapters. Tap one to open it.</p></div></section>
+<section class="sec pk-ch rule-t" id="ch-welcome" aria-label="Welcome"><div class="wrap"><details class="pk-d" name="pack" open=""><summary><span class="pk-n">01</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Welcome</span><span class="meta">Benvenuti&nbsp;· the food, the rooms, the hosting</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
       <div class="ph r-169 rv" data-tone="dark"><img src="/images/pack-2026/server-pasta-candlelit.jpg" alt="A server carrying plates of fresh pasta to a candlelit table" width="1800" height="1200" loading="lazy" decoding="async"></div>
-      <div class="stack"><p class="eb"><span>01</span>Benvenuti, welcome</p><p class="d2">From a table for ten to the whole building.</p></div>
+      <div class="stack"><p class="d2">From a table for ten to the whole building.</p></div>
       <p class="say">Tell us the date. We’ll handle the rest.</p>
       <div class="grid3">
         <div class="stack"><h3 class="h4x">The food</h3><p class="bt">Italian and house‑made, pasta included, changing with the season.</p></div>
@@ -73,9 +73,9 @@
         <div class="cta-row"><a class="cta cta-fill" href="#ch-pricing">See the minimum spends</a></div>
       </div>
     </div></details></div></section>
-<section class="sec pk-ch rule-t" id="ch-spaces" aria-label="The spaces"><div class="wrap"><details class="pk-d" open=""><summary><span class="pk-n">02</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">The spaces</span><span class="meta">Two levels&nbsp;· capacities&nbsp;· smaller groups&nbsp;· the flow of the night</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
-      <div class="ph r-169 rv" data-tone="dark"><img src="/images/pack-2026/web/spaces-bar.jpg" alt="A bartender pouring spritzes at the Negroni &amp; Spritz Bar" width="1400" height="934" loading="lazy" decoding="async"></div>
-      <div class="stack"><p class="eb"><span>02</span>The spaces</p><p class="d2">Two levels. One world.</p></div>
+<section class="sec pk-ch rule-t" id="ch-spaces" aria-label="The spaces"><div class="wrap"><details class="pk-d" name="pack"><summary><span class="pk-n">02</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">The spaces</span><span class="meta">Two levels&nbsp;· capacities&nbsp;· smaller groups&nbsp;· the flow of the night</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
+      <div class="ph r-169 rv" data-tone="dark"><img src="/images/pack-2026/web/spaces-bar.jpg" alt="Negronis with orange on the bar" width="1400" height="934" loading="lazy" decoding="async"></div>
+      <div class="stack"><p class="d2">Two levels. One world.</p></div>
       <div class="g2">
         <div class="stack">
           <p class="eb">Level 1</p>
@@ -93,33 +93,33 @@
       <div class="stack">
         <h3 class="h4x">Spaces at a glance</h3>
         <p class="bt">Every space works for every kind of night. Every event is different, so we tailor everything to you.</p>
-        <ul class="info"><li><span>The whole venue</span><i></i><em>Seated 165 · Standing 240</em></li><li><span>Private dining area</span><i></i><em>Either level · by arrangement</em></li><li><span>Group dining</span><i></i><em>Either level · by arrangement</em></li><li><span>Private lunches</span><i></i><em>Either level · by arrangement</em></li></ul>
+        <ul class="info"><li><span>The whole venue</span><i></i><em>Seated 165 · Standing 240</em></li></ul>
       </div>
       <div class="stack">
         <p class="eb">Smaller groups · lunches</p>
         <h3 class="d2">Not a function room. A place to host.</h3>
         <p class="bt">For smaller groups, the bar or the private dining area in the Restaurant.</p>
-        <div class="grid3 mt">
-          <div class="stack"><div class="ph r-45 rv" data-tone="dark"><img src="/images/pack-2026/curtained-table-for-twenty.jpg" alt="A curtained table set with candles, grapes and printed Bar Franco menus" width="933" height="1400" loading="lazy" decoding="async"></div><h4 class="h4x">Private dining area</h4><p class="bt">A gorgeous table at the far end of the Restaurant, curtained off when you want it private.</p></div>
-          <div class="stack"><div class="ph r-45 rv" data-tone="dark"><img src="/images/pack-2026/guests-in-the-booth.jpg" alt="Guests talking across a table in the booth" width="933" height="1400" loading="lazy" decoding="async"></div><h4 class="h4x">Group dining</h4><p class="bt">Soak up the full buzz of the venue. We seat your group together, in the Restaurant on level&nbsp;2 or the bar on level&nbsp;1.</p></div>
-          <div class="stack"><div class="ph r-45 rv" data-tone="dark"><img src="/images/pack-2026/spritz-tray-sunlit.jpg" alt="A tray of spritzes and a Negroni for a long lunch" width="934" height="1400" loading="lazy" decoding="async"></div><h4 class="h4x">Private lunches</h4><p class="bt">On request. A long, leisurely lunch, then afternoon drinks in town. Long, slow and very Italian.</p></div>
+        <div class="grid3 mt pk-small">
+          <div class="stack"><h4 class="h4x">Private dining area</h4><p class="bt">A gorgeous table at the far end of the Restaurant, curtained off when you want it private.</p></div>
+          <div class="stack"><h4 class="h4x">Group dining</h4><p class="bt">Soak up the full buzz of the venue. We seat your group together, in the Restaurant on level&nbsp;2 or the bar on level&nbsp;1.</p></div>
+          <div class="stack"><h4 class="h4x">Private lunches</h4><p class="bt">On request. A long, leisurely lunch, then afternoon drinks in town. Long, slow and very Italian.</p></div>
         </div>
       </div>
       <div class="stack">
         <p class="eb">The most-loved flow</p>
         <h3 class="d2">Three chapters instead of one long sit-down.</h3>
-        <div class="grid3 mt">
+        <div class="grid3 mt pk-flow">
           <div class="stack"><div class="ph r-45 rv" data-tone="dark"><img src="/images/pack-2026/web/flow-bar.jpg" alt="The Negroni Bar, full" width="1400" height="934" loading="lazy" decoding="async"></div><p class="meta">Chapter 01</p><h4 class="h4x">In the bar</h4><p class="bt">Welcome drinks and canapés in the Negroni &amp; Spritz Bar.</p></div>
           <div class="stack"><div class="ph r-45 rv" data-tone="dark"><img src="/images/pack-2026/dinner-upstairs-projection.jpg" alt="A seated dinner upstairs with film projected across the curtains" width="1400" height="933" loading="lazy" decoding="async"></div><p class="meta">Chapter 02</p><h4 class="h4x">Upstairs</h4><p class="bt">A seated dinner in the Restaurant, with the open kitchen in full swing.</p></div>
           <div class="stack"><div class="ph r-45 rv" data-tone="dark"><img src="/images/pack-2026/web/flow-dance.jpg" alt="A guest laughing on the dance floor" width="1400" height="934" loading="lazy" decoding="async"></div><p class="meta">Chapter 03</p><h4 class="h4x">Back to level 1</h4><p class="bt">Dessert and dancing. While you dine, we turn the bar into a dance floor.</p></div>
         </div>
       </div>
     </div></details></div></section>
-<section class="sec pk-ch rule-t" id="ch-food" aria-label="Food"><div class="wrap"><details class="pk-d"><summary><span class="pk-n">03</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Food</span><span class="meta">Three ways to feed the room&nbsp;· dietaries&nbsp;· custom menus</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
+<section class="sec pk-ch rule-t" id="ch-food" aria-label="Food"><div class="wrap"><details class="pk-d" name="pack"><summary><span class="pk-n">03</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Food</span><span class="meta">Three ways to feed the room&nbsp;· dietaries&nbsp;· custom menus</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
       <div class="ph r-169 rv" data-tone="dark"><img src="/images/grazing-table.jpg" alt="The grazing table" width="933" height="1400" loading="lazy" decoding="async"></div>
-      <div class="stack"><p class="eb"><span>03</span>Food · we cook like someone’s coming home</p><p class="d2">Three ways to&nbsp;feed the room</p></div>
+      <div class="stack"><p class="d2">We cook like someone’s coming&nbsp;home.</p></div>
       <div>
-        <p class="lede">Pick one and its menu opens underneath. Grazing tables from $40&nbsp;per person&nbsp;· custom menus available&nbsp;· all prices exclude GST.</p>
+        <p class="lede">Grazing tables from $40&nbsp;per person, and custom menus on request. All prices exclude GST.</p>
         <div class="pk-opts"><div class="pk-opt"><p class="eb">01 · Standing</p><h3 class="h4x">Canapés</h3><p class="pk-price"><span class="h4x">$9/$11</span> <span class="meta">per piece</span></p><p class="bt">Passed on trays. Allow 4–6 pieces per guest.</p><p class="meta">Best for cocktail functions and after-work drinks.</p><div class="cta-row"><a class="cta cta-fill" href="#p-canapes">Open the menu</a></div></div><div class="pk-opt"><p class="eb">02 · Seated</p><h3 class="h4x">Shared Franco</h3><p class="pk-price"><span class="h4x">$80</span> <span class="meta">per person</span></p><p class="bt">Three courses down the middle of the table, served family-style.</p><p class="meta">Best for team dinners and long tables.</p><div class="cta-row"><a class="cta cta-fill" href="#p-shared">Open the menu</a></div></div><div class="pk-opt"><p class="eb">03 · The full evening</p><h3 class="h4x">Tutto Franco</h3><p class="pk-price"><span class="h4x">$110</span> <span class="meta">per person</span></p><p class="bt">Shared Franco, plus a chef’s-choice trio of canapés as guests arrive.</p><p class="meta">Best for end‑of‑year and client evenings.</p><div class="cta-row"><a class="cta cta-fill" href="#p-tutto">Open the menu</a></div></div></div>
         <div class="g2 mt" role="tabpanel" id="p-canapes" aria-labelledby="t-canapes">
           <div class="ph r-32 rv" data-tone="dark"><img src="/images/crostini-prosciutto.jpg" alt="Crostini with prosciutto, passed on a tray" width="1600" height="1067" loading="lazy" decoding="async"></div>
@@ -182,14 +182,13 @@
                 </div>
               <div><h3 class="card-h">To finish</h3>
                 <ul><li><div><span>Tiramisu · Strawberry sorbet</span></div></li></ul></div>
-              <p class="fine">Vegetarian and dairy-free swaps are built in. All prices exclude GST.</p>
+              <p class="fine">Vegetarian and dairy-free swaps are built in.</p>
               <img class="card-em" src="/static/logos/emblem/bright-red.svg" alt="" width="48" height="22">
             </div></article>
           </div>
         </div>
       </div>
-      <div class="g2">
-        <div class="ph r-45 rv" data-tone="dark"><img src="/images/pack-2026/grazing-table-flowers.jpg" alt="A grazing table of cured meats, cheeses, fruit and flowers" width="933" height="1400" loading="lazy" decoding="async"></div>
+      <div class="pk-diet">
         <div class="stack">
           <p class="eb">Dietaries · custom menus</p>
           <h3 class="d2">No one goes&nbsp;hungry at Bar&nbsp;Franco.</h3>
@@ -204,9 +203,9 @@
         </div>
       </div>
     </div></details></div></section>
-<section class="sec pk-ch rule-t" id="ch-drinks" aria-label="Drinks"><div class="wrap"><details class="pk-d"><summary><span class="pk-n">04</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Drinks</span><span class="meta">Charged on consumption&nbsp;· the bar list</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
+<section class="sec pk-ch rule-t" id="ch-drinks" aria-label="Drinks"><div class="wrap"><details class="pk-d" name="pack"><summary><span class="pk-n">04</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Drinks</span><span class="meta">Charged on consumption&nbsp;· the bar list</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
       <div class="ph r-169 rv" data-tone="dark"><img src="/images/negroni-tray-hands.jpg" alt="A tray of Negronis carried through the bar" width="934" height="1400" loading="lazy" decoding="async"></div>
-      <div class="stack"><p class="eb"><span>04</span>Drinks · charged on consumption</p><p class="d2">It starts with&nbsp;a Negroni.</p></div>
+      <div class="stack"><p class="d2">It starts with&nbsp;a Negroni.</p></div>
       <div class="g2">
         <div class="ph r-45 rv" data-tone="dark"><img src="/images/pack-2026/nebbiolo-chianti-bottles.jpg" alt="Two Italian reds from the list: a Nebbiolo and an organic Chianti" width="1024" height="1535" loading="lazy" decoding="async"></div>
         <div class="g2">
@@ -220,8 +219,7 @@
       <div class="stack">
         <p class="eb">Pick your tab from here</p>
         <h3 class="d2">The bar list</h3>
-        <p class="lede">Choose 6&nbsp;wines, 6&nbsp;cocktails, 4&nbsp;beers and 4&nbsp;non-alcoholic drinks. Spirits and mixers are your call. Charged on consumption. Eight wines pour by the glass on the night; the rest are bottle-only, made for the table.</p>
-        <div class="ph r-169 mt rv" data-tone="dark"><img src="/images/cocktail-tray-branded.jpg" alt="A tray of cocktails from the bar" width="934" height="1400" loading="lazy" decoding="async"></div>
+        <p class="lede">Eight wines pour by the glass on the night; the rest are bottle-only, made for the table.</p>
         <article class="card xcard"><div>
           <div class="g2">
             <div>
@@ -247,9 +245,9 @@
         </div></article>
       </div>
     </div></details></div></section>
-<section class="sec pk-ch rule-t" id="ch-pricing" aria-label="Pricing"><div class="wrap"><details class="pk-d" open=""><summary><span class="pk-n">05</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Pricing</span><span class="meta">Minimum spends&nbsp;· what’s included&nbsp;· deposits</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
-      <div class="ph r-169 rv" data-tone="dark"><img src="/images/pack-2026/web/deposits-table.jpg" alt="A long candlelit table set for a private event" width="934" height="1400" loading="lazy" decoding="async"></div>
-      <div class="stack"><p class="eb"><span>05</span>Pricing · all prices exclude GST</p><p class="d2">Minimum spends</p></div>
+<section class="sec pk-ch rule-t" id="ch-pricing" aria-label="Pricing"><div class="wrap"><details class="pk-d" name="pack"><summary><span class="pk-n">05</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Pricing</span><span class="meta">Minimum spends&nbsp;· what’s included&nbsp;· deposits</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
+      <div class="ph r-169 rv" data-tone="dark"><img src="/images/pack-2026/web/deposits-table.jpg" alt="Bistro tables by the curtained windows, set with flowers" width="934" height="1400" loading="lazy" decoding="async"></div>
+      <div class="stack"><p class="eb">All prices exclude GST</p><p class="d2">Minimum spends</p></div>
       <div class="g2">
         <div class="stack">
           <h3 class="h4x">Friday and&nbsp;Saturday&nbsp;nights</h3>
@@ -305,9 +303,8 @@
         </div>
       </div>
     </div></details></div></section>
-<section class="sec pk-ch rule-t" id="ch-how" aria-label="How it works"><div class="wrap"><details class="pk-d"><summary><span class="pk-n">06</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">How it works</span><span class="meta">Seven steps, from first email to last drinks</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
+<section class="sec pk-ch rule-t" id="ch-how" aria-label="How it works"><div class="wrap"><details class="pk-d" name="pack"><summary><span class="pk-n">06</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">How it works</span><span class="meta">Seven steps, from first email to last drinks</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
       <div class="ph r-169 rv" data-tone="dark"><img src="/images/host-wine.jpg" alt="A glass of wine poured at the table" width="934" height="1400" loading="lazy" decoding="async"></div>
-      <div class="stack"><p class="eb"><span>06</span>From first email to last drinks</p><p class="d2">How it works</p></div>
       <ol class="pk-steps">
         <li><span class="d2">01</span><div class="stack"><h3 class="h4x">Tell us about the night</h3><p class="bt">The date, how many, seated or standing, and a rough budget. If it’s a milestone, say so.</p></div></li>
         <li><span class="d2">02</span><div class="stack"><h3 class="h4x">We call, then propose</h3><p class="bt">A quick chat first. Then the right space, your minimum spend and menu ideas in writing, with your date pencilled in.</p></div></li>
@@ -322,9 +319,9 @@
         <div class="cta-row"><a class="cta cta-fill" href="mailto:events@barfranco.nz">Email</a><a class="cta" href="tel:+64212211307">Call</a></div>
       </div>
     </div></details></div></section>
-<section class="sec pk-ch rule-t" id="ch-know" aria-label="Good to know"><div class="wrap"><details class="pk-d"><summary><span class="pk-n">07</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Good to know</span><span class="meta">Planning notes&nbsp;· house rules</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
+<section class="sec pk-ch rule-t" id="ch-know" aria-label="Good to know"><div class="wrap"><details class="pk-d" name="pack"><summary><span class="pk-n">07</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Good to know</span><span class="meta">Planning notes&nbsp;· house rules</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
       <div class="ph r-169 rv" data-tone="dark"><img src="/images/pack-2026/restaurant-long-tables-daytime.jpg" alt="The Restaurant set with long tables for an event" width="933" height="1400" loading="lazy" decoding="async"></div>
-      <div class="stack"><p class="eb"><span>07</span>Good to know</p><p class="d2">Planning notes</p></div>
+      <div class="stack"><p class="d2">Planning notes</p></div>
       <div class="g2">
         <div class="stack"><h3 class="h4x">Access</h3><p class="bt">Someone’s on site from 3:30pm every day. Decorations, flowers and cake arrive from 3:30pm on the day. Earlier set‑up or suppliers by arrangement.</p></div>
         <div class="stack"><h3 class="h4x">Decorations</h3><p class="bt">Balloons, flowers, signage, banners and photo booths are all welcome. Vinyl stickers must peel off cleanly. Sharing plates leave little room for big centrepieces.</p></div>
@@ -341,54 +338,39 @@
           <div class="stack"><h4 class="h4x">Children</h4><p class="bt">Under-18s are welcome at private events, with a parent or legal guardian beside them.</p></div>
           <div class="stack"><h4 class="h4x">Timings</h4><p class="bt">Last drinks at 11:30pm, doors close at midnight. Until then, the night is yours.</p></div>
           <div class="stack"><h4 class="h4x">Christmas</h4><p class="bt">We keep it Italian. December books out fast, so enquire early. We’re closed from 24 December to 5 January.</p></div>
-          <div class="stack"><h4 class="h4x">GST</h4><p class="bt">All prices exclude GST.</p></div>
         </div>
       </div>
     </div></details></div></section>
-<section class="sec pk-ch rule-t" id="ch-friends" aria-label="Friends of Franco"><div class="wrap"><details class="pk-d"><summary><span class="pk-n">08</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Friends of Franco</span><span class="meta">Suppliers we love&nbsp;· places to stay nearby</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
-      <div class="stack"><p class="eb"><span>08</span>Suppliers we love</p><p class="d2">Friends of Franco</p></div>
+<section class="sec pk-ch rule-t" id="ch-friends" aria-label="Friends of Franco"><div class="wrap"><details class="pk-d" name="pack"><summary><span class="pk-n">08</span><span class="pk-t"><span class="d2" role="heading" aria-level="2">Friends of Franco</span><span class="meta">Suppliers we love&nbsp;· places to stay nearby</span></span><span class="pk-oc" aria-hidden="true"></span></summary><div class="pk-b">
       <div class="g2">
         <p class="lede">Bring your own, or lean on the people we already work with.</p>
         <ul class="info"><li><span>Flowers</span><i></i><em>A Little Bit Floral · Tholsie &amp; Co</em></li><li><span>Cakes</span><i></i><em>Full Time Tart</em></li><li><span>Live music</span><i></i><em>Vintage Blue</em></li><li><span>Backdrops</span><i></i><em>Blank Space Events</em></li><li><span>AV</span><i></i><em>Shipleys</em></li><li><span>Security</span><i></i><em>October Protection</em></li><li><span>Stay nearby</span><i></i><em>BreakFree on Cashel · The Observatory · Crowne Plaza</em></li></ul>
       </div>
     </div></details></div></section>
-<section class="sec almond pad" data-tone="almond" id="contact" aria-label="Ti aspettiamo">
+<section class="sec almond pad" data-tone="almond" id="contact" aria-label="Plan your night">
   <div class="wrap g2">
     <div class="stack">
-      <p class="eb">Ti aspettiamo, we’re waiting for you</p>
+      <p class="eb">Plan your night</p>
       <h2 class="d1">Send us the date and the numbers.</h2>
-      <p class="lede">Jenna’s in Monday, Wednesday and Friday. Can’t reach her? Ana‑Maria will come straight back to you.</p>
-      <p class="bt">Jenna or Ana‑Maria replies within one business day with availability, a proposal and the events pack. Your date is pencilled in while you decide, and the deposit comes off your drinks bill.</p>
-      <div class="ph r-45 mt rv" data-tone="dark"><img src="/images/pack-2026/long-table-end-of-night.jpg" alt="A long table at the end of the night, candles still burning" width="1200" height="1800" loading="lazy" decoding="async"></div>
+      <p class="lede">Jenna or Ana‑Maria comes back to you within one business day, with availability and a proposal.</p>
     </div>
     <article class="card xcard"><div>
       <div class="stack">
         <h3 class="h4x">Jenna · Events Manager</h3>
         <p class="meta">Monday, Wednesday and Friday</p>
-        <div class="cta-row"><a class="cta cta-fill" href="mailto:events@barfranco.nz">Email events@barfranco.nz</a></div>
-        <div class="cta-row"><a class="cta cta-fill" href="tel:+64212211307">Call 021 221 1307</a></div>
-      </div>
-      <div class="stack">
-        <h3 class="h4x">Ana‑Maria · Owner</h3>
-        <p class="meta">Any other day, or if Jenna’s away</p>
-        <div class="cta-row"><a class="cta cta-fill" href="mailto:anamaria@barfranco.nz">Email anamaria@barfranco.nz</a></div>
-      </div>
-      <div class="stack">
-        <h3 class="h4x">Find us</h3>
-        <p class="bt">166 Cashel Street, The Crossing, Christchurch. Lift near H&amp;M and KOOKAÏ.</p>
+        <div class="cta-row"><a class="cta cta-fill" href="mailto:events@barfranco.nz">Email events@barfranco.nz</a><a class="cta" href="tel:+64212211307">Call 021 221 1307</a></div>
+        <p class="bt">Any other day, Ana‑Maria: <a href="mailto:anamaria@barfranco.nz">anamaria@barfranco.nz</a></p>
       </div>
       <div class="stack">
         <h3 class="h4x">Come in</h3>
-        <p class="bt">Any day from 3:30pm, for a drink on us and a walk through both levels.</p>
-        <div class="cta-row"><a class="cta cta-fill" href="/downloads/Bar-Franco-Events-Pack-2026.pdf" target="_blank" rel="noopener" type="application/pdf">View the PDF pack</a></div>
+        <p class="bt">Any day from 3:30pm, for a drink on us and a walk through both levels. Take the lift in The Crossing, near H&amp;M and KOOKAÏ.</p>
       </div>
-      <p class="fine">Bar Franco&nbsp;· Events pack 2026&nbsp;· <em>(upstairs)</em> The Crossing, 166&nbsp;Cashel St, Christchurch&nbsp;· all prices exclude GST</p>
       <img class="card-em" src="/static/logos/emblem/deep-red.svg" alt="" width="48" height="22">
     </div></article>
   </div>
 </section>
 </main><footer data-tone="dark" class="sec dark foot"><div class="wrap pad"><p class="d1">Ti aspettiamo,</p><p class="sub">we’re waiting for you.</p>
-<div class="fcols"><div><p>Franco</p><a href="/menus/">Menus</a><a href="/bookings/">Book a table</a><a href="/functions/">Functions &amp; events</a><a href="/christmas-functions/">Christmas parties</a><a href="/our-story/">Our story</a><a href="/vouchers/">Gift vouchers</a><a href="/events-pack/">Events pack</a><a href="/contact/">Contact</a></div><div><p>More</p><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/private-dining/">Private dining</a><a href="/corporate-events/">Corporate events</a><a href="/weddings/">Weddings</a></div><div><p>Find us</p><a href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">(upstairs) 166 Cashel St, Christchurch</a><a href="tel:+64212211307">021 221 1307</a><a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a><a href="https://www.instagram.com/bar__franco/">@bar__franco</a></div></div></div></footer>
+<div class="fcols"><div><p>Franco</p><a href="/menus/">Menus</a><a href="/restaurant/">Restaurant</a><a href="/bookings/">Book a table</a><a href="/functions/">Functions &amp; events</a><a href="/christmas-functions/">Christmas parties</a><a href="/our-story/">Our story</a><a href="/vouchers/">Gift vouchers</a><a href="/events-pack/">Events pack</a><a href="/contact/">Contact</a></div><div><p>More</p><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/private-dining/">Private dining</a><a href="/corporate-events/">Corporate events</a><a href="/weddings/">Weddings</a></div><div><p>Find us</p><a href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">(upstairs) 166 Cashel St, Christchurch</a><a href="tel:+64212211307">021 221 1307</a><a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a></div></div></div></footer>
 <section data-tone="dark" class="sec dark" id="legal">
 <div class="legal"><span>© Bar Franco 2026</span><img src="/static/logos/emblem/deep-red.svg" alt=""><span><a href="https://www.instagram.com/bar__franco/">Instagram</a> · <a href="https://www.facebook.com/barfranco.chch">Facebook</a></span></div></section>
 

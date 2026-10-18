@@ -19,7 +19,7 @@ p{margin:0;text-wrap:pretty}
 .dark{--gr:var(--dr);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.4)}
 .bright{--gr:var(--br);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.45)}
 .night .sec:not(.bright){--gr:var(--dr);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.4)}
-.night .sec.almond{--gr:#5a0500}
+.night .sec.almond{--gr:var(--al);--ink:var(--dr);--acc:var(--br);--rule:rgba(108,6,0,.32)}
 .night body{background:var(--dr)}
 
 .scr-n{display:none}.night .scr-d{display:none}.night .scr-n{display:block}
@@ -66,7 +66,6 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .strip{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;padding:12px var(--gx);background:var(--al);color:var(--br);font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.06em;line-height:1.2}
 .strip .w{font-size:1.25em;letter-spacing:0;line-height:1}
 .strip{align-items:baseline}
-.night .strip{background:#5a0500;color:var(--al)}
 
 .intro .g{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,4vw,64px);align-items:start}
 .intro .d1{color:var(--ink);max-width:13ch}
@@ -112,7 +111,6 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .floor{--gr:var(--pp);--ink:var(--dr);--acc:var(--br);--rule:rgba(108,6,0,.32);position:relative;background:var(--gr);color:var(--ink);min-width:0;cursor:pointer}
 .floor.dark{--gr:var(--dr);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.4)}
 .night .floor{--gr:var(--dr);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.4)}
-.night .floor.f1{--gr:#5a0500}
 .f-ph{height:clamp(300px,46vh,540px)}
 .f1 .f-ph{border-right:0}
 .f-ph img{transform:scale(1.04);filter:brightness(.68) saturate(.88);transition:transform 1.2s var(--ease),filter .9s var(--ease)}
@@ -560,8 +558,11 @@ button.cta:focus-visible,a.cta:focus-visible{outline:2px solid var(--sp);outline
 .xcard .d2+.g2{margin-top:clamp(18px,2.2vw,28px)}
 /* phones: label and value rows keep their leader; tabs and hero buttons sit evenly */
 @media (max-width:620px){
-.info li span{flex:0 1 auto;min-width:40%}
-.info li em{flex:0 1 55%;text-align:right}
+.info li>span{flex:1 1 auto;min-width:0}
+.info li>em,.info li>a{flex:0 1 auto;max-width:62%}
+.info li>span,.info li>em,.info li>a{text-wrap:balance}
+.info li span em{display:block;text-align:left;font-size:15px;margin-top:2px}
+.card .info li{border-top:0}
 .mn-tabs{flex-wrap:nowrap;gap:14px}
 .mn-tabs button{font-size:clamp(16px,4.4vw,19px)}
 .hero-one .cta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -959,3 +960,184 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 }
 @keyframes tbIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.tb .mast{transition:none}.tb.menu-open .mast .links>a{animation:none}}
+
+/* ==== Phone audit, October 2026 ==== */
+
+/* ---- A · site-wide: night mode, lists, type scale, top bar, overlay, footer ---- */
+/* night (after 9pm): the four events pages keep their day colours (editorial.js leaves html.sd out of the night).
+   Almond bands stay Almond with their day inks (see .night .sec.almond at the top); the rest of the page is Deep Red */
+.night .sec.almond a.cta:not(.cta-fill){border-color:var(--dr);color:var(--dr)}
+.night .sec.almond a.cta:not(.cta-fill):hover{background:var(--dr);color:var(--al)}
+.night .sec.almond .card-em,.night .sec.almond .ndog img,.night .sec.almond .st-em,.night .sec.almond .sig img{filter:none}
+/* Home's Come say ciao is an Almond band too: its title keeps the day's deep red with the key words in bright red (hm-experience.css turns night titles Almond) */
+.hx.night .sec.almond:not(.bright) .d2,.hx.night .sec.almond:not(.bright) .hx-q,.hx.night .sec.almond:not(.bright) .hx-q span,.hx.night .sec.almond:not(.bright) .cta-row .hx-more{color:var(--dr)}
+.hx.night .sec.almond:not(.bright) .hx-c{color:var(--br)}
+/* Events pack: the small Marsha heads on the night ground read in Almond, like every other head there */
+.night .sec:not(.bright):not(.almond) .h4x{color:var(--acc)}
+/* Contact: Send a note and the map line under the map read on the night ground */
+.night .sec:not(.bright):not(.almond) .ct-card h2{color:var(--al)}
+.night .c-map,.night .c-map .meta a{color:var(--al)}
+
+/* lists of label and fact on phones: see the .info li rules in the ≤620px "phones: label and value rows" block (one rule, descriptions under their name) */
+/* Events pack, The room is yours: the Birra and Non-alc heads get air above them */
+.xcard .g2>div>div+div{margin-top:22px}
+
+/* one type scale on phones: the closing words match the chapter heads (32px), so the sign-off (42px) is the one big word at the end;
+   the facts on cards (prices, the line under a card head) are read at the small italic size, 15px, never 13px */
+@media (max-width:620px){
+.sec.cta .d1,#contact .d1{font-size:32px}
+.card-s,.card li em,.card li span em{font-size:15px}
+}
+
+/* the curtain never holds the page: a vertical swipe on it scrolls the page (and lets it go), a sideways one still walks the dog */
+.lead{touch-action:pan-y}
+
+/* top bar on phones: while the cover's own filled ask is on screen, the bar's copy of it steps back (editorial.js sets .tb-hask) */
+.tb .mast-book{transition:background-color .2s var(--ease),border-color .2s var(--ease),opacity .25s var(--ease),visibility 0s linear 0s}
+@media (max-width:620px){.tb-hask .mast-book{opacity:0;visibility:hidden;transition:background-color .2s var(--ease),border-color .2s var(--ease),opacity .25s var(--ease),visibility 0s linear .25s}}
+/* the phone Menu overlay carries its own big ask at the foot, so the bar's button leaves while it is open */
+@media (max-width:900px){.tb.menu-open .mast .mast-r .mast-book{visibility:hidden;opacity:0;transition:none}}
+
+/* footer on phones: thumb-sized links, Find us across the full width, the base line on one line with real tap targets */
+@media (max-width:620px){
+.fcols a{padding:8px 0}
+.fcols>div:nth-child(3){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(24px,5vw,80px)}
+.fcols>div:nth-child(3)>p,.fcols>div:nth-child(3)>a:first-of-type{grid-column:1/-1}
+.legal{gap:10px}
+.legal>span{white-space:nowrap}
+.legal a{display:inline-block;padding:12px 0;font-size:15px}
+}
+/* the narrowest phones: the emblem steps out so the base line still holds one line */
+@media (max-width:349px){.legal{grid-template-columns:auto auto;justify-content:space-between}.legal img{display:none}}
+/* end A */
+/* . */
+/* . */
+/* . */
+
+/* ---- B · events pages (functions, christmas, corporate, private dining) ---- */
+/* end B */
+/* . */
+/* . */
+/* . */
+
+/* ---- C · homepage ---- */
+/* end C */
+/* . */
+/* . */
+/* . */
+
+/* ---- D · dining pages (menus, restaurant, bookings, vouchers, contact, aperitivo, negroni bar, fresh pasta, before the stadium, weddings) ---- */
+/* phones: the split hero (aperitivo, negroni bar, pasta, stadium, weddings, events pack, 404) runs one photograph, the box at its foot.
+   Home and Restaurant (.hf-fold) and the events covers (#sdCover) are not .ed-main>.sec.hero, so they are untouched.
+   A page picks its phone photograph with .ph-m on the figure; without one, the first stays */
+@media (max-width:620px){
+.ed-main>.sec.hero{grid-template-columns:minmax(0,1fr)}
+.ed-main>.sec.hero>.ph:nth-of-type(2),.ed-main>.sec.hero:has(>.ph-m)>.ph:not(.ph-m){display:none}
+.ed-main>.sec.hero:has(>.ph-m)>.ph-m{display:block}
+.ed-main>.sec.hero .hero-cap{top:auto;bottom:20px;transform:translateX(-50%)}
+/* Aperitivo: the one phone photograph is cut to the laughing woman with the spritz (wider screens keep the photo's own crop) */
+.ed-main>.sec.hero>.ph>img[src="/images/social-aperitivo.jpg"]{object-position:82% 50%}
+}
+/* Restaurant on phones: the room opens the page, not the plate (Bookings keeps the pasta bowl) */
+@media (max-width:699.98px){
+.pg-rest .hf-fold>.hero .ph:first-child{display:block;position:absolute;inset:0}
+/* the room is bright at the top (the windows), so the top bar gets the deeper scrim */
+.pg-rest .hf-fold>.hero .ph:first-child::before{height:40%;background:linear-gradient(180deg,rgba(30,3,0,.78),rgba(30,3,0,.32) 55%,rgba(30,3,0,0))}
+}
+/* Restaurant: the room is the one hero photograph (its pasta bowl now opens Pasta fresca) */
+.pg-rest .hf-fold>.hero{grid-template-columns:minmax(0,1fr)}
+/* the menu cover: the letterspaced name, which menu, one line, one ask, all on one centre line */
+.card.cover>div{justify-items:center;text-align:center;gap:6px;padding:clamp(26px,3vw,40px) clamp(18px,2.4vw,28px)}
+.card.cover .cv-name{font-family:var(--font-display);font-weight:700;text-transform:uppercase;color:var(--acc);font-size:clamp(30px,2.6vw,38px);line-height:1;letter-spacing:.32em;margin:0 -.32em 6px 0}
+.card.cover .card-s{font-size:16px;line-height:1.45;margin:2px 0 4px;max-width:30ch}
+.card.cover .cta-row{justify-content:center;margin-top:8px}
+.card.cover .card-em{margin-top:14px}
+/* a second course in a menu card (Trust Franco) keeps its distance from the rows above */
+.card:not(.xcard) ul+p.card-h{margin-top:22px}
+/* the voucher card: the name in Marsha, the sentences in Affairs */
+.vcard .card-s,.vcard em{font-family:var(--font-body);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0}
+.vcard .card-s{font-size:15px;line-height:1.45}
+.vcard li span{font-family:var(--font-body);font-weight:400;font-style:normal;text-transform:none;letter-spacing:0;font-size:16px}
+.vcard li span:last-child{font-style:italic}
+/* the script logo turns Almond only where the night ground is Deep Red: an Almond band (#voucher) keeps it Deep Red */
+.night .sec:not(.almond) .vcard .vc-logo{filter:var(--almond)}
+/* Contact: the links in the list are thumb-sized (padding cancelled by margin, the rows don't move) */
+.ed-main #find .info li a{display:block;padding:10px 0;margin:-10px 0}
+@media (max-width:620px){
+/* Menus: the event pages sit inside the same margin as the printed sheets, the tabs are 44px to the thumb */
+#sheets .evm-pages{padding:0 11px}
+#sheets .evm-lead{padding:0 var(--gx)}
+.mn-tabs button{padding:10px 0}
+/* Weddings: the step name sits over its line */
+.step figcaption{flex-direction:column;gap:2px}
+}
+/* phones: a bright hero photograph (Bookings' white bowl) takes a deeper scrim under the top bar, so the logo and Menu read */
+@media (max-width:900px){.hero-one.hero-lit .ph::before{height:40%;background:linear-gradient(180deg,rgba(30,3,0,.78),rgba(30,3,0,.32) 55%,rgba(30,3,0,0))}}
+/* end D */
+/* . */
+/* . */
+/* . */
+
+/* ---- E · events pack, robbie, 404, our story ---- */
+/* Events pack (main.pg-pack): one closing ask, Ana-Maria as a plain line under it */
+.pg-pack .h4x,.pg-pack #contact .d1{color:var(--acc)}   /* heads take the section's accent: Bright Red by day, Almond at night (they were Bright Red on Deep Red) */
+.pg-pack .xcard .cta-row+.bt{margin-top:4px}
+.pg-pack .xcard .cta-row+.bt a{text-decoration:underline;text-underline-offset:.18em}
+@media (max-width:620px){
+/* the page title is not smaller than the chapter heads; the closing word sits at chapter size; prices read at 15px */
+.pg-pack .hero .hero-cap .hc-h{font-size:32px}
+.pg-pack #contact .d1{font-size:32px}
+.pg-pack .card-s,.pg-pack .card li em,.pg-pack .card li span em{font-size:15px}
+.pg-pack .d1,.pg-pack .d2{text-wrap:balance}
+/* the flow of the night: landscape photographs cut 3:2, breaking out to alternate edges (01 right, 02 left, 03 right) */
+.pg-pack .pk-flow .ph.r-45{aspect-ratio:3/2;width:calc(100% + var(--gx))}
+.pg-pack .pk-flow>.stack:nth-child(odd) .ph{margin-right:calc(-1*var(--gx))}
+.pg-pack .pk-flow>.stack:nth-child(even) .ph{margin-left:calc(-1*var(--gx))}
+.pg-pack #contact .xcard .cta-row{display:grid;grid-template-columns:minmax(0,1fr);justify-self:stretch;gap:8px}
+}
+/* Robbie (the Organiser's Aperitivo): the ask is a pair of buttons, the facts are three lines */
+.rb-open .rb-info{margin-top:6px;border-top:1px solid var(--rule)}
+.rb-open .rb-info li{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:4px 16px;padding:12px 0 10px}
+.rb-open .rb-info li i{display:none}
+.rb-open .rb-info li em{text-align:left}
+.rb-open .cta-row{margin-top:8px}
+@media (max-width:620px){
+.rb-open .rb-info li{grid-template-columns:minmax(0,1fr);gap:2px}
+.rb-open .rb-info li span{font-size:15px;font-style:italic;opacity:.85}
+.rb-open .rb-info li em{font-style:normal;font-size:18px;line-height:1.4;text-align:left;max-width:none}
+.rb-open .cta-row,.rb .cta-row.rb-close{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;justify-self:stretch;width:100%}
+}
+/* 404: the framed card on Almond, no photographs (the two it had are on other pages) and no curtain */
+.ed-main>.sec.hero.nf{display:grid;place-items:center;grid-template-columns:minmax(0,1fr);height:auto;min-height:clamp(520px,calc(100svh - 120px),780px);padding:calc(var(--nv) + 32px) var(--gx) clamp(56px,8vw,96px)}
+.ed-main>.sec.hero.nf .hero-cap{position:relative;left:auto;right:auto;top:auto;bottom:auto;transform:none;width:min(100%,500px);max-width:none}
+@media (max-width:620px){
+/* with no photograph to fill a screen, the card sits just under the bar and the footer follows: no empty Almond field above or below it */
+.ed-main>.sec.hero.nf{min-height:0;padding-top:calc(var(--nv) + 24px);padding-bottom:48px}
+.ed-main>.sec.hero.nf .hero-cap{width:100%;padding:24px 22px}
+.nf .hero-cap .ln{min-height:44px;align-items:center;font-size:16px;padding:0}
+.nf .hero-cap .ln em{font-size:15px}
+}
+/* Our story (main.pg-story) */
+.pg-story .g2.st-row{align-items:start}
+.pg-story #climb .lv-head{justify-content:flex-end}
+.pg-story .st-sign{margin-top:10px}
+@media (max-width:860px){.pg-story #climb .lv-head{display:none}}
+@media (max-width:620px){
+/* the portrait beside the eyebrow and the title, the intro under both */
+.pg-story .st-open-g{grid-template-columns:minmax(0,1fr) 104px;column-gap:16px;row-gap:6px;align-items:end}
+.pg-story .st-open-t{display:contents}
+.pg-story .st-me{grid-column:2;grid-row:1/3;width:auto;align-self:end}
+.pg-story .st-open-t .eb{grid-column:1;grid-row:1;margin:0}
+.pg-story .st-open-t .d1{grid-column:1;grid-row:2;font-size:32px;margin:0}
+.pg-story .st-open-t .lede{grid-column:1/-1;grid-row:3;margin-top:18px}
+/* the script mid-letter is a small sign-off, not a logo stamp */
+.pg-story .st-row .sig img{width:120px}
+/* one italic display size, one closing size */
+.pg-story .d1 em,.pg-story .d2 em,.pg-story .d2 .w,.pg-story .say{font-size:24px}
+.pg-story .sec.cta .d1{font-size:32px}
+.pg-story .d1,.pg-story .d2{text-wrap:balance}
+}
+/* end E */
+/* . */
+/* . */
+/* . */

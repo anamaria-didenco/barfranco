@@ -1,76 +1,57 @@
-/* Bar Franco — Events Pack: eight chapters that open underneath their row (Welcome, The spaces and Pricing open on
-   load), opened by click / tap only, #ch-… deep links, and the three food tabs.
-   Runs alongside static/franco.js (motion). Without JS every chapter and menu shows (franco.css hides closed
-   chapters only under html.fx). */
+/* Bar Franco · Events Pack: eight chapters as one native accordion. Every chapter is <details class="pk-d" name="pack">,
+   so the browser keeps one open at a time (Welcome is open on load; an older browser simply lets several open).
+   This file adds only what the browser doesn't:
+   - a chapter a person opens (tap on its title, or a link to #ch-…) brings its title up, just under the top bar,
+     after the chapter above it has closed (instant under reduced motion);
+   - a deep link (/events-pack/#ch-drinks) opens its chapter on load and lands on it;
+   - printing opens every chapter, and puts them back afterwards.
+   Without JS the accordion still works. Runs alongside static/editorial.js, which also opens a linked chapter. */
 (function () {
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var chapters = [].slice.call(document.querySelectorAll('.pk-ch'));
-  var byId = {};
-  chapters.forEach(function (ch) { byId[ch.id.replace(/^ch-/, '')] = ch; });
+  var D = document;
+  var all = [].slice.call(D.querySelectorAll('details.pk-d'));
+  if (!all.length) return;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var intent = 0;   // when a person last asked for a chapter; a toggle without one (load, print) never scrolls
 
-  function head(ch) { return ch.querySelector('.pk-row'); }
-  function setOpen(ch, on) {
-    ch.setAttribute('data-open', on ? 'true' : 'false');
-    var h = head(ch);
-    if (h) h.setAttribute('aria-expanded', on ? 'true' : 'false');
+  function bar() { var m = D.querySelector('.mast'); return m ? m.getBoundingClientRect().height : 72; }
+  function land(d, instant) {
+    var s = d.querySelector('summary'); if (!s) return;
+    var y = s.getBoundingClientRect().top + window.scrollY - bar() - 8;
+    window.scrollTo({ top: Math.max(0, y), behavior: (reduce || instant) ? 'auto' : 'smooth' });
   }
-  function open(id) {
-    chapters.forEach(function (ch) { setOpen(ch, ch === byId[id]); });
-  }
-  function jump(ch) {
-    var h = head(ch) || ch, mast = document.querySelector('.bf-mast');
-    var off = (mast ? mast.getBoundingClientRect().height : 72) + 8;   // clear of the sticky masthead
-    window.scrollTo({ top: h.getBoundingClientRect().top + window.scrollY - off, behavior: reduce ? 'auto' : 'smooth' });
+  function chapterOf(id) {
+    var t = id && D.getElementById(id);
+    if (!t) return null;
+    return t.matches('details.pk-d') ? t : (t.querySelector('details.pk-d') || t.closest('details.pk-d'));
   }
 
-  // click / tap a chapter row: open it, or close it if it's already open. Hovering does nothing.
-  chapters.forEach(function (ch) {
-    var h = head(ch); if (!h) return;
-    var id = ch.id.replace(/^ch-/, '');
-    h.addEventListener('click', function () {
-      if (ch.getAttribute('data-open') === 'true') { setOpen(ch, false); return; }
-      open(id); jump(ch);
+  D.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target : null;
+    if (t && (t.closest('details.pk-d > summary') || t.closest('a[href^="#ch-"]'))) intent = Date.now();
+  }, true);
+  window.addEventListener('hashchange', function () { intent = Date.now(); });
+
+  all.forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open || Date.now() - intent > 1500) return;
+      intent = 0;
+      requestAnimationFrame(function () { land(d); });
     });
   });
 
-  // "see the minimum spends"-style links inside the chapters: open the chapter they point to, then land on it
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[data-ep-open]');
-    if (!a) return;
-    var ch = byId[a.getAttribute('data-ep-open')]; if (!ch) return;
-    e.preventDefault();
-    open(a.getAttribute('data-ep-open')); jump(ch);
-    if (history.replaceState) history.replaceState(null, '', '#' + ch.id);
-  });
-
-  // on load: Welcome open; a deep link (/events-pack/#ch-drinks) opens its chapter instead
-  function fromHash(first) {
-    var id = (location.hash || '').replace(/^#ch-/, '');
-    if (byId[id]) { open(id); setTimeout(function () { jump(byId[id]); }, 60); }
-    else if (first === true) ['welcome', 'spaces', 'pricing'].forEach(function (k) { if (byId[k]) setOpen(byId[k], true); });
+  // a deep link opens its chapter (closing Welcome) before the page settles, then lands on it
+  var d0 = chapterOf((location.hash || '').slice(1));
+  if (d0) {
+    d0.open = true;
+    window.addEventListener('load', function () { setTimeout(function () { land(d0, true); }, 60); });
   }
-  fromHash(true);
-  window.addEventListener('hashchange', fromHash);
 
-  // the three ways to feed the room
-  var tabs = [].slice.call(document.querySelectorAll('[data-ep-tab]'));
-  function show(t) {
-    tabs.forEach(function (x) {
-      var on = x === t, p = document.getElementById(x.getAttribute('aria-controls'));
-      x.setAttribute('aria-selected', on ? 'true' : 'false'); x.tabIndex = on ? 0 : -1;
-      if (p) p.hidden = !on;
-    });
-  }
-  tabs.forEach(function (t, i) {
-    t.addEventListener('click', function () { show(t); });
-    t.addEventListener('keydown', function (e) {
-      var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (k) { e.preventDefault(); var n = tabs[(i + k + tabs.length) % tabs.length]; show(n); n.focus(); }
-    });
+  // print: every chapter open (the group is set aside so they can all be open), then back as they were
+  window.addEventListener('beforeprint', function () {
+    all.forEach(function (d) { d.setAttribute('data-was', d.open ? '1' : ''); d.removeAttribute('name'); d.open = true; });
   });
-  if (tabs.length) show(tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
-
-  // print: every chapter open
-  window.addEventListener('beforeprint', function () { chapters.forEach(function (ch) { ch.setAttribute('data-print', ch.getAttribute('data-open')); setOpen(ch, true); }); });
-  window.addEventListener('afterprint', function () { chapters.forEach(function (ch) { setOpen(ch, ch.getAttribute('data-print') === 'true'); }); });
+  window.addEventListener('afterprint', function () {
+    all.forEach(function (d) { d.open = d.getAttribute('data-was') === '1'; d.removeAttribute('data-was'); });
+    all.forEach(function (d) { d.setAttribute('name', 'pack'); });
+  });
 })();

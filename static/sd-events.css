@@ -225,39 +225,39 @@ html:not(.sd) .sd-dog{display:none}
 .sd-talk{text-align:center;font-style:italic;font-size:16px;margin:18px 0 0}
 .sd-talk a{color:var(--dr);text-underline-offset:.26em}
 @media (max-width:860px){
-.sd-run{font-size:12px;gap:10px}
+.sd-run{font-size:15px;gap:10px}
 .sd-sub{font-size:19px!important;line-height:1.25}
-.sd-facts{font-size:12.5px!important}
+.sd-facts{font-size:15px!important}
 .sd-facts li{padding:0 7px}
-.sd-proof{font-size:13.5px}.sd-proof span{font-size:11px}
+.sd-proof{font-size:15px}.sd-proof span{font-size:15px}
 .sd-lede{font-size:15px}
-.sd-line{font-size:13.5px!important;padding:12px 6px!important;white-space:normal;text-wrap:balance;line-height:1.25}
+.sd-line{font-size:16px!important;padding:12px 6px!important;white-space:normal;text-wrap:balance;line-height:1.25}
 .sd-line span{white-space:normal}
 .meta{font-size:15px}
 .sd-ix-h{padding:12px 4px}
 .sd-ix-h .t{font-size:20px!important}
-.sd-ix-h em{font-size:12px}
+.sd-ix-h em{font-size:15px}
 .sd-ix-l{font-size:18px}
-.sd-ix-in .info li em,.sd-ix-in .info li span{font-size:14px}
+.sd-ix-in .info li em,.sd-ix-in .info li span{font-size:15px}
 .sd-ix-b{font-size:15px}
 .sd-q{font-size:15px}
 .sd-cnt output{font-size:24px}
-.sd-res{font-size:14.5px}
-.sd-seg button{font-size:13.5px}
+.sd-res{font-size:15px}
+.sd-seg button{font-size:15px}
 .sd-hold-h .eb{font-size:19px}
-.sd-hold-s{font-size:14px}
+.sd-hold-s{font-size:15px}
 .sd-d{height:46px;font-size:15px}
-.sd-key{font-size:12.5px}
-.sd-sum .info li em,.sd-sum .info li span{font-size:14px}
-.sd-held{font-size:14px}
-.sd-st figcaption{font-size:14px}
+.sd-key{font-size:15px}
+.sd-sum .info li em,.sd-sum .info li span{font-size:15px}
+.sd-held{font-size:15px}
+.sd-st figcaption{font-size:15px}
 .sd-lvl>span{font-size:16px}.sd-lvl b{font-size:11px}
-.sd-talk{font-size:14px}
+.sd-talk{font-size:15px}
 .sd .sd-fcard .sd-trust{font-size:12px}
-.sd-tag{font-size:12.5px}
+.sd-tag{font-size:15px}
 .sd-cover{padding-top:calc(var(--mb) + var(--nv) - 12px)}
 .sd-bn{margin-top:8px}
-.sd-facts{font-size:14px;gap:4px 0}
+.sd-facts{gap:4px 0}
 .sd-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
 .sd-strip .ph{aspect-ratio:3/4}
 .sd-idx-k span:last-child{display:none}
@@ -372,3 +372,44 @@ html:not(.sd) .sd-dog{display:none}
 
 /* detail pass: the room-finder and month buttons answer the hover in Bright Red */
 .sd-seg button:not([aria-pressed="true"]):hover,.sd-mo button:not([aria-pressed="true"]):hover{color:var(--br)}
+
+/* ==== phone audit, October 2026 ==== */
+@media (max-width:860px){
+/* one ask at a time: on arrival the cover's first line is the ask, so the top bar's copy waits until the cream bar
+   comes back on scroll (the dock carries it on the way down); the room cards and the menu chapter don't repeat it */
+html.sd:not(.tb-bar):not(.menu-open) .mast-book{visibility:hidden}
+.sd .xa-way .cta,.sd #food .cta-row .cta-fill,.sd #menu .ctas-after .cta-fill{display:none}
+/* the dog still walks the banner and sits on the picked date; only his words go, a phone has no free band for them */
+#dogB .sd-tag,#dogC .sd-tag{display:none}
+/* each level is named once, under its photograph, not on it */
+.sd .sd-lvl{display:none}
+/* Private dining: the chapters are their own index on a phone */
+.pg-pd .sd-idx{display:none}
+/* the night strip's captions: the step in Bright Red, in the body face, not a fourth size of Marsha */
+.sd-st figcaption b{font-family:var(--font-body);font-weight:400;text-transform:none;letter-spacing:normal;font-size:15px;font-style:normal}
+/* a pair of photographs is one beat, side by side like the band under the cover */
+.sd .pair:not(.sd-band2){grid-template-columns:1fr 1fr}
+.sd .pair:not(.sd-band2) .ph{aspect-ratio:3/4}
+/* Corporate's pairs are Functions' photographs; on a phone the page goes without them */
+.pg-corp .pair:not(.sd-band2){display:none}
+/* the candlelit band photo keeps the old artichoke pendant out of frame */
+.sd-band2 img[src$="/event-candlelit-guests.jpg"]{object-position:50% 80%}
+/* Christmas: the December Fridays are in the strip right under the cover */
+.pg-xmas .sd-facts li:nth-child(2){display:none}
+.sd-avail{font-size:15px}
+/* the months on one line (they still wrap on the narrowest screens rather than run off the card) */
+.sd-mo{gap:4px 14px}
+.sd-mo button{font-size:15px}
+.sd-wk{font-size:15px}
+/* air between the menu card and its buttons (the note that used to space them is hidden on phones) */
+.sd .ctas-after{margin-top:20px}
+.sd-rev cite{font-size:15px}
+}
+/* the narrowest phones: the cover's two small asks stay on one line each */
+@media (max-width:380px){.sd-line{font-size:15px!important}}
+@media (max-width:620px){
+/* the closing words sit at the chapter-head size, under the footer's sign-off */
+.sd .sec.cta .d1{font-size:32px}
+.sd .card-s,.sd .card li em,.sd .card li span em{font-size:15px}
+.sd .d1,.sd .d2{text-wrap:balance}
+}

@@ -29,7 +29,7 @@ setTimeout(function(){cur.remove();copy.forEach(function(e){e.classList.remove('
 
 /* 2 · the strip runs like a marquee, paused under the pointer */
 var strip=$('.strip'),items=strip?[].slice.call(strip.children).map(function(n){return n.outerHTML}).join('')+'<span>•</span>':'';
-function marquee(){if(!strip||calm)return;strip.classList.add('hx-run');strip.innerHTML='<span class="hx-track" aria-hidden="true"></span>';var tr=strip.firstChild;tr.innerHTML=items;var one=tr.scrollWidth,k=Math.max(1,Math.ceil(innerWidth/Math.max(1,one))),half=new Array(k+1).join(items);tr.innerHTML=half+half;tr.style.animationDuration=Math.round(k*one/38)+'s'}
+function marquee(){if(!strip||calm)return;strip.classList.add('hx-run');strip.innerHTML='<span class="hx-track" aria-hidden="true"></span>';var tr=strip.firstChild;tr.innerHTML=items;var one=tr.scrollWidth,k=Math.max(1,Math.ceil(innerWidth/Math.max(1,one))),half=new Array(k+1).join(items);tr.innerHTML=half+half;tr.style.animationDuration=Math.round(k*one/(innerWidth<=620?24:38))+'s'}
 marquee();
 
 /* 3 · the intro reads itself in as you scroll */
@@ -51,7 +51,8 @@ if(tdog){tdTag=D.createElement('span');tdTag.className='hx-tag';tdTag.setAttribu
 function tone(){if(!hrs)return;var m=getComputedStyle(hrs).color.match(/[\d.]+/g);darkHero=!!m&&(.2126*m[0]+.7152*m[1]+.0722*m[2])/255>.6}
 function say(el,t,ms){if(!el)return;el.textContent=t;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('on')},ms||2600)}
 function talk(t,ms){sayT.textContent=t;host.classList.add('talk');clearTimeout(talkT);talkT=setTimeout(function(){host.classList.remove('talk')},ms||2800)}
-function speak(t,ms){if(hState==='hero')say(tag,t,ms);else if(hState==='corner')talk(t,ms)}
+/* on phones he keeps the one greeting: a line per section widened his frame over the copy for three seconds at a time (audit, Oct 2026) */
+function speak(t,ms){if(hState==='corner'&&innerWidth<=700)return;if(hState==='hero')say(tag,t,ms);else if(hState==='corner')talk(t,ms)}
 function anchor(){var a=hrs.getBoundingClientRect();return[a.right-55,a.top-40]}
 function cornerXY(){var m=innerWidth<=700?14:20;return[innerWidth-(host.offsetWidth||64)-m,innerHeight-52-m]}
 function place(p){host.style.transform='translate('+p[0].toFixed(1)+'px,'+p[1].toFixed(1)+'px)'}
@@ -67,9 +68,10 @@ wk.onfinish=function(){wk=null;host.classList.remove('walk');host.style.setPrope
 function dock(){host.classList.add('snap');host.style.transform='';host.classList.add('docked');host.classList.toggle('duck',hState==='duck');void host.offsetWidth;host.classList.remove('snap')}
 function undock(){var r=host.getBoundingClientRect();host.classList.add('snap');host.classList.remove('docked','duck');place([r.left,r.top]);void host.offsetWidth;host.classList.remove('snap')}
 function settle(){if(hState!=='hero'||!hrs)return;var a=anchor(),r=host.getBoundingClientRect();if(Math.abs(a[0]-r.left)+Math.abs(a[1]-r.top)>6)walkTo(a,settle,380)}
-function want(){if(hrs){var a=hrs.getBoundingClientRect();if(a.top>innerHeight*.3&&a.bottom<innerHeight+40)return'hero'}var c=$('#climb');if(c&&tdog&&tdog.offsetWidth){var r=c.getBoundingClientRect();if(r.top<innerHeight*.6&&r.bottom>innerHeight*.4)return'duck'}var lg=$('#legal');if(lg&&lg.getBoundingClientRect().top<innerHeight)return'duck';return'corner'}
+/* on phones he ducks as the footer comes up (his frame sat over the sign-off and the footer links for 600px); on wide screens at the last line */
+function want(){if(hrs){var a=hrs.getBoundingClientRect();if(a.top>innerHeight*.3&&a.bottom<innerHeight+40)return'hero'}var c=$('#climb');if(c&&tdog&&tdog.offsetWidth){var r=c.getBoundingClientRect();if(r.top<innerHeight*.6&&r.bottom>innerHeight*.4)return'duck'}var ph=innerWidth<=700,ft=ph?$('footer'):$('#legal');if(ft&&ft.getBoundingClientRect().top<innerHeight-(ph?40:0))return'duck';return'corner'}
 var greeted=false;
-function setState(s){var prev=hState;hState=s;if(s==='corner'&&!greeted){greeted=true;setTimeout(function(){if(hState==='corner')talk('Ciao. Spritz first?',3000)},900)}
+function setState(s){var prev=hState;hState=s;if(s==='corner'&&!greeted){greeted=true;setTimeout(function(){if(hState==='corner')talk(innerWidth<=700?'Ciao. Tap me for a table.':'Ciao. Spritz first?',3000)},900)}
 if(s==='hero'){host.classList.remove('talk','sniff');if(!prev||calm||!hrs){if(wk){wk.cancel();wk=null}host.classList.remove('docked','duck','out');host.classList.add('hero');if(hrs)place(anchor());return}
 if(prev!=='hero'){if(host.classList.contains('docked'))undock();host.classList.remove('out');host.classList.add('hero');walkTo(anchor(),settle)}return}
 if(prev==='hero'||!prev){host.classList.remove('hero');if(!prev||calm||!hrs){if(wk){wk.cancel();wk=null}host.classList.remove('out','walk');dock();return}

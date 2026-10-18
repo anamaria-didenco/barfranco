@@ -97,12 +97,14 @@ function floorLine(){var f=fits(),how=st.s==='seat'?'seated':'standing';if(VC){i
 function spendLine(f){if(st.d==='wk')return'Sunday to Thursday: usually no minimum spend, and never a hire fee.';return'Fri &amp; Sat minimum spend: '+f.map(function(c){return name(c.dataset.room).replace('the ','')+' from '+c.dataset.min}).join(', ')+'. No hire fee.'}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 var lastPick='';
-function findFloor(talk){if($('#sdNo'))$('#sdNo').textContent=st.n;if(!HASF){summary();return}press('#sdStyle button','s',st.s);press('#sdDay button','d',st.d);var f=fits();cards.forEach(function(c){var on=f.indexOf(c)>-1,overkill=c.dataset.room==='all'&&!on&&f.length;c.classList.toggle('fit',on);c.classList.toggle('nofit',!on&&!overkill)});$('#sdRes').innerHTML=floorLine();var rg=$('#sdResGo');if(rg)rg.textContent='Check dates for '+st.n+(st.s==='seat'?' seated':' standing');st.room=f.length===1?f[0].dataset.room:f.length?'either':null;summary();if(!sd())return;var pick=f[0]||cards[2];var p=perch(pick);var key=pick.dataset.room;if(key!==lastPick){dogF.go(p[0],p[1],function(){if(talk)dogF.say(key==='bar'?'Downstairs. Spritz first.':key==='rest'?'Upstairs it is.':'The whole building. Bene.',2200)});lastPick=key}else if(!dogF.a)dogF.put(p[0],p[1])}
+function findFloor(talk){if($('#sdNo'))$('#sdNo').textContent=st.n;if(!HASF){summary();return}press('#sdStyle button','s',st.s);press('#sdDay button','d',st.d);var f=fits();cards.forEach(function(c){var on=f.indexOf(c)>-1,overkill=c.dataset.room==='all'&&!on&&f.length;c.classList.toggle('fit',on);c.classList.toggle('nofit',!on&&!overkill)});$('#sdRes').innerHTML=floorLine();var rg=$('#sdResGo');if(rg){var over=!f.length&&st.s==='seat';rg.textContent='Check dates for '+st.n+(st.s==='seat'&&!over?' seated':' standing');rg.toggleAttribute('data-stand',over)}st.room=f.length===1?f[0].dataset.room:f.length?'either':null;summary();if(!sd())return;var pick=f[0]||cards[2];var p=perch(pick);var key=pick.dataset.room;if(key!==lastPick){dogF.go(p[0],p[1],function(){if(talk)dogF.say(key==='bar'?'Downstairs. Spritz first.':key==='rest'?'Upstairs it is.':'The whole building. Bene.',2200)});lastPick=key}else if(!dogF.a)dogF.put(p[0],p[1])}
 function perch(card){var ph=card.querySelector('.ph'),r=rel(ph,row);return[r.l+14,r.t-dogF.h()+2]}
 if(nIn)nIn.addEventListener('input',function(){st.n=+nIn.value;ss('bf-sdf-n',st.n);findFloor(true)});
 if($('#sdStyle'))$('#sdStyle').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.s=b.dataset.s;ss('bf-sdf-s',st.s);lastPick='';findFloor(true)});
 if($('#sdDay'))$('#sdDay').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.d=b.dataset.d;ss('bf-sdf-d',st.d);findFloor(false)});
 cards.forEach(function(c){var a=c.querySelector('a.cta');if(a)a.addEventListener('click',function(){if(!sd())return;st.room=c.dataset.room;summary()})});
+/* too many to sit down: the button already says standing, and taking it switches the finder (and the form) to standing */
+var rgo=$('#sdResGo');if(rgo)rgo.addEventListener('click',function(){if(!rgo.hasAttribute('data-stand'))return;st.s='stand';ss('bf-sdf-s',st.s);lastPick='';findFloor(false)});
 
 /* 2 · the night, in order */
 var steps=$('#sdSteps'),SI=$$('#sdSteps .sd-st'),LI=$$('#night .card li'),card=$('#night .card'),dogN=new Dog($('#dogN'));dogs.push(dogN);
@@ -156,8 +158,8 @@ addEventListener('message',function(e){var host='';try{host=new URL(e.origin).ho
 var p=b.parentNode;if(!days.length){p.innerHTML=b.dataset.none||'December Fridays: fully booked · Midweek &amp; lunch dates open.';return}
 var f=days.map(function(d){return'Fri '+d});b.textContent=f.length>1?f.slice(0,-1).join(', ')+' & '+f[f.length-1]:f[0]})();
 
-/* Christmas: an honest countdown to the first December Friday */
-(function(){var fr=$('#sdFri'),lv=$('#sdLive');if(!fr)return;var Y=T.m===11&&T.d>23?T.y+1:T.y,f=1;while(wd(Y,11,f)!==5)f++;var days=Math.round((U(Y,11,f)-TU)/864e5),s;if(days>=14)s=Math.round(days/7)+' weeks to the first December Friday';else if(days>1)s=days+' days to the first December Friday';else if(days>=0)s='December Fridays are here';else{var left=0;for(var d=T.d;d<CLOSE;d++)if(wd(Y,11,d)===5)left++;s=left?left+(left>1?' December Fridays left':' December Friday left'):'Now booking Christmas '+(Y+1)}fr.textContent=s})();
+/* Christmas: the cover keeps its static "December Fridays go first". The live countdown that used to replace it
+   went: the site carries no live status, and the #sdAvail strip under the cover already gives the dates. */
 
 /* first sight: one line each */
 var said={};
