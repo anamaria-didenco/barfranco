@@ -19,7 +19,7 @@ p{margin:0;text-wrap:pretty}
 .dark{--gr:var(--dr);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.4)}
 .bright{--gr:var(--br);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.45)}
 .night .sec:not(.bright){--gr:var(--dr);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.4)}
-.night .sec.almond{--gr:#5a0500}
+.night .sec.almond{--gr:var(--al);--ink:var(--dr);--acc:var(--br);--rule:rgba(108,6,0,.32)}
 .night body{background:var(--dr)}
 
 .scr-n{display:none}.night .scr-d{display:none}.night .scr-n{display:block}
@@ -66,7 +66,6 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .strip{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;padding:12px var(--gx);background:var(--al);color:var(--br);font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.06em;line-height:1.2}
 .strip .w{font-size:1.25em;letter-spacing:0;line-height:1}
 .strip{align-items:baseline}
-.night .strip{background:#5a0500;color:var(--al)}
 
 .intro .g{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,4vw,64px);align-items:start}
 .intro .d1{color:var(--ink);max-width:13ch}
@@ -112,7 +111,6 @@ button.ln{appearance:none;background:none;border:0;border-bottom:1px solid var(-
 .floor{--gr:var(--pp);--ink:var(--dr);--acc:var(--br);--rule:rgba(108,6,0,.32);position:relative;background:var(--gr);color:var(--ink);min-width:0;cursor:pointer}
 .floor.dark{--gr:var(--dr);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.4)}
 .night .floor{--gr:var(--dr);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.4)}
-.night .floor.f1{--gr:#5a0500}
 .f-ph{height:clamp(300px,46vh,540px)}
 .f1 .f-ph{border-right:0}
 .f-ph img{transform:scale(1.04);filter:brightness(.68) saturate(.88);transition:transform 1.2s var(--ease),filter .9s var(--ease)}
@@ -963,6 +961,19 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 /* ==== Phone audit, October 2026 ==== */
 
 /* ---- A · site-wide: night mode, lists, type scale, top bar, overlay, footer ---- */
+/* night (after 9pm): the four events pages keep their day colours (editorial.js leaves html.sd out of the night).
+   Almond bands stay Almond with their day inks (see .night .sec.almond at the top); the rest of the page is Deep Red */
+.night .sec.almond a.cta:not(.cta-fill){border-color:var(--dr);color:var(--dr)}
+.night .sec.almond a.cta:not(.cta-fill):hover{background:var(--dr);color:var(--al)}
+.night .sec.almond .card-em,.night .sec.almond .ndog img,.night .sec.almond .st-em,.night .sec.almond .sig img{filter:none}
+/* Home's Come say ciao is an Almond band too: its title keeps the day's deep red with the key words in bright red (hm-experience.css turns night titles Almond) */
+.hx.night .sec.almond:not(.bright) .d2,.hx.night .sec.almond:not(.bright) .hx-q,.hx.night .sec.almond:not(.bright) .hx-q span,.hx.night .sec.almond:not(.bright) .cta-row .hx-more{color:var(--dr)}
+.hx.night .sec.almond:not(.bright) .hx-c{color:var(--br)}
+/* Events pack: the small Marsha heads on the night ground read in Almond, like every other head there */
+.night .sec:not(.bright):not(.almond) .h4x{color:var(--acc)}
+/* Contact: Send a note and the map line under the map read on the night ground */
+.night .sec:not(.bright):not(.almond) .ct-card h2{color:var(--al)}
+.night .c-map,.night .c-map .meta a{color:var(--al)}
 /* end A */
 /* . */
 /* . */

@@ -13,7 +13,8 @@ function lget(k){try{return localStorage.getItem(k)}catch(e){return null}}functi
 var lights=new URLSearchParams(location.search).get('lights')||lget('bf-lights')||'auto';
 if(lget('bf-motion')==='calm')R.classList.add('calm');
 function isNight(){if(lights==='night')return true;if(lights==='day')return false;var h=nz().h;return h>=21||h<4}
-R.classList.toggle('night',isNight());
+/* the four events pages (html.sd) have no night palette: they keep their day colours after 9pm */
+R.classList.toggle('night',isNight()&&!R.classList.contains('sd'));
 
 /* the live clock in the closing band */
 function clock(){var oh=$('#openH'),ot=$('#openT');if(!oh)return;var t=nz(),h=t.h,m=t.m,h12=((h+11)%12)+1;ot.textContent=h12+':'+(m<10?'0':'')+m+(h<12?'am':'pm')+' in Christchurch';oh.innerHTML=h>=16&&h<17?'Open. Kitchen at 5pm':h>=17?'Open <em>till</em> late':'Opening at 4pm'}
