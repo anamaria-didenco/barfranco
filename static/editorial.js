@@ -23,9 +23,11 @@ clock();setInterval(clock,30000);
 /* the header layer: the logo settles as you scroll; ink and veil follow what's beneath */
 var mast=$('.mast'),mk=$('.mk'),mastR=$('.mast-r'),hero=$('[data-hero]'),mkS=1;
 function tog(c,on){if(on!==mast.classList.contains(c))mast.classList.toggle(c,on)}
-function toneAt(x,y){if(R.classList.contains('night'))return'dark';var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var e=els[i];if(e.closest('.mast,.lead,.walk-ov,.mockbar,a,button,.card,.cta-row'))continue;var t=e.closest('[data-tone]');if(t)return t.dataset.tone;
+function toneAt(x,y){var N=R.classList.contains('night');var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var e=els[i];if(e.closest('.mast,.lead,.walk-ov,.mockbar,a,button,.card,.cta-row'))continue;var t=e.closest('[data-tone]');
+/* at night every band goes Deep Red except the Almond bands (.night .sec.almond), so the header keeps its day ink over those */
+if(t)return N&&!t.matches('.sec.almond')?'dark':t.dataset.tone;if(N)return'dark';
 for(var n=e;n&&n!==document.documentElement;n=n.parentElement){if(n.tagName==='IMG'||n.tagName==='VIDEO')return'dark';var cs=getComputedStyle(n);if(cs.backgroundImage&&cs.backgroundImage!=='none'&&cs.backgroundImage.indexOf('gradient')<0)return'dark';var m=cs.backgroundColor.match(/[\d.]+/g);if(m&&(m.length<4||+m[3]>.5)){var r=+m[0],g=+m[1],b=+m[2],L=(.2126*r+.7152*g+.0722*b)/255;return L<.5?'dark':(Math.abs(r-250)<14&&Math.abs(g-215)<16?'almond':'light')}}
-return'light'}return'light'}
+return'light'}return N?'dark':'light'}
 var mastT=0;
 function mastTick(){if(!mast||!mk||R.classList.contains('menu-open'))return;
 /* below the top of the page the header is the cream bar (top bar), so its ink only matters up here: 4x a second, not every frame */
