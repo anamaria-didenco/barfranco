@@ -29,8 +29,10 @@
 .hx-host.glide{transition:transform .75s var(--ease),opacity .3s var(--ease)}
 .hx-host.docked{left:auto;top:auto;right:20px;bottom:20px;transform:none;transition:transform .55s cubic-bezier(.3,1.35,.55,1) .45s,opacity .3s var(--ease)}
 /* he ducks quickly and comes back up only once the page has settled, with a small pop, so a flick of the scroll doesn't bob him */
-.hx-host.docked.duck,.tb-up .hx-host.docked:not(.gone){transition:transform .3s cubic-bezier(.55,0,.8,.3) .12s,opacity .3s var(--ease)}
+.hx-host.docked.duck,.tb-up .hx-host.docked:not(.gone){transition:transform .3s cubic-bezier(.55,0,.8,.3) .12s,opacity .3s var(--ease),visibility 0s linear .42s}
 .hx-host.docked.duck{transform:translateY(calc(100% + 34px))}
+/* once he has slid off screen he is hidden too, so keyboard focus never lands on him there */
+.hx-host.docked.duck,.tb-up .hx-host.docked:not(.gone){visibility:hidden}
 .hx-host.gone{opacity:0;pointer-events:none}
 .hx-host.snap{transition:none!important}
 /* his frame: the menu's double rule (bright red 1.5px, a cream gap, 1px inside), a dotted floor to stand on, and room for a few words */
