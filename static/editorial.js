@@ -131,7 +131,7 @@ var openHash=function(){var h=location.hash.slice(1);if(!h)return;var t=document
 /* phones: Functions and Christmas read like the events pack, in numbered chapters that open and close */
 if(document.body.hasAttribute('data-chapters')){var chn=0;$$('section.sec').forEach(function(s){var eb=s.querySelector('.eb'),m=eb&&eb.textContent.trim().match(/^(\d{2})\s*·\s*(.+)$/);if(!m||s.closest('.chap'))return;
 eb.setAttribute('data-ch-eb','');var row=document.createElement('button');row.type='button';row.className='ch-row';var n=document.createElement('span');n.className='pk-n';n.textContent=m[1];var tt=document.createElement('span');tt.className='d2';tt.textContent=m[2];var oc=document.createElement('span');oc.className='pk-oc';oc.setAttribute('aria-hidden','true');row.append(n,tt,oc);
-var b=document.createElement('div');b.className='ch-b';var inn=document.createElement('div');inn.className='ch-in';while(s.firstChild)inn.appendChild(s.firstChild);b.appendChild(inn);s.append(row,b);s.classList.add('chap');var first=chn++===0;s.classList.toggle('open',first);row.setAttribute('aria-expanded',String(first));
+var b=document.createElement('div');b.className='ch-b';var inn=document.createElement('div');inn.className='ch-in';while(s.firstChild)inn.appendChild(s.firstChild);b.appendChild(inn);s.append(row,b);s.classList.add('chap');var first=chn++===0||s.id==='enquire';s.classList.toggle('open',first);row.setAttribute('aria-expanded',String(first));
 row.addEventListener('click',function(){var o=!s.classList.contains('open');s.classList.toggle('open',o);row.setAttribute('aria-expanded',String(o))})})}
 var openChap=function(){var h=location.hash.slice(1),t=h&&document.getElementById(h),c=t&&t.closest('.chap');if(c&&!c.classList.contains('open')){c.classList.add('open');var r=c.querySelector('.ch-row');if(r)r.setAttribute('aria-expanded','true')}};
 addEventListener('hashchange',openChap);document.addEventListener('click',function(e){if(e.target.closest('a[href^="#"]'))setTimeout(function(){openChap();openHash()},0)});openChap();
@@ -149,7 +149,15 @@ var book=$('.mast-book'),links=$('#links'),mb=$('.mast-menu');
 /* one button, matched to the page: event pages go to the enquiry form */
 /* #book only where it holds the booking widget (Bookings, Restaurant). Home's #book is a line that links to /bookings/,
    so jumping there would add a step before anyone can book: Home keeps /bookings/. */
-if(book){if($('#enquire')){book.textContent='Check your date';book.setAttribute('href','#enquire')}else if($('#book iframe'))book.setAttribute('href','#book')}
+/* the four events pages (html.sd) say what their dock says (Christmas: Enquire now); the pack and Robbie (body[data-ask=events]) send you to the Functions form */
+if(book){var dockAsk=$('.sticky-btns .cta-fill');
+if(R.classList.contains('sd')){book.textContent=dockAsk&&dockAsk.textContent.trim()||'Check your date';book.setAttribute('href','#enquire')}
+else if(D.body.getAttribute('data-ask')==='events'){book.textContent='Check your date';book.setAttribute('href','/functions/#enquire')}
+else if($('#enquire')){book.textContent='Check your date';book.setAttribute('href','#enquire')}else if($('#book iframe'))book.setAttribute('href','#book')}
+/* phones: while the cover's own filled ask (the same words, or the same address) is on screen, the bar's copy steps back; it returns as the cover leaves */
+if(book&&'IntersectionObserver' in window){var norm=function(s){return(s||'').replace(/\s+/g,' ').trim().toLowerCase()},hAsk=null;
+[].slice.call(D.querySelectorAll('[data-hero] a.cta-fill,.hf-fold a.cta-fill')).some(function(a){if(norm(a.textContent)===norm(book.textContent)||a.href===book.href){hAsk=a;return true}return false});
+if(hAsk)new IntersectionObserver(function(es){var e=es[es.length-1];R.classList.toggle('tb-hask',e.isIntersecting&&getComputedStyle(hAsk).visibility!=='hidden')},{rootMargin:'-64px 0px 0px 0px'}).observe(hAsk)}
 /* the skip link lands on <main>, or where a page has none (Home, the events pages) on its opening section */
 var skT=$('#main')||$('[data-hero][id]');if(skT&&!$('.tb-skip')){var sk=D.createElement('a');sk.className='tb-skip';sk.href='#'+skT.id;sk.textContent='Skip to content';D.body.insertBefore(sk,D.body.firstChild)}
 /* phone menu: the essentials under the links */
