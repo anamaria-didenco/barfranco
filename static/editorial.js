@@ -163,11 +163,12 @@ var skT=$('#main')||$('[data-hero][id]');if(skT&&!$('.tb-skip')){var sk=D.create
 /* phone menu: the essentials under the links */
 if(links&&!$('.tb-foot',links)){var f=D.createElement('div');f.className='tb-foot';var go=D.createElement('a');go.className='cta cta-fill';go.href=book?book.getAttribute('href'):'/bookings/';go.textContent=book?book.textContent:'Book a table';f.appendChild(go);
 var r=D.createElement('div');r.className='tb-foot-r';r.innerHTML='<a href="tel:+64212211307">Call 021 221 1307</a><a href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">Directions</a>';f.appendChild(r);
-var p=D.createElement('p');p.className='tb-hrs';p.textContent='Bar\u00a0from\u00a04pm\u00a0· Kitchen\u00a0from\u00a05pm\u00a0· 166\u00a0Cashel\u00a0St, upstairs';f.appendChild(p);links.appendChild(f)}
+/* the hours on one line, the address on the next: no middot left hanging at a line end */
+var p=D.createElement('p');p.className='tb-hrs';p.append('Bar\u00a0from\u00a04pm\u00a0· Kitchen\u00a0from\u00a05pm',D.createElement('br'),'166\u00a0Cashel\u00a0St, upstairs');f.appendChild(p);links.appendChild(f)}
 function closeMenu(){if(!R.classList.contains('menu-open'))return;R.classList.remove('menu-open');if(mb){mb.setAttribute('aria-expanded','false');mb.textContent='Menu'}}
 if(links)links.addEventListener('click',function(e){if(e.target.closest('a'))closeMenu()});
 if(mb)mb.addEventListener('click',function(){if(R.classList.contains('menu-open')){var a=$('#links a');if(a)setTimeout(function(){a.focus({preventScroll:true})},60)}});
-D.addEventListener('keydown',function(e){if(e.key!=='Tab'||!R.classList.contains('menu-open'))return;var fs=[].slice.call(mast.querySelectorAll('a[href],button')).filter(function(x){return x.offsetParent!==null});if(!fs.length)return;var i=fs.indexOf(D.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();fs[fs.length-1].focus()}else if(!e.shiftKey&&i===fs.length-1){e.preventDefault();fs[0].focus()}});
+D.addEventListener('keydown',function(e){if(e.key!=='Tab'||!R.classList.contains('menu-open'))return;var fs=[].slice.call(mast.querySelectorAll('a[href],button')).filter(function(x){return x.offsetParent!==null&&getComputedStyle(x).visibility!=='hidden'});if(!fs.length)return;var i=fs.indexOf(D.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();fs[fs.length-1].focus()}else if(!e.shiftKey&&i===fs.length-1){e.preventDefault();fs[0].focus()}});
 /* away on the way down, back on the way up */
 var TOP=72,lastY=scrollY,acc=0,state='';
 function set(s){if(s===state)return;state=s;R.classList.toggle('tb-bar',s!=='top');R.classList.toggle('tb-up',s==='up');R.classList.toggle('tb-away',s==='away')}

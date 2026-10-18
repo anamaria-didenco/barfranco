@@ -995,6 +995,20 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 /* top bar on phones: while the cover's own filled ask is on screen, the bar's copy of it steps back (editorial.js sets .tb-hask) */
 .tb .mast-book{transition:background-color .2s var(--ease),border-color .2s var(--ease),opacity .25s var(--ease),visibility 0s linear 0s}
 @media (max-width:620px){.tb-hask .mast-book{opacity:0;visibility:hidden;transition:background-color .2s var(--ease),border-color .2s var(--ease),opacity .25s var(--ease),visibility 0s linear .25s}}
+/* the phone Menu overlay carries its own big ask at the foot, so the bar's button leaves while it is open */
+@media (max-width:900px){.tb.menu-open .mast .mast-r .mast-book{visibility:hidden;opacity:0;transition:none}}
+
+/* footer on phones: thumb-sized links, Find us across the full width, the base line on one line with real tap targets */
+@media (max-width:620px){
+.fcols a{padding:8px 0}
+.fcols>div:nth-child(3){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(24px,5vw,80px)}
+.fcols>div:nth-child(3)>p,.fcols>div:nth-child(3)>a:first-of-type{grid-column:1/-1}
+.legal{gap:10px}
+.legal>span{white-space:nowrap}
+.legal a{display:inline-block;padding:12px 0;font-size:15px}
+}
+/* the narrowest phones: the emblem steps out so the base line still holds one line */
+@media (max-width:349px){.legal{grid-template-columns:auto auto;justify-content:space-between}.legal img{display:none}}
 /* end A */
 /* . */
 /* . */
