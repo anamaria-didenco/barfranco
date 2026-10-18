@@ -157,3 +157,25 @@
 .hx.night .floor:not(.dark) .f-in .hx-c,.hx.night .floor .f-in .eb{color:var(--br)}
 .hx.night .floor a.cta:not(.cta-fill){border-color:var(--dr);color:var(--dr)}
 .hx.night .floor a.cta:not(.cta-fill):hover{background:var(--dr);color:var(--al)}
+/* ==== phone audit, October 2026 ==== */
+/* the strip: a quiet running line in Affairs italic (Marsha never goes this small), and it runs slower (hm-experience.js) */
+@media (max-width:620px){
+.hx .strip{font-family:var(--font-body);font-style:italic;font-weight:400;text-transform:none;font-size:15px;letter-spacing:.01em;line-height:1.3;padding-top:13px;padding-bottom:13px}
+.hx .strip .w{font-family:inherit;font-style:inherit;font-weight:inherit;text-transform:none;font-size:1em;letter-spacing:inherit;line-height:inherit}
+}
+/* one display size under the hero title: the standfirst and the closing ask match the chapter heads (32px) */
+@media (max-width:620px){.hx .intro .hx-st,.hx .book .d1{font-size:32px}}
+/* once the columns stack, one photograph per chapter: the long candlelit room carries Host at Franco, not a second photo above it */
+@media (max-width:860px){.hx .host .ph{display:none}}
+/* host on phones: the two facts that decide it; private lunches and the reply time are on /functions/ */
+@media (max-width:620px){.hx .host .hx-facts li:nth-child(n+3){display:none}}
+/* once the floors stack, the red fill is kept for the hero, Host at Franco and the closing booking: the two floors are ways in, a matching pair of outlines */
+@media (max-width:860px){
+.hx .floor .cta-row a.cta.cta-fill{background:transparent;border-color:var(--dr);color:var(--dr)}
+.hx .floor .cta-row a.cta.cta-fill:hover{background:var(--dr);border-color:var(--dr);color:var(--al)}
+}
+/* gift vouchers: beside the booking pair on wide screens; once stacked, one quiet line under the booking buttons instead of a third block */
+.hx .cta-row .hx-vo{display:none}
+@media (max-width:860px){.hx #vouchers{display:none}.hx .book .cta-row .hx-vo{display:inline-block;text-align:left}}
+/* a wrapped quiet link lines up with the text edge, not 4px in */
+@media (max-width:620px){.hx .cta-row .hx-more{padding-left:0;padding-right:0}}
