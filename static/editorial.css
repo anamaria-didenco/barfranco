@@ -988,6 +988,9 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .sec.cta .d1,#contact .d1{font-size:32px}
 .card-s,.card li em,.card li span em{font-size:15px}
 }
+
+/* the curtain never holds the page: a vertical swipe on it scrolls the page (and lets it go), a sideways one still walks the dog */
+.lead{touch-action:pan-y}
 /* end A */
 /* . */
 /* . */

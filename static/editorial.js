@@ -63,9 +63,11 @@ function fadeUp(el,k,dy){if(!el)return;el.style.opacity=k.toFixed(3);el.style.tr
 function geo(){var o=lead.getBoundingClientRect(),h=lh.getBoundingClientRect(),d=ldog.getBoundingClientRect();lsvg.setAttribute('viewBox','0 0 '+o.width.toFixed(0)+' '+o.height.toFixed(0));return{W:o.width,hx:h.right-o.left-14,hy:h.top-o.top+h.height/2,cx:d.left-o.left+d.width*.82,cy:d.top-o.top+d.height*.26}}
 /* the lead hangs as a soft cubic curve, not a straight line */
 function rope(x0,y0,x1,y1,sag){var dx=x1-x0,dy=y1-y0,s=sag*1.33;lpath.setAttribute('d','M'+x0.toFixed(1)+' '+y0.toFixed(1)+' C'+(x0+dx*.3).toFixed(1)+' '+(y0+dy*.3+s).toFixed(1)+' '+(x0+dx*.7).toFixed(1)+' '+(y0+dy*.7+s).toFixed(1)+' '+x1.toFixed(1)+' '+y1.toFixed(1))}
-function startLead(){clearTimeout(lTimer);R.classList.add('lead-lock');scrollTo(0,0);lead.classList.remove('gone');lead.style.webkitMaskImage=lead.style.maskImage='';ldog.classList.add('sniff');lIn0=performance.now();lState='idle';lTimer=setTimeout(walkLead,coarse?1900:1500)}
+/* the curtain plays over the page but never holds it: the first scroll (a swipe, the wheel, a key) lets it go */
+function startLead(){clearTimeout(lTimer);lead.classList.remove('gone');lead.style.webkitMaskImage=lead.style.maskImage='';ldog.classList.add('sniff');lIn0=performance.now();lState='idle';lTimer=setTimeout(walkLead,coarse?1900:1500);addEventListener('scroll',leaveLead,{passive:true})}
 function walkLead(){if(lState!=='idle')return;clearTimeout(lTimer);lState='walk';lT0=performance.now();ldog.style.opacity='1';ldog.classList.remove('sniff')}
-function endLead(){lState='gone';lead.classList.add('gone');lead.style.webkitMaskImage=lead.style.maskImage='';scrollTo(0,0);R.classList.remove('lead-lock')}
+function endLead(){lState='gone';lead.classList.add('gone');lead.style.webkitMaskImage=lead.style.maskImage=lead.style.opacity=lead.style.transition=lead.style.pointerEvents='';removeEventListener('scroll',leaveLead)}
+function leaveLead(){if(lState==='gone'||lState==='leaving'||scrollY<3)return;clearTimeout(lTimer);lState='leaving';lead.style.pointerEvents='none';if(calm()){endLead();return}lead.style.transition='opacity .3s ease';lead.style.opacity='0';setTimeout(endLead,320)}
 /* one renderer for the walk: driven by time, or by a finger */
 function walkAt(p){var x1=lead.clientWidth+40,x=lX+(x1-lX)*p,dist=x-lX;
 ldog.style.transform='translate('+x.toFixed(1)+'px,'+(-3.4*Math.abs(Math.sin(Math.PI*dist/34))).toFixed(2)+'px) rotate('+(1.1*Math.sin(2*Math.PI*dist/34)).toFixed(2)+'deg)';
@@ -102,7 +104,12 @@ function walkAnim(dir,done){if(!walk){if(done)done();return}walk.classList.add('
 function f(now){var t=clamp((now-t0)/D,0,1),e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,o=dir==='out'?e:1-e;wpane.style.opacity=o.toFixed(3);wdog.style.opacity=(o*.42).toFixed(3);if(t<1)requestAnimationFrame(f);else if(done)done()}requestAnimationFrame(f)}
 if(walk&&R.classList.contains('walking-in')){try{sessionStorage.removeItem('bf-walk')}catch(e){}walk.classList.add('on');wpane.style.opacity='1';wdog.style.opacity='.42';R.classList.remove('walking-in');setTimeout(function(){walkAnim('in',function(){walk.classList.remove('on');wpane.style.opacity='';wdog.style.opacity=''})},80)}
 document.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;var a=e.target.closest('a[href]');if(!a||a.target==='_blank'||a.hasAttribute('download'))return;var h=a.getAttribute('href');if(!h||h.charAt(0)==='#'||/^(mailto|tel|sms|javascript):/i.test(h))return;var u;try{u=new URL(a.href,location.href)}catch(x){return}
-if(u.origin!==location.origin||(u.pathname===location.pathname&&u.search===location.search))return;if(calm()||!walk)return;e.preventDefault();R.classList.remove('menu-open');sset('bf-walk','1');var gone=false,go=function(){if(gone)return;gone=true;location.href=u.href},safety=setTimeout(go,1400);walkAnim('out',function(){clearTimeout(safety);go()})});
+if(u.origin!==location.origin||(u.pathname===location.pathname&&u.search===location.search))return;if(calm()||!walk)return;
+/* a file (the printed menus, the PDF pack) opens as itself, with no page turn */
+if(/\.(pdf|jpe?g|png|svg|zip)$/i.test(u.pathname))return;
+/* touch screens: the next page starts loading at once and only turns in on arrival, so a tap never waits on the dip */
+if(matchMedia('(pointer:coarse)').matches){sset('bf-walk','1');return}
+e.preventDefault();R.classList.remove('menu-open');sset('bf-walk','1');var gone=false,go=function(){if(gone)return;gone=true;location.href=u.href},safety=setTimeout(go,1400);walkAnim('out',function(){clearTimeout(safety);go()})});
 addEventListener('pageshow',function(e){if(e.persisted&&walk){walk.classList.remove('on');wpane.style.opacity='';wdog.style.opacity=''}});
 
 /* sticky conversion CTA (Functions, Christmas): shows once past the hero, hides from the enquiry form down */
