@@ -959,3 +959,35 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 }
 @keyframes tbIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.tb .mast{transition:none}.tb.menu-open .mast .links>a{animation:none}}
+
+/* ==== Phone audit, October 2026 ==== */
+
+/* ---- A · site-wide: night mode, lists, type scale, top bar, overlay, footer ---- */
+/* end A */
+/* . */
+/* . */
+/* . */
+
+/* ---- B · events pages (functions, christmas, corporate, private dining) ---- */
+/* end B */
+/* . */
+/* . */
+/* . */
+
+/* ---- C · homepage ---- */
+/* end C */
+/* . */
+/* . */
+/* . */
+
+/* ---- D · dining pages (menus, restaurant, bookings, vouchers, contact, aperitivo, negroni bar, fresh pasta, before the stadium, weddings) ---- */
+/* end D */
+/* . */
+/* . */
+/* . */
+
+/* ---- E · events pack, robbie, 404, our story ---- */
+/* end E */
+/* . */
+/* . */
+/* . */
