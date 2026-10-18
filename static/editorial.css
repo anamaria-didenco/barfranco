@@ -558,8 +558,11 @@ button.cta:focus-visible,a.cta:focus-visible{outline:2px solid var(--sp);outline
 .xcard .d2+.g2{margin-top:clamp(18px,2.2vw,28px)}
 /* phones: label and value rows keep their leader; tabs and hero buttons sit evenly */
 @media (max-width:620px){
-.info li span{flex:0 1 auto;min-width:40%}
-.info li em{flex:0 1 55%;text-align:right}
+.info li>span{flex:1 1 auto;min-width:0}
+.info li>em,.info li>a{flex:0 1 auto;max-width:62%}
+.info li>span,.info li>em,.info li>a{text-wrap:balance}
+.info li span em{display:block;text-align:left;font-size:15px;margin-top:2px}
+.card .info li{border-top:0}
 .mn-tabs{flex-wrap:nowrap;gap:14px}
 .mn-tabs button{font-size:clamp(16px,4.4vw,19px)}
 .hero-one .cta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -974,6 +977,10 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 /* Contact: Send a note and the map line under the map read on the night ground */
 .night .sec:not(.bright):not(.almond) .ct-card h2{color:var(--al)}
 .night .c-map,.night .c-map .meta a{color:var(--al)}
+
+/* lists of label and fact on phones: see the .info li rules in the ≤620px "phones: label and value rows" block (one rule, descriptions under their name) */
+/* Events pack, The room is yours: the Birra and Non-alc heads get air above them */
+.xcard .g2>div>div+div{margin-top:22px}
 /* end A */
 /* . */
 /* . */
