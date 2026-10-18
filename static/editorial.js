@@ -156,8 +156,9 @@ if(book){var dockAsk=$('.sticky-btns .cta-fill');
 if(R.classList.contains('sd')){book.textContent=dockAsk&&dockAsk.textContent.trim()||'Check your date';book.setAttribute('href','#enquire')}
 else if(D.body.getAttribute('data-ask')==='events'){book.textContent='Check your date';book.setAttribute('href','/functions/#enquire')}
 else if($('#enquire')){book.textContent='Check your date';book.setAttribute('href','#enquire')}else if($('#book iframe'))book.setAttribute('href','#book')}
-/* phones: while the cover's own filled ask (the same words, or the same address) is on screen, the bar's copy steps back; it returns as the cover leaves */
-if(book&&'IntersectionObserver' in window){var norm=function(s){return(s||'').replace(/\s+/g,' ').trim().toLowerCase()},hAsk=null;
+/* phones: while the cover's own filled ask (the same words, or the same address) is on screen, the bar's copy steps back; it returns as the cover leaves.
+   Not on Home (its hero is [data-k=home]): the owner approved Home's first phone screen with the bar's Book a table in it */
+if(book&&'IntersectionObserver' in window&&!$('[data-hero][data-k="home"]')){var norm=function(s){return(s||'').replace(/\s+/g,' ').trim().toLowerCase()},hAsk=null;
 [].slice.call(D.querySelectorAll('[data-hero] a.cta-fill,.hf-fold a.cta-fill')).some(function(a){if(norm(a.textContent)===norm(book.textContent)||a.href===book.href){hAsk=a;return true}return false});
 if(hAsk)new IntersectionObserver(function(es){var e=es[es.length-1];R.classList.toggle('tb-hask',e.isIntersecting&&getComputedStyle(hAsk).visibility!=='hidden')},{rootMargin:'-64px 0px 0px 0px'}).observe(hAsk)}
 /* the skip link lands on <main>, or where a page has none (Home, the events pages) on its opening section */
