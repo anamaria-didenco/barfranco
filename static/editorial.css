@@ -981,6 +981,13 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 /* lists of label and fact on phones: see the .info li rules in the ≤620px "phones: label and value rows" block (one rule, descriptions under their name) */
 /* Events pack, The room is yours: the Birra and Non-alc heads get air above them */
 .xcard .g2>div>div+div{margin-top:22px}
+
+/* one type scale on phones: the closing words match the chapter heads (32px), so the sign-off (42px) is the one big word at the end;
+   the facts on cards (prices, the line under a card head) are read at the small italic size, 15px, never 13px */
+@media (max-width:620px){
+.sec.cta .d1,#contact .d1{font-size:32px}
+.card-s,.card li em,.card li span em{font-size:15px}
+}
 /* end A */
 /* . */
 /* . */
