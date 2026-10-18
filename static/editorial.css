@@ -749,6 +749,18 @@ background:radial-gradient(circle,currentColor 0 1px,transparent 1.35px) left bo
 .pm-drink li>i::before{content:none}
 .pm-food .pm-d{display:none}
 }
+/* phones: the printed food and drinks sheets at reading size. Scaled from the PDF, 8.5pt comes out near 8px on a phone,
+   so the sheet keeps its frame, title and courses, and the dishes wrap at 15px with the price at the end of the line */
+@media (max-width:620px){
+#sheets .pm .card-h{font-size:17px;line-height:1.2}
+#sheets .pm-food li,#sheets .pm-drink li{font-size:15px;line-height:1.45;white-space:normal;margin-top:7px;padding:0 calc(var(--u)*30)}
+#sheets .pm .card-h+ul{margin-top:8px}
+#sheets .pm .course+.course{margin-top:22px}
+#sheets .pm-drink li{gap:14px}
+#sheets .pm-drink .pm-n{flex:1 1 auto;min-width:0}
+#sheets .pm-drink li>i{display:none}
+#sheets .pm-two{grid-template-columns:minmax(0,1fr);row-gap:22px;padding:0;margin-top:22px}
+}
 
 /* ==== event menus (Menus page, third tab): the printed event pages, at a size you can read ==== */
 .sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -882,6 +894,9 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .hf-fold>.sec.hf-copy{position:absolute;left:0;right:0;bottom:0;z-index:2;--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.45);color:var(--al);padding:110px 0 clamp(20px,4svh,32px);background:linear-gradient(180deg,rgba(40,4,0,0),rgba(40,4,0,.86) 110px)}
 .hf-g{grid-template-columns:minmax(0,1fr);gap:14px}
 .hf-side{gap:14px}
+/* the second ask sits on the scrim too, so it takes the scrim's ink */
+.hf-fold>.sec.hf-copy a.cta:not(.cta-fill){border-color:var(--al);color:var(--al)}
+.hf-fold>.sec.hf-copy a.cta:not(.cta-fill):hover{background:var(--al);color:var(--dr)}
 }
 
 /* ==== Restaurant: opens on Home's first screen (.hf-fold); the room photo carries no caption, so no caption scrim ==== */
