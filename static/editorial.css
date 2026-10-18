@@ -1110,7 +1110,8 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .ed-main>.sec.hero.nf{display:grid;place-items:center;grid-template-columns:minmax(0,1fr);height:auto;min-height:clamp(520px,calc(100svh - 120px),780px);padding:calc(var(--nv) + 32px) var(--gx) clamp(56px,8vw,96px)}
 .ed-main>.sec.hero.nf .hero-cap{position:relative;left:auto;right:auto;top:auto;bottom:auto;transform:none;width:min(100%,500px);max-width:none}
 @media (max-width:620px){
-.ed-main>.sec.hero.nf{min-height:calc(100svh - 80px);padding-top:calc(var(--nv) + 16px)}
+/* with no photograph to fill a screen, the card sits just under the bar and the footer follows: no empty Almond field above or below it */
+.ed-main>.sec.hero.nf{min-height:0;padding-top:calc(var(--nv) + 24px);padding-bottom:48px}
 .ed-main>.sec.hero.nf .hero-cap{width:100%;padding:24px 22px}
 .nf .hero-cap .ln{min-height:44px;align-items:center;font-size:16px;padding:0}
 .nf .hero-cap .ln em{font-size:15px}
