@@ -1137,3 +1137,12 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 /* . */
 /* . */
 /* . */
+
+/* ==== the menu's double rule, framing every page (owner's call) ====
+   The printed menu's border: two thin Bright Red rules, the outer at 11.5pt and the inner at 14.9pt, 1.2pt each.
+   Here it frames the window on every page, above everything and never in the way of a tap. */
+body::before,body::after{content:"";position:fixed;z-index:2147483000;pointer-events:none;border:1.5px solid var(--br)}
+body::before{inset:12px}
+body::after{inset:16.5px}
+@media (max-width:620px){body::before,body::after{border-width:1px}body::before{inset:6px}body::after{inset:9px}}
+@media print{body::before,body::after{display:none}}
