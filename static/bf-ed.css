@@ -1205,6 +1205,9 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-ev .rev cite{display:block;margin-top:8px;font-size:var(--t-cite)}
 .pg-ev .talk{margin-top:14px}
 .pg-ev .talk+.talk{margin-top:8px}
+/* the photographs are this morning's set (owner, 21 October 2026). Private dining's guest row keeps two photographs, set
+   at the right edge; corporate's second portrait of the team sits under the booth in the questions, as the archetype has it */
+.pg-private .testi-ph{justify-content:flex-end}
 @media (max-width:760px){
 /* phones (M2, on the owner's own-phone measure): the running line reads as one small line over the title, as Christmas's
    does; the facts stack; the night's three photographs run across the measure with the second (upstairs) highest; the
@@ -1253,6 +1256,26 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-ev .rev{margin-top:var(--after);padding-top:28px;text-align:left}
 .pg-ev .rev-g{text-align:right}
 .pg-ev .rev ul{grid-template-columns:1fr;gap:24px;margin:24px 0 0;max-width:none}
+/* this morning's phone photographs (owner, 21 October 2026). Functions: the four guest photographs as two pairs over the
+   quote; the two floors read as words (their photographs are desktop-only), the title in the page's inks. */
+.pg-functions .testi{grid-template-columns:var(--go) 1fr calc(var(--u)*12) 1fr var(--go);row-gap:calc(var(--u)*12)}
+.pg-functions .testi>.ph,.pg-functions .testi-ph .ph:nth-child(2){grid-column:2;height:var(--pair)}
+.pg-functions .testi-ph .ph:nth-child(1),.pg-functions .testi-ph .ph:nth-child(3){display:block;grid-column:4;height:var(--pair)}
+.pg-functions .testi-ph .ph:nth-child(2),.pg-functions .testi-ph .ph:nth-child(3){grid-row:2}
+.pg-functions .testi>.quote{grid-column:2/5;grid-row:3}
+.pg-functions .feature .feature-ph{height:auto;margin-top:var(--lbl);background:none;overflow:visible}
+.pg-functions .feature-ph>img,.pg-functions .feature-ph::after{display:none}
+.pg-functions .feature-ph .on-ph{position:static;color:var(--br)}
+.pg-functions .feature-ph .on-ph i{color:var(--dr)}
+.pg-functions #bars{padding-bottom:0}
+.pg-functions .feature+.feature{padding-top:var(--after)}
+/* corporate: the two floors read as words; the Eventi card opens on its tabs; one photograph in the questions */
+.pg-corporate .pair.floors>.ph{display:none}
+.pg-corporate .pair.floors>div.pair-txt:first-of-type{margin-top:0}
+.pg-corporate .pkgs-ph{display:none}
+.pg-corporate .faqx-l>.ph:nth-child(2),.pg-corporate .faqx-r>.ph{display:none}
+/* private dining: the night is the frame alone (its three photographs are desktop-only) */
+.pg-private .steps-ph{display:none}
 }
 /* end P2 */
 
