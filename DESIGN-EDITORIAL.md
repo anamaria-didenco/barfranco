@@ -589,9 +589,52 @@ at the gutter; the emblem signs off at the right under the right-aligned link.
 
 ## 9 · Motion
 
-Only this: photographs below the first screen settle in once (fade + 12px), at 2.5s everything is on regardless; slides
-crossfade; the compact band slides in; the Menu fades. Under `prefers-reduced-motion` nothing moves (and smooth anchor
-scrolling is off). Add no other motion.
+The owner (October 2026): "the pages are supposed to be moving." The motion is the reference's (Dylan James by Seventh
+Made), translated for Franco and written once, in `bf-ed.css` (the `==== motion ====` block) and `bf-ed.js` (parts 0, 0b,
+1, 5, 6, 8b). It needs no markup: a page gets all of it by being built from the components. Add no other motion.
+
+**The gate.** Nothing moves unless `<html>` carries `mo`. `bf-ed.js` sets it only while the device allows motion (not
+`prefers-reduced-motion: reduce`) and the visitor has not chosen Calm (`localStorage` `bf-motion` = `calm`); it watches both
+live. Every motion rule in the CSS sits under `html.mo`, and without it a blanket rule stops every animation and transition,
+so a page with Calm, reduced motion, no JS or in print is simply there, at rest: every photograph shown, nothing
+translated or scaled, the band's hairline drawn, the Menu opening and closing at once.
+
+**The Motion control.** A few words, set by the script (no markup): beside the © on the footer's base line and at the foot
+of the Menu, Affairs at link size, underlined like the footer's links: *Motion: on* / *Motion: calm* (`button.bf-motion`,
+`aria-pressed`). It switches live: Calm stops everything that instant and shows every element at rest; on again, the page
+picks up where it is (what was seen stays put, what is still below fades as it arrives). Under the device's reduced
+motion it reads *Motion: calm* and stays so.
+
+**The motions, and only these.**
+1. **Entrance fade.** Every photograph (`.ph`, `.slides`, `.bandph`, `[data-rv]`; not the Menu's, not one inside another)
+   is tagged `.rv` and fades in once, opacity only, ease-out, when its top reaches the foot of the screen (the first
+   screen's on load). The beat comes from its order among the photographs of its section: 0s / .25s / .5s, lasting
+   1s / 1.25s / 1.5s, and round again. A photograph the page jumps past (an anchor) is simply there.
+2. **Hero glide.** The page's header photograph (the first visible photograph in the page: Home's cover, the content
+   pages' `.intro-ph`, `.head-ph`, Contact's `.fpage-ph`, a story page's `.blank-ph` on phones or `.intro2-big`) is cut
+   16% wider than its frame and travels that extra width right to left over 60s, brisk at first then crawling
+   (`cubic-bezier(.05,.7,.1,1)`), from off the right edge until the edges meet. It never shows paper.
+3. **Rule draw.** On a story page (one with `.blank`: Our story, Robbie, 404) the hairline under the slim band draws in
+   from the left over 5s.
+4. **Parallax, in the frame.** The frame stays put; the picture drifts inside it, lagging the page, so the layers
+   separate. Block-based: a photograph's shift comes from its section's position, so a section's photographs move
+   together. `shift = clamp(delta / range, −1, 1) × maxShift`, `delta` = viewport centre − section centre (the header:
+   `scrollY`, so it is at rest at load; every other section is at rest when centred), `range` = (viewport + section
+   height) / 2 (the header: its own foot), `maxShift` = 0.10 × frame height × speed / 0.7, and `scale` = 1 + 2 × maxShift
+   / frame height + 0.01, so no edge is ever exposed. Speeds: the header .3; a section with one photograph .5; two .4 / .2;
+   three .4 each; four or more .5 / .1 / .2 / .5 in turn. `data-speed="…"` on a `.ph` (0 to 1) overrides. It runs on the
+   individual `translate` and `scale` properties (`--py`, `--ps`), so it composes with the glide's `transform`; one
+   `requestAnimationFrame` per scroll, on geometry measured at load, resize and font load, only near the screen.
+5. **Galleries** (`[data-slides]`). A slow dissolve: each photograph holds 4.5s, then the next fades in over it for 1.5s,
+   so they read as photographs, not double exposures. Only one gallery plays at a time (the one most on screen), all of
+   them rest while the Menu is open, and one stops for good once someone picks a number.
+6. **The Menu** fades in over 1s and out over 1s (closing waits for the fade, then hides the sheet and hands the page and
+   focus back). The compact band slides in under the frame's top.
+7. **Questions** (`.faqx`): Prev / Next fade the incoming question in over 1s.
+
+**Left out on purpose:** the reference's cream noise texture (the identity has no textures), its intro views and its
+three-quote testimonial slider (the owner dropped both). No movement of type, no zooms, no scroll-jacking, nothing on a
+loop that never ends.
 
 ## 10 · Page CSS: the marker blocks
 
@@ -656,7 +699,7 @@ No `<style>` blocks, no `style=""` except `object-position` on an `<img>`. No ne
 | Top bar ask matched to the page (`editorial.js`) | yes | written in the markup (band and compact band) |
 | Book a table always reachable (top bar states) (`editorial.js`) | yes | the compact band, part 4 |
 | Footer year (`chrome.js` `data-bf-year`) | yes | part 2 |
-| Photos settle in (`editorial.js` `.rv`) | decorative, kept | part 1 |
+| Photos settle in (`editorial.js` `.rv`) | decorative, kept | part 1: the motion system of §9 (gate, Motion control, fade, glide, rule draw, parallax) |
 | Questions one at a time (new, from the reference) | yes | part 8b (`.faqx`) |
 | Night mode / lights, live clock `#openH` (`editorial.js`) | decorative | dropped |
 | Lead curtain, swipeable dog on a lead (`editorial.js`) | decorative | dropped |
