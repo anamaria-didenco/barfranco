@@ -1109,8 +1109,23 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-contact .map-s{padding:calc(var(--u)*100) calc(var(--u)*16) calc(var(--u)*120)}
 .pg-contact #find .facts em{max-width:78%}
 @media (max-width:760px){
-.pg-bookings .pair.floors>.ph:nth-of-type(1){height:calc(var(--u)*97)}
-.pg-contact .map-s{padding:calc(var(--u)*64) calc(var(--u)*13.4)}
+/* menus: the sheets on the gutter; the notes under them read left at the measure; the port has no words of its own, so
+   its label sits at the top-left corner of the photograph, sharing its left edge */
+.pg-menus .mn{padding-left:var(--go);padding-right:var(--go)}
+.pg-menus .mn-foot{max-width:none;margin:28px 0 0;text-align:left}
+.pg-menus .port-txt{grid-row:1;grid-column:3/4;align-self:end;margin:0 0 var(--lbl)}
+.pg-menus .port-ph{margin-top:0}
+/* bookings: the two floors stay a pair across the measure, and downstairs sits lower than upstairs */
+.pg-bookings .pair.floors>.ph:nth-of-type(1){height:var(--pair);align-self:end;margin-top:calc(var(--u)*56)}
+/* vouchers: the voucher is a printed object set off to the right of the paper; the words follow at the gutter */
+.pg-vouchers .vcard{width:calc(var(--u)*300);justify-self:end}
+.pg-vouchers .cols>.stack{margin-top:var(--after)}
+/* contact: the reference's air between the fields, the asks after --ask, the facts at the measure, the map on the tokens */
+.pg-contact .fpage-txt>.btns{margin-top:var(--ask)}
+.pg-contact .form-intro>p{max-width:none}
+.pg-contact .form.two{row-gap:56px}
+.pg-contact #find .facts em{max-width:none}
+.pg-contact .map-s{padding:var(--air) var(--go)}
 }
 /* end P1 */
 
@@ -1311,6 +1326,11 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-dine .pair.solo .pair-txt>.frame{max-width:none}
 @media (max-width:760px){
 .pg-dine .port-s>.ph{height:calc(var(--u)*170.6)}
+/* the Negroni bar's room has no words of its own: its label sits at the top-left corner of the photograph */
+.pg-negroni .port-txt{grid-row:1;grid-column:3/4;align-self:end;margin:0 0 var(--lbl)}
+.pg-negroni .port-ph{margin-top:0}
+/* before the stadium opens on its cover photograph cut shorter, so the title and the first portrait share the first screen */
+.pg-stadium .head-ph{height:calc(var(--u)*300)}
 }
 /* end P4 */
 
@@ -1330,10 +1350,14 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 /* 404: the blank field, the three lines as fact rows under it */
 .pg-404 .blank>.facts{width:min(100%,440px);margin-top:max(24px,calc(var(--u)*36));text-align:left}
 @media (max-width:760px){
+/* our story opens on its one portrait (figure.ph.blank-ph, phones only), so the photograph leaves the rules' section */
+.pg-story .intro2-big{display:none}
 .pg-story .intro2{grid-template-rows:auto;padding-bottom:calc(var(--u)*60)}
-.pg-story .intro2-txt{max-width:none}
+.pg-story .intro2-txt{grid-row:1;max-width:none;margin-top:0}
 .pg-story .st-script img{width:calc(var(--u)*180)}
 .pg-story .st-levels{grid-template-columns:1fr;gap:calc(var(--u)*28)}
+/* 404: the empty field fills the first screen with the title in its middle, as the reference's story opening */
+.pg-404 .blank{min-height:calc(100svh - var(--band) - 2 * var(--fp));align-content:center;padding-top:var(--air)}
 }
 /* end P5 */
 

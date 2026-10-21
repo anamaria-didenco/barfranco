@@ -665,6 +665,11 @@ No `<style>` blocks, no `style=""` except `object-position` on an `<img>`. No ne
 - Christmas: carry `data-track` onto the band ask, the compact band ask and every `#enquire` button.
 - The printed-menu facsimile on /menus/ (`.pm .card-h`) is the one sanctioned exception to Marsha ≥24px.
 - CLAUDE.md describes the old system; where it conflicts with this guide, this guide wins for pages on bf-ed.css.
+- Phones, P1/P4/P5 (M1): Our story carries `<figure class="ph blank-ph">` (its one portrait) first in `.blank`, so on phones
+  the page opens on it and `.intro2-big` hides there (desktop unchanged). A `.port` with no words of its own (Menus, the
+  Negroni bar) puts its label at the top-left corner of the photograph; Bookings' floors stay a pair with downstairs
+  lower; the voucher card sits off to the right at 300u; Before the stadium cuts its cover to 300u so the title and the
+  first portrait share the first screen; 404's field fills the first screen.
 
 ### Footer on phones (owner, October 2026: "it looks really busy")
 bf-ed.js (part 3b) wraps the footer's two page columns in a `<details>` with the summary "All pages", closed by
