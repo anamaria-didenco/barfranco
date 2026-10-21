@@ -1170,7 +1170,6 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-ev .cols>.rooms+.small{margin-top:max(16px,calc(var(--u)*24));max-width:60em}
 .pg-ev .room{border:1px solid var(--hair)}
 .pg-ev .room .ph{height:calc(var(--u)*380)}
-.pg-ev .room .label{font-size:max(15px,calc(var(--u)*17))}
 .pg-ev .room .h3{margin-top:8px}
 .pg-ev .room p:not(.label):not(.go){margin-top:8px}
 .pg-ev .room .go{margin-top:14px}
@@ -1463,7 +1462,6 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-story .st-script{margin:0;line-height:0}
 .pg-story .st-script img{display:block;width:min(100%,calc(var(--u)*300));height:auto}
 .pg-story .st-levels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(var(--u)*39)}
-.pg-story .st-levels .label{font-size:max(16px,calc(var(--u)*19))}
 .pg-story .cols>.st-door{margin-top:max(28px,calc(var(--u)*48));max-width:36em}
 /* 404: the blank field, the three lines as fact rows under it */
 .pg-404 .blank>.facts{width:min(100%,440px);margin-top:max(24px,calc(var(--u)*36));text-align:left}
