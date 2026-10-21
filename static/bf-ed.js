@@ -3,7 +3,7 @@
    nothing where its markup is absent, so one file serves every page. Without it each page still reads:
    photographs show, Menu jumps to the footer's page list, the first slide shows, the accordions open natively.
 
-   Parts: 1 photographs settle in · 2 year · 3 current page · 4 compact band · 5 the Menu screen · 6 slides ·
+   Parts: 0 the motion gate and the Motion control · 1 motion (entrance fade, hero glide, rule draw, parallax) · 2 year · 3 current page · 4 compact band · 5 the Menu screen · 6 slides ·
    7 tabs · 8 chapters & questions (deep links, landing, print) · 8b questions one at a time (.faqx) ·
    9 contact form (FormSubmit) ·
    10 VenueFlow (loading note, height) · 11 events: room finder, calendar, held date, prefill, December strip.
@@ -12,7 +12,6 @@
   'use strict';
   var D = document, R = D.documentElement, W = window;
   R.classList.add('js');
-  var reduce = !!(W.matchMedia && W.matchMedia('(prefers-reduced-motion: reduce)').matches);
   function $(s, c) { return (c || D).querySelector(s); }
   function $$(s, c) { return [].slice.call((c || D).querySelectorAll(s)); }
   function lget(k, d) { try { var v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }
@@ -22,15 +21,205 @@
   /* each part runs on its own: one failing never stops the rest */
   function part(name, fn) { try { fn(); } catch (e) { if (W.console) console.warn('[bf-ed] ' + name + ':', e); } }
 
-  /* 1 · photographs settle in once, as they arrive; the first screen is simply there; at 2.5s everything is on */
-  part('reveal', function () {
-    if (reduce || !('IntersectionObserver' in W)) return;
-    var els = $$('.bf-page .ph, .bf-page [data-rv]').filter(function (e) { return !e.parentNode.closest('.ph'); });
-    var lim = W.innerHeight || 800, io = new IntersectionObserver(function (es) {
-      es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } });
-    }, { rootMargin: '0px 0px -6% 0px' });
-    els.forEach(function (e) { if (e.getBoundingClientRect().top > lim) { e.classList.add('rv'); io.observe(e); } });
-    setTimeout(function () { els.forEach(function (e) { e.classList.add('in'); }); }, 2500);
+  /* 0 · the motion gate (DESIGN-EDITORIAL.md §9): html.mo only while the device allows motion (not prefers-reduced-motion:
+     reduce) and the visitor has not chosen Calm (localStorage bf-motion = calm). Every motion rule in bf-ed.css sits under
+     html.mo, so without it everything is simply there, at rest. Both are watched live; parts that move listen with onMo. */
+  var mqR = W.matchMedia ? W.matchMedia('(prefers-reduced-motion: reduce)') : null, moFns = [], gated = false;
+  function sysCalm() { return !!(mqR && mqR.matches); }
+  function chosenCalm() { return lget('bf-motion', '') === 'calm'; }
+  function mo() { return R.classList.contains('mo'); }
+  function onMo(fn) { moFns.push(fn); }
+  function gate() {
+    var on = !sysCalm() && !chosenCalm();
+    if (gated && on === mo()) { moFns.forEach(function (f) { if (f.sync) f(on); }); return; }
+    gated = true;
+    R.classList.toggle('mo', on);
+    moFns.forEach(function (f) { try { f(on); } catch (e) { if (W.console) console.warn('[bf-ed] motion:', e); } });
+  }
+  gate();
+  if (mqR) { if (mqR.addEventListener) mqR.addEventListener('change', gate); else if (mqR.addListener) mqR.addListener(gate); }
+  W.addEventListener('storage', function (e) { if (e.key === 'bf-motion') gate(); });
+
+  /* 0b · the Motion control: a few words beside the © in the footer and at the Menu's foot, "Motion: on" / "Motion: calm".
+     It switches live; Calm stops everything at once. Under the device's reduced motion it reads Motion: calm and stays so. */
+  part('motion-control', function () {
+    var btns = [];
+    [[$('.bf-foot-base > span'), ' · '], [$('.bf-menu-foot .bf-menu-tag'), '']].forEach(function (x) {
+      if (!x[0]) return;
+      var b = D.createElement('button');
+      b.type = 'button'; b.className = 'bf-motion';
+      x[0].appendChild(x[1] ? D.createTextNode(x[1]) : D.createElement('br'));
+      x[0].appendChild(b); btns.push(b);
+      b.addEventListener('click', function () {
+        if (sysCalm()) return;
+        lset('bf-motion', chosenCalm() ? 'on' : 'calm');
+        gate();
+      });
+    });
+    function sync(on) {
+      btns.forEach(function (b) {
+        b.textContent = 'Motion: ' + (on ? 'on' : 'calm');
+        b.setAttribute('aria-pressed', String(on));
+        if (sysCalm()) b.setAttribute('aria-disabled', 'true'); else b.removeAttribute('aria-disabled');
+      });
+    }
+    sync.sync = true; onMo(sync); sync(mo());
+  });
+
+  /* 1 · motion. Every photograph (.ph, .slides, .bandph, [data-rv]; not the Menu's, not one inside another) is tagged .rv
+     and fades in once as its top reaches the foot of the screen (the first screen's on load), on a 0 / .25 / .5s beat by
+     its order in its section. The page's header photograph (the first visible one) glides right to left over 60s. On a
+     story page (.blank) the band's hairline draws in. Parallax: each photograph drifts inside its frame as its section
+     passes (block-based, so a section's photographs move together), shift = clamp(delta / range, -1, 1) × maxShift, with
+     delta = viewport centre − section centre (the header: scrollY), range = (viewport + section height) / 2 (the header:
+     its own foot, so it reaches its full shift as it leaves the screen),
+     maxShift = 0.10 × frame height × speed / 0.7, and a scale that keeps every edge covered. Speeds: header .3; one
+     photograph in a section .5; two .4 / .2; three .4; four or more .5 / .1 / .2 / .5; data-speed overrides. One
+     requestAnimationFrame per scroll, on cached geometry, only near the screen. */
+  var menuOpen = false, menuFns = [];
+  part('motion', function () {
+    var page = $('.bf-page') || D.body, io = null;
+    var els = $$('.ph, .slides, .bandph, [data-rv]', page).filter(function (e) {
+      return !(e.parentElement && e.parentElement.closest('.ph, .slides')) && !e.closest('.bf-menu');
+    });
+    function blockOf(e) {
+      var p = e.parentElement, b = p && p.closest('section, [class*="sec"]');
+      if (b && page.contains(b) && b !== page) return b;
+      return (p && p !== page && !p.matches('main, body')) ? p : e;
+    }
+    var groups = [];
+    els.forEach(function (e) {
+      e.__blk = blockOf(e);
+      var g = groups.filter(function (x) { return x.b === e.__blk; })[0];
+      if (!g) { g = { b: e.__blk, n: 0 }; groups.push(g); }
+      var k = g.n++ % 3;
+      e.classList.add('rv'); if (k) e.classList.add('rv-' + k);
+    });
+
+    /* the entrance fade */
+    function show(e, now) {
+      if (e.classList.contains('in')) return;
+      e.classList.add('in');
+      if (now || !mo()) e.classList.add('done');
+    }
+    function arrive(e) {
+      if (e.__wait || e.classList.contains('in')) return;
+      if (!mo()) { show(e, true); return; }
+      var img = e.matches('img') ? e : $('img.on, img', e);
+      if (!img || img.complete) { show(e); return; }
+      /* wait for the picture (at most 1.2s), so it is the photograph that fades in, not its empty frame */
+      e.__wait = 1;
+      var t = 0, go = function () { clearTimeout(t); img.removeEventListener('load', go); img.removeEventListener('error', go); e.__wait = 0; show(e); };
+      t = setTimeout(go, 1200);
+      img.addEventListener('load', go); img.addEventListener('error', go);
+    }
+    D.addEventListener('animationend', function (ev) {
+      var t = ev.target;
+      if (ev.animationName !== 'bf-fade' || !t.classList) return;
+      if (t.classList.contains('rv')) t.classList.add('done');
+      if (t.classList.contains('fx')) t.classList.remove('fx');
+    });
+    if ('IntersectionObserver' in W) {
+      io = new IntersectionObserver(function (es) {
+        es.forEach(function (x) {
+          var e = x.target;
+          if (x.isIntersecting) { arrive(e); io.unobserve(e); }
+          /* already above the screen (a jump to an anchor): simply there */
+          else if (x.boundingClientRect.height > 0 && x.boundingClientRect.bottom <= 0) { show(e, true); io.unobserve(e); }
+        });
+      }, { rootMargin: '0px 0px -6% 0px' });
+      els.forEach(function (e) { io.observe(e); });
+    } else els.forEach(function (e) { show(e, true); });
+    W.addEventListener('beforeprint', function () { els.forEach(function (e) { show(e, true); }); });
+
+    /* the rule draw, on story pages */
+    var band = $('.blank') && $('.bf-band.slim');
+    if (band) band.classList.add('draw');
+
+    /* the hero glide and the parallax */
+    var items = els.filter(function (e) { return !e.matches('.slides, [data-slides]'); }).map(function (e) {
+      var img = e.matches('img') ? e : $('img', e);
+      if (img) img.classList.add('bf-px');
+      return img ? { ph: e, img: img, blk: e.__blk, s: NaN } : null;
+    }).filter(Boolean);
+    var head = null, vh = W.innerHeight || 800, ticking = 0, mT = 0;
+    function pickHead() {
+      var h = null;
+      for (var i = 0; i < els.length; i++) {
+        var e = els[i], r = e.getBoundingClientRect();
+        if (!r.height || !r.width) continue;
+        if (r.top + W.scrollY < vh * 1.5 && !e.matches('.slides, [data-slides]')) h = $('img', e) || (e.matches('img') ? e : null);
+        break;
+      }
+      if (head && head !== h) head.classList.remove('bf-glide');
+      head = h;
+      if (head) head.classList.add('bf-glide');
+    }
+    var SP = { 1: [.5], 2: [.4, .2], 3: [.4, .4, .4] };
+    function measure() {
+      mT = 0;
+      vh = W.innerHeight || D.documentElement.clientHeight || 800;
+      var y = W.scrollY || W.pageYOffset || 0, byB = [];
+      pickHead();
+      items.forEach(function (it) {
+        it.h = it.ph.getBoundingClientRect().height;
+        it.head = it.img === head;
+        if (!it.h || it.head) return;
+        var g = byB.filter(function (x) { return x.b === it.blk; })[0];
+        if (!g) { g = { b: it.blk, a: [] }; byB.push(g); }
+        g.a.push(it);
+      });
+      byB.forEach(function (g) { var sp = SP[g.a.length] || [.5, .1, .2, .5]; g.a.forEach(function (it, k) { it.sp = sp[k % sp.length]; }); });
+      items.forEach(function (it) {
+        if (!it.h) { it.max = 0; return; }
+        var ds = it.ph.getAttribute('data-speed') || it.img.getAttribute('data-speed');
+        var sp = (ds !== null && ds !== '' && !isNaN(+ds)) ? +ds : it.head ? .3 : it.sp;
+        var r = (it.head ? it.ph : it.blk).getBoundingClientRect();
+        it.top = r.top + y; it.bot = it.top + r.height; it.mid = it.top + r.height / 2;
+        /* the header is at rest at load and reaches its full shift as it leaves the top of the screen */
+        it.range = Math.max(1, it.head ? it.bot : (vh + r.height) / 2);
+        it.max = .1 * it.h * clamp(sp, 0, 1) / .7;
+        it.img.style.setProperty('--ps', (1 + 2 * it.max / it.h + .01).toFixed(4));
+        it.s = NaN;
+      });
+      els.forEach(function (e) { if (!e.classList.contains('in')) { var r = e.getBoundingClientRect(); e.__bot = r.height ? r.bottom + y : Infinity; } });
+      kick();
+    }
+    function frame() {
+      ticking = 0;
+      if (!mo() || menuOpen) return;
+      var y = W.scrollY || W.pageYOffset || 0, lo = y - vh, hi = y + 2 * vh;
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        if (!it.max || it.bot < lo || it.top > hi) continue;
+        var d = it.head ? y : (y + vh / 2) - it.mid, s = clamp(d / it.range, -1, 1) * it.max;
+        if (Math.abs(s - it.s) < .05) continue;
+        it.s = s;
+        it.img.style.setProperty('--py', s.toFixed(2) + 'px');
+      }
+      /* a photograph the page jumped past is simply there */
+      for (var j = 0; j < els.length; j++) { var e = els[j]; if (!e.classList.contains('in') && e.__bot < y) show(e, true); }
+    }
+    function kick() { if (!ticking && mo() && !menuOpen) { ticking = 1; requestAnimationFrame(frame); } }
+    function later() { if (!mT) mT = requestAnimationFrame(measure); }
+    W.addEventListener('scroll', kick, { passive: true });
+    W.addEventListener('resize', later);
+    W.addEventListener('load', later);
+    if (D.fonts && D.fonts.ready) D.fonts.ready.then(later);
+    if ('ResizeObserver' in W) new ResizeObserver(later).observe(page);
+    D.addEventListener('toggle', later, true);
+    menuFns.push(function (open) { if (!open) kick(); });
+    onMo(function (on) {
+      if (on) {
+        /* back on: what was seen while calm stays put; what is above the screen is simply there; the rest fades as it comes */
+        els.forEach(function (e) { if (!e.classList.contains('in') && e.getBoundingClientRect().bottom < 0) show(e, true); });
+        measure();
+      } else {
+        els.forEach(function (e) { if (e.classList.contains('in')) e.classList.add('done'); });
+        $$('.fx').forEach(function (e) { e.classList.remove('fx'); });
+      }
+    });
+    measure();
   });
 
   /* 2 · the year in the footer */
@@ -95,39 +284,57 @@
       [page, skip].forEach(function (x) { if (x && 'inert' in x) x.inert = on; });
       if (sticky && 'inert' in sticky) sticky.inert = on || !sticky.classList.contains('on');
     }
+    /* it fades in over 1s and out over 1s (html.mo); closing waits for the fade, then hides the sheet and gives the page
+       back. Calm: at once. While it is open the page's galleries and parallax rest. */
+    var closing = null;
+    function tell(on) { menuOpen = on; menuFns.forEach(function (f) { f(on); }); }
     function open(from) {
+      if (closing) { closing.cancel(); ov.classList.add('on'); openers.forEach(function (b) { b.setAttribute('aria-expanded', 'true'); }); return; }
       if (!ov.hidden) return;
       last = from || D.activeElement;
       ov.hidden = false;
       R.classList.add('bf-lock');
       openers.forEach(function (b) { b.setAttribute('aria-expanded', 'true'); });
       setInert(true);
-      requestAnimationFrame(function () { ov.classList.add('on'); });
+      tell(true);
+      void ov.offsetWidth; /* the sheet is laid out at opacity 0 first, so the fade runs */
+      ov.classList.add('on');
       (closeBtn || focusables()[0] || ov).focus({ preventScroll: true });
     }
-    function close(noFocus) {
+    function close(noFocus, now) {
       if (ov.hidden) return;
+      if (closing) { if (now) closing.end(); return; }
       ov.classList.remove('on');
-      ov.hidden = true;
-      R.classList.remove('bf-lock');
       openers.forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
-      setInert(false);
-      if (!noFocus && last && last.focus) {
-        /* the opener may be the compact band's Menu, which can have gone while the sheet was open */
-        var tgt = (last.closest('.bf-sticky') && !sticky.classList.contains('on')) ? $('.bf-band .bf-mbtn') : last;
-        if (tgt) tgt.focus({ preventScroll: true });
-      }
+      var t = 0, end = function () {
+        if (closing !== c) return;
+        closing = null; clearTimeout(t); ov.removeEventListener('transitionend', te);
+        ov.hidden = true;
+        R.classList.remove('bf-lock');
+        setInert(false);
+        tell(false);
+        if (!noFocus && last && last.focus) {
+          /* the opener may be the compact band's Menu, which can have gone while the sheet was open */
+          var tgt = (last.closest('.bf-sticky') && !sticky.classList.contains('on')) ? $('.bf-band .bf-mbtn') : last;
+          if (tgt) tgt.focus({ preventScroll: true });
+        }
+      }, te = function (e) { if (e.target === ov && e.propertyName === 'opacity') end(); };
+      var c = closing = { end: end, cancel: function () { closing = null; clearTimeout(t); ov.removeEventListener('transitionend', te); } };
+      if (now || !mo()) { end(); return; }
+      ov.addEventListener('transitionend', te);
+      t = setTimeout(end, 1150);
     }
+    onMo(function (on) { if (!on && closing) closing.end(); });
     if (closeBtn) closeBtn.addEventListener('click', function () { close(); });
     ov.addEventListener('click', function (e) {
       var a = e.target.closest('a[href]');
       if (!a) return;
       /* a link to a place on this page closes the sheet first, so the page can scroll to it */
       var u; try { u = new URL(a.href, location.href); } catch (x) { return; }
-      if (u.pathname === location.pathname && u.hash) close(true);
+      if (u.pathname === location.pathname && u.hash) close(true, true);
     });
     D.addEventListener('keydown', function (e) {
-      if (ov.hidden) return;
+      if (ov.hidden || closing) return;
       if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); close(); return; }
       if (e.key !== 'Tab') return;
       var fs = focusables(); if (!fs.length) return;
@@ -135,13 +342,20 @@
       if (e.shiftKey && i <= 0) { e.preventDefault(); fs[fs.length - 1].focus(); }
       else if (!e.shiftKey && (i === fs.length - 1 || i === -1)) { e.preventDefault(); fs[0].focus(); }
     });
-    W.addEventListener('pageshow', function (e) { if (e.persisted) close(true); });
+    W.addEventListener('pageshow', function (e) { if (e.persisted) close(true, true); });
   });
 
   /* 6 · slides: a tall photograph that turns over (01 02 03). Markup: <div class="ph slides" data-slides> with the
-     photographs as <img> (the first with class="on"); the numbers are added here. It turns every 4.5s while on
-     screen, never under reduced motion, and stops for good once someone picks a number. */
+     photographs as <img> (the first with class="on"); the numbers are added here. A slow dissolve: each photograph holds
+     4.5s, then the next fades in over it for 1.5s (html.mo; Calm: no turning). Only one gallery plays at a time, the one
+     most on screen; all of them rest while the Menu is open; one stops for good once someone picks a number. */
   part('slides', function () {
+    var all = [];
+    function conduct() {
+      var best = null;
+      if (mo() && !menuOpen) all.forEach(function (g) { if (!g.held && g.ratio > 0 && (!best || g.ratio > best.ratio)) best = g; });
+      all.forEach(function (g) { if (g === best) g.play(); else g.stop(); });
+    }
     $$('[data-slides]').forEach(function (s) {
       var im = $$(':scope > img', s);
       if (im.length < 2) return;
@@ -157,18 +371,31 @@
         });
         s.appendChild(nav);
       }
-      var nb = $$('button', nav), i = 0, t = 0, seen = true, held = false;
+      var nb = $$('button', nav), i = 0, wT = 0;
+      var g = { ratio: 'IntersectionObserver' in W ? 0 : 1, held: false, t: 0 };
       function show(n) {
+        var prev = im[i];
         i = n;
-        im.forEach(function (x, k) { x.classList.toggle('on', k === n); });
+        clearTimeout(wT);
+        im.forEach(function (x, k) { x.classList.toggle('on', k === n); if (x !== prev) x.classList.remove('was'); });
+        /* the outgoing photograph holds under the incoming one until the dissolve is done */
+        if (prev && prev !== im[n] && mo()) { prev.classList.add('was'); wT = setTimeout(function () { prev.classList.remove('was'); }, 1600); }
+        else if (prev) prev.classList.remove('was');
         nb.forEach(function (x, k) { x.setAttribute('aria-pressed', String(k === n)); });
       }
-      function run() { clearInterval(t); t = 0; if (!reduce && !held && seen) t = setInterval(function () { show((i + 1) % im.length); }, 4500); }
-      nb.forEach(function (b, k) { b.addEventListener('click', function () { held = true; clearInterval(t); show(k); }); });
+      g.play = function () { if (!g.t) g.t = setInterval(function () { show((i + 1) % im.length); }, 6000); };
+      g.stop = function () { clearInterval(g.t); g.t = 0; };
+      nb.forEach(function (b, k) { b.addEventListener('click', function () { g.held = true; g.stop(); show(k); conduct(); }); });
       show(0);
-      if ('IntersectionObserver' in W) new IntersectionObserver(function (es) { seen = es[es.length - 1].isIntersecting; run(); }).observe(s);
-      else run();
+      all.push(g);
+      if ('IntersectionObserver' in W) new IntersectionObserver(function (es) {
+        var x = es[es.length - 1]; g.ratio = x.isIntersecting ? x.intersectionRatio || .01 : 0; conduct();
+      }, { threshold: [0, .25, .5, .75, 1] }).observe(s);
     });
+    if (!all.length) return;
+    menuFns.push(conduct);
+    onMo(conduct);
+    conduct();
   });
 
   /* 7 · tabs: any role="tablist" (.tabs, .mn-tabs, .pkgs-tabs) with <button role="tab" aria-controls="panel-id">.
@@ -187,7 +414,7 @@
         });
         if (focus) t.focus();
       }
-      function land() { var top = list.getBoundingClientRect().top + W.scrollY - fp() - 72; W.scrollTo({ top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth' }); }
+      function land() { var top = list.getBoundingClientRect().top + W.scrollY - fp() - 72; W.scrollTo({ top: Math.max(0, top), behavior: mo() ? 'smooth' : 'auto' }); }
       function fromHash(scroll) {
         var h = location.hash.slice(1), t = h && tabs.filter(function (x) { return x.getAttribute('aria-controls') === h; })[0];
         if (t) { show(t); if (scroll) setTimeout(land, 80); return true; }
@@ -219,7 +446,7 @@
     function land(d, instant) {
       var s = $('summary', d) || d;
       var y = s.getBoundingClientRect().top + W.scrollY - fp() - 64;
-      W.scrollTo({ top: Math.max(0, y), behavior: (reduce || instant) ? 'auto' : 'smooth' });
+      W.scrollTo({ top: Math.max(0, y), behavior: (!mo() || instant) ? 'auto' : 'smooth' });
     }
     function openFor(id) {
       var t = id && D.getElementById(id); if (!t) return null;
@@ -253,8 +480,8 @@
   });
 
   /* 8b · questions one at a time (.faqx): every question stays in the HTML (the FAQPage schema reads it); the script shows
-     one, adds Prev / Next, keeps the box at the tallest answer so nothing jumps, and opens the one a link points to.
-     Without the script they simply stack. */
+     one, adds Prev / Next (the incoming question fades in over 1s; Calm: at once), keeps the box at the tallest answer so
+     nothing jumps, and opens the one a link points to. Without the script they simply stack. */
   part('faqx', function () {
     $$('.faqx').forEach(function (f) {
       var list = $('.faqx-list', f); if (!list) return;
@@ -267,7 +494,8 @@
       var live = $('[aria-live]', nav);
       function show(n, say) {
         i = (n + qs.length) % qs.length;
-        qs.forEach(function (x, k) { x.hidden = k !== i; });
+        qs.forEach(function (x, k) { x.hidden = k !== i; x.classList.remove('fx'); });
+        if (say && mo()) { void qs[i].offsetWidth; qs[i].classList.add('fx'); }
         if (say) live.textContent = 'Question ' + (i + 1) + ' of ' + qs.length + ': ' + ($('h3', qs[i]) || qs[i]).textContent;
       }
       function fit() {
