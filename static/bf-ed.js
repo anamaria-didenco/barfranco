@@ -3,8 +3,9 @@
    nothing where its markup is absent, so one file serves every page. Without it each page still reads:
    photographs show, Menu jumps to the footer's page list, the first slide shows, the accordions open natively.
 
-   Parts: 1 photographs settle in · 2 year · 3 current page · 4 compact band · 5 the Menu sheet · 6 slides ·
-   7 tabs · 8 chapters & questions (deep links, landing, print) · 9 contact form (FormSubmit) ·
+   Parts: 1 photographs settle in · 2 year · 3 current page · 4 compact band · 5 the Menu screen · 6 slides ·
+   7 tabs · 8 chapters & questions (deep links, landing, print) · 8b questions one at a time (.faqx) ·
+   9 contact form (FormSubmit) ·
    10 VenueFlow (loading note, height) · 11 events: room finder, calendar, held date, prefill, December strip.
    Google Ads lives in /static/vf-tracking.js (in <head>); nothing here touches it. */
 (function () {
@@ -159,9 +160,9 @@
     });
   });
 
-  /* 7 · tabs: <div class="tabs" role="tablist"> (or .mn-tabs) with <button role="tab" aria-controls="panel-id">.
+  /* 7 · tabs: any role="tablist" (.tabs, .mn-tabs, .pkgs-tabs) with <button role="tab" aria-controls="panel-id">.
      Each tab shows its own panel; arrow keys move along; a link to a panel (/menus/#sheet-events) opens its tab and
-     lands on it; picking a tab puts its panel in the address, so it can be shared. */
+     lands on it; with data-hash on the tablist, picking a tab also puts its panel in the address. */
   part('tabs', function () {
     $$('[role="tablist"]').forEach(function (list) {
       var tabs = $$('[role="tab"][aria-controls]', list);
@@ -184,7 +185,8 @@
       tabs.forEach(function (t, k) {
         t.addEventListener('click', function () {
           show(t);
-          if (history.replaceState) history.replaceState(null, '', '#' + t.getAttribute('aria-controls'));
+          /* data-hash on the tablist: the open panel goes into the address, so it can be shared (the Menus page) */
+          if (list.hasAttribute('data-hash') && history.replaceState) history.replaceState(null, '', '#' + t.getAttribute('aria-controls'));
         });
         t.addEventListener('keydown', function (e) {
           var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
@@ -236,6 +238,40 @@
     W.addEventListener('afterprint', function () {
       all.forEach(function (d) { d.open = d.getAttribute('data-was') === '1'; d.removeAttribute('data-was'); });
       all.forEach(function (d) { if (d.hasAttribute('data-name')) { d.setAttribute('name', d.getAttribute('data-name')); d.removeAttribute('data-name'); } });
+    });
+  });
+
+  /* 8b · questions one at a time (.faqx): every question stays in the HTML (the FAQPage schema reads it); the script shows
+     one, adds Prev / Next, keeps the box at the tallest answer so nothing jumps, and opens the one a link points to.
+     Without the script they simply stack. */
+  part('faqx', function () {
+    $$('.faqx').forEach(function (f) {
+      var list = $('.faqx-list', f); if (!list) return;
+      var qs = $$(':scope > .qa', list); if (qs.length < 2) return;
+      var box = $('.faqx-q', f) || list.parentNode, i = 0;
+      f.classList.add('one');
+      var nav = D.createElement('div'); nav.className = 'faqx-nav'; nav.setAttribute('role', 'group'); nav.setAttribute('aria-label', 'Questions');
+      nav.innerHTML = '<button type="button" data-d="-1">Prev</button><span aria-hidden="true">/</span><button type="button" data-d="1">Next</button><span class="sr-only" aria-live="polite"></span>';
+      box.appendChild(nav);
+      var live = $('[aria-live]', nav);
+      function show(n, say) {
+        i = (n + qs.length) % qs.length;
+        qs.forEach(function (x, k) { x.hidden = k !== i; });
+        if (say) live.textContent = 'Question ' + (i + 1) + ' of ' + qs.length + ': ' + ($('h3', qs[i]) || qs[i]).textContent;
+      }
+      function fit() {
+        list.style.minHeight = '';
+        var h = 0;
+        qs.forEach(function (x) { var was = x.hidden; x.hidden = false; h = Math.max(h, x.offsetHeight); x.hidden = was; });
+        list.style.minHeight = h + 'px';
+      }
+      nav.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) show(i + (+b.getAttribute('data-d')), true); });
+      function fromHash() { var h = location.hash.slice(1), t = h && D.getElementById(h); var k = t ? qs.findIndex(function (x) { return x === t || x.contains(t); }) : -1; if (k > -1) show(k); return k > -1; }
+      if (!fromHash()) show(0);
+      W.addEventListener('hashchange', fromHash);
+      fit();
+      var rT = 0; W.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(fit, 150); });
+      if (D.fonts && D.fonts.ready) D.fonts.ready.then(fit);
     });
   });
 
@@ -295,7 +331,7 @@
   part('venueflow', function () {
     vfFrames().forEach(function (f) {
       var p = D.createElement('p'); p.className = 'vf-wait';
-      p.innerHTML = 'Loading the enquiry form… <em>or email <a href="mailto:events@barfranco.nz">events@barfranco.nz</a></em>';
+      p.innerHTML = 'Loading the enquiry form… or email <a href="mailto:events@barfranco.nz">events@barfranco.nz</a>';
       f.parentNode.insertBefore(p, f);
       var done = function () { if (p.parentNode) p.parentNode.removeChild(p); };
       f.addEventListener('load', done);
