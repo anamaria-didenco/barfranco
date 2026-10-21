@@ -574,6 +574,19 @@ the phone block; use one of the page's own photographs), then the label, the h1 
   which the system sets right-aligned;
 - test at 390×844, 375×667 and 360×780 (no overflow, the compact band, the Menu), and 1440×900 unchanged.
 
+**The events pages on phones (P2 and P3 blocks, October 2026).** Functions, Corporate events and Private dining: the
+live running line (`.run`) reads as one small line over the title, as Christmas's does (the separators are drawn by CSS);
+the intro facts stack; the night's three captioned photographs (`.steps-ph`) run across the measure at `--three` with the
+second (upstairs) highest; the three floors (`.rooms`) are set the reference's "( couples )" way: the first portrait at
+the gutter (238×300u), the second off to the right with its label, name and line from its left edge, the whole building
+across the measure, no boxes (a floor that does not fit only fades); the proof (`.rev`) reads left with the Google link at
+the right. Christmas: the December strip reads left at the gutter, the menu photograph is `--wide`, the night's trio runs
+across at `--three` (second highest). Weddings: the night reads label, the big photograph under it sharing its left edge,
+then the three captioned portraits across the measure. Events pack: each chapter opens on its photograph (255u) then one
+column; the three-chapter flow (`.g3.flow`, the one hook class added) runs three across; the Drinks side portrait is the
+inset "as seen in" portrait. Robbie: the opening stays centred (a story page); the three prize facts stack label over fact
+at the gutter; the emblem signs off at the right under the right-aligned link.
+
 ## 9 · Motion
 
 Only this: photographs below the first screen settle in once (fade + 12px), at 2.5s everything is on regardless; slides
