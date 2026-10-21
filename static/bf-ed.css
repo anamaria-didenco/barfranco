@@ -963,7 +963,7 @@ details>*{display:block}
 
 /* the room finder lights the floors that fit (bf-ed.js part 11 toggles .fit/.nofit on #sdRow [data-room]) */
 .rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:calc(var(--u)*16)}
-.room{border:1px solid var(--rule);padding:calc(var(--u)*14) calc(var(--u)*16);transition:border-color .3s,opacity .3s}
+.room{border:1px solid rgba(108,6,0,.32);padding:calc(var(--u)*14) calc(var(--u)*16);transition:border-color .3s,opacity .3s}
 .room .ph{margin:0 0 10px}
 .room.fit{border-color:var(--br);box-shadow:inset 0 0 0 1px var(--br)}
 .room.nofit{opacity:.45}
