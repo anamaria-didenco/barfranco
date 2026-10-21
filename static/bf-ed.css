@@ -197,6 +197,9 @@ html.bf-lock,html.bf-lock body{overflow:hidden}
 .bf-menu-nav li+li{margin-top:clamp(5px,1.1vh,12px)}
 .bf-menu-nav .sub{margin:clamp(4px,.8vh,8px) 0 clamp(4px,.8vh,8px) calc(var(--u)*23)}
 .bf-menu-nav .sub li{font-size:max(15px,calc(var(--u)*15))}
+/* the Functions sub-pages read as one group under Functions: Bright Red, the rest of the list Deep Red (owner's call) */
+.bf-menu-nav .sub a{color:var(--br)}
+.bf-menu-nav .sub a:hover,.bf-menu-nav .sub a[aria-current]{color:var(--dr)}
 .bf-menu-nav .sub li+li{margin-top:clamp(2px,.4vh,5px)}
 .bf-menu-nav a{border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
 .bf-menu-nav a:hover{color:var(--br)}
