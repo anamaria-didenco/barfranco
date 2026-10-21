@@ -995,6 +995,83 @@ details>*{display:block}
 /* end P1 */
 
 /* ---- P2 · functions, corporate-events, private-dining ---- */
+/* the three events pages carry .pg-ev on <body> beside their own class (pg-functions, pg-corporate, pg-private) */
+/* the running head: the live cover's running line, its four facts spread across the page under the band */
+.pg-ev .run{display:flex;justify-content:space-between;gap:8px 32px;padding:max(10px,calc(var(--u)*12)) calc(var(--u)*16);border-bottom:1px solid var(--hair);font-size:var(--t-small);line-height:1.3}
+.pg-ev .run>span{white-space:nowrap}
+/* the intro: the note under the facts; the asks in one row at the foot */
+.pg-ev .intro-txt>.small{margin-top:max(12px,calc(var(--u)*16))}
+.pg-ev .intro-cols{grid-template-columns:auto auto;justify-content:start;column-gap:max(32px,calc(var(--u)*56))}
+.pg-ev .intro-cols p+p{margin-top:0}
+/* the index: the live hover index as chapters that open underneath their title, one at a time */
+.pg-ev .idx{padding-left:calc(var(--u)*335);padding-right:calc(var(--u)*16)}
+.pg-ev .idx>.label{display:block;margin-bottom:max(18px,calc(var(--u)*28))}
+.pg-ev .chap>summary{grid-template-columns:calc(var(--u)*80) auto minmax(0,1fr) auto;padding:14px 0}
+.pg-ev .chap>summary .t{font-size:max(24px,calc(var(--u)*30))}
+.pg-ev .chap>summary .h{font-size:var(--t-small);opacity:.85}
+.pg-ev .chap-b{padding:4px 0 calc(var(--u)*48) calc(var(--u)*80)}
+.pg-ev .chap-b .stack{max-width:max(320px,calc(var(--u)*520))}
+/* the room finder and its three floors (bf-ed.js lights the ones that fit) */
+.pg-ev .cols>.finder{margin-top:calc(var(--u)*48)}
+.pg-ev .cols>.rooms{margin-top:calc(var(--u)*48)}
+.pg-ev .cols>.rooms+.small{margin-top:max(16px,calc(var(--u)*24));max-width:60em}
+.pg-ev .room{border:1px solid var(--hair)}
+.pg-ev .room .ph{height:calc(var(--u)*380)}
+.pg-ev .room .label{font-size:max(15px,calc(var(--u)*17))}
+.pg-ev .room .h3{margin-top:8px}
+.pg-ev .room p:not(.label):not(.go){margin-top:8px}
+.pg-ev .room .go{margin-top:14px}
+/* the night, in order: three captioned photographs, the second (upstairs) sitting highest */
+.pg-ev .steps-ph{display:flex;gap:calc(var(--u)*20);align-items:flex-start;margin-top:calc(var(--u)*72)}
+.pg-ev .step{flex:1 1 0;min-width:0;margin:0}
+.pg-ev .step:nth-child(odd){margin-top:calc(var(--u)*56)}
+.pg-ev .step .ph{height:calc(var(--u)*500)}
+.pg-ev .step figcaption{margin-top:max(10px,calc(var(--u)*13));font-size:var(--t-ls);line-height:1.3}
+.pg-ev .step figcaption b{display:block;color:var(--br);font-size:var(--t-lt);line-height:1.1;margin-bottom:max(4px,calc(var(--u)*5))}
+.pg-ev .steps-n{margin-top:max(16px,calc(var(--u)*24))}
+.pg-private .step:nth-child(1){margin-top:0}
+/* corporate's floors are the homepage's pair, straight under their heading */
+.pg-ev .prose+.pair.floors{padding-top:calc(var(--u)*24)}
+/* the floors: the two features (or corporate's pair) follow their heading closely, then take the reference's air */
+.pg-ev #climb{padding-bottom:calc(var(--u)*48)}
+.pg-ev .prose+.feature{padding-top:calc(var(--u)*24)}
+.pg-ev .feature+.feature{padding-top:calc(var(--u)*120)}
+/* the Eventi tabs: the card's own line sits at the right of the label row; the link stays on one line */
+.pg-ev .pkgs-k{grid-column:2/4;grid-row:1;align-self:end;justify-self:end}
+.pg-ev .pkgs>.go{white-space:nowrap}
+/* the questions: the live heading over the first question */
+.pg-ev .faqx-r{padding-top:calc(var(--u)*150)}
+.pg-ev .faqx-r>.h2{margin-bottom:max(22px,calc(var(--u)*36))}
+/* enquire: the calendar's heading, the calendar on the full line, the proof directly above the form */
+.pg-ev .prose>.hold-k{margin-top:max(36px,calc(var(--u)*64))}
+.pg-ev .prose>*+.hold{margin-top:max(22px,calc(var(--u)*34))}
+.pg-ev .rev{margin-top:max(48px,calc(var(--u)*90));padding-top:max(28px,calc(var(--u)*40));border-top:1px solid var(--hair);text-align:center}
+.pg-ev .rev-g{font-size:var(--t-small)}
+.pg-ev .rev-g a{border-bottom:1px solid currentColor;color:var(--br)}
+.pg-ev .rev ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:max(18px,calc(var(--u)*32));margin:max(16px,calc(var(--u)*24)) auto 0;max-width:calc(var(--u)*960)}
+.pg-ev .rev q{display:block;font-size:var(--t-q);line-height:1.45}
+.pg-ev .rev cite{display:block;margin-top:8px;font-size:var(--t-cite)}
+.pg-ev .talk{margin-top:14px}
+.pg-ev .talk+.talk{margin-top:8px}
+@media (max-width:760px){
+.pg-ev .run{flex-wrap:wrap;gap:4px 0;padding:10px calc(var(--u)*13.4);font-size:13px}
+.pg-ev .run>span{flex:0 0 50%}
+.pg-ev .run>span:nth-child(even){text-align:right}
+.pg-ev .idx{padding-left:calc(var(--u)*13.4);padding-right:calc(var(--u)*13.4)}
+.pg-ev .chap>summary{grid-template-columns:44px minmax(0,1fr) auto;row-gap:2px}
+.pg-ev .chap>summary .h{grid-column:2;grid-row:2}
+.pg-ev .chap-b{padding:0 0 calc(var(--u)*36) 44px}
+.pg-ev .steps-ph{flex-direction:column;gap:calc(var(--u)*24);margin-top:calc(var(--u)*40)}
+.pg-ev .step{flex:none;width:calc(var(--u)*300)}
+.pg-ev .step:nth-child(odd){margin-top:0}
+.pg-ev .step:nth-child(even){align-self:flex-end}
+.pg-ev .step .ph{height:calc(var(--u)*380)}
+.pg-ev .room .ph{height:calc(var(--u)*300)}
+.pg-ev .pkgs-k{grid-column:2/5}
+.pg-ev .faqx-r{padding-top:calc(var(--u)*20)}
+.pg-ev .faqx-r>.h2{margin-bottom:20px}
+.pg-ev .rev ul{grid-template-columns:1fr;gap:18px}
+}
 /* end P2 */
 
 /* ---- P3 · christmas-functions, weddings, events-pack, robbie ---- */
