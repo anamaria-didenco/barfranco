@@ -665,3 +665,9 @@ No `<style>` blocks, no `style=""` except `object-position` on an `<img>`. No ne
 - Christmas: carry `data-track` onto the band ask, the compact band ask and every `#enquire` button.
 - The printed-menu facsimile on /menus/ (`.pm .card-h`) is the one sanctioned exception to Marsha ≥24px.
 - CLAUDE.md describes the old system; where it conflicts with this guide, this guide wins for pages on bf-ed.css.
+
+### Footer on phones (owner, October 2026: "it looks really busy")
+bf-ed.js (part 3b) wraps the footer's two page columns in a `<details>` with the summary "All pages", closed by
+default; the phone CSS shows only the logo, the sign-off, the address/hours line, that one fold line and the base
+line. On wider screens the wrapper is transparent (`display:contents`) so the desktop footer is unchanged. No page
+markup changes: keep copying the footer block as it is.

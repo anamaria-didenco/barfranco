@@ -45,6 +45,17 @@
     });
   });
 
+  /* 3b · on phones the footer's page list folds behind one line ("All pages"); the Menu lists them anyway */
+  part('footfold', function () {
+    var nav = $('.bf-foot-nav'); if (!nav || nav.querySelector('details')) return;
+    var cols = $$(':scope > div', nav); if (!cols.length) return;
+    var d = D.createElement('details'), sm = D.createElement('summary'), box = D.createElement('div');
+    sm.textContent = 'All pages';
+    cols.forEach(function (c) { box.appendChild(c); });
+    d.appendChild(sm); d.appendChild(box); nav.appendChild(d);
+    /* desktop shows the columns as before: the CSS hides <details> there and shows its columns in place */
+  });
+
   /* 4 · the compact band: inside the frame's top once the band has scrolled away, gone again at the top */
   var sticky = $('.bf-sticky');
   function stickyOn(on) {
