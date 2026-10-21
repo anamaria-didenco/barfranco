@@ -426,7 +426,7 @@
     var MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(function (i) { var m = T.m + i; return { y: T.y + Math.floor(m / 12), m: m % 12 }; }), mi = 0;
     var ONLY = hold && hold.getAttribute('data-months') ? hold.getAttribute('data-months').split(',').map(Number) : null;
     MONTHS = (ONLY ? MONTHS.filter(function (x) { return ONLY.indexOf(x.m) > -1; }) : MONTHS).slice(0, ONLY ? ONLY.length : 4);
-    var CLOSE = +(hold && hold.getAttribute('data-close')) || 23;
+    var CLOSE = +(hold && hold.getAttribute('data-close')) || 24;
     function shut(m, d) { return (m === 11 && d >= CLOSE) || (m === 0 && d <= 5); }
     if (st.date) { var q = parse(st.date), k = MONTHS.findIndex(function (x) { return x.y === q.y && x.m === q.m; }); if (k < 0 || U(q.y, q.m, q.d) < TU || shut(q.m, q.d)) st.date = ''; else mi = k; }
     if (hold && hold.getAttribute('data-mo')) { var k2 = MONTHS.findIndex(function (x) { return x.m === +hold.getAttribute('data-mo'); }); if (k2 > -1) mi = k2; }

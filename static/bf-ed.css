@@ -156,7 +156,7 @@ main p a:not([class]):hover,main li a:not([class]):hover,main dd a:not([class]):
 .bf-band-r{display:flex;align-items:center;gap:max(18px,calc(var(--u)*28))}
 /* home: the cover photograph, then the band (the page's h1 small at left, Menu in the middle, Book a table at right),
    then the Bar Franco script large and centred */
-.cover{height:calc(var(--u)*550)}
+.cover{height:min(calc(var(--u)*550),calc(100svh - 2*var(--fp) - 72px))}
 .cover-k{left:calc(var(--u)*16);bottom:calc(var(--u)*16);font-size:var(--t-tag);line-height:1.3}
 .bf-band{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;padding:calc(var(--u)*12) calc(var(--u)*16) 0}
 .bf-band>:first-child{justify-self:start}
@@ -723,7 +723,7 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;background:var(--br
 .bf-band .btn,.bf-sticky .btn{min-height:44px;padding:8px 13px;font-size:var(--b-fs)}
 .bf-band-r{gap:16px}
 .bf-mbtn::after,.bf-band .btn::after,.bf-sticky .btn::after{inset:-4px -6px}
-.cover{height:calc(var(--u)*542)}
+.cover{height:min(calc(var(--u)*542),calc(100svh - 2*var(--fp) - 64px))}
 .cover-k{left:calc(var(--u)*13.4);bottom:calc(var(--u)*13)}
 .bf-sticky{padding:0 calc(var(--u)*13.4)}
 .bf-sticky .bf-logo-s img{height:40px}
@@ -954,6 +954,12 @@ details>*{display:block}
 /* ==== page blocks: one per group of pages, every selector prefixed by the page's <body class="pg-…">.
    Append inside your own group's block only, so the five builders never touch the same lines. ==== */
 
+/* the room finder lights the floors that fit (bf-ed.js part 11 toggles .fit/.nofit on #sdRow [data-room]) */
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:calc(var(--u)*16)}
+.room{border:1px solid var(--rule);padding:calc(var(--u)*14) calc(var(--u)*16);transition:border-color .3s,opacity .3s}
+.room .ph{margin:0 0 10px}
+.room.fit{border-color:var(--br);box-shadow:inset 0 0 0 1px var(--br)}
+.room.nofit{opacity:.45}
 /* ---- P1 · menus, bookings, vouchers, contact ---- */
 /* end P1 */
 
