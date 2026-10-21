@@ -1230,9 +1230,12 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-ev .step .ph{height:var(--three)}
 .pg-ev .step figcaption{margin-top:12px;font-size:var(--t-small);line-height:1.3}
 .pg-ev .step figcaption b{font-size:var(--t-small);margin-bottom:4px}
-.pg-ev .pkgs-k{grid-column:2/5}
+.pg-ev .pkgs-k{grid-column:2/4;text-align:right}
 .pg-ev .faqx-r{padding-top:calc(var(--u)*20)}
 .pg-ev .faqx-r>.h2{margin-bottom:20px}
+/* the calendar's four months on one line at reading size (19px wrapped January onto a second line) */
+.pg-ev .hold-mo{gap:4px 16px}
+.pg-ev .hold-mo button{font-size:var(--t-p)}
 .pg-ev .rev{margin-top:var(--after);padding-top:28px;text-align:left}
 .pg-ev .rev-g{text-align:right}
 .pg-ev .rev ul{grid-template-columns:1fr;gap:24px;margin:24px 0 0;max-width:none}
@@ -1253,6 +1256,8 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-wed .port-s .r5-t{font-size:var(--t-small)}
 .pg-wed .port-s .r5-s{font-size:var(--t-small);line-height:1.35}
 .pg-wed .intro-txt>.label+.h1{margin-top:10px}
+/* the menu cover breaks back out to the gutter under the inset portrait, so the card keeps the full measure */
+.pg-wed .tall-txt .frame{margin-left:calc(var(--go) - var(--u)*77)}
 }
 /* robbie: the opening field carries the promotion's label above the title and both asks at its foot; the terms sit in the
    printed frame, numbered in Bright Red */
@@ -1324,6 +1329,8 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-xmas .avail{text-align:left;padding:14px var(--go);line-height:1.4}
 .pg-xmas .chaps{padding:calc(var(--u)*24) var(--go) calc(var(--u)*64)}
 .pg-xmas .chap-b>.stack{padding-left:0}
+/* the three numbered ways: a wider first column so "02. Shared Franco" and "03. Tutto Franco" each hold one line */
+.pg-xmas .pkgs{grid-template-columns:var(--go) calc(var(--u)*165) minmax(0,1fr) var(--go)}
 .pg-xmas .menu-ph{height:var(--wide)}
 .pg-xmas .cols>.small,.pg-xmas .cols>.hold,.pg-xmas .cols>.proof,.pg-xmas .cols>.vf-frame{margin-top:var(--after)}
 .pg-xmas .cols>.btns,.pg-xmas .cols>.small+.btns{margin-top:var(--ask)}
@@ -1390,6 +1397,8 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-pack .menu-ph{height:calc(var(--u)*255)}
 .pg-pack .frame .g2{gap:30px}
 .pg-pack .steps{margin-top:var(--txt)}
+/* the contact card breaks back out to the gutter under the inset portrait, so the card keeps the full measure */
+.pg-pack .tall-txt .frame{margin-left:calc(var(--go) - var(--u)*77)}
 }
 /* end P3 */
 
