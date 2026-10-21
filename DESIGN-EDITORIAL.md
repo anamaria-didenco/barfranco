@@ -589,3 +589,13 @@ No `<style>` blocks, no `style=""` except `object-position` on an `<img>`. No ne
 | Events: dogs, banner lettering, hover index, night steps, masthead band, cover check (`sd-events.js`) | decorative | dropped |
 | Functions: nameplate fit, coaster flip, chapter folds (`functions.js`) | decorative / dead on the live page | dropped |
 | Menus inline `.mp-sheet` reader (no `.mp-sheet` on the page any more) | dead | dropped |
+
+
+## Addenda (coordinator, after review)
+- The footer carries the hours line (`.bf-foot-ad`) on every page (snippet above).
+- Room finder: use `.rooms` > `.room[data-room]` cards; bf-ed.js toggles `.fit` / `.nofit` on them (styled in the shared CSS).
+- The calendar's default close is the 24th (open until 23 December).
+- FAQPage parity: every Question/Answer in a page's JSON-LD must appear visibly on the page, word for word.
+- Christmas: carry `data-track` onto the band ask, the compact band ask and every `#enquire` button.
+- The printed-menu facsimile on /menus/ (`.pm .card-h`) is the one sanctioned exception to Marsha ≥24px.
+- CLAUDE.md describes the old system; where it conflicts with this guide, this guide wins for pages on bf-ed.css.
