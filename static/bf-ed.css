@@ -980,6 +980,26 @@ details>*{display:block}
 /* end P4 */
 
 /* ---- P5 · our-story, 404 ---- */
+/* our story (the About archetype): the label sits above the title in the blank field; the rules read beside the one
+   portrait, starting a little way down it as the reference's words do; the script signs the letter; the two levels side by side */
+.pg-story .blank>.label,.pg-404 .blank>.label{margin:0 0 max(14px,calc(var(--u)*18));font-size:var(--t-sc);line-height:1.1;max-width:none}
+.pg-story .blank>.h1{max-width:24ch}
+.pg-story .intro2{grid-template-rows:calc(var(--u)*160) auto;padding-bottom:calc(var(--u)*120)}
+.pg-story .intro2-txt{max-width:max(320px,calc(var(--u)*460))}
+.pg-story .st-em{display:block;width:44px;height:auto}
+.pg-story .st-script{margin:0;line-height:0}
+.pg-story .st-script img{display:block;width:min(100%,calc(var(--u)*300));height:auto}
+.pg-story .st-levels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(var(--u)*39)}
+.pg-story .st-levels .label{font-size:max(16px,calc(var(--u)*19))}
+.pg-story .cols>.st-door{margin-top:max(28px,calc(var(--u)*48));max-width:36em}
+/* 404: the blank field, the three lines as fact rows under it */
+.pg-404 .blank>.facts{width:min(100%,440px);margin-top:max(24px,calc(var(--u)*36));text-align:left}
+@media (max-width:760px){
+.pg-story .intro2{grid-template-rows:auto;padding-bottom:calc(var(--u)*60)}
+.pg-story .intro2-txt{max-width:none}
+.pg-story .st-script img{width:calc(var(--u)*180)}
+.pg-story .st-levels{grid-template-columns:1fr;gap:calc(var(--u)*28)}
+}
 /* end P5 */
 
 /* ---- P0 · home, restaurant (the foundation's own pages) ---- */
