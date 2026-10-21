@@ -191,16 +191,18 @@ html.bf-lock,html.bf-lock body{overflow:hidden}
 .bf-menu-l{grid-column:1;grid-row:1;position:relative;display:flex;flex-direction:column;min-height:calc(100dvh - 2 * var(--fp));padding:calc(var(--u)*20) calc(var(--u)*16) calc(var(--u)*22)}
 .bf-menu-logo{align-self:flex-start;line-height:0}
 .bf-menu-logo img{display:block;height:max(56px,calc(var(--u)*74));width:auto}
-.bf-menu-nav{position:relative;z-index:1;margin-top:clamp(28px,8vh,96px)}
-.bf-menu-nav>ul+ul{margin-top:clamp(22px,7vh,84px)}
-.bf-menu-nav li{font-size:var(--t-nav);line-height:1.25}
-.bf-menu-nav li+li{margin-top:clamp(5px,1.1vh,12px)}
-.bf-menu-nav .sub{margin:clamp(4px,.8vh,8px) 0 clamp(4px,.8vh,8px) calc(var(--u)*23)}
-.bf-menu-nav .sub li{font-size:max(15px,calc(var(--u)*15))}
+.bf-menu-nav{position:relative;z-index:1;margin-top:clamp(22px,5vh,56px)}
+/* the ask first: a double-rule button at the head of the list, above the pages */
+.bf-menu-book{align-self:flex-start;margin-top:clamp(26px,6vh,64px);font-size:max(16px,calc(var(--u)*17));padding:12px 26px}
+.bf-menu-nav>ul+ul{margin-top:clamp(20px,5vh,56px)}
+.bf-menu-nav li{font-size:max(18px,calc(var(--u)*19));line-height:1.2}
+.bf-menu-nav li+li{margin-top:clamp(7px,1.4vh,14px)}
+.bf-menu-nav .sub{margin:clamp(6px,1vh,10px) 0 clamp(8px,1.4vh,14px) calc(var(--u)*26)}
+.bf-menu-nav .sub li{font-size:max(15px,calc(var(--u)*16))}
 /* the Functions sub-pages read as one group under Functions: Bright Red, the rest of the list Deep Red (owner's call) */
 .bf-menu-nav .sub a{color:var(--br)}
 .bf-menu-nav .sub a:hover,.bf-menu-nav .sub a[aria-current]{color:var(--dr)}
-.bf-menu-nav .sub li+li{margin-top:clamp(2px,.4vh,5px)}
+.bf-menu-nav .sub li+li{margin-top:clamp(4px,.7vh,8px)}
 .bf-menu-nav a{border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
 .bf-menu-nav a:hover{color:var(--br)}
 .bf-menu-nav a[aria-current="page"]{color:var(--br);border-bottom-color:currentColor}
@@ -214,9 +216,9 @@ html.bf-lock,html.bf-lock body{overflow:hidden}
 .bf-menu-ic a:hover{color:var(--br)}
 .bf-menu-r{grid-column:2;grid-row:1;position:sticky;top:0;height:calc(100dvh - 2 * var(--fp))}
 .bf-menu-r>.ph{height:100%}
-.bf-menu-ask{position:absolute;z-index:2;right:calc(var(--u)*20);bottom:calc(var(--u)*18);color:var(--al);font-size:max(26px,calc(var(--u)*38));line-height:1}
+.bf-menu-ask{position:absolute;z-index:2;right:calc(var(--u)*24);bottom:calc(var(--u)*24);color:var(--al);font-size:max(30px,calc(var(--u)*46));line-height:1;padding:6px 2px;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
 .bf-menu-ask::before{content:"("}.bf-menu-ask::after{content:")"}
-.bf-menu-ask:hover{color:var(--pp)}
+.bf-menu-ask:hover{color:var(--pp);border-bottom-color:currentColor}
 .bf-menu-l .bf-menu-ask{display:none}
 .bf-menu .bf-mclose{position:fixed;z-index:3;top:calc(var(--fp) + max(20px,calc(var(--u)*28)));right:calc(var(--fp) + calc(var(--u)*16));color:var(--al);font-size:var(--t-menu)}
 
@@ -743,13 +745,15 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;background:var(--br
 .bf-menu-l{padding:20px calc(var(--u)*13.4) 22px}
 .bf-menu-logo img{height:54px}
 .bf-menu .bf-mclose{top:calc(var(--fp) + 34px);right:calc(var(--fp) + calc(var(--u)*13.4));color:var(--dr)}
-.bf-menu-nav{margin-top:34px}
-.bf-menu-nav>ul+ul{margin-top:30px}
-.bf-menu-nav li+li{margin-top:9px}
+.bf-menu-nav{margin-top:26px}
+.bf-menu-book{margin-top:24px;font-size:16px;padding:12px 22px;align-self:flex-start}
+.bf-menu-nav>ul+ul{margin-top:26px}
+.bf-menu-nav li+li{margin-top:10px}
+.bf-menu-nav li{font-size:19px}
 .bf-menu-nav .sub{margin:8px 0 6px 22px}
 .bf-menu-nav .sub li+li{margin-top:6px}
-.bf-menu-ph{left:auto;right:calc(var(--u)*13.4);top:calc(var(--u)*250);width:calc(var(--u)*113.3);height:calc(var(--u)*170.6)}
-.bf-menu-l .bf-menu-ask{position:static;display:inline-block;margin-top:30px;color:var(--br);font-size:24px}
+.bf-menu-ph{left:auto;right:calc(var(--u)*13.4);top:calc(var(--u)*330);width:calc(var(--u)*113.3);height:calc(var(--u)*170.6)}
+.bf-menu-l .bf-menu-ask{position:static;display:inline-block;margin-top:34px;color:var(--br);font-size:28px}
 .bf-menu-foot{flex-direction:column;align-items:flex-start;gap:18px}
 /* footer */
 .bf-foot{grid-template-columns:calc(var(--u)*13.4) 1fr calc(var(--u)*13.4)}
