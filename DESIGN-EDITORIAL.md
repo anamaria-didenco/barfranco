@@ -244,7 +244,7 @@ it, the words and a link at the right.
 ```html
 <section class="port" aria-labelledby="h-room">
 <div class="port-s"><div class="r5"><figure class="ph"><img …></figure><span class="r5-t">Name</span><span class="r5-s">One line</span></div></div>
-<figure class="ph port-ph scrim"><img …><h2 class="on-ph" id="h-room"><span class="mh">Nothing happens</span><i>behind a&nbsp;door</i></h2></figure>
+<figure class="ph port-ph scrim"><img …><h2 class="on-ph" id="h-room"><span class="mh">A front-row seat</span><i>to the kitchen</i></h2></figure>
 <div class="port-txt stack"><p class="label">01 · The room</p><p>…</p><p class="go"><a …>…</a></p></div>
 </section>
 ```
@@ -710,7 +710,7 @@ markup changes); the rules, so new pages and page blocks keep to them:
    what the sentence means, never a fragment and never the opposite. "THE ROOM I DIDN'T WANT / to leave" reads as the
    room she didn't want, so it is "THE ROOM / I didn't want to leave"; "THE ITALY / you didn't want to leave";
    "CORPORATE EVENTS / in Christchurch…"; "PRIVATE DINING / & birthdays…". When no split works (COME SAY CIAO, BOOK A
-   TABLE, BEFORE THE STADIUM, NOTHING HAPPENS BEHIND A DOOR), the whole line is set in capitals with no turn.
+   TABLE, BEFORE THE STADIUM), the whole line is set in capitals with no turn.
 5. **Marsha for the words that are a menu.** The homepage's five course words (`.words`), the frame's course head
    (`.frame-h`), the menu cover's name (`.mcover-n`). Numbers that count (01 02 03: `.steps .n`, `.chap .n`, `.slides-n`)
    stay Affairs Bright Red; numbers that measure sit in the facts, Bright Red.
