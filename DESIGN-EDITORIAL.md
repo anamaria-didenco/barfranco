@@ -46,7 +46,7 @@ The guide for rebuilding every page in the design the owner approved. Read it al
 - **Words.** VTC Marsha capitals for the few big lines (never below 24px), Affairs regular for everything else, with
   an Affairs italic turn under a Marsha title. Section labels are Bright Red words in brackets: (01 · The room).
 - **Book a table is always to hand:** in the band, then in the compact band once the band has scrolled away, and in
-  the Menu screen as (book a table).
+  the Menu screen as the Book a table button at the head of the list.
 
 Brand rules (unchanged): Deep Red `#6C0600` ink · Bright Red `#AF0F00` labels and buttons · Almond `#FAD7C3` ·
 paper `#F1EEE6` ground · Spritz `#F00000` focus ring only. No black or grey, radius 0, no shadows, no gradients
@@ -162,7 +162,7 @@ Shows inside the frame's top once `.bf-band` has scrolled away; hides at the top
 
 ### The Menu screen (after the compact band; copy it whole, never edit per page)
 
-> Hierarchy (owner, October 2026): the ask comes first. A double-rule `<a class="btn bf-menu-book" href="/bookings/">Book a table</a>` sits at the head of the left column, before `nav.bf-menu-nav`; the large "(book a table)" stays on the photo at the right (on phones it sits under the list). The Functions sub-pages are Bright Red under Functions. Copy the block from index.html.
+> Hierarchy (owner, October 2026): the ask comes first. A double-rule `<a class="btn bf-menu-book" href="/bookings/">Book a table</a>` sits at the head of the left column, before `nav.bf-menu-nav`; Book a table appears ONCE in the Menu (owner): that button only; nothing on the photo. The Functions sub-pages are Bright Red under Functions. Copy the block from index.html.
 Copied from the reference's own Menu screen: paper at left with the script large, the pages in three groups
 (Home, Our story · Menus, Restaurant, Functions with Christmas, Corporate events, Private dining, Weddings and Events
 pack indented under it, Aperitivo, Negroni bar, Pasta fresca, Before the stadium · Vouchers, Contact), a small portrait

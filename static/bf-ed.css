@@ -199,8 +199,8 @@ html.bf-lock,html.bf-lock body{overflow:hidden}
 .bf-menu-nav li+li{margin-top:clamp(7px,1.4vh,14px)}
 .bf-menu-nav .sub{margin:clamp(6px,1vh,10px) 0 clamp(8px,1.4vh,14px) calc(var(--u)*26)}
 .bf-menu-nav .sub li{font-size:max(15px,calc(var(--u)*16))}
-/* the Functions sub-pages read as one group under Functions: Bright Red, the rest of the list Deep Red (owner's call) */
-.bf-menu-nav .sub a{color:var(--br)}
+/* the Functions sub-pages read as one group under Functions: Bright Red italic, the rest of the list Deep Red upright (owner's call; the one italic allowed in navigation) */
+.bf-menu-nav .sub a{color:var(--br);font-style:italic}
 .bf-menu-nav .sub a:hover,.bf-menu-nav .sub a[aria-current]{color:var(--dr)}
 .bf-menu-nav .sub li+li{margin-top:clamp(4px,.7vh,8px)}
 .bf-menu-nav a{border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
@@ -216,10 +216,6 @@ html.bf-lock,html.bf-lock body{overflow:hidden}
 .bf-menu-ic a:hover{color:var(--br)}
 .bf-menu-r{grid-column:2;grid-row:1;position:sticky;top:0;height:calc(100dvh - 2 * var(--fp))}
 .bf-menu-r>.ph{height:100%}
-.bf-menu-ask{position:absolute;z-index:2;right:calc(var(--u)*24);bottom:calc(var(--u)*24);color:var(--al);font-size:max(30px,calc(var(--u)*46));line-height:1;padding:6px 2px;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
-.bf-menu-ask::before{content:"("}.bf-menu-ask::after{content:")"}
-.bf-menu-ask:hover{color:var(--pp);border-bottom-color:currentColor}
-.bf-menu-l .bf-menu-ask{display:none}
 .bf-menu .bf-mclose{position:fixed;z-index:3;top:calc(var(--fp) + max(20px,calc(var(--u)*28)));right:calc(var(--fp) + calc(var(--u)*16));color:var(--al);font-size:var(--t-menu)}
 
 /* ==== the footer: Deep Red; the page list at right, BAR FRANCO centred in Almond, the sign-off at left ==== */
@@ -753,7 +749,6 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;background:var(--br
 .bf-menu-nav .sub{margin:8px 0 6px 22px}
 .bf-menu-nav .sub li+li{margin-top:6px}
 .bf-menu-ph{left:auto;right:calc(var(--u)*13.4);top:calc(var(--u)*330);width:calc(var(--u)*113.3);height:calc(var(--u)*170.6)}
-.bf-menu-l .bf-menu-ask{position:static;display:inline-block;margin-top:34px;color:var(--br);font-size:28px}
 .bf-menu-foot{flex-direction:column;align-items:flex-start;gap:18px}
 /* footer */
 .bf-foot{grid-template-columns:calc(var(--u)*13.4) 1fr calc(var(--u)*13.4)}
