@@ -1325,10 +1325,26 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-dine .frame .facts+.frame-s{margin-top:18px}
 .pg-dine .pair.solo .pair-txt>.frame{max-width:none}
 @media (max-width:760px){
-.pg-dine .port-s>.ph{height:calc(var(--u)*170.6)}
-/* the Negroni bar's room has no words of its own: its label sits at the top-left corner of the photograph */
-.pg-negroni .port-txt{grid-row:1;grid-column:3/4;align-self:end;margin:0 0 var(--lbl)}
-.pg-negroni .port-ph{margin-top:0}
+/* the dining pages' port, as the reference's ( couples ) block: the label at the gutter, the small photograph right under it
+   at the left, the big photograph set off to the right and lower, then the words at the gutter and the link at the right */
+.pg-dine .port-txt{display:contents}
+.pg-dine .port-txt>*{grid-column:2/4}
+.pg-dine .port-txt>.label{grid-row:1;align-self:end;margin:0 0 var(--lbl)}
+.pg-dine .port-s{grid-row:2}
+.pg-dine .port-s>.ph{height:var(--three)}
+.pg-dine .port-ph{grid-row:3;margin-top:calc(var(--u)*28)}
+.pg-dine .port-txt>.label+*{margin-top:var(--txt)}
+.pg-dine .port-txt>.go{justify-self:end;text-align:right}
+/* a port with no small photograph and no words of its own (the Negroni bar's room): the label shares the big photograph's
+   left edge, and the photograph starts right under it */
+.pg-negroni .port-txt>.label{grid-column:3/5}
+.pg-negroni .port-ph{grid-row:2;margin-top:0}
+/* the Negroni bar's pouring section: the label at the gutter, the photograph right under it, then the title and the cover */
+.pg-negroni .pair.solo .pair-txt{display:contents}
+.pg-negroni .pair.solo .pair-txt>*{grid-column:1/-1}
+.pg-negroni .pair.solo .pair-txt>.label{grid-row:1;margin:0 0 var(--lbl)}
+.pg-negroni .pair.solo>.ph{grid-row:2}
+.pg-negroni .pair.solo .pair-txt>.label+*{margin-top:var(--txt)}
 /* before the stadium opens on its cover photograph cut shorter, so the title and the first portrait share the first screen */
 .pg-stadium .head-ph{height:calc(var(--u)*300)}
 }

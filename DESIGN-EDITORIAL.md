@@ -669,7 +669,10 @@ No `<style>` blocks, no `style=""` except `object-position` on an `<img>`. No ne
   the page opens on it and `.intro2-big` hides there (desktop unchanged). A `.port` with no words of its own (Menus, the
   Negroni bar) puts its label at the top-left corner of the photograph; Bookings' floors stay a pair with downstairs
   lower; the voucher card sits off to the right at 300u; Before the stadium cuts its cover to 300u so the title and the
-  first portrait share the first screen; 404's field fills the first screen.
+  first portrait share the first screen; 404's field fills the first screen. On the dining pages the `.port` reads as the
+  reference's "( couples )" block (`.port-txt{display:contents}`): the label at the gutter, the small photograph right under
+  it at the left, the big photograph set off to the right and lower, then the words at the gutter and the link at the
+  right; the Negroni bar's `.pair.solo` is led by its label the same way (label, photograph, title, cover).
 
 ### Footer on phones (owner, October 2026: "it looks really busy")
 bf-ed.js (part 3b) wraps the footer's two page columns in a `<details>` with the summary "All pages", closed by
