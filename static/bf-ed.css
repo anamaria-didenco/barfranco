@@ -39,16 +39,22 @@
 /* the unit follows the page's own inner width (scrollbars included) wherever container units exist */
 @supports (width:1cqw){:root{--u:calc(100cqw / 1440)}}
 @media (max-width:760px){
+/* phones (owner, October 2026; her own iPhone screenshots are the measure): four sizes on the whole page.
+   Reading 17/1.45 (paragraphs, leads, quotes, facts, labels in Bright Red), link 15 (links, buttons, the chrome, the
+   footer's pages), caption 14 (small lines, cites, the footer's facts and base line), display: Marsha 30 for titles
+   (the h1, h2, words on a photograph, the footer's sign-off) and 24 for card heads (h3.m, the frame's course, chapter
+   titles), the italic turn 22. One gutter, --go, inside the frame; running text takes the whole measure. */
 :root{--fp:15px;--u:calc((100vw - 2 * var(--fp)) / 390);
---t-p:16px;--lh-p:1.5;--t-lead:18px;--t-small:14.5px;--t-go:15px;
---t-lt:15px;--t-ls:13px;--t-sc:max(17px,calc(var(--u)*19));
---t-q:16px;--t-cite:13px;--t-bq:13px;
---t-mh:max(24px,calc(var(--u)*26));--t-mi:max(21px,calc(var(--u)*23));--t-num:15px;
---t-h1:max(30px,calc(var(--u)*32));--t-h2:max(26px,calc(var(--u)*28));--t-h3:19px;
---t-at:21px;--t-as:15px;--t-ap:15px;--t-nav:18px;
---t-tag:max(10px,calc(var(--u)*10.5));--t-menu:15px;--b-fs:14px;
---t-nv:15px;--t-ft:12.5px;--t-base:12px;
---band:72px;--stick:60px;
+--go:calc(var(--u)*13.4);
+--t-p:17px;--lh-p:1.45;--t-lead:17px;--t-small:14px;--t-go:15px;
+--t-lt:15px;--t-ls:14px;--t-sc:17px;
+--t-q:17px;--t-cite:14px;--t-bq:14px;
+--t-mh:30px;--t-mi:22px;--t-num:15px;
+--t-h1:30px;--t-h2:30px;--t-h3:17px;
+--t-at:24px;--t-as:15px;--t-ap:17px;--t-nav:15px;
+--t-tag:14px;--t-menu:15px;--b-fs:15px;
+--t-nv:15px;--t-ft:14px;--t-base:14px;
+--band:64px;--stick:56px;
 }
 @supports (width:1cqw){:root{--u:calc(100cqw / 390)}}
 }
@@ -454,6 +460,8 @@ section.tall.flip{grid-template-columns:1fr calc(var(--u)*432) calc(var(--u)*267
 .blank>.h1{max-width:18ch}
 .blank>p:not(.go){margin-top:max(12px,calc(var(--u)*16));font-size:var(--t-lead);line-height:1.4;max-width:34ch}
 .blank>.go,.blank>.btn{position:absolute;right:calc(var(--u)*16);bottom:calc(var(--u)*31)}
+/* a story page may carry one portrait for phones (<figure class="ph blank-ph">, first in .blank); desktop never shows it */
+.blank-ph{display:none}
 
 /* intro2: two small photographs top left, a big portrait at the right edge, the words at left */
 .intro2{display:grid;grid-template-columns:calc(var(--u)*16) calc(var(--u)*146) calc(var(--u)*13) calc(var(--u)*146) calc(var(--u)*74) minmax(0,1fr) calc(var(--u)*599);align-items:start;padding:calc(var(--u)*69) 0 calc(var(--u)*85)}
@@ -717,206 +725,329 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;background:var(--br
 .evm .card-em{display:block;width:44px;margin:22px auto 0}
 
 
-/* ==== phones: the reference's own phone composition, measured at 390 ==== */
+/* ==== phones ==== the phone composition lives in one place: the "phone pass" section before the page blocks ==== */
+
+/* ==== the homepage: the reference's small type, in the unit, with floors that keep it legible ==== */
+.pg-home{
+--t-p:max(14px,calc(var(--u)*14));--lh-p:1.5;--t-go:max(14px,calc(var(--u)*15));--t-lead:max(16px,calc(var(--u)*17));
+--t-lt:max(14px,calc(var(--u)*17));--t-ls:max(12px,calc(var(--u)*13));--t-sc:max(20px,calc(var(--u)*31));
+--t-q:max(14px,calc(var(--u)*15));--t-cite:max(12px,calc(var(--u)*13));--t-bq:max(12px,calc(var(--u)*13.5));
+--t-mh:max(26px,calc(var(--u)*50));--t-mi:max(23px,calc(var(--u)*46));--t-num:max(18px,calc(var(--u)*27));
+--t-h2:max(28px,calc(var(--u)*40));--t-h3:max(17px,calc(var(--u)*19));--t-small:max(13px,calc(var(--u)*13.5))}
+/* on phones the homepage reads at the same four sizes as every other page (the phone pass below) */
 @media (max-width:760px){
-/* chrome */
-.bf-band{padding:calc(var(--u)*12) calc(var(--u)*13.4) 0}
+.pg-home{
+--t-p:17px;--lh-p:1.45;--t-go:15px;--t-lead:17px;--t-lt:15px;--t-ls:14px;--t-sc:17px;
+--t-q:17px;--t-cite:14px;--t-bq:14px;--t-mh:30px;--t-mi:22px;
+--t-num:15px;--t-h2:30px;--t-h3:17px;--t-small:14px}
+}
+
+/* ==== print: the words and the menus, without the frame, the bands or the Menu ==== */
+@media print{
+body::before,body::after,.bf-sticky,.bf-menu,.bf-skip,.bf-mbtn,.bf-band .btn,.slides-n,.faqx-nav{display:none!important}
+body{padding:0}
+.js .rv{opacity:1!important;transform:none!important}
+.faqx-list .qa[hidden]{display:block!important}
+details>*{display:block}
+.embed iframe{display:none}
+}
+
+/* ==== phone pass (owner, October 2026) ====
+   The reference on the owner's own iPhone (dj/owner-phone/01–10, PHONE-PHILOSOPHY.md) is the measure. What it does:
+   one idea per screen; reading text large (17px, 1.45) running the whole measure inside the frame at one gutter (--go);
+   huge air (--ask of paper before a link or button, --after after it, --air each side of a section); photographs
+   recomposed, not shrunk: a pair fills the measure side by side, three small ones run across it, the wide photograph
+   fills it, the band bleeds, the port photograph bleeds right, the tall photograph is inset like the reference's
+   "as seen in" portrait with its words aligned to its left edge, small photographs sit off to one side with the words
+   beside them; labels at the gutter with the photograph starting right under them; links small, underlined and
+   right-aligned under their block; the double rule for the page's asks only, set at the gutter; the packages' tabs a
+   list with a rule at its right and the open panel beside it; facts label · fact on one line while it fits, else the
+   fact on its own line; forms label above, hairline, the send button centred; the footer a stacked list.
+   Nothing is centred but the band's script, a story page's opening, the host card, a frame's inside and the footer's
+   logo. Everything here sits inside this one media block: desktop (≥761px) never changes. ==== */
+@media (max-width:760px){
+:root{--air:calc(var(--u)*80);--ask:72px;--after:calc(var(--u)*100);--lbl:10px;--txt:20px;--pair:calc(var(--u)*230);--three:calc(var(--u)*167);--wide:calc(var(--u)*480)}
+/* ---- words ---- */
+.h1,.h2{line-height:1}
+.h1 i,.h1 em,.h2 i,.h2 em{font-size:22px;line-height:1.1;margin-top:.12em}
+.h2 .pre{font-size:15px}
+.h3.m{font-size:24px}
+.lead{line-height:1.45}
+.label{line-height:1.25}
+main p.go,.go.r,.go.c{text-align:right}
+.j{text-align:justify}
+/* the asks: the double rule at the gutter, each plain link on its own line at the right */
+.btn{min-height:44px;padding:11px 20px;font-size:15px}
+.btns{flex-direction:column;align-items:flex-start;gap:22px}
+.btns.c{justify-content:flex-start;align-items:flex-start}
+.btns>.go{align-self:flex-end;text-align:right}
+/* ---- chrome ---- */
+.bf-band{padding:calc(var(--u)*12) var(--go) 0}
 .bf-band>.bf-mbtn{margin-top:calc(var(--u)*8)}
-.bf-tag{margin:calc(var(--u)*3.8) 0 calc(var(--u)*-2)}
-.bf-script{width:calc(var(--u)*150);margin-top:calc(var(--u)*10);padding-bottom:calc(var(--u)*10)}
-.bf-band.slim{padding:0 calc(var(--u)*13.4)}
-.bf-logo-s img{height:46px}
-.bf-band .btn,.bf-sticky .btn{min-height:44px;padding:8px 13px;font-size:var(--b-fs)}
+.bf-tag{margin:calc(var(--u)*3) 0 0}
+.bf-script{width:calc(var(--u)*168);margin-top:calc(var(--u)*8);padding-bottom:calc(var(--u)*12)}
+.bf-band.slim{padding:0 var(--go)}
+.bf-logo-s img{height:40px}
+.bf-band .btn,.bf-sticky .btn{min-height:44px;padding:8px 14px;font-size:var(--b-fs)}
+.bf-sticky .btn{min-height:40px}
 .bf-band-r{gap:16px}
 .bf-mbtn::after,.bf-band .btn::after,.bf-sticky .btn::after{inset:-4px -6px}
-.cover{height:min(calc(var(--u)*542),calc(100svh - 2*var(--fp) - 64px))}
-.cover-k{left:calc(var(--u)*13.4);bottom:calc(var(--u)*13)}
-.bf-sticky{padding:0 calc(var(--u)*13.4)}
-.bf-sticky .bf-logo-s img{height:40px}
+.cover{height:clamp(360px,62svh,560px)}
+.cover-k{left:var(--go);bottom:calc(var(--u)*13)}
+.bf-sticky{padding:0 var(--go)}
+.bf-sticky .bf-logo-s img{height:36px}
 /* a form page's band on phones lies over the photograph all the way across: Almond words, the Almond ask */
 .bf-band.over .bf-mbtn{color:var(--al)}
 .bf-band.over .btn{background:transparent;color:var(--al);border-color:var(--al)}
 .bf-band.over .btn::before{border-color:var(--al)}
 .bf-band.over .btn:hover,.bf-band.over .btn:focus-visible{background:var(--al);color:var(--dr)}
 .bf-band.over .btn:hover::before,.bf-band.over .btn:focus-visible::before{border-color:var(--dr)}
-/* the Menu screen: the list stacks on paper with the small portrait beside it; the tall photograph is dropped */
+/* the Menu sheet: the list on paper, the ask first, groups 26px apart, the sub-pages italic Bright Red and indented,
+   no photograph, hours, address and the icons at the foot */
 .bf-menu{grid-template-columns:1fr}
-.bf-menu-r{display:none}
-.bf-menu-l{padding:20px calc(var(--u)*13.4) 22px}
-.bf-menu-logo img{height:54px}
-.bf-menu .bf-mclose{top:calc(var(--fp) + 34px);right:calc(var(--fp) + calc(var(--u)*13.4));color:var(--dr)}
-.bf-menu-nav{margin-top:26px}
-.bf-menu-book{margin-top:24px;font-size:16px;padding:12px 22px;align-self:flex-start}
+.bf-menu-r,.bf-menu-ph{display:none}
+.bf-menu-l{padding:20px var(--go) 24px}
+.bf-menu-logo img{height:50px}
+.bf-menu .bf-mclose{top:calc(var(--fp) + 32px);right:calc(var(--fp) + var(--go));color:var(--dr)}
+.bf-menu-nav{margin-top:28px}
+.bf-menu-book{margin-top:26px;font-size:15px;padding:11px 22px;align-self:flex-start}
 .bf-menu-nav>ul+ul{margin-top:26px}
-.bf-menu-nav li+li{margin-top:10px}
-.bf-menu-nav li{font-size:19px}
+.bf-menu-nav li+li{margin-top:12px}
+.bf-menu-nav li{font-size:19px;line-height:1.2}
 .bf-menu-nav .sub{margin:8px 0 6px 22px}
-.bf-menu-nav .sub li+li{margin-top:6px}
-.bf-menu-ph{left:auto;right:calc(var(--u)*13.4);top:calc(var(--u)*330);width:calc(var(--u)*113.3);height:calc(var(--u)*170.6)}
-.bf-menu-foot{flex-direction:column;align-items:flex-start;gap:18px}
-/* footer */
-.bf-foot{grid-template-columns:calc(var(--u)*13.4) 1fr calc(var(--u)*13.4)}
-.bf-foot-nav{grid-column:2;grid-row:1;justify-self:end;gap:calc(var(--u)*30);margin-top:calc(var(--u)*21)}
-.bf-foot-nav li+li{margin-top:calc(var(--u)*12)}
-.bf-foot-logo{grid-column:2;grid-row:2;justify-self:center;width:calc(var(--u)*220);margin-top:calc(var(--u)*64)}
-.bf-foot-info{grid-column:2;grid-row:3;margin-top:calc(var(--u)*72);flex-direction:column;align-items:flex-start}
-.bf-foot-base{grid-row:4;grid-template-columns:auto 1fr;column-gap:12px;margin-top:calc(var(--u)*30);padding:calc(var(--u)*10) calc(var(--u)*13.4) calc(var(--u)*12)}
+.bf-menu-nav .sub li{font-size:16px}
+.bf-menu-nav .sub li+li{margin-top:7px}
+.bf-menu-foot{flex-direction:column;align-items:flex-start;gap:18px;padding-top:36px}
+.bf-menu-tag{font-size:14px}
+/* the footer: the pages stacked at the right, the logo centred, the sign-off, address and hours, the base line */
+.bf-foot{grid-template-columns:var(--go) 1fr var(--go)}
+.bf-foot-nav{grid-column:2;grid-row:1;justify-self:end;flex-direction:column;align-items:flex-end;gap:34px;margin-top:calc(var(--u)*48);text-align:right}
+.bf-foot .k{margin-bottom:12px}
+.bf-foot-nav li+li{margin-top:14px}
+.bf-foot-logo{grid-column:2;grid-row:2;justify-self:center;width:calc(var(--u)*300);margin-top:calc(var(--u)*80)}
+.bf-foot-info{grid-column:2;grid-row:3;margin-top:calc(var(--u)*72);flex-direction:column;align-items:flex-start;gap:28px}
+.bf-foot-sign .m{font-size:30px}
+.bf-foot-sign i{font-size:22px}
+.bf-foot-ad{margin:0}
+.bf-foot-ph{display:none}
+.bf-foot-base{grid-row:4;grid-template-columns:auto 1fr;column-gap:12px;margin-top:calc(var(--u)*48);padding:14px var(--go) 16px}
 .bf-foot-base img{display:none}
-/* homepage components */
-.sec{padding:calc(var(--u)*64) 0}
-.sec.tight{padding:calc(var(--u)*40) 0}
+/* ---- sections and stacks ---- */
+.sec{padding:var(--air) 0}
+.sec.tight{padding:calc(var(--u)*48) 0}
 .sec.flush{padding-top:0}
-.pair{grid-template-columns:calc(var(--u)*145) calc(var(--u)*145);column-gap:calc(var(--u)*6.2);padding:calc(var(--u)*68.1) 0 calc(var(--u)*72) calc(var(--u)*47.5)}
-.pair>.ph{height:calc(var(--u)*220.6)}
-.pair>p:not(.go):not(.label){grid-column:1/-1;margin-top:calc(var(--u)*9.8)}
-.pair>.go{grid-column:1/-1;margin-top:calc(var(--u)*82)}
-.pair-txt{grid-column:1/-1;margin-top:calc(var(--u)*28);padding-right:0}
-.pair.solo .pair-txt{grid-column:1/-1;grid-row:2;margin-top:calc(var(--u)*22);padding:0}
-.pair.solo>.ph{grid-column:1/-1;height:calc(var(--u)*360)}
-.words{flex-wrap:wrap;gap:8px 20px;padding:calc(var(--u)*40) calc(var(--u)*13.4) calc(var(--u)*24);font-size:20px}
+.stack>*+*{margin-top:16px}
+.stack>.label+*{margin-top:var(--lbl)}
+.stack>*+.btns,.stack>*+.go{margin-top:var(--ask)}
+.stack>*+.facts,.stack>*+.quote,.stack>*+.frame,.stack>*+.embed{margin-top:36px}
+.stack>.facts+.btns,.stack>.quote+.btns,.stack>.frame+.btns{margin-top:var(--ask)}
+/* pair: two portraits side by side filling the measure; the words under them, each floor's own words one after another */
+.pair{grid-template-columns:1fr 1fr;column-gap:calc(var(--u)*12);padding:var(--air) var(--go)}
+.pair>.label,.pair>.pair-h{grid-column:1/-1;margin-bottom:var(--txt)}
+.pair>.ph{height:var(--pair)}
+.pair>p:not(.go):not(.label){grid-column:1/-1;margin-top:var(--txt)}
+.pair>.go{grid-column:1/-1;justify-self:end;text-align:right;margin-top:var(--ask)}
+.pair-txt{grid-column:1/-1;margin-top:var(--txt);padding-right:0}
+.pair-txt+.pair-txt{margin-top:var(--after)}
+.pair-txt .label{font-size:var(--t-sc)}
+.pair.solo>.ph{grid-column:1/-1;height:calc(var(--u)*440)}
+.pair.solo .pair-txt{grid-column:1/-1;grid-row:2;margin-top:var(--txt);padding:0}
+/* words: the five words wrap along the line */
+.words{flex-wrap:wrap;gap:10px 22px;padding:calc(var(--u)*40) var(--go) calc(var(--u)*24);font-size:20px}
 .words>*,.words>:nth-child(n){width:auto;margin-left:0}
-.row5{padding:calc(var(--u)*66.7) calc(var(--u)*13.4) calc(var(--u)*68.7)}
-.r5{width:calc(var(--u)*113.3)}
-.row5>.r5:nth-child(2),.row5.n3>.r5:nth-child(2){margin-left:calc(var(--u)*12.2)}
-.row5>.r5:nth-child(3),.row5.n3>.r5:nth-child(3){margin-left:calc(var(--u)*11.1)}
-.row5>.r5:nth-child(n+4){display:none}
-.row5.scroll{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.row5.scroll::-webkit-scrollbar{display:none}
-.row5.scroll>.r5{display:block;scroll-snap-align:start}
-.row5.scroll>.r5:nth-child(n+2){margin-left:calc(var(--u)*12)}
-.r5 .ph{height:calc(var(--u)*170.6)}
-.r5-t{margin-top:calc(var(--u)*11)}
-.r5-s{margin-top:calc(var(--u)*7.4)}
-.feature,.feature.flip{grid-template-columns:calc(var(--u)*70.7) 1fr;padding:calc(var(--u)*54) 0 calc(var(--u)*80)}
-.feature>.label{grid-column:2;justify-self:start}
-.feature-ph{grid-column:2;height:calc(var(--u)*426.6);margin-top:calc(var(--u)*13.1)}
-.feature-ph .on-ph,.feature.flip .feature-ph .on-ph{left:calc(var(--u)*13.4);right:auto;bottom:calc(var(--u)*35.6);text-align:left}
-.feature-txt,.feature-txt.wide{grid-column:2;display:block;width:calc(var(--u)*284);margin-top:calc(var(--u)*14.6)}
-.feature-txt>p+p{margin-top:calc(var(--u)*22.9)}
-.feature>.go{grid-column:2;grid-row:4;justify-self:end;margin:calc(var(--u)*88.8) calc(var(--u)*46.3) 0 0;text-align:right}
-.feature.flip{grid-template-columns:1fr calc(var(--u)*70.7)}
-.feature.flip>.label,.feature.flip .feature-ph,.feature.flip .feature-txt,.feature.flip>.go{grid-column:1}
-.feature.flip>.label,.feature.flip .feature-txt{margin-left:calc(var(--u)*13.4)}
-.feature.flip>.go{justify-self:start;margin:calc(var(--u)*64) 0 0 calc(var(--u)*13.4);text-align:left}
-.slides-s{grid-template-columns:calc(var(--u)*93.8) calc(var(--u)*202.3) 1fr;padding:calc(var(--u)*83.8) 0 calc(var(--u)*120)}
-.slides{height:calc(var(--u)*303.5)}
-.slides>.label{left:calc(var(--u)*12.2);bottom:calc(var(--u)*14);font-size:max(13px,calc(var(--u)*13))}
-.slides-n{left:calc(var(--u)*102.2);bottom:calc(var(--u)*13.8)}
+/* row: three small captioned photographs across the measure; four or more scroll sideways and snap */
+.row5{gap:calc(var(--u)*12);padding:var(--air) var(--go);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.row5::-webkit-scrollbar{display:none}
+.r5{flex:0 0 calc((100% - 2 * var(--u) * 12) / 3);width:auto;scroll-snap-align:start}
+.row5>.r5:nth-child(n),.row5.n3>.r5:nth-child(n),.row5.n4>.r5:nth-child(n){margin-left:0}
+.row5>.r5+.r5{margin-left:calc(var(--u)*12)}
+.r5 .ph{height:var(--three)}
+.r5-t{margin-top:12px}
+.r5-s{margin-top:6px}
+/* feature: the label at the gutter, the wide photograph filling the measure under it, the words, the link at the right */
+.feature,.feature.flip{grid-template-columns:var(--go) 1fr var(--go);padding:var(--air) 0}
+.feature>.label,.feature.flip>.label{grid-column:2;justify-self:start;margin-left:0}
+.feature-ph,.feature.flip .feature-ph{grid-column:2;height:var(--wide);margin-top:var(--lbl)}
+.feature-ph .on-ph,.feature.flip .feature-ph .on-ph{left:var(--go);right:auto;bottom:calc(var(--u)*24);text-align:left}
+.feature-txt,.feature-txt.wide,.feature.flip .feature-txt{grid-column:2;display:block;width:auto;margin:var(--txt) 0 0}
+.feature-txt>p+p{margin-top:.9em}
+.feature>.go,.feature.flip>.go{grid-column:2;grid-row:4;justify-self:end;margin:var(--ask) 0 0;text-align:left}
+/* slides and tall: the reference's inset portrait (its "as seen in"): the photograph inset from the left, the words
+   aligned to its left edge, 01 02 03 on its foot */
+.slides-s{grid-template-columns:calc(var(--u)*77) calc(var(--u)*238) 1fr;padding:var(--air) 0}
+.slides{height:calc(var(--u)*360)}
+.slides>.label{left:calc(var(--u)*12);bottom:calc(var(--u)*14);font-size:15px}
+.slides-n{left:auto;right:calc(var(--u)*12);bottom:calc(var(--u)*12)}
 .slides-n button{width:calc(var(--u)*32)}
 .slides-n button::after{inset:-14px -1px}
-.slides-s>.quote{grid-column:2;margin-top:calc(var(--u)*17.1)}
-section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*93.8) calc(var(--u)*202.3) 1fr;align-items:start;padding:calc(var(--u)*83.8) 0 calc(var(--u)*80)}
-.tall-ph,.tall.flip .tall-ph{grid-column:2;grid-row:1;height:calc(var(--u)*303.5)}
-.tall-ph>.label{left:calc(var(--u)*12.2);bottom:calc(var(--u)*14);font-size:max(14px,calc(var(--u)*14))}
-.tall-txt,.tall.flip .tall-txt{grid-column:1/-1;grid-row:2;margin-top:calc(var(--u)*34);padding:0 calc(var(--u)*13.4)}
-.strip{grid-template-columns:calc(var(--u)*13.4) calc(var(--u)*181.6) 1fr calc(var(--u)*113.3) calc(var(--u)*12.2);padding:calc(var(--u)*16) 0 calc(var(--u)*89.5)}
-.strip>.label{grid-column:2/4;grid-row:1;margin-top:0}
-.strip-txt{grid-column:2;grid-row:2;margin-top:calc(var(--u)*320)}
-.strip-txt>p+p:not(.go){margin-top:calc(var(--u)*41.8)}
-.strip-txt .go{margin-top:calc(var(--u)*33.3)}
-.strip-ph{grid-column:4;grid-row:2;flex-direction:column;gap:calc(var(--u)*11);margin-top:calc(var(--u)*180)}
-.strip-ph .ph:first-child:not(:only-child){display:none}
-.strip-ph .ph{width:calc(var(--u)*113.3);height:calc(var(--u)*170.6)}
-.bandph{height:calc(var(--u)*474)}
-.bandph-q{left:calc(var(--u)*13.4);top:calc(var(--u)*70.8);width:calc(var(--u)*240);gap:calc(var(--u)*29.9)}
-.bandph .on-ph{left:calc(var(--u)*13.4);bottom:calc(var(--u)*46)}
-.scatter{grid-template-columns:calc(var(--u)*13.4) calc(var(--u)*74.4) calc(var(--u)*38.9) calc(var(--u)*86.6) calc(var(--u)*50) calc(var(--u)*113.3) calc(var(--u)*13.4);padding:calc(var(--u)*61.1) 0 calc(var(--u)*70)}
-.sc-s1{grid-column:6/7;height:calc(var(--u)*170.6)}
-.scatter>.label{grid-column:3/6}
-.sc-big{grid-column:3/7;height:calc(var(--u)*435.1);margin-top:calc(var(--u)*8.6)}
-.sc-s2{grid-column:2/4;grid-row:3;align-self:start;height:calc(var(--u)*170.6);margin-top:calc(var(--u)*64.6)}
-.sc-txt{grid-column:5/7;grid-row:3;margin-top:calc(var(--u)*64.6);text-align:right}
-.scatter>.go{grid-column:5/7;grid-row:4;justify-self:end;margin-top:calc(var(--u)*155.6)}
-.host{width:calc(var(--u)*273);padding:calc(var(--u)*104.8) 0 calc(var(--u)*98);grid-template-columns:1fr}
-.host-ph{height:calc(var(--u)*212.1)}
-.host-ph .on-ph{left:calc(var(--u)*9.8);bottom:calc(var(--u)*11.9);font-family:var(--ff-b);font-weight:400;text-transform:none}
-.host-sub{margin-top:calc(var(--u)*13.4)}
-.host>p:not(.go):not(.host-sub){grid-column:1;margin-top:calc(var(--u)*13.2)}
-.host>.go{grid-column:1;justify-self:center;text-align:center;margin-top:calc(var(--u)*74.5)}
-/* content pages */
-.head-ph{height:calc(var(--u)*580)}
-.head-cap{left:calc(var(--u)*13.4);bottom:calc(var(--u)*27);flex-direction:column;gap:calc(var(--u)*35)}
+.slides-s>.quote{grid-column:1/-1;margin-top:var(--txt);padding:0 var(--go) 0 calc(var(--u)*77)}
+section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(--u)*238) 1fr;align-items:start;padding:var(--air) 0}
+.tall-ph,.tall.flip .tall-ph{grid-column:2;grid-row:1;height:calc(var(--u)*360)}
+.tall-ph>.label{left:calc(var(--u)*12);bottom:calc(var(--u)*14);font-size:15px}
+.tall-txt,.tall.flip .tall-txt{grid-column:1/-1;grid-row:2;margin-top:var(--txt);padding:0 var(--go) 0 calc(var(--u)*77)}
+/* strip: the words at the gutter, then the three photographs across the measure */
+.strip{grid-template-columns:var(--go) 1fr var(--go);padding:var(--air) 0}
+.strip>.label{grid-column:2;grid-row:1;margin-top:0}
+.strip-txt{grid-column:2;grid-row:2;margin-top:var(--lbl)}
+.strip-txt>p+p:not(.go){margin-top:.9em}
+.strip-txt .go{margin-top:var(--ask);text-align:right}
+.strip-ph{grid-column:2;grid-row:3;gap:calc(var(--u)*12);margin-top:var(--after)}
+.strip-ph .ph{flex:1 1 0;width:auto;height:var(--three)}
+/* band: full bleed, the quotes down its top left, the title at its foot */
+.bandph{height:var(--wide)}
+.bandph-q{left:var(--go);top:calc(var(--u)*40);width:calc(var(--u)*260);gap:calc(var(--u)*36)}
+.bandph .on-ph{left:var(--go);bottom:calc(var(--u)*40)}
+/* scatter: a small photograph top right with the label at its foot, the big photograph inset, a small one bottom left
+   with the words beside it at the right, the link at the right */
+.scatter{grid-template-columns:var(--go) calc(var(--u)*75) calc(var(--u)*38) 1fr calc(var(--u)*113) var(--go);padding:var(--air) 0}
+.sc-s1{grid-column:5/6;grid-row:1;height:var(--three)}
+.scatter>.label{grid-column:2/5;grid-row:1;align-self:end;margin-bottom:0}
+.sc-big{grid-column:3/6;grid-row:2;height:calc(var(--u)*435);margin-top:var(--lbl)}
+.sc-s2{grid-column:2/4;grid-row:3;align-self:start;height:var(--three);margin-top:calc(var(--u)*64)}
+.sc-txt{grid-column:4/6;grid-row:3;margin-top:calc(var(--u)*64);text-align:right}
+.scatter>.go{grid-column:4/6;grid-row:4;justify-self:end;margin-top:var(--ask)}
+/* host: the one centred card */
+.host{width:calc(var(--u)*300);padding:var(--air) 0;grid-template-columns:1fr}
+.host-ph{height:calc(var(--u)*233)}
+.host-ph .on-ph{left:calc(var(--u)*12);bottom:calc(var(--u)*12)}
+.host-sub{margin-top:14px}
+.host>p:not(.go):not(.host-sub){grid-column:1;margin-top:14px}
+.host>.go{grid-column:1;justify-self:center;text-align:center;margin-top:var(--ask)}
+/* ---- content pages ---- */
+.head-ph{height:var(--wide)}
+.head-cap{left:var(--go);bottom:calc(var(--u)*27);flex-direction:column;gap:calc(var(--u)*35)}
 .head-cap>*{width:auto}
-.intro{grid-template-columns:calc(var(--u)*13.4) minmax(0,1fr) calc(var(--u)*13.4);align-items:start;padding:calc(var(--u)*46) 0 calc(var(--u)*70)}
+/* intro, the first screen: the title at once, the portrait starting on the screen, the line, the facts, the ask */
+.intro{grid-template-columns:var(--go) minmax(0,1fr) var(--go);align-items:start;padding:calc(var(--u)*36) 0 var(--air)}
 .intro-txt{display:contents}
 .intro-txt>*,.intro-ph{grid-column:2}
 .intro-txt>*{order:2}
 .intro-txt>.label,.intro-txt>.h1{order:0}
-.intro-ph{order:1;height:calc(var(--u)*548);margin-top:calc(var(--u)*16)}
-.intro-sub{margin-top:calc(var(--u)*22)}
-.intro-cols{grid-template-columns:1fr;row-gap:.9em}
-.intro-ask{justify-self:end;padding-top:calc(var(--u)*40)}
-.testi{grid-template-columns:calc(var(--u)*13.4) calc(var(--u)*113.3) calc(var(--u)*12.2) calc(var(--u)*113.3) calc(var(--u)*11.1) calc(var(--u)*113.3) 1fr;padding:calc(var(--u)*55.7) 0 calc(var(--u)*70)}
-.testi>.ph{height:calc(var(--u)*170.6)}
+.intro-ph{order:1;height:var(--wide);margin-top:var(--txt)}
+.intro-sub{margin-top:var(--txt);max-width:none}
+.intro-cols{grid-template-columns:1fr;row-gap:.5em;margin-top:18px}
+.intro-cols>:only-child{max-width:none}
+.intro-ask{justify-self:start;padding-top:var(--ask)}
+/* testi: three small photographs across the measure, the quote justified under them */
+.testi{grid-template-columns:var(--go) 1fr calc(var(--u)*12) 1fr calc(var(--u)*12) 1fr var(--go);padding:var(--air) 0}
+.testi>.ph{grid-column:2;grid-row:1;height:var(--three)}
 .testi-ph{display:contents}
-.testi-ph .ph{width:auto;height:calc(var(--u)*170.6)}
+.testi-ph .ph{width:auto;height:var(--three)}
 .testi-ph .ph:nth-child(1){grid-column:4;grid-row:1}
 .testi-ph .ph:nth-child(2){grid-column:6;grid-row:1}
 .testi-ph .ph:nth-child(n+3){display:none}
-.testi>.quote{grid-column:2/7;grid-row:2;margin-top:calc(var(--u)*16)}
-.pkgs{grid-template-columns:calc(var(--u)*13.4) calc(var(--u)*113.3) calc(var(--u)*19.6) minmax(0,1fr) calc(var(--u)*13.4);padding:calc(var(--u)*33) 0 calc(var(--u)*60)}
-.pkgs>.label{grid-column:2/5}
-.pkgs-ph{grid-column:2/5;height:calc(var(--u)*254.7);margin-top:calc(var(--u)*14)}
-.pkgs-tabs{grid-column:2;grid-row:3;display:flex;flex-direction:column;align-items:flex-start;gap:calc(var(--u)*22);margin-top:calc(var(--u)*30)}
-.pkgs-tabs [role="tab"]{font-size:16px}
-.pkgs-panels{grid-column:4;grid-row:3;display:block;margin-top:calc(var(--u)*30);padding-left:calc(var(--u)*12);border-left:1px solid var(--hair-s)}
+.testi>.quote{grid-column:2/7;grid-row:2;margin-top:var(--txt)}
+.testi>.quote p{text-align:justify}
+/* pkgs: the label, the wide photograph, the four headings stacked at the left with a rule at their right and the open
+   panel beside them, the ask under it all */
+.pkgs{grid-template-columns:var(--go) calc(var(--u)*127) minmax(0,1fr) var(--go);padding:calc(var(--u)*40) 0 var(--air)}
+.pkgs>.label{grid-column:2/4}
+.pkgs-ph{grid-column:2/4;height:calc(var(--u)*255);margin-top:var(--lbl)}
+.pkgs-tabs{grid-column:2;grid-row:3;display:flex;flex-direction:column;align-items:flex-start;gap:30px;margin-top:calc(var(--u)*40);padding:4px 0}
+.pkgs-tabs [role="tab"]{font-size:17px;padding:0;border-bottom:0}
+.pkgs-tabs [role="tab"][aria-selected="true"]{color:var(--br)}
+.pkgs-panels{grid-column:3;grid-row:3;display:block;margin-top:calc(var(--u)*40);padding-left:calc(var(--u)*18);border-left:1px solid var(--dr)}
 .pkgs-panels>*{width:auto}
-.pkgs>.btn,.pkgs>.go{grid-column:2/5;grid-row:4;margin-top:calc(var(--u)*40)}
-.port{grid-template-columns:calc(var(--u)*13.4) calc(var(--u)*51.2) minmax(0,1fr) calc(var(--u)*13.4);padding:calc(var(--u)*48) 0 calc(var(--u)*70)}
-.port-s{grid-column:2/4;grid-row:1;grid-template-columns:calc(var(--u)*113.3) calc(var(--u)*113.3);gap:calc(var(--u)*12.2)}
-.port-ph{grid-column:3/5;grid-row:2;height:calc(var(--u)*416.8);margin-top:calc(var(--u)*30)}
-.port-txt{grid-column:3;grid-row:3;align-self:start;max-width:none;margin-top:calc(var(--u)*21)}
-.faqx{grid-template-columns:calc(var(--u)*46.3) calc(var(--u)*145) calc(var(--u)*7.4) calc(var(--u)*145) minmax(0,1fr);padding:calc(var(--u)*69) 0 calc(var(--u)*70)}
-.faqx>.label{grid-column:2/5;justify-self:center}
+.pkgs-panels .price{margin-top:14px;font-size:17px;color:var(--br)}
+.pkgs>.btn,.pkgs>.go{grid-column:2/4;grid-row:4;justify-self:start;margin-top:var(--ask)}
+.pkgs>.go{justify-self:end}
+/* port: two small captioned photographs at the left, the big photograph bleeding right, the words under it */
+.port{grid-template-columns:var(--go) calc(var(--u)*51) minmax(0,1fr) var(--go);padding:calc(var(--u)*48) 0 var(--air)}
+.port-s{grid-column:2/4;grid-row:1;grid-template-columns:calc(var(--u)*111) calc(var(--u)*111);gap:calc(var(--u)*12)}
+.port-ph{grid-column:3/5;grid-row:2;height:var(--wide);margin-top:calc(var(--u)*40)}
+.port-ph .on-ph{left:calc(var(--u)*14);bottom:calc(var(--u)*22)}
+.port-txt{grid-column:2/4;grid-row:3;align-self:start;max-width:none;margin-top:var(--txt)}
+/* faqx: the label, two photographs side by side, Prev / Next, one question, the photograph, the ask */
+.faqx{grid-template-columns:var(--go) 1fr calc(var(--u)*12) 1fr var(--go);padding:var(--air) 0}
+.faqx>.label{grid-column:2/5;justify-self:start;margin-bottom:var(--lbl)}
 .faqx-l{display:contents}
-.faqx-l>.ph:nth-child(1){grid-column:2;grid-row:2;height:calc(var(--u)*220.6)}
-.faqx-l>.ph:nth-child(2){grid-column:4;grid-row:2;height:calc(var(--u)*220.6)}
-.faqx-l>.btn,.faqx-l>.go{grid-column:2/5;grid-row:4;margin-top:calc(var(--u)*24)}
-.faqx-r{grid-column:2/5;grid-row:3;padding-top:calc(var(--u)*20)}
+.faqx-l>.ph:nth-child(1){grid-column:2;grid-row:2;height:var(--pair)}
+.faqx-l>.ph:nth-child(2){grid-column:4;grid-row:2;height:var(--pair)}
+.faqx-l>.btn,.faqx-l>.go{grid-column:2/5;grid-row:4;margin-top:var(--ask)}
+.faqx-l>.go{justify-self:end}
+.faqx-r{grid-column:2/5;grid-row:3;padding-top:var(--txt)}
 .faqx-q,.faqx.one .faqx-q{display:flex;flex-direction:column;align-items:stretch}
 .faqx-nav,.faqx.one .faqx-nav{order:-1;align-self:flex-end;margin-bottom:calc(var(--u)*40)}
+.faqx-list .qa h3{color:var(--br);max-width:none}
 .faqx-list .qa>div{max-width:none}
-.faqx-r>.ph{width:100%;height:calc(var(--u)*410.7);margin-top:calc(var(--u)*30)}
-/* story pages */
-.blank{min-height:calc(var(--u)*610);padding:calc(var(--u)*80) calc(var(--u)*13.4) calc(var(--u)*170)}
-.blank>.go,.blank>.btn{right:calc(var(--u)*13.4);bottom:calc(var(--u)*24)}
-.intro2{grid-template-columns:calc(var(--u)*13.4) calc(var(--u)*113.3) calc(var(--u)*12.2) calc(var(--u)*113.3) 1fr calc(var(--u)*13.4);padding:calc(var(--u)*66.9) 0 calc(var(--u)*60)}
-.intro2-s1{height:calc(var(--u)*170.6)}
-.intro2-s2{height:calc(var(--u)*170.6)}
-.intro2-txt{grid-column:2/6;grid-row:2;max-width:none;margin-top:calc(var(--u)*11)}
-.intro2-big{grid-column:2/6;grid-row:3;height:calc(var(--u)*574);margin-top:calc(var(--u)*30)}
-.seen{grid-template-columns:calc(var(--u)*76.8) calc(var(--u)*113.3) calc(var(--u)*11) calc(var(--u)*113.3) 1fr;padding:calc(var(--u)*56.8) 0 calc(var(--u)*60)}
-.seen>.label{grid-column:2/5;justify-self:end}
-.seen-ph{grid-column:2/5;height:calc(var(--u)*360.8)}
+.faqx-r>.ph{width:100%;height:calc(var(--u)*410);margin-top:var(--after)}
+/* ---- story pages ---- */
+/* blank, the story opening: a field of paper, one portrait centred (add <figure class="ph blank-ph"> first in .blank; it
+   never shows on desktop), the label and the title under it, the link at the right */
+.blank{min-height:0;justify-items:center;align-content:start;padding:calc(var(--u)*120) var(--go) var(--air);text-align:center}
+.blank>.ph{display:block;width:calc(var(--u)*200);height:calc(var(--u)*300);margin-bottom:28px}
+.blank>.h1{max-width:none}
+.blank>p:not(.go){margin-top:14px;max-width:none}
+.blank>.go,.blank>.btn{position:static;justify-self:end;margin-top:var(--ask)}
+/* intro2: two small photographs at the left, the words, the portrait filling the measure */
+.intro2{grid-template-columns:var(--go) calc(var(--u)*111) calc(var(--u)*12) calc(var(--u)*111) 1fr var(--go);padding:var(--air) 0}
+.intro2-s1,.intro2-s2{height:var(--three)}
+.intro2-txt{grid-column:2/6;grid-row:2;max-width:none;margin-top:var(--txt)}
+.intro2-big{grid-column:2/6;grid-row:3;height:var(--wide);margin-top:var(--after)}
+/* seen: the label right-aligned over the inset portrait, the list in two columns from its left edge, the link at its right */
+.seen{grid-template-columns:calc(var(--u)*77) calc(var(--u)*238) 1fr;padding:var(--air) 0}
+.seen>.label{grid-column:2;justify-self:end;text-align:right;margin-bottom:var(--lbl)}
+.seen-ph{grid-column:2;grid-row:2;height:calc(var(--u)*360)}
 .seen-s{display:none}
-.seen-list{grid-column:2/5;grid-row:3;margin-top:calc(var(--u)*18);columns:2;column-gap:calc(var(--u)*11)}
+.seen-list{grid-column:2;grid-row:3;margin-top:var(--txt);columns:2;column-gap:calc(var(--u)*12)}
 .seen-list li{break-inside:avoid}
-.seen>.go,.seen>.btn{grid-column:2/5;grid-row:4;margin-top:calc(var(--u)*24)}
-.cta2{grid-template-columns:calc(var(--u)*13.4) minmax(0,1fr) calc(var(--u)*13.4);padding:0 0 calc(var(--u)*60)}
-.cta2-big{grid-column:1/3;width:calc(var(--u)*314.4);height:calc(var(--u)*219.4)}
-.cta2-txt{grid-column:2;grid-row:2;margin-top:calc(var(--u)*16)}
-.cta2>.go,.cta2>.btn{grid-column:2;grid-row:3;margin-top:calc(var(--u)*24)}
-.cta2-s{grid-column:2;grid-row:4;grid-template-columns:calc(var(--u)*113.3) calc(var(--u)*113.3);justify-content:end;margin-top:calc(var(--u)*40)}
-.cta2-s .ph{height:calc(var(--u)*170.6)}
-/* form pages */
-.fpage{grid-template-columns:calc(var(--u)*13.4) minmax(0,1fr) calc(var(--u)*13.4);padding:0 0 calc(var(--u)*70)}
-.fpage-ph{grid-column:1/-1;grid-row:1;height:calc(var(--u)*443)}
+.seen>.go,.seen>.btn{grid-column:2;grid-row:4;align-self:start;justify-self:end;margin-top:var(--ask)}
+/* cta2: the photograph bleeding left, the words, the ask, two small photographs at the right */
+.cta2{grid-template-columns:var(--go) minmax(0,1fr) var(--go);padding:0 0 var(--air)}
+.cta2-big{grid-column:1/3;width:calc(var(--u)*314);height:calc(var(--u)*217)}
+.cta2-txt{grid-column:2;grid-row:2;margin-top:var(--txt)}
+.cta2>.go,.cta2>.btn{grid-column:2;grid-row:3;justify-self:start;margin-top:var(--ask)}
+.cta2>.go{justify-self:end}
+.cta2-s{grid-column:2;grid-row:4;grid-template-columns:calc(var(--u)*111) calc(var(--u)*111);gap:calc(var(--u)*12);justify-content:end;margin-top:var(--after)}
+.cta2-s .ph{height:var(--three)}
+/* ---- form pages ---- */
+.fpage{grid-template-columns:var(--go) minmax(0,1fr) var(--go);padding:0 0 var(--air)}
+.fpage-ph{grid-column:1/-1;grid-row:1;height:var(--wide)}
 .fpage-ph::before{content:"";position:absolute;z-index:1;inset:0 0 auto 0;height:96px;background:linear-gradient(180deg,rgba(30,3,0,.45),rgba(30,3,0,0));pointer-events:none}
-.fpage-txt{grid-column:2;grid-row:2;padding-top:calc(var(--u)*54)}
-.fpage-form{grid-column:2;grid-row:3;margin-top:calc(var(--u)*40)}
-.form.two{grid-template-columns:1fr}
-/* functional pieces read at the full measure on phones */
-.prose,.prose.at-l,.prose.at-395,.prose.at-r,.prose.at-c{padding-left:calc(var(--u)*13.4);padding-right:calc(var(--u)*13.4)}
-.cols{grid-template-columns:calc(var(--u)*13.4) minmax(0,1fr) calc(var(--u)*13.4)}
-.cols>:nth-child(n){grid-column:2}
-.cols>:nth-child(n+2){margin-top:calc(var(--u)*28)}
+.fpage-txt{grid-column:2;grid-row:2;padding-top:calc(var(--u)*48)}
+.fpage-txt>p:not(.label){max-width:none}
+.fpage-form{grid-column:2;grid-row:3;margin-top:var(--after)}
+.form.two{grid-template-columns:1fr;row-gap:34px}
+/* ---- functional pieces: the whole measure ---- */
+.prose,.prose.at-l,.prose.at-395,.prose.at-r,.prose.at-c{padding-left:var(--go);padding-right:var(--go);text-align:left}
+.prose>*{max-width:none}
+.prose.at-c>*{margin-left:0;margin-right:0}
+.prose>.label+*{margin-top:var(--lbl)}
+.prose>.h1+*,.prose>.h2+*{margin-top:18px}
+.prose>*+.go,.prose>*+.btns{margin-top:var(--ask)}
+.prose>*+.facts,.prose>*+.embed,.prose>*+.quote,.prose>*+.faq,.prose>*+.steps,.prose>*+.form,.prose>*+.frame{margin-top:36px}
+.prose>.facts{max-width:none}
+.cols{grid-template-columns:var(--go) minmax(0,1fr) var(--go)}
+.cols>:nth-child(n){grid-column:2;max-width:none}
+.cols>:nth-child(n+2){margin-top:calc(var(--u)*40)}
+/* facts: label and fact on one line while it fits; otherwise the fact drops to its own line; no leader dots */
 .facts i{display:none}
-.facts li,.facts>div{gap:14px;justify-content:space-between}
-.hold{grid-template-columns:1fr;gap:28px}
-.chap>summary{grid-template-columns:44px 1fr auto}
+.facts li,.facts>div{flex-wrap:wrap;justify-content:space-between;gap:2px 16px;padding:13px 0 12px}
+.facts em,.facts b{flex:1 1 auto;max-width:none;min-width:0}
+.facts li>a:last-child{flex:0 1 auto;max-width:none;margin-left:auto}
+/* in the printed frame the price keeps to the first line and the dish wraps under itself, as on the printed card */
+.frame .facts li{flex-wrap:nowrap;gap:0 14px}
+.frame .facts em,.frame .facts b{flex:0 0 auto;margin-left:auto}
+.facts+.facts-h,.facts+.facts{margin-top:28px}
+.frame{max-width:none;padding:34px 22px 30px}
+.frame .facts li{font-size:17px;padding:10px 0 9px}
+.frame-go{margin-top:22px}
+.steps{grid-template-columns:1fr;gap:34px}
+.faq summary{padding:18px 40px 17px 0}
+.chap>summary{grid-template-columns:44px minmax(0,1fr) auto;padding:20px 0}
+.chap>summary .t{font-size:24px}
+.chap-b{padding:4px 0 calc(var(--u)*48)}
+.mcover{max-width:none}
+.mcover-n{font-size:30px}
 .embed.book iframe{height:720px}
 .embed.map{aspect-ratio:4/5;min-height:0}
-/* the printed menus on phones: drinks at reading size, no dots; the food sheet stays the printed page */
+.form{gap:34px;max-width:none}
+.form input,.form textarea,.form select{padding:12px 0}
+.form .btn{justify-self:center;margin-top:14px}
+.tabs [role="tab"]{font-size:17px}
+.finder-n output{font-size:30px}
+.hold{grid-template-columns:1fr;gap:40px}
+/* the printed menus on phones: drinks at reading size, no dots; the food sheet stays the printed page (owner's call) */
 .pm-drink li>i::before{content:none}
 .pm-food .pm-d{display:none}
 .pm-drink .card-h{font-size:17px;line-height:1.2}
@@ -933,30 +1064,7 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*93.8) calc(va
 .mn-tabs{flex-wrap:nowrap;gap:14px}
 .mn-tabs button{font-size:clamp(16px,4.4vw,19px);padding:10px 0}
 }
-
-/* ==== the homepage: the reference's small type, in the unit, with floors that keep it legible ==== */
-.pg-home{
---t-p:max(14px,calc(var(--u)*14));--lh-p:1.5;--t-go:max(14px,calc(var(--u)*15));--t-lead:max(16px,calc(var(--u)*17));
---t-lt:max(14px,calc(var(--u)*17));--t-ls:max(12px,calc(var(--u)*13));--t-sc:max(20px,calc(var(--u)*31));
---t-q:max(14px,calc(var(--u)*15));--t-cite:max(12px,calc(var(--u)*13));--t-bq:max(12px,calc(var(--u)*13.5));
---t-mh:max(26px,calc(var(--u)*50));--t-mi:max(23px,calc(var(--u)*46));--t-num:max(18px,calc(var(--u)*27));
---t-h2:max(28px,calc(var(--u)*40));--t-h3:max(17px,calc(var(--u)*19));--t-small:max(13px,calc(var(--u)*13.5))}
-@media (max-width:760px){
-.pg-home{
---t-p:15px;--t-go:14.5px;--t-lead:16px;--t-lt:14px;--t-ls:12.5px;--t-sc:max(17px,calc(var(--u)*19));
---t-q:15px;--t-cite:12.5px;--t-bq:12.5px;--t-mh:max(24px,calc(var(--u)*24));--t-mi:max(21px,calc(var(--u)*22));
---t-num:14px;--t-h2:max(26px,calc(var(--u)*28));--t-h3:17px;--t-small:13.5px}
-}
-
-/* ==== print: the words and the menus, without the frame, the bands or the Menu ==== */
-@media print{
-body::before,body::after,.bf-sticky,.bf-menu,.bf-skip,.bf-mbtn,.bf-band .btn,.slides-n,.faqx-nav{display:none!important}
-body{padding:0}
-.js .rv{opacity:1!important;transform:none!important}
-.faqx-list .qa[hidden]{display:block!important}
-details>*{display:block}
-.embed iframe{display:none}
-}
+/* end of the phone pass */
 
 /* ==== page blocks: one per group of pages, every selector prefixed by the page's <body class="pg-…">.
    Append inside your own group's block only, so the five builders never touch the same lines. ==== */
@@ -1220,4 +1328,8 @@ details>*{display:block}
 /* ---- P0 · home, restaurant (the foundation's own pages) ---- */
 .frame-em{display:inline-block;width:44px;height:auto}
 .pg-home #book .hm-vo{max-width:440px;margin-top:max(48px,calc(var(--u)*90));padding-top:max(32px,calc(var(--u)*56));border-top:1px solid var(--hair)}
+@media (max-width:760px){
+/* the vouchers block sits under the table asks on its own hairline, at the full measure (its words indent themselves) */
+.pg-home #book .hm-vo{max-width:none;margin-top:40px;padding-top:28px}
+}
 /* end P0 */

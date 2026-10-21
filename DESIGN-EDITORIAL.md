@@ -499,16 +499,80 @@ Keep the ids; style with the new classes. Everything is optional.
 
 ## 8 · Phones (≤760px)
 
-The reference's own phone composition, measured at 390: recomposed, not shrunk. The unit becomes 1/390 of the width;
-the frame tightens (15px margin, rules at 6 and 9px). Inner bands keep the script left and Menu + the ask right (the ask
-44px tall). The Menu stacks on paper. intro: the h1 first, then the portrait, then the words. testi: three small
-photographs in a row, the quote under them. pkgs: headings stacked at left, the open panel beside them. port: two small
-photographs side by side, the big one bleeding right, words under it. faqx: label, two photographs, Prev / Next, the
-question. blank: the h1 low in a shorter field. intro2: two small photographs, the words, the portrait full width.
-seen: the portrait, the list in two columns. cta2: the photograph bleeding left, the words, two small photographs.
-fpage: the photograph across the top with the band over it, the form in one column. Homepage components follow the
-reference's phone home. Functional pieces take the full measure with a 13.4u margin; leader dots go. Tap targets are at
-least 44px. Test at 390×844 and 360×780; desktop at 1440×900 and 1024×768.
+The phone composition lives in **one place**: the `/* ==== phone pass (owner, October 2026) ==== */` block in
+`static/bf-ed.css` (after the print rules, before the page blocks). It is measured from the owner's own iPhone
+screenshots of the reference (`dj/owner-phone/01–10`; the rules in `PHONE-PHILOSOPHY.md`): one idea per screen, reading
+text large and running the whole measure, huge air, photographs recomposed rather than shrunk, links small and
+right-aligned under their block, the double rule for the page's asks only. Every rule sits inside `@media (max-width:760px)`,
+so desktop never changes. Page groups build on it and add phone rules only inside their own marker block, only for what the
+system does not do, using the tokens below rather than new numbers.
+
+**Tokens (phones only).** The unit is 1/390 of the inner width; the frame is 15px with the rules at 6 and 9px. One
+gutter, `--go` (13.4u, inside the frame); running text takes the whole measure (no narrow column). Air: `--air` (80u on
+each side of a section, so about 160 between two sections), `--ask` (72px of paper before a link or a button), `--after`
+(100u after a link, or between two blocks of words), `--lbl` (10px, label → photograph), `--txt` (20px, photograph →
+words). Photographs: `--pair` (230u tall: two across the measure), `--three` (167u tall: three across at 111u wide),
+`--wide` (480u tall: the whole measure). Four type sizes, no others: reading 17/1.45 (`--t-p`, `--t-lead`, `--t-q`, the
+facts, labels `--t-sc` in Bright Red), link 15 (`--t-go`, buttons, the chrome, the footer's pages), caption 14
+(`--t-small`, cites, the footer's facts and base line), display Marsha 30 (`--t-h1`, `--t-h2`, `--t-mh`, the footer's
+sign-off) with the italic turn 22 (`--t-mi`) and card heads 24 (`.h3.m`, `.frame-h`, `.chap .t`, `--t-at`). Home reads at
+the same phone sizes as every other page.
+
+**Links and asks.** Every plain link (`p.go`, a `.go` inside `.btns`) is right-aligned under its block. `.btns` stacks:
+the `.btn` at the gutter, then each `.go` on its own line at the right, 22px apart, after `--ask` of paper. The double
+rule is for the page's asks only; a form's Send is centred inside its form, a frame's button centred inside its frame.
+Nothing else is centred on a phone but the band's script, a story page's opening, the host card and the footer's logo.
+
+**First screens.** Home: the cover at 62svh (360–560px), the band (the tagline, Menu, Book a table), the script at 168u.
+Inner pages: the slim band (64px) and its hairline, then `.intro` opens with the label and the h1 at once, the portrait
+(`--wide`) starting on the first screen, the line, the facts one under another, the ask at the gutter. No dead paper above
+the fold. A story page (`.blank`) opens on a field of paper (120u), then one portrait centred at 200×300u **if the page
+carries `<figure class="ph blank-ph">` first in `.blank`** (it never shows on desktop: `.blank-ph{display:none}` outside
+the phone block; use one of the page's own photographs), then the label, the h1 and its line centred, the link at the right.
+
+**The components on phones.**
+- `pair`: two portraits side by side filling the measure (`--pair`); the h2 or label above them; each `.pair-txt` one
+  after another, `--after` apart. `.pair.solo`: the photograph at 440u, then its words.
+- `row5`: three across the measure; four or more scroll sideways and snap.
+- `feature` (and `.flip`): the label at the gutter, the wide photograph under it filling the measure, the words, the link right.
+- `tall` and `slides` (the reference's "as seen in"): the portrait 238×360u inset 77u from the gutter with its label on
+  it; the words aligned to its left edge; the 01 02 03 at its bottom right.
+- `strip`: the words, then three photographs across the measure.
+- `bandph`: full bleed, `--wide`; the quotes down its top left, the title at its foot.
+- `scatter`: a small photograph top right with the label at its foot, the big one inset 88u, a small one bottom left
+  with the words right-aligned beside it, the link right.
+- `host`: the one centred card, 300u.
+- `testi`: three small photographs across the measure, the quote justified under them, the cite right.
+- `pkgs`: the label, the photograph at 255u, then the headings stacked at the left (a 127u column) with a 1px Deep Red
+  rule at their right and the open panel beside them; the price 17px Bright Red; the `.btn` at the gutter or the `.go` right.
+- `port`: two small captioned portraits at the left (111u), the big photograph bleeding right from 64u (`--wide`), the words
+  under it at the gutter.
+- `faqx`: the label at the gutter, two portraits side by side (`--pair`), Prev / Next at the right, one question (Bright Red)
+  with its answer, the photograph at 410u, the ask.
+- `intro2`: two small portraits at the left, the words, then the portrait filling the measure.
+- `seen`: the label right-aligned over the inset portrait (238u at 77u), the list in two columns from its left edge, the
+  link at its right edge.
+- `cta2`: the photograph bleeding left (314×217u), the words, the ask, two small portraits at the right.
+- `fpage`: the photograph across the top (`--wide`) with the band over it, the words, the form in one column 34px apart,
+  Send centred.
+- functional pieces: `.prose` and `.cols` take the measure (`.at-c` reads left); `.facts` keep label and fact on one line
+  while it fits, otherwise the fact drops to its own line at the right; no leader dots; inside a `.frame` the price keeps
+  the first line and the dish wraps under itself; `.frame` fills the measure; `.steps` one column; `.form` label above,
+  hairline, full width; `.hold` one column; `.embed.book` 720px; the map 4:5; `.chap` titles 24px.
+- chrome (CSS only, no markup changed): the compact band 56px (the script 36px, Menu, the ask 40px tall); the Menu sheet
+  is the list on paper (the ask first, the groups 26px apart, the Functions pages italic Bright Red and indented, no
+  photographs on phones, hours, address and the icons at the foot); the footer stacks: the pages at the right one under
+  another ((More) then (Franco)), the logo centred at 300u, the sign-off 30/22, the address and hours, Find us where the
+  page has it, the base line without the emblem.
+
+**What a page group still does by hand**, inside its marker block and inside `@media (max-width:760px)` only:
+- a story page's opening portrait (`figure.ph.blank-ph`, see above);
+- replace any hard phone numbers it wrote earlier with the tokens: `calc(var(--u)*13.4)` → `var(--go)`, section paddings
+  → `var(--air)`, the gap before a link or button → `var(--ask)`, photograph heights → `--pair` / `--three` / `--wide`;
+- drop any phone type-size overrides (the four sizes are the system's) and any phone rule that centres something;
+- make the page's primary ask the only `.btn` outside a frame, a form and the band; every other ask is a `.go` link,
+  which the system sets right-aligned;
+- test at 390×844, 375×667 and 360×780 (no overflow, the compact band, the Menu), and 1440×900 unchanged.
 
 ## 9 · Motion
 
