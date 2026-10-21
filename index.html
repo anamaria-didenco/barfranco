@@ -32,119 +32,98 @@
 <script src="/static/vf-tracking.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Restaurant","@id":"https://www.barfranco.nz/#restaurant","name":"Bar Franco","description":"Modern Italian restaurant, cocktail bar and private event venue in central Christchurch, serving fresh housemade pasta, aperitivo and curated cocktails across two vibrant levels.","url":"https://www.barfranco.nz/","telephone":"+64-21-221-1307","email":"ciao@barfranco.nz","servesCuisine":["Italian","Modern Italian","Cocktails"],"priceRange":"$$","currenciesAccepted":"NZD","paymentAccepted":"Cash, Credit Card, EFTPOS","acceptsReservations":"https://www.barfranco.nz/bookings/","menu":"https://www.barfranco.nz/menus/","hasMenu":"https://www.barfranco.nz/menus/","image":["https://www.barfranco.nz/og-image.jpg?v=3","https://www.barfranco.nz/images/aperitivo-table-cheers.jpg","https://www.barfranco.nz/images/waiter-wine-service.jpg","https://www.barfranco.nz/images/aperitivo-table-overhead.jpg"],"hasMap":"https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011","logo":"https://www.barfranco.nz/brand/franco-wordmark.png","address":{"@type":"PostalAddress","streetAddress":"The Crossing, 166 Cashel Street","addressLocality":"Christchurch Central","addressRegion":"Canterbury","postalCode":"8011","addressCountry":"NZ"},"geo":{"@type":"GeoCoordinates","latitude":-43.53262,"longitude":172.6362},"areaServed":"Christchurch","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"16:00","closes":"22:00"}],"sameAs":["https://www.instagram.com/bar__franco/","https://www.facebook.com/barfranco.chch/"]},{"@type":"WebSite","@id":"https://www.barfranco.nz/#website","url":"https://www.barfranco.nz/","name":"Bar Franco","publisher":{"@id":"https://www.barfranco.nz/#restaurant"},"inLanguage":"en-NZ"}]}</script>
 <link rel="preload" href="/static/fonts/VTCMarsha-Bold.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="/static/fonts/Affairs-Regular.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="/static/fonts/Affairs-Italic.otf" as="font" type="font/otf" crossorigin>
-<link href="/static/styles.css" rel="stylesheet"/><link href="/static/editorial.css" rel="stylesheet"/><link href="/static/hm-experience.css" rel="stylesheet"/>
+<link href="/static/bf-ed.css" rel="stylesheet"/>
 </head>
-<body>
-<script>try{if(sessionStorage.getItem('bf-walk')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('walking-in')}catch(e){}</script>
-<div class="walk-ov" id="walk" aria-hidden="true"><div class="walk-pane"><div class="walk-floor"></div></div><span class="wdog"><span class="fl"><img src="/static/illustrations/dachshund.png" alt="" width="280" height="132"></span></span></div>
-<header class="mast" id="nav">
-<span class="veil v1" aria-hidden="true"><i class="vd"></i><i class="vp"></i><i class="va"></i></span><span class="veil v2" aria-hidden="true"><i class="vd"></i><i class="vp"></i><i class="va"></i></span>
-<a class="mk" id="mk" href="/" aria-label="Bar Franco, home"><span class="mk-in"><img class="mk-a" src="/static/logos/bar-franco-script-incline/almond.svg" alt="Bar Franco"><img class="mk-d" src="/static/logos/bar-franco-script-incline/deep-red.svg" alt=""></span></a>
-<div class="mast-r"><nav class="links" id="links" aria-label="Main"><a href="/menus/">Menus</a><a href="/restaurant/">Restaurant</a><a href="/functions/">Functions</a><a href="/christmas-functions/">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav><span class="mast-sep" aria-hidden="true"></span><a class="mast-book" href="/bookings/">Book a table</a><button type="button" class="mast-menu" aria-expanded="false">Menu</button></div>
+<body class="pg-home">
+<a class="bf-skip" href="#main">Skip to content</a>
+<div class="bf-page">
+<header class="bf-top">
+<figure class="ph cover scrim"><img src="/images/negroni-tray-hands.jpg" alt="Negronis carried on a tray" width="934" height="1400" style="object-position:62% 52%" fetchpriority="high" decoding="async"><p class="on-ph cover-k">(upstairs) · 166 Cashel St, Christchurch</p></figure>
+<div class="bf-band">
+<h1 class="bf-tag">Modern Italian restaurant<br>&amp; Negroni bar.</h1>
+<a class="bf-mbtn" href="#footer" aria-controls="bf-menu" aria-expanded="false">Menu</a>
+<a class="btn" href="/bookings/">Book a table</a>
+</div>
+<p class="bf-script"><img src="/static/logos/bar-franco-script-incline/deep-red.svg" alt="Bar Franco" width="709" height="496"></p>
 </header>
-
-<div class="hf-fold">
-<section class="sec hero" data-tone="dark" data-hero id="top" data-k="home" aria-label="Bar Franco">
-<figure data-tone="dark" class="ph rv"><img src="/images/negroni-tray-hands.jpg" alt="Negronis carried on a tray" width="934" height="1400" style="object-position:62% 52%"><div class="h-mark"><p>(upstairs) · 166 Cashel St, Christchurch</p></div></figure>
-<figure data-tone="dark" class="ph rv"><img src="/images/pasta-marble-table.jpg" alt="Pasta on the marble table" width="934" height="1400" style="object-position:50% 30%"></figure>
-</section>
-<div class="sec hf-copy"><div class="wrap hf-g">
-<h1 class="d1">Modern Italian restaurant &amp;&nbsp;<span class="hx-c">Negroni bar.</span></h1>
-<div class="hf-side"><p class="lede">Start with a spritz at the bar. Stay for dinner upstairs.</p>
-<div class="hf-act"><div class="cta-row hx-acts"><a class="cta cta-fill" href="/bookings/">Book a table</a><a class="cta" href="/functions/#enquire">Plan an event</a></div><aside class="hours">Bar from 4pm<br>Kitchen from 5pm<br><em>daily, till late</em></aside></div></div>
-</div></div>
-</div>
-<div class="strip" data-tone="almond" aria-label="Pasta fresca, pizza, Negroni, aperitivo, vino"><span>Pasta fresca</span><span>•</span><span>Pizza</span><span>•</span><span class="w">Negroni</span><span>•</span><span>Aperitivo</span><span>•</span><span>Vino</span></div>
-
-<section class="sec intro pad" data-k="home" data-hi="Ciao. Spritz first?">
-<div class="wrap g">
-<div class="stack">
-<p class="eb">Benvenuti da Franco</p>
-<h2 class="d2 hx-st">The Italy you didn’t <span class="hx-c">want to leave.</span></h2>
-<p class="lede">Come for date night, the birthday table, or a spritz before the stadium, a short walk&nbsp;away.</p>
-</div>
+<main id="main">
+<section class="pair solo" aria-label="Start with a spritz at the bar">
+<figure class="ph"><img src="/images/pasta-marble-table.jpg" alt="Pasta on the marble table" width="934" height="1400" style="object-position:50% 30%" loading="lazy" decoding="async"></figure>
+<div class="pair-txt stack">
+<p class="lead">Start with a spritz at the bar. Stay for dinner upstairs.</p>
+<p class="btns"><a class="btn" href="/bookings/">Book a table</a><a class="go" href="/functions/#enquire">Plan an event</a></p>
+<p class="small">Bar from 4pm<br>Kitchen from 5pm<br>daily, till late</p>
 </div>
 </section>
-
-
-<section class="sec levels" id="climb" data-k="menus" data-hi="Bar or dinner? Both." aria-label="The bars on level 1 and the restaurant on level 2">
-<div class="lv-head"><div class="hx-lvh"><h2 class="d2">Two floors, <span class="hx-c">one building.</span></h2></div><div class="lv-ctl"><div class="trk" id="trk"><span class="tl on" id="tl1">Level 1</span><span class="tsep">·</span><span class="tl" id="tl2">Level 2</span></div></div></div>
-<div class="floors" id="doors">
-<article class="floor f1 on" id="bars" data-lv="1" aria-label="Level 1, the bars">
-<figure data-tone="dark" class="ph f-ph"><img src="/images/bar-negroni-scales.jpg" alt="The Negroni bar on Level 1, glowing red over the scalloped bar front" width="934" height="1400"></figure>
-<div class="f-in stack">
-<p class="eb">Level 1 · The bars</p>
-<h2 class="d2">Spritz &amp; Negroni Bar.</h2>
-<p class="lede">Negronis stirred to order, spritzes by the glass and a little something salty. Aperitivo from 5 to 7pm, and walk-ins always&nbsp;welcome.</p>
-<div class="cta-row"><a class="cta cta-fill" href="/menus/#sheet-drink">Drinks menu</a><button type="button" class="cta" data-go-up>Go up for dinner</button></div>
-</div>
-</article>
-<article class="floor f2" id="dine" data-lv="2" aria-label="Level 2, the restaurant">
-<figure data-tone="dark" class="ph f-ph"><img src="/images/level2-dining-room.jpg" alt="The level 2 dining room under copper lamps" width="933" height="1400"></figure>
-<div class="f-in stack">
-<p class="eb">Level 2 · The kitchen</p>
-<h2 class="d2">Open Kitchen Restaurant.</h2>
-<p class="lede">A curved wall of windows, copper lamps over the marble and the open kitchen in full view. Pasta made in house, every&nbsp;day.</p>
-<div class="cta-row"><a class="cta cta-fill" href="/bookings/">Book a table</a><a class="cta" href="/menus/#sheet-food">Food menu</a></div>
-</div>
-</article>
-<span class="tdog" id="tdog" aria-hidden="true"><span class="fl" id="tflip"><img src="/static/illustrations/dachshund.png" alt="" width="280" height="132"></span></span>
+<p class="words"><span>Pasta fresca</span><span>Pizza</span><span>Negroni</span><span>Aperitivo</span><span>Vino</span></p>
+<section class="sec prose" aria-labelledby="h-ben">
+<p class="label">Benvenuti da Franco</p>
+<h2 class="h2" id="h-ben">The Italy you didn’t <i>want to leave.</i></h2>
+<p class="lead">Come for date night, the birthday table, or a spritz before the stadium, a short walk&nbsp;away.</p>
+</section>
+<section class="pair floors" id="climb" aria-labelledby="h-floors">
+<h2 class="h2 pair-h" id="h-floors">Two floors, <i>one building.</i></h2>
+<figure class="ph"><img src="/images/bar-negroni-scales.jpg" alt="The Negroni bar on Level 1, glowing red over the scalloped bar front" width="934" height="1400" style="object-position:50% 45%" loading="lazy" decoding="async"></figure>
+<figure class="ph"><img src="/images/level2-dining-room.jpg" alt="The level 2 dining room under copper lamps" width="933" height="1400" loading="lazy" decoding="async"></figure>
+<div class="pair-txt stack" id="bars"><p class="label">Level 1 · The bars</p><h3 class="h3 m">Spritz &amp; Negroni Bar.</h3><p>Negronis stirred to order, spritzes by the glass and a little something salty. Aperitivo from 5 to 7pm, and walk-ins always&nbsp;welcome.</p><p class="btns"><a class="go" href="/menus/#sheet-drink">Drinks menu</a><a class="go" href="#dine">Go up for dinner</a></p></div>
+<div class="pair-txt stack" id="dine"><p class="label">Level 2 · The kitchen</p><h3 class="h3 m">Open Kitchen Restaurant.</h3><p>A curved wall of windows, copper lamps over the marble and the open kitchen in full view. Pasta made in house, every&nbsp;day.</p><p class="btns"><a class="btn" href="/bookings/">Book a table</a><a class="go" href="/menus/#sheet-food">Food menu</a></p></div>
+</section>
+<section class="tall" id="host" aria-labelledby="h-host">
+<figure class="ph tall-ph scrim"><img src="/images/event-service.jpg" alt="Service at a private event" width="1000" height="1500" loading="lazy" decoding="async"><p class="label">Private events · Both levels</p></figure>
+<div class="tall-txt stack">
+<h2 class="h2" id="h-host">Host at Franco.</h2>
+<p class="lead">Corporate dinners, birthdays, Christmas parties and long tables, on one level or the whole&nbsp;building.</p>
+<ul class="facts"><li><span>Guests</span><i></i><em>10 to 240</em></li><li><span>Venue hire fee</span><i></i><em>none</em></li><li><span>Private lunches</span><i></i><em>on request</em></li><li><span>We reply</span><i></i><em>within one business day</em></li></ul>
+<blockquote class="quote"><p>“Everyone’s been raving about the venue, the hospitality and the service.”</p><cite>Hayley, company event</cite></blockquote>
+<p class="btns"><a class="btn" href="/functions/#enquire">Plan an event</a><a class="go" href="/private-dining/">Private dining &amp; birthdays</a></p>
 </div>
 </section>
-
-
-
-
-<section class="sec host pad" id="host" data-k="host" data-hi="Bring everyone. Up to 240.">
-<div class="wrap g2">
-<div class="stack">
-<p class="eb">Private events · Both levels</p>
-<h2 class="d2">Host at Franco.</h2>
-<p class="lede">Corporate dinners, birthdays, Christmas parties and long tables, on one level or the whole&nbsp;building.</p>
-<ul class="info hx-facts"><li><span>Guests</span><i></i><em>10 to 240</em></li><li><span>Venue hire fee</span><i></i><em>none</em></li><li><span>Private lunches</span><i></i><em>on request</em></li><li><span>We reply</span><i></i><em>within one business day</em></li></ul>
-<p class="hx-q">“Everyone’s been raving about the venue, the hospitality and the service.”<span>Hayley, company event</span></p>
-<div class="cta-row on-home"><a class="cta cta-fill" href="/functions/#enquire">Plan an event</a><a class="hx-more" href="/private-dining/">Private dining &amp; birthdays</a></div>
-</div>
-<figure data-tone="dark" class="ph rv"><img src="/images/event-service.jpg" alt="Service at a private event" width="1000" height="1500"></figure>
-</div>
+<figure class="ph bandph plain"><img src="/images/event-room-wide.jpg" alt="The room set for a candlelit private event" width="1500" height="1000" loading="lazy" decoding="async"></figure>
+<section class="sec prose at-c" id="book" aria-labelledby="h-book">
+<p class="label">Reservations</p>
+<h2 class="h2" id="h-book">A table <i>tonight?</i></h2>
+<p class="lead">Tonight: bar from&nbsp;4pm, kitchen&nbsp;from&nbsp;5pm.<br>Walk-ins welcome at the bar.</p>
+<p class="btns"><a class="btn" href="/bookings/">Book a table</a><a class="go" href="tel:+64212211307">Call 021 221 1307</a><a class="go" href="/vouchers/">Or give them a night at Franco</a></p>
+<div class="stack hm-vo" id="vouchers"><p class="label">Gift vouchers</p><p class="lead">Give them a night at Franco.</p><p class="btns"><a class="btn" href="/vouchers/">Buy a gift voucher</a></p></div>
 </section>
-<section class="full" aria-label="Photograph"><figure data-tone="dark" class="ph rv"><img src="/images/event-room-wide.jpg" alt="The room set for a candlelit private event" width="1500" height="1000"></figure></section>
-
-
-
-<section class="sec book pad" id="book" data-k="book" data-hi="I’ll save you a seat.">
-<div class="wrap bk-g">
-<div><p class="eb">Reservations</p>
-<p class="d1">A table <span class="hx-c">tonight?</span></p>
-<p class="hx-tonight"><span id="hxTonight">Tonight: bar from&nbsp;4pm, kitchen&nbsp;from&nbsp;5pm.</span><span class="hx-wi">Walk-ins welcome at the bar.</span></p>
-<div class="cta-row"><a class="cta cta-fill" href="/bookings/">Book a table</a><a class="cta" href="tel:+64212211307">Call 021 221 1307</a><a class="hx-more hx-vo" href="/vouchers/">Or give them a night at Franco</a></div></div>
-<div class="stack" id="vouchers"><p class="eb">Gift vouchers</p><p class="lede">Give them a night at Franco.</p><div class="cta-row on-home"><a class="cta cta-fill" href="/vouchers/">Buy a gift voucher</a></div></div>
-</div>
+<section class="sec cols" id="find" aria-labelledby="h-find">
+<div class="stack"><p class="label">Come say ciao</p><h2 class="h2" id="h-find"><span class="pre">(Upstairs)</span> 166&nbsp;Cashel St.</h2><p>Take the lift by H&amp;M and KOOKAÏ, or the stairs. Park at The Crossing, 71&nbsp;Lichfield&nbsp;St: $9 after&nbsp;4.30pm.</p><p class="go"><a href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">Open in Maps</a></p></div>
+<ul class="facts"><li><span>Telephone</span><i></i><a href="tel:+64212211307">021 221 1307</a></li><li><span>Reservations</span><i></i><a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a></li><li><span>Events</span><i></i><a href="mailto:events@barfranco.nz">events@barfranco.nz</a></li><li><span>Instagram</span><i></i><a href="https://www.instagram.com/bar__franco/">@bar__franco</a></li></ul>
 </section>
-
-<section data-tone="almond" class="sec almond find" id="find" data-k="find" data-hi="Take the lift. I take the stairs.">
-<div class="wrap g2 pad">
-<div class="stack">
-<p class="eb">Come say ciao</p>
-<h2 class="d2"><span class="hx-c">(Upstairs)</span> 166&nbsp;Cashel St.</h2>
-<p class="lede">Take the lift by H&amp;M and KOOKAÏ, or the stairs. Park at The Crossing, 71&nbsp;Lichfield&nbsp;St: $9 after&nbsp;4.30pm.</p>
-<div class="cta-row"><a class="cta" href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">Open in Maps</a></div>
+</main>
+<footer class="bf-foot" id="footer">
+<nav class="bf-foot-nav" aria-label="All pages">
+<div><p class="k">More</p><ul><li><a href="/aperitivo/">Aperitivo</a></li><li><a href="/negroni-bar/">Negroni bar</a></li><li><a href="/fresh-pasta/">Pasta fresca</a></li><li><a href="/pre-stadium-dining/">Before the stadium</a></li><li><a href="/private-dining/">Private dining</a></li><li><a href="/corporate-events/">Corporate events</a></li><li><a href="/weddings/">Weddings</a></li></ul></div>
+<div><p class="k">Franco</p><ul><li><a href="/menus/">Menus</a></li><li><a href="/restaurant/">Restaurant</a></li><li><a href="/bookings/">Book a table</a></li><li><a href="/functions/">Functions &amp; events</a></li><li><a href="/christmas-functions/">Christmas parties</a></li><li><a href="/our-story/">Our story</a></li><li><a href="/vouchers/">Gift vouchers</a></li><li><a href="/events-pack/">Events pack</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+</nav>
+<a class="bf-foot-logo" href="/" aria-label="Bar Franco, home"><img src="/static/logos/tabloid-single-line/almond.svg" alt="" width="2239" height="227"></a>
+<div class="bf-foot-info">
+<p class="bf-foot-sign"><span class="m">Ti aspettiamo,</span><i>we’re waiting for you.</i></p>
+<p class="bf-foot-ad">(upstairs) The Crossing, 166 Cashel St, Christchurch<br>Bar from 4pm, kitchen from 5pm, daily till late</p>
 </div>
-<ul class="info"><li><span>Telephone</span><i></i><a href="tel:+64212211307">021 221 1307</a></li><li><span>Reservations</span><i></i><a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a></li><li><span>Events</span><i></i><a href="mailto:events@barfranco.nz">events@barfranco.nz</a></li><li><span>Instagram</span><i></i><a href="https://www.instagram.com/bar__franco/">@bar__franco</a></li></ul>
-</div>
-</section>
-
-<footer data-tone="dark" class="sec dark foot">
-<div class="wrap pad">
-<p class="d1">Ti aspettiamo,</p>
-<p class="sub">we’re waiting for you.</p>
-<div class="fcols"><div><p>Franco</p><a href="/menus/">Menus</a><a href="/restaurant/">Restaurant</a><a href="/bookings/">Book a table</a><a href="/functions/">Functions &amp; events</a><a href="/christmas-functions/">Christmas parties</a><a href="/our-story/">Our story</a><a href="/vouchers/">Gift vouchers</a><a href="/events-pack/">Events pack</a><a href="/contact/">Contact</a></div><div><p>More</p><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/private-dining/">Private dining</a><a href="/corporate-events/">Corporate events</a><a href="/weddings/">Weddings</a></div></div>
-</div>
+<div class="bf-foot-base"><span>&copy; Bar Franco <span data-bf-year>2026</span></span><img src="/static/logos/emblem/almond.svg" alt="" width="587" height="170"><span><a href="https://www.instagram.com/bar__franco/">Instagram</a> · <a href="https://www.facebook.com/barfranco.chch">Facebook</a></span></div>
 </footer>
-<section data-tone="dark" class="sec dark" id="legal">
-<div class="legal"><span>© Bar Franco 2026</span><img src="/static/logos/emblem/deep-red.svg" alt=""><span><a href="https://www.instagram.com/bar__franco/">Instagram</a> · <a href="https://www.facebook.com/barfranco.chch">Facebook</a></span></div>
-</section>
-<script src="/static/editorial.js" defer></script>
-<script src="/static/hm-experience.js" defer></script>
+</div>
+<div class="bf-sticky" aria-hidden="true">
+<a class="bf-logo-s" href="/" aria-label="Bar Franco, home"><img src="/static/logos/bar-franco-script-incline/deep-red.svg" alt="" width="709" height="496"></a>
+<div class="bf-band-r"><a class="bf-mbtn" href="#footer" aria-controls="bf-menu" aria-expanded="false">Menu</a><a class="btn" href="/bookings/">Book a table</a></div>
+</div>
+<div class="bf-menu" id="bf-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+<button type="button" class="bf-mclose">Close</button>
+<div class="bf-menu-l">
+<a class="bf-menu-logo" href="/" aria-label="Bar Franco, home"><img src="/static/logos/bar-franco-script-incline/deep-red.svg" alt="" width="709" height="496"></a>
+<a class="btn bf-menu-book" href="/bookings/">Book a table</a>
+<nav class="bf-menu-nav" aria-label="All pages">
+<ul><li><a href="/">Home</a></li><li><a href="/our-story/">Our story</a></li></ul>
+<ul><li><a href="/menus/">Menus</a></li><li><a href="/bookings/">Reservations</a></li><li><a href="/restaurant/">Restaurant</a></li><li><a href="/functions/">Functions</a><ul class="sub"><li><a href="/christmas-functions/">Christmas</a></li><li><a href="/corporate-events/">Corporate events</a></li><li><a href="/private-dining/">Private dining</a></li><li><a href="/weddings/">Weddings</a></li><li><a href="/events-pack/">Events pack</a></li></ul></li><li><a href="/aperitivo/">Aperitivo</a></li><li><a href="/negroni-bar/">Negroni bar</a></li><li><a href="/fresh-pasta/">Pasta fresca</a></li><li><a href="/pre-stadium-dining/">Before the stadium</a></li></ul>
+<ul><li><a href="/vouchers/">Vouchers</a></li><li><a href="/contact/">Contact</a></li></ul>
+</nav>
+
+<figure class="ph bf-menu-ph"><img src="/images/aperitivo-table-overhead.jpg" alt="" width="934" height="1400" style="object-position:50% 52%" loading="lazy" decoding="async"></figure>
+<div class="bf-menu-foot"><p class="bf-menu-tag">Bar from 4pm · Kitchen from 5pm<br>166 Cashel St, upstairs</p><ul class="bf-menu-ic"><li><a href="https://www.instagram.com/bar__franco/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></li><li><a href="https://www.facebook.com/barfranco.chch" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></li><li><a href="tel:+64212211307" aria-label="Call 021 221 1307"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg></a></li><li><a href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011" aria-label="Directions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></a></li></ul></div>
+</div>
+<div class="bf-menu-r"><figure class="ph scrim"><img src="/images/pack-2026/spritz-tray-sunlit.jpg" alt="" width="934" height="1400" loading="lazy" decoding="async"></figure><a class="bf-menu-ask" href="/bookings/">book a table</a></div>
+</div>
+<script src="/static/bf-ed.js" defer></script>
 </body>
 </html>

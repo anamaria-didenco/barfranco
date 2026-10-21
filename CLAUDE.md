@@ -1,5 +1,7 @@
 # Bar Franco — Website (CLAUDE.md)
 
+> **Rebuild in progress (October 2026):** pages that load `static/bf-ed.css` follow `DESIGN-EDITORIAL.md`, which supersedes the "One stylesheet", chapters, hero, footer and dock rules below for those pages. Everything else here (facts, SEO, tracking, photos, brand) still holds.
+
 This file tells Claude Code how this site is built and how to edit it. Read it before making changes.
 
 ## One stylesheet
