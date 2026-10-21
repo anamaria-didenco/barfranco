@@ -244,7 +244,7 @@ it, the words and a link at the right.
 ```html
 <section class="port" aria-labelledby="h-room">
 <div class="port-s"><div class="r5"><figure class="ph"><img …></figure><span class="r5-t">Name</span><span class="r5-s">One line</span></div></div>
-<figure class="ph port-ph scrim"><img …><h2 class="on-ph" id="h-room"><span class="mh">A front-row seat</span><i>to the kitchen</i></h2></figure>
+<figure class="ph port-ph scrim"><img …><h2 class="on-ph" id="h-room"><span class="mh">An open kitchen</span></h2></figure>
 <div class="port-txt stack"><p class="label">01 · The room</p><p>…</p><p class="go"><a …>…</a></p></div>
 </section>
 ```
