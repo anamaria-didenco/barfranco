@@ -11,6 +11,16 @@
    Brand: Deep Red ink, Bright Red labels and buttons, Almond, paper ground; Spritz for the focus ring only.
    VTC Marsha always in capitals and never below 24px; Affairs never in capitals, never fake bold.
    Affairs italic only for the turn line under a Marsha title and for quotations.
+   Typography (owner, October 2026: "hierarchy, rules, colour, font mixes"): the page reads like the printed menu,
+   head · line · price. Three voices and one colour logic. (1) The label is small: Affairs 16px, Bright Red, a little
+   tracked, in brackets, a kicker over the title, never a title itself. (2) Titles step down by swapping inks: the page
+   title (.h1) is Deep Red Marsha with a Bright Red italic turn; chapter heads (.h2) are Bright Red Marsha, like the
+   course heads on the menu, with a Deep Red turn; the turn is .72 of its title, a turn and not a second title.
+   (3) The lead is the first line of the article: Affairs 23px under the title, one size above reading text (17px).
+   (4) Facts are two inks: in every facts list the name is Deep Red and the fact at the end of the leader (the price,
+   the time, the capacity, the link) is Bright Red in tabular figures; the same for a quote's name, a package's price
+   and a caption's second line. (5) Marsha for the words that are a menu: the five course words on the homepage
+   (.words), the frame's course head, the menu cover's name. Numbers that count (01 02 03) stay Affairs Bright Red.
    Radius 0, no shadows, no gradients except the photo scrims (tinted rgba(30,3,0,…)). No arrows. */
 
 /* ==== fonts ==== */
@@ -25,8 +35,8 @@
 --ff-d:"VTC Marsha","Arial Black",sans-serif;--ff-b:"Affairs",Georgia,serif;
 --fp:30px;--u:calc((100vw - 2 * var(--fp)) / 1440);
 --ease:cubic-bezier(.2,.7,.2,1);
---t-p:17px;--lh-p:1.55;--t-lead:clamp(18px,calc(var(--u)*20),22px);--t-small:15px;--t-go:16px;
---t-lt:18px;--t-ls:14px;--t-sc:max(22px,calc(var(--u)*31));
+--t-p:17px;--lh-p:1.55;--t-lead:clamp(20px,calc(var(--u)*23),25px);--t-small:15px;--t-go:16px;
+--t-lt:18px;--t-ls:14px;--t-sc:max(15px,calc(var(--u)*16));
 --t-q:18px;--t-cite:14px;--t-bq:15px;
 --t-mh:clamp(28px,calc(var(--u)*50),60px);--t-mi:clamp(24px,calc(var(--u)*46),56px);--t-num:clamp(18px,calc(var(--u)*27),32px);
 --t-h1:clamp(34px,calc(var(--u)*52),64px);--t-h2:clamp(28px,calc(var(--u)*36),44px);--t-h3:clamp(19px,calc(var(--u)*21),23px);
@@ -40,14 +50,14 @@
 @supports (width:1cqw){:root{--u:calc(100cqw / 1440)}}
 @media (max-width:760px){
 /* phones (owner, October 2026; her own iPhone screenshots are the measure): four sizes on the whole page.
-   Reading 17/1.45 (paragraphs, leads, quotes, facts, labels in Bright Red), link 15 (links, buttons, the chrome, the
+   Reading 17/1.45 (paragraphs, leads, quotes, facts), link 15 (links, labels, buttons, the chrome, the
    footer's pages), caption 14 (small lines, cites, the footer's facts and base line), display: Marsha 30 for titles
    (the h1, h2, words on a photograph, the footer's sign-off) and 24 for card heads (h3.m, the frame's course, chapter
    titles), the italic turn 22. One gutter, --go, inside the frame; running text takes the whole measure. */
 :root{--fp:15px;--u:calc((100vw - 2 * var(--fp)) / 390);
 --go:calc(var(--u)*13.4);
 --t-p:17px;--lh-p:1.45;--t-lead:17px;--t-small:14px;--t-go:15px;
---t-lt:15px;--t-ls:14px;--t-sc:17px;
+--t-lt:15px;--t-ls:14px;--t-sc:15px;
 --t-q:17px;--t-cite:14px;--t-bq:14px;
 --t-mh:30px;--t-mi:22px;--t-num:15px;
 --t-h1:30px;--t-h2:30px;--t-h3:17px;
@@ -93,10 +103,11 @@ body::after{inset:12px;border:1.5px solid var(--br);outline:1.5px solid var(--br
 
 /* ==== words ==== */
 .m{font-family:var(--ff-d);font-weight:700;text-transform:uppercase;letter-spacing:-.005em}
-/* a label: Bright Red Affairs regular in brackets; the brackets are drawn here, so the words stay exactly as the page has them */
-.label{color:var(--br);font-size:var(--t-sc);line-height:1.1;text-wrap:balance}
+/* a label: a kicker, small Bright Red Affairs regular in brackets, a little tracked; the brackets are drawn here, so the
+   words stay exactly as the page has them. On a photograph (.al, or set on a .ph) it is Almond and a touch larger. */
+.label{color:var(--br);font-size:var(--t-sc);line-height:1.3;letter-spacing:.04em;text-wrap:balance}
 .label::before{content:"("}.label::after{content:")"}
-.label.al{color:var(--al)}
+.label.al,.ph>.label,.slides>.label{color:var(--al);font-size:max(16px,calc(var(--u)*18))}
 /* links: Affairs regular, underlined */
 .go{font-size:var(--t-go);line-height:1.25}
 .go a,a.go{border-bottom:1px solid currentColor;padding-bottom:1px;transition:color .25s}
@@ -104,13 +115,16 @@ body::after{inset:12px;border:1.5px solid var(--br);outline:1.5px solid var(--br
 .go.r{text-align:right}.go.c{text-align:center}
 main p a:not([class]),main li a:not([class]),main dd a:not([class]),.bf-foot li a:not([class]){border-bottom:1px solid currentColor;transition:color .25s}
 main p a:not([class]):hover,main li a:not([class]):hover,main dd a:not([class]):hover{color:var(--br)}
-.lead{font-size:var(--t-lead);line-height:1.45}
+.lead{font-size:var(--t-lead);line-height:1.4;text-wrap:pretty}
 .small{font-size:var(--t-small);line-height:1.45}
-/* titles: Marsha capitals, with an optional turn line under them in Affairs italic (<i>), Bright Red */
-.h1{font-family:var(--ff-d);font-weight:700;text-transform:uppercase;font-size:var(--t-h1);line-height:.95;letter-spacing:-.005em;color:var(--dr);text-wrap:balance}
-.h2{font-family:var(--ff-d);font-weight:700;text-transform:uppercase;font-size:var(--t-h2);line-height:.98;letter-spacing:-.005em;color:var(--dr);text-wrap:balance}
-.h1 i,.h1 em,.h2 i,.h2 em{display:block;font-family:var(--ff-b);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:.84em;line-height:1.08;margin-top:.1em;color:var(--br)}
-.h2 .pre{display:block;font-family:var(--ff-b);font-weight:400;text-transform:none;letter-spacing:0;font-size:.62em;line-height:1.1;margin-bottom:.15em;color:var(--br)}
+/* titles: Marsha capitals, with an optional turn line under them in Affairs italic (<i>). The inks swap one level down:
+   the page title is Deep Red with a Bright Red turn; a chapter head is Bright Red (the menu's course heads) with a Deep
+   Red turn. The turn is .72 of its title, so it reads as a turn and never as a second title. */
+.h1{font-family:var(--ff-d);font-weight:700;text-transform:uppercase;font-size:var(--t-h1);line-height:.95;letter-spacing:-.008em;color:var(--dr);text-wrap:balance}
+.h2{font-family:var(--ff-d);font-weight:700;text-transform:uppercase;font-size:var(--t-h2);line-height:.98;letter-spacing:-.005em;color:var(--br);text-wrap:balance}
+.h1 i,.h1 em,.h2 i,.h2 em{display:block;font-family:var(--ff-b);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:.72em;line-height:1.05;margin-top:.14em;color:var(--br);text-wrap:pretty}
+.h2 i,.h2 em{color:var(--dr)}
+.h2 .pre{display:block;font-family:var(--ff-b);font-weight:400;text-transform:none;letter-spacing:.04em;font-size:.44em;line-height:1.2;margin-bottom:.3em;color:var(--dr)}
 .h3{font-size:var(--t-h3);line-height:1.25}
 .h3.m{font-size:max(24px,calc(var(--u)*26));line-height:1}
 .nw{white-space:nowrap}
@@ -231,7 +245,7 @@ html.bf-lock,html.bf-lock body{overflow:hidden}
 /* ==== the footer: Deep Red; the page list at right, BAR FRANCO centred in Almond, the sign-off at left ==== */
 .bf-foot{display:grid;grid-template-columns:calc(var(--u)*16) 1fr calc(var(--u)*400) 1fr calc(var(--u)*16);background:var(--dr);color:var(--al)}
 .bf-foot a{transition:color .2s}
-.bf-foot .k{font-size:var(--t-ft);opacity:.75;margin-bottom:calc(var(--u)*10)}
+.bf-foot .k{font-size:var(--t-ft);letter-spacing:.04em;opacity:.75;margin-bottom:calc(var(--u)*10)}
 .bf-foot .k::before{content:"("}.bf-foot .k::after{content:")"}
 .bf-foot-nav{grid-column:4;grid-row:1/3;justify-self:end;align-self:start;display:flex;gap:calc(var(--u)*56);margin-top:calc(var(--u)*27);text-align:right;font-size:var(--t-nv);line-height:1.2}
 .bf-foot-nav li+li{margin-top:calc(var(--u)*11)}
@@ -274,10 +288,10 @@ html.bf-lock,html.bf-lock body{overflow:hidden}
 .pair>.go{grid-column:2;justify-self:end;text-align:right;margin-top:calc(var(--u)*86)}
 .pair-txt{margin-top:calc(var(--u)*22);padding-right:calc(var(--u)*24)}
 .pair.solo .pair-txt{grid-column:2;grid-row:1;align-self:end;margin:0;padding:0 0 0 calc(var(--u)*24)}
-.pair-txt .label{font-size:max(16px,calc(var(--u)*19))}
 
 /* words: up to five words scattered along one line, on the row's own offsets (the homepage strip) */
-.words{display:flex;align-items:baseline;padding:calc(var(--u)*30) calc(var(--u)*16) calc(var(--u)*40);font-size:clamp(20px,calc(var(--u)*26),30px);line-height:1.1}
+/* the words are the menu's course heads: Marsha, Bright Red */
+.words{display:flex;align-items:baseline;padding:calc(var(--u)*30) calc(var(--u)*16) calc(var(--u)*40);font-family:var(--ff-d);font-weight:700;text-transform:uppercase;letter-spacing:-.005em;color:var(--br);font-size:clamp(24px,calc(var(--u)*26),30px);line-height:1.1}
 .words>*{flex:none;width:calc(var(--u)*146);white-space:nowrap}
 .words>:nth-child(2){margin-left:calc(var(--u)*173)}
 .words>:nth-child(3){margin-left:calc(var(--u)*166)}
@@ -295,7 +309,7 @@ html.bf-lock,html.bf-lock body{overflow:hidden}
 .row5.n3>.r5:nth-child(2),.row5.n3>.r5:nth-child(3){margin-left:calc(var(--u)*485)}
 .r5 .ph{height:calc(var(--u)*202)}
 .r5-t{display:block;margin-top:calc(var(--u)*13);font-size:var(--t-lt);line-height:1.1}
-.r5-s{display:block;margin-top:calc(var(--u)*5.3);font-size:var(--t-ls);line-height:1.3}
+.r5-s{display:block;margin-top:calc(var(--u)*5.3);font-size:var(--t-ls);line-height:1.3;color:var(--br)}
 a.r5:hover .r5-t{color:var(--br)}
 
 /* feature: a label, a wide photograph from 23% to the right edge with the title on it, two text columns, a link */
@@ -338,7 +352,7 @@ section.tall.flip{grid-template-columns:1fr calc(var(--u)*432) calc(var(--u)*267
 
 /* quote: a few lines from a guest (italic), the name at the right (regular) */
 .quote p{font-size:var(--t-q);line-height:1.45}
-.quote cite{display:block;margin-top:calc(var(--u)*10);text-align:right;font-size:var(--t-cite);line-height:1.3}
+.quote cite{display:block;margin-top:calc(var(--u)*10);text-align:right;font-size:var(--t-cite);line-height:1.3;color:var(--br)}
 
 /* strip: a text column at the left, three tall photographs running off the right edge */
 .strip{display:grid;grid-template-columns:calc(var(--u)*16) calc(var(--u)*231) calc(var(--u)*284) 1fr;align-items:start;padding:calc(var(--u)*284) 0 calc(var(--u)*89)}
@@ -417,7 +431,7 @@ section.tall.flip{grid-template-columns:1fr calc(var(--u)*432) calc(var(--u)*267
 .pkgs-panels>*{grid-row:1;width:max(220px,calc(var(--u)*240));font-size:var(--t-p);line-height:var(--lh-p)}
 .pkgs-panels>:nth-child(1){grid-column:1}.pkgs-panels>:nth-child(2){grid-column:2}.pkgs-panels>:nth-child(3){grid-column:3}.pkgs-panels>:nth-child(4){grid-column:4}
 .pkgs-panels>:nth-child(4){justify-self:end}
-.pkgs-panels .price{margin-top:max(12px,calc(var(--u)*14));font-size:max(19px,calc(var(--u)*22));line-height:1.2}
+.pkgs-panels .price{margin-top:max(12px,calc(var(--u)*14));font-size:max(19px,calc(var(--u)*22));line-height:1.2;color:var(--br);font-variant-numeric:tabular-nums}
 
 /* port: small captioned photographs down the left, a large photograph with a title on it, words and a link at right */
 .port{display:grid;grid-template-columns:calc(var(--u)*16) calc(var(--u)*146) calc(var(--u)*233) calc(var(--u)*651) calc(var(--u)*26) minmax(0,1fr) calc(var(--u)*16);align-items:start;padding:calc(var(--u)*60) 0 calc(var(--u)*167)}
@@ -528,12 +542,15 @@ section.tall.flip{grid-template-columns:1fr calc(var(--u)*432) calc(var(--u)*267
 .form.two .full{grid-column:1/-1}
 .form.two textarea{min-height:max(160px,calc(var(--u)*250))}
 .form.two .btn{grid-column:1/-1;justify-self:center}
-/* facts: label · fact rows on hairlines; the leader dots sit low, like full stops (none on phones) */
+/* facts: label · fact rows on hairlines; the leader dots sit low, like full stops (none on phones).
+   Two inks, like a menu: the name Deep Red, the fact at the end of the leader (price, time, capacity, link) Bright Red
+   in tabular figures, so a column of facts lines up and reads at a glance. */
 .facts{display:grid;border-bottom:1px solid var(--hair)}
 .facts li,.facts>div{display:flex;align-items:baseline;gap:0;padding:12px 0 11px;border-top:1px solid var(--hair);font-size:var(--t-p);line-height:1.35}
 .facts span{flex:0 1 auto;min-width:0}
 .facts i{flex:1 1 auto;min-width:18px;height:.3em;margin:0 .45em;border-bottom:2px dotted currentColor;opacity:.45}
-.facts em,.facts b,.facts li>a:last-child{flex:0 0 auto;max-width:62%;text-align:right;font-style:normal}
+.facts em,.facts b,.facts li>a:last-child{flex:0 0 auto;max-width:62%;text-align:right;font-style:normal;color:var(--br);font-variant-numeric:tabular-nums}
+main .facts em a:not([class]):hover,main .facts li>a:last-child:hover{color:var(--dr)}
 .facts.price em,.facts .v{font-style:normal}
 .facts .sub{display:block;font-style:normal;font-size:var(--t-small);opacity:.85;margin-top:2px}
 .facts-h{font-style:normal;color:var(--br);font-size:var(--t-small);margin:0 0 8px}
@@ -729,15 +746,15 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;background:var(--br
 
 /* ==== the homepage: the reference's small type, in the unit, with floors that keep it legible ==== */
 .pg-home{
---t-p:max(14px,calc(var(--u)*14));--lh-p:1.5;--t-go:max(14px,calc(var(--u)*15));--t-lead:max(16px,calc(var(--u)*17));
---t-lt:max(14px,calc(var(--u)*17));--t-ls:max(12px,calc(var(--u)*13));--t-sc:max(20px,calc(var(--u)*31));
+--t-p:max(14px,calc(var(--u)*14));--lh-p:1.5;--t-go:max(14px,calc(var(--u)*15));--t-lead:max(18px,calc(var(--u)*20));
+--t-lt:max(14px,calc(var(--u)*17));--t-ls:max(12px,calc(var(--u)*13));--t-sc:max(15px,calc(var(--u)*16));
 --t-q:max(14px,calc(var(--u)*15));--t-cite:max(12px,calc(var(--u)*13));--t-bq:max(12px,calc(var(--u)*13.5));
 --t-mh:max(26px,calc(var(--u)*50));--t-mi:max(23px,calc(var(--u)*46));--t-num:max(18px,calc(var(--u)*27));
 --t-h2:max(28px,calc(var(--u)*40));--t-h3:max(17px,calc(var(--u)*19));--t-small:max(13px,calc(var(--u)*13.5))}
 /* on phones the homepage reads at the same four sizes as every other page (the phone pass below) */
 @media (max-width:760px){
 .pg-home{
---t-p:17px;--lh-p:1.45;--t-go:15px;--t-lead:17px;--t-lt:15px;--t-ls:14px;--t-sc:17px;
+--t-p:17px;--lh-p:1.45;--t-go:15px;--t-lead:17px;--t-lt:15px;--t-ls:14px;--t-sc:15px;
 --t-q:17px;--t-cite:14px;--t-bq:14px;--t-mh:30px;--t-mi:22px;
 --t-num:15px;--t-h2:30px;--t-h3:17px;--t-small:14px}
 }
@@ -772,7 +789,8 @@ details>*{display:block}
 /* ---- words ---- */
 .h1,.h2{line-height:1}
 .h1 i,.h1 em,.h2 i,.h2 em{font-size:22px;line-height:1.1;margin-top:.12em}
-.h2 .pre{font-size:15px}
+.h2 .pre{font-size:14px}
+.label.al,.ph>.label,.slides>.label{font-size:15px}
 .h3.m{font-size:24px}
 .lead{line-height:1.45}
 .label{line-height:1.25}
@@ -865,7 +883,7 @@ main p.go,.go.r,.go.c{text-align:right}
 .pair.solo>.ph{grid-column:1/-1;height:calc(var(--u)*440)}
 .pair.solo .pair-txt{grid-column:1/-1;grid-row:2;margin-top:var(--txt);padding:0}
 /* words: the five words wrap along the line */
-.words{flex-wrap:wrap;gap:10px 22px;padding:calc(var(--u)*40) var(--go) calc(var(--u)*24);font-size:20px}
+.words{flex-wrap:wrap;gap:10px 22px;padding:calc(var(--u)*40) var(--go) calc(var(--u)*24);font-size:24px}
 .words>*,.words>:nth-child(n){width:auto;margin-left:0}
 /* row: three small captioned photographs across the measure; four or more scroll sideways and snap */
 .row5{gap:calc(var(--u)*12);padding:var(--air) var(--go);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -888,7 +906,7 @@ main p.go,.go.r,.go.c{text-align:right}
    aligned to its left edge, 01 02 03 on its foot */
 .slides-s{grid-template-columns:calc(var(--u)*77) calc(var(--u)*238) 1fr;padding:var(--air) 0}
 .slides{height:calc(var(--u)*360)}
-.slides>.label{left:calc(var(--u)*12);bottom:calc(var(--u)*14);font-size:15px}
+.slides>.label{left:calc(var(--u)*12);bottom:calc(var(--u)*14)}
 .slides-n{left:auto;right:calc(var(--u)*12);bottom:calc(var(--u)*12)}
 .slides-n button{width:calc(var(--u)*32)}
 .slides-n button::after{inset:-14px -1px}

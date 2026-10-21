@@ -397,11 +397,11 @@ Words on a photograph always need `.scrim` on the `.ph` (or the band's own gradi
 
 ### Words, sections, text
 ```html
-<p class="label">01 · The room</p>          <!-- Bright Red, regular; the CSS draws the brackets: (01 · The room). .label.al on a photograph -->
-<h1 class="h1">The restaurant. <i>Level&nbsp;2.</i></h1>   <!-- the page title, Marsha 34–64px, italic turn -->
-<h2 class="h2">Take the lift, or the&nbsp;stairs</h2>       <!-- Marsha 28–44px; <i> for a turn; <span class="pre">(Upstairs)</span> for a small line above -->
+<p class="label">01 · The room</p>          <!-- the kicker: small (16px) Bright Red, regular, a little tracked; the CSS draws the brackets: (01 · The room). .label.al on a photograph -->
+<h1 class="h1">The restaurant. <i>Level&nbsp;2.</i></h1>   <!-- the page title, Marsha 34–64px Deep Red, the italic turn Bright Red at .72 -->
+<h2 class="h2">Take the lift, or the&nbsp;stairs</h2>       <!-- Marsha 28–44px, Bright Red; <i> for a turn (Deep Red); <span class="pre">(Upstairs)</span> for a small line above -->
 <h3 class="h3 m">Spritz &amp; Negroni Bar.</h3>           <!-- a small Marsha head (≥24px); .h3 alone is Affairs -->
-<p class="lead">A larger opening sentence.</p>
+<p class="lead">A larger opening sentence.</p>          <!-- the first line of the article: 23px, one step above reading text -->
 <p class="small">A small aside.</p>
 <p class="go"><a href="/menus/">See the menus</a></p>     <!-- the underlined link; .go.r right, .go.c centre; or <a class="go"> -->
 <div class="stack">…</div>                                <!-- label, title, words, facts, asks at the reference's spacing -->
@@ -671,3 +671,22 @@ bf-ed.js (part 3b) wraps the footer's two page columns in a `<details>` with the
 default; the phone CSS shows only the logo, the sign-off, the address/hours line, that one fold line and the base
 line. On wider screens the wrapper is transparent (`display:contents`) so the desktop footer is unchanged. No page
 markup changes: keep copying the footer block as it is.
+
+### Typography (owner, October 2026: "hierarchy, typography rules, different colours, font mixes")
+The page reads like the printed menu: head · line · price. Three voices, one colour logic, all in the shared CSS (no page
+markup changes); the rules, so new pages and page blocks keep to them:
+1. **The label is a kicker.** Affairs 16px (phones 15), Bright Red, tracked `.04em`, in brackets, above the title. It is
+   never a title: do not size a label up in a page block. On a photograph it is Almond and a touch larger (`.label.al`).
+2. **Titles step down by swapping inks.** `.h1` is Deep Red Marsha with a Bright Red italic turn; `.h2` is Bright Red
+   Marsha (the course heads on the menu) with a Deep Red italic turn; `.h3.m` is Deep Red again. The turn is .72 of its
+   title (phones 22 under 30). `.h2 .pre` is a small Deep Red line above a chapter head.
+3. **The lead is the first line of the article.** `.lead` / `.intro-sub` 23px desktop, one size above reading text (17);
+   on phones it stays at the reading size (the four-size rule).
+4. **Facts are two inks.** In every `.facts` list the name is Deep Red and the fact at the end of the leader (price, time,
+   capacity, link) is Bright Red in tabular figures; so is a quote's `cite`, a package's `.price`, a caption's second line
+   (`.r5-s`). Links there turn Deep Red on hover.
+5. **Marsha for the words that are a menu.** The homepage's five course words (`.words`), the frame's course head
+   (`.frame-h`), the menu cover's name (`.mcover-n`). Numbers that count (01 02 03: `.steps .n`, `.chap .n`, `.slides-n`)
+   stay Affairs Bright Red; numbers that measure sit in the facts, Bright Red.
+Everything else is as before: Affairs regular for reading, links, buttons and the chrome; italic only for turns and quotes
+(and the Functions sub-menu); Marsha ≥24px in capitals; the palette only.
