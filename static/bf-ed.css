@@ -977,6 +977,17 @@ details>*{display:block}
 /* end P3 */
 
 /* ---- P4 · aperitivo, negroni-bar, fresh-pasta, pre-stadium-dining ---- */
+/* the four dining pages share .pg-dine: a label above the page title in the intro; a small uncaptioned photograph in the
+   port's left column; the title on the port photograph wraps inside it; the recipe card's rows and its line; the menu
+   cover beside a .pair.solo photograph takes the column */
+.pg-dine .intro-txt>.label+.h1{margin-top:max(10px,calc(var(--u)*14))}
+.pg-dine .port-s>.ph{height:calc(var(--u)*202)}
+.pg-dine .port-ph .on-ph{right:calc(var(--u)*24)}
+.pg-dine .frame .facts+.frame-s{margin-top:18px}
+.pg-dine .pair.solo .pair-txt>.frame{max-width:none}
+@media (max-width:760px){
+.pg-dine .port-s>.ph{height:calc(var(--u)*170.6)}
+}
 /* end P4 */
 
 /* ---- P5 · our-story, 404 ---- */
