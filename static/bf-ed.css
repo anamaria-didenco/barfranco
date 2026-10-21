@@ -1334,6 +1334,11 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-xmas .vf-frame .frame-s{max-width:none}
 .pg-xmas .vf-frame .embed{margin-top:20px}
 .pg-xmas .cols>.talk+.talk{margin-top:10px}
+/* this morning's set: the spritz table moved from the guests' strip to How it works (in the pasta's place, which this
+   morning's site never showed), so the strip's two photographs keep to the right margin */
+@media (min-width:761px){
+.pg-xmas .testi-ph{justify-content:flex-end}
+}
 @media (max-width:760px){
 /* phones (M2): the running line over the title; the December strip reads left at the gutter; the facts stack; the menu
    photograph at the measure; the night's three photographs across the measure with the second (upstairs) highest; the
@@ -1413,6 +1418,11 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-pack .steps{margin-top:var(--txt)}
 /* the contact card breaks back out to the gutter under the inset portrait, so the card keeps the full measure */
 .pg-pack .tall-txt .frame{margin-left:calc(var(--go) - var(--u)*77)}
+/* this morning's phone set: the burrata portrait was desktop only, so on phones the plan-your-night section is words and
+   the contact card alone, read from the gutter */
+.pg-pack #contact .tall-ph{display:none}
+.pg-pack #contact .tall-txt{grid-row:1;margin-top:0;padding-left:var(--go)}
+.pg-pack #contact .tall-txt .frame{margin-left:0}
 }
 /* end P3 */
 
