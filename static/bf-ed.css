@@ -1446,6 +1446,13 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 .pg-negroni .pair.solo .pair-txt>.label{grid-row:1;margin:0 0 var(--lbl)}
 .pg-negroni .pair.solo>.ph{grid-row:2}
 .pg-negroni .pair.solo .pair-txt>.label+*{margin-top:var(--txt)}
+/* this morning's phone pages had no small photograph in the port (aperitivo, fresh pasta) and no lamps over the drinks
+   menu (Negroni bar): the port reads as the Negroni bar's room, label on the big photograph's edge, words under it;
+   the pouring section is the label, the title and the menu cover */
+.pg-aperitivo .port-s,.pg-pasta .port-s,.pg-negroni .pair.solo>.ph{display:none}
+.pg-aperitivo .port-txt>.label,.pg-pasta .port-txt>.label{grid-column:3/5}
+.pg-aperitivo .port-ph,.pg-pasta .port-ph{grid-row:2;margin-top:0}
+.pg-negroni .pair.solo .pair-txt>.label+*{margin-top:0}
 /* before the stadium opens on its cover photograph cut shorter, so the title and the first portrait share the first screen */
 .pg-stadium .head-ph{height:calc(var(--u)*300)}
 }
@@ -1483,5 +1490,13 @@ section.tall,section.tall.flip{grid-template-columns:calc(var(--u)*77) calc(var(
 @media (max-width:760px){
 /* the vouchers block sits under the table asks on its own hairline, at the full measure (its words indent themselves) */
 .pg-home #book .hm-vo{max-width:none;margin-top:40px;padding-top:28px}
+/* this morning's phone home: it opens on the pasta at the marble table (the cover's <picture> source), so the first
+   section is words alone; Host at Franco has no photograph, its label sits over the title like every section's */
+.pg-home main>.pair.solo>.ph{display:none}
+.pg-home main>.pair.solo .pair-txt{grid-row:1;margin-top:0}
+.pg-home #host .tall-ph{grid-column:1/-1;height:auto;overflow:visible;background:none;padding:0 var(--go) 0 calc(var(--u)*77)}
+.pg-home #host .tall-ph>img,.pg-home #host .tall-ph::after{display:none}
+.pg-home #host .tall-ph>.label{position:static;color:var(--br);font-size:var(--t-sc)}
+.pg-home #host .tall-txt{margin-top:var(--lbl)}
 }
 /* end P0 */
