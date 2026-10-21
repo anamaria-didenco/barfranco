@@ -962,6 +962,30 @@ details>*{display:block}
 .room.fit{border-color:var(--br);box-shadow:inset 0 0 0 1px var(--br)}
 .room.nofit{opacity:.45}
 /* ---- P1 · menus, bookings, vouchers, contact ---- */
+/* menus: the sheets sit on the page's side margins; the notes under them read small and centred */
+.pg-menus .mn{padding-left:calc(var(--u)*16);padding-right:calc(var(--u)*16)}
+.pg-menus .mn-foot{max-width:680px;margin:clamp(22px,calc(var(--u)*32),40px) auto 0;text-align:center}
+.pg-menus .mn-foot p{font-size:var(--t-small)}
+/* bookings: the label sits close over the levels' title; the Level 1 photograph is a landscape, so it keeps its shape
+   and sits at the foot of the row, lower than upstairs */
+.pg-bookings .pair>.label{margin-bottom:max(10px,calc(var(--u)*14))}
+.pg-bookings .pair.floors>.ph:nth-of-type(1){height:calc(var(--u)*253);align-self:end}
+/* vouchers: the voucher as a framed card: the script, the name, one line, the value row */
+.pg-vouchers .vcard-logo{text-align:center;line-height:0;margin-bottom:6px}
+.pg-vouchers .vcard-logo img{width:clamp(96px,calc(var(--u)*120),132px);height:auto}
+.pg-vouchers .vcard .facts{margin-top:18px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+/* contact: the running line over the title, the asks under the intro, the note under the form's title, the map at the
+   full measure */
+.pg-contact .fpage-k{color:var(--br);font-size:var(--t-small);line-height:1.4}
+.pg-contact .fpage-k+.h1{margin-top:max(10px,calc(var(--u)*12))}
+.pg-contact .fpage-txt>.btns{margin-top:max(22px,calc(var(--u)*32))}
+.pg-contact .form-intro>p{margin-top:8px;max-width:36em}
+.pg-contact .map-s{padding:calc(var(--u)*100) calc(var(--u)*16) calc(var(--u)*120)}
+.pg-contact #find .facts em{max-width:78%}
+@media (max-width:760px){
+.pg-bookings .pair.floors>.ph:nth-of-type(1){height:calc(var(--u)*97)}
+.pg-contact .map-s{padding:calc(var(--u)*64) calc(var(--u)*13.4)}
+}
 /* end P1 */
 
 /* ---- P2 · functions, corporate-events, private-dining ---- */
