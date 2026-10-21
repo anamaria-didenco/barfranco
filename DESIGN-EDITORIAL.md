@@ -706,6 +706,11 @@ markup changes); the rules, so new pages and page blocks keep to them:
 4. **Facts are two inks.** In every `.facts` list the name is Deep Red and the fact at the end of the leader (price, time,
    capacity, link) is Bright Red in tabular figures; so is a quote's `cite`, a package's `.price`, a caption's second line
    (`.r5-s`). Links there turn Deep Red on hover.
+6. **The capitals carry the point by themselves** (owner, October 2026). Read the Marsha words alone: they must say
+   what the sentence means, never a fragment and never the opposite. "THE ROOM I DIDN'T WANT / to leave" reads as the
+   room she didn't want, so it is "THE ROOM / I didn't want to leave"; "THE ITALY / you didn't want to leave";
+   "CORPORATE EVENTS / in Christchurch…"; "PRIVATE DINING / & birthdays…". When no split works (COME SAY CIAO, BOOK A
+   TABLE, BEFORE THE STADIUM, NOTHING HAPPENS BEHIND A DOOR), the whole line is set in capitals with no turn.
 5. **Marsha for the words that are a menu.** The homepage's five course words (`.words`), the frame's course head
    (`.frame-h`), the menu cover's name (`.mcover-n`). Numbers that count (01 02 03: `.steps .n`, `.chap .n`, `.slides-n`)
    stay Affairs Bright Red; numbers that measure sit in the facts, Bright Red.
