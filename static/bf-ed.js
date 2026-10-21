@@ -1,0 +1,452 @@
+/* Bar Franco · bf-ed.js — the editorial system's behaviour, on every page. Plain JS, no dependencies.
+   Load it last in <body> with defer. Every part is driven by markup (ids, classes, data attributes) and does
+   nothing where its markup is absent, so one file serves every page. Without it each page still reads:
+   photographs show, Menu jumps to the footer's page list, the first slide shows, the accordions open natively.
+
+   Parts: 1 photographs settle in · 2 year · 3 current page · 4 compact band · 5 the Menu sheet · 6 slides ·
+   7 tabs · 8 chapters & questions (deep links, landing, print) · 9 contact form (FormSubmit) ·
+   10 VenueFlow (loading note, height) · 11 events: room finder, calendar, held date, prefill, December strip.
+   Google Ads lives in /static/vf-tracking.js (in <head>); nothing here touches it. */
+(function () {
+  'use strict';
+  var D = document, R = D.documentElement, W = window;
+  R.classList.add('js');
+  var reduce = !!(W.matchMedia && W.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  function $(s, c) { return (c || D).querySelector(s); }
+  function $$(s, c) { return [].slice.call((c || D).querySelectorAll(s)); }
+  function lget(k, d) { try { var v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }
+  function lset(k, v) { try { localStorage.setItem(k, String(v)); } catch (e) {} }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function fp() { return parseFloat(getComputedStyle(R).getPropertyValue('--fp')) || 30; }
+  /* each part runs on its own: one failing never stops the rest */
+  function part(name, fn) { try { fn(); } catch (e) { if (W.console) console.warn('[bf-ed] ' + name + ':', e); } }
+
+  /* 1 · photographs settle in once, as they arrive; the first screen is simply there; at 2.5s everything is on */
+  part('reveal', function () {
+    if (reduce || !('IntersectionObserver' in W)) return;
+    var els = $$('.bf-page .ph, .bf-page [data-rv]').filter(function (e) { return !e.parentNode.closest('.ph'); });
+    var lim = W.innerHeight || 800, io = new IntersectionObserver(function (es) {
+      es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } });
+    }, { rootMargin: '0px 0px -6% 0px' });
+    els.forEach(function (e) { if (e.getBoundingClientRect().top > lim) { e.classList.add('rv'); io.observe(e); } });
+    setTimeout(function () { els.forEach(function (e) { e.classList.add('in'); }); }, 2500);
+  });
+
+  /* 2 · the year in the footer */
+  part('year', function () { $$('[data-bf-year]').forEach(function (e) { e.textContent = String(new Date().getFullYear()); }); });
+
+  /* 3 · the open page is marked in the Menu sheet and the footer (markup may already carry aria-current) */
+  part('current', function () {
+    var here = location.pathname.replace(/index\.html$/, '');
+    $$('.bf-menu nav a[href], .bf-foot-nav a[href]').forEach(function (a) {
+      var p; try { p = new URL(a.getAttribute('href'), location.href).pathname; } catch (e) { return; }
+      if (p === here && !a.hasAttribute('aria-current')) a.setAttribute('aria-current', 'page');
+    });
+  });
+
+  /* 4 · the compact band: inside the frame's top once the band has scrolled away, gone again at the top */
+  var sticky = $('.bf-sticky');
+  function stickyOn(on) {
+    if (!sticky) return;
+    sticky.classList.toggle('on', on);
+    sticky.setAttribute('aria-hidden', on ? 'false' : 'true');
+    if ('inert' in sticky) sticky.inert = !on;
+  }
+  part('sticky', function () {
+    var band = $('.bf-band');
+    if (!sticky || !band) return;
+    stickyOn(false);
+    if (!('IntersectionObserver' in W)) { stickyOn(true); return; }
+    new IntersectionObserver(function (es) {
+      var e = es[es.length - 1];
+      stickyOn(!e.isIntersecting && e.boundingClientRect.top < 0);
+    }, { rootMargin: '-' + Math.round(fp()) + 'px 0px 0px 0px' }).observe(band);
+  });
+
+  /* 5 · the Menu sheet: opens from any Menu control, Close or Esc shuts it, focus stays inside, the page holds still */
+  part('menu', function () {
+    var ov = $('#bf-menu');
+    var openers = $$('.bf-mbtn');
+    if (!ov || !openers.length) return;
+    var closeBtn = $('.bf-mclose', ov), last = null, page = $('.bf-page'), skip = $('.bf-skip');
+    openers.forEach(function (b) {
+      if (b.tagName === 'A') b.setAttribute('role', 'button');
+      b.setAttribute('aria-haspopup', 'dialog');
+      b.addEventListener('click', function (e) { e.preventDefault(); open(b); });
+      b.addEventListener('keydown', function (e) { if (b.tagName === 'A' && (e.key === ' ' || e.key === 'Spacebar')) { e.preventDefault(); open(b); } });
+    });
+    function focusables() {
+      return $$('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])', ov)
+        .filter(function (x) { return x.offsetParent !== null || x === D.activeElement; });
+    }
+    function setInert(on) {
+      [page, skip].forEach(function (x) { if (x && 'inert' in x) x.inert = on; });
+      if (sticky && 'inert' in sticky) sticky.inert = on || !sticky.classList.contains('on');
+    }
+    function open(from) {
+      if (!ov.hidden) return;
+      last = from || D.activeElement;
+      ov.hidden = false;
+      R.classList.add('bf-lock');
+      openers.forEach(function (b) { b.setAttribute('aria-expanded', 'true'); });
+      setInert(true);
+      requestAnimationFrame(function () { ov.classList.add('on'); });
+      (closeBtn || focusables()[0] || ov).focus({ preventScroll: true });
+    }
+    function close(noFocus) {
+      if (ov.hidden) return;
+      ov.classList.remove('on');
+      ov.hidden = true;
+      R.classList.remove('bf-lock');
+      openers.forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+      setInert(false);
+      if (!noFocus && last && last.focus) {
+        /* the opener may be the compact band's Menu, which can have gone while the sheet was open */
+        var tgt = (last.closest('.bf-sticky') && !sticky.classList.contains('on')) ? $('.bf-band .bf-mbtn') : last;
+        if (tgt) tgt.focus({ preventScroll: true });
+      }
+    }
+    if (closeBtn) closeBtn.addEventListener('click', function () { close(); });
+    ov.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href]');
+      if (!a) return;
+      /* a link to a place on this page closes the sheet first, so the page can scroll to it */
+      var u; try { u = new URL(a.href, location.href); } catch (x) { return; }
+      if (u.pathname === location.pathname && u.hash) close(true);
+    });
+    D.addEventListener('keydown', function (e) {
+      if (ov.hidden) return;
+      if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); close(); return; }
+      if (e.key !== 'Tab') return;
+      var fs = focusables(); if (!fs.length) return;
+      var i = fs.indexOf(D.activeElement);
+      if (e.shiftKey && i <= 0) { e.preventDefault(); fs[fs.length - 1].focus(); }
+      else if (!e.shiftKey && (i === fs.length - 1 || i === -1)) { e.preventDefault(); fs[0].focus(); }
+    });
+    W.addEventListener('pageshow', function (e) { if (e.persisted) close(true); });
+  });
+
+  /* 6 · slides: a tall photograph that turns over (01 02 03). Markup: <div class="ph slides" data-slides> with the
+     photographs as <img> (the first with class="on"); the numbers are added here. It turns every 4.5s while on
+     screen, never under reduced motion, and stops for good once someone picks a number. */
+  part('slides', function () {
+    $$('[data-slides]').forEach(function (s) {
+      var im = $$(':scope > img', s);
+      if (im.length < 2) return;
+      var nav = $('.slides-n', s);
+      if (!nav) {
+        nav = D.createElement('div'); nav.className = 'slides-n'; nav.setAttribute('role', 'group');
+        nav.setAttribute('aria-label', 'Photographs');
+        im.forEach(function (x, k) {
+          var b = D.createElement('button'); b.type = 'button';
+          b.textContent = (k < 9 ? '0' : '') + (k + 1);
+          b.setAttribute('aria-label', 'Photograph ' + (k + 1) + ' of ' + im.length);
+          nav.appendChild(b);
+        });
+        s.appendChild(nav);
+      }
+      var nb = $$('button', nav), i = 0, t = 0, seen = true, held = false;
+      function show(n) {
+        i = n;
+        im.forEach(function (x, k) { x.classList.toggle('on', k === n); });
+        nb.forEach(function (x, k) { x.setAttribute('aria-pressed', String(k === n)); });
+      }
+      function run() { clearInterval(t); t = 0; if (!reduce && !held && seen) t = setInterval(function () { show((i + 1) % im.length); }, 4500); }
+      nb.forEach(function (b, k) { b.addEventListener('click', function () { held = true; clearInterval(t); show(k); }); });
+      show(0);
+      if ('IntersectionObserver' in W) new IntersectionObserver(function (es) { seen = es[es.length - 1].isIntersecting; run(); }).observe(s);
+      else run();
+    });
+  });
+
+  /* 7 · tabs: <div class="tabs" role="tablist"> (or .mn-tabs) with <button role="tab" aria-controls="panel-id">.
+     Each tab shows its own panel; arrow keys move along; a link to a panel (/menus/#sheet-events) opens its tab and
+     lands on it; picking a tab puts its panel in the address, so it can be shared. */
+  part('tabs', function () {
+    $$('[role="tablist"]').forEach(function (list) {
+      var tabs = $$('[role="tab"][aria-controls]', list);
+      if (!tabs.length) return;
+      function panel(t) { return D.getElementById(t.getAttribute('aria-controls')); }
+      function show(t, focus) {
+        tabs.forEach(function (x) {
+          var on = x === t, p = panel(x);
+          x.setAttribute('aria-selected', on ? 'true' : 'false'); x.tabIndex = on ? 0 : -1;
+          if (p) p.hidden = !on;
+        });
+        if (focus) t.focus();
+      }
+      function land() { var top = list.getBoundingClientRect().top + W.scrollY - fp() - 72; W.scrollTo({ top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth' }); }
+      function fromHash(scroll) {
+        var h = location.hash.slice(1), t = h && tabs.filter(function (x) { return x.getAttribute('aria-controls') === h; })[0];
+        if (t) { show(t); if (scroll) setTimeout(land, 80); return true; }
+        return false;
+      }
+      tabs.forEach(function (t, k) {
+        t.addEventListener('click', function () {
+          show(t);
+          if (history.replaceState) history.replaceState(null, '', '#' + t.getAttribute('aria-controls'));
+        });
+        t.addEventListener('keydown', function (e) {
+          var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (d) { e.preventDefault(); show(tabs[(k + d + tabs.length) % tabs.length], true); }
+        });
+      });
+      if (!fromHash(true)) show(tabs.filter(function (x) { return x.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
+      W.addEventListener('hashchange', function () { fromHash(true); });
+    });
+  });
+
+  /* 8 · chapters and questions (<details>): a link to one (or to anything inside one) opens it and lands on it; a
+     chapter someone opens (.chap) brings its title up under the compact band; printing opens every one and puts
+     them back afterwards. One open at a time comes from the browser (<details name="pack">). */
+  part('details', function () {
+    var all = $$('details');
+    if (!all.length) return;
+    var intent = 0;
+    function land(d, instant) {
+      var s = $('summary', d) || d;
+      var y = s.getBoundingClientRect().top + W.scrollY - fp() - 64;
+      W.scrollTo({ top: Math.max(0, y), behavior: (reduce || instant) ? 'auto' : 'smooth' });
+    }
+    function openFor(id) {
+      var t = id && D.getElementById(id); if (!t) return null;
+      var d = t.matches('details') ? t : (t.closest('details') || $('details', t));
+      for (var p = d; p; p = p.parentElement && p.parentElement.closest('details')) p.open = true;
+      return d;
+    }
+    D.addEventListener('click', function (e) {
+      if (e.target.closest && (e.target.closest('details.chap > summary') || e.target.closest('a[href^="#"]'))) intent = Date.now();
+    }, true);
+    W.addEventListener('hashchange', function () { intent = Date.now(); var d = openFor(location.hash.slice(1)); if (d) requestAnimationFrame(function () { land(d); }); });
+    $$('details.chap').forEach(function (d) {
+      d.addEventListener('toggle', function () {
+        if (!d.open || Date.now() - intent > 1500) return;
+        intent = 0; requestAnimationFrame(function () { land(d); });
+      });
+    });
+    var d0 = openFor(location.hash.slice(1));
+    if (d0) W.addEventListener('load', function () { setTimeout(function () { land(d0, true); }, 60); });
+    W.addEventListener('beforeprint', function () {
+      all.forEach(function (d) {
+        d.setAttribute('data-was', d.open ? '1' : '');
+        if (d.hasAttribute('name')) { d.setAttribute('data-name', d.getAttribute('name')); d.removeAttribute('name'); }
+        d.open = true;
+      });
+    });
+    W.addEventListener('afterprint', function () {
+      all.forEach(function (d) { d.open = d.getAttribute('data-was') === '1'; d.removeAttribute('data-was'); });
+      all.forEach(function (d) { if (d.hasAttribute('data-name')) { d.setAttribute('name', d.getAttribute('data-name')); d.removeAttribute('data-name'); } });
+    });
+  });
+
+  /* 9 · contact form: <form class="form" data-email="ciao@barfranco.nz" data-subject="…"> with no action.
+     The message goes to the address through FormSubmit (AJAX, form-encoded: keep it that way, a JSON body is blocked by
+     CORS), a hidden honeypot catches bots, and a sent message fires the Google Ads email conversion. If it fails, the
+     note offers the same message as a ready-made email, so nothing typed is lost. data-mode="mailto" skips FormSubmit and
+     opens the email straight away (how the live Contact page behaved before the rebuild). */
+  part('form', function () {
+    $$('form[data-email]').forEach(function (f) {
+      var honey = D.createElement('input');
+      honey.type = 'text'; honey.name = '_honey'; honey.hidden = true; honey.tabIndex = -1;
+      honey.setAttribute('autocomplete', 'off'); honey.setAttribute('aria-hidden', 'true');
+      f.appendChild(honey);
+      function val(n) { var el = f.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; }
+      function mailto() {
+        var body = val('message') + '\n\n— ' + val('name') + (val('email') ? ' (' + val('email') + ')' : '') + (val('phone') ? ' · ' + val('phone') : '');
+        return 'mailto:' + f.getAttribute('data-email') + '?subject=' + encodeURIComponent(f.getAttribute('data-subject') || 'Message') + '&body=' + encodeURIComponent(body);
+      }
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (honey.value) return;
+        if (f.getAttribute('data-mode') === 'mailto') { location.href = mailto(); return; }
+        var btn = f.querySelector('button[type="submit"], .btn'), label = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+        var payload = new URLSearchParams();
+        payload.append('_subject', f.getAttribute('data-subject') || 'Enquiry — Bar Franco');
+        payload.append('_template', 'table');
+        payload.append('_captcha', 'false');
+        $$('input, textarea, select', f).forEach(function (el) {
+          if (el === honey || !el.value || el.type === 'submit') return;
+          var lab = el.id ? f.querySelector('label[for="' + el.id + '"]') : null;
+          payload.append(lab ? lab.textContent.replace('*', '').trim() : (el.name || el.id || 'Field'), el.value);
+        });
+        fetch('https://formsubmit.co/ajax/' + encodeURIComponent(f.getAttribute('data-email')), {
+          method: 'POST', headers: { Accept: 'application/json' }, body: payload
+        }).then(function (r) { return r.json(); }).then(function (res) {
+          if (!res || (res.success !== true && res.success !== 'true')) throw new Error('not sent');
+          try { if (typeof W.gtag === 'function') W.gtag('event', 'conversion', { send_to: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE', value: 1.0, currency: 'NZD' }); } catch (x) {}
+          var ok = D.createElement('p'); ok.className = 'form-note'; ok.setAttribute('role', 'status');
+          ok.textContent = 'Grazie. We’ll come straight back to you.';
+          f.innerHTML = ''; f.appendChild(ok);
+        }).catch(function () {
+          if (btn) { btn.disabled = false; btn.textContent = label; }
+          var err = f.querySelector('.form-note.err');
+          if (!err) { err = D.createElement('p'); err.className = 'form-note err'; err.setAttribute('role', 'alert'); f.appendChild(err); }
+          err.innerHTML = 'Sorry, that didn’t send. <a href="">Send it as an email instead</a>, or write to <a href="mailto:' + f.getAttribute('data-email') + '">' + f.getAttribute('data-email') + '</a>.';
+          err.querySelector('a').setAttribute('href', mailto());
+        });
+      });
+    });
+  });
+
+  /* 10 · VenueFlow enquiry forms: a note while the form loads (and where to write instead), then the frame takes the
+     height the form reports, so there is never an empty band under it. Only venueflowhq.com is listened to. */
+  function vfFrames() { return $$('iframe[src*="venueflowhq.com"]'); }
+  part('venueflow', function () {
+    vfFrames().forEach(function (f) {
+      var p = D.createElement('p'); p.className = 'vf-wait';
+      p.innerHTML = 'Loading the enquiry form… <em>or email <a href="mailto:events@barfranco.nz">events@barfranco.nz</a></em>';
+      f.parentNode.insertBefore(p, f);
+      var done = function () { if (p.parentNode) p.parentNode.removeChild(p); };
+      f.addEventListener('load', done);
+      setTimeout(function () { if (p.parentNode) p.firstChild.nodeValue = 'The form is taking a while… '; }, 8000);
+    });
+    W.addEventListener('message', function (e) {
+      var host = ''; try { host = new URL(e.origin).hostname; } catch (x) { return; }
+      if (!/(^|\.)venueflowhq\.com$/.test(host)) return;
+      var d = e.data; if (typeof d === 'string') { try { d = JSON.parse(d); } catch (x) { return; } }
+      if (!d || d.type !== 'vf-embed-height' || !(d.height > 0)) return;
+      var fs = vfFrames(), mine = fs.filter(function (f) { return f.contentWindow === e.source; });
+      (mine.length ? mine : fs).forEach(function (f) { f.style.height = Math.max(420, Math.ceil(d.height)) + 'px'; });
+    });
+  });
+
+  /* 11 · events pages: the room finder (#sdFind / #sdRow), the calendar (#sdHold), the held date and the December strip
+     (#sdAvailD). Ported from the previous events script without the dogs, the banner or the index, and with every piece
+     optional. The picked date (and, with a finder, the guests and seated/standing) goes into the VenueFlow form as
+     prefillDate / prefillGuests / prefillFormat. Choices are remembered on this device (bf-sdf-*). */
+  part('events', function () {
+    var MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var DAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    function nz() {
+      var p = {};
+      try { new Intl.DateTimeFormat('en-NZ', { timeZone: 'Pacific/Auckland', year: 'numeric', month: 'numeric', day: 'numeric' }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); }
+      catch (e) { var d = new Date(); p = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() }; }
+      return { y: +p.year, m: +p.month - 1, d: +p.day };
+    }
+    function U(y, m, d) { return Date.UTC(y, m, d); }
+    function wd(y, m, d) { return new Date(U(y, m, d)).getUTCDay(); }
+    function iso(y, m, d) { return y + '-' + (m < 9 ? '0' : '') + (m + 1) + '-' + (d < 10 ? '0' : '') + d; }
+    function parse(s) { var p = s.split('-'); return { y: +p[0], m: +p[1] - 1, d: +p[2] }; }
+    function fmt(s) { var q = parse(s); return DAY[wd(q.y, q.m, q.d)] + ' ' + q.d + ' ' + MON[q.m]; }
+    function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+    function txt(id, v) { var e = D.getElementById(id); if (e) e.textContent = v; }
+    var T = nz(), TU = U(T.y, T.m, T.d);
+
+    /* the December strip (Christmas): edit the dates inside <b id="sdAvailD" data-year="2026">Fri 11 &amp; Fri 18</b>;
+       Fridays that have passed (NZ time) drop off, and when none are left the line says so (data-none) */
+    (function () {
+      var b = D.getElementById('sdAvailD'); if (!b) return;
+      var Y = +(b.getAttribute('data-year') || T.y);
+      var days = (b.textContent.match(/\d+/g) || []).map(Number).filter(function (d) { return U(Y, 11, d) >= TU; });
+      if (!days.length) { b.parentNode.innerHTML = b.getAttribute('data-none') || 'December Fridays: fully booked · Midweek &amp; lunch dates open.'; return; }
+      var f = days.map(function (d) { return 'Fri ' + d; });
+      b.textContent = f.length > 1 ? f.slice(0, -1).join(', ') + ' & ' + f[f.length - 1] : f[0];
+    })();
+
+    var find = D.getElementById('sdFind'), row = D.getElementById('sdRow'), hold = D.getElementById('sdHold');
+    var nIn = D.getElementById('sdN');
+    if (!hold && !nIn) return;
+    var HASF = !!nIn;
+    var cfg = (row && row.hasAttribute('data-seat')) ? row : find;
+    var VC = cfg && cfg.getAttribute('data-seat') ? { seat: +cfg.getAttribute('data-seat'), stand: +cfg.getAttribute('data-stand') } : { seat: 165, stand: 240 };
+    var cards = row ? $$('[data-room]', row) : [];
+    var st = { n: clamp(+lget('bf-sdf-n', '40') || 40, 10, 240), s: lget('bf-sdf-s', 'seat'), d: lget('bf-sdf-d', 'fs'), date: lget('bf-sdf-date', '') };
+    if (st.s !== 'seat' && st.s !== 'stand') st.s = 'seat';
+    if (st.d !== 'wk' && st.d !== 'fs') st.d = 'fs';
+    var phone = function () { return W.matchMedia && W.matchMedia('(max-width:760px)').matches; };
+    var mins = { bar: '$4,000', rest: '$7,500', all: '$15,000' };
+    function press(sel, key, v) { $$(sel).forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-' + key) === v)); }); }
+    function fits() { return st.n <= VC[st.s === 'seat' ? 'seat' : 'stand']; }
+    function line() {
+      var how = st.s === 'seat' ? 'seated' : 'standing';
+      if (!fits()) return 'More than ' + VC.seat + ' seated? Go standing: up to ' + VC.stand + '.';
+      if (phone()) return '<b>' + st.n + ' ' + how + '</b>: you fit.';
+      return '<b>' + st.n + ' ' + how + '</b>: you fit. Seated up to ' + VC.seat + ', standing up to ' + VC.stand + '. ' +
+        (st.d === 'wk' ? 'Sunday to Thursday: usually no minimum spend, and never a hire fee.' : 'Fri &amp; Sat minimum spend from $4,000. No hire fee.');
+    }
+    function finder() {
+      if (!HASF) { summary(); return; }
+      txt('sdNo', String(st.n));
+      press('#sdStyle button', 's', st.s); press('#sdDay button', 'd', st.d);
+      var ok = fits();
+      cards.forEach(function (c) { c.classList.toggle('fit', ok); c.classList.toggle('nofit', !ok); });
+      var res = D.getElementById('sdRes'); if (res) res.innerHTML = line();
+      var go = D.getElementById('sdResGo');
+      if (go) { var over = !ok && st.s === 'seat'; go.textContent = 'Check dates for ' + st.n + (st.s === 'seat' && !over ? ' seated' : ' standing'); go.toggleAttribute('data-stand', over); }
+      summary();
+    }
+    if (nIn) { nIn.value = st.n; nIn.addEventListener('input', function () { st.n = +nIn.value; lset('bf-sdf-n', st.n); finder(); }); }
+    var sty = D.getElementById('sdStyle'), day = D.getElementById('sdDay');
+    if (sty) sty.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; st.s = b.getAttribute('data-s'); lset('bf-sdf-s', st.s); finder(); });
+    if (day) day.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; st.d = b.getAttribute('data-d'); lset('bf-sdf-d', st.d); finder(); });
+    /* too many to sit down: the button already says standing, and taking it switches the finder (and the form) to standing */
+    var rgo = D.getElementById('sdResGo');
+    if (rgo) rgo.addEventListener('click', function () { if (!rgo.hasAttribute('data-stand')) return; st.s = 'stand'; lset('bf-sdf-s', st.s); finder(); });
+
+    /* the calendar: the next four months (or only data-months="10,11"), opening on data-mo="11" if set; past days and the
+       closed days (data-close="24" → 24 December to 5 January) can't be picked; Fridays and Saturdays are marked */
+    var G = D.getElementById('sdG'), MO = D.getElementById('sdMo');
+    var MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(function (i) { var m = T.m + i; return { y: T.y + Math.floor(m / 12), m: m % 12 }; }), mi = 0;
+    var ONLY = hold && hold.getAttribute('data-months') ? hold.getAttribute('data-months').split(',').map(Number) : null;
+    MONTHS = (ONLY ? MONTHS.filter(function (x) { return ONLY.indexOf(x.m) > -1; }) : MONTHS).slice(0, ONLY ? ONLY.length : 4);
+    var CLOSE = +(hold && hold.getAttribute('data-close')) || 23;
+    function shut(m, d) { return (m === 11 && d >= CLOSE) || (m === 0 && d <= 5); }
+    if (st.date) { var q = parse(st.date), k = MONTHS.findIndex(function (x) { return x.y === q.y && x.m === q.m; }); if (k < 0 || U(q.y, q.m, q.d) < TU || shut(q.m, q.d)) st.date = ''; else mi = k; }
+    if (hold && hold.getAttribute('data-mo')) { var k2 = MONTHS.findIndex(function (x) { return x.m === +hold.getAttribute('data-mo'); }); if (k2 > -1) mi = k2; }
+    function build() {
+      if (!G || !MONTHS.length) return;
+      var Y = MONTHS[mi].y, m = MONTHS[mi].m, lead = (wd(Y, m, 1) + 6) % 7, n = new Date(U(Y, m + 1, 0)).getUTCDate(), h = '', i;
+      for (i = 0; i < lead; i++) h += '<span class="x" aria-hidden="true"></span>';
+      for (var d = 1; d <= n; d++) {
+        var w = wd(Y, m, d), k = iso(Y, m, d), cl = shut(m, d), off = U(Y, m, d) < TU || cl;
+        h += '<button type="button" class="d' + (w === 5 || w === 6 ? ' fs' : '') + '" data-iso="' + k + '" aria-pressed="' + (k === st.date) + '" aria-label="' + DAY[w] + ' ' + d + ' ' + MON[m] + (cl ? ', closed' : '') + '"' + (off ? ' disabled' : '') + '>' + d + '</button>';
+      }
+      G.innerHTML = h;
+      $$('button', MO).forEach(function (b) { b.setAttribute('aria-pressed', String(+b.getAttribute('data-i') === mi)); });
+    }
+    if (MO) {
+      MO.innerHTML = MONTHS.map(function (x, i) { return '<button type="button" data-i="' + i + '">' + MON[x.m] + '</button>'; }).join('');
+      MO.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; mi = +b.getAttribute('data-i'); build(); });
+    }
+    function isFS() { if (!st.date) return st.d === 'fs'; var q = parse(st.date), w = wd(q.y, q.m, q.d); return w === 5 || w === 6; }
+    function summary() {
+      var how = st.s === 'seat' ? 'seated' : 'standing';
+      txt('sdSumN', HASF ? st.n + ', ' + how : String(st.n));
+      var room = cards.length === 1 ? cards[0].getAttribute('data-room') : null;
+      txt('sdSumR', fits() ? 'either floor' : 'the whole building, standing');
+      txt('sdSumD', st.date ? fmt(st.date) : 'pick one');
+      txt('sdSumM', !st.date ? 'pick a date' : isFS() ? 'from ' + (room ? mins[room] : '$4,000') : 'usually none');
+      txt('sdHoldBtn', st.date ? 'Hold ' + fmt(st.date) : 'Pick a date to hold');
+      syncForm();
+    }
+    var vfT = 0;
+    function syncForm() {
+      clearTimeout(vfT);
+      vfT = setTimeout(function () {
+        vfFrames().forEach(function (f) {
+          var u; try { u = new URL(f.getAttribute('src'), location.href); } catch (x) { return; }
+          var before = u.href;
+          ['prefillDate', 'prefillGuests', 'prefillFormat'].forEach(function (k) { u.searchParams.delete(k); });
+          if (st.date) u.searchParams.set('prefillDate', st.date);
+          if (HASF) { u.searchParams.set('prefillGuests', String(st.n)); u.searchParams.set('prefillFormat', st.s === 'seat' ? 'seated' : 'standing'); }
+          if (u.href !== before) f.setAttribute('src', u.href);
+        });
+      }, 600);
+    }
+    if (G) G.addEventListener('click', function (e) {
+      var b = e.target.closest('.d'); if (!b || b.disabled) return;
+      st.date = b.getAttribute('data-iso'); lset('bf-sdf-date', st.date);
+      $$('.d', G).forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      txt('sdHeld', '');
+      summary();
+    });
+    var hb = D.getElementById('sdHoldBtn');
+    if (hb) hb.addEventListener('click', function (e) {
+      if (!st.date) { e.preventDefault(); txt('sdHeld', 'Pick a date first.'); return; }
+      txt('sdHeld', 'Holding ' + fmt(st.date) + (hold && hold.getAttribute('data-guests') === '0' ? '' : ' for ' + st.n + ' guests') + '. Send it below and Jenna or Ana-Maria will pencil it in.');
+    });
+    build(); finder();
+    var rT = 0; W.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { if (HASF) { var res = D.getElementById('sdRes'); if (res) res.innerHTML = line(); } }, 200); });
+  });
+})();
