@@ -411,3 +411,12 @@ html:not(.sd) .sd-dog{display:none}
 .sd .card-s,.sd .card li em,.sd .card li span em{font-size:15px}
 .sd .d1,.sd .d2{text-wrap:balance}
 }
+
+/* ==== five photographs: a strip above the enquiry (Corporate events, Christmas) ==== */
+.sd-five{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;background:var(--dr);border-top:2px solid var(--dr)}
+.sd-five .ph{aspect-ratio:4/5}
+.sd-five .ph img{width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){
+.sd-five{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.sd-five .ph{flex:none;width:62vw;max-width:340px;scroll-snap-align:start}
+}
