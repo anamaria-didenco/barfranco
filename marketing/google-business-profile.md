@@ -87,7 +87,7 @@ Post one a week. Each ≤ ~1,500 chars, with a clear CTA button. Use a strong ph
 ## 6. Seed Q&A (post these as questions, then answer from the owner account)
 
 1. **Q:** Can I host a private function or event here? **A:** Yes! We host private dining, cocktail functions and full venue hire for up to 240 guests across two levels, with no venue hire fee. Email events@barfranco.nz or enquire at barfranco.nz/Functions.html.
-2. **Q:** Is there a venue hire fee? **A:** No venue hire fee, and no minimum spend.
+2. **Q:** Is there a venue hire fee? **A:** No venue hire fee. Minimum spend on application.
 3. **Q:** Can you do work Christmas parties? **A:** Absolutely — for up to 240 guests, with festive Italian menus. December books out early, so enquire ahead.
 4. **Q:** Do you cater dietaries? **A:** Yes — vegetarian, vegan, gluten-free and most allergies are no problem. Just let us know when you book.
 5. **Q:** Where exactly are you / is there parking nearby? **A:** We're at The Crossing, 166 Cashel Street, Christchurch Central — central CBD with public parking buildings close by. `[OWNER: name the nearest one]`
