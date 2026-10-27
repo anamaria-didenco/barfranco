@@ -1137,3 +1137,26 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 /* . */
 /* . */
 /* . */
+/* ==== At a glance (idea 06): straight under the hero on every events page, the four facts in one ruled strip,
+   then the one quote and the ask. Values in Marsha at 24px (never smaller), labels in Affairs italic. ==== */
+.fx{padding:clamp(28px,4vw,48px) 0 clamp(40px,5vw,64px);color:var(--dr)}
+.fx-facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--dr);border-bottom:1px solid var(--dr)}
+.fx-facts li{padding:14px 18px 18px;border-left:1px solid rgba(108,6,0,.2)}
+.fx-facts li:first-child{border-left:0;padding-left:0}
+.fx-facts span{display:block;font-style:italic;font-size:14px;line-height:1.2}
+.fx-facts b{display:block;margin-top:8px;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:24px;line-height:.95;color:var(--br);text-wrap:balance}
+.fx-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;margin-top:22px}
+.fx-q{margin:0;max-width:34ch;font-size:clamp(18px,1.6vw,22px);line-height:1.35;text-wrap:balance}
+.fx-q cite{display:block;margin-top:6px;font-style:italic;font-size:14px}
+.fx-ask{display:flex;align-items:baseline;gap:10px;flex:0 1 380px;font-style:italic;font-size:16px;text-decoration:none;color:inherit}
+.fx-ask i{flex:1;min-width:24px;border-bottom:1.5px dotted currentColor;opacity:.55;transform:translateY(-4px)}
+.fx-ask:hover span{text-decoration:underline;text-underline-offset:.2em}
+@media (max-width:860px){
+ .fx-facts{grid-template-columns:1fr 1fr}
+ .fx-facts li{padding:12px 14px 14px}
+ .fx-facts li:nth-child(odd){border-left:0;padding-left:0}
+ .fx-facts li:nth-child(n+3){border-top:1px solid rgba(108,6,0,.2)}
+ .fx-foot{flex-direction:column;align-items:stretch}
+ .fx-ask{flex:0 0 auto}
+}
+@media (max-width:620px){.fx-ask i{border:0}}
