@@ -1160,3 +1160,8 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
  .fx-ask{flex:0 0 auto}
 }
 @media (max-width:620px){.fx-ask i{border:0}}
+/* ==== Book a table: the booking widget starts on the first screen. Someone who tapped Book a table lands on
+   the date picker, with the photograph still above it, so the hero is shorter here than on other pages. ==== */
+.bk-hero{height:clamp(360px,50svh,560px)}
+.bk-hero+#book{padding-top:clamp(28px,4vw,56px)}
+@media (max-width:900px){.bk-hero{height:clamp(330px,46svh,420px)}}

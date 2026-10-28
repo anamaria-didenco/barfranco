@@ -7,6 +7,8 @@
  * What it does
  *  1. Loads the Google tag (AW-18456342571) once.
  *  2. Phone and email link clicks → their conversions (unchanged).
+ *     Book a table clicks (any link to /bookings/ or to NowBookIt) → the
+ *     bookClick conversion, once per page view.
  *  3. Keeps the ad click: gclid / gbraid / wbraid from the landing URL go in
  *     a first-party cookie (90 days) with the landing page and time.
  *  4. Adds those, plus this page's origin, to every VenueFlow form iframe.
@@ -70,13 +72,22 @@
     try { gtag('event', 'conversion', params); } catch (e) { /* never break the page */ }
   }
 
-  // ── 2. Phone and email links anywhere on the page ─────────────────────────
+  // ── 2. Phone, email and Book a table links anywhere on the page ───────────
+  var bookCounted = false; // a Book a table click counts once per page view
+  function isBookLink(href) {
+    var u;
+    try { u = new URL(href, location.href); } catch (e) { return false; }
+    if (/(^|\.)nowbookit\.com$/.test(u.hostname)) return true;
+    var ours = u.origin === location.origin || /(^|\.)barfranco\.nz$/.test(u.hostname);
+    return ours && /^\/bookings\/?$/.test(u.pathname);
+  }
   document.addEventListener('click', function (ev) {
     var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
     if (!a) return;
     var href = (a.getAttribute('href') || '').toLowerCase();
     if (href.indexOf('tel:') === 0) fire(LABELS.phone);
     if (href.indexOf('mailto:') === 0) fire(LABELS.email);
+    if (!bookCounted && isBookLink(href)) { bookCounted = true; fire(LABELS.bookClick); note('book a table click'); }
   }, true);
 
   // ── 3. Keep the ad click (first-party cookie, 90 days) ────────────────────

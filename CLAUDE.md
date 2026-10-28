@@ -11,7 +11,7 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   (AW-18456342571), fires the phone, email and VenueFlow enquiry conversions (once per enquiry, enquiry ID as
   `transaction_id`, enhanced-conversion email and phone), keeps gclid / gbraid / wbraid in a 90-day first-party
   cookie and adds them to the VenueFlow iframe. Never paste the Google tag or a conversion listener inline again;
-  change labels in that file. `partial` fires on VenueFlow's `vf-partial-captured`; `bookClick` (Book a table, NowBookIt) is in LABELS but nothing fires it yet.
+  change labels in that file. `partial` fires on VenueFlow's `vf-partial-captured`; `bookClick` fires on any click of a link to `/bookings/` or to NowBookIt, once per page view (a completed NowBookIt booking is not seen by the site: that needs NowBookIt's own Ads/Analytics setting).
 - **Tokens** (top of franco.css): Deep Red `--deep #6C0600` (ink), Almond `--almond #FAD7C3`, Bright Red
   `--bright #AF0F00` (heads), Spritz `--spritz #F00000` (**focus rings only, never text**),
   `--hairline rgba(108,6,0,.15)`. These four are the brand's approved palette (BarFranco_VisualIdentity.pdf, p.12) and the only
@@ -154,6 +154,10 @@ point to `/`.
 All photos are **baked in** as `<img src="/images/….jpg" width height alt>` inside a `.ph` figure (ratios 16:9, 3:2 or 4:5). To change a photo:
 1. Add the new image to `images/` (resize to ~1400px long edge, JPEG quality ~0.82 — keep files small).
 2. Update the `src=""` on the relevant `<img>` and write a descriptive `alt=""` (good for SEO).
+3. Phones get smaller copies: each photo has `-480w.jpg` and `-800w.jpg` siblings and its `<img>` carries `srcset` + `sizes`
+   (worked out from how wide the photo shows on a phone, a tablet and a desktop, crops included). When you add or swap a photo,
+   make the two copies (same name plus `-480w` / `-800w`, JPEG quality 80) and give the `<img>` the same `srcset`/`sizes` pattern,
+   or leave both off and it simply loads the full file.
 
 **Banned photographs (owner's call, never use again):** the bartender in the striped shirt at the back bar
 (was `bar-bartender.jpg`), the chef with the steel bowl in the open kitchen (was `chef-open-kitchen.jpg`), and
