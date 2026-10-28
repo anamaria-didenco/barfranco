@@ -151,7 +151,7 @@ var book=$('.mast-book'),links=$('#links'),mb=$('.mast-menu');
 /* one button, matched to the page: event pages go to the enquiry form */
 /* #book only where it holds the booking widget (Bookings, Restaurant). Home's #book is a line that links to /bookings/,
    so jumping there would add a step before anyone can book: Home keeps /bookings/. */
-/* the four events pages (html.sd) say what their dock says (Christmas: Enquire now); the pack and Robbie (body[data-ask=events]) send you to the Functions form */
+/* the four events pages (html.sd) say what their dock says (Christmas: Hold a date); the pack and Robbie (body[data-ask=events]) send you to the Functions form */
 if(book){var dockAsk=$('.sticky-btns .cta-fill');
 if(R.classList.contains('sd')){book.textContent=dockAsk&&dockAsk.textContent.trim()||'Check your date';book.setAttribute('href','#enquire')}
 else if(D.body.getAttribute('data-ask')==='events'){book.textContent='Check your date';book.setAttribute('href','/functions/#enquire')}

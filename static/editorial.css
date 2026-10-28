@@ -1165,3 +1165,7 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .bk-hero{height:clamp(360px,50svh,560px)}
 .bk-hero+#book{padding-top:clamp(28px,4vw,56px)}
 @media (max-width:900px){.bk-hero{height:clamp(330px,46svh,420px)}}
+/* ==== Typesetting, the details a compositor would fix: no one-word last lines in running text,
+   and the opening quote mark of a pull quote hangs in the margin so the words, not the mark, align. ==== */
+p,li,blockquote,figcaption{text-wrap:pretty}
+.fx-q p,.qt p,.hx-q{text-indent:-.42em}
