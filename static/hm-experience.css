@@ -1,0 +1,181 @@
+/* Bar Franco · the homepage as an evening. A layer on the live homepage: the design underneath is unchanged.
+   Arrival (the curtain parts), the strip runs, the intro reads itself in, the dog keeps you company,
+   the long room settles as it passes, and Book a table opens right here. */
+.hx-cur{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.hx-cur i{position:absolute;top:0;bottom:0;width:50.5%;background:var(--dr);transition:transform 1.15s cubic-bezier(.7,0,.2,1)}
+.hx-cur i:first-child{left:0;box-shadow:inset -1px 0 0 rgba(250,215,195,.4)}
+.hx-cur i:last-child{right:0}
+.hx-cur.open i:first-child{transform:translateX(-101%)}
+.hx-cur.open i:last-child{transform:translateX(101%)}
+.hx-rise{opacity:0;transform:translateY(18px)}
+.hx-rise.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .9s var(--ease)}
+.strip.hx-run{display:block;overflow:hidden;white-space:nowrap;padding-left:0;padding-right:0}
+.hx-track{display:inline-flex;align-items:baseline;gap:6px 14px;padding-right:14px;animation:hxMarq 40s linear infinite;will-change:transform}
+.strip.hx-run:hover .hx-track{animation-play-state:paused}
+@keyframes hxMarq{to{transform:translateX(-50%)}}
+.hx-w{transition:opacity .4s var(--ease)}
+.hx-w.dim{opacity:.3}
+/* type: one set of rules for the page */
+.hx .d1,.hx .d2{text-wrap:balance}
+/* one face for every heading: Marsha throughout, no italic words inside titles */
+.hx .d1 em,.hx .d2 em,.hx .d1 .w,.hx .d2 .w,.hx .strip .w{font-family:var(--font-display);font-style:normal;font-weight:700;text-transform:uppercase;font-size:1em;line-height:inherit;letter-spacing:inherit;margin:0;vertical-align:baseline}
+.hx .d1 .w,.hx .d2 .w{display:inline}
+.hx .lede,.hx .meta{text-wrap:pretty;hanging-punctuation:first}
+.hx .intro .lede{font-size:clamp(21px,2.2vw,31px);line-height:1.34;max-width:32ch;letter-spacing:-.003em}
+.hx .info li,.hx .hours{font-variant-numeric:lining-nums tabular-nums}
+.hx .eb{font-variant-numeric:lining-nums}
+.hx .full .ph img{transform:scale(var(--hxz,1.08))!important;transition:opacity .8s var(--ease)!important}
+.hx-host{all:unset;position:fixed;left:0;top:0;z-index:58;display:block;cursor:pointer;will-change:transform;transition:opacity .3s var(--ease)}
+.hx-host.glide{transition:transform .75s var(--ease),opacity .3s var(--ease)}
+.hx-host.docked{left:auto;top:auto;right:20px;bottom:20px;transform:none;transition:transform .55s cubic-bezier(.3,1.35,.55,1) .45s,opacity .3s var(--ease)}
+/* he ducks quickly and comes back up only once the page has settled, with a small pop, so a flick of the scroll doesn't bob him */
+.hx-host.docked.duck,.tb-up .hx-host.docked:not(.gone){transition:transform .3s cubic-bezier(.55,0,.8,.3) .12s,opacity .3s var(--ease),visibility 0s linear .42s}
+.hx-host.docked.duck{transform:translateY(calc(100% + 34px))}
+/* once he has slid off screen he is hidden too, so keyboard focus never lands on him there */
+.hx-host.docked.duck,.tb-up .hx-host.docked:not(.gone){visibility:hidden}
+.hx-host.gone{opacity:0;pointer-events:none}
+.hx-host.snap{transition:none!important}
+/* his frame: the menu's double rule (bright red 1.5px, a cream gap, 1px inside), a dotted floor to stand on, and room for a few words */
+.hx-fr{position:relative;display:flex;align-items:stretch;height:52px;transition:background-color .3s var(--ease),box-shadow .3s var(--ease)}
+.hx-host:not(.hero) .hx-fr{background:#FBF4EA;box-shadow:inset 0 0 0 1.5px var(--br),inset 0 0 0 4.5px #FBF4EA,inset 0 0 0 5.5px var(--br),0 12px 26px -14px rgba(108,6,0,.45)}
+.hx-say{display:flex;align-items:center;max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .45s var(--ease)}
+.hx-say-t{padding:0 0 1px 17px;font-family:var(--font-body);font-style:italic;font-weight:400;font-size:14.5px;letter-spacing:.005em;color:var(--dr)}
+.hx-host.talk .hx-say{max-width:min(300px,calc(100vw - 110px))}
+.hx-pet{position:relative;flex:0 0 64px;width:64px}
+.hx-d{position:absolute;left:9px;right:9px;bottom:12px;display:block}
+.hx-d img{display:block;width:100%;height:auto;transform:scaleX(var(--fx,1))}
+.hx-host.walk .hx-d img{animation:none}
+.hx-d{transform-origin:72% 100%;transition:transform .3s var(--ease)}
+.hx-host.walk .hx-d{animation:hxTrot .19s ease-in-out infinite alternate}
+@keyframes hxTrot{from{transform:translateY(0) rotate(0)}to{transform:translateY(-2.5px) rotate(-.8deg)}}
+.hx-host.sniff .hx-d{animation:hxSniff 1.4s cubic-bezier(.45,0,.3,1)}
+@keyframes hxSniff{0%,100%{transform:none}25%{transform:translateY(1px) rotate(-5deg)}38%{transform:translateY(1px) rotate(-3.5deg)}50%{transform:translateY(1px) rotate(-5deg)}70%{transform:none}82%{transform:translateY(-1.5px)}}
+.hx-host.docked:hover .hx-d{transform:translateY(-2px)}
+.hx-host.out .hx-fr{background:transparent!important;box-shadow:none!important}
+.hx-host.al .hx-d img{filter:var(--almond)}
+.hx-host:hover:not(.hero) .hx-fr{box-shadow:inset 0 0 0 1.5px var(--dr),inset 0 0 0 4.5px #FBF4EA,inset 0 0 0 5.5px var(--dr),0 14px 28px -14px rgba(108,6,0,.55)}
+.hx-host:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
+.hx-tag{position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);white-space:nowrap;font-family:var(--font-body);font-style:italic;font-weight:400;text-transform:none;letter-spacing:normal;font-size:14px;line-height:1.3;padding:4px 10px;border:1px solid var(--dr);background:#FBF4EA;color:var(--dr);opacity:0;transition:opacity .35s var(--ease);pointer-events:none}
+.hx-tag.on{opacity:1}
+.hx-host .hx-tag{left:auto;right:0;transform:none}
+/* on the hours line the dog speaks to his left, on his own row, never up into the buttons */
+.hx-host.hero .hx-tag{display:none}
+@media (max-width:700px){.hx-host.docked{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px))}}
+.hx-sheet{position:fixed;inset:0;z-index:90;pointer-events:none;visibility:hidden;transition:visibility 0s .5s}
+.hx-sheet.on{pointer-events:auto;visibility:visible;transition:none}
+.hx-scrim{position:absolute;inset:0;background:rgba(40,4,0,.45);opacity:0;transition:opacity .35s var(--ease)}
+.hx-pan{position:absolute;top:0;right:0;bottom:0;width:min(520px,100%);background:#FBF4EA;border-left:2px solid var(--br);display:flex;flex-direction:column;transform:translateX(102%);transition:transform .5s var(--ease);color:var(--dr)}
+.hx-sheet.on .hx-scrim{opacity:1}
+.hx-sheet.on .hx-pan{transform:none}
+.hx-pan-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px 12px;border-bottom:1px solid rgba(108,6,0,.25)}
+.hx-pan-h b{display:flex;align-items:flex-end;gap:10px;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:22px;line-height:1;color:var(--br)}
+.hx-pan-h b img{width:44px;height:auto}
+.hx-x{all:unset;cursor:pointer;font-style:italic;font-size:15px;padding:12px 6px;margin:-12px -6px}
+.hx-x:focus-visible{outline:2px solid var(--sp);outline-offset:2px}
+.hx-pan-s{margin:0;padding:10px 22px 12px;font-style:italic;font-size:14px;line-height:1.4}
+.hx-pan-s a,.hx-pan-f a{color:var(--dr);text-underline-offset:.22em}
+.hx-pan iframe{flex:1 1 auto;width:100%;min-height:0;border:0;border-top:1px solid rgba(108,6,0,.18);background:#fff}
+.hx-pan-f{margin:0;padding:10px 22px 16px;font-style:italic;font-size:13.5px;border-top:1px solid rgba(108,6,0,.18)}
+.hx-lock body{overflow:hidden}
+@media (max-width:700px){.hx-pan{top:auto;left:0;width:100%;height:92svh;border-left:0;border-top:2px solid var(--br);transform:translateY(102%)}.hx-pan-h b{font-size:20px}}
+@media (prefers-reduced-motion:reduce){.hx-track{animation:none}.hx-host.glide,.hx-pan,.hx-scrim{transition:none}.hx-host.walk .hx-d img,.hx-host.walk .hx-d,.hx-host.sniff .hx-d{animation:none}.hx-host.docked,.hx-host.docked.duck,.tb-up .hx-host.docked:not(.gone){transition:none}}
+/* the first screen: both asks together, the hours beside them */
+.hx .hf-act{align-items:flex-end;row-gap:18px}
+.hx .hf-act .hx-acts{margin:0;gap:10px;flex:0 1 auto}
+.hx .hf-act .hx-acts a.cta{flex:0 0 auto}
+.hx .hf-act .hours{flex:1 1 100%;text-align:right}
+@media (max-width:620px){.hx .hf-act{flex-direction:column;align-items:stretch;flex-wrap:nowrap}.hx .hf-act .hx-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hx .hf-act .hours{text-align:left;flex:0 0 auto;min-width:0}}
+/* (phones: without nowrap, the hours' 100% basis wrapped them into a second column beside the buttons, 80-165px past the screen edge, and the dog on that line went with them) */
+/* two floors: a chapter opening, not a label. Marsha for the title, the italic eyebrow above it, the Level 1 · Level 2 switch sitting on the title's baseline */
+.hx .lv-head{align-items:flex-end;padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(18px,2.4vw,30px)}
+.hx .hx-lvh{display:grid;gap:10px}
+.hx .hx-lvh .eb{margin:0;font-size:15px;line-height:1.3}
+.hx .hx-lvh .d2{margin:0;max-width:14ch}
+.hx .lv-ctl{padding-bottom:.35em}
+.hx .trk{font-size:17px;gap:14px;font-style:normal}
+/* two colours for what matters: deep red titles with the key words in bright red. On red grounds the title stays one colour, almond */
+.hx .hx-c{color:var(--br)}
+.hx .sec:not(.dark):not([data-tone="dark"]) .d2,.hx .lv-head .d2{color:var(--dr)}
+.hx .dark .hx-c,.hx [data-tone="dark"] .hx-c{color:inherit}
+.hx .f2.on .d2{color:var(--dr)}
+/* the two floors read as a pair: same eyebrow, same title size and colour logic, same lede, buttons on one line */
+.hx .floor .f-in{display:grid;align-content:start;gap:0}
+.hx .floor .f-in .eb{margin:0 0 14px;font-size:15px;line-height:1.3}
+.hx .floor .f-in .d2{margin:0;font-size:clamp(32px,3.4vw,52px);line-height:1.02;min-height:2.04em;max-width:12ch;text-wrap:balance;color:var(--dr)}
+.hx .floor.dark .f-in .d2{color:var(--al)}
+.hx .floor.dark .f-in .hx-c{color:inherit}
+.hx .floor:not(.dark) .f-in .hx-c{color:var(--br)}
+.hx .floor .f-in .lede{margin:18px 0 0;font-size:clamp(18px,1.3vw,19px);line-height:1.5;max-width:40ch;min-height:4.5em}
+.hx .floor .f-in .cta-row{margin-top:26px}
+@media (max-width:860px){.hx .floor .f-in .d2,.hx .floor .f-in .lede{min-height:0}}
+/* the intro as a standfirst: one statement across the page, not a paragraph beside a gap */
+.hx .intro .g{grid-template-columns:minmax(0,1fr)}
+.hx .intro .lede{font-size:clamp(22px,2.4vw,38px);line-height:1.32;max-width:30ch}
+/* one page title: the closing ask sits a step below it */
+.hx .book .d1{font-size:clamp(38px,4.6vw,68px)}
+/* a quieter second ask beside the main button */
+.hx .cta-row .hx-more{align-self:center;padding:11px 4px;font-style:italic;font-size:15px;color:var(--dr);text-underline-offset:.26em;text-decoration-thickness:1px}
+.hx .cta-row .hx-more:hover{color:var(--br)}
+/* with the top bar: the corner frame ducks while the bar is showing, so there is one thing on screen asking */
+.tb-up .hx-host.docked:not(.gone){transform:translateY(calc(100% + 34px))}
+/* the first two photographs: the drinks tray sits in frame on the left, the face and the plate on the right; on narrow screens the one photo keeps her face in view */
+@media (max-width:700px){.hx .hf-fold .hero figure:first-child img{object-position:60% 45%}.hx .hf-fold .hero figure:last-child img{object-position:50% 22%}}
+/* phones: the one photograph stays full-bleed even while the curtain (or any overlay) is the hero's last child */
+@media (max-width:699.98px){.hx .hf-fold>.hero .ph:last-of-type{position:absolute;inset:0}}
+/* phones: the title sits over the photograph in almond, so the key words stay almond too */
+@media (max-width:699.98px){.hx .hf-copy .hx-c{color:inherit}}
+/* ==== hierarchy and proof ==== */
+/* the intro: the house line as the statement, one sentence under it */
+.hx .intro .stack{gap:0}
+.hx .intro .eb{margin:0 0 16px}
+.hx .intro .hx-st{margin:0;font-size:clamp(36px,4.4vw,68px);line-height:.92;max-width:15ch;text-wrap:balance}
+.hx .intro .lede{font-size:clamp(19px,1.6vw,24px);line-height:1.45;max-width:36ch;margin:20px 0 0}
+/* host: the facts as a list, one guest in her own words */
+.hx .host .hx-facts{margin:4px 0 0;max-width:480px}
+.hx-q{margin:0;max-width:40ch;font-style:italic;font-size:clamp(17px,1.3vw,19px);line-height:1.45;color:var(--dr)}
+.hx-q span{display:block;margin-top:6px;font-style:normal;font-size:14px;color:var(--br)}
+/* reservations: what is true tonight, then the two ways in */
+.hx .book .hx-tonight{margin:16px 0 0;font-size:clamp(17px,1.3vw,19px);line-height:1.45;max-width:none}
+.hx .book .hx-wi{display:block}
+.hx .book .d1{color:var(--dr)}
+.hx .book .d1 .hx-c{color:var(--br)}
+.hx .book .cta-row,.hx .find .cta-row{margin-top:22px}
+/* ==== two floors, one ground ==== the bar and the restaurant sit on the same cream, so the photographs carry the difference between the floors; no red wash on the bar photo, and one dog on the page (the one in his frame) */
+.hx .floor,.hx .floor.dark,.hx.night .floor,.hx.night .floor.f1{--gr:#FBF4EA;--ink:var(--dr);--acc:var(--br);--rule:rgba(108,6,0,.32)}
+.hx .f1 .f-ph::after{display:none}
+.hx .floors{border-top:1px solid rgba(108,6,0,.18);border-bottom:1px solid rgba(108,6,0,.18)}
+.hx .floor+.floor{border-left:1px solid rgba(108,6,0,.18)}
+.hx .floor .f-in .d2{color:var(--dr)}
+.hx .floor .f-in .eb{color:var(--br)}
+.hx .tdog{display:none!important}
+@media (max-width:860px){.hx .floor+.floor{border-left:0;border-top:1px solid rgba(108,6,0,.18)}}
+/* night: every band but the two floors turns Deep Red, so the deep-red type turns Almond and the title stays one colour (the floors keep their cream and their reds) */
+.hx.night .sec:not(.bright) .d2,.hx.night .lv-head .d2,.hx.night .book .d1,.hx.night .sec:not(.bright) .hx-q,.hx.night .sec:not(.bright) .hx-q span,.hx.night .sec:not(.bright) .cta-row .hx-more{color:var(--al)}
+.hx.night .sec:not(.bright) .hx-c,.hx.night .book .d1 .hx-c{color:inherit}
+.hx.night .sec:not(.bright) .cta-row .hx-more:hover{color:#FBF4EA}
+.hx.night .floor .f-in .d2,.hx.night .floor .cta-row .hx-more{color:var(--dr)}
+.hx.night .floor:not(.dark) .f-in .hx-c,.hx.night .floor .f-in .eb{color:var(--br)}
+.hx.night .floor a.cta:not(.cta-fill){border-color:var(--dr);color:var(--dr)}
+.hx.night .floor a.cta:not(.cta-fill):hover{background:var(--dr);color:var(--al)}
+/* ==== phone audit, October 2026 ==== */
+/* the strip: a quiet running line in Affairs italic (Marsha never goes this small), and it runs slower (hm-experience.js) */
+@media (max-width:620px){
+.hx .strip{font-family:var(--font-body);font-style:italic;font-weight:400;text-transform:none;font-size:15px;letter-spacing:.01em;line-height:1.3;padding-top:13px;padding-bottom:13px}
+.hx .strip .w{font-family:inherit;font-style:inherit;font-weight:inherit;text-transform:none;font-size:1em;letter-spacing:inherit;line-height:inherit}
+}
+/* one display size under the hero title: the standfirst and the closing ask match the chapter heads (32px) */
+@media (max-width:620px){.hx .intro .hx-st,.hx .book .d1{font-size:32px}}
+/* once the columns stack, one photograph per chapter: the long candlelit room carries Host at Franco, not a second photo above it */
+@media (max-width:860px){.hx .host .ph{display:none}}
+/* host on phones: the two facts that decide it; private lunches and the reply time are on /functions/ */
+@media (max-width:620px){.hx .host .hx-facts li:nth-child(n+3){display:none}}
+/* once the floors stack, the red fill is kept for the hero, Host at Franco and the closing booking: the two floors are ways in, a matching pair of outlines */
+@media (max-width:860px){
+.hx .floor .cta-row a.cta.cta-fill{background:transparent;border-color:var(--dr);color:var(--dr)}
+.hx .floor .cta-row a.cta.cta-fill:hover{background:var(--dr);border-color:var(--dr);color:var(--al)}
+}
+/* gift vouchers: beside the booking pair on wide screens; once stacked, one quiet line under the booking buttons instead of a third block */
+.hx .cta-row .hx-vo{display:none}
+@media (max-width:860px){.hx #vouchers{display:none}.hx .book .cta-row .hx-vo{display:inline-block;text-align:left}}
+/* a wrapped quiet link lines up with the text edge, not 4px in */
+@media (max-width:620px){.hx .cta-row .hx-more{padding-left:0;padding-right:0}}

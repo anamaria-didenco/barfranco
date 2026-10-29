@@ -22,7 +22,7 @@ brand-assets/
 | Franco Red  | `#BE1622` | Hero — headlines, marks, energy       |
 | Charcoal    | `#1D1D1B` | Grounding — body, footers, contrast   |
 | Cream       | `#F4EEE1` | Warmth — section grounds, cards       |
-| Paper       | `#FCFBF7` | Canvas — default background           |
+| Paper       | `#F1EEE6` | Canvas — default background           |
 
 Rough balance: ~60% paper/cream · ~25% charcoal · ~15% red. Red is a spice, not the plate.
 

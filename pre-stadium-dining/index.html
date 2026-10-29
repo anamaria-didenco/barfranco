@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-NZ">
 <head>
+
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- SEO + tracking, carried over verbatim from barfranco.nz/pre-stadium-dining/index.html -->
 <title>Dining Near One NZ Stadium | Bar Franco Christchurch</title>
 <meta name="description" content="A short walk from One NZ Stadium (Te Kaha). Modern Italian, Negronis and fast, good food before concerts and games. Open daily from 4pm." />
-<meta name="keywords" content="pre-stadium dining Christchurch, restaurant near One NZ Stadium, where to eat before the stadium Christchurch, Te Kaha stadium restaurants, pre-event dinner Christchurch CBD, dining near Christchurch stadium, eat before concert Christchurch, pre-game dinner Christchurch, restaurant near Te Kaha" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="geo.region" content="NZ-CAN" />
 <meta name="geo.placename" content="Christchurch Central" />
@@ -22,149 +22,41 @@
 <meta name="twitter:title" content="Dining Near One NZ Stadium | Bar Franco Christchurch" />
 <meta name="twitter:description" content="A short walk from One NZ Stadium (Te Kaha). Modern Italian, Negronis and fast, good food before concerts and games. Open daily from 4pm." />
 <meta name="twitter:image" content="https://www.barfranco.nz/og-image.jpg?v=3" />
-<link rel="icon" type="image/png" href="/favicon.png?v=2" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4"/><link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=4"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4" />
 <link rel="canonical" href="https://www.barfranco.nz/pre-stadium-dining/" />
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18456342571"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<script src="/static/vf-tracking.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","about":{"@id":"https://www.barfranco.nz/#restaurant"}}</script>
 
-  gtag('config', 'AW-18456342571');
-</script>
-<script>
-(function () {
-  var LABELS = {
-    phone: 'AW-18456342571/lqN6CITV1_ocEKvg1eBE',   // Phone click
-    email: 'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',   // Email click - events enquiry
-    form:  'AW-18456342571/yIDxCPHLqfocEKvg1eBE',   // Enquiry submitted (VenueFlow)
-    // Secondary action for a step-1 capture that never finishes. Create the
-    // conversion action in Google Ads, paste its label here, and this starts
-    // firing. Left null so it can never be counted against the form label.
-    partial: null                                   // Partial enquiry (VenueFlow)
-  };
-
-  function fire(label, value) {
-    try {
-      gtag('event', 'conversion', { 'send_to': label, 'value': value || 1.0, 'currency': 'NZD' });
-    } catch (e) {}
-  }
-
-  // 1. Phone and email links anywhere on the page
-  document.addEventListener('click', function (ev) {
-    var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
-    if (!a) return;
-    var href = (a.getAttribute('href') || '').toLowerCase();
-    if (href.indexOf('tel:') === 0)    fire(LABELS.phone);
-    if (href.indexOf('mailto:') === 0) fire(LABELS.email);
-  }, true);
-
-  // 2. VenueFlow enquiry form — the widget posts `vf-enquiry-submitted` on a successful submit.
-  //    Budget bracket becomes the conversion value, so a $10k enquiry is worth more than a $2k one.
-  function budgetToValue(b) {
-    if (!b) return 1;
-    var nums = String(b).replace(/,/g, '').match(/\d+/g);
-    if (!nums) return 1;
-    var n = parseInt(nums[0], 10);
-    if (/k/i.test(String(b)) && n < 1000) n = n * 1000;
-    return n > 0 ? n : 1;
-  }
-  window.addEventListener('message', function (e) {
-    if (e.origin !== 'https://venueflowhq.com' || !e.data) return;
-    var d = e.data;
-    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
-    if (d && d.type === 'vf-enquiry-submitted') {
-      fire(LABELS.form, budgetToValue(d.budgetRange || d.budget_range || d.budget));
-    }
-    if (d && d.type === 'vf-partial-captured' && LABELS.partial) {
-      fire(LABELS.partial, budgetToValue(d.budgetRange || d.budget_range || d.budget));
-    }
-  });
-})();
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Bar Franco",
-  "url": "https://www.barfranco.nz/pre-stadium-dining/",
-  "description": "Modern Italian restaurant and Negroni bar a short walk from One NZ Stadium (Te Kaha) in central Christchurch — ideal for pre-event dining before concerts, rugby and live events, and a drink after the final whistle.",
-  "servesCuisine": "Italian",
-  "priceRange": "$",
-  "telephone": "+64-21-221-1307",
-  "image": "https://www.barfranco.nz/og-image.jpg?v=3",
-  "acceptsReservations": "https://www.barfranco.nz/Bookings.html",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "The Crossing, 166 Cashel Street",
-    "addressLocality": "Christchurch Central",
-    "addressRegion": "Canterbury",
-    "postalCode": "8011",
-    "addressCountry": "NZ"
-  },
-  "geo": { "@type": "GeoCoordinates", "latitude": -43.53262, "longitude": 172.63620 },
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens": "16:00", "closes": "22:00"
-  }],
-  "areaServed": "Christchurch"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How far is Bar Franco from One NZ Stadium (Te Kaha)?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Bar Franco is in The Crossing on Cashel Street, a short walk from One NZ Stadium (Te Kaha) in central Christchurch — ChristchurchNZ lists us as about a five-minute stroll. It's easy to eat with us and wander over to the stadium with time to spare." }
-    },
-    {
-      "@type": "Question",
-      "name": "What time should we eat before an event at the stadium?",
-      "acceptedAnswer": { "@type": "Answer", "text": "We open daily from 4pm, with the kitchen from 5pm. For a relaxed pre-event dinner we'd suggest arriving around two hours before kick-off or doors. On busy event nights, booking ahead is the safest way to get your table." }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you take bookings on stadium event nights?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Book a table online or call us on 021 221 1307. Concert and game nights are our busiest, so reserve early to lock in your table before the event." }
-    },
-    {
-      "@type": "Question",
-      "name": "Can we come back for a drink after the game or concert?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Our Spritz & Negroni Bar runs till late, so swing back in for a post-match drink or a nightcap after the final whistle." }
-    },
-    {
-      "@type": "Question",
-      "name": "Is Bar Franco good for a group heading to the stadium?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Very. We seat groups across two levels and can put together a shared menu so a big crew can eat well and quickly before the event. For larger bookings, get in touch about our group and function options." }
-    }
-  ]
-}
-</script>
-
-<link rel="stylesheet" href="../static/site.css">
-<link rel="stylesheet" href="../static/chrome.css">
-<script src="../static/chrome.js" defer></script>
+<link rel="preload" href="/static/fonts/VTCMarsha-Bold.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="/static/fonts/Affairs-Regular.otf" as="font" type="font/otf" crossorigin><link rel="preload" href="/static/fonts/Affairs-Italic.otf" as="font" type="font/otf" crossorigin>
+<link href="/static/styles.css" rel="stylesheet"/><link href="/static/editorial.css" rel="stylesheet"/>
 </head>
-<body>
-<header class="bf-mast"><div class="bf-row"><a class="bf-logo" href="../index.html" aria-label="Bar Franco home"><img src="../static/logos/emblem/deep-red.svg" alt="Bar Franco"></a><nav class="bf-nav" aria-label="Main"><a href="../index.html">Home</a><a href="../Menus.html">Menus</a><a href="../Functions.html">Functions</a><a href="../christmas-functions/">Christmas</a><a href="../Vouchers.html">Vouchers</a><a href="../Contact.html">Contact</a></nav><button class="bf-menu hd-menu" type="button" data-ora="menu-open" aria-haspopup="dialog" aria-label="Open the site index">Index</button></div><div class="bf-asks"><a class="bf-pill" href="../Bookings.html">Book a table</a><a class="bf-pill" href="../Functions.html#enquire">Plan an event</a></div></header>
-<div class="tk" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true"><div class="tk-top"><img src="../static/logos/emblem/bright-red.svg" alt=""><button class="tk-close" type="button">Close ×</button></div><nav class="tk-nav" aria-label="Site"><a href="../index.html">Home</a><a href="../Menus.html">Menus</a><a href="../Bookings.html">Bookings</a><a href="../Functions.html">Functions</a><a href="../christmas-functions/">Christmas</a><a href="../Vouchers.html">Vouchers</a><a href="../Contact.html">Contact</a></nav><div class="tk-foot"><a class="lb almond" href="../Bookings.html">Book a table<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><a class="lb almond" href="../Functions.html">Plan an event<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><p><em>(upstairs)</em> The Crossing, 166 Cashel St, Ōtautahi · 021 221 1307</p></div></div>
-<main>
-<figure class="ph"><img src="../images/level1-bar-crowd.jpg" alt="The bar full before the game" fetchpriority="high" style="--pos:center 50%"><img class="mk" src="../static/logos/franco-script-incline/almond.svg" alt=""></figure>
-<header class="pg lp"><p class="eyebrow">Before the whistle · Christchurch CBD</p><h1>Before<br>the stadium</h1><p class="lede">Tickets to One NZ Stadium (Te Kaha)? Start the night the Italian way, a short stroll away at The Crossing — a Negroni or two and a proper feed before the game, the gig or the big event.</p><div class="asks"><a class="lb deep" href="../Bookings.html">Book a table<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><a class="lb deep" href="../Menus.html">See the menu<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></div></header>
-<div class="folio" aria-hidden="true"><span>Bar Franco</span><b>01</b><span>The pre-game</span></div><section class="sec"><div class="split"><div class="copy"><h2>Eat well, then stroll to your seat</h2><p>Te Kaha is about a five-minute walk. Settle in, eat properly, and wander over with time to spare.</p><p>Skip the half-time queues and the warm stadium pint — handmade pasta and a spritz that tastes like something.</p></div><img class="photo" src="../images/aperitivo-table-cheers.jpg" alt="A Negroni and a spritz raised over antipasti"></div><div class="stats"><div><b>5 min</b><span>walk to Te Kaha</span></div><div><b>4pm</b><span>open daily</span></div><div><b>Late</b><span>back after the final whistle</span></div></div></section>
-<section class="dark band" aria-label="How to do it"><div class="folio" aria-hidden="true"><span>Bar Franco</span><b>02</b><span>How to do it</span></div><div class="split l2"><div><h2>Two levels, one warm-up</h2><div class="items"><div><h3>A spritz to start</h3><p>Downstairs at the Negroni bar, to kick the night off properly.</p></div><div><h3>A proper feed</h3><p>Upstairs to the open kitchen for handmade pasta and pizzette.</p></div><div><h3>Quick or leisurely</h3><p>Share plates and out the door — or settle in for the full sit-down.</p></div><div><h3>The after-party</h3><p>Open till late, for a post-match Negroni and the debrief.</p></div></div></div><img class="photo" src="../images/room-tables-bentwood.jpg" alt="The dining room set for dinner" loading="lazy"></div></section>
-<div class="folio gap" aria-hidden="true"><span>Bar Franco</span><b>03</b><span>Big nights</span></div><section class="sec tall split"><img class="photo" src="../images/event-guests.jpg" alt="Guests at a long table" loading="lazy"><div class="copy"><h2>Your table for the big nights</h2><p>Concerts, the rugby, internationals, sell-out live events — tell us when doors open and we'll have you fed and on your way.</p><p>Bringing the crew? Groups across both levels, with a shared menu so everyone eats well and fast.</p><div class="one"><a class="lb deep" href="../Functions.html">Plan a group<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></div></div></section>
-<div class="folio gap" aria-hidden="true"><span>Bar Franco</span><b>04</b><span>Good to know</span></div><section class="sec tall"><h2 class="faq-h">Questions</h2><div class="faq"><details><summary>How far is it to One NZ Stadium?</summary><p class="a">About a five-minute stroll from The Crossing on Cashel Street.</p></details><details><summary>When should we eat before an event?</summary><p class="a">Around two hours before kick-off or doors is the sweet spot. On event nights, book ahead.</p></details><details><summary>Do you take bookings on event nights?</summary><p class="a">Yes — online or on 021 221 1307. Reserve early; these are our busiest nights.</p></details><details><summary>Can we come back after?</summary><p class="a">The Spritz &amp; Negroni Bar runs till late — swing back for a nightcap.</p></details><details><summary>Is it good for a group?</summary><p class="a">Very. Groups across two levels with a shared menu to eat well and quickly.</p></details></div></section>
-<section class="closing bright"><h2>Eat before the stadium</h2><p>A short walk from your seat, in the heart of the city.</p><div class="asks"><a class="lb almond" href="../Bookings.html">Book a table<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a><a class="lb almond" href="tel:+64212211307">Call 021 221 1307<i class="lead"></i><svg class="arr" viewBox="0 0 30 12" aria-hidden="true"><path d="M0 6H28.4M23.8 1.8 28.6 6 23.8 10.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></div></section>
-</main>
-<footer class="bf-foot"><div class="bf-foot-top"><div><p class="bf-addr">(upstairs) The Crossing, 166 Cashel St, Ōtautahi</p><a class="bf-lead" href="../Bookings.html"><span>Book a table</span><i aria-hidden="true"></i></a><a class="bf-lead" href="../Functions.html#enquire"><span>Plan an event</span><i aria-hidden="true"></i></a></div><dl class="bf-facts"><div><dt>Hours</dt><i aria-hidden="true"></i><dd><em>Bar from 4pm · kitchen from 5pm · daily, till late</em></dd></div><div><dt>Where</dt><i aria-hidden="true"></i><dd><em>166 Cashel St, Ōtautahi</em></dd></div><div><dt>Telephone</dt><i aria-hidden="true"></i><dd><a href="tel:+64212211307">021 221 1307</a></dd></div><div><dt>Email</dt><i aria-hidden="true"></i><dd><a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a></dd></div><div><dt>Instagram</dt><i aria-hidden="true"></i><dd><a href="https://www.instagram.com/bar__franco/">@bar__franco</a></dd></div></dl></div><div class="bf-now"><p class="bf-now-k" data-bf-live hidden><em>It’s currently</em></p><p class="bf-now-h" data-bf-status>Bar from 4pm</p><p class="bf-now-t" data-bf-live hidden><span data-bf-clock></span> in Ōtautahi</p></div><nav class="bf-pills" aria-label="Elsewhere"><a class="bf-pill" href="https://www.instagram.com/bar__franco/">Instagram</a><a class="bf-pill" href="https://www.facebook.com/barfranco.chch">Facebook</a><a class="bf-pill" href="../Bookings.html">Book a table</a><a class="bf-pill" href="../Functions.html#enquire">Plan an event</a><a class="bf-pill" href="../Contact.html">Contact</a></nav><nav class="bf-more" aria-label="More from Franco"><span>More from Franco</span><a href="../aperitivo/">Aperitivo</a><a href="../negroni-bar/">Negroni bar</a><a href="../fresh-pasta/">Pasta fresca</a><a href="../pre-stadium-dining/">Before the stadium</a><a href="../corporate-events/">Corporate</a><a href="../weddings/">Weddings</a></nav><p class="bf-legal">All rights reserved © Bar Franco <span data-bf-year>2026</span>. <em>(upstairs)</em> The Crossing, 166 Cashel St, Ōtautahi · <a href="tel:+64212211307">021 221 1307</a> · <a href="mailto:events@barfranco.nz">events@barfranco.nz</a></p></footer>
-<div class="ft-spacer" aria-hidden="true"></div>
-<nav class="dock" aria-label="Book or plan"><a href="../Bookings.html">Book a table</a><a href="../Functions.html#enquire">Plan an event</a></nav>
-<script src="../static/site.js" defer></script>
+<body class="sheeted"><script>try{if(sessionStorage.getItem('bf-walk')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('walking-in')}catch(e){}</script>
+<div class="walk-ov" id="walk" aria-hidden="true"><div class="walk-pane"><div class="walk-floor"></div></div><span class="wdog"><span class="fl"><img src="/static/illustrations/dachshund.png" alt="" width="280" height="132"></span></span></div>
+<header class="mast" id="nav"><span class="veil v1" aria-hidden="true"><i class="vd"></i><i class="vp"></i><i class="va"></i></span><span class="veil v2" aria-hidden="true"><i class="vd"></i><i class="vp"></i><i class="va"></i></span>
+<a class="mk" id="mk" href="/" aria-label="Bar Franco, home"><span class="mk-in"><img class="mk-a" src="/static/logos/bar-franco-script-incline/almond.svg" alt="Bar Franco"><img class="mk-d" src="/static/logos/bar-franco-script-incline/deep-red.svg" alt=""></span></a>
+<div class="mast-r"><nav class="links" id="links" aria-label="Main"><a href="/menus/">Menus</a><a href="/restaurant/">Restaurant</a><a href="/functions/">Functions</a><a href="/christmas-functions/">Christmas</a><a href="/vouchers/">Vouchers</a><a href="/contact/">Contact</a></nav><span class="mast-sep" aria-hidden="true"></span><a class="mast-book" href="/bookings/">Book a table</a><button type="button" class="mast-menu" aria-expanded="false">Menu</button></div></header>
+<div class="lead gone" id="lead">
+<div class="l-top" aria-hidden="true"><span>The Crossing · 166 Cashel St</span><span>Daily from 4pm</span></div>
+<svg class="lsvg" id="lsvg" aria-hidden="true"><path id="lpath" fill="none" stroke="#FAD7C3" stroke-width="2.4" stroke-linecap="round"></path><circle id="lloop" r="9" fill="none" stroke="#FAD7C3" stroke-width="2.4"></circle></svg>
+<div class="l-mid" aria-hidden="true"><img src="/static/logos/bar-franco-script-incline/almond.svg" alt=""><p>The Italy you didn’t want to leave.</p></div>
+<button type="button" class="l-handle" id="lhandle" aria-label="Avanti, come in">Avanti</button>
+<div class="l-floor" aria-hidden="true"></div>
+<span class="ldog sniff" id="ldog" aria-hidden="true"><span class="fl"><img src="/static/illustrations/dachshund.png" alt="" width="280" height="132"></span></span>
+</div>
+
+
+<main class="ed-main" id="main">
+<section class="sec hero" data-tone="dark" data-hero="" id="top" aria-label="Before the stadium">
+<figure data-tone="dark" class="ph rv"><img src="/images/level2-corporate.jpg" srcset="/images/level2-corporate-480w.jpg 480w, /images/level2-corporate-800w.jpg 800w, /images/level2-corporate.jpg 1400w" sizes="(max-width: 620px) 200vw, (max-width: 1024px) 175vw, 80vw" alt="Long tables set upstairs for a group before the game" width="1400" height="1050"></figure>
+<figure data-tone="dark" class="ph rv"><img src="/images/pack-2026/web/drinks-poured-bar.jpg" srcset="/images/pack-2026/web/drinks-poured-bar-480w.jpg 480w, /images/pack-2026/web/drinks-poured-bar-800w.jpg 800w, /images/pack-2026/web/drinks-poured-bar.jpg 1400w" sizes="(max-width: 620px) 50vw, (max-width: 1024px) 195vw, 90vw" alt="Drinks poured at the bar as guests arrive" width="1400" height="934"></figure>
+<div class="hero-cap"><p class="k">Kitchen from 5pm · Level&nbsp;2</p><h1 class="hc-h">Before <em>the&nbsp;stadium.</em></h1><p class="s">A Negroni and a proper feed, a short stroll from Te Kaha.</p><div class="cta-row"><a class="cta cta-fill" href="/bookings/">Book a table</a></div></div>
+</section><section class="sec pad almond" data-tone="almond"><div class="wrap g2" style="align-items:start"><div class="stack"><p class="eb">01 · Te Kaha</p><h2 class="d2">Game nights</h2><p class="lede">Five minutes’ walk. Eat two hours <span class="nw">before kick-off.</span></p><ul class="info"><li><span>Rugby nights – <em>Crusaders home games</em></span><i></i><em>book ahead</em></li><li><span>Concert nights – <em>the big shows</em></span><i></i><em>eat from 5pm</em></li><li><span>After the final whistle</span><i></i><em>the bar runs till late</em></li></ul></div><div class="card cover"><div><p class="cv-name">Franco</p><p class="card-h">The food menu</p><p class="card-s">Antipasti to dolci, on the table in good time.</p><div class="cta-row"><a class="cta cta-fill" href="/menus/#sheet-food">Open the menu</a></div><img class="card-em" src="/static/logos/emblem/bright-red.svg" alt=""></div></div></div></section><section data-tone="dark" class="sec dark pad"><div class="wrap g2" style="align-items:center"><figure data-tone="dark" class="ph rv tall"><img src="/images/risotto.jpg" srcset="/images/risotto-480w.jpg 480w, /images/risotto-800w.jpg 800w, /images/risotto.jpg 933w" sizes="(max-width: 620px) 95vw, (max-width: 1024px) 95vw, 40vw" alt="Risotto with cavolo nero and chilli" width="933" height="1400"></figure><div class="stack"><p class="eb">02 · Groups</p><h2 class="d2">Ten or more?</h2><p class="lede">The events team sets you up.</p><div class="cta-row"><a class="cta" href="/functions/#enquire">Plan a group</a></div></div></div></section><section class="sec cta pad rule-t"><div class="wrap"><h2 class="d1">Kick-off, <em>sorted.</em></h2><div class="cta-row"><a class="cta cta-fill" href="/bookings/">Book a table</a></div></div></section>
+</main><footer data-tone="dark" class="sec dark foot"><div class="wrap pad"><p class="d1">Ti aspettiamo,</p><p class="sub">we’re waiting for you.</p>
+<div class="fcols"><div><p>Franco</p><a href="/menus/">Menus</a><a href="/restaurant/">Restaurant</a><a href="/bookings/">Book a table</a><a href="/functions/">Functions &amp; events</a><a href="/christmas-functions/">Christmas parties</a><a href="/our-story/">Our story</a><a href="/vouchers/">Gift vouchers</a><a href="/events-pack/">Events pack</a><a href="/contact/">Contact</a></div><div><p>More</p><a href="/aperitivo/">Aperitivo</a><a href="/negroni-bar/">Negroni bar</a><a href="/fresh-pasta/">Pasta fresca</a><a href="/pre-stadium-dining/">Before the stadium</a><a href="/private-dining/">Private dining</a><a href="/corporate-events/">Corporate events</a><a href="/weddings/">Weddings</a></div><div><p>Find us</p><a href="https://www.google.com/maps?q=166+Cashel+Street,+Christchurch+Central+8011">(upstairs) 166 Cashel St, Christchurch</a><a href="tel:+64212211307">021 221 1307</a><a href="mailto:ciao@barfranco.nz">ciao@barfranco.nz</a></div></div></div></footer>
+<section data-tone="dark" class="sec dark" id="legal">
+<div class="legal"><span>© Bar Franco 2026</span><img src="/static/logos/emblem/deep-red.svg" alt=""><span><a href="https://www.instagram.com/bar__franco/">Instagram</a> · <a href="https://www.facebook.com/barfranco.chch">Facebook</a></span></div></section>
+
+<script src="/static/editorial.js" defer=""></script>
 </body>
 </html>
