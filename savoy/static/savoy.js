@@ -36,7 +36,7 @@ $$('section').forEach(s=>s.querySelectorAll('.rv').forEach((e,i)=>e.style.transi
 
 if(has('#stabs')){/* spotlight: tabs auto-advance with the progress underline */
 const st=$$('#stabs button'),ss=$$('.spot .s');let si=0,stt;
-function sgo(n){si=n%3;st.forEach((b,i)=>b.classList.toggle('on',i===si));ss.forEach((s,i)=>s.classList.toggle('on',i===si));clearTimeout(stt);if(!RM)stt=setTimeout(()=>sgo(si+1),5500)}
+function sgo(n){si=ss.length?n%ss.length:0;st.forEach((b,i)=>b.classList.toggle('on',i===si));ss.forEach((s,i)=>s.classList.toggle('on',i===si));clearTimeout(stt);if(!RM)stt=setTimeout(()=>sgo(si+1),5500)}
 st.forEach((b,i)=>b.onclick=()=>sgo(i));sgo(0);
 
 }

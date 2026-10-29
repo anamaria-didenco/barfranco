@@ -1,7 +1,7 @@
 from gen import *
 
 B = lambda R: f'{R}bookings/index.html'
-F = lambda R: f'{R}functions/index.html#enquire'
+F = lambda R: f'{R}functions/index.html#cta'
 M = lambda R: f'{R}menus/index.html'
 
 GLANCE = [('Guests','10 to 240'),('The Negroni Bar','80 seated · 120 standing'),('The Restaurant','90 seated · 120 standing'),('The whole building','165 seated · 240 standing'),('Shared menus','from 80pp'),('Canapés','from 9'),('Minimum spend, Sun to Thu','usually none'),('Minimum spend, Fri &amp; Sat','from 4,000'),('Venue hire fee','none'),('Included','projector, screen, mic, sound')]
