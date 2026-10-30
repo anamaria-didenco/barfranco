@@ -177,8 +177,8 @@ svg{display:block}ul,ol{list-style:none}
 .hist .centre{position:absolute;z-index:3;left:50%;top:0;bottom:0;width:20%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:90px 20px}
 .hist .centre .tl .d{display:block;width:9px;height:9px;background:var(--white);transform:rotate(45deg);margin:18px auto 0}
 .hist .centre .tl::after{content:"";display:block;width:100px;height:1px;background:rgba(250,215,195,.5);margin:-5px auto 0}
-.hist .centre p{max-width:480px;margin:0 auto 26px}
-.hist .centre .bd{width:140%;text-align:center}
+.hist .centre>*{background:var(--dark);padding:22px 20px}.hist .centre p{max-width:480px;margin:0 auto 26px}
+.hist .centre .bd{width:140%;max-width:560px;text-align:center}
 
 /* ─── 7 SPLIT ROWS: 3 × 100vh, text half + media half ─── */
 .split{display:grid;grid-template-columns:1fr 1fr;height:100vh;min-height:640px}
@@ -228,7 +228,7 @@ footer .cookies{position:absolute;z-index:2;right:12px;bottom:4px;font-size:12px
 
 @media(max-width:1100px){.card{flex-basis:70vw}.hist .cols{grid-template-columns:repeat(3,1fr)}.hist .col:nth-child(4),.hist .col:nth-child(5){display:none}.hist .centre{width:33%}footer .bot{grid-template-columns:1fr 1fr;gap:20px}.cta{padding-inline:24px}.cta .cols{grid-template-columns:1fr;gap:48px}}
 @media(max-width:900px){.car .grid{grid-template-columns:1fr;padding:0 24px}.pics{display:none}.ind{--fh:64px;flex-direction:row;justify-content:center;border:0;padding:0}.calls{flex-direction:row}.floor .sub>div{padding-left:0}.floor .n{display:none}.split{grid-template-columns:1fr;height:auto;min-height:0}.split .tx{padding:72px 24px}.split .md{height:60vh}.rail{display:none}.hero h1{left:24px}.spot .tabs{grid-template-columns:1fr;gap:28px;left:24px;right:24px}.spot .tabs button{white-space:normal;padding-right:24px}.spot .tabs button .d{display:none}.nav .r .btn:first-child{display:none}}
-@media(max-width:640px){.bbar{grid-template-columns:1fr;height:auto;bottom:24px}.bbar label{border-right:0;border-bottom:1px solid rgba(250,215,195,.18);padding-bottom:12px}.hero h1{top:38%}.intro{min-height:0}.hist{height:160vh}.hist .cols{grid-template-columns:repeat(2,1fr)}.hist .col:nth-child(3){display:none}.hist .centre{width:60%;padding:60px 10px}.unl .port,.unl .edit{width:100%;max-width:322px}footer .bot{grid-template-columns:1fr;left:24px;right:24px}}
+@media(max-width:640px){.bbar{grid-template-columns:1fr;height:auto;bottom:24px}.bbar label{border-right:0;border-bottom:1px solid rgba(250,215,195,.18);padding-bottom:12px}.hero h1{top:38%}.intro{min-height:0}.hist{height:160vh}.hist .cols{grid-template-columns:repeat(2,1fr)}.hist .col:nth-child(3){display:none}.hist .centre{width:86%;padding:60px 0}.hist .centre .bd{width:100%}.unl .port,.unl .edit{width:100%;max-width:322px}footer .bot{grid-template-columns:1fr;left:24px;right:24px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}.rv,.hero h1 span b{opacity:1!important;transform:none!important}.intro h2 .rule{width:2.3em}.intro h2 .w span{opacity:1}}
 
 /* ─── inner-page blocks, in the Savoy vocabulary ─── */
