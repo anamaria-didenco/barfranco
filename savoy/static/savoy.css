@@ -28,7 +28,7 @@ svg{display:block}ul,ol{list-style:none}
 /* the Savoy button: outlined / filled, with line + diamond */
 .btn{display:inline-flex;align-items:center;gap:12px;padding:13.7px 20.55px;border:1px solid currentColor;font:700 17px/1.1 var(--display);text-transform:uppercase;letter-spacing:.04em;transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
 .btn .ln{position:relative;width:17px;height:1px;background:currentColor;transition:width .4s var(--ease)}
-.btn .ln::after{content:"";position:absolute;right:-7px;top:-5.5px;width:10px;height:10px;border:1px solid currentColor;transform:rotate(45deg)}
+.btn .ln::after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
 .btn:hover .ln{width:28px}
 .btn.fill{background:var(--accent);border-color:var(--accent);color:var(--white)}
 .btn.fill:hover{background:var(--white);color:var(--accent)}
@@ -160,9 +160,9 @@ svg{display:block}ul,ol{list-style:none}
 .arrows{display:flex;justify-content:center;align-items:center;gap:26px;margin-top:40px;color:var(--dark)}
 .arrows .cnt{font:400 17px var(--body);letter-spacing:.3em}.arrows .cnt i{display:inline-block;width:1px;height:14px;background:currentColor;margin:0 6px -2px;transform:rotate(15deg)}
 .arrows button{position:relative;width:28px;height:12px}
-.arrows button::before{content:"";position:absolute;left:8px;right:8px;top:5.5px;height:1px;background:currentColor}
-.arrows button::after{content:"";position:absolute;top:1px;width:9px;height:9px;border:1px solid currentColor;transform:rotate(45deg)}
-.arrows .prev::after{left:0}.arrows .next::after{right:0}
+.arrows button::before{content:"";position:absolute;left:2px;right:2px;top:5.5px;height:1px;background:currentColor}
+.arrows button::after{content:"";position:absolute;top:2.5px;width:6px;height:6px;border-top:1px solid currentColor;border-right:1px solid currentColor}
+.arrows .prev::after{left:2px;transform:rotate(-135deg)}.arrows .next::after{right:2px;transform:rotate(45deg)}
 
 /* ─── 6 STORIED PAST: 200vh dark, 5 parallax columns of mono photos, centre column carries the text ─── */
 .hist{position:relative;height:200vh;background:var(--dark);color:var(--white)}
