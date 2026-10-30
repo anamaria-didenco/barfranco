@@ -32,6 +32,7 @@ if(!RM)(function tick(now){const p=Math.min((now-t0)/DUR,1);bar.style.width=p*10
 $$('#ih .w').forEach(w=>{let i=0;w.innerHTML=w.dataset.w.split(' ').map(word=>'<span class="wd">'+[...word].map(ch=>'<span style="transition-delay:'+((i++)*55)+'ms">'+ch+'</span>').join('')+'</span>').join(' ')});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 $$('.rv,#ih,.split').forEach(e=>io.observe(e));
+setTimeout(()=>$$('.rv,#ih,.split').forEach(e=>e.classList.add('in')),2500);/* whatever has not been seen is on by 2.5s */
 $$('section').forEach(s=>s.querySelectorAll('.rv').forEach((e,i)=>e.style.transitionDelay=(i%6)*140+'ms'));
 
 if(has('#stabs')){/* spotlight: tabs auto-advance with the progress underline */
