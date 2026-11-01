@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Edit the site · Bar Franco</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- Sign in -->
+<section id="gate" class="gate" hidden>
+  <div class="gate-card">
+    <div class="wordmark">Bar Franco</div>
+    <h1>Edit the site</h1>
+    <p class="lead">Change the words, swap the photographs, pick the colours and fonts, and publish. Every save is kept, and any save can be undone.</p>
+    <form id="signin">
+      <label>Your GitHub key
+        <input type="password" id="token" autocomplete="off" placeholder="github_pat_…" required>
+      </label>
+      <button type="submit" class="btn">Sign in</button>
+      <p class="err" id="signin-err" hidden></p>
+    </form>
+    <p class="hint"><button type="button" class="link" id="try">Have a look without a key</button> (you can try everything, but nothing can be saved)</p>
+    <details>
+      <summary>How to get a key (once, about two minutes)</summary>
+      <ol>
+        <li>Sign in to <b>github.com</b>, click your picture top right, then <b>Settings</b>.</li>
+        <li>At the bottom of the left menu: <b>Developer settings</b> → <b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b>.</li>
+        <li>Name it <i>Website editor</i>. Set the expiry as far out as it allows (you can make a new one later).</li>
+        <li>Under <b>Repository access</b> choose <b>Only select repositories</b> and tick <b>barfranco</b>.</li>
+        <li>Under <b>Permissions → Repository permissions</b> set <b>Contents</b> to <b>Read and write</b>. Leave the rest alone.</li>
+        <li><b>Generate token</b>, copy it, and paste it above. The key stays in this browser only.</li>
+      </ol>
+    </details>
+    <details>
+      <summary>Which site does this edit?</summary>
+      <div class="cfg">
+        <label>Owner <input id="cfg-owner"></label>
+        <label>Repository <input id="cfg-repo"></label>
+        <label>Branch <input id="cfg-branch"></label>
+        <label>Site folder <input id="cfg-folder" placeholder="leave empty if the site is at the root"></label>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- The editor -->
+<div id="app" class="app" hidden>
+  <aside class="side">
+    <div class="wordmark small">Bar Franco</div>
+    <nav class="pages" id="pages" aria-label="Pages"></nav>
+    <div class="side-tools">
+      <button class="tool" data-view="style">Colours &amp; fonts</button>
+      <button class="tool" data-view="history">History</button>
+      <button class="tool" data-view="settings">Settings</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <div class="crumb" id="crumb">Home</div>
+      <div class="status" id="status">Loading…</div>
+      <div class="sizes">
+        <button class="sz on" data-w="">Desktop</button>
+        <button class="sz" data-w="390">Phone</button>
+      </div>
+      <button class="btn save" id="save" disabled>Save &amp; publish</button>
+    </header>
+
+    <div class="stage" id="stage">
+      <iframe id="frame" title="The page you are editing" sandbox="allow-same-origin"></iframe>
+      <div class="view" id="view-style" hidden>
+        <h2>Colours &amp; fonts</h2>
+        <p class="hint">These change the whole site. You see the result on every page before you save.</p>
+        <div class="swatches">
+          <label class="sw"><input type="color" id="c-ink"><span>Ink</span><small>Headings, text and the dark panels</small></label>
+          <label class="sw"><input type="color" id="c-paper"><span>Paper</span><small>The page ground and the light text</small></label>
+          <label class="sw"><input type="color" id="c-accent"><span>Accent</span><small>Buttons and the small red lines</small></label>
+        </div>
+        <button class="link" id="c-reset">Back to the brand colours</button>
+        <h3>Fonts</h3>
+        <div class="fonts">
+          <label>Headings <select id="f-display"></select></label>
+          <label>Text <select id="f-body"></select></label>
+          <label>Text, italic <select id="f-italic"></select></label>
+        </div>
+        <label class="upload">Add a font file (.otf, .ttf, .woff2) <input type="file" id="f-upload" accept=".otf,.ttf,.woff,.woff2"></label>
+        <p class="hint">A new font appears in the three lists once it is added.</p>
+      </div>
+      <div class="view" id="view-history" hidden>
+        <h2>History</h2>
+        <p class="hint">Every save is a line here. Undo puts the site back as it was before that save.</p>
+        <ol class="hist" id="hist"></ol>
+      </div>
+      <div class="view" id="view-settings" hidden>
+        <h2>Settings</h2>
+        <div class="cfg">
+          <label>Owner <input id="s-owner"></label>
+          <label>Repository <input id="s-repo"></label>
+          <label>Branch <input id="s-branch"></label>
+          <label>Site folder <input id="s-folder"></label>
+        </div>
+        <button class="btn" id="s-save">Save settings</button>
+        <button class="link" id="signout">Sign out of this browser</button>
+      </div>
+    </div>
+  </main>
+
+  <aside class="panel" id="panel">
+    <section class="pg">
+      <h2>This page</h2>
+      <label>Title in Google <input id="p-title"></label>
+      <label>Description in Google <textarea id="p-desc" rows="4"></textarea></label>
+    </section>
+    <section class="sel" id="sel" hidden>
+      <h2 id="sel-kind">Selected</h2>
+      <div id="sel-text" hidden>
+        <p class="hint">Type straight into the page. Press Escape when you are done.</p>
+      </div>
+      <div id="sel-link" hidden>
+        <label>Links to <input id="l-href"></label>
+      </div>
+      <div id="sel-words" hidden>
+        <label>Big words <input id="w-text"></label>
+      </div>
+      <div id="sel-img" hidden>
+        <div class="thumb"><img id="i-thumb" alt=""></div>
+        <div class="row">
+          <button class="btn" id="i-pick">Choose a photo</button>
+          <label class="btn out">Upload <input type="file" id="i-upload" accept="image/*" hidden></label>
+        </div>
+        <label>Describe it (for Google and screen readers) <textarea id="i-alt" rows="3"></textarea></label>
+      </div>
+    </section>
+    <section class="help">
+      <h2>How it works</h2>
+      <ul>
+        <li>Click any words to change them.</li>
+        <li>Click any photograph to swap it.</li>
+        <li>Nothing goes live until you press <b>Save &amp; publish</b>.</li>
+        <li>The live site shows a save about a minute later.</li>
+      </ul>
+    </section>
+  </aside>
+</div>
+
+<!-- Photo library -->
+<div class="modal" id="lib" hidden>
+  <div class="modal-card">
+    <header><h2>Choose a photo</h2><button class="x" id="lib-close" aria-label="Close">×</button></header>
+    <div class="grid" id="lib-grid"></div>
+  </div>
+</div>
+
+<!-- Save -->
+<div class="modal" id="confirm" hidden>
+  <div class="modal-card narrow">
+    <header><h2>Save &amp; publish</h2><button class="x" id="confirm-close" aria-label="Close">×</button></header>
+    <ul id="confirm-list"></ul>
+    <p class="hint">These go live in about a minute. You can undo any save from History.</p>
+    <div class="row"><button class="btn" id="confirm-go">Publish</button><button class="btn out" id="confirm-no">Not yet</button></div>
+    <p class="err" id="confirm-err" hidden></p>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="gh.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
