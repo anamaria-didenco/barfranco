@@ -24,6 +24,16 @@ The key stays in that browser only. On another computer or phone you paste it ag
 - **Title and description in Google**: at the top right of every page. Keep the title under about 60 letters and the description under about 155.
 - **Big words** (the large headings in the middle of a page): click them and type into the box on the right.
 - **Colours & fonts** (bottom left): the three brand colours and the fonts for headings and text, for the whole site. **Back to the brand colours** undoes experiments. You can add a font file and pick it from the lists.
+- **Bigger and smaller**: click any words and use **Bigger** / **Smaller** on the right. **Normal** puts them back.
+- **Italic and links**: select some words, then **Italic**, **Link** (it asks where to) or **Unlink**.
+- **Moving things**: click a menu line, a card, a slide or any section. A small red bar appears on the page: drag its ⠿ handle to move the item up or down the page, or use ▲ ▼ **Copy** and **Remove**. The same buttons are on the right. The darker bar does the same for the whole section.
+- **Sections**: with a section selected, **Make it dark / light** swaps its colours, and Tight · Normal · Roomy · Airy sets the space above and below it.
+- **Undo change** (top bar, or Cmd+Shift+Z) takes back the last move, copy, removal or section change. Typing undoes with the usual Cmd+Z.
+- **Photos**: the nine arrows under a photo choose which part stays in view when the photo is cropped.
+- **Sizes and spacing** for the whole site are three sliders under **Colours, fonts & sizes**: headings, text and the space between sections. They apply on desktop and tablet; phones keep their own calm sizes.
+- **Fonts**: each list has your own font files and a set of Google fonts. A Google font loads from Google when a visitor opens the page.
+- **Site details** (bottom left): the phone number, the two emails, Instagram and Facebook. Change one there and it changes on every page.
+- **A new page**: under the title fields, **Make a new page from this one** copies the open page under a new name and adds it to Google's sitemap. Then link to it from a button or a footer link, or nobody can find it.
 - **Phone**: the Phone button at the top shows the page as a phone sees it.
 
 ## Saving

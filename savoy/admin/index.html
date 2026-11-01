@@ -53,7 +53,8 @@
     <div class="wordmark small">Bar Franco</div>
     <nav class="pages" id="pages" aria-label="Pages"></nav>
     <div class="side-tools">
-      <button class="tool" data-view="style">Colours &amp; fonts</button>
+      <button class="tool" data-view="style">Colours, fonts &amp; sizes</button>
+      <button class="tool" data-view="details">Site details</button>
       <button class="tool" data-view="history">History</button>
       <button class="tool" data-view="settings">Settings</button>
     </div>
@@ -67,6 +68,7 @@
         <button class="sz on" data-w="">Desktop</button>
         <button class="sz" data-w="390">Phone</button>
       </div>
+      <button class="btn out undo" id="undo" disabled title="Undo the last move, copy or removal (Cmd+Shift+Z)">Undo change</button>
       <button class="btn save" id="save" disabled>Save &amp; publish</button>
     </header>
 
@@ -88,7 +90,28 @@
           <label>Text, italic <select id="f-italic"></select></label>
         </div>
         <label class="upload">Add a font file (.otf, .ttf, .woff2) <input type="file" id="f-upload" accept=".otf,.ttf,.woff,.woff2"></label>
-        <p class="hint">A new font appears in the three lists once it is added.</p>
+        <p class="hint">A new font appears in the lists once it is added. Google fonts load from Google when the page opens.</p>
+        <h3>Sizes and spacing</h3>
+        <div class="sliders">
+          <label>Headings <span id="z-head-v">100%</span><input type="range" id="z-head" min="0.7" max="1.6" step="0.05" value="1"></label>
+          <label>Text <span id="z-text-v">100%</span><input type="range" id="z-text" min="0.7" max="1.6" step="0.05" value="1"></label>
+          <label>Space between sections <span id="z-space-v">100%</span><input type="range" id="z-space" min="0.3" max="2" step="0.05" value="1"></label>
+        </div>
+        <button class="link" id="z-reset">Back to the normal sizes</button>
+        <p class="hint">These apply on desktop and tablet; phones keep their own calm sizes. For one heading or line, click it on the page and use Bigger / Smaller.</p>
+      </div>
+      <div class="view" id="view-details" hidden>
+        <h2>Site details</h2>
+        <p class="hint">The facts that appear on every page. Change one here and it changes everywhere at once.</p>
+        <div class="cfg">
+          <label>Phone, as written <input id="d-phone"></label>
+          <label>Phone, for dialling (digits only, with the country code) <input id="d-tel"></label>
+          <label>Bookings email <input id="d-email"></label>
+          <label>Events email <input id="d-events"></label>
+          <label>Instagram address <input id="d-insta"></label>
+          <label>Facebook address <input id="d-fb"></label>
+        </div>
+        <button class="btn" id="d-apply">Change on every page</button>
       </div>
       <div class="view" id="view-history" hidden>
         <h2>History</h2>
@@ -114,11 +137,17 @@
       <h2>This page</h2>
       <label>Title in Google <input id="p-title"></label>
       <label>Description in Google <textarea id="p-desc" rows="4"></textarea></label>
+      <button class="link" id="dup-page">Make a new page from this one</button>
     </section>
     <section class="sel" id="sel" hidden>
       <h2 id="sel-kind">Selected</h2>
       <div id="sel-text" hidden>
         <p class="hint">Type straight into the page. Press Escape when you are done.</p>
+        <div class="row tools"><button class="btn out" id="t-italic"><i>Italic</i></button><button class="btn out" id="t-link">Link</button><button class="btn out" id="t-unlink">Unlink</button></div>
+      </div>
+      <div id="sel-size" hidden>
+        <div class="lab">Size <span id="sz-now">Normal</span></div>
+        <div class="row tools"><button class="btn out" id="sz-down">Smaller</button><button class="btn out" id="sz-up">Bigger</button><button class="link" id="sz-reset">Normal</button></div>
       </div>
       <div id="sel-link" hidden>
         <label>Links to <input id="l-href"></label>
@@ -133,6 +162,20 @@
           <label class="btn out">Upload <input type="file" id="i-upload" accept="image/*" hidden></label>
         </div>
         <label>Describe it (for Google and screen readers) <textarea id="i-alt" rows="3"></textarea></label>
+        <div class="lab">Which part to keep in view</div>
+        <div class="focus" id="i-focus"><button data-pos="left top">↖</button><button data-pos="top">↑</button><button data-pos="right top">↗</button><button data-pos="left">←</button><button data-pos="center" class="on">·</button><button data-pos="right">→</button><button data-pos="left bottom">↙</button><button data-pos="bottom">↓</button><button data-pos="right bottom">↘</button></div>
+      </div>
+      <div id="sel-block" hidden>
+        <div class="lab">This <span id="blk-name">item</span></div>
+        <div class="row tools"><button class="btn out" id="blk-up">▲ Up</button><button class="btn out" id="blk-down">▼ Down</button><button class="btn out" id="blk-dup">Copy</button><button class="btn out" id="blk-del">Remove</button></div>
+        <p class="hint">Or drag the ⠿ handle on the page to move it.</p>
+      </div>
+      <div id="sel-section" hidden>
+        <div class="lab">This section</div>
+        <div class="row tools"><button class="btn out" id="sec-up">▲ Up</button><button class="btn out" id="sec-down">▼ Down</button><button class="btn out" id="sec-dup">Copy</button><button class="btn out" id="sec-del">Remove</button></div>
+        <button class="btn out" id="sec-tone">Make it dark</button>
+        <div class="lab">Space above and below</div>
+        <div class="row tools" id="sec-space"><button class="btn out" data-sp="Tight">Tight</button><button class="btn out" data-sp="Normal">Normal</button><button class="btn out" data-sp="Roomy">Roomy</button><button class="btn out" data-sp="Airy">Airy</button></div>
       </div>
     </section>
     <section class="help">
@@ -140,6 +183,7 @@
       <ul>
         <li>Click any words to change them.</li>
         <li>Click any photograph to swap it.</li>
+        <li>Click a line, card or section and drag its ⠿ handle to move it, or copy and remove it.</li>
         <li>Nothing goes live until you press <b>Save &amp; publish</b>.</li>
         <li>The live site shows a save about a minute later.</li>
       </ul>

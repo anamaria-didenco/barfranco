@@ -109,3 +109,17 @@ textarea{resize:vertical}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:12px 22px;font-size:15px;z-index:20;max-width:90vw}
 
 @media(max-width:1100px){.app{grid-template-columns:200px 1fr}.panel{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}.app{grid-template-rows:1fr auto}.side{grid-row:1/2}}
+
+/* v2: tools in the panel */
+.lab{font-size:13px;font-style:italic;margin:10px 0 6px}
+.lab span{font-style:normal;font-weight:700}
+.tools .btn{padding:9px 11px;font-size:11px}
+.tools .btn.on{background:var(--ink);color:var(--paper)}
+.focus{display:grid;grid-template-columns:repeat(3,36px);gap:4px}
+.focus button{height:36px;border:1px solid var(--line);background:none;color:var(--ink);cursor:pointer;font-size:16px}
+.focus button.on{background:var(--ink);color:var(--paper)}
+.undo{padding:12px 14px;font-size:11px}
+.sliders{max-width:520px}
+.sliders label span{float:right;font-weight:700}
+.sliders input{width:100%;margin-top:8px;accent-color:var(--accent)}
+#dup-page{margin-top:4px}
