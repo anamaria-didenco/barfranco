@@ -53,3 +53,22 @@ function onScroll(){const r=hist.getBoundingClientRect(),vh=innerHeight;const p=
   cols.forEach((c,i)=>{const dirn=i%2?1:-1;const span=c.scrollHeight-vh;c.style.transform='translateY('+(dirn>0?(-span*(1-p)):(-span*p))+'px)'})}
 if(!RM){addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll()}
 }
+
+/* forms -> FormSubmit (AJAX), as franco.js does on the live site: the page stays put,
+   the message goes to the address in data-email. Form-encoded body on purpose (no CORS preflight). */
+$$('form[data-email]').forEach(f=>{
+  const honey=document.createElement('input');honey.type='text';honey.name='_honey';honey.hidden=true;honey.style.display='none';honey.tabIndex=-1;honey.setAttribute('autocomplete','off');honey.setAttribute('aria-hidden','true');f.appendChild(honey);
+  f.addEventListener('submit',e=>{
+    e.preventDefault();if(honey.value)return;
+    const btn=f.querySelector('button[type=submit]'),label=btn?btn.innerHTML:'';
+    const say=(t,done)=>{if(!btn)return;btn.innerHTML=t;btn.disabled=!!done};
+    say('Sending…',true);
+    const body=new URLSearchParams();body.append('_subject',f.dataset.subject||'Enquiry — Bar Franco');body.append('_template','table');body.append('_captcha','false');
+    f.querySelectorAll('input,textarea,select').forEach(el=>{if(el!==honey&&el.value)body.append(el.name||'Field',el.value)});
+    fetch('https://formsubmit.co/ajax/'+encodeURIComponent(f.dataset.email),{method:'POST',headers:{Accept:'application/json'},body})
+      .then(r=>r.json()).then(res=>{if(!res||(res.success!==true&&res.success!=='true'))throw 0;f.reset();say('Sent, grazie',true);try{gtag('event','conversion',{send_to:'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',value:1.0,currency:'NZD'})}catch(_){}})
+      .catch(()=>{say('Not sent, try again',false);setTimeout(()=>say(label,false),4000)});
+  });
+});
+/* the hero booking bar: its two fields are a doorway to the booking page */
+$$('.bbar label').forEach(l=>{const a=l.parentElement.querySelector('a[href]');if(a)l.addEventListener('click',()=>{location.href=a.href})});
