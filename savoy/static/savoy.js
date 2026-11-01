@@ -72,3 +72,18 @@ $$('form[data-email]').forEach(f=>{
 });
 /* the hero booking bar: its two fields are a doorway to the booking page */
 $$('.bbar label').forEach(l=>{const a=l.parentElement.querySelector('a[href]');if(a)l.addEventListener('click',()=>{location.href=a.href})});
+
+/* VenueFlow enquiry: a wait line while the form loads, then the frame takes the height the widget posts */
+$$('iframe[src*="venueflowhq.com"]').forEach(f=>{
+  const box=document.createElement('div');box.className='vf';
+  const p=document.createElement('p');p.className='vf-wait t-body';p.innerHTML='Loading the enquiry form… or email <a href="mailto:events@barfranco.nz">events@barfranco.nz</a>';
+  f.parentNode.insertBefore(box,f);box.appendChild(p);box.appendChild(f);
+  f.addEventListener('load',()=>p.remove());
+  setTimeout(()=>{if(p.parentNode)p.firstChild.nodeValue='The form is taking a while… or email ';},8000);
+});
+window.addEventListener('message',e=>{
+  if(e.origin!=='https://venueflowhq.com'||!e.data)return;
+  let d=e.data;if(typeof d==='string'){try{d=JSON.parse(d)}catch(_){return}}
+  if(!d||d.type!=='vf-embed-height'||!(d.height>0))return;
+  $$('iframe[src*="venueflowhq.com"]').forEach(f=>{if(f.contentWindow===e.source)f.style.height=Math.ceil(d.height)+'px'});
+});
