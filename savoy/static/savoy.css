@@ -40,8 +40,8 @@ svg{display:block}ul,ol{list-style:none}
 
 /* ─── NAV BAR: fixed 72px, transparent over hero → solid dark ─── */
 .nav{position:fixed;inset:0 0 auto;height:var(--hd);z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 24px;color:var(--white)}
-.nav::before{content:"";position:absolute;inset:0;background:var(--dark);opacity:0;transition:opacity .5s var(--ease);z-index:-1}
-.nav.solid::before{opacity:1}
+.nav::before{content:"";position:absolute;inset:0;background:var(--cream);opacity:0;transition:opacity .5s var(--ease);z-index:-1}
+.nav.solid::before{opacity:1}.nav.solid{color:var(--dark);transition:color .5s var(--ease)}.nav.solid .btn.out{color:var(--dark)}.nav.solid .btn.out:hover{background:var(--dark);color:var(--cream)}
 .nav .l{display:flex;align-items:center;gap:30px}
 .burger{width:22px;height:14px;position:relative}.burger::before{content:"";position:absolute;inset:-15px -11px}
 .burger i{position:absolute;left:0;right:0;height:1.5px;background:currentColor;transition:transform .4s var(--ease),opacity .3s}
