@@ -31,7 +31,7 @@ The key stays in that browser only. On another computer or phone you paste it ag
 - **Undo change** (top bar, or Cmd+Shift+Z) takes back the last move, copy, removal or section change. Typing undoes with the usual Cmd+Z.
 - **Photos**: the nine arrows under a photo choose which part stays in view when the photo is cropped.
 - **Sizes and spacing** for the whole site are three sliders under **Colours, fonts & sizes**: headings, text and the space between sections. They apply on desktop and tablet; phones keep their own calm sizes.
-- **Fonts**: each list has your own font files and a set of Google fonts. A Google font loads from Google when a visitor opens the page.
+- **Fonts**: each list has your own font files and a set of Google fonts. The sample text under the lists shows your choice straight away; **See it on the page** opens the page in the new fonts (the page sits behind this panel, so it does not show through). A Google font loads from Google when a visitor opens the page.
 - **Site details** (bottom left): the phone number, the two emails, Instagram and Facebook. Change one there and it changes on every page.
 - **A new page**: under the title fields, **Make a new page from this one** copies the open page under a new name and adds it to Google's sitemap. Then link to it from a button or a footer link, or nobody can find it.
 - **Phone**: the Phone button at the top shows the page as a phone sees it.

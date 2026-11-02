@@ -66,7 +66,7 @@ async function source(path, siteRel) {
   return text;
 }
 async function listFolder(path, siteRel) {
-  if (gh) return gh.listDir(path);
+  if (gh) { try { const l = await gh.listDir(path); if (l.length) return l; } catch (e) { /* fall back to the site's own listing */ } }
   try { const res = await fetch(new URL(siteRel, SITE)); const html = await res.text(); return [...html.matchAll(/href="([^"?/]+)"/g)].map(m => decodeURIComponent(m[1])); } catch (e) { return []; }
 }
 
@@ -246,7 +246,11 @@ function serialize(doc) {
   unmark(doc);
   const swaps = [...doc.querySelectorAll('img[data-bf-final]')].map(i => { const b = i.getAttribute('src'); i.setAttribute('src', i.dataset.bfFinal); i.removeAttribute('data-bf-final'); return [i, b, i.getAttribute('src')]; });
   doc.querySelectorAll('[style=""]').forEach(e => e.removeAttribute('style'));
+  /* blank text at the very end of the body (the newline after </html> lands there) would grow on every round trip */
+  const tails = []; for (let n = doc.body.lastChild; n && n.nodeType === 3 && !n.textContent.trim(); n = n.previousSibling) tails.unshift(n);
+  tails.forEach(n => n.remove());
   const out = '<!doctype html>\n' + doc.documentElement.outerHTML + '\n';
+  tails.forEach(n => doc.body.appendChild(n));
   swaps.forEach(([i, b, f]) => { i.setAttribute('src', b); i.dataset.bfFinal = f; });
   if (base) doc.head.prepend(base); if (st) doc.head.appendChild(st); if (th) doc.head.appendChild(th);
   ui.forEach(e => doc.body.appendChild(e));
@@ -578,6 +582,7 @@ async function loadStyle() {
   fontOptions($('#f-display'), true); fontOptions($('#f-body'), true); fontOptions($('#f-italic'), false);
   ['display', 'body', 'italic'].forEach(k => $('#f-' + k).value = currentFont(k));
   $('#f-italic').closest('label').hidden = currentFont('body').startsWith('google:');
+  previewFonts();
   const v = edVals(); $('#z-head').value = v.head; $('#z-text').value = v.text; $('#z-space').value = v.space; showZ();
   refreshDirty();
 }
@@ -586,8 +591,31 @@ function showZ() { ['head', 'text', 'space'].forEach(k => $('#z-' + k + '-v').te
 $('#c-reset').onclick = () => { $('#c-ink').value = BRAND.ink; $('#c-paper').value = BRAND.paper; $('#c-accent').value = BRAND.accent; setTokens(BRAND.ink, BRAND.paper, BRAND.accent); if (fdoc) applyTheme(fdoc); refreshDirty(); };
 ['display', 'body', 'italic'].forEach(k => $('#f-' + k).addEventListener('change', () => {
   setFont(k, $('#f-' + k).value); $('#f-italic').closest('label').hidden = currentFont('body').startsWith('google:');
-  if (fdoc) applyTheme(fdoc); refreshDirty();
+  previewFonts(); if (fdoc) applyTheme(fdoc); refreshDirty();
 }));
+$('#f-see').onclick = () => openPage(page ? page.slug : PAGES[0].slug);
+/* the sample text in the style view, set in the chosen fonts (the page itself is hidden behind this view) */
+const pvFaces = new Set();
+function previewFonts() {
+  const root = document.documentElement.style;
+  ['display', 'body', 'italic'].forEach(k => {
+    const v = $('#f-' + k).value;
+    if (!v) { root.removeProperty('--pv-' + k); return; }
+    if (v.startsWith('google:')) {
+      const fam = v.slice(7), id = 'bf-gf-' + fam.replace(/\W+/g, '-');
+      if (!document.getElementById(id)) { const l = document.createElement('link'); l.id = id; l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=' + fam.replace(/ /g, '+') + ':ital,wght@0,400;0,700;1,400;1,700&display=swap'; document.head.appendChild(l); }
+      root.setProperty('--pv-' + k, '"' + fam + '"');
+    } else {
+      const fam = 'pv-' + v.replace(/\W+/g, '-');
+      if (!pvFaces.has(fam)) {
+        pvFaces.add(fam);
+        const url = blobURLs.get(rp('static/fonts/' + v)) || new URL('fonts/' + v, STATIC).href;
+        const st = document.createElement('style'); st.textContent = '@font-face{font-family:"' + fam + '";src:url("' + url + '") format("' + fmt(v) + '")}'; document.head.appendChild(st);
+      }
+      root.setProperty('--pv-' + k, '"' + fam + '"');
+    }
+  });
+}
 ['head', 'text', 'space'].forEach(k => $('#z-' + k).addEventListener('input', () => { setEd({ head: +$('#z-head').value, text: +$('#z-text').value, space: +$('#z-space').value }); showZ(); if (fdoc) applyTheme(fdoc); refreshDirty(); }));
 $('#z-reset').onclick = () => { ['head', 'text', 'space'].forEach(k => $('#z-' + k).value = 1); setEd({ head: 1, text: 1, space: 1 }); showZ(); if (fdoc) applyTheme(fdoc); refreshDirty(); };
 $('#f-upload').addEventListener('change', async e => {
@@ -598,6 +626,7 @@ $('#f-upload').addEventListener('change', async e => {
   const keep = ['display', 'body', 'italic'].map(k => $('#f-' + k).value);
   fontOptions($('#f-display'), true); fontOptions($('#f-body'), true); fontOptions($('#f-italic'), false);
   ['display', 'body', 'italic'].forEach((k, i) => $('#f-' + k).value = keep[i]);
+  previewFonts();
   toast('Added. Pick it in one of the lists.'); e.target.value = ''; refreshDirty();
 });
 

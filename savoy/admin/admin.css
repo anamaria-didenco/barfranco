@@ -123,3 +123,8 @@ textarea{resize:vertical}
 .sliders label span{float:right;font-weight:700}
 .sliders input{width:100%;margin-top:8px;accent-color:var(--accent)}
 #dup-page{margin-top:4px}
+/* font preview in the style view */
+.fpv{max-width:760px;border:1px solid var(--line);padding:26px 28px;margin:22px 0 14px;background:rgba(108,6,0,.04)}
+.fpv-h{font-family:var(--pv-display,var(--display));text-transform:uppercase;font-size:34px;line-height:1.05;letter-spacing:.02em;font-weight:700;margin-bottom:14px}
+.fpv-b{font-family:var(--pv-body,var(--body));font-size:21px;line-height:1.25;margin:0}
+.fpv-b i{font-family:var(--pv-italic,var(--pv-body,var(--body)))}
