@@ -19,7 +19,7 @@ The key stays in that browser only. On another computer or phone you paste it ag
 
 - **Pages** are listed on the left. Click one to open it.
 - **Words**: click any words on the page and type. Press **Escape** when you are done. Shift+Enter makes a new line.
-- **Photographs**: click any photograph. On the right, **Choose a photo** opens everything already on the site, **Upload** adds one of your own (it is shrunk to web size for you). Fill in the one-line description under it: that is what Google and screen readers see.
+- **Photographs**: click any photograph, even where a title or a button sits over it (a click on the words edits the words; a click beside them picks the photograph). On the right, **Choose a photo** opens everything already on the site, **Upload** adds one of your own (it is shrunk to web size for you). Fill in the one-line description under it: that is what Google and screen readers see.
 - **Buttons and links**: click the words on a button and the link it goes to appears on the right.
 - **Title and description in Google**: at the top right of every page. Keep the title under about 60 letters and the description under about 155.
 - **Big words** (the large headings in the middle of a page): click them and type into the box on the right.

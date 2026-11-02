@@ -187,7 +187,7 @@ function prepare(doc) {
     const t = e.target;
     if (t.closest && t.closest('[data-bf-ui]')) return;
     e.preventDefault();
-    const img = t.closest && t.closest('img');
+    const img = (t.closest && t.closest('img')) || imageUnder(doc, e, t);
     if (img) return selectImage(img);
     const w = t.closest && t.closest('[data-w]');
     if (w) return selectWords(w);
@@ -246,6 +246,8 @@ function serialize(doc) {
   unmark(doc);
   const swaps = [...doc.querySelectorAll('img[data-bf-final]')].map(i => { const b = i.getAttribute('src'); i.setAttribute('src', i.dataset.bfFinal); i.removeAttribute('data-bf-final'); return [i, b, i.getAttribute('src')]; });
   doc.querySelectorAll('[style=""]').forEach(e => e.removeAttribute('style'));
+  /* stray spaces in a class attribute vanish the moment an element is selected: tidy them on both sides of the comparison */
+  doc.querySelectorAll('[class]').forEach(e => { const c = e.getAttribute('class'), n = c.trim().replace(/\s+/g, ' '); if (n !== c) { if (n) e.setAttribute('class', n); else e.removeAttribute('class'); } });
   /* blank text at the very end of the body (the newline after </html> lands there) would grow on every round trip */
   const tails = []; for (let n = doc.body.lastChild; n && n.nodeType === 3 && !n.textContent.trim(); n = n.previousSibling) tails.unshift(n);
   tails.forEach(n => n.remove());
@@ -432,6 +434,15 @@ function startDrag(e, el) {
 }
 
 /* ---------- photographs ---------- */
+/* a click on a title, a gradient or a bar laid over a photograph still means the photograph,
+   unless it landed on words or a link that can be edited in their own right */
+function imageUnder(doc, e, t) {
+  if (t.closest && t.closest('[data-bf-edit],[data-w],a,button,input,select,textarea,label')) return null;
+  const stack = doc.elementsFromPoint ? doc.elementsFromPoint(e.clientX, e.clientY) : [];
+  const win = doc.defaultView;
+  const shown = el => { for (let n = el; n && n.nodeType === 1; n = n.parentElement) { const s = win.getComputedStyle(n); if (s.opacity === '0' || s.visibility === 'hidden') return false; } return true; };
+  return stack.find(el => el.tagName === 'IMG' && shown(el)) || null;
+}
 function selectImage(img) {
   select({ el: img, kind: 'Photograph', show: ['img'] });
   $('#i-thumb').src = img.currentSrc || img.src; $('#i-alt').value = img.getAttribute('alt') || '';
