@@ -300,3 +300,26 @@ img{filter:sepia(.2) saturate(1.05) hue-rotate(-7deg) contrast(.9) brightness(1.
 footer{background:var(--dark)}footer .bg img{mix-blend-mode:multiply;opacity:.9}
 .hero .slide::after,.spot .s::after,.card::after,.split .md::after,.pics .p::after,.unl .port::after,footer .bg::after,.steps .g figure::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.26;mix-blend-mode:overlay;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>") repeat;background-size:260px 260px}
 .split .md,.unl .port{position:relative}
+
+/* ==== from the printed menus and posters ==== */
+/* heads in Bright Red on cream, as on the menus */
+:where(.intro,.hb,.unl,.facts,.quote,.faq,.letter,.enq,.formblk,.split.light,.sheet:not(.dark)) :is(h2,h3){color:var(--accent)}
+.intro h2 .rule{background:var(--accent)}
+/* small labels tracked wide, B A R */
+.t-xs{letter-spacing:.3em}
+/* the double rule that frames every printed card */
+.dbl,.sheet>.in,.sheet .set,.enq>.in,.formblk form,.card.solid{border:1px solid var(--accent);outline:1px solid var(--accent);outline-offset:4px}
+.sheet>.in,.enq>.in{padding:48px clamp(20px,5vw,64px) 56px}
+.formblk form{padding:40px clamp(20px,5vw,56px) 48px}
+.sheet .set{border-color:var(--accent)}
+.sheet.dark>.in,.sheet.dark .set{border-color:var(--white);outline-color:var(--white)}
+.card.solid{border-color:var(--white);outline-color:var(--white);outline-offset:-10px}
+.sheet,.enq,.formblk{padding-left:32px;padding-right:32px}
+/* menu lines: the fact at the end of a run of low dots, like the printed sheets */
+.sheet h3{text-align:center;border-bottom:0;letter-spacing:.12em;padding-bottom:0;margin:56px 0 14px}
+.sheet .it{display:flex;align-items:baseline;gap:0;padding:6px 0;border-bottom:0;background:radial-gradient(circle,rgba(108,6,0,.75) .9px,transparent 1.1px) repeat-x 0 calc(100% - 11px)/5px 2px}
+.sheet .it>span:first-child{background:var(--cream);padding-right:8px;flex:0 1 auto;min-width:0}
+.sheet .it>span:last-child{background:var(--cream);padding-left:8px;margin-left:auto;flex:none}
+.sheet.dark .it{background-image:radial-gradient(circle,rgba(241,238,230,.6) .9px,transparent 1.1px)}
+.sheet.dark .it>span{background:var(--dark)}
+@media(max-width:640px){.sheet .it{background:none;gap:12px}.sheet .it>span:first-child{flex:1;padding-right:0}.sheet .it>span:last-child{padding-left:0}.sheet>.in,.enq>.in{padding:28px 16px 32px}.formblk form{padding:24px 16px 28px}.sheet,.enq,.formblk{padding-left:24px;padding-right:24px}}
