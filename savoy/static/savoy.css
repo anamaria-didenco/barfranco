@@ -101,7 +101,7 @@ svg{display:block}ul,ol{list-style:none}
 .rail button.on::before,.rail button.on::after{content:"";position:absolute;width:14px;height:14px;border:1px solid var(--white);inset:-10px auto auto -10px;border-right:0;border-bottom:0}
 .rail button.on::after{inset:auto -10px -10px auto;border:1px solid var(--white);border-left:0;border-top:0}
 .rail .prog{height:1px;background:rgba(241,238,230,.3);position:relative;margin-top:4px}.rail .prog i{position:absolute;inset:0 auto 0 0;width:0;background:var(--white)}
-.bbar{position:absolute;z-index:2;left:50%;bottom:48px;transform:translateX(-50%);width:771px;max-width:calc(100% - 48px);height:75px;background:var(--cream);color:var(--dark);border:1px solid rgba(108,6,0,.18);display:grid;grid-template-columns:1fr 1fr 75px}
+.bbar{position:absolute;z-index:2;left:50%;bottom:48px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;padding:22px 48px;background:var(--cream);color:var(--dark);border:1px solid var(--accent);outline:1px solid var(--accent);outline-offset:4px;text-decoration:none;transition:background .4s var(--ease),color .4s var(--ease)}.bbar b{font:700 17px/1 var(--display);letter-spacing:.3em;text-transform:uppercase;color:var(--accent);padding-left:.3em;transition:color .4s var(--ease)}.bbar i{font:italic 400 17px/1.2 var(--body)}.bbar:hover{background:var(--accent);color:var(--white)}.bbar:hover b{color:var(--white)}
 .bbar label{position:relative;padding:18px 27.4px 0 27.4px;border-right:1px solid rgba(108,6,0,.18);cursor:pointer}
 .bbar label small{display:block;font:700 12px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:6px}
 .bbar label b{font:400 17px var(--body)}
@@ -323,3 +323,33 @@ footer{background:var(--dark)}footer .bg img{mix-blend-mode:multiply;opacity:.9}
 .sheet.dark .it{background-image:radial-gradient(circle,rgba(241,238,230,.6) .9px,transparent 1.1px)}
 .sheet.dark .it>span{background:var(--dark)}
 @media(max-width:640px){.sheet .it{background:none;gap:12px}.sheet .it>span:first-child{flex:1;padding-right:0}.sheet .it>span:last-child{padding-left:0}.sheet>.in,.enq>.in{padding:28px 16px 32px}.formblk form{padding:24px 16px 28px}.sheet,.enq,.formblk{padding-left:24px;padding-right:24px}}
+
+/* ==== curated ==== */
+/* buttons are the boxed word alone: no arrows */
+.btn{gap:0}.btn .ln{display:none}
+/* the title's italic turn, as on the posters */
+.hero h1 .turn em{display:block;font:italic 400 clamp(20px,1.9vw,30px)/1.25 var(--body);text-transform:none;letter-spacing:0;margin-top:.45em;transform:translateY(110%);animation:rise 1.4s var(--ease) .8s forwards}
+.intro .sub{font:italic 400 clamp(20px,1.8vw,26px)/1.35 var(--body);letter-spacing:0;text-transform:none;max-width:26em}
+/* the sign-off: a hairline with the mark, as the printed menus end */
+.sig{position:relative;background:var(--cream);padding:44px 0;margin:0}
+.sig::before{content:"";position:absolute;left:clamp(24px,8vw,120px);right:clamp(24px,8vw,120px);top:50%;height:1px;background:var(--accent)}
+.sig i{position:relative;display:block;width:150px;height:64px;margin:0 auto;background:var(--cream)}
+.sig i::after{content:"";position:absolute;inset:0 30px;background:var(--accent);-webkit-mask:url(illustrations/dog-glass.svg) center/contain no-repeat;mask:url(illustrations/dog-glass.svg) center/contain no-repeat}
+/* the footer opens on the sign-off */
+footer .mark{width:360px}
+footer .ti{font:italic 400 clamp(20px,1.8vw,24px)/1.3 var(--body);margin:0 0 26px}
+footer .ti em{display:block;font-style:italic;opacity:.85}
+@media(max-width:640px){.bbar{left:24px;right:24px;transform:none;padding:18px 20px;bottom:24px}.hero h1{top:34%}footer .mark{width:min(360px,calc(100% - 48px))}}
+/* the title as a poster: red type on a cream card over the photograph, so it reads on any picture */
+.hero h1{background:var(--cream);color:var(--accent);padding:clamp(22px,2.6vw,36px) clamp(24px,3vw,44px);border:1px solid var(--accent);outline:1px solid var(--accent);outline-offset:4px;max-width:min(13em,calc(100vw - 148px))}
+.hero h1 .turn em{color:var(--dark)}
+@media(max-width:900px){.hero h1{max-width:calc(100vw - 48px)}}
+@media(max-width:640px){.hero h1{top:30%;padding:18px 20px}}
+/* on pages with a hero sentence, title and sentence share one poster card */
+.hero .poster{position:absolute;z-index:2;left:74px;top:50%;transform:translateY(-50%);max-width:min(30em,calc(100vw - 148px));background:var(--cream);color:var(--dark);padding:clamp(22px,2.6vw,36px) clamp(24px,3vw,44px);border:1px solid var(--accent);outline:1px solid var(--accent);outline-offset:4px}
+.hero .poster h1{position:static;transform:none;background:none;border:0;outline:0;padding:0;max-width:13em}
+.hero .poster .sub{position:static;margin:18px 0 0;max-width:30em;font:italic 400 clamp(17px,1.5vw,21px)/1.35 var(--body);color:var(--dark)}
+@media(max-width:900px){.hero .poster{left:24px;max-width:calc(100vw - 48px)}.hero .poster h1{max-width:none}}
+@media(max-width:640px){.hero .poster{top:32%;padding:18px 20px}}
+/* a poster holds still */
+.hero h1 span b,.hero h1 .turn em{transform:none;animation:none}
