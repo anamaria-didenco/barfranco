@@ -33,7 +33,7 @@ html.ed .mast .mk{transition:opacity .4s cubic-bezier(.215,.61,.355,1)}
 html.ed .strip{justify-content:center;flex-wrap:nowrap;white-space:nowrap;overflow:hidden}
 /* the reservations band keeps its night colour after the Almond chapters */
 html.ed .book{--gr:var(--dr);--ink:var(--al);--acc:var(--al);--rule:rgba(250,215,195,.4);background:var(--dr);color:var(--al)}
-html.ed .book .d1,html.ed .book .hx-c{color:var(--al)}
+html.ed.hx .book .d1,html.ed.hx .book .d1 .hx-c,html.ed.hx .book .hx-more{color:var(--al)}
 html.ed .book a.cta:not(.cta-fill){border-color:rgba(250,215,195,.6);color:var(--al)}
 
 /* ---- type ---- */
