@@ -609,3 +609,15 @@ footer .ti em{display:block;font-style:italic;opacity:.85}
 .hm .hero h1.hero-wm svg{fill:currentColor}
 .hm .nav:not(.solid) .logo,.hm .nav:not(.solid) .l .logo{opacity:0!important;pointer-events:none}
 .hm .hero-k span{white-space:nowrap}
+/* ==== after the critique: the title on its grid, the splits as a triptych, the address under its heading ==== */
+.ed .intro #ih{grid-column:1/-1;grid-row:2;margin:0;max-width:none;font-size:clamp(38px,6.2vw,96px);color:var(--accent)}
+.ed .intro .folio{grid-row:1}.ed .intro .sub{grid-row:3}.ed .intro .btn{grid-row:4}
+.ed .split.flip .tx{order:2;padding:0 0 0 clamp(24px,5vw,80px)}.ed .split.flip .md{order:1}
+.ed .split.flip{grid-template-columns:5fr 7fr}
+.ed .split .tx .kick{margin-top:0}
+.ed .unl .addr{grid-column:1/6;grid-row:auto;align-self:start;margin-top:32px}
+.ed .unl .addr .btn{margin-top:8px}
+.hm .hero.still::before{background:linear-gradient(180deg,rgba(108,6,0,.34),rgba(108,6,0,.3) 50%,rgba(108,6,0,.42))}
+.hm .hero-k{font-size:14px}
+@media(max-width:900px){.ed .split.flip .tx{order:1;padding:0 0 40px}.ed .split.flip .md{order:2}.ed .unl .addr{margin-top:24px}}
+.ed .intro #ih .row{justify-content:flex-start}
