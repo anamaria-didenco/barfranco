@@ -502,3 +502,28 @@ footer .ti em{display:block;font-style:italic;opacity:.85}
 @media(prefers-reduced-motion:reduce){.ed .rv,.ed .split .md,.ed .spot .pic,.ed .unl .port,.ed .hero.still{clip-path:none!important;transform:none!important}.ed #ih .wd span{transform:none!important}.ed .folio::after{transform:none!important}.ed .split .md img,.ed .unl .port img,.ed .card img{animation:none!important;transform:none!important}}
 .ed footer .mark .em{display:none}
 @media(max-width:640px){.ed .folio{letter-spacing:.2em}}
+/* ==== type: one scale (12 · 14 · 20 · 30 · the giant), one rhythm (8px steps), balanced heads, pretty paragraphs ==== */
+.ed{--chap:clamp(80px,10vw,136px);--gap:40px}
+.ed .t-body{font-size:clamp(18px,1.35vw,21px);line-height:1.4;text-wrap:pretty}
+.ed h2.t-md{font-size:clamp(26px,2.4vw,34px);line-height:1.06;letter-spacing:.02em;text-wrap:balance}
+.ed h3.t-sm{font-size:15px;line-height:1.2}
+.ed .btn{font-size:14px;letter-spacing:.08em;padding:14px 22px}
+.ed .intro .sub{font-size:clamp(19px,1.5vw,24px);line-height:1.35}
+.ed .folio{margin-bottom:var(--gap)}
+.ed .hb,.ed .unl,.ed .cta,.ed .intro{padding-top:var(--chap);padding-bottom:var(--chap)}
+.ed .hb{padding-bottom:64px}
+.ed .story{padding:var(--chap) var(--mg) calc(var(--chap) - 24px)}
+.ed .story p,.ed .hb p,.ed .unl p,.ed .cta p.t-body{max-width:30em}
+.ed .story .bd .btn,.ed .cta .btn,.ed .split .tx .btn,.ed .intro .btn{margin-top:32px}
+.ed .story p{margin-bottom:0}
+.ed .split .tx .ill{width:84px;margin-bottom:48px}
+.ed .split .tx .kick{margin-bottom:var(--gap)}
+.ed .split .tx h2{margin-bottom:24px}
+.ed .split .tx p{max-width:28em}
+.ed .spot .tabs button{font-size:clamp(20px,1.7vw,24px);padding:16px 0}
+.ed .spot .vcta{margin-top:32px}
+.ed .unl .addr b{font-size:clamp(18px,1.4vw,21px)}
+.ed .cta .cols a{font-size:16px;line-height:1.5}
+.ed footer .bot{font-size:15px;line-height:1.6}
+.ed footer .col a{line-height:1.7}
+@media(max-width:640px){.ed{--chap:64px;--gap:28px}.ed .t-body{font-size:18px}.ed h2.t-md{font-size:26px}.ed .intro .sub{font-size:19px}.ed .spot .tabs button{font-size:20px;padding:12px 0}}
