@@ -163,3 +163,17 @@ html.ed-js:not(.ed-calm) [data-ed-img].in img{transform:none}
  html.ed-js:not(.ed-calm) [data-ed-img],html.ed-js:not(.ed-calm) [data-ed-img] img{transition-duration:1s}
 }
 @media (prefers-reduced-motion:reduce){.ed-px{transform:none;top:0;bottom:0}.ed-a::after,.ed-px{transition:none}html.ed .hf-fold>.hero .ph img{transform:none}}
+
+/* ==== review fixes (Nov 2026) ==== */
+/* 3 · a deeper flat veil: the letterspaced line stays legible where it crosses the bright glasses */
+html.ed .hf-fold>.hero .ph::after{opacity:.46}
+/* 9 · Book a table lives in the masthead; the hero keeps the second ask */
+html.ed .hf-act .hx-acts a.cta-fill[href="/bookings/"]{display:none}
+/* 8 · on phones the dachshund waits until you leave the hero */
+@media (max-width:860px){html.ed.ed-top .hx-host{opacity:0;pointer-events:none;transition:opacity .3s}}
+/* 4 · touch: small links get a full-size tap area without moving anything */
+@media (pointer:coarse){
+ .ed-gal-nav .ed-a{padding:12px 6px;margin:-8px -6px}
+ html.ed .ed-a{padding-top:11px;padding-bottom:12px}
+}
+@media (max-width:860px){html.ed .hf-act .hx-acts{grid-template-columns:auto;justify-self:center}html.ed .hf-act .hx-acts a.cta{padding-left:40px;padding-right:40px}}

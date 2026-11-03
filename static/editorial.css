@@ -1169,3 +1169,17 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
    and the opening quote mark of a pull quote hangs in the margin so the words, not the mark, align. ==== */
 p,li,blockquote,figcaption{text-wrap:pretty}
 .fx-q p,.qt p,.hx-q{text-indent:-.42em}
+
+/* ==== review fixes (Nov 2026) ==== */
+/* 2 · on Deep Red the Spritz ring falls to 2.6:1, so it turns Almond there (3:1 and up); elsewhere it stays Spritz */
+[data-tone="dark"] :focus-visible,.dark :focus-visible,.hf-fold :focus-visible,html.ed .book :focus-visible,.sticky-cta :focus-visible{outline-color:var(--al)!important}
+/* 4 · touch: footer and contact links, month buttons and index links get a 44px tap area without moving */
+@media (pointer:coarse){
+ .fcols a{padding-top:12px;padding-bottom:12px;margin-top:-9px;margin-bottom:-9px}
+ .info li a{display:inline-block;padding-top:12px;padding-bottom:12px;margin-top:-12px;margin-bottom:-12px}
+ .sd .sd-mo button{padding-top:14px!important;padding-bottom:14px!important}
+ .sd-ix-go,.fx-ask{padding-top:12px;padding-bottom:12px}
+}
+
+/* the strip without a quote: the ask keeps to the right */
+.fx-foot:not(:has(.fx-q)){justify-content:flex-end}

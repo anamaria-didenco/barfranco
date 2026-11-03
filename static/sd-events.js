@@ -81,8 +81,8 @@ h.addEventListener('pointerenter',function(e){if(e.pointerType!=='mouse')return;
 x.querySelector('.sd-ix-p').addEventListener('pointerenter',function(){clearTimeout(ixT)});
 h.addEventListener('focus',function(){openIx(x)});
 h.addEventListener('click',function(e){if(!x.classList.contains('open')){e.preventDefault();openIx(x)}})});
-$('#sdIdx').addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'){clearTimeout(ixT);ixT=setTimeout(function(){openIx(null)},350)}});
-$('#sdIdx').addEventListener('pointerenter',function(){clearTimeout(ixT)});
+if($('#sdIdx'))$('#sdIdx').addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'){clearTimeout(ixT);ixT=setTimeout(function(){openIx(null)},350)}});
+if($('#sdIdx'))$('#sdIdx').addEventListener('pointerenter',function(){clearTimeout(ixT)});
 
 /* state shared across the page */
 var st={n:clamp(+ls('bf-sdf-n','40')||40,10,240),s:ls('bf-sdf-s','seat'),date:ls('bf-sdf-date',''),room:null};

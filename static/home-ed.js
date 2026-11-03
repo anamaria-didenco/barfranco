@@ -37,6 +37,9 @@ if(calm||!('IntersectionObserver' in window)){items.forEach(function(e){e.classL
 else{var io=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;io.unobserve(x.target);show(x.target)})},{rootMargin:'0px 0px -15% 0px',threshold:0});
  (D.fonts&&D.fonts.ready?D.fonts.ready:Promise.resolve()).then(function(){items.forEach(function(e){io.observe(e)})})}
 
+/* a keyboard user who tabs into a section that hasn't played yet sees it at once */
+D.addEventListener('focusin',function(e){var sec=e.target.closest&&e.target.closest('section');if(sec)$$('[data-ed-n],[data-ed-h],[data-ed-p],[data-ed-img]',sec).forEach(function(x){if(x.hasAttribute('data-ed-h'))wrapWords(x);show(x)})});
+
 /* scroll: the hero photograph grows 1 to 1.06 over the first screen while the title drifts up a little; photographs drift up to 40px (12px on phones) */
 var heroImg=$('.hf-fold .hero .ph img'),fold=$('.hf-fold'),copy=$('.hf-fold>.hf-copy'),pxs=$$('[data-ed-img] .ed-px');
 var raf=0;function tick(){raf=0;var vh=innerHeight,y=scrollY;R.classList.toggle('ed-top',y<vh*.55);

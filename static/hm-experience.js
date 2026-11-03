@@ -71,14 +71,14 @@ function settle(){if(hState!=='hero'||!hrs)return;var a=anchor(),r=host.getBound
 /* on phones he ducks as the footer comes up (his frame sat over the sign-off and the footer links for 600px); on wide screens at the last line */
 function want(){if(hrs){var a=hrs.getBoundingClientRect();if(a.top>innerHeight*.3&&a.bottom<innerHeight+40)return'hero'}var c=$('#climb');if(c&&tdog&&tdog.offsetWidth){var r=c.getBoundingClientRect();if(r.top<innerHeight*.6&&r.bottom>innerHeight*.4)return'duck'}var ph=innerWidth<=700,ft=ph?$('footer'):$('#legal');if(ft&&ft.getBoundingClientRect().top<innerHeight-(ph?40:0))return'duck';return'corner'}
 var greeted=false;
-function setState(s){var prev=hState;hState=s;if(s==='corner'&&!greeted){greeted=true;setTimeout(function(){if(hState==='corner')talk(innerWidth<=700?'Ciao. Tap me for a table.':'Ciao. Spritz first?',3000)},900)}
+function setState(s){var prev=hState;hState=s;if(s==='corner'&&!greeted&&!(R.classList.contains('ed')&&scrollY<innerHeight*.5)){greeted=true;setTimeout(function(){if(hState==='corner')talk(innerWidth<=700?'Ciao. Tap me for a table.':'Ciao. Spritz first?',3000)},900)}
 if(s==='hero'){host.classList.remove('talk','sniff');if(!prev||calm||!hrs){if(wk){wk.cancel();wk=null}host.classList.remove('docked','duck','out');host.classList.add('hero');if(hrs)place(anchor());return}
 if(prev!=='hero'){if(host.classList.contains('docked'))undock();host.classList.remove('out');host.classList.add('hero');walkTo(anchor(),settle)}return}
 if(prev==='hero'||!prev){host.classList.remove('hero');if(!prev||calm||!hrs){if(wk){wk.cancel();wk=null}host.classList.remove('out','walk');dock();return}
 /* he leaves the hours line on foot, unframed, and the frame draws round him once he's sat down in the corner */
 host.classList.add('out');walkTo(cornerXY(),function(){if(hState==='hero')return;dock();host.classList.remove('out')});return}
 if(host.classList.contains('docked'))host.classList.toggle('duck',s==='duck')}
-function hostTick(){if(arriving)return;var s=want();if(s!==hState)setState(s);else if(s==='hero'&&hrs&&!wk&&!host.classList.contains('docked'))place(anchor());host.classList.toggle('al',hState==='hero'&&darkHero)}
+function hostTick(){if(arriving)return;var s=want();if(s==='corner'&&hState==='corner'&&!greeted&&R.classList.contains('ed')&&scrollY>=innerHeight*.5){greeted=true;setTimeout(function(){if(hState==='corner')talk(innerWidth<=700?'Ciao. Tap me for a table.':'Ciao. Spritz first?',3000)},600)}if(s!==hState)setState(s);else if(s==='hero'&&hrs&&!wk&&!host.classList.contains('docked'))place(anchor());host.classList.toggle('al',hState==='hero'&&darkHero)}
 tone();
 if(arriving&&hrs){var a0=anchor();hState='hero';place([-90,a0[1]]);host.classList.toggle('al',darkHero);
 setTimeout(function(){walkTo(anchor(),function(){arriving=false;hostTick()},1500)},1050)}
