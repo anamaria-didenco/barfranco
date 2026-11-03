@@ -430,3 +430,75 @@ footer .ti em{display:block;font-style:italic;opacity:.85}
 .hist .centre,.hist .tile .cap{display:none}
 @media(max-width:900px){.spot{grid-template-columns:1fr;height:auto}.spot .pic{aspect-ratio:4/5;max-height:70svh}.spot .tabs{width:auto;padding:40px 24px 56px}}
 @media(max-width:640px){.hero.still{height:70svh;min-height:420px}.intro{padding:56px 24px 64px}.intro .eyebrow,.intro .sub,.intro .btn{margin-top:0}.intro .eyebrow{margin-bottom:26px}.intro .sub{margin-top:26px}.intro .btn{margin-top:26px}}
+/* ==== Milanese editorial: a left-set twelve-column grid, numbered chapters under a hairline, type ragged right, the footer a colophon ==== */
+.ed{--mg:clamp(24px,6vw,96px);counter-reset:ch}
+.ed .folio{counter-increment:ch;display:flex;gap:1.8em;align-items:baseline;font:700 12px/1.1 var(--display);letter-spacing:.3em;text-transform:uppercase;color:var(--accent);padding-top:14px;border-top:1px solid var(--accent);margin:0 0 44px;text-align:left;opacity:1}
+.ed .folio::before{content:counter(ch,decimal-leading-zero);letter-spacing:.12em}
+.ed .intro .folio{counter-increment:none}.ed .intro .folio::before{display:none}
+.ed .story .folio,.ed .split.dark .folio,.ed .cta .folio{color:var(--cream);border-color:rgba(241,238,230,.4)}
+.ed .g12{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;text-align:left}
+.ed .intro,.ed .hb,.ed .story,.ed .unl,.ed .cta{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:start;text-align:left;padding-left:var(--mg);padding-right:var(--mg)}
+.ed .intro .folio,.ed .hb .folio,.ed .story .folio,.ed .unl .folio,.ed .cta .folio,.ed .cta hr,.ed .cta .cols{grid-column:1/-1}
+.ed .intro{padding-top:clamp(56px,7vw,96px);padding-bottom:clamp(72px,9vw,120px)}
+.ed .intro h1{grid-column:1/-1;margin:0;max-width:none}
+.ed .intro h1 .row{justify-content:flex-start}
+.ed .intro .sub{grid-column:7/-1;margin-top:52px;max-width:30em}
+.ed .intro .btn{grid-column:7/-1;justify-self:start;margin-top:28px}
+.ed .spot .tabs .folio{margin-bottom:30px}
+.ed .hb{padding-top:clamp(72px,9vw,120px);padding-bottom:64px}
+.ed .hb h2,.ed .unl h2,.ed .cta h2,.ed .story .tl{grid-column:1/6;grid-row:2;margin:0}
+.ed .hb p,.ed .unl p,.ed .cta p.t-body,.ed .story .bd{grid-column:7/-1;grid-row:2;margin:0;max-width:34em;padding:0}
+.ed .story .tl .d{margin:24px 0 0}
+.ed .story p{margin:0 0 30px;max-width:34em}
+.ed .car5{counter-reset:fig}
+.ed .card .top{counter-increment:fig}
+.ed .card .top .t-xs::before{content:counter(fig,decimal-leading-zero) "\2003"}
+.ed .hist .tile img{filter:grayscale(1) contrast(1.05);mix-blend-mode:normal;opacity:1}
+.ed .split .tx{align-items:flex-start;text-align:left;padding:72px var(--mg)}
+.ed .split .tx .ill{margin-bottom:56px}
+.ed .split .tx .kick{display:flex;width:100%;margin-bottom:44px;opacity:1}
+.ed .split .tx h2{max-width:12em}
+.ed .split .tx p{max-width:30em}
+.ed .unl{padding-top:clamp(72px,9vw,120px);padding-bottom:clamp(72px,9vw,120px)}
+.ed .unl .port{grid-column:7/-1;grid-row:3;width:100%;max-width:420px;height:auto;aspect-ratio:322/438;margin:56px 0 0}
+.ed .unl .addr{grid-column:1/6;grid-row:3;align-self:end;align-items:flex-start;text-align:left;margin:0;width:auto}
+.ed .cta{padding-top:clamp(72px,9vw,120px);padding-bottom:56px}
+.ed .cta .btn{grid-column:7/-1;grid-row:3;justify-self:start;margin-top:28px}
+.ed .cta hr{margin:84px 0 56px}
+.ed .cta .cols{max-width:none;margin:0;justify-items:start;text-align:left}
+.ed .cta .cols .ill{justify-content:flex-start}
+.ed footer{height:auto;min-height:0;padding:72px var(--mg) 28px;background:var(--dark)}
+.ed footer .bg{display:none}
+.ed footer .mark{position:static;transform:none;width:auto;text-align:left;margin:0 0 64px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:end}
+.ed footer .ti{grid-column:1/9;margin:0;font-size:clamp(28px,3.4vw,52px);line-height:1.1}
+.ed footer .ti em{display:inline;opacity:.8}
+.ed footer .mark .wm{grid-column:11/-1;width:100%;max-width:120px;margin:0;justify-self:end}
+.ed footer .bot{position:static;border-top:1px solid rgba(241,238,230,.3);padding-top:28px;align-items:start}
+.ed footer .cookies{position:static;display:block;margin-top:40px;text-align:right}
+@media(max-width:900px){.ed .intro,.ed .hb,.ed .story,.ed .unl,.ed .cta,.ed footer .mark{display:block}.ed .intro .sub{margin-top:36px}.ed .intro .btn{margin-top:24px}.ed .hb p,.ed .unl p,.ed .cta p.t-body,.ed .story .bd{margin-top:28px}.ed .unl .port{margin:40px 0 32px}.ed .cta .btn{margin-top:28px}.ed footer .ti{margin-bottom:28px}.ed footer .mark .wm{max-width:100px}}
+/* ==== motion: the curtains draw, type rises through a mask, photographs wipe in from the left and drift as you scroll, the chapter rule draws itself ==== */
+.ed{--out:cubic-bezier(.16,1,.3,1)}
+.ed .rv{opacity:1;clip-path:inset(100% 0 0 0);transform:translateY(22px);transition:clip-path 1.1s var(--out),transform 1.1s var(--out)}
+.ed .rv.in{clip-path:inset(-2% 0 0 0);transform:none}
+.ed #ih .wd{display:inline-block;overflow:hidden;vertical-align:bottom}
+.ed #ih .wd span{opacity:1;transform:translateY(112%);transition:transform 1.1s var(--out)}
+.ed #ih.in .wd span{transform:none}
+.ed .intro #ih .rule{transition:width 1.6s var(--out) .9s}
+.ed .folio{position:relative;border-top:0;padding-top:16px}
+.ed .folio::after{content:"";position:absolute;left:0;top:0;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform 1.3s var(--out) .15s}
+.ed .story .folio::after,.ed .split.dark .folio::after,.ed .cta .folio::after{opacity:.5}
+.ed .folio.in::after,.ed .split.in .folio::after{transform:none}
+.ed .split .md,.ed .spot .pic.rv,.ed .unl .port.rv{clip-path:inset(0 100% 0 0);transform:none;transition:clip-path 1.5s var(--out)}
+.ed .split.in .md,.ed .spot .pic.rv.in,.ed .unl .port.rv.in{clip-path:inset(0)}
+.ed .split .md img{transform:scale(1.1);transition:transform 2.2s var(--out)}.ed .split.in .md img{transform:none}
+.ed .unl .port img,.ed .spot .pic .s img{transition:transform 2.2s var(--out)}
+.ed .hero.still{animation:curtain 1.9s var(--out) .15s both}
+@keyframes curtain{from{clip-path:inset(0 50% 0 50%)}to{clip-path:inset(0)}}
+@supports(animation-timeline:view()){
+  .ed .split.in .md img,.ed .unl .port.rv.in img,.ed .hb+.car5 .card img{animation:drift linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+  @keyframes drift{from{transform:translateY(-5%) scale(1.12)}to{transform:translateY(5%) scale(1.12)}}
+}
+.ed .card{transition:transform .9s var(--out)}
+@media(prefers-reduced-motion:reduce){.ed .rv,.ed .split .md,.ed .spot .pic,.ed .unl .port,.ed .hero.still{clip-path:none!important;transform:none!important}.ed #ih .wd span{transform:none!important}.ed .folio::after{transform:none!important}.ed .split .md img,.ed .unl .port img,.ed .card img{animation:none!important;transform:none!important}}
+.ed footer .mark .em{display:none}
+@media(max-width:640px){.ed .folio{letter-spacing:.2em}}
