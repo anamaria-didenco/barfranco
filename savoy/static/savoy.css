@@ -435,3 +435,7 @@ footer .ti em{display:block;font-style:italic;opacity:.85}
 .hm .hero-it{margin:14px 0 0;font:italic 400 clamp(17px,1.4vw,20px)/1.4 var(--body);color:var(--cream);opacity:.92}
 .hm .hero-k{margin-top:28px}
 .hist .tile .cap{font-style:italic}
+.enq .sotto,.steps .c .sotto,.sheet .c .sotto,.formblk .c .sotto,.hb .sotto,.unl .sotto,.cta .sotto,.quote .sotto{text-align:center}
+.enq .sotto{margin-bottom:18px}
+.sheet .c .sotto{margin-bottom:22px}
+.steps .c .sotto+p{margin-top:22px}
