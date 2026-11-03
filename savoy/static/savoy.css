@@ -527,3 +527,31 @@ footer .ti em{display:block;font-style:italic;opacity:.85}
 .ed footer .bot{font-size:15px;line-height:1.6}
 .ed footer .col a{line-height:1.7}
 @media(max-width:640px){.ed{--chap:64px;--gap:28px}.ed .t-body{font-size:18px}.ed h2.t-md{font-size:26px}.ed .intro .sub{font-size:19px}.ed .spot .tabs button{font-size:20px;padding:12px 0}}
+/* ==== photographs as figures: the title leads, every picture sits inside the grid with air around it ==== */
+.ed .nav{color:var(--dark)}.ed .nav .btn.out{color:var(--dark)}
+.ed .intro{padding-top:calc(var(--hd) + clamp(56px,7vw,96px))}
+.ed .hero.still{height:auto;min-height:0;aspect-ratio:2/1;max-height:62vh;margin:0 var(--mg);animation:none;clip-path:inset(0 50% 0 50%);transform:none;transition:clip-path 1.9s var(--out)}
+.ed .hero.still.in{clip-path:inset(0)}
+.ed .spot{grid-template-columns:5fr 7fr;height:auto;min-height:0;padding:var(--chap) var(--mg);column-gap:24px}
+.ed .spot .pic{aspect-ratio:4/5;max-height:70vh}
+.ed .spot .tabs{padding:0 0 0 clamp(24px,4vw,64px);max-width:34em}
+.ed .car5{padding:0 0 var(--chap)}
+.ed .track{height:min(520px,56vh);padding-left:var(--mg);gap:16px}
+.ed .card{flex-basis:clamp(240px,24vw,320px)}
+.ed .arrows{justify-content:flex-start;padding-left:var(--mg)}
+.ed .hist{height:auto;padding:0 0 var(--chap)}
+.ed .hist .pin{position:static;height:min(42vh,360px);min-height:240px}
+.ed .hist .cols{gap:16px;padding:0 var(--mg)}
+.ed .hist .col{transform:none!important}
+.ed .split{grid-template-columns:7fr 5fr;height:auto;min-height:0;padding:var(--chap) var(--mg);column-gap:24px}
+.ed .split .tx{padding:0 clamp(24px,5vw,80px) 0 0;justify-content:flex-start}
+.ed .split .md{aspect-ratio:4/5;max-height:70vh}
+.ed .unl .port{max-width:320px}
+@media(max-width:900px){.ed .hero.still{aspect-ratio:4/5;max-height:70svh;margin:0 24px}.ed .spot{display:block;padding:var(--chap) 24px}.ed .spot .pic{aspect-ratio:4/5;max-height:60svh}.ed .spot .tabs{padding:40px 0 0}.ed .split{display:block}.ed .split .tx{padding:0 0 40px}.ed .split .md{height:auto;aspect-ratio:4/5;max-height:60svh}.ed .track{height:min(420px,52vh);padding-left:24px}.ed .card{flex-basis:70vw}.ed .arrows{padding-left:24px}.ed .hist .cols{padding:0 24px}}
+@media(prefers-reduced-motion:reduce){.ed .hero.still{clip-path:none!important}}
+.ed .hist .pin{position:relative}
+.ed .card.solid{padding:24px}
+.ed .card.solid .ill{display:none}
+.ed .card.solid h3{font-size:14px;margin-bottom:14px}
+.ed .card.solid p{font-size:15px;line-height:1.4}
+@media(max-width:900px){.ed .hero.still{aspect-ratio:1;max-height:56svh}.ed .spot{display:flex;flex-direction:column-reverse}.ed .spot .tabs{padding:0 0 40px}}
