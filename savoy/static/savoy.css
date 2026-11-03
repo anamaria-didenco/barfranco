@@ -295,10 +295,10 @@ footer .cookies{position:absolute;z-index:2;right:12px;bottom:4px;font-size:12px
 @media(max-width:640px){.facts .row{grid-template-columns:1fr;gap:4px}.facts .row span:last-child{text-align:left;opacity:.8}}
 
 /* ==== film ==== one grade on every photograph, after Kodak Portra 400: warm, soft, lifted shadows, colour kept, fine grain */
-img{filter:sepia(.2) saturate(1.05) hue-rotate(-7deg) contrast(.9) brightness(1.04)}
+img{filter:sepia(.1) saturate(1.2) hue-rotate(-5deg) contrast(1.02) brightness(1.03)}
 /* the footer photograph prints in Deep Red, like a one-colour plate, so the links over it read without a scrim */
 footer{background:var(--dark)}footer .bg img{mix-blend-mode:multiply;opacity:.9}
-.hero .slide::after,.spot .s::after,.card::after,.split .md::after,.pics .p::after,.unl .port::after,footer .bg::after,.steps .g figure::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.26;mix-blend-mode:overlay;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>") repeat;background-size:260px 260px}
+.hero .slide::after,.spot .s::after,.card::after,.split .md::after,.pics .p::after,.unl .port::after,footer .bg::after,.steps .g figure::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.16;mix-blend-mode:overlay;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>") repeat;background-size:260px 260px}
 .split .md,.unl .port{position:relative}
 
 /* ==== from the printed menus and posters ==== */
@@ -353,3 +353,60 @@ footer .ti em{display:block;font-style:italic;opacity:.85}
 @media(max-width:640px){.hero .poster{top:32%;padding:18px 20px}}
 /* a poster holds still */
 .hero h1 span b,.hero h1 .turn em{transform:none;animation:none}
+
+/* ==== the evening, printed ==== Home below the fold: what is not a photograph is a piece of Bar Franco ephemera on the table */
+/* Dine & host: the three rooms as a menu card over the photograph */
+.spot .tabs{left:74px;right:auto;width:min(26em,calc(100vw - 148px));display:flex;flex-direction:column;gap:0;background:var(--cream);color:var(--dark);padding:clamp(22px,2.6vw,36px) clamp(24px,3vw,44px);border:1px solid var(--accent);outline:1px solid var(--accent);outline-offset:4px}
+.spot .tabs .lab{position:static;color:var(--accent);text-align:left;margin-bottom:14px}
+.spot .tabs button{color:var(--dark);opacity:.55;padding:14px 0;gap:0;border-top:1px solid rgba(108,6,0,.18)}
+.spot .tabs button:first-of-type{border-top:0}
+.spot .tabs button::after,.spot .tabs button .d{display:none}
+.spot .tabs button.on{color:var(--accent);opacity:1}
+.spot .tabs button .u{left:0;bottom:-1px;height:2px;background:var(--accent)}
+.spot .tabs button.on .u{width:100%}
+.spot .vcta{position:static;text-align:left;margin-top:26px}
+.spot .vcta .btn{color:var(--accent)}.spot .vcta .btn:hover{background:var(--accent);color:var(--cream)}
+@media(max-width:900px){.spot .tabs{left:24px;width:calc(100vw - 48px)}}
+@media(max-width:640px){.spot .tabs{padding:18px 20px}.spot .tabs button{padding:10px 0}}
+/* the carousel: a contact strip, captions printed under the pictures, never on them */
+.card:not(.solid){display:flex;flex-direction:column;background:var(--cream)}
+.card:not(.solid) img{flex:1;min-height:0}
+.card:not(.solid) .top{position:static;order:2;height:58px;padding:20px 0 0;color:var(--accent);text-align:left}
+.card:not(.solid)::after{bottom:58px}
+.card .top .d{display:none}
+.card:not(.solid) .top::after{margin-top:12px;background:var(--accent);opacity:.5}
+.card.solid .top{color:var(--white)}
+.card.solid .top::after{margin-top:12px;background:rgba(241,238,230,.5)}
+.arrows{gap:30px}.arrows .cnt{color:var(--dark)}
+.arrows button{width:auto;height:auto;font:700 13px/1 var(--display);letter-spacing:.24em;text-transform:uppercase;color:var(--accent);padding:6px 0;border-bottom:1px solid transparent}
+.arrows button:hover{border-bottom-color:var(--accent)}
+.arrows button::before,.arrows button::after{display:none}
+/* the storied wall: a one-colour plate, Deep Red and cream, with the story on a printed card */
+.hist .tile img{filter:grayscale(1) contrast(1.08);mix-blend-mode:screen;opacity:.92}
+.hist .tile.br::before,.hist .tile.br::after{display:none}
+.hist .tile .cap{font:italic 400 clamp(18px,1.6vw,24px)/1.2 var(--body);text-transform:none;letter-spacing:0;color:var(--dark);background:var(--cream);width:max-content;max-width:80%;margin:0 auto;padding:10px 16px}
+.hist .centre{justify-content:center;width:24%}
+.hist .centre>*{background:none;padding:0}
+.hist .post{width:150%;max-width:560px;background:var(--cream);color:var(--dark);border:1px solid var(--accent);outline:1px solid var(--accent);outline-offset:4px;padding:36px 30px 34px;text-align:center}
+.hist .post h2{color:var(--accent)}
+.hist .tl .d{width:70px;height:30px;background:var(--accent);transform:none;margin:16px auto 0;-webkit-mask:url(illustrations/dog-glass.svg) center/contain no-repeat;mask:url(illustrations/dog-glass.svg) center/contain no-repeat}
+.hist .tl::after{display:none}
+.hist .bd{width:auto;max-width:none;padding-top:18px}
+.hist .bd .btn{color:var(--accent)}.hist .bd .btn:hover{background:var(--accent);color:var(--cream)}
+/* the two levels: a level line above each head */
+.split .tx .ill{margin-bottom:44px}
+.split .tx .kick{display:block;margin-bottom:18px;opacity:.75}
+.split.light .tx .kick{color:var(--accent);opacity:1}
+/* Christchurch, unlocked: the picture framed as a print, the address on a card */
+.unl .port{border:1px solid var(--accent);outline:1px solid var(--accent);outline-offset:4px;margin-bottom:44px}
+.unl .addr{width:322px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:10px}
+.unl .addr .t-xs{color:var(--accent)}
+.unl .addr b{font:italic 400 clamp(18px,1.6vw,22px)/1.3 var(--body)}
+.unl .addr .btn{margin-top:12px}
+/* come say ciao: no diamonds */
+.cta .cols .d{display:none}
+.cta .cols .ill{margin-bottom:22px}
+.hist .col{background:var(--dark)}
+@media(max-width:1100px){.hist .centre{width:33%}}
+@media(max-width:640px){.hist .centre{width:86%}.hist .post{width:100%;padding:26px 20px 24px}.unl .addr{width:100%;margin:0;align-items:center;text-align:center}}
+.hist .post>*,.hist .post .bd{width:auto;max-width:none}.hist .post p{max-width:none}
