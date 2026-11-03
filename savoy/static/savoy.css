@@ -590,3 +590,22 @@ footer .ti em{display:block;font-style:italic;opacity:.85}
 .ed .split .tx .folio{width:100%;margin-bottom:var(--gap)}
 .ed .tabrow{justify-content:flex-start;padding:0 var(--mg)}
 @media(max-width:900px){.ed .facts,.ed .steps,.ed .steps .c,.ed .quote{display:block}.ed .facts .row{grid-template-columns:1fr;gap:4px}.ed .steps .c p{margin-top:24px}.ed .steps .g{grid-template-columns:1fr;margin-top:40px}}
+/* ==== Home's hero: the photograph full screen, the script centred in cream, one tracked line, a spare top bar, a scroll mark ==== */
+.hm .hero.still{height:100svh;min-height:560px;max-height:none;aspect-ratio:auto;margin:0;clip-path:none;transition:none;animation:none}
+.hm .hero.still::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(108,6,0,.34),rgba(108,6,0,.18) 45%,rgba(108,6,0,.4));pointer-events:none}
+.hm .hero-mark{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--cream);text-align:center;padding:0 24px;animation:markin 1.8s var(--out) .4s both}
+.hm .hero-wm{margin:0;width:min(440px,62vw)}
+.hm .hero-wm svg{display:block;width:100%;height:auto;fill:currentColor}
+.hm .hero-k{margin:30px 0 0;font:700 13px/1.5 var(--display);letter-spacing:.42em;text-transform:uppercase;text-indent:.42em}
+.hm .hero-dn{position:absolute;z-index:2;left:50%;bottom:30px;width:46px;height:3px;transform:translateX(-50%);background:var(--cream);opacity:.85;animation:markin 1.8s var(--out) 1s both}
+@keyframes markin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hm .hero-dn{animation-name:dnin}@keyframes dnin{from{opacity:0}to{opacity:.85}}
+.hm .nav:not(.solid){color:var(--cream)}.hm .nav:not(.solid) .btn.out{color:var(--cream)}.hm .nav:not(.solid) .logo{opacity:0;pointer-events:none}
+.hm .nav .logo{transition:opacity .5s var(--out)}
+.hm .intro{padding-top:var(--chap)}
+@media(max-width:900px){.hm .hero.still{aspect-ratio:auto;max-height:none;height:100svh;margin:0}.hm .hero-wm{width:min(300px,70vw)}.hm .hero-k{font-size:11px;letter-spacing:.34em;text-indent:.34em;margin-top:24px}}
+@media(prefers-reduced-motion:reduce){.hm .hero-mark,.hm .hero-dn{animation:none!important;opacity:1}}
+.hm .hero h1.hero-wm{position:static;transform:none;background:none;color:inherit;padding:0;border:0;outline:0;max-width:none;animation:none;top:auto;left:auto}
+.hm .hero h1.hero-wm svg{fill:currentColor}
+.hm .nav:not(.solid) .logo,.hm .nav:not(.solid) .l .logo{opacity:0!important;pointer-events:none}
+.hm .hero-k span{white-space:nowrap}

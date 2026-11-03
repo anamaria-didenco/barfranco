@@ -3,7 +3,7 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];con
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* nav: transparent over the hero, solid after */
-addEventListener('scroll',()=>$('#nav').classList.toggle('solid',scrollY>40),{passive:true});
+addEventListener('scroll',()=>$('#nav').classList.toggle('solid',scrollY>(document.body.classList.contains('hm')?innerHeight-80:40)),{passive:true});
 
 /* lift */
 const lift=$('#lift'),floors=$$('.floor'),calls=$$('#calls button'),pics=$$('#pics .p'),reel=$('#reel'),dir=$('#dir');let cur=null,busy=false;
