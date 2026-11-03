@@ -25,7 +25,7 @@ if(has('.hero .slide')){/* hero: 3-slide fade with thumbnail rail + progress lin
 const sl=$$('.hero .slide'),th=$$('.rail button'),bar=$('.rail .prog i');let hi=0,t0=performance.now();const DUR=6500;
 function go(n){hi=(n+sl.length)%sl.length;sl.forEach((s,i)=>s.classList.toggle('on',i===hi));th.forEach((s,i)=>s.classList.toggle('on',i===hi));t0=performance.now()}
 th.forEach((b,i)=>b.onclick=()=>go(i));
-if(!RM)(function tick(now){const p=Math.min((now-t0)/DUR,1);if(bar)bar.style.width=p*100+'%';if(p>=1)go(hi+1);requestAnimationFrame(tick)})(performance.now());
+if(!RM)(function tick(now){const p=Math.min((now-t0)/DUR,1);bar.style.width=p*100+'%';if(p>=1)go(hi+1);requestAnimationFrame(tick)})(performance.now());
 
 }
 /* intro: letters fade in one by one, the rule draws out */
