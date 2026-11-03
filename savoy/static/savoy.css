@@ -555,3 +555,38 @@ footer .ti em{display:block;font-style:italic;opacity:.85}
 .ed .card.solid h3{font-size:14px;margin-bottom:14px}
 .ed .card.solid p{font-size:15px;line-height:1.4}
 @media(max-width:900px){.ed .hero.still{aspect-ratio:1;max-height:56svh}.ed .spot{display:flex;flex-direction:column-reverse}.ed .spot .tabs{padding:0 0 40px}}
+/* ==== the subpages on the same grid: facts as a ruled table, the evening's figures with captions beneath, quotes set left, letters and questions in a column ==== */
+.ed .facts{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding:32px var(--mg) var(--chap);text-align:left}
+.ed .facts .folio,.ed .facts .box,.ed .facts .note{grid-column:1/-1}
+.ed .facts .box{max-width:none;border:0;margin:0}
+.ed .facts .row{grid-template-columns:4fr 8fr;padding:14px 0;border-color:rgba(108,6,0,.18)}
+.ed .facts .row span:first-child{font:700 12px/1.6 var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.ed .facts .row span:last-child{text-align:left;font-size:19px;line-height:1.35}
+.ed .facts .note{text-align:left;margin-top:14px}
+.ed .facts.dark .folio{color:var(--cream);border-color:rgba(241,238,230,.4)}
+.ed .facts.dark .row{border-color:rgba(241,238,230,.2)}.ed .facts.dark .row span:first-child{color:var(--cream)}
+.ed .steps{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding:var(--chap) var(--mg);text-align:left}
+.ed .steps .folio{grid-column:1/-1;color:var(--cream);border-color:rgba(241,238,230,.4)}
+.ed .steps .c{grid-column:1/-1;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;text-align:left}
+.ed .steps .c h2{grid-column:1/6;margin:0}.ed .steps .c p{grid-column:7/-1;margin:0;max-width:30em}
+.ed .steps .g{grid-column:1/-1;margin:56px 0 0;gap:24px;max-width:none}
+.ed .steps .g figure{aspect-ratio:auto;display:flex;flex-direction:column}
+.ed .steps .g figure img{aspect-ratio:4/5;height:auto}
+.ed .steps .g figcaption{position:static;text-align:left;padding:16px 0 6px}
+.ed .steps .g figcaption .d,.ed .steps .g figcaption::after{display:none}
+.ed .steps .g figure p{position:static;text-align:left;font-size:17px;line-height:1.4}
+.ed .quote{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding:var(--chap) var(--mg);text-align:left}
+.ed .quote .folio{grid-column:1/-1}.ed .quote .d{display:none}
+.ed .quote blockquote{grid-column:1/10;margin:0 0 20px}.ed .quote p{grid-column:1/10}
+.ed .quote.dark .folio{color:var(--cream);border-color:rgba(241,238,230,.4)}
+.ed .faq,.ed .letter{padding:var(--chap) var(--mg)}
+.ed .faq .in,.ed .letter .in{margin:0;max-width:62ch}
+.ed .faq h2,.ed .letter .in h2{text-align:left}
+.ed .letter .in h2{margin:48px 0 32px}
+.ed .faq .in h2{margin-bottom:24px}
+.ed .formblk,.ed .enq,.ed .sheet{padding-left:var(--mg);padding-right:var(--mg)}
+.ed .formblk .c,.ed .enq h2,.ed .enq .lede{text-align:left}
+.ed .formblk form,.ed .enq .in{margin-left:0}
+.ed .split .tx .folio{width:100%;margin-bottom:var(--gap)}
+.ed .tabrow{justify-content:flex-start;padding:0 var(--mg)}
+@media(max-width:900px){.ed .facts,.ed .steps,.ed .steps .c,.ed .quote{display:block}.ed .facts .row{grid-template-columns:1fr;gap:4px}.ed .steps .c p{margin-top:24px}.ed .steps .g{grid-template-columns:1fr;margin-top:40px}}
