@@ -21,7 +21,7 @@ var hrs=$('.hf-act .hours');
    second look in the same tab showed nothing. (owner, Oct 2026) */
 function arrives(){var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0],t=n?n.type:'navigate';if(t==='back_forward')return false;var ref=D.referrer;return t==='reload'||!ref||ref.indexOf(location.origin)!==0}
 var hero=$('.hero'),first=arrives(),arriving=false;
-if(hero&&first&&!calm){ses('bf-hx','1');arriving=true;var cur=D.createElement('div');cur.className='hx-cur';cur.setAttribute('aria-hidden','true');cur.innerHTML='<i></i><i></i>';hero.appendChild(cur);
+if(hero&&first&&!calm&&!R.classList.contains('ed')){ses('bf-hx','1');arriving=true;var cur=D.createElement('div');cur.className='hx-cur';cur.setAttribute('aria-hidden','true');cur.innerHTML='<i></i><i></i>';hero.appendChild(cur);
 var copy=[$('.hf-copy .d1'),$('.hf-copy .lede'),$('.hf-act')].filter(Boolean);copy.forEach(function(e){e.classList.add('hx-rise')});
 requestAnimationFrame(function(){requestAnimationFrame(function(){setTimeout(function(){cur.classList.add('open')},160)})});
 copy.forEach(function(e,i){setTimeout(function(){e.classList.add('in')},600+i*130)});
@@ -29,7 +29,7 @@ setTimeout(function(){cur.remove();copy.forEach(function(e){e.classList.remove('
 
 /* 2 · the strip runs like a marquee, paused under the pointer */
 var strip=$('.strip'),items=strip?[].slice.call(strip.children).map(function(n){return n.outerHTML}).join('')+'<span>•</span>':'';
-function marquee(){if(!strip||calm)return;strip.classList.add('hx-run');strip.innerHTML='<span class="hx-track" aria-hidden="true"></span>';var tr=strip.firstChild;tr.innerHTML=items;var one=tr.scrollWidth,k=Math.max(1,Math.ceil(innerWidth/Math.max(1,one))),half=new Array(k+1).join(items);tr.innerHTML=half+half;tr.style.animationDuration=Math.round(k*one/(innerWidth<=620?24:38))+'s'}
+function marquee(){if(!strip||calm||R.classList.contains('ed'))return;strip.classList.add('hx-run');strip.innerHTML='<span class="hx-track" aria-hidden="true"></span>';var tr=strip.firstChild;tr.innerHTML=items;var one=tr.scrollWidth,k=Math.max(1,Math.ceil(innerWidth/Math.max(1,one))),half=new Array(k+1).join(items);tr.innerHTML=half+half;tr.style.animationDuration=Math.round(k*one/(innerWidth<=620?24:38))+'s'}
 marquee();
 
 /* 3 · the intro reads itself in as you scroll */
