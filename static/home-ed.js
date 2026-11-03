@@ -20,7 +20,8 @@ var heads=$$('[data-ed-h]');if(!calm)heads.forEach(wrapWords);
 
 /* the hero: the photograph is there at once; the title rises at 150ms, the line at +200ms, the asks last */
 var h1=$('.hf-copy [data-ed-h]'),hl=$('.hf-side>.lede'),ha=$('.hf-act');
-function heroIn(){if(h1){lineDelays(h1,150);h1.classList.add('in')}if(hl){hl.style.setProperty('--d','350ms');hl.classList.add('in')}if(ha){ha.style.setProperty('--d','500ms');ha.classList.add('in')}}
+var logo=$('.hf-copy .ed-logo'),cue=$('.hf-copy .ed-cue'),hk=$('.hf-act .hx-acts');
+function heroIn(){if(logo)logo.classList.add('in');if(h1){lineDelays(h1,350);h1.classList.add('in')}if(hl){hl.style.setProperty('--d','700ms');hl.classList.add('in')}if(hk){hk.style.setProperty('--d','850ms');hk.classList.add('in')}if(ha)ha.classList.add('in');if(cue)cue.classList.add('in')}
 if(calm){heroIn()}else{(D.fonts&&D.fonts.ready?D.fonts.ready:Promise.resolve()).then(function(){requestAnimationFrame(heroIn)})}
 
 /* entrances: number first, heading 100ms later, the words 150ms after that; photographs open on their own */
@@ -38,10 +39,11 @@ else{var io=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.i
 
 /* scroll: the hero photograph grows 1 to 1.06 over the first screen while the title drifts up a little; photographs drift up to 40px (12px on phones) */
 var heroImg=$('.hf-fold .hero .ph img'),fold=$('.hf-fold'),copy=$('.hf-fold>.hf-copy'),pxs=$$('[data-ed-img] .ed-px');
-var raf=0;function tick(){raf=0;var vh=innerHeight,y=scrollY;
+var raf=0;function tick(){raf=0;var vh=innerHeight,y=scrollY;R.classList.toggle('ed-top',y<vh*.55);
  if(heroImg&&y<vh*1.2){var t=Math.min(1,Math.max(0,y/vh));heroImg.style.setProperty('--hs',(1+.06*t).toFixed(4));if(copy)copy.style.setProperty('--hy',(-y*.12).toFixed(1)+'px')}
  var max=phone()?12:40;pxs.forEach(function(p){var f=p.parentNode.closest('[data-ed-img]')||p.parentNode,r=f.getBoundingClientRect();if(r.bottom<-80||r.top>vh+80)return;
   var c=(r.top+r.height/2-vh/2)/(vh/2+r.height/2);c=Math.max(-1,Math.min(1,c));p.style.setProperty('--py',(c*max).toFixed(1)+'px')})}
+R.classList.toggle('ed-top',scrollY<innerHeight*.55);if(calm)addEventListener('scroll',function(){R.classList.toggle('ed-top',scrollY<innerHeight*.55)},{passive:true});
 if(!calm){addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(tick)},{passive:true});addEventListener('resize',function(){if(!raf)raf=requestAnimationFrame(tick)});tick()}
 
 /* the gallery: one photograph at a time, 40px and a crossfade over 650ms; tap, keys or a swipe; never on its own */
