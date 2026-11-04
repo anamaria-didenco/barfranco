@@ -73,6 +73,16 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
 - Page-specific CSS lives at the end of franco.css, one `/* ==== page ==== */` block each, every selector
   prefixed by the page's `<main class="pg-…">`.
 
+## One design language (Nov 2026)
+Home is the reference (`index.html`, `html.ed`, `static/home-ed.css` + `home-ed.js`). Every other page loads `static/site-ed.css`
+(after its other stylesheets) and `static/site-ed.js` (after `editorial.js`), which carry Home's rules everywhere:
+one ground (Almond; `--pp` and the events cream map to it), Home's outer margins (`--gx`, `.wrap` up to 1440px), Marsha set tight
+(`.d1`/`.d2` line-height .92), no gradients over photographs (the masthead sits on a Deep Red strip above an opening photograph;
+a flat Deep Red veil only where words sit on a picture), one button rule (filled box for the main ask, an italic line that draws
+its underline for the second; dock, sticky bars and masthead keep boxes), and Home's motion (section headings rise line by line
+from a mask, labels and ledes follow quietly, `.rv` photographs open through a mask while settling from 1.08; once each; nothing
+on the first screen or the events covers; none under reduced motion). New pages: add both lines.
+
 ## URLs
 
 - **One scheme: lowercase, folder-style, trailing slash.** `/`, `/menus/`, `/bookings/`, `/functions/`, `/contact/`,

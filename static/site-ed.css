@@ -1,0 +1,54 @@
+/* ==== One design language across the site, taken from the new Home (html.ed keeps its own home-ed.css).
+   Loaded last on every other page. Six rules: one ground, one set of margins, one heading rhythm, no gradients
+   over photographs, one button rule, one motion vocabulary (motion in site-ed.js). ==== */
+
+/* 1 · one ground: Almond everywhere (the brand has no Paper); the events pages' cream goes too */
+html:not(.ed){--pp:var(--al)}
+html.sd:not(.ed){--cr:var(--al)}
+html:not(.ed) body{background:var(--al)}
+
+/* 2 · one set of outer margins: the same as Home's grid */
+html:not(.ed){--gx:clamp(20px,4.6vw,72px)}
+html:not(.ed) .wrap{max-width:1440px}
+
+/* 3 · one heading rhythm: Marsha set tight, as on Home */
+html:not(.ed) .d1,html:not(.ed) .d2{line-height:.92;letter-spacing:-.01em}
+
+/* 4 · no gradients over photographs: a flat Deep Red veil where words sit on a picture */
+html:not(.ed) .hero .ph::before,html:not(.ed) .hero-one .ph::before{display:none!important}
+html:not(.ed) .hero-one .ph::after{content:"";position:absolute;inset:0;height:auto;background:var(--dr)!important;opacity:.34;pointer-events:none}
+html:not(.ed) .hero .ph::after{display:none!important}
+@media (max-width:900px){
+ html:not(.ed) .hf-fold>.sec.hf-copy{background:var(--dr)!important}
+}
+
+/* 4b · the menu sits on its own Deep Red strip above an opening photograph (as on Book a table), so nothing lies over the picture */
+html:not(.ed):not(.sd) [data-hero]:is(.hero,.hero-one):not(.bk-hero){border-top:calc(var(--mb) + var(--nv)) solid var(--dr);box-sizing:border-box}
+
+/* 5 · one button rule: the main ask is the filled box; the second ask is an italic line that draws its underline.
+   The phone dock, the sticky bars and the masthead keep their boxes. */
+html:not(.ed) a.cta:not(.cta-fill):not(.sticky-cta *):not(.mast *):not(.dock *){border-color:transparent!important;background:none!important;padding:6px 0!important;font-style:italic;position:relative;flex:0 0 auto!important;text-align:left}
+html:not(.ed) a.cta:not(.cta-fill):not(.sticky-cta *):not(.mast *):not(.dock *)::before,
+html:not(.ed) a.cta:not(.cta-fill):not(.sticky-cta *):not(.mast *):not(.dock *)::after,
+html:not(.ed) .hx-more::before,html:not(.ed) .hx-more::after,html:not(.ed) .sd-ix-go::before,html:not(.ed) .sd-ix-go::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:currentColor}
+html:not(.ed) a.cta:not(.cta-fill):not(.sticky-cta *):not(.mast *):not(.dock *)::before,html:not(.ed) .hx-more::before,html:not(.ed) .sd-ix-go::before{opacity:.32}
+html:not(.ed) a.cta:not(.cta-fill):not(.sticky-cta *):not(.mast *):not(.dock *)::after,html:not(.ed) .hx-more::after,html:not(.ed) .sd-ix-go::after{transform:scaleX(0);transform-origin:0 50%;transition:transform .3s cubic-bezier(.215,.61,.355,1)}
+html:not(.ed) a.cta:not(.cta-fill):not(.sticky-cta *):not(.mast *):not(.dock *):hover::after,html:not(.ed) a.cta:not(.cta-fill):not(.sticky-cta *):not(.mast *):not(.dock *):focus-visible::after,
+html:not(.ed) .hx-more:hover::after,html:not(.ed) .sd-ix-go:hover::after{transform:scaleX(1)}
+html:not(.ed) a.cta:not(.cta-fill):not(.sticky-cta *):not(.mast *):not(.dock *):hover{color:inherit!important;background:none!important}
+html:not(.ed) .hx-more,html:not(.ed) .sd-ix-go{position:relative;display:inline-block;text-decoration:none}
+html:not(.ed) .cta-row{column-gap:24px}
+
+/* 6 · motion: the same vocabulary as Home (set only once site-ed.js runs and motion is welcome) */
+html.se-js:not(.se-calm) [data-se-h] .se-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+html.se-js:not(.se-calm) [data-se-h] .se-wi{display:inline-block;transform:translate3d(0,110%,0);opacity:0;transition:transform .9s cubic-bezier(.215,.61,.355,1) var(--d,0ms),opacity .9s cubic-bezier(.215,.61,.355,1) var(--d,0ms)}
+html.se-js:not(.se-calm) [data-se-h].in .se-wi{transform:none;opacity:1}
+html.se-js:not(.se-calm) [data-se-p]{transform:translate3d(0,16px,0);opacity:0;transition:transform .5s cubic-bezier(.215,.61,.355,1) var(--d,0ms),opacity .5s cubic-bezier(.215,.61,.355,1) var(--d,0ms)}
+html.se-js:not(.se-calm) [data-se-p].in{transform:none;opacity:1}
+/* photographs open through a mask while settling from 1.08 (replaces the old fade) */
+html.se-js:not(.se-calm) .rv:not([data-hero] .rv):not(.sd-cover .rv){clip-path:inset(100% 0 0 0);transition:clip-path 1.2s cubic-bezier(.215,.61,.355,1)}
+html.se-js:not(.se-calm) .rv:not([data-hero] .rv):not(.sd-cover .rv) img{opacity:1;transform:scale(1.08);transition:transform 1.2s cubic-bezier(.215,.61,.355,1)}
+html.se-js:not(.se-calm) .rv.se-in:not([data-hero] .rv):not(.sd-cover .rv){clip-path:inset(0 0 0 0)}
+html.se-js:not(.se-calm) .rv.se-in:not([data-hero] .rv):not(.sd-cover .rv) img{transform:none}
+@media (max-width:860px){html.se-js:not(.se-calm) [data-se-h] .se-wi{transition-duration:.75s}html.se-js:not(.se-calm) .rv:not([data-hero] .rv),html.se-js:not(.se-calm) .rv:not([data-hero] .rv) img{transition-duration:1s}}
+@media (prefers-reduced-motion:reduce){html:not(.ed) a.cta::after,html:not(.ed) .hx-more::after{transition:none}}
