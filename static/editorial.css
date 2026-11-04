@@ -1197,7 +1197,7 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 .bk-hero .hero-cap .cta-row{grid-column:2;grid-row:1/4;align-self:end;display:block}
 .bk-hero .hero-cap .hc-h{margin:0}
 @media (max-width:900px){
- .bk-hero .ph{height:clamp(150px,22svh,210px)}
+ .bk-hero .ph{height:auto;aspect-ratio:4/3}
  .bk-hero .hero-cap{grid-template-columns:minmax(0,1fr);padding:18px var(--gx) 20px}
  .bk-hero .hero-cap .cta-row{display:none}
 }
