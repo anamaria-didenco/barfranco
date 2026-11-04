@@ -45,6 +45,13 @@ if(has('#track')){/* card carousel */
 const track=$('#track'),cards=$$('.card');let ci=0;
 function cgo(n){ci=Math.max(0,Math.min(cards.length-1,n));const step=cards[0].getBoundingClientRect().width+6;const maxX=track.scrollWidth-track.parentElement.clientWidth;track.style.transform='translateX('+(-Math.min(ci*step,maxX))+'px)';$('#cn').textContent=ci+1}
 $('#cnext').onclick=()=>cgo(ci+1);$('#cprev').onclick=()=>cgo(ci-1);addEventListener('resize',()=>cgo(ci));
+/* and it swipes: drag with a finger or the mouse, let go, it settles on the nearest card */
+let sx=0,dx=0,base=0,drag=false;track.querySelectorAll('img').forEach(i=>i.draggable=false);
+const tx=()=>{const m=/translateX\((-?[\d.]+)px\)/.exec(track.style.transform);return m?+m[1]:0};
+track.addEventListener('pointerdown',e=>{if(e.button)return;drag=true;sx=e.clientX;dx=0;base=tx();track.classList.add('drag');track.setPointerCapture(e.pointerId)});
+track.addEventListener('pointermove',e=>{if(!drag)return;dx=e.clientX-sx;track.style.transform='translateX('+(base+dx)+'px)'});
+const drop=()=>{if(!drag)return;drag=false;track.classList.remove('drag');cgo(Math.abs(dx)>50?ci+(dx<0?1:-1):ci)};
+track.addEventListener('pointerup',drop);track.addEventListener('pointercancel',drop);
 
 }
 if(has('#hist')){/* storied past: columns drift at different speeds while the section is pinned */
@@ -87,3 +94,8 @@ window.addEventListener('message',e=>{
   if(!d||d.type!=='vf-embed-height'||!(d.height>0))return;
   $$('iframe[src*="venueflowhq.com"]').forEach(f=>{if(f.contentWindow===e.source)f.style.height=Math.ceil(d.height)+'px'});
 });
+
+/* the house: on a touch screen a tap opens a room, the next tap goes through to its page */
+if(has('.rooms-g')){const g=$('.rooms-g'),rooms=$$('.room');
+if(matchMedia('(hover: none)').matches)g.classList.add('touch');
+rooms.forEach(r=>{r.addEventListener('click',e=>{if(e.target.closest('a'))return;const was=r.classList.contains('open');rooms.forEach(o=>o.classList.remove('open'));if(!was)r.classList.add('open')})})}
