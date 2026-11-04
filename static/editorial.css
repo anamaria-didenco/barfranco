@@ -1183,3 +1183,21 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 
 /* the strip without a quote: the ask keeps to the right */
 .fx-foot:not(:has(.fx-q)){justify-content:flex-end}
+/* ==== Book a table: the photograph shows at its true colour (no shading over it). The title sits under it on a flat
+   Deep Red band, with Reserve to its right; the widget still starts on the first screen. ==== */
+.bk-hero{height:auto;display:block}
+.bk-hero .ph{position:relative;inset:auto;height:clamp(220px,32svh,380px)}
+.bk-hero .ph::after{display:none}
+/* the masthead sits on its own Deep Red strip above the photograph, so nothing lies over the picture */
+.bk-hero{padding-top:calc(var(--mb) + var(--nv));background:var(--dr)}
+.bk-hero .ph::before{display:none}
+.bk-hero .hero-cap{position:static;transform:none;max-width:none;width:auto;background:var(--dr);color:var(--al);border:0;
+ padding:clamp(20px,3vw,34px) max(var(--gx),calc((100% - 1240px) / 2 + var(--gx)));display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:4px 32px}
+.bk-hero .hero-cap>*{grid-column:1}
+.bk-hero .hero-cap .cta-row{grid-column:2;grid-row:1/4;align-self:end;display:block}
+.bk-hero .hero-cap .hc-h{margin:0}
+@media (max-width:900px){
+ .bk-hero .ph{height:clamp(150px,22svh,210px)}
+ .bk-hero .hero-cap{grid-template-columns:minmax(0,1fr);padding:18px var(--gx) 20px}
+ .bk-hero .hero-cap .cta-row{display:none}
+}
