@@ -30,10 +30,10 @@ if(!RM)(function tick(now){const p=Math.min((now-t0)/DUR,1);if(bar)bar.style.wid
 }
 /* intro: letters fade in one by one, the rule draws out */
 $$('#ih .w').forEach(w=>{let i=0;w.innerHTML=w.dataset.w.split(' ').map(word=>'<span class="wd">'+[...word].map(ch=>'<span style="transition-delay:'+((i++)*55)+'ms">'+ch+'</span>').join('')+'</span>').join(' ')});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -6% 0px'});
 $$('.rv,#ih,.split').forEach(e=>io.observe(e));
 setTimeout(()=>$$('.rv,#ih,.split').forEach(e=>e.classList.add('in')),2500);/* whatever has not been seen is on by 2.5s */
-$$('section').forEach(s=>s.querySelectorAll('.rv').forEach((e,i)=>e.style.transitionDelay=(i%6)*140+'ms'));
+$$('section').forEach(s=>s.querySelectorAll('.rv').forEach((e,i)=>e.style.transitionDelay=Math.min(i,4)*110+'ms'));
 
 if(has('#stabs')){/* spotlight: tabs auto-advance with the progress underline */
 const st=$$('#stabs button'),ss=$$('.spot .s');let si=0,stt;
