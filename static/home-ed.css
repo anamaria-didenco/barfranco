@@ -177,3 +177,29 @@ html.ed .hf-act .hx-acts a.cta-fill[href="/bookings/"]{display:none}
  html.ed .ed-a{padding-top:11px;padding-bottom:12px}
 }
 @media (max-width:860px){html.ed .hf-act .hx-acts{grid-template-columns:auto;justify-self:center}html.ed .hf-act .hx-acts a.cta{padding-left:40px;padding-right:40px}}
+
+/* ==== the close of the page on the same grid: reservations on Deep Red, then where to find us, then the footer ==== */
+.ed-book{background:var(--dr);color:var(--al);padding:clamp(88px,14svh,176px) 0}
+.ed-book .ed-k{grid-column:1/3;grid-row:1;padding-top:1em}
+.ed-book .ed-h{grid-column:3/9;grid-row:1;color:var(--al);align-self:end}
+.ed-book-s{grid-column:9/13;grid-row:1;align-self:end}
+.ed-book-s .ed-p{margin-top:0}
+.ed-book .cta-fill{background:var(--al);border-color:var(--al);color:var(--dr)}
+.ed-book .cta-fill:hover{background:transparent;color:var(--al)}
+.ed-book-v{margin:18px 0 0}
+.ed-find{background:var(--al);color:var(--dr);padding:clamp(80px,12svh,152px) 0}
+.ed-find .ed-k{grid-column:1/3;grid-row:1;padding-top:.6em}
+.ed-find .ed-h{grid-column:3/9;grid-row:1;color:var(--dr)}
+.ed-acc{color:var(--br)}
+.ed-find .ed-p{grid-column:3/8;grid-row:2}
+.ed-find .ed-acts{grid-column:3/8;grid-row:3}
+.ed-find-l{grid-column:9/13;grid-row:1/4;align-self:end;margin:0}
+/* the footer and the base line take the same outer margins as the page above */
+html.ed footer.foot .wrap,html.ed #legal .legal{max-width:1440px;padding-left:var(--mx);padding-right:var(--mx);margin-left:auto;margin-right:auto}
+@media (max-width:860px){
+ .ed-book,.ed-find{padding:72px 0}
+ .ed-book-s{margin-top:24px}
+ .ed-find-l{margin-top:36px}
+ .ed-book .ed-k,.ed-find .ed-k{padding-top:0}
+}
+@media (max-width:860px){html.ed footer.foot .wrap{padding-left:56px}}
