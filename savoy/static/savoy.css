@@ -510,3 +510,14 @@ h2 .sotto,h3 .sotto{display:block;margin:10px 0 0;color:inherit}
 @media(max-width:900px){.spot .vcta{display:none}}
 /* the split's head, now one heading */
 .split .tx h2 .sotto{margin:10px 0 0;max-width:none}
+
+/* the lift, calmer type: one tracked label, one name, one plain list a floor (owner: the mixed fonts read messy) */
+.floor{padding:22px 0 24px}
+.floor .fl{flex-direction:column;align-items:flex-start;gap:8px}
+.floor .n{font:700 11px/1 var(--display);letter-spacing:.22em;text-transform:uppercase;min-width:0;opacity:.8}
+.floor .t{font:700 clamp(28px,3vw,42px)/1 var(--display);letter-spacing:.02em}
+.floor .sub>div{padding-left:0;flex-direction:column;gap:0}
+.floor .sub>div>*{margin-top:8px}
+.floor .sub>div>a:first-child{margin-top:16px}
+.floor .sub a{font:400 19px/1.3 var(--body);font-style:normal;letter-spacing:0;text-transform:none;align-self:flex-start}
+@media(max-width:900px){.floor .n{display:block}}
