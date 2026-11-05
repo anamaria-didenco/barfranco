@@ -17,6 +17,17 @@ const wait=ms=>new Promise(r=>setTimeout(r,RM?0:ms));
 async function openLift(){if(busy)return;busy=true;lift.classList.add('vis');await wait(20);lift.classList.add('shut');await wait(800);lift.classList.add('inside');cur=null;toFloor(1,true);document.body.style.overflow='hidden';await wait(250);lift.classList.remove('shut');lift.classList.add('open');await wait(750);busy=false;$('#close').focus()}
 async function closeLift(){if(busy)return;busy=true;lift.classList.remove('open');lift.classList.add('shut');await wait(800);lift.classList.remove('inside');document.body.style.overflow='';await wait(250);lift.classList.remove('shut');await wait(780);lift.classList.remove('vis');busy=false;$('#open').focus()}
 $('#open').onclick=openLift;$('#close').onclick=closeLift;
+/* the page turn: every page is a floor. Leaving, the doors shut over the page; arriving, they open on the next one */
+const ROOT=(()=>{const sc=document.querySelector('script[src$="savoy.js"]');return sc?sc.src.replace(/static\/savoy\.js.*$/,''):''})();
+function inSite(a){if(!a||a.target&&a.target!=='_self'||a.hasAttribute('download'))return false;let u;try{u=new URL(a.href,location.href)}catch(_){return false}
+  if(u.origin!==location.origin||!u.href.startsWith(ROOT))return false;if(u.pathname===location.pathname&&u.search===location.search)return false;return /\.html$|\/$/.test(u.pathname)}
+addEventListener('click',e=>{if(RM||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;const a=e.target.closest('a[href]');if(!inSite(a))return;
+  e.preventDefault();const href=a.href;try{sessionStorage.setItem('bf-lift','1')}catch(_){}
+  lift.classList.add('vis');requestAnimationFrame(()=>lift.classList.add('shut'));setTimeout(()=>{location.href=href},820)},true);
+if(document.documentElement.classList.contains('arrive')){try{sessionStorage.removeItem('bf-lift')}catch(_){}
+  lift.classList.add('vis','shut');document.documentElement.classList.remove('arrive');
+  setTimeout(()=>{lift.classList.remove('shut');setTimeout(()=>lift.classList.remove('vis'),800)},RM?0:260)}
+addEventListener('pageshow',e=>{if(e.persisted){lift.classList.remove('vis','shut','inside','open');document.body.style.overflow=''}});
 addEventListener('keydown',e=>{if(!lift.classList.contains('open'))return;if(e.key==='Escape')closeLift();if(e.key==='ArrowUp'){e.preventDefault();toFloor(Math.min(2,cur+1))}if(e.key==='ArrowDown'){e.preventDefault();toFloor(Math.max(0,cur-1))}});
 floors.forEach(e=>{const f=+e.dataset.f;e.addEventListener('mouseenter',()=>toFloor(f));e.querySelector('.fl').onclick=()=>toFloor(f)});
 calls.forEach(b=>b.onclick=()=>toFloor(+b.dataset.f));$$('.lift a[href^="#"]').forEach(a=>a.addEventListener('click',()=>closeLift()));
@@ -73,12 +84,14 @@ $$('form[data-email]').forEach(f=>{
     const body=new URLSearchParams();body.append('_subject',f.dataset.subject||'Enquiry — Bar Franco');body.append('_template','table');body.append('_captcha','false');
     f.querySelectorAll('input,textarea,select').forEach(el=>{if(el!==honey&&el.value)body.append(el.name||'Field',el.value)});
     fetch('https://formsubmit.co/ajax/'+encodeURIComponent(f.dataset.email),{method:'POST',headers:{Accept:'application/json'},body})
-      .then(r=>r.json()).then(res=>{if(!res||(res.success!==true&&res.success!=='true'))throw 0;f.reset();say('Sent, grazie',true);try{gtag('event','conversion',{send_to:'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',value:1.0,currency:'NZD'})}catch(_){}})
+      .then(r=>r.json()).then(res=>{if(!res||(res.success!==true&&res.success!=='true'))throw 0;f.reset();say('Sent, grazie',true);try{gtag('event','conversion',{send_to:'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',value:1.0,currency:'NZD'})}catch(_){}if(!f.closest('footer')){try{sessionStorage.setItem('bf-lift','1')}catch(_){}lift.classList.add('vis');requestAnimationFrame(()=>lift.classList.add('shut'));setTimeout(()=>{location.href=ROOT+'grazie/index.html'},RM?0:820)}})
       .catch(()=>{say('Not sent, try again',false);setTimeout(()=>say(label,false),4000)});
   });
 });
 /* the hero booking bar: its two fields are a doorway to the booking page */
 $$('.bbar label').forEach(l=>{const a=l.parentElement.querySelector('a[href]');if(a)l.addEventListener('click',()=>{location.href=a.href})});
+/* the phone dock: on Home it rises after the hero has settled; everywhere else it is there at once */
+const dock=$('.dock');if(dock)setTimeout(()=>dock.classList.add('up'),document.body.classList.contains('hm')&&!RM?1500:0);
 
 /* VenueFlow enquiry: a wait line while the form loads, then the frame takes the height the widget posts */
 $$('iframe[src*="venueflowhq.com"]').forEach(f=>{

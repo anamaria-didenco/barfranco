@@ -21,3 +21,13 @@ Still to do before go-live: `og:image` paths point at `/images/og/*.jpg` as on t
 
 ## Copy
 Facts (prices, capacities, hours, quotes, contacts) are from the live site. Prose was rewritten in the Savoy's register (third person, measured). Headlines in the giant intro blocks were condensed to fit two lines.
+
+## The studio pass (November 2026)
+- **The lift is the page turn.** Any click on a link to another page of the site shuts the lift doors over the page (savoy.js), the next page arrives behind shut doors (the one-line `arrive` script in every `<head>`, keyed on `sessionStorage` `bf-lift`) and opens them. Reduced motion skips it.
+- **The dock.** On phones every page carries a two-button dock (`nav.dock`, before the script tag): dining pages Book a table (straight to NowBookIt) · Plan an event; event pages Check your date · Call. On Home it rises after the hero has settled.
+- **Proof beside every ask**: `p.proof` under the closing Book / Enquire button and above the enquiry form (a guest's line and the Google reviews link).
+- **Event pages open on desire, then the date**: hero, then `.enq.first` (the form), then the facts box on the owner's rules (Seated 165 · Standing 240, prices with $, minimum spend on application, no venue hire fee).
+- **Ephemera on Home**: the address on a coaster, the hours on a matchbook (`.coaster`, `.match`), in Find us.
+- **The footer says less**: Find us · Say ciao · Franco · A letter from Franco (the newsletter as a signed letter).
+- **`/grazie/`**: the thank-you page the contact form turns to after a message is sent (noindex). NowBookIt and VenueFlow completions stay inside their own widgets.
+- **Cut on Home**: La casa (the three rooms), which said what the three acts already say; the Italian that needed translating.
