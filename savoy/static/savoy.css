@@ -667,3 +667,23 @@ footer .nl .ln em{display:block;margin-top:6px;font-style:italic;opacity:.8}
 /* phones read at one size */
 @media(max-width:640px){.t-body{font-size:18px;line-height:1.35}.hist .post p{font-size:18px}.proof{font-size:16px}.cta-ln{font-size:17px;gap:12px}.hm .unl .fl>div{grid-template-columns:5.5em 1fr;gap:14px}}
 @media(max-width:640px){.cta-ln{flex-direction:column;align-items:center;gap:8px}.cta-ln .sep{display:none}}
+
+/* ==== breathing room, the Milan rule: a photograph is a plate in a book and always has cream around it ==== */
+:root{--air:clamp(88px,9vw,144px)}
+/* a photograph never touches a block of colour, in either direction */
+:is(.hero,.spot,.split,.hist) + :is(.cta,.sheet.dark,.steps,.quote.dark,.facts.dark,.split.dark,.enq),
+:is(.cta,.sheet.dark,.steps,.quote.dark,.facts.dark,.split.dark) + :is(.spot,.split,.hist){margin-top:var(--air)}
+/* two full-bleed photographs never stack: a cream gutter between them, like a spread */
+:is(.spot,.split,.hist) + :is(.spot,.split,.hist){margin-top:var(--air)}
+/* a Deep Red block after a Deep Red block runs on; a cream block after a photograph keeps its own air */
+.steps + .quote.dark,.quote.dark + .steps{margin-top:0}
+/* the enquiry under the hero has room to breathe */
+.enq.first{padding-top:var(--air);margin-top:0}
+/* the page closes as one dark block: Come say ciao, the sign-off and the footer on Deep Red */
+.sig{background:var(--dark);padding:52px 0}
+.sig::before{background:rgba(241,238,230,.35)}
+.sig i{background:var(--dark)}
+.sig i::after{background:var(--cream)}
+/* the full-bleed photographs keep their height on wide screens, but never more than the page can hold */
+.split,.spot{min-height:0;height:min(100vh,860px)}
+@media(max-width:640px){:root{--air:64px}.split{height:auto}}
