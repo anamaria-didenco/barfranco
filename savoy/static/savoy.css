@@ -800,3 +800,22 @@ img{filter:sepia(.14) saturate(1.18) hue-rotate(-6deg) contrast(.95) brightness(
 .rs .hero .poster h1{font-size:clamp(34px,5.2vw,78px)}
 .rs .hero h1 span{overflow:visible}
 @media(max-width:640px){.rs .hero .poster{top:50%;max-width:calc(100vw - 48px)}}
+/* the event pages on the same rhythm: the date and the facts stay under the hero; a guest's line as a second statement */
+.rs .enq.first{padding-top:var(--air)}
+.rs-state.q .rs-say{font-size:clamp(22px,2.2vw,32px)}
+.rs-state.q .t-xs{display:block;margin:26px 0 0;color:var(--dark);opacity:.8}
+.rs-state .t-xs{letter-spacing:.3em}
+.rs .facts{padding-bottom:0}
+/* these pages breathe like a book: twice the air between a photograph and the words around it */
+body.rs{--air:clamp(132px,15vw,240px)}
+.rs-plate{margin-bottom:var(--air)}
+.rs-ch{padding:0 48px var(--air)}
+.rs-strip{margin:0 0 var(--air)}
+.rs-state.q{padding:0 24px var(--air)}
+.rs-big{padding:0 48px var(--air)}
+.rs-small{padding-bottom:var(--air)}
+.rs .sheet,.rs .unl,.rs .faq,.rs .facts{padding-top:0}
+.rs .facts{padding-bottom:var(--air)}
+.rs .cta{padding-top:0}
+@media(max-width:900px){.rs-ch,.rs-big{padding-left:24px;padding-right:24px}}
+@media(max-width:640px){body.rs{--air:96px}}
