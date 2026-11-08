@@ -1212,3 +1212,22 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 .film::after{background:url(/static/film-grain.png) 0 0/192px 192px repeat;mix-blend-mode:overlay;opacity:.16}
 @media (max-width:860px){.film::after{background-size:150px 150px;opacity:.13}}
 @media print{.film{display:none}}
+
+/* ==== Phone masthead (owner, Nov 2026): two-line menu on the left, then the script; Book a table · Plan an event,
+   italic and unboxed, top right. Desktop keeps its row. ==== */
+.mast-ph{display:none}
+@media (max-width:900px){
+ header.mast .mast-menu{order:-1;position:relative;width:28px;height:28px;padding:0!important;margin:0 14px 0 -4px!important;font-size:0;flex:none}
+ header.mast .mast-menu::before,header.mast .mast-menu::after{content:"";position:absolute;left:4px;right:4px;height:1.25px;background:currentColor;transition:transform .3s var(--ease),top .3s var(--ease)}
+ header.mast .mast-menu::before{top:10px}
+ header.mast .mast-menu::after{top:17px}
+ .menu-open header.mast .mast-menu::before{top:13.5px;transform:rotate(45deg)}
+ .menu-open header.mast .mast-menu::after{top:13.5px;transform:rotate(-45deg)}
+ header.mast .mast-book,html.tb header.mast .mast-book{display:none!important}
+ .mast-ph{display:flex;gap:16px;align-items:center}
+ .mast-ph a{color:inherit;font-style:italic;font-size:15px;text-decoration:none;white-space:nowrap;padding:12px 0;position:relative}
+ .mast-ph a::after{content:"";position:absolute;left:0;right:0;bottom:9px;height:1px;background:currentColor;opacity:.4}
+ .mast-ph a:focus-visible{outline:2px solid var(--sp);outline-offset:2px}
+}
+@media (max-width:360px){.mast-ph{gap:12px}.mast-ph a{font-size:14px}}
+@media (max-width:900px){header.mast .mk{margin-right:auto}.mast-ph a{pointer-events:auto}}

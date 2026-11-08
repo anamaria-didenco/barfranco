@@ -265,3 +265,5 @@ html.ed .hf-fold>.hero .ph::after,.ed-rh-ph::after{display:none!important}
 .ed-rhero{border-top:calc(var(--mb) + var(--nv)) solid var(--dr);box-sizing:border-box}
 .ed-rh-s{background:var(--dr);padding:clamp(18px,2vw,28px)}
 @media (max-width:860px){.ed-rh-s{margin-left:-20px;margin-right:-20px;padding:20px}}
+/* phones: Book a table and Plan an event live top right, so the hero keeps only its line */
+@media (max-width:900px){html.ed .hf-act .hx-acts{display:none!important}}

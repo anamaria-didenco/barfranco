@@ -195,3 +195,31 @@ function film(img){var box=img.parentNode;if(!box||box.querySelector(':scope > .
 function all(){[].slice.call(D.querySelectorAll('img[src*="/images/"]')).forEach(function(i){if(i.closest('.mast,footer,#legal,.walk-ov'))return;if(i.complete)film(i);else i.addEventListener('load',function(){film(i)},{once:true})})}
 if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',all);else all();
 })();
+
+/* Hard rule (owner, Nov 2026): every sentence starts on a new line. In running text a full stop, question or exclamation
+   mark followed by a space and a capital becomes a line break, so a line never starts halfway through a sentence
+   ("Stay for / dinner upstairs" is not allowed). Applies to paragraphs in the page body; headings, menus and lists keep
+   their own setting. Runs on every page. */
+(function(){
+var D=document;
+function split(p){var w=D.createTreeWalker(p,NodeFilter.SHOW_TEXT),nodes=[],n;while(n=w.nextNode())nodes.push(n);
+ nodes.forEach(function(t){if(t.parentNode.closest('a,button,em,b,i,cite,q')&&t.parentNode!==p&&t.parentNode.closest('a,button'))return;
+  var parts=t.textContent.split(/([.!?][”’"]?)\s+(?=[“‘"(]?[A-Z0-9À-Ý])/);if(parts.length<3)return;
+  var f=D.createDocumentFragment();for(var i=0;i<parts.length;i++){if(i%2===1){f.appendChild(D.createTextNode(parts[i]));f.appendChild(D.createElement('br'))}else if(parts[i])f.appendChild(D.createTextNode(parts[i]))}
+  t.parentNode.replaceChild(f,t)})}
+function run(){[].slice.call(D.querySelectorAll('main p, #main p, .sec p, section p, blockquote p')).forEach(function(p){
+ if(p._snt||p.closest('.card,.mcard,.pm,.sheet,form,.info,nav,footer,.foot,.legal,.mast,.ed-gal-c,.sd-run,.sd-avail,[aria-hidden="true"]'))return;p._snt=1;split(p)})}
+if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',run);else run();
+})();
+
+/* Phones (owner, Nov 2026): the menu is two quiet lines on the left; Book a table and Plan an event sit top right in italic, no box. */
+(function(){
+var D=document,mast=D.querySelector('header.mast'),mb=mast&&mast.querySelector('.mast-menu');if(!mast||!mb)return;
+mb.setAttribute('aria-label','Menu');mast.insertBefore(mb,mast.firstChild.nextSibling);
+var plan=D.getElementById('enquire')||D.getElementById('sdForm')?'#enquire':'/functions/#enquire';
+var box=D.createElement('span');box.className='mast-ph';
+box.innerHTML='<a href="/bookings/">Book a table</a><a href="'+plan+'">Plan an event</a>';
+var r=mast.querySelector('.mast-r');if(r)r.appendChild(box);
+/* the lines follow the links' ink as the masthead changes over light and dark grounds */
+var ink=function(){var a=box.querySelector('a');if(a)mb.style.color=getComputedStyle(a).color};ink();addEventListener('scroll',function(){requestAnimationFrame(ink)},{passive:true});new MutationObserver(ink).observe(mast,{attributes:true,attributeFilter:['class']});new MutationObserver(ink).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+})();

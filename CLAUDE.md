@@ -93,6 +93,12 @@ on the first screen or the events covers; none under reduced motion). New pages:
   files are untouched. To remove it, delete the Film blocks at the end of both files.
 - **No tint over photographs** (owner): the film layer is the only treatment. Where small words would sit on a bright picture
   they go on a solid Deep Red card instead (Restaurant hero); the masthead sits on its Deep Red strip above opening photographs.
+- **HARD RULE: every sentence starts on a new line.** A line must never begin halfway through a sentence ("Stay for /
+  dinner upstairs" is not allowed). `editorial.js` turns each sentence end in body paragraphs into a line break on every page;
+  write copy as short sentences so each one fits its line, and never join two sentences on one line.
+- **Phone masthead:** two thin lines (the menu) on the far left, then the script; top right "Book a table" and "Plan an event",
+  italic, no box (`.mast-ph`, built by `editorial.js`, styles at the end of `editorial.css`). The boxed Book a table is desktop only;
+  Home's hero hides its own asks on phones.
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.
