@@ -259,3 +259,9 @@ html.ed body{background:var(--pp)}
 @media (min-width:861px){.ed-rh-ph::after{opacity:.38}}
 .ed-r2-card{--ink:var(--dr);--acc:var(--br);--rule:rgba(108,6,0,.32)}
 html.ed.ed-top .hx-host{opacity:0;pointer-events:none;transition:opacity .3s}
+/* owner, Nov 2026: no tint over photographs; the film layer is the only treatment */
+html.ed .hf-fold>.hero .ph::after,.ed-rh-ph::after{display:none!important}
+/* Restaurant without a tint: the masthead on its Deep Red strip, the small words on a solid Deep Red card */
+.ed-rhero{border-top:calc(var(--mb) + var(--nv)) solid var(--dr);box-sizing:border-box}
+.ed-rh-s{background:var(--dr);padding:clamp(18px,2vw,28px)}
+@media (max-width:860px){.ed-rh-s{margin-left:-20px;margin-right:-20px;padding:20px}}

@@ -91,6 +91,8 @@ on the first screen or the events covers; none under reduced motion). New pages:
 - **Film:** every photograph carries a light Kodak Portra 400 feel: `editorial.js` adds `<i class="film">` after each `/images/` photo that
   fills its frame; `editorial.css` gives it a warm Almond soft-light wash and fine grain (`static/film-grain.png`, overlay). The photo
   files are untouched. To remove it, delete the Film blocks at the end of both files.
+- **No tint over photographs** (owner): the film layer is the only treatment. Where small words would sit on a bright picture
+  they go on a solid Deep Red card instead (Restaurant hero); the masthead sits on its Deep Red strip above opening photographs.
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.

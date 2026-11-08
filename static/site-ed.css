@@ -60,3 +60,5 @@ html:not(.ed) .sec.hero[data-hero]:has(>.ph:nth-of-type(2)){grid-template-column
 html:not(.ed) .sec.hero[data-hero]:has(>.ph-m)>.ph:not(.ph-m),
 html:not(.ed) .sec.hero[data-hero]:not(:has(>.ph-m))>.ph:nth-of-type(n+2){display:none!important}
 html:not(.ed) .sec.hero[data-hero]:has(>.ph-m)>.ph-m{display:block!important}
+/* owner, Nov 2026: no tint over photographs; the film layer is the only treatment */
+html:not(.ed) .hero-one .ph::after,html:not(.ed) .hero .ph::after{display:none!important}
