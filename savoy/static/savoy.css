@@ -750,3 +750,16 @@ html body .sig::before,html body.hm .sig::before,html body .sig i::after,html bo
 .steps .g figcaption .d{display:none}
 .steps .g figcaption::after{background:rgba(108,6,0,.3);margin-top:12px}
 .steps .g figure p{position:static;order:3;text-align:left;color:var(--dark);padding-top:14px;font-size:19px}
+
+/* ==== the film: one grade and one grain on every photograph, so the library reads as one shoot ==== */
+img{filter:sepia(.14) saturate(1.18) hue-rotate(-6deg) contrast(.95) brightness(1.04)}
+.hist .tile img{filter:grayscale(1) contrast(1.08)}
+.card:not(.solid),.split .md,.unl .port,.steps .g figure,.hist .tile,.rail button{position:relative}
+:is(.hero .slide,.spot .s,.card:not(.solid),.split .md,.pics .p,.unl .port,.steps .g figure,.hist .tile,.rail button)::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.24;mix-blend-mode:overlay;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>") repeat;background-size:260px 260px}
+.card:not(.solid)::after{bottom:58px}
+.steps .g figure::after{bottom:auto;aspect-ratio:3/4}
+/* the carousel's photographs breathe as they pass: the frame holds still, the picture pans inside it */
+@supports(animation-timeline:view()){@media(prefers-reduced-motion:no-preference){
+  .card:not(.solid) img{object-position:50% 50%;animation:card-pan linear both;animation-timeline:view(inline);animation-range:entry 0% exit 100%}
+}}
+@keyframes card-pan{from{object-position:40% 50%}to{object-position:60% 50%}}

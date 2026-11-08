@@ -63,6 +63,11 @@ track.addEventListener('pointerdown',e=>{if(e.button)return;drag=true;sx=e.clien
 track.addEventListener('pointermove',e=>{if(!drag)return;dx=e.clientX-sx;track.style.transform='translateX('+(base+dx)+'px)'});
 const drop=()=>{if(!drag)return;drag=false;track.classList.remove('drag');cgo(Math.abs(dx)>50?ci+(dx<0?1:-1):ci)};
 track.addEventListener('pointerup',drop);track.addEventListener('pointercancel',drop);
+/* and it slides on its own while it is in view, resting while a hand is on it */
+let auto=null;const play=()=>{if(RM)return;clearInterval(auto);auto=setInterval(()=>cgo(ci+1>=cards.length?0:ci+1),4800)};const rest=()=>clearInterval(auto);
+track.addEventListener('pointerenter',rest);track.addEventListener('pointerleave',play);track.addEventListener('pointerdown',rest);
+$('#cnext').addEventListener('click',play);$('#cprev').addEventListener('click',play);
+new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?play():rest()),{threshold:.3}).observe(track.parentElement);
 
 }
 if(has('#hist')){/* storied past: columns drift at different speeds while the section is pinned */
