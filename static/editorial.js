@@ -223,3 +223,19 @@ var r=mast.querySelector('.mast-r');if(r)r.appendChild(box);
 /* the lines follow the links' ink as the masthead changes over light and dark grounds */
 var ink=function(){var a=box.querySelector('a');if(a)mb.style.color=getComputedStyle(a).color};ink();addEventListener('scroll',function(){requestAnimationFrame(ink)},{passive:true});new MutationObserver(ink).observe(mast,{attributes:true,attributeFilter:['class']});new MutationObserver(ink).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
 })();
+
+/* Booking on phones (owner, Nov 2026: "really hard to book on mobile"). A booking widget inside a page scrolls separately from
+   the page, so on a phone the finger keeps moving the wrong thing. On phones every Book a table (masthead, hero, Home's panel)
+   opens NowBookIt's own booking page full screen, and the widget boxes on Book a table and Restaurant become one big button.
+   Desktop keeps the widget on the page. */
+(function(){
+var D=document,NBI='https://bookings.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&venueid=12388&theme=light&colors=hex,AF0F00,6C0600';
+var phone=function(){return matchMedia('(max-width:900px)').matches};
+D.addEventListener('click',function(e){if(!phone()||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey)return;
+ var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'';
+ if(!/^(\/bookings\/?|Bookings\.html|#book)(#.*)?$/.test(h)||(h==='#book'&&!D.querySelector('#book .bk-frame')))return;
+ e.preventDefault();e.stopImmediatePropagation();location.href=NBI},true);
+function swap(){[].slice.call(D.querySelectorAll('.bk-frame')).forEach(function(f){if(f.nextElementSibling&&f.nextElementSibling.classList.contains('bk-go'))return;
+ var go=D.createElement('p');go.className='bk-go';go.innerHTML='<a class="cta cta-fill" href="'+NBI+'">Choose a date and time</a>';f.insertAdjacentElement('afterend',go)})}
+if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',swap);else swap();
+})();

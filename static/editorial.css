@@ -1231,3 +1231,11 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 }
 @media (max-width:360px){.mast-ph{gap:12px}.mast-ph a{font-size:14px}}
 @media (max-width:900px){header.mast .mk{margin-right:auto}.mast-ph a{pointer-events:auto}}
+/* booking on phones: one big button instead of the widget box (desktop keeps the widget) */
+.bk-go{display:none}
+@media (max-width:900px){
+ .bk-frame{display:none!important}
+ .bk-go{display:block;margin:6px 0 0}
+ .bk-go a.cta{display:block;width:100%;text-align:center;padding:18px 16px!important;font-size:17px!important}
+}
+@media (max-width:900px){.bk-go{width:100%;justify-self:stretch;align-self:stretch}.bk-go a.cta{width:100%!important;box-sizing:border-box}}

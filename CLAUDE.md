@@ -99,6 +99,9 @@ on the first screen or the events covers; none under reduced motion). New pages:
 - **Phone masthead:** two thin lines (the menu) on the far left, then the script; top right "Book a table" and "Plan an event",
   italic, no box (`.mast-ph`, built by `editorial.js`, styles at the end of `editorial.css`). The boxed Book a table is desktop only;
   Home's hero hides its own asks on phones.
+- **Booking on phones:** every Book a table (masthead, heroes, Home's panel, `#book`) opens NowBookIt's own page full screen,
+  and the widget boxes on Book a table and Restaurant become one full-width "Choose a date and time" button (`.bk-go`). A widget
+  inside the page scrolled separately from it, which made booking on a phone hard. Desktop keeps the widget. Both in `editorial.js`/`.css`.
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.
