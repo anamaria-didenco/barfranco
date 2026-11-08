@@ -35,18 +35,18 @@ function show(e){if(e.classList.contains('in'))return;var r=role(e),sec=e.closes
 var items=$$('[data-ed-n],[data-ed-p],[data-ed-img]').concat(heads.filter(function(h){return h!==h1}));
 if(calm||!('IntersectionObserver' in window)){items.forEach(function(e){e.classList.add('in')})}
 else{var io=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;io.unobserve(x.target);show(x.target)})},{rootMargin:'0px 0px -15% 0px',threshold:0});
- (D.fonts&&D.fonts.ready?D.fonts.ready:Promise.resolve()).then(function(){items.forEach(function(e){io.observe(e)})})}
+ (D.fonts&&D.fonts.ready?D.fonts.ready:Promise.resolve()).then(function(){items.forEach(function(e){/* an opening (data-hero) plays at once, in order; the rest as it is reached */if(e.closest('[data-hero]'))requestAnimationFrame(function(){show(e)});else io.observe(e)})})}
 
 /* a keyboard user who tabs into a section that hasn't played yet sees it at once */
 D.addEventListener('focusin',function(e){var sec=e.target.closest&&e.target.closest('section');if(sec)$$('[data-ed-n],[data-ed-h],[data-ed-p],[data-ed-img]',sec).forEach(function(x){if(x.hasAttribute('data-ed-h'))wrapWords(x);show(x)})});
 
 /* scroll: the hero photograph grows 1 to 1.06 over the first screen while the title drifts up a little; photographs drift up to 40px (12px on phones) */
 var heroImg=$('.hf-fold .hero .ph img'),fold=$('.hf-fold'),copy=$('.hf-fold>.hf-copy'),pxs=$$('[data-ed-img] .ed-px');
-var raf=0;function tick(){raf=0;var vh=innerHeight,y=scrollY;R.classList.toggle('ed-top',y<vh*.55);
+var raf=0;function tick(){raf=0;var vh=innerHeight,y=scrollY;if(hasLogo)R.classList.toggle('ed-top',y<vh*.55);
  if(heroImg&&y<vh*1.2){var t=Math.min(1,Math.max(0,y/vh));heroImg.style.setProperty('--hs',(1+.06*t).toFixed(4));if(copy)copy.style.setProperty('--hy',(-y*.12).toFixed(1)+'px')}
  var max=phone()?12:40;pxs.forEach(function(p){var f=p.parentNode.closest('[data-ed-img]')||p.parentNode,r=f.getBoundingClientRect();if(r.bottom<-80||r.top>vh+80)return;
   var c=(r.top+r.height/2-vh/2)/(vh/2+r.height/2);c=Math.max(-1,Math.min(1,c));p.style.setProperty('--py',(c*max).toFixed(1)+'px')})}
-R.classList.toggle('ed-top',scrollY<innerHeight*.55);if(calm)addEventListener('scroll',function(){R.classList.toggle('ed-top',scrollY<innerHeight*.55)},{passive:true});
+var hasLogo=!!$('.hf-copy .ed-logo');if(hasLogo)R.classList.toggle('ed-top',scrollY<innerHeight*.55);if(calm&&hasLogo)addEventListener('scroll',function(){R.classList.toggle('ed-top',scrollY<innerHeight*.55)},{passive:true});
 if(!calm){addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(tick)},{passive:true});addEventListener('resize',function(){if(!raf)raf=requestAnimationFrame(tick)});tick()}
 
 /* the gallery: one photograph at a time, 40px and a crossfade over 650ms; tap, keys or a swipe; never on its own */

@@ -181,3 +181,17 @@ set(scrollY>TOP?'up':'top');
 var raf=0;addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(function(){raf=0;tick()})},{passive:true});
 mast.addEventListener('focusin',function(){if(state==='away')set('up')});
 })();
+
+/* Film (owner, Nov 2026): a Portra-like layer over every photograph (styles at the end of editorial.css).
+   Only real photographs (/images/…), only where the picture fills its frame, so captions never get grain. */
+(function(){
+var D=document;
+function film(img){var box=img.parentNode;if(!box||box.querySelector(':scope > .film'))return;
+ /* layout sizes, not on-screen ones: the reveal briefly scales the picture */
+ var bw=box.offsetWidth,bh=box.offsetHeight,iw=img.offsetWidth,ih=img.offsetHeight;
+ if(bw&&iw&&(bw-iw>4||bh-ih>4)&&getComputedStyle(img).position!=='absolute')return;
+ if(getComputedStyle(box).position==='static')box.style.position='relative';
+ var f=D.createElement('i');f.className='film';f.setAttribute('aria-hidden','true');img.insertAdjacentElement('afterend',f)}
+function all(){[].slice.call(D.querySelectorAll('img[src*="/images/"]')).forEach(function(i){if(i.closest('.mast,footer,#legal,.walk-ov'))return;if(i.complete)film(i);else i.addEventListener('load',function(){film(i)},{once:true})})}
+if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',all);else all();
+})();

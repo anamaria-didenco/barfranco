@@ -1201,3 +1201,14 @@ p,li,blockquote,figcaption{text-wrap:pretty}
  .bk-hero .hero-cap{grid-template-columns:minmax(0,1fr);padding:18px var(--gx) 20px}
  .bk-hero .hero-cap .cta-row{display:none}
 }
+
+/* ==== Film (owner, Nov 2026): every photograph gets a light Kodak Portra 400 feel. A layer over each picture
+   (editorial.js adds <i class="film"> after the <img>) so the photo files and their own brightness effects stay as
+   they are: a warm Almond wash in soft-light (warmer, softer contrast, shadows lifted a touch) and fine grain in
+   overlay. Static: the grain does not move. Text set on a photograph sits above it. ==== */
+.film{position:absolute;inset:0;pointer-events:none;display:block}
+.film::before,.film::after{content:"";position:absolute;inset:0}
+.film::before{background:var(--al);mix-blend-mode:soft-light;opacity:.22}
+.film::after{background:url(/static/film-grain.png) 0 0/192px 192px repeat;mix-blend-mode:overlay;opacity:.16}
+@media (max-width:860px){.film::after{background-size:150px 150px;opacity:.13}}
+@media print{.film{display:none}}

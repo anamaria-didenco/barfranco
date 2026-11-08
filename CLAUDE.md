@@ -76,12 +76,24 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
 ## One design language (Nov 2026)
 Home is the reference (`index.html`, `html.ed`, `static/home-ed.css` + `home-ed.js`). Every other page loads `static/site-ed.css`
 (after its other stylesheets) and `static/site-ed.js` (after `editorial.js`), which carry Home's rules everywhere:
-one ground (Almond; `--pp` and the events cream map to it), Home's outer margins (`--gx`, `.wrap` up to 1440px), Marsha set tight
+one ground (Paper since November; see below), Home's outer margins (`--gx`, `.wrap` up to 1440px), Marsha set tight
 (`.d1`/`.d2` line-height .92), no gradients over photographs (the masthead sits on a Deep Red strip above an opening photograph;
 a flat Deep Red veil only where words sit on a picture), one button rule (filled box for the main ask, an italic line that draws
 its underline for the second; dock, sticky bars and masthead keep boxes), and Home's motion (section headings rise line by line
 from a mask, labels and ledes follow quietly, `.rv` photographs open through a mask while settling from 1.08; once each; nothing
 on the first screen or the events covers; none under reduced motion). New pages: add both lines.
+
+## Owner's November 2026 changes
+- **Paper is the ground again** (owner reversed "there is no Paper"): every light section on every page sits on Paper `--pp #F1EEE6`;
+  the events cream maps to it; Almond stays the ink on Deep Red and the hero cards. Home: end of `home-ed.css`; other pages: `site-ed.css`.
+- **One hero photograph per page:** where a hero carried two photographs (Aperitivo, Pasta fresca, Negroni bar, Before the stadium,
+  Weddings, Events pack), `site-ed.css` keeps one at full width on every screen (the one the phone showed, `.ph-m`, else the first).
+- **Film:** every photograph carries a light Kodak Portra 400 feel: `editorial.js` adds `<i class="film">` after each `/images/` photo that
+  fills its frame; `editorial.css` gives it a warm Almond soft-light wash and fine grain (`static/film-grain.png`, overlay). The photo
+  files are untouched. To remove it, delete the Film blocks at the end of both files.
+- **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
+  with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
+  03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.
 
 ## URLs
 

@@ -2,10 +2,6 @@
    Loaded last on every other page. Six rules: one ground, one set of margins, one heading rhythm, no gradients
    over photographs, one button rule, one motion vocabulary (motion in site-ed.js). ==== */
 
-/* 1 · one ground: Almond everywhere (the brand has no Paper); the events pages' cream goes too */
-html:not(.ed){--pp:var(--al)}
-html.sd:not(.ed){--cr:var(--al)}
-html:not(.ed) body{background:var(--al)}
 
 /* 2 · one set of outer margins: the same as Home's grid */
 html:not(.ed){--gx:clamp(20px,4.6vw,72px)}
@@ -52,3 +48,15 @@ html.se-js:not(.se-calm) .rv.se-in:not([data-hero] .rv):not(.sd-cover .rv){clip-
 html.se-js:not(.se-calm) .rv.se-in:not([data-hero] .rv):not(.sd-cover .rv) img{transform:none}
 @media (max-width:860px){html.se-js:not(.se-calm) [data-se-h] .se-wi{transition-duration:.75s}html.se-js:not(.se-calm) .rv:not([data-hero] .rv),html.se-js:not(.se-calm) .rv:not([data-hero] .rv) img{transition-duration:1s}}
 @media (prefers-reduced-motion:reduce){html:not(.ed) a.cta::after,html:not(.ed) .hx-more::after{transition:none}}
+
+/* ==== Paper is the ground again (owner, Nov 2026): Paper on every light section, the events cream included;
+   Almond stays the ink on Deep Red and the hero cards ==== */
+html.sd:not(.ed){--cr:var(--pp)}
+html:not(.ed) body,html:not(.ed) .sec.almond{background:var(--pp)}
+html:not(.ed) .sec.almond{--gr:var(--pp)}
+/* ==== One hero photograph on every page (owner, Nov 2026): where a hero carried two, it keeps the one the phone
+   showed (or the first), at full width on every screen ==== */
+html:not(.ed) .sec.hero[data-hero]:has(>.ph:nth-of-type(2)){grid-template-columns:minmax(0,1fr)!important}
+html:not(.ed) .sec.hero[data-hero]:has(>.ph-m)>.ph:not(.ph-m),
+html:not(.ed) .sec.hero[data-hero]:not(:has(>.ph-m))>.ph:nth-of-type(n+2){display:none!important}
+html:not(.ed) .sec.hero[data-hero]:has(>.ph-m)>.ph-m{display:block!important}
