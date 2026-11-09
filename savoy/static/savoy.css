@@ -819,3 +819,27 @@ body.rs{--air:clamp(132px,15vw,240px)}
 .rs .cta{padding-top:0}
 @media(max-width:900px){.rs-ch,.rs-big{padding-left:24px;padding-right:24px}}
 @media(max-width:640px){body.rs{--air:96px}}
+
+/* ==== menus, simple and elegant: one still, one statement, three tabs, one sheet at a time, no frames, no leaders ==== */
+.rs .tabrow{padding:0 24px 72px;gap:clamp(28px,4vw,64px)}
+.rs .tabrow a{opacity:.45;padding-bottom:12px;letter-spacing:.3em}
+.rs .tabrow a.on{opacity:1}
+.rs .sheet{padding:0 24px var(--air)}
+.rs .sheet[hidden]{display:none}
+.rs .sheet>.in{max-width:640px;border:0;outline:0;padding:0}
+.rs .sheet .c{text-align:center;margin-bottom:24px}
+.rs .sheet .c .sotto{margin-bottom:0}
+.rs .sheet .lede{margin:24px auto 0;max-width:26em;text-align:center}
+.rs .sheet h3{margin:72px 0 20px;padding:0;border:0;text-align:center;font-size:13px;letter-spacing:.3em}
+.rs .sheet .it{display:flex;align-items:baseline;gap:20px;padding:10px 0;border:0;background:none;line-height:1.35}
+.rs .sheet .it>span{background:none;padding:0}
+.rs .sheet .it>span:first-child{flex:1 1 auto}
+.rs .sheet .it>span:last-child{flex:none;margin-left:auto;font:700 13px/1.6 var(--display);letter-spacing:.1em;color:var(--accent);white-space:nowrap}
+.rs .sheet .it em{opacity:.75}
+.rs .sheet .set{margin-top:72px;padding:0;border:0;outline:0;text-align:center;font-style:italic;max-width:28em;margin-left:auto;margin-right:auto}
+.rs .sheet .set .t-sm{display:block;font-style:normal;margin-bottom:14px;letter-spacing:.3em;font-size:13px;color:var(--accent)}
+.rs .sheet .ask{margin-top:64px}
+.cta .pdfs{margin-top:28px}
+@media(max-width:640px){.rs .tabrow{padding-bottom:48px}.rs .sheet h3{margin-top:56px}.rs .sheet .it{gap:14px}}
+.rs .sheet .c h2,.rs .sheet .c h2>.it{text-align:center}
+@media(max-width:640px){.rs .sheet .c,.rs .sheet .c h2,.rs .sheet .c h2>.it,.rs .sheet .c .sotto,.rs .sheet .lede,.rs .sheet h3,.rs .sheet .set,.rs .sheet .ask{text-align:left;margin-left:0;margin-right:0}.rs .tabrow{justify-content:flex-start;padding-left:24px}}

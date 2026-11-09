@@ -117,3 +117,11 @@ window.addEventListener('message',e=>{
 if(has('.rooms-g')){const g=$('.rooms-g'),rooms=$$('.room');
 if(matchMedia('(hover: none)').matches)g.classList.add('touch');
 rooms.forEach(r=>{r.addEventListener('click',e=>{if(e.target.closest('a'))return;const was=r.classList.contains('open');rooms.forEach(o=>o.classList.remove('open'));if(!was)r.classList.add('open')})})}
+
+if(has('#mtabs')){/* menus: three tabs, one sheet at a time; #sheet-food and the old names still open their sheet */
+const tabs=$$('#mtabs a'),sheets=$$('.sheet');
+function show(id){if(!sheets.some(s=>s.id===id))id='food';sheets.forEach(s=>{s.hidden=s.id!==id});tabs.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
+function fromHash(){const h=location.hash.replace(/^#(sheet-)?/,'');show(/^(drinks|bar)/.test(h)?'drinks':/^event/.test(h)?'events':'food')}
+tabs.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const id=a.getAttribute('href').slice(1);history.replaceState(null,'','#'+id);show(id);const top=$('#mtabs').getBoundingClientRect().top+scrollY-96;if(scrollY>top)scrollTo({top,behavior:RM?'auto':'smooth'})}));
+addEventListener('hashchange',fromHash);fromHash();
+}
