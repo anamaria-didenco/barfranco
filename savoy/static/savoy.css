@@ -967,3 +967,15 @@ body:not(.hm) .hero::before{background:linear-gradient(180deg,rgba(108,6,0,.2),r
 .how b{font:700 12px/1 var(--display);letter-spacing:.2em;color:var(--accent)}
 @media(max-width:640px){.how{flex-direction:column;gap:10px;align-items:flex-start}.hb.book .nb iframe{height:640px}}
 .how{flex-direction:column;align-items:center;gap:8px;margin-bottom:32px}
+
+/* ==== feeling sooner, trust from the first screen ====
+   a guest's words sit on the hero beside the ask; the statement and its photograph share the first scroll; every dining page carries a guest's line mid-page */
+.hero .trust{position:absolute;z-index:2;left:48px;bottom:44px;max-width:21em;margin:0;font:italic 400 17px/1.35 var(--body);color:var(--white);opacity:0;animation:markin 1s var(--ease) 1.4s forwards}
+.hero .trust q{quotes:"“" "”"}
+.hero .trust span{display:block;margin-top:6px;font-style:normal;font-size:15px;opacity:.85}
+.hero .trust a{border-bottom:1px solid currentColor}
+.rs .rs-state:not(.q){padding-bottom:clamp(44px,5vw,72px)}
+.rs .fls+.rs-state{padding-top:clamp(44px,5vw,72px)}
+.rs-state.q .t-xs a{border-bottom:1px solid currentColor}
+@media(max-width:900px){.hero .trust{display:none}}
+@media(prefers-reduced-motion:reduce){.hero .trust{animation:none;opacity:1}}
