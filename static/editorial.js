@@ -151,7 +151,7 @@ var book=$('.mast-book'),links=$('#links'),mb=$('.mast-menu');
 /* one button, matched to the page: event pages go to the enquiry form */
 /* #book only where it holds the booking widget (Bookings, Restaurant). Home's #book is a line that links to /bookings/,
    so jumping there would add a step before anyone can book: Home keeps /bookings/. */
-/* the four events pages (html.sd) say what their dock says (Christmas: Enquire now); the pack and Robbie (body[data-ask=events]) send you to the Functions form */
+/* the four events pages (html.sd) say what their dock says (Christmas: Hold a date); the pack and Robbie (body[data-ask=events]) send you to the Functions form */
 if(book){var dockAsk=$('.sticky-btns .cta-fill');
 if(R.classList.contains('sd')){book.textContent=dockAsk&&dockAsk.textContent.trim()||'Check your date';book.setAttribute('href','#enquire')}
 else if(D.body.getAttribute('data-ask')==='events'){book.textContent='Check your date';book.setAttribute('href','/functions/#enquire')}
@@ -180,4 +180,62 @@ if(dy>0){acc=acc>0?acc+dy:dy;if(acc>14)set('away')}else if(dy<0){acc=acc<0?acc+d
 set(scrollY>TOP?'up':'top');
 var raf=0;addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(function(){raf=0;tick()})},{passive:true});
 mast.addEventListener('focusin',function(){if(state==='away')set('up')});
+})();
+
+/* Film (owner, Nov 2026): a Portra-like layer over every photograph (styles at the end of editorial.css).
+   Only real photographs (/images/…), only where the picture fills its frame, so captions never get grain. */
+(function(){
+var D=document;
+function film(img){var box=img.parentNode;if(!box||box.querySelector(':scope > .film'))return;
+ /* layout sizes, not on-screen ones: the reveal briefly scales the picture */
+ var bw=box.offsetWidth,bh=box.offsetHeight,iw=img.offsetWidth,ih=img.offsetHeight;
+ if(bw&&iw&&(bw-iw>4||bh-ih>4)&&getComputedStyle(img).position!=='absolute')return;
+ if(getComputedStyle(box).position==='static')box.style.position='relative';
+ var f=D.createElement('i');f.className='film';f.setAttribute('aria-hidden','true');img.insertAdjacentElement('afterend',f)}
+function all(){[].slice.call(D.querySelectorAll('img[src*="/images/"]')).forEach(function(i){if(i.closest('.mast,footer,#legal,.walk-ov'))return;if(i.complete)film(i);else i.addEventListener('load',function(){film(i)},{once:true})})}
+if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',all);else all();
+})();
+
+/* Hard rule (owner, Nov 2026): every sentence starts on a new line. In running text a full stop, question or exclamation
+   mark followed by a space and a capital becomes a line break, so a line never starts halfway through a sentence
+   ("Stay for / dinner upstairs" is not allowed). Applies to paragraphs in the page body; headings, menus and lists keep
+   their own setting. Runs on every page. */
+(function(){
+var D=document;
+function split(p){var w=D.createTreeWalker(p,NodeFilter.SHOW_TEXT),nodes=[],n;while(n=w.nextNode())nodes.push(n);
+ nodes.forEach(function(t){if(t.parentNode.closest('a,button,em,b,i,cite,q')&&t.parentNode!==p&&t.parentNode.closest('a,button'))return;
+  var parts=t.textContent.split(/([.!?][”’"]?)\s+(?=[“‘"(]?[A-Z0-9À-Ý])/);if(parts.length<3)return;
+  var f=D.createDocumentFragment();for(var i=0;i<parts.length;i++){if(i%2===1){f.appendChild(D.createTextNode(parts[i]));f.appendChild(D.createElement('br'))}else if(parts[i])f.appendChild(D.createTextNode(parts[i]))}
+  t.parentNode.replaceChild(f,t)})}
+function run(){[].slice.call(D.querySelectorAll('main p, #main p, .sec p, section p, blockquote p')).forEach(function(p){
+ if(p._snt||p.closest('.card,.mcard,.pm,.sheet,form,.info,nav,footer,.foot,.legal,.mast,.ed-gal-c,.sd-run,.sd-avail,[aria-hidden="true"]'))return;p._snt=1;split(p)})}
+if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',run);else run();
+})();
+
+/* Phones (owner, Nov 2026): the menu is two quiet lines on the left; Book a table and Plan an event sit top right in italic, no box. */
+(function(){
+var D=document,mast=D.querySelector('header.mast'),mb=mast&&mast.querySelector('.mast-menu');if(!mast||!mb)return;
+mb.setAttribute('aria-label','Menu');mast.insertBefore(mb,mast.firstChild.nextSibling);
+var plan=D.getElementById('enquire')||D.getElementById('sdForm')?'#enquire':'/functions/#enquire';
+var box=D.createElement('span');box.className='mast-ph';
+box.innerHTML='<a href="/bookings/">Book a table</a><a href="'+plan+'">Plan an event</a>';
+var r=mast.querySelector('.mast-r');if(r)r.appendChild(box);
+/* the lines follow the links' ink as the masthead changes over light and dark grounds */
+var ink=function(){var a=box.querySelector('a');if(a)mb.style.color=getComputedStyle(a).color};ink();addEventListener('scroll',function(){requestAnimationFrame(ink)},{passive:true});new MutationObserver(ink).observe(mast,{attributes:true,attributeFilter:['class']});new MutationObserver(ink).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+})();
+
+/* Booking on phones (owner, Nov 2026: "really hard to book on mobile"). A booking widget inside a page scrolls separately from
+   the page, so on a phone the finger keeps moving the wrong thing. On phones every Book a table (masthead, hero, Home's panel)
+   opens NowBookIt's own booking page full screen, and the widget boxes on Book a table and Restaurant become one big button.
+   Desktop keeps the widget on the page. */
+(function(){
+var D=document,NBI='https://bookings.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&venueid=12388&theme=light&colors=hex,AF0F00,6C0600';
+var phone=function(){return matchMedia('(max-width:900px)').matches};
+D.addEventListener('click',function(e){if(!phone()||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey)return;
+ var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'';
+ if(!/^(\/bookings\/?|Bookings\.html|#book)(#.*)?$/.test(h)||(h==='#book'&&!D.querySelector('#book .bk-frame')))return;
+ e.preventDefault();e.stopImmediatePropagation();location.href=NBI},true);
+function swap(){[].slice.call(D.querySelectorAll('.bk-frame')).forEach(function(f){if(f.nextElementSibling&&f.nextElementSibling.classList.contains('bk-go'))return;
+ var go=D.createElement('p');go.className='bk-go';go.innerHTML='<a class="cta cta-fill" href="'+NBI+'">Choose a date and time</a>';f.insertAdjacentElement('afterend',go)})}
+if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',swap);else swap();
 })();

@@ -11,7 +11,7 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   (AW-18456342571), fires the phone, email and VenueFlow enquiry conversions (once per enquiry, enquiry ID as
   `transaction_id`, enhanced-conversion email and phone), keeps gclid / gbraid / wbraid in a 90-day first-party
   cookie and adds them to the VenueFlow iframe. Never paste the Google tag or a conversion listener inline again;
-  change labels in that file. `partial` fires on VenueFlow's `vf-partial-captured`; `bookClick` fires on any click of a link to `/bookings/` or to NowBookIt, once per page view (a completed NowBookIt booking is not seen by the site: that needs NowBookIt's own Ads/Analytics setting).
+  change labels in that file. `partial` fires on VenueFlow's `vf-partial-captured`; `bookClick` (Book a table, NowBookIt) is in LABELS but deliberately fires nothing: the owner does not want Book a table clicks counted as conversions.
 - **Tokens** (top of franco.css): Deep Red `--deep #6C0600` (ink), Almond `--almond #FAD7C3`, Bright Red
   `--bright #AF0F00` (heads), Spritz `--spritz #F00000` (**focus rings only, never text**),
   `--hairline rgba(108,6,0,.15)`. These four are the brand's approved palette (BarFranco_VisualIdentity.pdf, p.12) and the only
@@ -72,6 +72,39 @@ This file tells Claude Code how this site is built and how to edit it. Read it b
   motion): full-bleed photographs (`.ph.full`) drift a few percent inside their frames.
 - Page-specific CSS lives at the end of franco.css, one `/* ==== page ==== */` block each, every selector
   prefixed by the page's `<main class="pg-…">`.
+
+## One design language (Nov 2026)
+Home is the reference (`index.html`, `html.ed`, `static/home-ed.css` + `home-ed.js`). Every other page loads `static/site-ed.css`
+(after its other stylesheets) and `static/site-ed.js` (after `editorial.js`), which carry Home's rules everywhere:
+one ground (Paper since November; see below), Home's outer margins (`--gx`, `.wrap` up to 1440px), Marsha set tight
+(`.d1`/`.d2` line-height .92), no gradients over photographs (the masthead sits on a Deep Red strip above an opening photograph;
+a flat Deep Red veil only where words sit on a picture), one button rule (filled box for the main ask, an italic line that draws
+its underline for the second; dock, sticky bars and masthead keep boxes), and Home's motion (section headings rise line by line
+from a mask, labels and ledes follow quietly, `.rv` photographs open through a mask while settling from 1.08; once each; nothing
+on the first screen or the events covers; none under reduced motion). New pages: add both lines.
+
+## Owner's November 2026 changes
+- **Paper is the ground again** (owner reversed "there is no Paper"): every light section on every page sits on Paper `--pp #F1EEE6`;
+  the events cream maps to it; Almond stays the ink on Deep Red and the hero cards. Home: end of `home-ed.css`; other pages: `site-ed.css`.
+- **One hero photograph per page:** where a hero carried two photographs (Aperitivo, Pasta fresca, Negroni bar, Before the stadium,
+  Weddings, Events pack), `site-ed.css` keeps one at full width on every screen (the one the phone showed, `.ph-m`, else the first).
+- **Film:** every photograph carries a light Kodak Portra 400 feel: `editorial.js` adds `<i class="film">` after each `/images/` photo that
+  fills its frame; `editorial.css` gives it a warm Almond soft-light wash and fine grain (`static/film-grain.png`, overlay). The photo
+  files are untouched. To remove it, delete the Film blocks at the end of both files.
+- **No tint over photographs** (owner): the film layer is the only treatment. Where small words would sit on a bright picture
+  they go on a solid Deep Red card instead (Restaurant hero); the masthead sits on its Deep Red strip above opening photographs.
+- **HARD RULE: every sentence starts on a new line.** A line must never begin halfway through a sentence ("Stay for /
+  dinner upstairs" is not allowed). `editorial.js` turns each sentence end in body paragraphs into a line break on every page;
+  write copy as short sentences so each one fits its line, and never join two sentences on one line.
+- **Phone masthead:** two thin lines (the menu) on the far left, then the script; top right "Book a table" and "Plan an event",
+  italic, no box (`.mast-ph`, built by `editorial.js`, styles at the end of `editorial.css`). The boxed Book a table is desktop only;
+  Home's hero hides its own asks on phones.
+- **Booking on phones:** every Book a table (masthead, heroes, Home's panel, `#book`) opens NowBookIt's own page full screen,
+  and the widget boxes on Book a table and Restaurant become one full-width "Choose a date and time" button (`.bk-go`). A widget
+  inside the page scrolled separately from it, which made booking on a phone hard. Desktop keeps the widget. Both in `editorial.js`/`.css`.
+- **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
+  with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
+  03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.
 
 ## URLs
 

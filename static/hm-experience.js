@@ -21,7 +21,7 @@ var hrs=$('.hf-act .hours');
    second look in the same tab showed nothing. (owner, Oct 2026) */
 function arrives(){var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0],t=n?n.type:'navigate';if(t==='back_forward')return false;var ref=D.referrer;return t==='reload'||!ref||ref.indexOf(location.origin)!==0}
 var hero=$('.hero'),first=arrives(),arriving=false;
-if(hero&&first&&!calm){ses('bf-hx','1');arriving=true;var cur=D.createElement('div');cur.className='hx-cur';cur.setAttribute('aria-hidden','true');cur.innerHTML='<i></i><i></i>';hero.appendChild(cur);
+if(hero&&first&&!calm&&!R.classList.contains('ed')){ses('bf-hx','1');arriving=true;var cur=D.createElement('div');cur.className='hx-cur';cur.setAttribute('aria-hidden','true');cur.innerHTML='<i></i><i></i>';hero.appendChild(cur);
 var copy=[$('.hf-copy .d1'),$('.hf-copy .lede'),$('.hf-act')].filter(Boolean);copy.forEach(function(e){e.classList.add('hx-rise')});
 requestAnimationFrame(function(){requestAnimationFrame(function(){setTimeout(function(){cur.classList.add('open')},160)})});
 copy.forEach(function(e,i){setTimeout(function(){e.classList.add('in')},600+i*130)});
@@ -29,7 +29,7 @@ setTimeout(function(){cur.remove();copy.forEach(function(e){e.classList.remove('
 
 /* 2 · the strip runs like a marquee, paused under the pointer */
 var strip=$('.strip'),items=strip?[].slice.call(strip.children).map(function(n){return n.outerHTML}).join('')+'<span>•</span>':'';
-function marquee(){if(!strip||calm)return;strip.classList.add('hx-run');strip.innerHTML='<span class="hx-track" aria-hidden="true"></span>';var tr=strip.firstChild;tr.innerHTML=items;var one=tr.scrollWidth,k=Math.max(1,Math.ceil(innerWidth/Math.max(1,one))),half=new Array(k+1).join(items);tr.innerHTML=half+half;tr.style.animationDuration=Math.round(k*one/(innerWidth<=620?24:38))+'s'}
+function marquee(){if(!strip||calm||R.classList.contains('ed'))return;strip.classList.add('hx-run');strip.innerHTML='<span class="hx-track" aria-hidden="true"></span>';var tr=strip.firstChild;tr.innerHTML=items;var one=tr.scrollWidth,k=Math.max(1,Math.ceil(innerWidth/Math.max(1,one))),half=new Array(k+1).join(items);tr.innerHTML=half+half;tr.style.animationDuration=Math.round(k*one/(innerWidth<=620?24:38))+'s'}
 marquee();
 
 /* 3 · the intro reads itself in as you scroll */
@@ -71,14 +71,14 @@ function settle(){if(hState!=='hero'||!hrs)return;var a=anchor(),r=host.getBound
 /* on phones he ducks as the footer comes up (his frame sat over the sign-off and the footer links for 600px); on wide screens at the last line */
 function want(){if(hrs){var a=hrs.getBoundingClientRect();if(a.top>innerHeight*.3&&a.bottom<innerHeight+40)return'hero'}var c=$('#climb');if(c&&tdog&&tdog.offsetWidth){var r=c.getBoundingClientRect();if(r.top<innerHeight*.6&&r.bottom>innerHeight*.4)return'duck'}var ph=innerWidth<=700,ft=ph?$('footer'):$('#legal');if(ft&&ft.getBoundingClientRect().top<innerHeight-(ph?40:0))return'duck';return'corner'}
 var greeted=false;
-function setState(s){var prev=hState;hState=s;if(s==='corner'&&!greeted){greeted=true;setTimeout(function(){if(hState==='corner')talk(innerWidth<=700?'Ciao. Tap me for a table.':'Ciao. Spritz first?',3000)},900)}
+function setState(s){var prev=hState;hState=s;if(s==='corner'&&!greeted&&!(R.classList.contains('ed')&&scrollY<innerHeight*.5)){greeted=true;setTimeout(function(){if(hState==='corner')talk(innerWidth<=700?'Ciao. Tap me for a table.':'Ciao. Spritz first?',3000)},900)}
 if(s==='hero'){host.classList.remove('talk','sniff');if(!prev||calm||!hrs){if(wk){wk.cancel();wk=null}host.classList.remove('docked','duck','out');host.classList.add('hero');if(hrs)place(anchor());return}
 if(prev!=='hero'){if(host.classList.contains('docked'))undock();host.classList.remove('out');host.classList.add('hero');walkTo(anchor(),settle)}return}
 if(prev==='hero'||!prev){host.classList.remove('hero');if(!prev||calm||!hrs){if(wk){wk.cancel();wk=null}host.classList.remove('out','walk');dock();return}
 /* he leaves the hours line on foot, unframed, and the frame draws round him once he's sat down in the corner */
 host.classList.add('out');walkTo(cornerXY(),function(){if(hState==='hero')return;dock();host.classList.remove('out')});return}
 if(host.classList.contains('docked'))host.classList.toggle('duck',s==='duck')}
-function hostTick(){if(arriving)return;var s=want();if(s!==hState)setState(s);else if(s==='hero'&&hrs&&!wk&&!host.classList.contains('docked'))place(anchor());host.classList.toggle('al',hState==='hero'&&darkHero)}
+function hostTick(){if(arriving)return;var s=want();if(s==='corner'&&hState==='corner'&&!greeted&&R.classList.contains('ed')&&scrollY>=innerHeight*.5){greeted=true;setTimeout(function(){if(hState==='corner')talk(innerWidth<=700?'Ciao. Tap me for a table.':'Ciao. Spritz first?',3000)},600)}if(s!==hState)setState(s);else if(s==='hero'&&hrs&&!wk&&!host.classList.contains('docked'))place(anchor());host.classList.toggle('al',hState==='hero'&&darkHero)}
 tone();
 if(arriving&&hrs){var a0=anchor();hState='hero';place([-90,a0[1]]);host.classList.toggle('al',darkHero);
 setTimeout(function(){walkTo(anchor(),function(){arriving=false;hostTick()},1500)},1050)}

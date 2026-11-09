@@ -1165,3 +1165,77 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .bk-hero{height:clamp(360px,50svh,560px)}
 .bk-hero+#book{padding-top:clamp(28px,4vw,56px)}
 @media (max-width:900px){.bk-hero{height:clamp(330px,46svh,420px)}}
+/* ==== Typesetting, the details a compositor would fix: no one-word last lines in running text,
+   and the opening quote mark of a pull quote hangs in the margin so the words, not the mark, align. ==== */
+p,li,blockquote,figcaption{text-wrap:pretty}
+.fx-q p,.qt p,.hx-q{text-indent:-.42em}
+
+/* ==== review fixes (Nov 2026) ==== */
+/* 2 · on Deep Red the Spritz ring falls to 2.6:1, so it turns Almond there (3:1 and up); elsewhere it stays Spritz */
+[data-tone="dark"] :focus-visible,.dark :focus-visible,.hf-fold :focus-visible,html.ed .book :focus-visible,.sticky-cta :focus-visible{outline-color:var(--al)!important}
+/* 4 · touch: footer and contact links, month buttons and index links get a 44px tap area without moving */
+@media (pointer:coarse){
+ .fcols a{padding-top:12px;padding-bottom:12px;margin-top:-9px;margin-bottom:-9px}
+ .info li a{display:inline-block;padding-top:12px;padding-bottom:12px;margin-top:-12px;margin-bottom:-12px}
+ .sd .sd-mo button{padding-top:14px!important;padding-bottom:14px!important}
+ .sd-ix-go,.fx-ask{padding-top:12px;padding-bottom:12px}
+}
+
+/* the strip without a quote: the ask keeps to the right */
+.fx-foot:not(:has(.fx-q)){justify-content:flex-end}
+/* ==== Book a table: the photograph shows at its true colour (no shading over it). The title sits under it on a flat
+   Deep Red band, with Reserve to its right; the widget still starts on the first screen. ==== */
+.bk-hero{height:auto;display:block}
+.bk-hero .ph{position:relative;inset:auto;height:clamp(220px,32svh,380px)}
+.bk-hero .ph::after{display:none}
+/* the masthead sits on its own Deep Red strip above the photograph, so nothing lies over the picture */
+.bk-hero{padding-top:calc(var(--mb) + var(--nv));background:var(--dr)}
+.bk-hero .ph::before{display:none}
+.bk-hero .hero-cap{position:static;transform:none;max-width:none;width:auto;background:var(--dr);color:var(--al);border:0;
+ padding:clamp(20px,3vw,34px) max(var(--gx),calc((100% - 1240px) / 2 + var(--gx)));display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:4px 32px}
+.bk-hero .hero-cap>*{grid-column:1}
+.bk-hero .hero-cap .cta-row{grid-column:2;grid-row:1/4;align-self:end;display:block}
+.bk-hero .hero-cap .hc-h{margin:0}
+@media (max-width:900px){
+ .bk-hero .ph{height:auto;aspect-ratio:4/3}
+ .bk-hero .hero-cap{grid-template-columns:minmax(0,1fr);padding:18px var(--gx) 20px}
+ .bk-hero .hero-cap .cta-row{display:none}
+}
+
+/* ==== Film (owner, Nov 2026): every photograph gets a light Kodak Portra 400 feel. A layer over each picture
+   (editorial.js adds <i class="film"> after the <img>) so the photo files and their own brightness effects stay as
+   they are: a warm Almond wash in soft-light (warmer, softer contrast, shadows lifted a touch) and fine grain in
+   overlay. Static: the grain does not move. Text set on a photograph sits above it. ==== */
+.film{position:absolute;inset:0;pointer-events:none;display:block}
+.film::before,.film::after{content:"";position:absolute;inset:0}
+.film::before{background:var(--al);mix-blend-mode:soft-light;opacity:.22}
+.film::after{background:url(/static/film-grain.png) 0 0/192px 192px repeat;mix-blend-mode:overlay;opacity:.16}
+@media (max-width:860px){.film::after{background-size:150px 150px;opacity:.13}}
+@media print{.film{display:none}}
+
+/* ==== Phone masthead (owner, Nov 2026): two-line menu on the left, then the script; Book a table · Plan an event,
+   italic and unboxed, top right. Desktop keeps its row. ==== */
+.mast-ph{display:none}
+@media (max-width:900px){
+ header.mast .mast-menu{order:-1;position:relative;width:28px;height:28px;padding:0!important;margin:0 14px 0 -4px!important;font-size:0;flex:none}
+ header.mast .mast-menu::before,header.mast .mast-menu::after{content:"";position:absolute;left:4px;right:4px;height:1.25px;background:currentColor;transition:transform .3s var(--ease),top .3s var(--ease)}
+ header.mast .mast-menu::before{top:10px}
+ header.mast .mast-menu::after{top:17px}
+ .menu-open header.mast .mast-menu::before{top:13.5px;transform:rotate(45deg)}
+ .menu-open header.mast .mast-menu::after{top:13.5px;transform:rotate(-45deg)}
+ header.mast .mast-book,html.tb header.mast .mast-book{display:none!important}
+ .mast-ph{display:flex;gap:16px;align-items:center}
+ .mast-ph a{color:inherit;font-style:italic;font-size:15px;text-decoration:none;white-space:nowrap;padding:12px 0;position:relative}
+ .mast-ph a::after{content:"";position:absolute;left:0;right:0;bottom:9px;height:1px;background:currentColor;opacity:.4}
+ .mast-ph a:focus-visible{outline:2px solid var(--sp);outline-offset:2px}
+}
+@media (max-width:360px){.mast-ph{gap:12px}.mast-ph a{font-size:14px}}
+@media (max-width:900px){header.mast .mk{margin-right:auto}.mast-ph a{pointer-events:auto}}
+/* booking on phones: one big button instead of the widget box (desktop keeps the widget) */
+.bk-go{display:none}
+@media (max-width:900px){
+ .bk-frame{display:none!important}
+ .bk-go{display:block;margin:6px 0 0}
+ .bk-go a.cta{display:block;width:100%;text-align:center;padding:18px 16px!important;font-size:17px!important}
+}
+@media (max-width:900px){.bk-go{width:100%;justify-self:stretch;align-self:stretch}.bk-go a.cta{width:100%!important;box-sizing:border-box}}
