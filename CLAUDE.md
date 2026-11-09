@@ -102,6 +102,11 @@ on the first screen or the events covers; none under reduced motion). New pages:
 - **Booking on phones:** every Book a table (masthead, heroes, Home's panel, `#book`) opens NowBookIt's own page full screen,
   and the widget boxes on Book a table and Restaurant become one full-width "Choose a date and time" button (`.bk-go`). A widget
   inside the page scrolled separately from it, which made booking on a phone hard. Desktop keeps the widget. Both in `editorial.js`/`.css`.
+- **Functions, calmer (Nov 2026):** five numbered chapters in order (01 The spaces with the room finder, 02 The night, 03 Food & drink,
+  04 Good to know, 05 Enquire), the guest quote after the night; a small index of those chapters under the At a glance facts on desktop
+  (`.fn-idx`); the floors are told once (the second spaces section and the second photo pair are gone); one filled ask on the cover, the
+  rest italic lines. Styles: the `.pg-fn` block at the end of `sd-events.css`. The dachshund walks slowly on every events page
+  (`Dog.prototype.go` about 7ms a pixel, the cover walk about 170px a second, `sdTrot` 1.15s).
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.

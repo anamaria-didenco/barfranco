@@ -6,7 +6,7 @@ html:not(.sd) .sd-only{display:none!important}
 .sd-dog img{display:block;width:100%;height:auto;transform-origin:50% 100%}
 html:not(.sd) .sd-dog{display:none}
 /* his step: a smooth bob about a stride and a half a second. It was a two-frame flick (steps(2)) every .32s, which read as a twitch, not a walk */
-.sd-dog.trot img{animation:sdTrot .64s ease-in-out infinite}
+.sd-dog.trot img{animation:sdTrot 1.15s ease-in-out infinite}
 .sd-dog.sniff img{animation:sdSniff 5.4s ease-in-out 3}
 .sd-dog.hop img{animation:sdHop .6s var(--ease)}
 .sd-calm .sd-dog img{animation:none!important}
@@ -428,3 +428,38 @@ html:not(.sd) .sd-dog{display:none}
 .sd-ix-h .ar::before{left:0;right:0;top:6px;height:1.5px}
 .sd-ix-h .ar::after{top:0;bottom:0;left:6px;width:1.5px}
 .sd-ix.open .sd-ix-h .ar{transform:rotate(45deg)}
+
+/* ==== functions (owner, Nov 2026): less busy, easier to find. Every selector starts .pg-fn ==== */
+/* the cover's three asks: one filled box, then two quiet italic lines that draw their underline */
+.pg-fn .sd-lines{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 36px;width:auto;border:0}
+.pg-fn .sd-line{border:0!important;padding:4px 0!important;background:none;font-style:italic;position:relative}
+.pg-fn .sd-line:first-child{padding:15px 34px!important;background:var(--br);color:var(--al);font-style:normal}
+.pg-fn .sd-line:not(:first-child)::before,.pg-fn .sd-line:not(:first-child)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;opacity:.32}
+.pg-fn .sd-line:not(:first-child)::after{opacity:1;transform:scaleX(0);transform-origin:0 50%;transition:transform .3s cubic-bezier(.215,.61,.355,1)}
+.pg-fn .sd-line:not(:first-child):hover{background:none;color:var(--dr)}
+.pg-fn .sd-line:not(:first-child):hover::after{transform:scaleX(1)}
+.pg-fn .sd-lede{margin-top:clamp(22px,2.4vw,30px)}
+@media (max-width:620px){.pg-fn .sd-line:first-child{flex:1 1 100%}}
+/* under the four facts: the page's own index on the left, the ask on the right (phones read the numbered chapters) */
+html .pg-fn .fx-foot{justify-content:space-between;align-items:baseline}
+.fn-idx{display:flex;flex-wrap:wrap;gap:8px 30px;font-size:16px}
+.fn-idx a{display:inline-flex;align-items:baseline;gap:8px;color:inherit;text-decoration:none;text-underline-offset:.2em}
+.fn-idx b{font-weight:400;font-style:italic;font-size:13px;font-variant-numeric:tabular-nums;opacity:.6}
+.fn-idx a:hover span,.fn-idx a:hover{text-decoration:underline}
+@media (max-width:860px){.fn-idx{display:none}}
+/* the spaces: the names are the links; one ask, under the finder */
+.pg-fn .xa-way-h a{color:inherit;text-decoration:none}
+.pg-fn .xa-way-h a:hover{text-decoration:underline 2px;text-underline-offset:.16em}
+.pg-fn .xa-way-b{padding-bottom:4px}
+/* the night: one column, the three photographs tell the order */
+.pg-fn .fn-nh .stack{max-width:660px}
+.pg-fn #night .sd-steps{margin-top:clamp(36px,5vw,64px)}
+/* phones: the four facts read as ruled lines, the fact set right, as on a menu */
+@media (max-width:620px){
+ .pg-fn .fx-facts{grid-template-columns:1fr}
+ .pg-fn .fx-facts li,.pg-fn .fx-facts li:nth-child(odd){display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:13px 0;border-left:0}
+ .pg-fn .fx-facts li+li{border-top:1px solid rgba(108,6,0,.2)}
+ .pg-fn .fx-facts span{flex:0 0 auto}
+ .pg-fn .fx-facts b{margin-top:0;text-align:right;max-width:64%}
+}
+@media (max-width:620px){.pg-fn .fx-ask{justify-content:space-between}}
