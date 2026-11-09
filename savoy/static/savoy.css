@@ -843,3 +843,5 @@ body.rs{--air:clamp(132px,15vw,240px)}
 @media(max-width:640px){.rs .tabrow{padding-bottom:48px}.rs .sheet h3{margin-top:56px}.rs .sheet .it{gap:14px}}
 .rs .sheet .c h2,.rs .sheet .c h2>.it{text-align:center}
 @media(max-width:640px){.rs .sheet .c,.rs .sheet .c h2,.rs .sheet .c h2>.it,.rs .sheet .c .sotto,.rs .sheet .lede,.rs .sheet h3,.rs .sheet .set,.rs .sheet .ask{text-align:left;margin-left:0;margin-right:0}.rs .tabrow{justify-content:flex-start;padding-left:24px}}
+/* Marsha is always set in capitals: the lift floor names and the menu prices were the two places it was not */
+.floor .t,.rs .sheet .it>span:last-child,.ind .reel b,.calls button{text-transform:uppercase}
