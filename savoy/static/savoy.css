@@ -938,3 +938,22 @@ body:not(.hm) .hero::before{background:linear-gradient(180deg,rgba(108,6,0,.2),r
 @media(max-width:900px){.rs .rs-big{padding-left:24px;padding-right:24px}}
 @media(max-width:640px){.hero .poster .slate{margin-bottom:18px;letter-spacing:.3em}.hero .poster .turn{font-size:18px;margin-top:16px}}
 @media(prefers-reduced-motion:reduce){.hero .poster .slate,.hero .poster .turn{animation:none;opacity:1;transform:none}}
+
+/* ==== the second screen, by family ====
+   events: the two floors, so the first scroll answers "will we fit"; dining: tonight, one dish or one drink from the kitchen or the bar */
+.rs .hero+.fls{padding-top:var(--air)}
+.fls{padding:0 24px var(--air)}
+.fls .trio{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--accent);outline:1px solid var(--accent);outline-offset:4px}
+.fls .f{padding:44px 36px 48px;border-left:1px solid rgba(108,6,0,.25)}
+.fls .f:first-child{border-left:0}
+.fls .t-xs{display:block;color:var(--accent);margin-bottom:18px}
+.fls h2{color:var(--accent);margin-bottom:12px}
+.fls p{font-size:19px;line-height:1.35;margin:0;max-width:none}
+.rs .fls+.facts{padding-top:0}
+.tonight{text-align:center;padding:var(--air) 24px 0}
+.tonight .t-xs{display:block;color:var(--accent);margin-bottom:22px}
+.tonight h2{color:var(--accent)}
+.tonight p{margin:14px auto 0;max-width:26em}
+.tonight .price{display:block;margin-top:20px;font:700 13px/1 var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+@media(max-width:900px){.fls .trio{grid-template-columns:1fr}.fls .f{border-left:0;border-top:1px solid rgba(108,6,0,.25);padding:32px 24px}.fls .f:first-child{border-top:0}}
+@media(max-width:640px){.tonight{text-align:left}.tonight p{margin-left:0}.fls{padding-left:24px;padding-right:24px}}
