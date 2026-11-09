@@ -957,3 +957,13 @@ body:not(.hm) .hero::before{background:linear-gradient(180deg,rgba(108,6,0,.2),r
 .tonight .price{display:block;margin-top:20px;font:700 13px/1 var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
 @media(max-width:900px){.fls .trio{grid-template-columns:1fr}.fls .f{border-left:0;border-top:1px solid rgba(108,6,0,.25);padding:32px 24px}.fls .f:first-child{border-top:0}}
 @media(max-width:640px){.tonight{text-align:left}.tonight p{margin-left:0}.fls{padding-left:24px;padding-right:24px}}
+
+/* ==== from the customer's side: the live book sits on the Bookings page, and the enquiry says how it works in three steps ==== */
+.hb.book .nb{max-width:760px;margin:40px auto 0;border:1px solid var(--accent);outline:1px solid var(--accent);outline-offset:4px;background:var(--cream)}
+.hb.book .nb iframe{display:block;width:100%;height:720px;border:0}
+.hb.book .btn-note a{border-bottom:1px solid currentColor}
+.how{list-style:none;margin:0 auto 28px;padding:0;display:flex;justify-content:center;gap:clamp(20px,3vw,48px);flex-wrap:wrap;font:italic 400 17px/1.3 var(--body)}
+.how li{display:flex;align-items:baseline;gap:10px}
+.how b{font:700 12px/1 var(--display);letter-spacing:.2em;color:var(--accent)}
+@media(max-width:640px){.how{flex-direction:column;gap:10px;align-items:flex-start}.hb.book .nb iframe{height:640px}}
+.how{flex-direction:column;align-items:center;gap:8px;margin-bottom:32px}
