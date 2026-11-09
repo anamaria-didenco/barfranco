@@ -18,16 +18,17 @@ async function openLift(){if(busy)return;busy=true;lift.classList.add('vis');awa
 async function closeLift(){if(busy)return;busy=true;lift.classList.remove('open');lift.classList.add('shut');await wait(800);lift.classList.remove('inside');document.body.style.overflow='';await wait(250);lift.classList.remove('shut');await wait(780);lift.classList.remove('vis');busy=false;$('#open').focus()}
 $('#open').onclick=openLift;$('#close').onclick=closeLift;
 /* the page turn: every page is a floor. Leaving, the doors shut over the page; arriving, they open on the next one */
+const curtain=$('#curtain')||document.body.appendChild(Object.assign(document.createElement('div'),{className:'curtain',id:'curtain'}));
 const ROOT=(()=>{const sc=document.querySelector('script[src$="savoy.js"]');return sc?sc.src.replace(/static\/savoy\.js.*$/,''):''})();
 function inSite(a){if(!a||a.target&&a.target!=='_self'||a.hasAttribute('download'))return false;let u;try{u=new URL(a.href,location.href)}catch(_){return false}
   if(u.origin!==location.origin||!u.href.startsWith(ROOT))return false;if(u.pathname===location.pathname&&u.search===location.search)return false;return /\.html$|\/$/.test(u.pathname)}
 addEventListener('click',e=>{if(RM||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;const a=e.target.closest('a[href]');if(!inSite(a))return;
   e.preventDefault();const href=a.href;try{sessionStorage.setItem('bf-lift','1')}catch(_){}
-  lift.classList.add('vis');requestAnimationFrame(()=>lift.classList.add('shut'));setTimeout(()=>{location.href=href},820)},true);
+  curtain.classList.add('vis');requestAnimationFrame(()=>requestAnimationFrame(()=>curtain.classList.add('shut')));setTimeout(()=>{location.href=href},780)},true);
 if(document.documentElement.classList.contains('arrive')){try{sessionStorage.removeItem('bf-lift')}catch(_){}
-  lift.classList.add('vis','shut');document.documentElement.classList.remove('arrive');
-  setTimeout(()=>{lift.classList.remove('shut');setTimeout(()=>lift.classList.remove('vis'),800)},RM?0:260)}
-addEventListener('pageshow',e=>{if(e.persisted){lift.classList.remove('vis','shut','inside','open');document.body.style.overflow=''}});
+  curtain.classList.add('vis','shut');document.documentElement.classList.remove('arrive');
+  setTimeout(()=>{curtain.classList.remove('shut');setTimeout(()=>curtain.classList.remove('vis'),760)},RM?0:220)}
+addEventListener('pageshow',e=>{if(e.persisted){lift.classList.remove('vis','shut','inside','open');curtain.classList.remove('vis','shut');document.body.style.overflow=''}});
 addEventListener('keydown',e=>{if(!lift.classList.contains('open'))return;if(e.key==='Escape')closeLift();if(e.key==='ArrowUp'){e.preventDefault();toFloor(Math.min(2,cur+1))}if(e.key==='ArrowDown'){e.preventDefault();toFloor(Math.max(0,cur-1))}});
 floors.forEach(e=>{const f=+e.dataset.f;e.addEventListener('mouseenter',()=>toFloor(f));e.querySelector('.fl').onclick=()=>toFloor(f)});
 calls.forEach(b=>b.onclick=()=>toFloor(+b.dataset.f));$$('.lift a[href^="#"]').forEach(a=>a.addEventListener('click',()=>closeLift()));
@@ -63,6 +64,11 @@ track.addEventListener('pointerdown',e=>{if(e.button)return;drag=true;sx=e.clien
 track.addEventListener('pointermove',e=>{if(!drag)return;dx=e.clientX-sx;track.style.transform='translateX('+(base+dx)+'px)'});
 const drop=()=>{if(!drag)return;drag=false;track.classList.remove('drag');cgo(Math.abs(dx)>50?ci+(dx<0?1:-1):ci)};
 track.addEventListener('pointerup',drop);track.addEventListener('pointercancel',drop);
+/* and it pans under the hand: with a mouse over the strip the cards glide toward wherever the cursor is, left edge to right edge; when the hand leaves they settle on the nearest card */
+const sec=track.parentElement;let hov=false;
+const step=()=>cards[0].getBoundingClientRect().width+6,maxX=()=>track.scrollWidth-sec.clientWidth;
+sec.addEventListener('pointermove',e=>{if(drag||RM||e.pointerType!=='mouse')return;const r=sec.getBoundingClientRect(),pad=Math.min(120,r.width*.1);const t=Math.min(1,Math.max(0,(e.clientX-r.left-pad)/(r.width-2*pad)));const x=maxX()*t;hov=true;track.classList.add('pan');track.style.transform='translateX('+(-x)+'px)';ci=Math.max(0,Math.min(cards.length-1,Math.round(x/step())));$('#cn').textContent=ci+1});
+sec.addEventListener('pointerleave',()=>{if(!hov)return;hov=false;track.classList.remove('pan');cgo(ci)});
 /* and it slides on its own while it is in view, resting while a hand is on it */
 let auto=null;const play=()=>{if(RM)return;clearInterval(auto);auto=setInterval(()=>cgo(ci+1>=cards.length?0:ci+1),4800)};const rest=()=>clearInterval(auto);
 track.addEventListener('pointerenter',rest);track.addEventListener('pointerleave',play);track.addEventListener('pointerdown',rest);
@@ -89,7 +95,7 @@ $$('form[data-email]').forEach(f=>{
     const body=new URLSearchParams();body.append('_subject',f.dataset.subject||'Enquiry — Bar Franco');body.append('_template','table');body.append('_captcha','false');
     f.querySelectorAll('input,textarea,select').forEach(el=>{if(el!==honey&&el.value)body.append(el.name||'Field',el.value)});
     fetch('https://formsubmit.co/ajax/'+encodeURIComponent(f.dataset.email),{method:'POST',headers:{Accept:'application/json'},body})
-      .then(r=>r.json()).then(res=>{if(!res||(res.success!==true&&res.success!=='true'))throw 0;f.reset();say('Sent, grazie',true);try{gtag('event','conversion',{send_to:'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',value:1.0,currency:'NZD'})}catch(_){}if(!f.closest('footer')){try{sessionStorage.setItem('bf-lift','1')}catch(_){}lift.classList.add('vis');requestAnimationFrame(()=>lift.classList.add('shut'));setTimeout(()=>{location.href=ROOT+'grazie/index.html'},RM?0:820)}})
+      .then(r=>r.json()).then(res=>{if(!res||(res.success!==true&&res.success!=='true'))throw 0;f.reset();say('Sent, grazie',true);try{gtag('event','conversion',{send_to:'AW-18456342571/6V9ICIfV1_ocEKvg1eBE',value:1.0,currency:'NZD'})}catch(_){}if(!f.closest('footer')){try{sessionStorage.setItem('bf-lift','1')}catch(_){}curtain.classList.add('vis');requestAnimationFrame(()=>requestAnimationFrame(()=>curtain.classList.add('shut')));setTimeout(()=>{location.href=ROOT+'grazie/index.html'},RM?0:780)}})
       .catch(()=>{say('Not sent, try again',false);setTimeout(()=>say(label,false),4000)});
   });
 });

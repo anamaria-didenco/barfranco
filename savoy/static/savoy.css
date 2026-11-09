@@ -589,9 +589,7 @@ footer .soc{align-self:start}
 
 /* ==== the studio pass, November 2026: the lift is the page turn, the phone opens like a film, the asks carry proof, the footer says less ==== */
 /* arriving: the doors are already shut over the page before the first paint, then open on it */
-html.arrive .lift{visibility:visible;pointer-events:auto}
-html.arrive .door{transform:none;transition:none}
-html.arrive .lift .car{opacity:0}
+html.arrive .curtain{visibility:visible;transform:none;transition:none}
 /* the phone opening: the photograph tightens slowly, the script settles, the dock rises from the bottom edge */
 @media(max-width:900px){
   .hm .hero .slide img{transform:scale(1.2);transition:transform 7s var(--ease)}.hm .hero .slide.on img{transform:scale(1.04)}
@@ -845,3 +843,23 @@ body.rs{--air:clamp(132px,15vw,240px)}
 @media(max-width:640px){.rs .sheet .c,.rs .sheet .c h2,.rs .sheet .c h2>.it,.rs .sheet .c .sotto,.rs .sheet .lede,.rs .sheet h3,.rs .sheet .set,.rs .sheet .ask{text-align:left;margin-left:0;margin-right:0}.rs .tabrow{justify-content:flex-start;padding-left:24px}}
 /* Marsha is always set in capitals: the lift floor names and the menu prices were the two places it was not */
 .floor .t,.rs .sheet .it>span:last-child,.ind .reel b,.calls button{text-transform:uppercase}
+/* the strip pans under the mouse: a longer, softer ease so it glides rather than jumps */
+.track.pan{transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+
+/* ==== the page turn: a Bright Red curtain drops over the page as you leave and lifts off the next one, with Franco peeking over its hem ==== */
+.curtain{position:fixed;inset:0;z-index:90;background:var(--accent);transform:translateY(-101%);visibility:hidden;pointer-events:none;transition:transform .7s cubic-bezier(.65,0,.35,1),visibility 0s .7s}
+.curtain.vis{visibility:visible;pointer-events:auto;transition:transform .7s cubic-bezier(.65,0,.35,1)}
+.curtain.shut{transform:none}
+.curtain .dog{position:absolute;left:58%;bottom:22px;width:104px;height:50px;background:var(--cream);-webkit-mask:url(illustrations/dog-glass.svg) center/contain no-repeat;mask:url(illustrations/dog-glass.svg) center/contain no-repeat;transform:rotate(-5deg);opacity:.9}
+@media(max-width:640px){.curtain .dog{width:84px;height:40px;bottom:18px;left:60%}}
+@media(prefers-reduced-motion:reduce){.curtain{transition:none}}
+
+/* ==== our story, minimal: a cream opening, one portrait, the letter, the ask ==== */
+.st .nav{color:var(--dark)}.st .nav::before{opacity:1}
+.st-open{padding:calc(var(--hd) + clamp(72px,10vh,128px)) 24px 72px;text-align:center}
+.st-open .t-xs{display:block;color:var(--accent);margin-bottom:32px}
+.st-h1{font:700 clamp(34px,5vw,72px)/.95 var(--display);text-transform:uppercase;letter-spacing:.01em;color:var(--accent);margin:0 auto 36px;max-width:14em}
+.st-h1 span{display:block}
+.st-port .rs-fig{width:min(560px,100%);aspect-ratio:2/3}
+.st .letter{padding-top:0}
+@media(max-width:640px){.st-open{text-align:left;padding-bottom:56px}.st-h1{margin-left:0}.st-open .rs-say{margin-left:0}.st-port .rs-fig{width:calc(100% - 24px);margin-left:24px}}
