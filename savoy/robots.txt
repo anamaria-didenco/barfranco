@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /uploads/
+Disallow: /screenshots/
+Disallow: /marketing/
+
+Sitemap: https://www.barfranco.nz/sitemap.xml
