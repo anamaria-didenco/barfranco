@@ -1239,3 +1239,8 @@ p,li,blockquote,figcaption{text-wrap:pretty}
  .bk-go a.cta{display:block;width:100%;text-align:center;padding:18px 16px!important;font-size:17px!important}
 }
 @media (max-width:900px){.bk-go{width:100%;justify-self:stretch;align-self:stretch}.bk-go a.cta{width:100%!important;box-sizing:border-box}}
+/* film, toned down (owner: too strong on a sharp screen): a whisper of grain, a lighter warm wash */
+.film::before{opacity:.12}
+.film::after{opacity:.055;background-size:256px 256px}
+@media (-webkit-min-device-pixel-ratio:1.5),(min-resolution:144dpi){.film::after{opacity:.045}}
+@media (max-width:860px){.film::after{opacity:.05;background-size:200px 200px}}

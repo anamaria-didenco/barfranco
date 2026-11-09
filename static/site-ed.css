@@ -62,3 +62,6 @@ html:not(.ed) .sec.hero[data-hero]:not(:has(>.ph-m))>.ph:nth-of-type(n+2){displa
 html:not(.ed) .sec.hero[data-hero]:has(>.ph-m)>.ph-m{display:block!important}
 /* owner, Nov 2026: no tint over photographs; the film layer is the only treatment */
 html:not(.ed) .hero-one .ph::after,html:not(.ed) .hero .ph::after{display:none!important}
+/* hero words on a photograph (Vouchers, Contact, Menus): on a solid Deep Red card, never loose on the picture */
+html:not(.ed) .hero-one:not(.bk-hero) .hero-cap{background:var(--dr);padding:clamp(20px,2.4vw,32px) clamp(22px,2.6vw,36px);max-width:min(560px,calc(100% - 2 * var(--gx)));width:auto;right:auto}
+html:not(.ed) .hero-one:not(.bk-hero) .hero-cap .cta-row{margin-top:6px}

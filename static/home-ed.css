@@ -267,3 +267,10 @@ html.ed .hf-fold>.hero .ph::after,.ed-rh-ph::after{display:none!important}
 @media (max-width:860px){.ed-rh-s{margin-left:-20px;margin-right:-20px;padding:20px}}
 /* phones: Book a table and Plan an event live top right, so the hero keeps only its line */
 @media (max-width:900px){html.ed .hf-act .hx-acts{display:none!important}}
+/* Restaurant hero: the title never runs into the card. Below 1280px the card sits under the title */
+.ed-rhero .ed-h{font-size:clamp(44px,6.2vw,108px)}
+@media (min-width:861px) and (max-width:1279px){
+ .ed-rhero .ed-h{grid-column:1/13;font-size:clamp(44px,7vw,84px)}
+ .ed-rh-s{grid-column:1/8;grid-row:3;margin-top:20px}
+}
+@media (min-width:1280px){.ed-rhero .ed-h{grid-column:1/9}.ed-rh-s{grid-column:9/13}}
