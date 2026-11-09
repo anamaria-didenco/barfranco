@@ -239,3 +239,19 @@ function swap(){[].slice.call(D.querySelectorAll('.bk-frame')).forEach(function(
  var go=D.createElement('p');go.className='bk-go';go.innerHTML='<a class="cta cta-fill" href="'+NBI+'">Choose a date and time</a>';f.insertAdjacentElement('afterend',go)})}
 if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',swap);else swap();
 })();
+
+/* Photo drift (owner, Nov 2026): each photograph below the opening moves a little slower than the page, up to 28px
+   (12px on phones), inside a frame that hides the edges. Home and Restaurant have their own (home-ed.js). */
+(function(){
+var D=document,R=D.documentElement;
+if(R.classList.contains('ed')||matchMedia('(prefers-reduced-motion: reduce)').matches||R.classList.contains('calm'))return;
+var ims=[],raf=0;
+function collect(){ims=[].slice.call(D.querySelectorAll('.ph>img[src*="/images/"]')).filter(function(i){
+ var f=i.parentNode;if(f.closest('[data-hero],.sd-strip,.mast,footer,.card,.sd-ix-p,.walk-ov'))return false;
+ return f.offsetHeight>=160&&f.offsetWidth>=160}).map(function(i){i.parentNode.classList.add('bf-drift');return i})}
+function tick(){raf=0;var vh=innerHeight,ph=innerWidth<=860;ims.forEach(function(i){var f=i.parentNode,r=f.getBoundingClientRect();
+ if(r.bottom<-60||r.top>vh+60)return;var max=Math.min(ph?12:28,r.height*.03),c=(r.top+r.height/2-vh/2)/(vh/2+r.height/2);
+ c=Math.max(-1,Math.min(1,c));i.style.translate='0 '+(c*max).toFixed(1)+'px'})}
+function start(){collect();tick();addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(tick)},{passive:true});addEventListener('resize',function(){collect();tick()})}
+if(D.readyState==='complete')start();else addEventListener('load',start);
+})();

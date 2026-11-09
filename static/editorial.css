@@ -1244,3 +1244,18 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 .film::after{opacity:.055;background-size:256px 256px}
 @media (-webkit-min-device-pixel-ratio:1.5),(min-resolution:144dpi){.film::after{opacity:.045}}
 @media (max-width:860px){.film::after{opacity:.05;background-size:200px 200px}}
+
+/* ==== Photo movement (owner, Nov 2026: "premium movements"). Two gestures, every page:
+   1 · opening photographs settle as the page arrives, 1.08 to 1 over 2.4s, like a camera finding its frame
+       (the events covers' three-photo strips settle one after another);
+   2 · every other photograph drifts slowly inside its frame as you scroll (editorial.js; Home and Restaurant
+       already do this in home-ed.js). Uses the separate `scale`/`translate` properties so it never fights the
+       reveal or the hero's own scroll scale. Nothing moves under reduced motion. ==== */
+@media (prefers-reduced-motion:no-preference){
+ html:not(.calm) :is([data-hero] .ph,.sd-strip .ph,.ed-rh-ph,.hf-fold .hero .ph)>img{animation:bf-settle 2.4s cubic-bezier(.16,.84,.24,1) both}
+ html:not(.calm) .sd-strip .ph:nth-child(2)>img{animation-delay:.14s}
+ html:not(.calm) .sd-strip .ph:nth-child(3)>img{animation-delay:.28s}
+}
+@keyframes bf-settle{from{scale:1.08}to{scale:1}}
+.bf-drift{overflow:hidden}
+.bf-drift>img{scale:1.07;will-change:translate}
