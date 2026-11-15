@@ -14,8 +14,8 @@ function toFloor(f,instant){if(f===cur)return;if(instant){reel.style.transition=
   if(instant){void reel.offsetWidth;reel.style.transition='';pics.forEach(p=>{void p.offsetWidth;p.style.transition=''})}
   cur=f;clearTimeout(dir._t);dir._t=setTimeout(()=>dir.textContent=' ',1100)}
 const wait=ms=>new Promise(r=>setTimeout(r,RM?0:ms));
-async function openLift(){if(busy)return;busy=true;lift.classList.add('vis');await wait(20);lift.classList.add('shut');await wait(800);lift.classList.add('inside');cur=null;toFloor(1,true);document.body.style.overflow='hidden';await wait(250);lift.classList.remove('shut');lift.classList.add('open');await wait(750);busy=false;$('#close').focus()}
-async function closeLift(){if(busy)return;busy=true;lift.classList.remove('open');lift.classList.add('shut');await wait(800);lift.classList.remove('inside');document.body.style.overflow='';await wait(250);lift.classList.remove('shut');await wait(780);lift.classList.remove('vis');busy=false;$('#open').focus()}
+async function openLift(){if(busy)return;busy=true;lift.classList.add('vis');await wait(20);lift.classList.add('shut');await wait(700);lift.classList.add('inside');cur=null;toFloor(1,true);document.body.style.overflow='hidden';await wait(160);lift.classList.remove('shut');lift.classList.add('open');await wait(700);busy=false;$('#close').focus()}
+async function closeLift(){if(busy)return;busy=true;lift.classList.remove('open');lift.classList.add('shut');await wait(700);lift.classList.remove('inside');document.body.style.overflow='';await wait(160);lift.classList.remove('shut');await wait(700);lift.classList.remove('vis');busy=false;$('#open').focus()}
 $('#open').onclick=openLift;$('#close').onclick=closeLift;
 /* the page turn: every page is a floor. Leaving, the doors shut over the page; arriving, they open on the next one */
 const curtain=$('#curtain')||document.body.appendChild(Object.assign(document.createElement('div'),{className:'curtain',id:'curtain'}));

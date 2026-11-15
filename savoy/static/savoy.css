@@ -979,3 +979,25 @@ body:not(.hm) .hero::before{background:linear-gradient(180deg,rgba(108,6,0,.2),r
 .rs-state.q .t-xs a{border-bottom:1px solid currentColor}
 @media(max-width:900px){.hero .trust{display:none}}
 @media(prefers-reduced-motion:reduce){.hero .trust{animation:none;opacity:1}}
+
+/* ==== the lift, tidied: one device (the floors and the room), the names at full strength, Close in the nav's italic; and the ride is smoother ==== */
+.ind{display:none!important}
+.car .grid{grid-template-columns:1.1fr 1fr;gap:clamp(40px,6vw,96px);padding:0 clamp(32px,5vw,72px)}
+.floor{border-bottom:1px solid rgba(241,238,230,.22)}
+.floor:first-child{border-top:0}
+.floor .fl{opacity:.72}
+.floor.on .fl,.floor:hover .fl{opacity:1}
+.floor .n{opacity:.7}
+.car>.top #close{font:italic 400 19px/1 var(--body);text-transform:none;letter-spacing:0;border-bottom:1px solid transparent;transition:border-color .3s}
+.car>.top #close:hover{border-bottom-color:currentColor}
+.car>.top,.car .grid,.car>.bot{transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.car>.top{transition-delay:.05s}.car .grid{transition-delay:.15s}.car>.bot{transition-delay:.4s}
+.lift.open .floor{opacity:0;transform:translateY(14px);animation:floor-in .7s var(--ease) forwards}
+.lift.open .floor:nth-child(1){animation-delay:.2s}.lift.open .floor:nth-child(2){animation-delay:.3s}.lift.open .floor:nth-child(3){animation-delay:.4s}
+@keyframes floor-in{to{opacity:1;transform:none}}
+.pics .p{opacity:0;transform:translateY(7%);transition:transform 1s var(--ease),opacity .8s var(--ease)}
+.pics .p.on{opacity:1;transform:none}.pics .p.past{opacity:0;transform:translateY(-7%)}
+.floor.on .sub>div>*:nth-child(1){transition-delay:.05s}.floor.on .sub>div>*:nth-child(2){transition-delay:.11s}.floor.on .sub>div>*:nth-child(3){transition-delay:.17s}.floor.on .sub>div>*:nth-child(4){transition-delay:.23s}.floor.on .sub>div>*:nth-child(5){transition-delay:.29s}.floor.on .sub>div>*:nth-child(6){transition-delay:.35s}.floor.on .sub>div>*:nth-child(7){transition-delay:.41s}
+.door{transition-duration:.65s}
+@media(max-width:900px){.car .grid{grid-template-columns:1fr;padding:0 24px;align-content:center}.floor{padding:18px 0 20px}}
+@media(prefers-reduced-motion:reduce){.lift.open .floor{animation:none;opacity:1;transform:none}}
