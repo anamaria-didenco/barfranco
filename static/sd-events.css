@@ -463,3 +463,9 @@ html .pg-fn .fx-foot{justify-content:space-between;align-items:baseline}
  .pg-fn .fx-facts b{margin-top:0;text-align:right;max-width:64%}
 }
 @media (max-width:620px){.pg-fn .fx-ask{justify-content:space-between}}
+/* review fixes (design review, Nov 2026): the index numbers at full ink (they read 2.2:1 at .6), and every small link
+   on the page at least 24px tall to tap */
+.fn-idx b{opacity:1;font-size:14px}
+.fn-idx a{padding:4px 0}
+.pg-fn .fx-ask{padding-top:6px;padding-bottom:6px}
+.pg-fn .sd-rev-g a,.pg-fn #enquire .sd-talk a[href="/robbie/"]{display:inline-block;padding:5px 0}
