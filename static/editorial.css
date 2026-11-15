@@ -906,7 +906,8 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 
 /* Bar Franco · top bar. Every page. Gated on html.tb (added by top-bar.js), so without JS the old header stands.
    Top of the page: transparent over the cover. Scrolling down: the bar slides away.
-   Scrolling up: it comes back as a slim cream bar, one colour wherever you are (deep red after 9pm). */
+   Scrolling up: it comes back as a slim Deep Red bar, one colour wherever you are, day or night (owner, Nov 2026:
+   the cream bar matched neither Paper nor the strip the menu sits on). */
 .tb .mast{transition:transform .38s var(--ease),background-color .25s var(--ease),box-shadow .25s var(--ease),padding .3s var(--ease);will-change:auto}
 .tb .mast .veil{display:none!important}
 .tb .mk{transform:none!important}
@@ -916,20 +917,17 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .tb .mast-book{display:inline-flex;align-items:center;min-height:40px;padding:0 18px!important;margin:0!important;background:var(--br);border:1.5px solid var(--br);color:var(--al)!important;font-style:normal;font-size:14.5px;letter-spacing:.01em;text-decoration:none!important;transition:background-color .2s var(--ease),border-color .2s var(--ease)}
 .tb .mast-book:hover{background:var(--dr);border-color:var(--dr)}
 .tb .mast-book:focus-visible,.tb .links a:focus-visible,.tb .mk:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
-.tb-bar .mast{height:64px;padding:0 clamp(18px,3.2vw,48px);align-items:center;background:#FBF4EA;box-shadow:0 1px 0 rgba(108,6,0,.16);pointer-events:auto}
+.tb-bar .mast{height:64px;padding:0 clamp(18px,3.2vw,48px);align-items:center;background:var(--dr);box-shadow:0 1px 0 rgba(250,215,195,.22);pointer-events:auto}
 .tb-bar .mast .mk img{height:34px!important}
-.tb-bar .mast-r{padding-top:0;color:var(--dr)!important}
-.tb-bar .mast .mk-d{opacity:1!important}
-.tb-bar .mast .mk-a{opacity:0!important}
+html.tb-bar .mast .mast-r{padding-top:0;color:var(--al)!important}
+html.tb-bar .mast .mk-in .mk-d{opacity:0!important}
+html.tb-bar .mast .mk-in .mk-a{opacity:1!important}
+html.tb-bar .mast .mast-r .mast-book{background:var(--al);border-color:var(--al);color:var(--dr)!important}
+html.tb-bar .mast .mast-r .mast-book:hover{background:var(--pp);border-color:var(--pp)}
 .tb-bar .links{padding-bottom:0;margin-bottom:0}
-.night.tb-bar .mast{background:var(--dr);box-shadow:0 1px 0 rgba(250,215,195,.22)}
-.night.tb-bar .mast-r{color:var(--al)!important}
-.night.tb-bar .mast .mk-d{opacity:0!important}
-.night.tb-bar .mast .mk-a{opacity:1!important}
-.night.tb-bar .mast-book{background:var(--al);border-color:var(--al);color:var(--dr)!important}
 .tb-away .mast{transform:translateY(calc(-100% - 6px))}
 .tb-up .sticky-cta{transform:translateY(110%)!important}
-.tb.menu-open .mast{transform:none!important;background:transparent;box-shadow:none}
+.tb.menu-open .mast{position:fixed;transform:none!important;background:transparent;box-shadow:none}
 .tb.menu-open .mast .mast-r{color:var(--al)!important}
 .tb.menu-open .mast .mk-in .mk-d{opacity:0!important}
 .tb.menu-open .mast .mk-in .mk-a{opacity:1!important}
@@ -1259,3 +1257,17 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 @keyframes bf-settle{from{scale:1.08}to{scale:1}}
 .bf-drift{overflow:hidden}
 .bf-drift>img{scale:1.07;will-change:translate}
+
+/* ==== The menu bar, how it moves (owner, Nov 2026). At the top of a page the menu belongs to the page and scrolls
+   away with it (it used to stay pinned for the first 72px while the page slid underneath, so the script and the links
+   sat half on a photograph). Scrolling down: nothing. Scrolling up: the slim Deep Red bar slides in. Back at the very
+   top: the bar hands over to the page's own menu with a short fade. editorial.js sets the states. ==== */
+.tb:not(.tb-bar):not(.menu-open) .mast{position:absolute}
+.tb-snap .mast,.tb-snap .mast *{transition:none!important}
+.tb-fade .mast{transition:none!important}
+.tb-fade:not(.menu-open) .mast>*{animation:tbFadeIn .45s var(--ease) both}
+.tb-fade:not(.menu-open) .mast::before{content:"";position:fixed;left:0;right:0;top:var(--mb);height:64px;background:var(--dr);pointer-events:none;z-index:-1;animation:tbFadeOut .32s var(--ease) both}
+@media (max-width:900px){.tb-fade:not(.menu-open) .mast::before{height:58px}}
+@keyframes tbFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes tbFadeOut{from{opacity:1}to{opacity:0}}
+@media (prefers-reduced-motion:reduce){.tb-fade .mast>*,.tb-fade .mast::before{animation:none!important}.tb-fade .mast::before{display:none}}

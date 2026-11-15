@@ -172,12 +172,20 @@ function closeMenu(){if(!R.classList.contains('menu-open'))return;R.classList.re
 if(links)links.addEventListener('click',function(e){if(e.target.closest('a'))closeMenu()});
 if(mb)mb.addEventListener('click',function(){if(R.classList.contains('menu-open')){var a=$('#links a');if(a)setTimeout(function(){a.focus({preventScroll:true})},60)}});
 D.addEventListener('keydown',function(e){if(e.key!=='Tab'||!R.classList.contains('menu-open'))return;var fs=[].slice.call(mast.querySelectorAll('a[href],button')).filter(function(x){return x.offsetParent!==null&&getComputedStyle(x).visibility!=='hidden'});if(!fs.length)return;var i=fs.indexOf(D.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();fs[fs.length-1].focus()}else if(!e.shiftKey&&i===fs.length-1){e.preventDefault();fs[0].focus()}});
-/* away on the way down, back on the way up */
-var TOP=72,lastY=scrollY,acc=0,state='';
+/* the menu bar (owner, Nov 2026): at the top it is part of the page and scrolls away with it; away on the way down;
+   the slim bar slides back on the way up; at the very top the bar hands over to the page's menu with a short fade */
+var lastY=scrollY,acc=0,state='',TH=110,fT=0;
+function snap(){R.classList.add('tb-snap');requestAnimationFrame(function(){requestAnimationFrame(function(){R.classList.remove('tb-snap')})})}
+function fade(){R.classList.add('tb-fade');clearTimeout(fT);fT=setTimeout(function(){R.classList.remove('tb-fade')},520)}
 function set(s){if(s===state)return;state=s;R.classList.toggle('tb-bar',s!=='top');R.classList.toggle('tb-up',s==='up');R.classList.toggle('tb-away',s==='away')}
-function tick(){var y=Math.max(0,scrollY),dy=y-lastY;lastY=y;if(R.classList.contains('menu-open'))return;if(y<=TOP){acc=0;set('top');return}if(state==='top'){acc=0;set(dy>=0?'away':'up');return}
+function measure(){if(state==='top')TH=Math.max(64,mast.offsetTop+mast.offsetHeight)}
+function tick(){var y=Math.max(0,scrollY),dy=y-lastY;lastY=y;if(R.classList.contains('menu-open'))return;
+if(state==='top'){if(y>=TH){acc=0;snap();set('away')}return}
+if(y<=2){acc=0;if(state==='up')fade();else snap();set('top');measure();return}
+if(state==='away'&&dy<0&&y<TH){acc=0;snap();set('top');return}
 if(dy>0){acc=acc>0?acc+dy:dy;if(acc>14)set('away')}else if(dy<0){acc=acc<0?acc+dy:dy;if(acc<-8)set('up')}}
-set(scrollY>TOP?'up':'top');
+snap();if(scrollY>2){set('top');measure();set(scrollY>=TH?'up':'top')}else{set('top');measure()}
+addEventListener('resize',measure);addEventListener('load',measure);
 var raf=0;addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(function(){raf=0;tick()})},{passive:true});
 mast.addEventListener('focusin',function(){if(state==='away')set('up')});
 })();
