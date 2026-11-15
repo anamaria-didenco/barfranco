@@ -1035,3 +1035,20 @@ body:not(.hm) .hero::before{background:linear-gradient(180deg,rgba(108,6,0,.2),r
 .facts .note{opacity:.85}
 .rs-big .rs-link{margin-top:22px}
 @media(max-width:640px){.facts .row{padding:16px 20px;gap:6px}.facts .row span:last-child{font-size:18px}}
+/* ==== the sweep: on phones every section reads left, no block is framed except a form or a card, and stacked asks are equal width ==== */
+@media(max-width:640px){
+  body .hb,body .hb h2,body .hb p,body .hb .sotto,
+  body .unl,body .unl h2,body .unl p,body .unl .sotto,body .unl .addr,
+  body .intro,body .intro h2,body .intro .sub,body .intro .eyebrow,
+  body .quote,body .quote p,body .quote .sotto,
+  body .sheet .c,body .sheet .c h2,body .sheet .c .sotto,body .sheet .lede,body .sheet h3,body .sheet .set,body .sheet .ask,
+  body .facts>h2,body .facts .note,body .steps .c,body .steps .c h2,body .steps .c .sotto,body .rooms-h,body .hist .post,
+  body .rs-state,body .rs-state .rs-say,body .rs-state .t-xs,body .tonight,body .formblk .c,body .formblk .c h2,body .formblk .act{text-align:left}
+  .unl .edit,.unl .port,.hb .nb,.sheet .set,.rs-say,.tonight p,.hb .btn-note,.hb p,.unl p,.intro .sub{margin-left:0;margin-right:0}
+  .rs-state.q .rs-say::before{margin-left:0}
+  .sheet>.in{border:0;outline:0;padding:0}
+  .intro h2 .row{justify-content:flex-start}
+  .hb .asks,.unl .asks{flex-direction:column;align-items:stretch}
+  .hb .asks .btn,.unl .asks .btn{width:100%;justify-content:center}
+  .btn-note{text-align:left}
+}
