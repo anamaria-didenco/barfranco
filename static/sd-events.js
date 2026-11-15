@@ -27,7 +27,7 @@ Dog.prototype.face=function(d){if(Math.abs(d)>.5)this.fl.style.setProperty('--fx
 Dog.prototype.draw=function(){this.el.style.transform='translate('+this.x.toFixed(1)+'px,'+this.y.toFixed(1)+'px)'};
 Dog.prototype.rest=function(){this.el.classList.remove('trot');this.el.classList.add('sniff')};
 Dog.prototype.put=function(x,y){this.a=null;this.x=x;this.y=y;this.rest();this.draw()};
-Dog.prototype.go=function(x,y,done){var dx=x-this.x,dy=y-this.y,d=Math.sqrt(dx*dx+dy*dy);if(calm()||d<1){this.put(x,y);if(done)done();return}this.face(dx);this.el.classList.remove('sniff');this.el.classList.add('trot');this.a={x0:this.x,y0:this.y,x1:x,y1:y,t0:performance.now(),dur:clamp(d*3,560,2400),arc:Math.abs(dy)>3?Math.min(48,Math.abs(dy)*.45+14):0,done:done};kick()};
+Dog.prototype.go=function(x,y,done){var dx=x-this.x,dy=y-this.y,d=Math.sqrt(dx*dx+dy*dy);if(calm()||d<1){this.put(x,y);if(done)done();return}this.face(dx);this.el.classList.remove('sniff');this.el.classList.add('trot');this.a={x0:this.x,y0:this.y,x1:x,y1:y,t0:performance.now(),dur:clamp(d*7,1500,5600),arc:Math.abs(dy)>3?Math.min(48,Math.abs(dy)*.45+14):0,done:done};kick()};
 Dog.prototype.tick=function(now){var a=this.a;if(!a)return false;var t=clamp((now-a.t0)/a.dur,0,1),e=a.lin?t:amble(t);this.x=a.x0+(a.x1-a.x0)*e;this.y=a.y0+(a.y1-a.y0)*e-Math.sin(Math.PI*t)*a.arc;this.draw();if(t>=1){this.a=null;this.rest();if(a.done)a.done();return false}return true};
 Dog.prototype.say=function(txt,ms){var t=this.tg,p=this.el.offsetParent;if(!t||!sd()||!p)return;t.textContent=txt;t.classList.toggle('r',this.x>p.clientWidth*.66);t.classList.toggle('l',this.x<p.clientWidth*.14);t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('on')},ms||2600)};
 Dog.prototype.woof=function(){var el=this.el;el.classList.remove('hop');void el.offsetWidth;el.classList.add('hop');this.say('Woof.',1200);setTimeout(function(){el.classList.remove('hop')},650)};
@@ -58,15 +58,15 @@ if(calm()){B.phase='done';LT.forEach(function(l){l.on=true;l.t0=0;l.th=0;l.w=0})
    ramp (drawLetters' FADE branch) with an 18ms stagger, which reads as one
    word arriving rather than a queue. The dog still trots in; he just no longer
    holds the word hostage. And since he no longer holds anything up, he can take
-   his time: about 380px a second (a 1440 screen in ~3.5s) instead of the
-   1,200px-a-second dash, eased in and out, with a beat to settle before he
-   speaks. */
+   his time. Owner, Nov 2026: he still moved too quickly, so he now walks
+   about 170px a second (a 1440 screen in ~8s), and every other walk on the
+   page is slowed the same way (Dog.prototype.go, the night's beats). */
 FADE=true;B.phase='done';var n0=performance.now();
 LT.forEach(function(l,i){l.on=true;l.t0=n0+i*18;l.th=0;l.w=0});
 bnPath.style.strokeDashoffset='0';pinR.style.opacity='1';bnKick();
 if(matchMedia('(max-width:860px)').matches){dogB.put(end,H-dh);dogB.face(-1);setTimeout(function(){dogB.say(dogB.el.dataset.say||'Ciao. How many are coming?',2600)},900);return}
 dogB.put(-dw-24,H-dh);dogB.a=null;dogB.face(1);dogB.el.classList.remove('sniff');dogB.el.classList.add('trot');
-dogB.a={x0:-dw-24,y0:H-dh,x1:end,y1:H-dh,t0:n0+260,dur:clamp((end+dw+24)/.38,2600,4200),arc:0,done:function(){dogB.face(-1);setTimeout(function(){dogB.say(dogB.el.dataset.say||'Ciao. How many are coming?',3200)},420)}};kick()}
+dogB.a={x0:-dw-24,y0:H-dh,x1:end,y1:H-dh,t0:n0+260,dur:clamp((end+dw+24)/.17,5200,8400),arc:0,done:function(){dogB.face(-1);setTimeout(function(){dogB.say(dogB.el.dataset.say||'Ciao. How many are coming?',3200)},420)}};kick()}
 LT.forEach(function(l){l.e.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'&&!calm()&&sd()&&!LIFT){l.w+=(Math.random()<.5?-1:1)*50;bnKick()}})});
 dogB.el.addEventListener('click',function(){if(calm()||LIFT)return;LT.slice().reverse().forEach(function(l,i){setTimeout(function(){l.w+=55;bnKick()},i*60)})});
 dogs.push(dogB);
@@ -93,7 +93,7 @@ var nIn=$('#sdN');if(nIn)nIn.value=st.n;var STK=$('#sdSticky')?$('#sdSticky').te
 var VC=row&&row.dataset.seat?{seat:+row.dataset.seat,stand:+row.dataset.stand}:null;
 function fits(){var k=st.s==='seat'?'seat':'stand';if(VC)return st.n<=VC[k]?cards.slice():[];var one=cards.filter(function(c){return c.dataset.room!=='all'&&+c.dataset[k]>=st.n});if(one.length)return one;return cards.filter(function(c){return c.dataset.room==='all'&&+c.dataset[k]>=st.n})}
 function name(r){return r==='bar'?'the Negroni Bar':r==='rest'?'the Restaurant':'the whole building'}
-function floorLine(){var f=fits(),how=st.s==='seat'?'seated':'standing';if(VC){if(!f.length)return'More than '+VC.seat+' seated? Go standing: up to '+VC.stand+'.';if(matchMedia('(max-width:860px)').matches)return'<b>'+st.n+' '+how+'</b>: you fit.';return'<b>'+st.n+' '+how+'</b>: you fit. Seated up to '+VC.seat+', standing up to '+VC.stand+'. '+'No venue hire fee. Minimum spend on application.'}if(!f.length)return'More than 165 seated? Go standing: the whole building takes 240.';var names=f.map(function(c){return name(c.dataset.room)});var s='<b>'+st.n+' '+how+'</b>: ';s+=names.length>1?'either floor. '+cap(names[0])+' for booths and a big bar, or '+names[1]+' for a long table by the windows.':cap(names[0])+(f[0].dataset.room==='all'?', exclusively yours.':' is your floor.');if(matchMedia('(max-width:860px)').matches)return'<b>'+st.n+' '+how+'</b>: '+(names.length>1?'either floor.':cap(names[0])+'.');if(st.n<=20&&st.s==='seat')s+=' Under 20? A long table without hiring a level.';s+=' '+spendLine(f);return s}
+function floorLine(){var f=fits(),how=st.s==='seat'?'seated':'standing';if(VC){if(!f.length)return'More than '+VC.seat+' seated? Go standing: up to '+VC.stand+'.';return'<b>'+st.n+' '+how+'</b>: you fit.'}if(!f.length)return'More than 165 seated? Go standing: the whole building takes 240.';var names=f.map(function(c){return name(c.dataset.room)});var s='<b>'+st.n+' '+how+'</b>: ';s+=names.length>1?'either floor. '+cap(names[0])+' for booths and a big bar, or '+names[1]+' for a long table by the windows.':cap(names[0])+(f[0].dataset.room==='all'?', exclusively yours.':' is your floor.');if(matchMedia('(max-width:860px)').matches)return'<b>'+st.n+' '+how+'</b>: '+(names.length>1?'either floor.':cap(names[0])+'.');if(st.n<=20&&st.s==='seat')s+=' Under 20? A long table without hiring a level.';s+=' '+spendLine(f);return s}
 function spendLine(){return'No venue hire fee. Minimum spend on application.'}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 var lastPick='';
@@ -101,7 +101,7 @@ function findFloor(talk){if($('#sdNo'))$('#sdNo').textContent=st.n;if(!HASF){sum
 function perch(card){var ph=card.querySelector('.ph'),r=rel(ph,row);return[r.l+14,r.t-dogF.h()+2]}
 if(nIn)nIn.addEventListener('input',function(){st.n=+nIn.value;ss('bf-sdf-n',st.n);findFloor(true)});
 if($('#sdStyle'))$('#sdStyle').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.s=b.dataset.s;ss('bf-sdf-s',st.s);lastPick='';findFloor(true)});
-cards.forEach(function(c){var a=c.querySelector('a.cta');if(a)a.addEventListener('click',function(){if(!sd())return;st.room=c.dataset.room;summary()})});
+cards.forEach(function(c){var a=c.querySelector('a.cta')||c.querySelector('a');if(a)a.addEventListener('click',function(){if(!sd())return;st.room=c.dataset.room;summary()})});
 /* too many to sit down: the button already says standing, and taking it switches the finder (and the form) to standing */
 var rgo=$('#sdResGo');if(rgo)rgo.addEventListener('click',function(){if(!rgo.hasAttribute('data-stand'))return;st.s='stand';ss('bf-sdf-s',st.s);lastPick='';findFloor(false)});
 
@@ -109,8 +109,8 @@ var rgo=$('#sdResGo');if(rgo)rgo.addEventListener('click',function(){if(!rgo.has
 var steps=$('#sdSteps'),SI=$$('#sdSteps .sd-st'),LI=$$('#night .card li'),card=$('#night .card'),dogN=new Dog($('#dogN'));dogs.push(dogN);
 var beat=-1,walked=false,nT=[],LINES=['Spritz first.','Up we go. Pasta’s on.','Back down. Save me a dance.'];
 function beatPos(b){var r=rel(SI[b].querySelector('.ph'),steps);return[r.l+r.w/2-dogN.w()/2,r.t-dogN.h()+2]}
-function setBeat(b,quiet){if(b===beat)return;beat=b;SI.forEach(function(s,i){s.classList.toggle('on',i===b)});LI.forEach(function(l,i){l.classList.toggle('on',i===b)});steps.classList.add('walking');card.classList.add('walking');var p=beatPos(b);dogN.go(p[0],p[1],function(){if(!quiet)dogN.say(LINES[b],2200)})}
-function walk(){nT.forEach(clearTimeout);nT=[];if(calm()){setBeat(0,true);return}setBeat(0);nT.push(setTimeout(function(){setBeat(1)},1900));nT.push(setTimeout(function(){setBeat(2)},3900))}
+function setBeat(b,quiet){if(b===beat)return;beat=b;SI.forEach(function(s,i){s.classList.toggle('on',i===b)});LI.forEach(function(l,i){l.classList.toggle('on',i===b)});steps.classList.add('walking');if(card)card.classList.add('walking');var p=beatPos(b);dogN.go(p[0],p[1],function(){if(!quiet)dogN.say(LINES[b],2200)})}
+function walk(){nT.forEach(clearTimeout);nT=[];if(calm()){setBeat(0,true);return}setBeat(0);nT.push(setTimeout(function(){setBeat(1)},4600));nT.push(setTimeout(function(){setBeat(2)},9400))}
 SI.concat(LI).forEach(function(el,i){var b=i%3;el.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'&&sd()){nT.forEach(clearTimeout);setBeat(b,true)}});el.addEventListener('click',function(){if(sd()){nT.forEach(clearTimeout);setBeat(b)}})});
 
 /* 3 · pick your night */
