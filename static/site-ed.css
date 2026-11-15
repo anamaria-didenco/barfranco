@@ -18,8 +18,10 @@ html:not(.ed) .hero .ph::after{display:none!important}
  html:not(.ed) .hf-fold>.sec.hf-copy{background:var(--dr)!important}
 }
 
-/* 4b · the menu sits on its own Deep Red strip above an opening photograph (as on Book a table), so nothing lies over the picture */
-html:not(.ed):not(.sd) [data-hero]:is(.hero,.hero-one):not(.bk-hero){border-top:calc(var(--mb) + var(--nv)) solid var(--dr);box-sizing:border-box}
+/* 4b · the menu sits on its own strip above an opening photograph, so nothing lies over the picture. The strip is the page's
+   colour (owner, Nov 2026): Paper by day, Deep Red after 9pm */
+html:not(.ed):not(.sd) [data-hero]:is(.hero,.hero-one):not(.bk-hero){border-top:calc(var(--mb) + var(--nv)) solid var(--pp);box-sizing:border-box}
+html.night:not(.ed):not(.sd) [data-hero]:is(.hero,.hero-one):not(.bk-hero){border-top-color:var(--dr)}
 
 /* 5 · one button rule: the main ask is the filled box; the second ask is an italic line that draws its underline.
    The phone dock, the sticky bars and the masthead keep their boxes. */

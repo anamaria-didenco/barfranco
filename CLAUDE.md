@@ -107,10 +107,12 @@ on the first screen or the events covers; none under reduced motion). New pages:
   (`.fn-idx`); the floors are told once (the second spaces section and the second photo pair are gone); one filled ask on the cover, the
   rest italic lines. Styles: the `.pg-fn` block at the end of `sd-events.css`. The dachshund walks slowly on every events page
   (`Dog.prototype.go` about 7ms a pixel, the cover walk about 170px a second, `sdTrot` 1.15s).
-- **The menu bar, how it moves (Nov 2026):** at the top of a page the masthead belongs to the page and scrolls away with it
-  (`position:absolute` until `html.tb-bar`); scrolling down shows nothing; scrolling up slides in one slim Deep Red bar with the
-  Almond script, the same on every page, day or night (never cream); back at the very top the bar hands over to the page's own
-  masthead with a short fade (`tb-fade`). States in `editorial.js` (`set`, `tick`, `snap`, `fade`), styles in `editorial.css`.
+- **The menu bar (Nov 2026, owner):** the menu is the page's own colour, never a different one: at the top of a page it sits on a
+  Paper strip above the opening photograph (the hero's top border; Deep Red after 9pm, when the page goes Deep Red) with the Deep Red
+  script, and it belongs to the page, so it scrolls away with the photographs (`position:absolute` until `html.tb-bar`). Scrolling
+  down shows nothing; scrolling up slides in one slim bar in the same Paper (Deep Red at night); back at the very top the bar hands
+  over to the page's own masthead with a short fade (`tb-fade`). Home keeps its menu on the hero photograph. States in
+  `editorial.js` (`set`, `tick`, `snap`, `fade`; `toneAt` reads the strip as light), styles in `editorial.css`, strip in `site-ed.css`.
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.

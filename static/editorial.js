@@ -25,6 +25,8 @@ var mast=$('.mast'),mk=$('.mk'),mastR=$('.mast-r'),hero=$('[data-hero]'),mkS=1;
 function tog(c,on){if(on!==mast.classList.contains(c))mast.classList.toggle(c,on)}
 function toneAt(x,y){var N=R.classList.contains('night');var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var e=els[i];if(e.closest('.mast,.lead,.walk-ov,.mockbar,a,button,.card,.cta-row'))continue;var t=e.closest('[data-tone]');
 /* at night every band goes Deep Red except the Almond bands (.night .sec.almond), so the header keeps its day ink over those */
+/* the strip the menu sits on above an opening photograph is the hero's top border, in the page's colour */
+if(t&&!N&&t.hasAttribute('data-hero')){var hs=getComputedStyle(t),bw=(parseFloat(hs.borderTopWidth)||0)+(t.classList.contains('bk-hero')?parseFloat(hs.paddingTop)||0:0);if(bw>8&&y<t.getBoundingClientRect().top+bw)return'light'}
 if(t)return N&&!t.matches('.sec.almond')?'dark':t.dataset.tone;if(N)return'dark';
 for(var n=e;n&&n!==document.documentElement;n=n.parentElement){if(n.tagName==='IMG'||n.tagName==='VIDEO')return'dark';var cs=getComputedStyle(n);if(cs.backgroundImage&&cs.backgroundImage!=='none'&&cs.backgroundImage.indexOf('gradient')<0)return'dark';var m=cs.backgroundColor.match(/[\d.]+/g);if(m&&(m.length<4||+m[3]>.5)){var r=+m[0],g=+m[1],b=+m[2],L=(.2126*r+.7152*g+.0722*b)/255;return L<.5?'dark':(Math.abs(r-250)<14&&Math.abs(g-215)<16?'almond':'light')}}
 return'light'}return N?'dark':'light'}
@@ -229,7 +231,9 @@ var box=D.createElement('span');box.className='mast-ph';
 box.innerHTML='<a href="/bookings/">Book a table</a><a href="'+plan+'">Plan an event</a>';
 var r=mast.querySelector('.mast-r');if(r)r.appendChild(box);
 /* the lines follow the links' ink as the masthead changes over light and dark grounds */
-var ink=function(){var a=box.querySelector('a');if(a)mb.style.color=getComputedStyle(a).color};ink();addEventListener('scroll',function(){requestAnimationFrame(ink)},{passive:true});new MutationObserver(ink).observe(mast,{attributes:true,attributeFilter:['class']});new MutationObserver(ink).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+var ink=function(){var a=box.querySelector('a');if(a)mb.style.color=getComputedStyle(a).color};ink();
+/* the links change ink over a transition, so read it again once that has finished */
+if(r){r.addEventListener('transitionend',ink);r.addEventListener('transitioncancel',ink)}[400,1300,2600].forEach(function(ms){setTimeout(ink,ms)});addEventListener('scroll',function(){requestAnimationFrame(ink)},{passive:true});new MutationObserver(ink).observe(mast,{attributes:true,attributeFilter:['class']});new MutationObserver(ink).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
 })();
 
 /* Booking on phones (owner, Nov 2026: "really hard to book on mobile"). A booking widget inside a page scrolls separately from
