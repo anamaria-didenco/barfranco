@@ -1001,3 +1001,37 @@ body:not(.hm) .hero::before{background:linear-gradient(180deg,rgba(108,6,0,.2),r
 .door{transition-duration:.65s}
 @media(max-width:900px){.car .grid{grid-template-columns:1fr;padding:0 24px;align-content:center}.floor{padding:18px 0 20px}}
 @media(prefers-reduced-motion:reduce){.lift.open .floor{animation:none;opacity:1;transform:none}}
+
+/* ==== a way on from every block ==== */
+.tonight .rs-link{margin-top:26px}
+.fls .rs-link{margin-top:22px}
+.rs-big .rs-link{grid-column:8/13;margin-top:0;align-self:start}
+.rs .rs-big .rs-link{color:var(--cream)}
+.facts .asks{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:36px}
+.sheet .ask .btn+.btn{margin-left:12px}
+@media(max-width:900px){.rs-big .rs-link{display:inline-block;margin-top:22px}}
+@media(max-width:640px){.facts .asks{flex-direction:column;align-items:flex-start}.sheet .ask .btn+.btn{margin:12px 0 0;display:inline-flex}}
+
+/* ==== phones: the enquiry and the closing ask read left, unframed, with equal-width stacked buttons ==== */
+@media(max-width:640px){
+  .enq{padding:56px 24px 72px;border-top:0}
+  .enq>.in{border:0;outline:0;padding:0}
+  .enq h2,.enq .lede,.enq h2 .sotto{text-align:left}
+  .enq .lede{font-size:18px;margin-bottom:24px}
+  .how{align-items:flex-start;margin:0 0 28px}
+  .cta{text-align:left}
+  .cta h2,.cta .sotto,.cta .proof,.cta .btn-note{text-align:left}
+  .cta .t-body{margin-left:0}
+  .cta .asks,.facts .asks{flex-direction:column;align-items:stretch;gap:12px}
+  .cta .asks .btn,.facts .asks .btn{width:100%;justify-content:center}
+  .cta-ln{text-align:left;display:flex;flex-wrap:wrap;gap:4px 10px;justify-content:flex-start}
+  .cta hr{margin-left:0;margin-right:0}
+  .tonight .rs-link,.fls .rs-link{display:inline-block}
+}
+/* ==== facts easier to read: the label in small tracked Marsha, Bright Red; the value in Affairs, Deep Red, full strength ==== */
+.facts .row{padding:18px 27px;align-items:baseline}
+.facts .row span:first-child{font:700 12px/1.6 var(--display);letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
+.facts .row span:last-child{font:400 19px/1.35 var(--body);color:var(--dark);opacity:1}
+.facts .note{opacity:.85}
+.rs-big .rs-link{margin-top:22px}
+@media(max-width:640px){.facts .row{padding:16px 20px;gap:6px}.facts .row span:last-child{font-size:18px}}
