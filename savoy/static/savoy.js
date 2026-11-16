@@ -6,15 +6,10 @@ const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 addEventListener('scroll',()=>$('#nav').classList.toggle('solid',scrollY>(document.body.classList.contains('hm')?innerHeight-80:40)),{passive:true});
 
 /* lift */
-const lift=$('#lift'),floors=$$('.floor'),calls=$$('#calls button'),pics=$$('#pics .p'),reel=$('#reel'),dir=$('#dir');let cur=null,busy=false;
-function toFloor(f,instant){if(f===cur)return;if(instant){reel.style.transition='none';pics.forEach(p=>p.style.transition='none')}
-  dir.textContent=cur===null?' ':f>cur?'↑':'↓';reel.style.transform='translateY(calc('+(-(2-f))+' * var(--fh)))';
-  floors.forEach(e=>e.classList.toggle('on',+e.dataset.f===f));calls.forEach(b=>b.classList.toggle('on',+b.dataset.f===f));
-  pics.forEach(p=>{const pf=+p.dataset.f;p.classList.remove('on','past');if(pf===f)p.classList.add('on');else if(pf>f)p.classList.add('past')});
-  if(instant){void reel.offsetWidth;reel.style.transition='';pics.forEach(p=>{void p.offsetWidth;p.style.transition=''})}
-  cur=f;clearTimeout(dir._t);dir._t=setTimeout(()=>dir.textContent=' ',1100)}
+const lift=$('#lift'),bgs=$$('#lift .bg img');let busy=false;
+function room(k){bgs.forEach(i=>i.classList.toggle('on',i.dataset.k===k))}
 const wait=ms=>new Promise(r=>setTimeout(r,RM?0:ms));
-async function openLift(){if(busy)return;busy=true;lift.classList.add('vis');await wait(20);lift.classList.add('shut');await wait(700);lift.classList.add('inside');cur=null;toFloor(1,true);document.body.style.overflow='hidden';await wait(160);lift.classList.remove('shut');lift.classList.add('open');await wait(700);busy=false;$('#close').focus()}
+async function openLift(){if(busy)return;busy=true;lift.classList.add('vis');await wait(20);lift.classList.add('shut');await wait(700);lift.classList.add('inside');room('k');document.body.style.overflow='hidden';await wait(160);lift.classList.remove('shut');lift.classList.add('open');await wait(700);busy=false;$('#close').focus()}
 async function closeLift(){if(busy)return;busy=true;lift.classList.remove('open');lift.classList.add('shut');await wait(700);lift.classList.remove('inside');document.body.style.overflow='';await wait(160);lift.classList.remove('shut');await wait(700);lift.classList.remove('vis');busy=false;$('#open').focus()}
 $('#open').onclick=openLift;$('#close').onclick=closeLift;
 /* the page turn: every page is a floor. Leaving, the doors shut over the page; arriving, they open on the next one */
@@ -29,9 +24,9 @@ if(document.documentElement.classList.contains('arrive')){try{sessionStorage.rem
   curtain.classList.add('vis','shut');document.documentElement.classList.remove('arrive');
   setTimeout(()=>{curtain.classList.remove('shut');setTimeout(()=>curtain.classList.remove('vis'),760)},RM?0:220)}
 addEventListener('pageshow',e=>{if(e.persisted){lift.classList.remove('vis','shut','inside','open');curtain.classList.remove('vis','shut');document.body.style.overflow=''}});
-addEventListener('keydown',e=>{if(!lift.classList.contains('open'))return;if(e.key==='Escape')closeLift();if(e.key==='ArrowUp'){e.preventDefault();toFloor(Math.min(2,cur+1))}if(e.key==='ArrowDown'){e.preventDefault();toFloor(Math.max(0,cur-1))}});
-floors.forEach(e=>{const f=+e.dataset.f;e.addEventListener('mouseenter',()=>toFloor(f));e.querySelector('.fl').onclick=()=>toFloor(f)});
-calls.forEach(b=>b.onclick=()=>toFloor(+b.dataset.f));$$('.lift a[href^="#"]').forEach(a=>a.addEventListener('click',()=>closeLift()));
+addEventListener('keydown',e=>{if(lift.classList.contains('open')&&e.key==='Escape')closeLift()});
+$$('.lift a[href^="#"]').forEach(a=>a.addEventListener('click',()=>closeLift()));
+$$('#lift .idx a').forEach(a=>{a.addEventListener('mouseenter',()=>room(a.dataset.k));a.addEventListener('focus',()=>room(a.dataset.k))});
 
 if(has('.hero .slide')){/* hero: 3-slide fade with thumbnail rail + progress line */
 const sl=$$('.hero .slide'),th=$$('.rail button'),bar=$('.rail .prog i');let hi=0,t0=performance.now();const DUR=6500;
