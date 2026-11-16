@@ -96,9 +96,12 @@ on the first screen or the events covers; none under reduced motion). New pages:
 - **HARD RULE: every sentence starts on a new line.** A line must never begin halfway through a sentence ("Stay for /
   dinner upstairs" is not allowed). `editorial.js` turns each sentence end in body paragraphs into a line break on every page;
   write copy as short sentences so each one fits its line, and never join two sentences on one line.
-- **Phone masthead:** two thin lines (the menu) on the far left, then the script; top right "Book a table" and "Plan an event",
-  italic, no box (`.mast-ph`, built by `editorial.js`, styles at the end of `editorial.css`). The boxed Book a table is desktop only;
-  Home's hero hides its own asks on phones.
+- **Phone masthead (a letterhead, owner Nov 2026):** the script is centred, the two thin menu lines sit on the far left, and under the
+  script runs one quiet italic line, "Book a table · Plan an event" (no underline, no box; `.mast-ph`, built by `editorial.js`). The
+  strip is 112px on phones (`--nv`). The slim bar on the way up keeps one row: menu lines, the script centred, one ask on the right
+  (Book a table; Plan an event on the events pages). With the menu open the line hides (the menu has its own Book a table).
+  Home's first screen has no script in the bar (it is in the photograph), so the line sits level with the menu lines.
+  Styles: the last block of `editorial.css`. The boxed Book a table is desktop only.
 - **Booking on phones:** every Book a table (masthead, heroes, Home's panel, `#book`) opens NowBookIt's own page full screen,
   and the widget boxes on Book a table and Restaurant become one full-width "Choose a date and time" button (`.bk-go`). A widget
   inside the page scrolled separately from it, which made booking on a phone hard. Desktop keeps the widget. Both in `editorial.js`/`.css`.

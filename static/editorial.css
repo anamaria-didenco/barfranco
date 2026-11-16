@@ -1281,3 +1281,30 @@ p,li,blockquote,figcaption{text-wrap:pretty}
  .tb:not(.tb-bar):not(.menu-open) .mast{padding-top:clamp(14px,1.5vw,18px)}
  .tb:not(.tb-bar) .mk img{height:clamp(52px,4.4vw,62px)!important}
 }
+
+/* ==== Phone masthead, calmer (owner, Nov 2026: "it just looks really busy"): a letterhead. The script is centred, the two
+   menu lines sit on the left, and under the script runs one quiet line, Book a table · Plan an event, with no underlines
+   and no boxes. The slim bar on the way up keeps one row: menu lines, the script centred, the page's one ask on the right. ==== */
+@media (max-width:900px){
+ :root{--nv:112px}
+ header.mast{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-rows:auto auto;align-items:center;align-content:start;column-gap:10px;row-gap:0;padding-top:12px}
+ header.mast .mast-menu{grid-column:1;grid-row:1;justify-self:start;margin:0 0 0 -4px!important}
+ header.mast .mk{grid-column:2;grid-row:1;justify-self:center;margin:0!important}
+ .tb header.mast .mk img{height:46px!important}
+ header.mast .mast-r{grid-column:1/-1;grid-row:2;justify-self:center;padding:0;gap:0}
+ .mast-ph{gap:0}
+ .mast-ph a{padding:10px 0 12px;font-size:15px}
+ .mast-ph a::after{display:none}
+ .mast-ph a+a::before{content:"\00B7";display:inline-block;margin:0 11px;font-style:normal;opacity:.6}
+ .menu-open .mast-ph{display:none}
+ html.tb-bar:not(.menu-open) header.mast{grid-template-rows:auto;align-content:center;padding-top:0}
+ html.tb-bar:not(.menu-open) header.mast .mast-r{grid-column:3;grid-row:1;justify-self:end}
+ html.tb-bar:not(.menu-open) .mast-ph a:nth-child(2){display:none}
+ html.sd.tb-bar:not(.menu-open) .mast-ph a:nth-child(1){display:none}
+ html.sd.tb-bar:not(.menu-open) .mast-ph a:nth-child(2){display:inline}
+ html.tb-bar .mast-ph a+a::before{display:none}
+ html.tb-bar header.mast .mk img{height:30px!important}
+ /* Home's first screen: its script is in the photograph, so the line sits level with the menu lines */
+ html.ed.ed-top:not(.tb-bar):not(.menu-open) header.mast .mast-r{grid-row:1}
+}
+@media (max-width:360px){.mast-ph a+a::before{margin:0 8px}}
