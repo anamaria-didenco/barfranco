@@ -1308,3 +1308,5 @@ p,li,blockquote,figcaption{text-wrap:pretty}
  html.ed.ed-top:not(.tb-bar):not(.menu-open) header.mast .mast-r{grid-row:1}
 }
 @media (max-width:360px){.mast-ph a+a::before{margin:0 8px}}
+/* the narrowest phones (320px): the footer's sign-off word was wider than the column and pushed the page sideways */
+@media (max-width:350px){.foot .d1{font-size:8.6vw!important}}

@@ -99,3 +99,12 @@ html:not(.ed):not(.sd) [data-hero] .hero-cap .ln{border-bottom-color:var(--rule)
  html:not(.ed):not(.sd) [data-hero] .hero-cap .lns{grid-row:3}
  html:not(.ed):not(.sd) [data-hero] .hero-cap .cta-row{grid-row:4;margin-top:20px}
 }
+
+/* Opening photographs, re-aimed for the wide desktop cut (Nov 2026): with no card over them the subject has to sit in the
+   band that shows. By file name, desktop only; phones show the 4:5 picture nearly whole. */
+@media (min-width:901px){
+ [data-hero] .ph img[src*="parmigiana-cacio-overhead"]{object-position:50% 58%}
+ [data-hero] .ph img[src*="social-aperitivo"]{object-position:50% 86%}
+ [data-hero] .ph img[src*="room-window-bistro"]{object-position:50% 44%}
+ [data-hero] .ph img[src*="level-negroni-graded"]{object-position:50% 44%}
+}
