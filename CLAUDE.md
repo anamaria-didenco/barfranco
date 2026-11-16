@@ -96,9 +96,12 @@ on the first screen or the events covers; none under reduced motion). New pages:
 - **HARD RULE: every sentence starts on a new line.** A line must never begin halfway through a sentence ("Stay for /
   dinner upstairs" is not allowed). `editorial.js` turns each sentence end in body paragraphs into a line break on every page;
   write copy as short sentences so each one fits its line, and never join two sentences on one line.
-- **Phone masthead:** two thin lines (the menu) on the far left, then the script; top right "Book a table" and "Plan an event",
-  italic, no box (`.mast-ph`, built by `editorial.js`, styles at the end of `editorial.css`). The boxed Book a table is desktop only;
-  Home's hero hides its own asks on phones.
+- **Phone masthead (a letterhead, owner Nov 2026):** the script is centred, the two thin menu lines sit on the far left, and under the
+  script runs one quiet italic line, "Book a table · Plan an event" (no underline, no box; `.mast-ph`, built by `editorial.js`). The
+  strip is 112px on phones (`--nv`). The slim bar on the way up keeps one row: menu lines, the script centred, one ask on the right
+  (Book a table; Plan an event on the events pages). With the menu open the line hides (the menu has its own Book a table).
+  Home's first screen has no script in the bar (it is in the photograph), so the line sits level with the menu lines.
+  Styles: the last block of `editorial.css`. The boxed Book a table is desktop only.
 - **Booking on phones:** every Book a table (masthead, heroes, Home's panel, `#book`) opens NowBookIt's own page full screen,
   and the widget boxes on Book a table and Restaurant become one full-width "Choose a date and time" button (`.bk-go`). A widget
   inside the page scrolled separately from it, which made booking on a phone hard. Desktop keeps the widget. Both in `editorial.js`/`.css`.
@@ -107,6 +110,19 @@ on the first screen or the events covers; none under reduced motion). New pages:
   (`.fn-idx`); the floors are told once (the second spaces section and the second photo pair are gone); one filled ask on the cover, the
   rest italic lines. Styles: the `.pg-fn` block at the end of `sd-events.css`. The dachshund walks slowly on every events page
   (`Dog.prototype.go` about 7ms a pixel, the cover walk about 170px a second, `sdTrot` 1.15s).
+- **The menu bar (Nov 2026, owner):** the menu is the page's own colour, never a different one: at the top of a page it sits on a
+  Paper strip above the opening photograph (the hero's top border; Deep Red after 9pm, when the page goes Deep Red) with the Deep Red
+  script, and it belongs to the page, so it scrolls away with the photographs (`position:absolute` until `html.tb-bar`). Scrolling
+  down shows nothing; scrolling up slides in one slim bar in the same Paper (Deep Red at night); back at the very top the bar hands
+  over to the page's own masthead with a short fade (`tb-fade`). Home keeps its menu on the hero photograph. States in
+  `editorial.js` (`set`, `tick`, `snap`, `fade`; `toneAt` reads the strip as light), styles in `editorial.css`, strip in `site-ed.css`.
+- **No coloured box over a photograph, on any screen (owner, Nov 2026: phones first, then "everywhere").** The opening photograph
+  stands alone and the page's words (label, title in Bright Red, one line, the ask) follow under it on the page's ground: no Deep Red
+  card (Restaurant, Menus, Book a table, Vouchers, Contact) and no framed Almond card (Aperitivo, Negroni bar, Pasta fresca, Before the
+  stadium, Weddings, Events pack). Phones: the photograph 4:5, the words in one column. Desktop: the photograph cut wide
+  (`clamp(360px,64svh,720px)`), the title on the left and the line and the ask on the right. Home's hero keeps its title on the
+  photograph (the owner's one exception) and its Plan an event is an italic line, not an outlined box. Never put a filled or
+  framed text box on a photograph again. Styles: the last block of `site-ed.css`; Restaurant and Home at the end of `home-ed.css`.
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.

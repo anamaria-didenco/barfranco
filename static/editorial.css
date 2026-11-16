@@ -906,7 +906,8 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 
 /* Bar Franco · top bar. Every page. Gated on html.tb (added by top-bar.js), so without JS the old header stands.
    Top of the page: transparent over the cover. Scrolling down: the bar slides away.
-   Scrolling up: it comes back as a slim cream bar, one colour wherever you are (deep red after 9pm). */
+   Scrolling up: it comes back as a slim bar in the page's own colour: Paper by day, Deep Red after 9pm (owner, Nov 2026:
+   the menu is the same colour as the page it sits on). */
 .tb .mast{transition:transform .38s var(--ease),background-color .25s var(--ease),box-shadow .25s var(--ease),padding .3s var(--ease);will-change:auto}
 .tb .mast .veil{display:none!important}
 .tb .mk{transform:none!important}
@@ -916,20 +917,20 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 .tb .mast-book{display:inline-flex;align-items:center;min-height:40px;padding:0 18px!important;margin:0!important;background:var(--br);border:1.5px solid var(--br);color:var(--al)!important;font-style:normal;font-size:14.5px;letter-spacing:.01em;text-decoration:none!important;transition:background-color .2s var(--ease),border-color .2s var(--ease)}
 .tb .mast-book:hover{background:var(--dr);border-color:var(--dr)}
 .tb .mast-book:focus-visible,.tb .links a:focus-visible,.tb .mk:focus-visible{outline:2px solid var(--sp);outline-offset:3px}
-.tb-bar .mast{height:64px;padding:0 clamp(18px,3.2vw,48px);align-items:center;background:#FBF4EA;box-shadow:0 1px 0 rgba(108,6,0,.16);pointer-events:auto}
+.tb-bar .mast{height:64px;padding:0 clamp(18px,3.2vw,48px);align-items:center;background:var(--pp);box-shadow:0 1px 0 rgba(108,6,0,.16);pointer-events:auto}
 .tb-bar .mast .mk img{height:34px!important}
-.tb-bar .mast-r{padding-top:0;color:var(--dr)!important}
-.tb-bar .mast .mk-d{opacity:1!important}
-.tb-bar .mast .mk-a{opacity:0!important}
+html.tb-bar .mast .mast-r{padding-top:0;color:var(--dr)!important}
+html.tb-bar .mast .mk-in .mk-d{opacity:1!important}
+html.tb-bar .mast .mk-in .mk-a{opacity:0!important}
+html.night:not(.ed).tb-bar .mast{background:var(--dr);box-shadow:0 1px 0 rgba(250,215,195,.22)}
+html.night:not(.ed).tb-bar .mast .mast-r{color:var(--al)!important}
+html.night:not(.ed).tb-bar .mast .mk-in .mk-d{opacity:0!important}
+html.night:not(.ed).tb-bar .mast .mk-in .mk-a{opacity:1!important}
+html.night:not(.ed).tb-bar .mast .mast-r .mast-book{background:var(--al);border-color:var(--al);color:var(--dr)!important}
 .tb-bar .links{padding-bottom:0;margin-bottom:0}
-.night.tb-bar .mast{background:var(--dr);box-shadow:0 1px 0 rgba(250,215,195,.22)}
-.night.tb-bar .mast-r{color:var(--al)!important}
-.night.tb-bar .mast .mk-d{opacity:0!important}
-.night.tb-bar .mast .mk-a{opacity:1!important}
-.night.tb-bar .mast-book{background:var(--al);border-color:var(--al);color:var(--dr)!important}
 .tb-away .mast{transform:translateY(calc(-100% - 6px))}
 .tb-up .sticky-cta{transform:translateY(110%)!important}
-.tb.menu-open .mast{transform:none!important;background:transparent;box-shadow:none}
+.tb.menu-open .mast{position:fixed;transform:none!important;background:transparent;box-shadow:none}
 .tb.menu-open .mast .mast-r{color:var(--al)!important}
 .tb.menu-open .mast .mk-in .mk-d{opacity:0!important}
 .tb.menu-open .mast .mk-in .mk-a{opacity:1!important}
@@ -1189,7 +1190,8 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 .bk-hero .ph{position:relative;inset:auto;height:clamp(220px,32svh,380px)}
 .bk-hero .ph::after{display:none}
 /* the masthead sits on its own Deep Red strip above the photograph, so nothing lies over the picture */
-.bk-hero{padding-top:calc(var(--mb) + var(--nv));background:var(--dr)}
+.bk-hero{padding-top:calc(var(--mb) + var(--nv));background:var(--pp)}
+.night .bk-hero{background:var(--dr)}
 .bk-hero .ph::before{display:none}
 .bk-hero .hero-cap{position:static;transform:none;max-width:none;width:auto;background:var(--dr);color:var(--al);border:0;
  padding:clamp(20px,3vw,34px) max(var(--gx),calc((100% - 1240px) / 2 + var(--gx)));display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:4px 32px}
@@ -1259,3 +1261,50 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 @keyframes bf-settle{from{scale:1.08}to{scale:1}}
 .bf-drift{overflow:hidden}
 .bf-drift>img{scale:1.07;will-change:translate}
+
+/* ==== The menu bar, how it moves (owner, Nov 2026). At the top of a page the menu belongs to the page and scrolls
+   away with it (it used to stay pinned for the first 72px while the page slid underneath, so the script and the links
+   sat half on a photograph). Scrolling down: nothing. Scrolling up: the slim bar slides in, in the page's colour. Back at the very
+   top: the bar hands over to the page's own menu with a short fade. editorial.js sets the states. ==== */
+.tb:not(.tb-bar):not(.menu-open) .mast{position:absolute}
+.tb-snap .mast,.tb-snap .mast *{transition:none!important}
+.tb-fade .mast{transition:none!important}
+.tb-fade:not(.menu-open) .mast>*{animation:tbFadeIn .45s var(--ease) both}
+.tb-fade:not(.menu-open) .mast::before{content:"";position:fixed;left:0;right:0;top:var(--mb);height:64px;background:var(--pp);pointer-events:none;z-index:-1;animation:tbFadeOut .32s var(--ease) both}
+@media (max-width:900px){.tb-fade:not(.menu-open) .mast::before{height:58px}}
+@keyframes tbFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes tbFadeOut{from{opacity:1}to{opacity:0}}
+@media (prefers-reduced-motion:reduce){.tb-fade .mast>*,.tb-fade .mast::before{animation:none!important}.tb-fade .mast::before{display:none}}
+.night:not(.ed).tb-fade:not(.menu-open) .mast::before{background:var(--dr)}
+/* the script sits wholly on its strip at the top of a page: in Deep Red its tail was lost where it dipped onto a dark photograph */
+@media (min-width:901px){
+ .tb:not(.tb-bar):not(.menu-open) .mast{padding-top:clamp(14px,1.5vw,18px)}
+ .tb:not(.tb-bar) .mk img{height:clamp(52px,4.4vw,62px)!important}
+}
+
+/* ==== Phone masthead, calmer (owner, Nov 2026: "it just looks really busy"): a letterhead. The script is centred, the two
+   menu lines sit on the left, and under the script runs one quiet line, Book a table · Plan an event, with no underlines
+   and no boxes. The slim bar on the way up keeps one row: menu lines, the script centred, the page's one ask on the right. ==== */
+@media (max-width:900px){
+ :root{--nv:112px}
+ header.mast{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-rows:auto auto;align-items:center;align-content:start;column-gap:10px;row-gap:0;padding-top:12px}
+ header.mast .mast-menu{grid-column:1;grid-row:1;justify-self:start;margin:0 0 0 -4px!important}
+ header.mast .mk{grid-column:2;grid-row:1;justify-self:center;margin:0!important}
+ .tb header.mast .mk img{height:46px!important}
+ header.mast .mast-r{grid-column:1/-1;grid-row:2;justify-self:center;padding:0;gap:0}
+ .mast-ph{gap:0}
+ .mast-ph a{padding:10px 0 12px;font-size:15px}
+ .mast-ph a::after{display:none}
+ .mast-ph a+a::before{content:"\00B7";display:inline-block;margin:0 11px;font-style:normal;opacity:.6}
+ .menu-open .mast-ph{display:none}
+ html.tb-bar:not(.menu-open) header.mast{grid-template-rows:auto;align-content:center;padding-top:0}
+ html.tb-bar:not(.menu-open) header.mast .mast-r{grid-column:3;grid-row:1;justify-self:end}
+ html.tb-bar:not(.menu-open) .mast-ph a:nth-child(2){display:none}
+ html.sd.tb-bar:not(.menu-open) .mast-ph a:nth-child(1){display:none}
+ html.sd.tb-bar:not(.menu-open) .mast-ph a:nth-child(2){display:inline}
+ html.tb-bar .mast-ph a+a::before{display:none}
+ html.tb-bar header.mast .mk img{height:30px!important}
+ /* Home's first screen: its script is in the photograph, so the line sits level with the menu lines */
+ html.ed.ed-top:not(.tb-bar):not(.menu-open) header.mast .mast-r{grid-row:1}
+}
+@media (max-width:360px){.mast-ph a+a::before{margin:0 8px}}

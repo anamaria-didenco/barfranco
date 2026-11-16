@@ -261,8 +261,8 @@ html.ed body{background:var(--pp)}
 html.ed.ed-top .hx-host{opacity:0;pointer-events:none;transition:opacity .3s}
 /* owner, Nov 2026: no tint over photographs; the film layer is the only treatment */
 html.ed .hf-fold>.hero .ph::after,.ed-rh-ph::after{display:none!important}
-/* Restaurant without a tint: the masthead on its Deep Red strip, the small words on a solid Deep Red card */
-.ed-rhero{border-top:calc(var(--mb) + var(--nv)) solid var(--dr);box-sizing:border-box}
+/* Restaurant without a tint: the masthead on its own Paper strip (Home and Restaurant have no evening palette), the small words on a solid Deep Red card */
+.ed-rhero{border-top:calc(var(--mb) + var(--nv)) solid var(--pp);box-sizing:border-box}
 .ed-rh-s{background:var(--dr);padding:clamp(18px,2vw,28px)}
 @media (max-width:860px){.ed-rh-s{margin-left:-20px;margin-right:-20px;padding:20px}}
 /* phones: Book a table and Plan an event live top right, so the hero keeps only its line */
@@ -274,3 +274,23 @@ html.ed .hf-fold>.hero .ph::after,.ed-rh-ph::after{display:none!important}
  .ed-rh-s{grid-column:1/8;grid-row:3;margin-top:20px}
 }
 @media (min-width:1280px){.ed-rhero .ed-h{grid-column:1/9}.ed-rh-s{grid-column:9/13}}
+
+/* No coloured box over a photograph, on any screen (owner, Nov 2026). Restaurant's opening photograph stands alone and
+   its words follow under it on Paper: the title on the left, the small words on the right (one column on phones). */
+.ed-rhero{height:auto;min-height:0;overflow:visible;background:var(--pp);color:var(--dr)}
+.ed-rh-ph{position:relative;inset:auto;height:clamp(360px,64svh,720px)}
+.ed-rh-tx{height:auto;padding-top:clamp(26px,3.2vw,48px);padding-bottom:8px}
+.ed-rh-tx .ed-k{color:var(--dr)}
+.ed-rhero .ed-h{color:var(--br)}
+.ed-rh-s{background:none;padding:0;color:var(--dr)}
+.ed-rhero .ed-a{color:var(--dr)}
+@media (max-width:900px){
+ .ed-rh-ph{height:auto;aspect-ratio:4/5;max-height:72svh}
+ .ed-rh-tx{display:block}
+ .ed-rh-tx .ed-k{margin-bottom:10px}
+ .ed-rh-s{margin:16px 0 0}
+}
+/* Home's hero (owner, Nov 2026: no boxes over photographs): Plan an event is an italic line with a hairline under it, not an outlined box */
+html.ed .hf-act .hx-acts a.cta:not(.cta-fill){border:0!important;background:none!important;padding:6px 0!important;font-style:italic;color:var(--al)!important;position:relative}
+html.ed .hf-act .hx-acts a.cta:not(.cta-fill)::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:currentColor;opacity:.5;transition:opacity .25s}
+html.ed .hf-act .hx-acts a.cta:not(.cta-fill):hover::after{opacity:1}

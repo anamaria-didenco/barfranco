@@ -23,8 +23,10 @@ clock();setInterval(clock,30000);
 /* the header layer: the logo settles as you scroll; ink and veil follow what's beneath */
 var mast=$('.mast'),mk=$('.mk'),mastR=$('.mast-r'),hero=$('[data-hero]'),mkS=1;
 function tog(c,on){if(on!==mast.classList.contains(c))mast.classList.toggle(c,on)}
-function toneAt(x,y){var N=R.classList.contains('night');var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var e=els[i];if(e.closest('.mast,.lead,.walk-ov,.mockbar,a,button,.card,.cta-row'))continue;var t=e.closest('[data-tone]');
+function toneAt(x,y){var N=R.classList.contains('night')&&!R.classList.contains('ed');var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var e=els[i];if(e.closest('.mast,.lead,.walk-ov,.mockbar,a,button,.card,.cta-row'))continue;var t=e.closest('[data-tone]');
 /* at night every band goes Deep Red except the Almond bands (.night .sec.almond), so the header keeps its day ink over those */
+/* the strip the menu sits on above an opening photograph is the hero's top border, in the page's colour */
+if(t&&!N&&t.hasAttribute('data-hero')){var hs=getComputedStyle(t),bw=(parseFloat(hs.borderTopWidth)||0)+(t.classList.contains('bk-hero')?parseFloat(hs.paddingTop)||0:0);if(bw>8&&y<t.getBoundingClientRect().top+bw)return'light'}
 if(t)return N&&!t.matches('.sec.almond')?'dark':t.dataset.tone;if(N)return'dark';
 for(var n=e;n&&n!==document.documentElement;n=n.parentElement){if(n.tagName==='IMG'||n.tagName==='VIDEO')return'dark';var cs=getComputedStyle(n);if(cs.backgroundImage&&cs.backgroundImage!=='none'&&cs.backgroundImage.indexOf('gradient')<0)return'dark';var m=cs.backgroundColor.match(/[\d.]+/g);if(m&&(m.length<4||+m[3]>.5)){var r=+m[0],g=+m[1],b=+m[2],L=(.2126*r+.7152*g+.0722*b)/255;return L<.5?'dark':(Math.abs(r-250)<14&&Math.abs(g-215)<16?'almond':'light')}}
 return'light'}return N?'dark':'light'}
@@ -172,12 +174,20 @@ function closeMenu(){if(!R.classList.contains('menu-open'))return;R.classList.re
 if(links)links.addEventListener('click',function(e){if(e.target.closest('a'))closeMenu()});
 if(mb)mb.addEventListener('click',function(){if(R.classList.contains('menu-open')){var a=$('#links a');if(a)setTimeout(function(){a.focus({preventScroll:true})},60)}});
 D.addEventListener('keydown',function(e){if(e.key!=='Tab'||!R.classList.contains('menu-open'))return;var fs=[].slice.call(mast.querySelectorAll('a[href],button')).filter(function(x){return x.offsetParent!==null&&getComputedStyle(x).visibility!=='hidden'});if(!fs.length)return;var i=fs.indexOf(D.activeElement);if(e.shiftKey&&i<=0){e.preventDefault();fs[fs.length-1].focus()}else if(!e.shiftKey&&i===fs.length-1){e.preventDefault();fs[0].focus()}});
-/* away on the way down, back on the way up */
-var TOP=72,lastY=scrollY,acc=0,state='';
+/* the menu bar (owner, Nov 2026): at the top it is part of the page and scrolls away with it; away on the way down;
+   the slim bar slides back on the way up; at the very top the bar hands over to the page's menu with a short fade */
+var lastY=scrollY,acc=0,state='',TH=110,fT=0;
+function snap(){R.classList.add('tb-snap');requestAnimationFrame(function(){requestAnimationFrame(function(){R.classList.remove('tb-snap')})})}
+function fade(){R.classList.add('tb-fade');clearTimeout(fT);fT=setTimeout(function(){R.classList.remove('tb-fade')},520)}
 function set(s){if(s===state)return;state=s;R.classList.toggle('tb-bar',s!=='top');R.classList.toggle('tb-up',s==='up');R.classList.toggle('tb-away',s==='away')}
-function tick(){var y=Math.max(0,scrollY),dy=y-lastY;lastY=y;if(R.classList.contains('menu-open'))return;if(y<=TOP){acc=0;set('top');return}if(state==='top'){acc=0;set(dy>=0?'away':'up');return}
+function measure(){if(state==='top')TH=Math.max(64,mast.offsetTop+mast.offsetHeight)}
+function tick(){var y=Math.max(0,scrollY),dy=y-lastY;lastY=y;if(R.classList.contains('menu-open'))return;
+if(state==='top'){if(y>=TH){acc=0;snap();set('away')}return}
+if(y<=2){acc=0;if(state==='up')fade();else snap();set('top');measure();return}
+if(state==='away'&&dy<0&&y<TH){acc=0;snap();set('top');return}
 if(dy>0){acc=acc>0?acc+dy:dy;if(acc>14)set('away')}else if(dy<0){acc=acc<0?acc+dy:dy;if(acc<-8)set('up')}}
-set(scrollY>TOP?'up':'top');
+snap();if(scrollY>2){set('top');measure();set(scrollY>=TH?'up':'top')}else{set('top');measure()}
+addEventListener('resize',measure);addEventListener('load',measure);
 var raf=0;addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(function(){raf=0;tick()})},{passive:true});
 mast.addEventListener('focusin',function(){if(state==='away')set('up')});
 })();
@@ -221,7 +231,9 @@ var box=D.createElement('span');box.className='mast-ph';
 box.innerHTML='<a href="/bookings/">Book a table</a><a href="'+plan+'">Plan an event</a>';
 var r=mast.querySelector('.mast-r');if(r)r.appendChild(box);
 /* the lines follow the links' ink as the masthead changes over light and dark grounds */
-var ink=function(){var a=box.querySelector('a');if(a)mb.style.color=getComputedStyle(a).color};ink();addEventListener('scroll',function(){requestAnimationFrame(ink)},{passive:true});new MutationObserver(ink).observe(mast,{attributes:true,attributeFilter:['class']});new MutationObserver(ink).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+var ink=function(){var a=box.querySelector('a');if(a)mb.style.color=getComputedStyle(a).color};ink();
+/* the links change ink over a transition, so read it again once that has finished */
+if(r){r.addEventListener('transitionend',ink);r.addEventListener('transitioncancel',ink)}[400,1300,2600].forEach(function(ms){setTimeout(ink,ms)});addEventListener('scroll',function(){requestAnimationFrame(ink)},{passive:true});new MutationObserver(ink).observe(mast,{attributes:true,attributeFilter:['class']});new MutationObserver(ink).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
 })();
 
 /* Booking on phones (owner, Nov 2026: "really hard to book on mobile"). A booking widget inside a page scrolls separately from
