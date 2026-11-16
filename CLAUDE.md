@@ -116,10 +116,13 @@ on the first screen or the events covers; none under reduced motion). New pages:
   down shows nothing; scrolling up slides in one slim bar in the same Paper (Deep Red at night); back at the very top the bar hands
   over to the page's own masthead with a short fade (`tb-fade`). Home keeps its menu on the hero photograph. States in
   `editorial.js` (`set`, `tick`, `snap`, `fade`; `toneAt` reads the strip as light), styles in `editorial.css`, strip in `site-ed.css`.
-- **Phones: no coloured box over a photograph (owner, Nov 2026).** On phones (≤900px) the opening photograph stands alone, 4:5, and
-  the page's words (label, title in Bright Red, one line, the ask) follow under it on the page's ground: no Deep Red card
-  (Restaurant, Menus, Book a table, Vouchers, Contact) and no framed Almond card (Aperitivo, Negroni bar, Pasta fresca, Before the
-  stadium, Weddings, Events pack). Desktop keeps the cards. Styles: the last block of `site-ed.css`; Restaurant at the end of `home-ed.css`.
+- **No coloured box over a photograph, on any screen (owner, Nov 2026: phones first, then "everywhere").** The opening photograph
+  stands alone and the page's words (label, title in Bright Red, one line, the ask) follow under it on the page's ground: no Deep Red
+  card (Restaurant, Menus, Book a table, Vouchers, Contact) and no framed Almond card (Aperitivo, Negroni bar, Pasta fresca, Before the
+  stadium, Weddings, Events pack). Phones: the photograph 4:5, the words in one column. Desktop: the photograph cut wide
+  (`clamp(360px,64svh,720px)`), the title on the left and the line and the ask on the right. Home's hero keeps its title on the
+  photograph (the owner's one exception) and its Plan an event is an italic line, not an outlined box. Never put a filled or
+  framed text box on a photograph again. Styles: the last block of `site-ed.css`; Restaurant and Home at the end of `home-ed.css`.
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.
