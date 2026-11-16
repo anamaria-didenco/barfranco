@@ -922,11 +922,11 @@ p a:not([class]),.evm-n2 a{text-decoration-line:underline}
 html.tb-bar .mast .mast-r{padding-top:0;color:var(--dr)!important}
 html.tb-bar .mast .mk-in .mk-d{opacity:1!important}
 html.tb-bar .mast .mk-in .mk-a{opacity:0!important}
-html.night.tb-bar .mast{background:var(--dr);box-shadow:0 1px 0 rgba(250,215,195,.22)}
-html.night.tb-bar .mast .mast-r{color:var(--al)!important}
-html.night.tb-bar .mast .mk-in .mk-d{opacity:0!important}
-html.night.tb-bar .mast .mk-in .mk-a{opacity:1!important}
-html.night.tb-bar .mast .mast-r .mast-book{background:var(--al);border-color:var(--al);color:var(--dr)!important}
+html.night:not(.ed).tb-bar .mast{background:var(--dr);box-shadow:0 1px 0 rgba(250,215,195,.22)}
+html.night:not(.ed).tb-bar .mast .mast-r{color:var(--al)!important}
+html.night:not(.ed).tb-bar .mast .mk-in .mk-d{opacity:0!important}
+html.night:not(.ed).tb-bar .mast .mk-in .mk-a{opacity:1!important}
+html.night:not(.ed).tb-bar .mast .mast-r .mast-book{background:var(--al);border-color:var(--al);color:var(--dr)!important}
 .tb-bar .links{padding-bottom:0;margin-bottom:0}
 .tb-away .mast{transform:translateY(calc(-100% - 6px))}
 .tb-up .sticky-cta{transform:translateY(110%)!important}
@@ -1275,4 +1275,9 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 @keyframes tbFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes tbFadeOut{from{opacity:1}to{opacity:0}}
 @media (prefers-reduced-motion:reduce){.tb-fade .mast>*,.tb-fade .mast::before{animation:none!important}.tb-fade .mast::before{display:none}}
-.night.tb-fade:not(.menu-open) .mast::before{background:var(--dr)}
+.night:not(.ed).tb-fade:not(.menu-open) .mast::before{background:var(--dr)}
+/* the script sits wholly on its strip at the top of a page: in Deep Red its tail was lost where it dipped onto a dark photograph */
+@media (min-width:901px){
+ .tb:not(.tb-bar):not(.menu-open) .mast{padding-top:clamp(14px,1.5vw,18px)}
+ .tb:not(.tb-bar) .mk img{height:clamp(52px,4.4vw,62px)!important}
+}

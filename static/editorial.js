@@ -23,7 +23,7 @@ clock();setInterval(clock,30000);
 /* the header layer: the logo settles as you scroll; ink and veil follow what's beneath */
 var mast=$('.mast'),mk=$('.mk'),mastR=$('.mast-r'),hero=$('[data-hero]'),mkS=1;
 function tog(c,on){if(on!==mast.classList.contains(c))mast.classList.toggle(c,on)}
-function toneAt(x,y){var N=R.classList.contains('night');var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var e=els[i];if(e.closest('.mast,.lead,.walk-ov,.mockbar,a,button,.card,.cta-row'))continue;var t=e.closest('[data-tone]');
+function toneAt(x,y){var N=R.classList.contains('night')&&!R.classList.contains('ed');var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var e=els[i];if(e.closest('.mast,.lead,.walk-ov,.mockbar,a,button,.card,.cta-row'))continue;var t=e.closest('[data-tone]');
 /* at night every band goes Deep Red except the Almond bands (.night .sec.almond), so the header keeps its day ink over those */
 /* the strip the menu sits on above an opening photograph is the hero's top border, in the page's colour */
 if(t&&!N&&t.hasAttribute('data-hero')){var hs=getComputedStyle(t),bw=(parseFloat(hs.borderTopWidth)||0)+(t.classList.contains('bk-hero')?parseFloat(hs.paddingTop)||0:0);if(bw>8&&y<t.getBoundingClientRect().top+bw)return'light'}
