@@ -1093,3 +1093,8 @@ body:not(.hm) .hero::before{background:linear-gradient(180deg,rgba(108,6,0,.2),r
   .car>.bot{padding:14px 24px}
   .car>.bot span:first-child{display:none}
 }
+/* the masthead on phones: the script on the true centre of the bar, Menu left, Book right */
+@media(max-width:900px){
+  .nav .logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:92px}
+  .nav .l{gap:0}
+}
