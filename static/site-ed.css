@@ -108,3 +108,18 @@ html:not(.ed):not(.sd) [data-hero] .hero-cap .ln{border-bottom-color:var(--rule)
  [data-hero] .ph img[src*="room-window-bistro"]{object-position:50% 44%}
  [data-hero] .ph img[src*="level-negroni-graded"]{object-position:50% 44%}
 }
+/* a heading's set-apart word (.w, "The Negroni Bar") reads as the rest of the heading: it carried line-height:0 from the
+   old script treatment, so the masked heading reveal clipped it to nothing ("THE … BAR") */
+html:not(.ed) .d1 .w,html:not(.ed) .d2 .w{font-family:inherit;font-style:inherit;font-weight:inherit;text-transform:inherit;font-size:1em;line-height:inherit;letter-spacing:inherit;margin:0;display:inline;vertical-align:baseline}
+/* the two floors side by side: the line above them ("Two floors, one building" and the level tabs) repeated the heading */
+html:not(.ed) .lv-head{display:none}
+/* phones: the four At a glance facts read as ruled lines with the fact set right, on every page that has the strip
+   (it was a cramped two-by-two grid on Weddings) */
+@media (max-width:620px){
+ .fx .fx-facts{grid-template-columns:1fr}
+ .fx .fx-facts li,.fx .fx-facts li:nth-child(odd){display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:13px 0;border-left:0}
+ .fx .fx-facts li+li{border-top:1px solid rgba(108,6,0,.2)}
+ .fx .fx-facts span{flex:0 0 auto}
+ .fx .fx-facts b{margin-top:0;text-align:right;max-width:64%}
+ .fx .fx-ask{justify-content:space-between}
+}

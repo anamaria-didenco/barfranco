@@ -129,6 +129,16 @@ on the first screen or the events covers; none under reduced motion). New pages:
   screen" (owner: there is nothing by the screen; do not use `bistro-table.jpg` or that line again). On phones Home's line
   under the script runs on two small spaced lines. Nothing scrolls sideways at 320px (chapter headings, Restaurant's title and
   the footer sign-off scale down under 350px).
+- **The calm pass, every page (owner, Nov 2026: "less busy, more minimal, still curated").** Christmas, Corporate events and Private
+  dining follow Functions: one filled ask on the cover and two italic lines, the page's index under the four facts (`.fn-idx`; the
+  hover INDEX strip `#sdIdx` is gone), one quote a page (never the same quote in the facts strip and in a band), no framed "The night"
+  card, no photo collage before the form, and on Corporate the second spaces section and the extra photo pairs are gone. The styles
+  that were `.pg-fn` are now `html.sd` (end of `sd-events.css`). Card names are the links (Christmas keeps `data-track` on them).
+  Elsewhere: a heading's `.w` word reads as the heading (it was clipped to "THE … BAR"); the line above the two floors (`.lv-head`)
+  is hidden; Menus and Book a table have no button in the hero (the menu and the widget sit right under it); Home's Host at Franco
+  has no quote; Pasta fresca has no Getting here chapter; Private dining's At a glance does not repeat the facts strip. On phones the
+  four facts read as ruled lines on every page with the strip. Still open: about twenty photographs appear on more than one page
+  (the events pages share most); that needs new photographs from the owner.
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.
