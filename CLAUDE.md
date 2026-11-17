@@ -123,6 +123,12 @@ on the first screen or the events covers; none under reduced motion). New pages:
   (`clamp(360px,64svh,720px)`), the title on the left and the line and the ask on the right. Home's hero keeps its title on the
   photograph (the owner's one exception) and its Plan an event is an italic line, not an outlined box. Never put a filled or
   framed text box on a photograph again. Styles: the last block of `site-ed.css`; Restaurant and Home at the end of `home-ed.css`.
+- **After the boxes came off (Nov 2026):** the opening photographs are re-aimed for the wide desktop cut by file name (the last
+  block of `site-ed.css`; Restaurant in `home-ed.css`), and the six heroes that now run full width ask for the full file
+  (`sizes="100vw"`). Restaurant no longer shows the second daylight room photograph. Aperitivo no longer has "A table by the
+  screen" (owner: there is nothing by the screen; do not use `bistro-table.jpg` or that line again). On phones Home's line
+  under the script runs on two small spaced lines. Nothing scrolls sideways at 320px (chapter headings, Restaurant's title and
+  the footer sign-off scale down under 350px).
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.
