@@ -1319,3 +1319,5 @@ p,li,blockquote,figcaption{text-wrap:pretty}
  .enq-f{border:0;padding:0}
  .enq-f>div{border:0;background:none}
 }
+/* the narrowest phones (320px): the footer's email address was wider than its column; it may break to a second line */
+@media (max-width:350px){.fcols a{overflow-wrap:anywhere}}

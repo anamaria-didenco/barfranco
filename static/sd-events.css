@@ -468,7 +468,7 @@ html.sd #night .sd-steps{margin-top:clamp(36px,5vw,64px)}
 .fn-idx b{opacity:1;font-size:14px}
 .fn-idx a{padding:4px 0}
 html.sd .fx-ask{padding-top:6px;padding-bottom:6px}
-html.sd .sd-rev-g a,html.sd #enquire .sd-talk a[href="/robbie/"]{display:inline-block;padding:5px 0}
+html.sd .sd-rev-g a{display:inline-block;padding:5px 0}
 
 /* phones: the enquiry form takes the full width of the column, with no frame round it (the form is its own Paper panel),
    so its fields are as wide as the screen allows */

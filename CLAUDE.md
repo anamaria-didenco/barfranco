@@ -147,6 +147,9 @@ on the first screen or the events covers; none under reduced motion). New pages:
   bring the form's top back into view after Next and after Send. On phones the form takes the full column width with no frame round
   it. Never press Next or Send on the live form when testing: a name and an email create a real lead. NowBookIt refuses the
   automated desktop test browser ("couldn't load the venue"), so the desktop widget can only be checked by a person.
+- **The Robbie Williams promotion is over (owner, 26 Nov 2026: "remove the Robbie Williams").** The line under the enquiry form on
+  Functions and Christmas is gone, `/robbie/` is a forward to `/functions/` (noindex) and it is out of `sitemap.xml`. Do not bring
+  the promotion or its wording back.
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.
