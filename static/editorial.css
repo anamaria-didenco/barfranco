@@ -1310,3 +1310,14 @@ p,li,blockquote,figcaption{text-wrap:pretty}
 @media (max-width:360px){.mast-ph a+a::before{margin:0 8px}}
 /* the narrowest phones (320px): the footer's sign-off word was wider than the column and pushed the page sideways */
 @media (max-width:350px){.foot .d1{font-size:8.6vw!important}}
+
+/* VenueFlow's enquiry form (Nov 2026): the frame follows the form's own height on every page (editorial.js sets --vfh;
+   Weddings had a fixed 880px frame, half of it blank on a phone), and on phones the form takes the full width of the
+   column with no frame round it, so its fields are as wide as the screen allows. */
+.enq-f iframe{min-height:0;height:var(--vfh,640px)}
+@media (max-width:620px){
+ .enq-f{border:0;padding:0}
+ .enq-f>div{border:0;background:none}
+}
+/* the narrowest phones (320px): the footer's email address was wider than its column; it may break to a second line */
+@media (max-width:350px){.fcols a{overflow-wrap:anywhere}}
