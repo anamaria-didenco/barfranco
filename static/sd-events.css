@@ -469,3 +469,11 @@ html.sd #night .sd-steps{margin-top:clamp(36px,5vw,64px)}
 .fn-idx a{padding:4px 0}
 html.sd .fx-ask{padding-top:6px;padding-bottom:6px}
 html.sd .sd-rev-g a,html.sd #enquire .sd-talk a[href="/robbie/"]{display:inline-block;padding:5px 0}
+
+/* phones: the enquiry form takes the full width of the column, with no frame round it (the form is its own Paper panel),
+   so its fields are as wide as the screen allows */
+@media (max-width:620px){
+ html.sd .sd-fcard{border:0;padding:0;background:none!important;max-width:none}
+ html.sd .sd-fcard>div{border:0;padding:0}
+ html.sd .sd-fcard .card-em{display:none}
+}

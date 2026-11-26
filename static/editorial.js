@@ -243,6 +243,8 @@ if(r){r.addEventListener('transitionend',ink);r.addEventListener('transitioncanc
 (function(){
 var D=document,NBI='https://bookings.nowbookit.com/?accountid=e9d59bc3-73d5-4e64-a6e7-32a753b7dd3a&venueid=12388&theme=light&colors=hex,AF0F00,6C0600';
 var phone=function(){return matchMedia('(max-width:900px)').matches};
+/* phones: open the connection to NowBookIt as the page loads, so its booking page arrives sooner after the tap */
+if(phone()&&D.querySelector('a[href^="/bookings"],a[href="#book"],.bk-frame')){['preconnect','dns-prefetch'].forEach(function(r){var l=D.createElement('link');l.rel=r;l.href='https://bookings.nowbookit.com';D.head.appendChild(l)})}
 D.addEventListener('click',function(e){if(!phone()||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey)return;
  var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'';
  if(!/^(\/bookings\/?|Bookings\.html|#book)(#.*)?$/.test(h)||(h==='#book'&&!D.querySelector('#book .bk-frame')))return;
@@ -266,4 +268,20 @@ function tick(){raf=0;var vh=innerHeight,ph=innerWidth<=860;ims.forEach(function
  c=Math.max(-1,Math.min(1,c));i.style.translate='0 '+(c*max).toFixed(1)+'px'})}
 function start(){collect();tick();addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(tick)},{passive:true});addEventListener('resize',function(){collect();tick()})}
 if(D.readyState==='complete')start();else addEventListener('load',start);
+})();
+
+/* VenueFlow's enquiry form, on every page that carries it (Nov 2026). Two things the form tells the page:
+   its height, so the frame is exactly as tall as the form (no blank space under it, and nothing scrolling inside the page,
+   which is what made booking hard on phones); and a change of step, so after Next (and after Send) the form's top comes
+   back into view instead of leaving the visitor halfway down the next step. The first step message is the form arriving. */
+(function(){
+var D=document,R=D.documentElement,sel='iframe[src*="venueflowhq.com/enquire"]';if(!D.querySelector(sel))return;
+var last;
+function toForm(){var f=D.querySelector(sel);if(!f)return;setTimeout(function(){var top=f.getBoundingClientRect().top+scrollY-(innerWidth<=900?72:104);if(Math.abs(top-scrollY)<40)return;
+ scrollTo({top:Math.max(0,top),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})},140)}
+addEventListener('message',function(e){var host='';try{host=new URL(e.origin).hostname}catch(x){return}if(!/(^|\.)venueflowhq\.com$/.test(host))return;
+ var d=e.data;if(typeof d==='string'){try{d=JSON.parse(d)}catch(x){return}}if(!d||!d.type)return;
+ if(d.type==='vf-embed-height'&&d.height>0)R.style.setProperty('--vfh',Math.max(320,Math.ceil(d.height))+'px');
+ else if(d.type==='vf-step-changed'){var st=d.step;if(last===undefined||st===last){last=st;return}last=st;toForm()}
+ else if(d.type==='vf-enquiry-submitted')toForm()});
 })();

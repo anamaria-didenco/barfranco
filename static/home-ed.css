@@ -303,4 +303,4 @@ html.ed .hf-act .hx-acts a.cta:not(.cta-fill):hover::after{opacity:1}
 }
 /* the narrowest phones (320px): a chapter heading's longest word ("YOUR PEOPLE.") was wider than the column and pushed the page sideways */
 @media (max-width:350px){html.ed .ed-ch .ed-h{font-size:8.4vw}}
-@media (max-width:350px){.ed-rhero .ed-h{font-size:7.6vw}}
+@media (max-width:350px){.ed-rhero .ed-h{font-size:7.3vw}}

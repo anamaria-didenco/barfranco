@@ -139,6 +139,14 @@ on the first screen or the events covers; none under reduced motion). New pages:
   has no quote; Pasta fresca has no Getting here chapter; Private dining's At a glance does not repeat the facts strip. On phones the
   four facts read as ruled lines on every page with the strip. Still open: about twenty photographs appear on more than one page
   (the events pages share most); that needs new photographs from the owner.
+- **The two booking systems on phones (checked Nov 2026).** NowBookIt (tables): every Book a table on a phone opens NowBookIt's own
+  page in the same tab (Back returns to the same place); the page preconnects to `bookings.nowbookit.com` on phones. VenueFlow
+  (event enquiries): the iframe `src` carries `bg=F1EEE6&radius=0&shadow=off` (VenueFlow's own embed options; keep them) so the form
+  is a square Paper panel; `editorial.js` listens to the form on every page: `vf-embed-height` sets `--vfh` so the frame is exactly
+  as tall as the form (never a fixed height: Weddings had 880px, half of it blank), and `vf-step-changed` / `vf-enquiry-submitted`
+  bring the form's top back into view after Next and after Send. On phones the form takes the full column width with no frame round
+  it. Never press Next or Send on the live form when testing: a name and an email create a real lead. NowBookIt refuses the
+  automated desktop test browser ("couldn't load the venue"), so the desktop widget can only be checked by a person.
 - **Restaurant is on Home's system** (`html.ed.ed-rest`, `home-ed.css` + `home-ed.js` instead of `site-ed.*`): a full-screen room hero
   with the title on it (flat Deep Red veil), 01 The room, a daylight film still, 02 What we cook (a dish and the printed pasta card),
   03 The evening on Deep Red, 04 Getting here, 05 Book with the widget. Restaurant-only styles at the end of `home-ed.css`.
